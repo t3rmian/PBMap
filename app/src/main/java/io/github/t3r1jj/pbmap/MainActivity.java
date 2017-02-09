@@ -1,36 +1,19 @@
 package io.github.t3r1jj.pbmap;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.support.annotation.Dimension;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.qozix.tileview.TileView;
-import com.qozix.tileview.hotspots.HotSpot;
-import com.qozix.tileview.tiles.Tile;
 import com.qozix.tileview.widgets.ScalingLayout;
-
-import org.simpleframework.xml.Serializer;
-import org.simpleframework.xml.core.Persister;
-
-import java.io.File;
-
-import io.github.t3r1jj.pbmap.model.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -84,18 +67,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main);
-        highlightManager = new ScalingLayout( this );
-        TileView tileView = new MyTileView( this );
-        tileView.setSize(8*256, 8*256);  // the original size of the untiled image
-        tileView.addDetailLevel(1f, "tiles/1/1000/1000.png", 256, 256);
-        tileView.addDetailLevel(.5f, "tiles/1/500/500.png", 256, 256);
-        tileView.addScalingViewGroup(highlightManager );
-        View textView = new HighlightView(this, new Rect(0,0,300,400));
-        ScalingLayout.LayoutParams lp = new ScalingLayout.LayoutParams(300, 400);
-        highlightManager.addView( textView, lp );
-        setContentView(tileView);
+//        highlightManager = new ScalingLayout( this );
+//        TileView tileView = new MyTileView( this );
+//        tileView.setSize(8*256, 8*256);  // the original size of the untiled image
+//        tileView.addDetailLevel(1f, "tiles/1/1000/1000.png", 256, 256);
+//        tileView.addDetailLevel(.5f, "tiles/1/500/500.png", 256, 256);
+//        tileView.addScalingViewGroup(highlightManager );
+//        View textView = new HighlightView(this, new Rect(0,0,300,400));
+//        ScalingLayout.LayoutParams lp = new ScalingLayout.LayoutParams(300, 400);
+//        highlightManager.addView( textView, lp );
+//        setContentView(tileView);
 
-        new Controller(this, "data/1.xml").addData(tileView);
+        setContentView(new Controller(this, "data/1.xml").loadMap());
 
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
