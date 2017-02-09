@@ -1,0 +1,16 @@
+<map name="First map">
+    <coordinates length="0" />
+    <space name="First space">
+        <coordinates length="4">
+            <coordinate lng="0" lat="0" mamsl="0"/>
+            <coordinate lng="300" lat="0" mamsl="0"/>
+            <coordinate lng="300" lat="400" mamsl="0"/>
+            <coordinate lng="0" lat="400" mamsl="0"/>
+        </coordinates>
+    </space>
+    <spot name="First spot">
+        <coordinates length="1">
+            <coordinate lng="600" lat="600" mamsl="10"/>
+        </coordinates>
+    </spot>
+</map>
