@@ -1,21 +1,17 @@
 package io.github.t3r1jj.pbmap.view;
 
 import android.content.Context;
-import android.util.AttributeSet;
 
 import com.qozix.tileview.TileView;
 
-public class PBMapView extends TileView implements PlaceView{
+import io.github.t3r1jj.pbmap.Controller;
+import io.github.t3r1jj.pbmap.model.Space;
+
+public class PBMapView extends TileView implements PlaceView {
+    Controller controller;
+
     public PBMapView(Context context) {
         super(context);
-    }
-
-    public PBMapView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
-
-    public PBMapView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
     }
 
     public void addPlaceView(PlaceView place) {
@@ -25,6 +21,14 @@ public class PBMapView extends TileView implements PlaceView{
     //TODO: Fix broken SOLID principle (LSP)
     @Override
     public void addToMap(PBMapView pbMapView) {
-        throw new UnsupportedOperationException("Cannot add map to map (literally), but maybe reference?");
+        //throw new UnsupportedOperationException("Cannot add map to map (literally), but maybe reference?");
+    }
+
+    public void fireNavigationPerformed(Space space) {
+        controller.onNavigationPerformed(space);
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
     }
 }

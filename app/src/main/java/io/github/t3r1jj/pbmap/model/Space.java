@@ -15,4 +15,8 @@ public class Space extends Place {
     public PlaceView createView(Context context) {
         return new SpaceView(context, this);
     }
+
+    public String getMapReference() {
+        return mapReference;
+    }
 }

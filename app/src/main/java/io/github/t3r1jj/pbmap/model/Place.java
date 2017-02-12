@@ -6,7 +6,6 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementArray;
 
-import io.github.t3r1jj.pbmap.view.PBMapView;
 import io.github.t3r1jj.pbmap.view.PlaceView;
 
 public abstract class Place {

@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 //        highlightManager.addView( textView, lp );
 //        setContentView(tileView);
 
-        setContentView(new Controller(this, "data/1.xml").loadMap());
+        new Controller(this, "data/1.xml");
 
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
