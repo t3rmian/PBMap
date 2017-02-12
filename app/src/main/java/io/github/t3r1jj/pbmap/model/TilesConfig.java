@@ -13,4 +13,14 @@ class TilesConfig {
     int width;
     @Attribute
     int height;
+
+    @Override
+    public String toString() {
+        return "TilesConfig{" +
+                "path='" + path + '\'' +
+                ", zoom=" + zoom +
+                ", width=" + width +
+                ", height=" + height +
+                '}';
+    }
 }

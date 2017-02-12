@@ -11,7 +11,7 @@ import org.simpleframework.xml.ElementListUnion;
 
 import java.util.List;
 
-import io.github.t3r1jj.pbmap.view.PBMapView;
+import io.github.t3r1jj.pbmap.view.MapView;
 
 public class PBMap extends Place {
 
@@ -37,8 +37,8 @@ public class PBMap extends Place {
     }
 
     @Override
-    public PBMapView createView(Context context) {
-        PBMapView pbMapView = new PBMapView(context);
+    public MapView createView(Context context) {
+        MapView pbMapView = new MapView(context, this);
         pbMapView.setSize(width, height);
         for (TilesConfig tilesConfig : tilesConfigs) {
             pbMapView.addDetailLevel(tilesConfig.zoom, tilesConfig.path, tilesConfig.width, tilesConfig.height);
@@ -46,6 +46,7 @@ public class PBMap extends Place {
         for (Place place : places) {
             pbMapView.addPlaceView(place.createView(context));
         }
+        pbMapView.initializeZoom();
         return pbMapView;
     }
 

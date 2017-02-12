@@ -52,7 +52,7 @@ public class SpaceView extends CompositePathView.DrawablePath implements PlaceVi
     }
 
     @Override
-    public void addToMap(final PBMapView pbMapView) {
+    public void addToMap(final MapView pbMapView) {
         pbMapView.getCompositePathView().addPath(this);
         pbMapView.addPlaceView(spotView);
         if (space.getMapReference() != null) {

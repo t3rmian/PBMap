@@ -24,7 +24,7 @@ public class SpotView extends MarkerLayout implements PlaceView {
     }
 
     @Override
-    public void addToMap(PBMapView pbMapView) {
+    public void addToMap(MapView pbMapView) {
         pbMapView.addMarker(textView, center.lng, center.lat, -0.5f, -1.0f);
     }
 }
