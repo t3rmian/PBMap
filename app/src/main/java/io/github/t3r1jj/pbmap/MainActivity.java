@@ -1,119 +1,71 @@
 package io.github.t3r1jj.pbmap;
 
+import android.app.SearchManager;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.AttributeSet;
-import android.view.View;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
-
-import com.qozix.tileview.TileView;
-import com.qozix.tileview.widgets.ScalingLayout;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.SearchView;
 
 public class MainActivity extends AppCompatActivity {
 
-    public class MyTileView extends TileView {
-
-        public MyTileView(Context context) {
-            super(context);
-        }
-
-        public MyTileView(Context context, AttributeSet attrs) {
-            super(context, attrs);
-        }
-
-        public MyTileView(Context context, AttributeSet attrs, int defStyleAttr) {
-            super(context, attrs, defStyleAttr);
-        }
-
-        @Override
-        public void onScaleChanged(float scale, float previous) {
-            super.onScaleChanged(scale, previous);
-            highlightManager.setScale(scale);
-        }
-    }
-
-    private ScalingLayout highlightManager;
-
-    public class HighlightView extends View {
-        Paint paint = new Paint();
-        Rect rectangle;
-
-        public HighlightView(Context context, Rect rectangle) {
-            super(context);
-            this.rectangle=rectangle;
-        }
-
-        @Override
-        public void onDraw(Canvas canvas) {
-            paint.setColor(Color.parseColor("#77ff0000"));
-            paint.setStyle(Paint.Style.FILL);
-            canvas.drawRect(rectangle, paint);
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setColor(Color.GRAY);
-            paint.setStrokeWidth(3);
-            canvas.drawRect(rectangle, paint);
-        }
-
-    }
-
+    private Controller controller;
+    private final String initialMapPath = "data/1.xml";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
-//        highlightManager = new ScalingLayout( this );
-//        TileView tileView = new MyTileView( this );
-//        tileView.setSize(8*256, 8*256);  // the original size of the untiled image
-//        tileView.addDetailLevel(1f, "tiles/1/1000/1000.png", 256, 256);
-//        tileView.addDetailLevel(.5f, "tiles/1/500/500.png", 256, 256);
-//        tileView.addScalingViewGroup(highlightManager );
-//        View textView = new HighlightView(this, new Rect(0,0,300,400));
-//        ScalingLayout.LayoutParams lp = new ScalingLayout.LayoutParams(300, 400);
-//        highlightManager.addView( textView, lp );
-//        setContentView(tileView);
-
-        new Controller(this, "data/1.xml");
-
-
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        setContentView(R.layout.activity_main);
+        controller = new Controller(this);
+        handleIntent(getIntent());
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setIconified(false);
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    protected void onNewIntent(Intent intent) {
+        Log.d("MainActivity", "onNewIntent");
+        handleIntent(intent);
+    }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    private void handleIntent(Intent intent) {
+
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            Log.d("MainActivity", "Handling query: " + query);
+        } else {
+            try {
+                controller.loadMap(initialMapPath);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+    }
 
-        return super.onOptionsItemSelected(item);
+    public void setMapView(View view) {
+        ViewGroup contentView = (ViewGroup) findViewById(R.id.content_main);
+        contentView.removeAllViews();
+        contentView.addView(view);
     }
 }

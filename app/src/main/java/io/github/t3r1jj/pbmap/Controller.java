@@ -14,23 +14,17 @@ public class Controller {
     PBMap map;
     MapView mapView;
 
-    Controller(MainActivity base, String assetsMapPath) {
+    Controller(MainActivity base) {
         this.mainActivity = base;
-        try {
-            loadMap(assetsMapPath);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
-
-    private void loadMap(String assetsMapPath) throws Exception {
+    public void loadMap(String assetsMapPath) throws Exception {
         Serializer serializer = new Persister();
         map = serializer.read(PBMap.class, mainActivity.getAssets().open(assetsMapPath));
         Log.d("MainActivity", map.toString());
         MapView nextMapView = map.createView(mainActivity);
         nextMapView.setController(this);
-        mainActivity.setContentView(nextMapView);
+        mainActivity.setMapView(nextMapView);
         if (mapView != null) {
             mapView.addToMap(nextMapView);
         }
