@@ -50,4 +50,7 @@ public class PBMap extends Place {
         return pbMapView;
     }
 
+    public List<Place> getPlaces() {
+        return places;
+    }
 }

@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.SearchRecentSuggestions;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -11,6 +12,8 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+
+import io.github.t3r1jj.pbmap.search.SearchListProvider;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             Log.d("MainActivity", "Handling query: " + query);
+//            SearchRecentSuggestions suggestions =
+//                    new SearchRecentSuggestions(this,
+//                            SearchListProvider.AUTHORITY,
+//                            SearchListProvider.MODE);
+//            suggestions.saveRecentQuery(query, null);
         } else {
             try {
                 controller.loadMap(initialMapPath);
