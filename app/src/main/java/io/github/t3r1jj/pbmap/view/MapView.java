@@ -1,7 +1,6 @@
 package io.github.t3r1jj.pbmap.view;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.qozix.tileview.TileView;
 
@@ -71,6 +70,7 @@ public class MapView extends TileView implements PlaceView {
 
     public void setController(Controller controller) {
         this.controller = controller;
+        controller.loadLogo(map);
     }
 
 }

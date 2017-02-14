@@ -3,7 +3,6 @@ package io.github.t3r1jj.pbmap.model;
 import android.content.Context;
 
 import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementArray;
 
 import io.github.t3r1jj.pbmap.view.PlaceView;
@@ -11,10 +10,10 @@ import io.github.t3r1jj.pbmap.view.PlaceView;
 public abstract class Place {
     @Attribute
     protected String name;
+    @Attribute(required = false)
+    protected String logoPath;
     @ElementArray
     protected Coordinate[] coordinates;
-    @Element(required = false)
-    protected String logoPath;
 
     public String getName() {
         return name;
@@ -26,6 +25,10 @@ public abstract class Place {
 
     public Coordinate[] getCoordinates() {
         return coordinates;
+    }
+
+    public String getLogoPath() {
+        return logoPath;
     }
 
     @Override

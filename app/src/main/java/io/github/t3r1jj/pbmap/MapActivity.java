@@ -4,29 +4,33 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import io.github.t3r1jj.pbmap.search.Search;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 
-public class MainActivity extends AppCompatActivity {
+public class MapActivity extends DrawerActivity {
 
     private Controller controller;
+    private ViewGroup mapContainer;
+    private FloatingActionButton infoButton;
+    private MenuItem backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        mapContainer = (ViewGroup) findViewById(R.id.content_main);
+        infoButton = (FloatingActionButton) findViewById(R.id.current_fab);
         controller = new Controller(this);
         handleIntent(getIntent());
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         if (!controller.isInitialized()) {
             try {
@@ -35,6 +39,13 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    protected void initializeContentView() {
+        setContentView(R.layout.activity_map);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
 
@@ -51,6 +62,26 @@ public class MainActivity extends AppCompatActivity {
                 searchManager.getSearchableInfo(getComponentName()));
 
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        backButton = menu.findItem(R.id.action_back);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_back:
+                try {
+                    controller.loadPreviousMap();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -82,8 +113,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setMapView(View view) {
-        ViewGroup contentView = (ViewGroup) findViewById(R.id.content_main);
-        contentView.removeAllViews();
-        contentView.addView(view);
+        mapContainer.removeAllViews();
+        mapContainer.addView(view);
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    public void setLogo(ImageView view) {
+        if (view == null) {
+            getSupportActionBar().setLogo(null);
+        } else {
+            getSupportActionBar().setLogo(view.getDrawable());
+        }
+    }
+
+    public void setBackButtonVisible(boolean visible) {
+        backButton.setVisible(visible);
     }
 }
