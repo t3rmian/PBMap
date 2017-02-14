@@ -11,8 +11,8 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:launchMode="singleTop">
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -23,9 +23,8 @@
                 android:resource="@xml/searchable" />
         </activity>
         <provider
-            android:authorities="io.github.t3r1jj.pbmap.search.SearchListProvider"
-            android:name=".search.SearchListProvider" >
-        </provider>
+            android:name=".search.SearchListProvider"
+            android:authorities="io.github.t3r1jj.pbmap.search.SearchListProvider" />
     </application>
 
 </manifest>

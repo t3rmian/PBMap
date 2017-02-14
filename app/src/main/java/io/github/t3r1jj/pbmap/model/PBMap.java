@@ -16,20 +16,20 @@ import io.github.t3r1jj.pbmap.view.MapView;
 public class PBMap extends Place {
 
     @Attribute
-    int width;
+    private int width;
     @Attribute
-    int height;
+    private int height;
     @Attribute(required = false)
-    String url;
+    private String url;
     @ElementListUnion({
             @ElementList(entry = "space", type = Space.class, required = false, inline = true),
             @ElementList(entry = "spot", type = Spot.class, required = false, inline = true)
     })
-    List<Place> places;
+    private List<Place> places;
     @ElementArray(name = "tiles_configs")
-    TilesConfig[] tilesConfigs;
+    private TilesConfig[] tilesConfigs;
     @Element(required = false)
-    String description;
+    private String description;
 
     @Override
     public String toString() {

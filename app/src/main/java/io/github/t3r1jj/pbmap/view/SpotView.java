@@ -11,8 +11,8 @@ import io.github.t3r1jj.pbmap.model.Place;
 
 public class SpotView extends MarkerLayout implements PlaceView {
 
-    final TextView textView;
-    final Coordinate center;
+    private final TextView textView;
+    private final Coordinate center;
 
     public SpotView(Context context, Place place) {
         super(context);

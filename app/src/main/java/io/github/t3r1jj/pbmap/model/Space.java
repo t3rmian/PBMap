@@ -9,7 +9,7 @@ import io.github.t3r1jj.pbmap.view.SpaceView;
 
 public class Space extends Place {
     @Attribute(name = "map_reference", required = false)
-    String mapReference;
+    private String mapReference;
 
     @Override
     public PlaceView createView(Context context) {

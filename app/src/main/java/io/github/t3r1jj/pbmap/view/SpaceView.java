@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Region;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.qozix.tileview.hotspots.HotSpot;
 import com.qozix.tileview.paths.CompositePathView;
@@ -15,9 +16,9 @@ import io.github.t3r1jj.pbmap.model.Space;
 
 public class SpaceView extends CompositePathView.DrawablePath implements PlaceView {
 
-    final Space space;
-    final SpotView spotView;
-    HotSpot hotSpot;
+    private HotSpot hotSpot;
+    private final Space space;
+    private final SpotView spotView;
 
     public SpaceView(Context context, Space space) {
         this.space = space;
@@ -61,7 +62,6 @@ public class SpaceView extends CompositePathView.DrawablePath implements PlaceVi
                 @Override
                 public void onHotSpotTap(HotSpot hotSpot, int x, int y) {
                     pbMapView.fireNavigationPerformed(space);
-                    Log.d("SpaceView", "Pressed next space");
                 }
             });
             pbMapView.addHotSpot(hotSpot);

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <searchable xmlns:android="http://schemas.android.com/apk/res/android"
-    android:label="@string/app_name"
     android:hint="@string/search_hint"
+    android:label="@string/app_name"
     android:searchSuggestAuthority="io.github.t3r1jj.pbmap.search.SearchListProvider"
+    android:searchSuggestIntentAction="android.intent.action.VIEW"
     android:searchSuggestSelection=" ? "
     android:searchSuggestThreshold="2" />

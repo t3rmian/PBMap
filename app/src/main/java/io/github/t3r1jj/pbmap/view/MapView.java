@@ -13,9 +13,9 @@ import io.github.t3r1jj.pbmap.model.PBMap;
 import io.github.t3r1jj.pbmap.model.Space;
 
 public class MapView extends TileView implements PlaceView {
-    static Map<String, MapViewPosition> positionsCache = new HashMap<>();
-    final PBMap map;
-    Controller controller;
+    private static Map<String, MapViewPosition> positionsCache = new HashMap<>();
+    private Controller controller;
+    private final PBMap map;
 
     public MapView(Context context, PBMap map) {
         super(context);
@@ -28,17 +28,16 @@ public class MapView extends TileView implements PlaceView {
 
     @Override
     public void addToMap(MapView pbMapView) {
-        Log.d("MapView", "Saving pos: " + new MapViewPosition(getCenterX(), getCenterY(), getScale()).toString());
         positionsCache.put(map.getName(), new MapViewPosition(getCenterX(), getCenterY(), getScale()));
     }
 
     public void initializeZoom() {
         if (!positionsCache.containsKey(map.getName())) {
-            setMinimumScaleMode(MinimumScaleMode.FIT);
-            setScale(0);
             post(new Runnable() {
                 @Override
                 public void run() {
+                    setMinimumScaleMode(MinimumScaleMode.FIT);
+                    setScale(0);
                     positionsCache.put(map.getName(), new MapViewPosition(getCenterX(), getCenterY(), getScale()));
                 }
             });
@@ -59,7 +58,6 @@ public class MapView extends TileView implements PlaceView {
             post(new Runnable() {
                 @Override
                 public void run() {
-                    Log.d("MapView", "Sliding to: " + previousPosition.toString());
                     setMinimumScaleMode(MinimumScaleMode.FIT);
                     slideToAndCenterWithScale(previousPosition.centerX, previousPosition.centerY, previousPosition.zoom);
                 }
@@ -74,4 +72,5 @@ public class MapView extends TileView implements PlaceView {
     public void setController(Controller controller) {
         this.controller = controller;
     }
+
 }

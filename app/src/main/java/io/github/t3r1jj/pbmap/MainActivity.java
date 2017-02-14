@@ -4,21 +4,20 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.SearchRecentSuggestions;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.Toast;
 
-import io.github.t3r1jj.pbmap.search.SearchListProvider;
+import io.github.t3r1jj.pbmap.search.Search;
+import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 
 public class MainActivity extends AppCompatActivity {
 
     private Controller controller;
-    private final String initialMapPath = "data/1.xml";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +27,14 @@ public class MainActivity extends AppCompatActivity {
         handleIntent(getIntent());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        if (!controller.isInitialized()) {
+            try {
+                controller.loadMap(getString(R.string.config_initial_map_path));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
@@ -48,26 +55,29 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onNewIntent(Intent intent) {
-        Log.d("MainActivity", "onNewIntent");
         handleIntent(intent);
     }
 
     private void handleIntent(Intent intent) {
-
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            Log.d("MainActivity", "Handling query: " + query);
-//            SearchRecentSuggestions suggestions =
-//                    new SearchRecentSuggestions(this,
-//                            SearchListProvider.AUTHORITY,
-//                            SearchListProvider.MODE);
-//            suggestions.saveRecentQuery(query, null);
-        } else {
-            try {
-                controller.loadMap(initialMapPath);
-            } catch (Exception e) {
-                e.printStackTrace();
+            Search search = new Search(this);
+            SearchSuggestion placeFound = search.find(intent.getStringExtra(SearchManager.QUERY));
+            if (placeFound != null) {
+                loadPlace(placeFound);
+            } else {
+                Toast.makeText(this, R.string.not_found, Toast.LENGTH_LONG).show();
             }
+        } else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
+            SearchSuggestion suggestion = new SearchSuggestion(intent);
+            loadPlace(suggestion);
+        }
+    }
+
+    private void loadPlace(SearchSuggestion suggestion) {
+        try {
+            controller.loadMap(suggestion);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
