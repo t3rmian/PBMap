@@ -21,6 +21,8 @@ public class PBMap extends Place {
     private int height;
     @Attribute(required = false)
     private String url;
+    @Attribute(name="is_primary", required = false)
+    private boolean primary;
     @ElementListUnion({
             @ElementList(entry = "space", type = Space.class, required = false, inline = true),
             @ElementList(entry = "spot", type = Spot.class, required = false, inline = true)
@@ -30,6 +32,7 @@ public class PBMap extends Place {
     private TilesConfig[] tilesConfigs;
     @Element(required = false)
     private String description;
+    private String path;
 
     @Override
     public String toString() {
@@ -52,5 +55,17 @@ public class PBMap extends Place {
 
     public List<Place> getPlaces() {
         return places;
+    }
+
+    public boolean isPrimary() {
+        return primary;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getPath() {
+        return path;
     }
 }

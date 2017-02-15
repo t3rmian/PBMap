@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="attribution_titles">
+        <item>TileView</item>
+        <item>Simple-XML</item>
+        <item>Swipe-Selector</item>
+        <item>Google Support Libraries</item>
+    </string-array>
+    <string-array name="attribution_descriptions">
+        <item>TODO</item>
+        <item>TODO</item>
+        <item>TODO</item>
+        <item>TODO</item>
+    </string-array>
+    <string-array name="attribution_copyright">
+        <item>com.qozix:tileview:2.2.6, Mike Dunn, MIT</item>
+        <item>org.simpleframework:simple-xml:2.7.1, Niall Gallagher, Apache 2.0</item>
+        <item>com.roughike:swipe-selector:1.0.6, Iiro Krankka, Apache 2.0</item>
+        <item>com.android.support, The Android Open Source Project, Apache 2.0</item>
+    </string-array>
+    <string-array name="attribution_urls">
+        <item>https://github.com/moagrius/TileView</item>
+        <item>http://simple.sourceforge.net/</item>
+        <item>https://github.com/roughike/SwipeSelector</item>
+        <item>https://developer.android.com/topic/libraries/support-library/index.html</item>
+    </string-array>
+</resources>

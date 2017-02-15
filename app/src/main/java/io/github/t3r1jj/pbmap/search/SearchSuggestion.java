@@ -3,11 +3,13 @@ package io.github.t3r1jj.pbmap.search;
 import android.app.SearchManager;
 import android.content.Intent;
 
+import io.github.t3r1jj.pbmap.model.Place;
+
 public class SearchSuggestion {
     public String place;
     public String mapPath;
 
-    SearchSuggestion(String place, String mapPath) {
+    public SearchSuggestion(String place, String mapPath) {
         this.place = place;
         this.mapPath = mapPath;
     }

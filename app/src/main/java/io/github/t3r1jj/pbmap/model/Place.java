@@ -10,7 +10,7 @@ import io.github.t3r1jj.pbmap.view.PlaceView;
 public abstract class Place {
     @Attribute
     protected String name;
-    @Attribute(required = false)
+    @Attribute(name = "logo_path", required = false)
     protected String logoPath;
     @ElementArray
     protected Coordinate[] coordinates;

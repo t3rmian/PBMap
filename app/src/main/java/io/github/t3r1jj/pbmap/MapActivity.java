@@ -17,7 +17,8 @@ import android.widget.Toast;
 import io.github.t3r1jj.pbmap.search.Search;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 
-public class MapActivity extends DrawerActivity {
+public class MapActivity extends DrawerActivity
+        implements PlacesDrawerFragment.PlaceNavigationDrawerCallbacks {
 
     private Controller controller;
     private ViewGroup mapContainer;
@@ -51,7 +52,7 @@ public class MapActivity extends DrawerActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_map, menu);
 
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
@@ -127,6 +128,19 @@ public class MapActivity extends DrawerActivity {
     }
 
     public void setBackButtonVisible(boolean visible) {
-        backButton.setVisible(visible);
+        if (backButton != null) {
+            backButton.setVisible(visible);
+        }
+    }
+
+    @Override
+    public void onPlaceDrawerItemSelected(SearchSuggestion suggestion) {
+        loadPlace(suggestion);
+    }
+
+    @Override
+    public void onAboutDrawerItemSelected() {
+        Intent aboutIntent = new Intent(this, AboutActivity.class);
+        startActivity(aboutIntent);
     }
 }

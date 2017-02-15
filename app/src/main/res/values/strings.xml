@@ -14,4 +14,15 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_example">Example action</string>
+    <string name="about">About</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="action_share">Share</string>
+    <string name="rate">Rate</string>
+    <string name="about_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pulvinar ultricies commodo. Nam id convallis massa. Donec convallis, risus vitae elementum laoreet, dui felis pretium nisi, vel rhoncus justo massa accumsan ipsum.</string>
+    <string name="about_author">Author:\u0020</string>
+    <string name="about_version">Version: %1$s</string>
+    <string name="could_not_open_android_market">Could not open Android market, please install the market application (Google Play).</string>
+    <string name="about_report">Report bug</string>
+    <string name="about_attribution_site">Go to attributed site</string>
+    <string name="about_attributions">Attributions</string>
 </resources>

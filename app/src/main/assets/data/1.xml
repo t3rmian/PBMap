@@ -1,4 +1,4 @@
-<map name="First map" width="2048" height="2048" logoPath="logo/logo.png">
+<map name="First map" width="2048" height="2048" logo_path="logo/logo.png" is_primary="true">
     <tiles_configs length="2">
         <tiles_config path="tiles/1/500/500.png" zoom="0.5" width="256" height="256"/>
         <tiles_config path="tiles/1/1000/1000.png" zoom="1" width="256" height="256"/>

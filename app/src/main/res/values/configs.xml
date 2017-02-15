@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="config_initial_map_path" translatable="false">data/1.xml</string>
+    <string name="config_developer" translatable="false"><a href="https://t3r1jj.github.io/">Damian Terlecki</a></string>
+    <string name="config_report" translatable="false">https://github.com/T3r1jj/PBMap</string>
+    <string name="config_project" translatable="false">https://github.com/T3r1jj/PBMap/issues</string>
 </resources>

@@ -7,16 +7,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
-import org.simpleframework.xml.Serializer;
-import org.simpleframework.xml.core.Persister;
-
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import io.github.t3r1jj.pbmap.BuildConfig;
+import io.github.t3r1jj.pbmap.Dao;
 import io.github.t3r1jj.pbmap.model.PBMap;
 import io.github.t3r1jj.pbmap.model.Place;
 
@@ -27,12 +24,13 @@ class SuggestionsDBHelper extends SQLiteOpenHelper {
     static final String SUGGESTIONS_COLUMN_PLACE = SearchManager.SUGGEST_COLUMN_INTENT_DATA;
     static final String SUGGESTIONS_COLUMN_MAP_PATH = SearchManager.SUGGEST_COLUMN_INTENT_EXTRA_DATA;
     private Context context;
-    private String mapsPath = "data";
+    private final Dao dao;
     private static final String DATABASE_NAME = "search_suggestions.db";
 
     SuggestionsDBHelper(Context base) {
         super(base, DATABASE_NAME, null, BuildConfig.VERSION_CODE);
         this.context = base;
+        dao = new Dao(context);
     }
 
     @Override
@@ -61,29 +59,20 @@ class SuggestionsDBHelper extends SQLiteOpenHelper {
 
 
     private void loadQueriesToDb(SQLiteDatabase db) throws Exception {
-        List<PBMap> maps = loadMaps(mapsPath);
+        List<PBMap> maps = dao.loadMaps();
         insertSuggestions(db, maps);
     }
 
-    private List<PBMap> loadMaps(String mapsPath) throws Exception {
-        List<PBMap> maps = new ArrayList<>();
-        Serializer serializer = new Persister();
-        for (String mapPath : context.getAssets().list(mapsPath)) {
-            PBMap map = serializer.read(PBMap.class, context.getAssets().open(mapsPath + "/" + mapPath));
-            maps.add(map);
-        }
-        return maps;
-    }
 
     private void insertSuggestions(SQLiteDatabase db, List<PBMap> maps) throws IOException {
         Set<SearchSuggestion> suggestions = new HashSet<>();
-        String[] mapPaths = context.getAssets().list(mapsPath);
+        String[] mapPaths = context.getAssets().list(dao.getMapsPath());
         for (int i = 0; i < mapPaths.length; i++) {
-            suggestions.add(new SearchSuggestion(maps.get(i).getName(), mapsPath + "/" + mapPaths[i]));
+            suggestions.add(new SearchSuggestion(maps.get(i).getName(), dao.getMapsPath() + "/" + mapPaths[i]));
         }
         for (int i = 0; i < mapPaths.length; i++) {
             for (Place place : maps.get(i).getPlaces()) {
-                suggestions.add(new SearchSuggestion(place.getName(), mapsPath + "/" + mapPaths[i]));
+                suggestions.add(new SearchSuggestion(place.getName(), dao.getMapsPath() + "/" + mapPaths[i]));
             }
         }
         for (SearchSuggestion suggestion : suggestions) {

@@ -30,6 +30,15 @@
             android:name=".search.SearchListProvider"
             android:authorities="io.github.t3r1jj.pbmap.search.SearchListProvider" />
 
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/title_activity_about"
+            android:parentActivityName=".MapActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.github.t3r1jj.pbmap.MapActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -32,6 +32,7 @@ dependencies {
         exclude module: 'stax-api'
         exclude module: 'xpp3'
     }
+    compile 'com.roughike:swipe-selector:1.0.6'
 
     testCompile 'junit:junit:4.12'
 }

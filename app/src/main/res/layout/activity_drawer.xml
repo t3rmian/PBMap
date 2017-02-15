@@ -23,7 +23,7 @@
          the container. -->
     <fragment
         android:id="@+id/navigation_drawer"
-        android:name="io.github.t3r1jj.pbmap.NavigationDrawerFragment"
+        android:name="io.github.t3r1jj.pbmap.PlacesDrawerFragment"
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"

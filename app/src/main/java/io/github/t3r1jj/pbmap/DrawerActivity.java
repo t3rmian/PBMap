@@ -4,8 +4,7 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 
-abstract class DrawerActivity extends AppCompatActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+abstract class DrawerActivity extends AppCompatActivity {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -27,10 +26,5 @@ abstract class DrawerActivity extends AppCompatActivity
     }
 
     protected abstract void initializeContentView();
-
-    @Override
-    public void onNavigationDrawerItemSelected(int position) {
-        //TODO: Implement drawer navigation
-    }
 
 }
