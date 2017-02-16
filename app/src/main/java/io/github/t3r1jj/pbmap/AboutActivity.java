@@ -1,15 +1,26 @@
 package io.github.t3r1jj.pbmap;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +40,24 @@ public class AboutActivity extends AppCompatActivity {
         setupAuthor();
         setupVersion();
         setupAttributions();
+        setupLicenses();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_about, menu);
+        MenuItem shareItem = menu.findItem(R.id.action_share);
+        ShareActionProvider shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(shareItem);
+        Intent share = createShareIntent();
+        shareActionProvider.setShareIntent(share);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    private Intent createShareIntent() {
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.setType("text/plain");
+        share.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=" + getPackageName());
+        return share;
     }
 
     private void setupIcon() {
@@ -83,21 +112,58 @@ public class AboutActivity extends AppCompatActivity {
     private void setupAttributions() {
         String[] titles = getResources().getStringArray(R.array.attribution_titles);
         String[] descriptions = getResources().getStringArray(R.array.attribution_descriptions);
-        String[] urls = getResources().getStringArray(R.array.attribution_urls);
         SwipeItem[] attributions = new SwipeItem[titles.length];
         for (int i = 0; i < titles.length; i++) {
-            attributions[i] = new AttributionSwipeItem(i, titles[i], descriptions[i], urls[i]);
+            attributions[i] = new SwipeItem(i, titles[i], descriptions[i]);
         }
         final SwipeSelector swipeSelector = (SwipeSelector) findViewById(R.id.swipe_selector);
         swipeSelector.setItems(attributions);
-        View attributionSite = findViewById(R.id.about_attribution_site);
-        attributionSite.setOnClickListener(new View.OnClickListener() {
+    }
+
+    private void setupLicenses() {
+        View licenses = findViewById(R.id.about_licenses);
+        licenses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AttributionSwipeItem selectedItem = (AttributionSwipeItem) swipeSelector.getSelectedItem();
-                openUrl(selectedItem.url);
+                new LicensesDialogFragment().show(getFragmentManager(), "LICENSES");
             }
         });
+    }
+
+    public static class LicensesDialogFragment extends DialogFragment {
+
+        @Nullable
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            return super.onCreateView(inflater, container, savedInstanceState);
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            WebView webView = (WebView) View.inflate(getActivity(), R.layout.dialog_licenses, null);
+            webView.loadUrl(getString(R.string.config_NOTICE));
+            final AlertDialog alertDialog = new AlertDialog.Builder(getActivity(), getTheme())
+                    .setTitle(getString(R.string.about_licenses))
+                    .setView(webView)
+                    .setPositiveButton(android.R.string.ok, null)
+                    .create();
+
+            webView.setWebViewClient(new WebViewClient() {
+                @Override
+                public void onPageFinished(WebView view, String url) {
+                    alertDialog.show();
+                }
+            });
+
+            alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialogInterface) {
+                    alertDialog.hide();
+                }
+            });
+
+            return alertDialog;
+        }
     }
 
     private class OnRateClickListener implements View.OnClickListener {
@@ -126,16 +192,6 @@ public class AboutActivity extends AppCompatActivity {
             } catch (ActivityNotFoundException e) {
                 Toast.makeText(AboutActivity.this, getString(R.string.could_not_open_android_market), Toast.LENGTH_SHORT).show();
             }
-        }
-    }
-
-    private class AttributionSwipeItem extends SwipeItem {
-
-        String url;
-
-        public AttributionSwipeItem(Object value, String title, String description, String url) {
-            super(value, title, description);
-            this.url = url;
         }
     }
 

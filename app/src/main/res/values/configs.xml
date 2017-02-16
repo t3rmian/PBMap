@@ -4,4 +4,5 @@
     <string name="config_developer" translatable="false"><a href="https://t3r1jj.github.io/">Damian Terlecki</a></string>
     <string name="config_report" translatable="false">https://github.com/T3r1jj/PBMap</string>
     <string name="config_project" translatable="false">https://github.com/T3r1jj/PBMap/issues</string>
+    <string name="config_NOTICE" translatable="false">file:///android_asset/NOTICE.html</string>
 </resources>

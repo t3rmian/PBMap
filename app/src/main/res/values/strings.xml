@@ -23,6 +23,6 @@
     <string name="about_version">Version: %1$s</string>
     <string name="could_not_open_android_market">Could not open Android market, please install the market application (Google Play).</string>
     <string name="about_report">Report bug</string>
-    <string name="about_attribution_site">Go to attributed site</string>
+    <string name="about_licenses">Licenses</string>
     <string name="about_attributions">Attributions</string>
 </resources>

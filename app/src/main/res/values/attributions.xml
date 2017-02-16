@@ -7,21 +7,25 @@
         <item>Google Support Libraries</item>
     </string-array>
     <string-array name="attribution_descriptions">
-        <item>TODO</item>
-        <item>TODO</item>
-        <item>TODO</item>
-        <item>TODO</item>
-    </string-array>
-    <string-array name="attribution_copyright">
-        <item>com.qozix:tileview:2.2.6, Mike Dunn, MIT</item>
-        <item>org.simpleframework:simple-xml:2.7.1, Niall Gallagher, Apache 2.0</item>
-        <item>com.roughike:swipe-selector:1.0.6, Iiro Krankka, Apache 2.0</item>
-        <item>com.android.support, The Android Open Source Project, Apache 2.0</item>
-    </string-array>
-    <string-array name="attribution_urls">
-        <item>https://github.com/moagrius/TileView</item>
-        <item>http://simple.sourceforge.net/</item>
-        <item>https://github.com/roughike/SwipeSelector</item>
-        <item>https://developer.android.com/topic/libraries/support-library/index.html</item>
+        <item>TileView asynchronously displays tile-based images, with pan and zoom functionality, and supports features like markers, hotspots, paths, multiple levels of detail, and arbitrary coordinate systems.
+            \n\nVersion: com.qozix:tileview:2.2.6
+            \nAuthor: Mike Dunn
+            \nLicense: MIT
+            \nSite: https://github.com/moagrius/TileView</item>
+        <item>Simple is a high performance XML serialization and configuration framework for Java. It offers full object serialization and deserialization, maintaining each reference encountered.
+            \n\nVersion: org.simpleframework:simple-xml:2.7.1
+            \nAuthor: Niall Gallagher
+            \nLicense: Apache 2.0
+            \nSite: http://simple.sourceforge.net/</item>
+        <item>A nicer-looking, more intuitive and highly customizable alternative for radio buttons and dropdowns for Android. This view is based on Swipe-Selector.
+            \n\nVersion: com.roughike:swipe-selector:1.0.6
+            \nAuthor: Iiro Krankka
+            \nLicense: Apache 2.0
+            \nSite: https://github.com/roughike/SwipeSelector</item>
+        <item>A group of support libraries offering backward compatibility and convenient helper classes.
+            \n\nVersion: com.android.support
+            \nAuthor: The Android Open Source Project
+            \nLicense: Apache 2.0
+            \nSite: https://developer.android.com/topic/libraries/support-library/index.html</item>
     </string-array>
 </resources>

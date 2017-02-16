@@ -36,3 +36,12 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
 }
+
+task copyNOTICE(type: Copy) {
+    description 'Copying NOTICE.html to assets for display in app'
+    from '../'
+    into 'src/main/assets'
+    include 'NOTICE.html'
+}
+
+preBuild.dependsOn copyNOTICE

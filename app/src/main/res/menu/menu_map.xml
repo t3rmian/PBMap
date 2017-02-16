@@ -15,5 +15,5 @@
         android:orderInCategory="101"
         android:title="@string/action_back"
         android:visible="false"
-        app:showAsAction="collapseActionView|ifRoom" />
+        app:showAsAction="ifRoom" />
 </menu>

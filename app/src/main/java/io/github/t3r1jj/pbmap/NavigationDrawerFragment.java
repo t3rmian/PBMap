@@ -41,16 +41,16 @@ abstract class NavigationDrawerFragment extends Fragment {
      */
     private static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
 
+    protected int mCurrentSelectedPosition = 0;
+
+    protected ListView mDrawerListView;
     /**
      * Helper component that ties the action bar to the navigation drawer.
      */
     private ActionBarDrawerToggle mDrawerToggle;
-
     private DrawerLayout mDrawerLayout;
-    private ListView mDrawerListView;
-    private View mFragmentContainerView;
 
-    private int mCurrentSelectedPosition = 0;
+    private View mFragmentContainerView;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
 
@@ -167,6 +167,7 @@ abstract class NavigationDrawerFragment extends Fragment {
                     return;
                 }
 
+                NavigationDrawerFragment.this.onDrawerClosed();
                 getActivity().invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
             }
 
@@ -185,7 +186,6 @@ abstract class NavigationDrawerFragment extends Fragment {
                             .getDefaultSharedPreferences(getActivity());
                     sp.edit().putBoolean(PREF_USER_LEARNED_DRAWER, true).apply();
                 }
-
                 getActivity().invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
             }
         };
@@ -236,5 +236,7 @@ abstract class NavigationDrawerFragment extends Fragment {
 
     @NonNull
     protected abstract String[] getPlaceNames();
+
+    protected abstract void onDrawerClosed();
 
 }

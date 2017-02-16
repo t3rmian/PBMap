@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import io.github.t3r1jj.pbmap.search.Search;
@@ -28,6 +29,7 @@ public class MapActivity extends DrawerActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setupVersion();
         mapContainer = (ViewGroup) findViewById(R.id.content_main);
         infoButton = (FloatingActionButton) findViewById(R.id.current_fab);
         controller = new Controller(this);
@@ -40,6 +42,11 @@ public class MapActivity extends DrawerActivity
                 e.printStackTrace();
             }
         }
+    }
+
+    private void setupVersion() {
+        TextView versionText = (TextView) findViewById(R.id.about_version);
+        versionText.setText(getString(R.string.about_version, BuildConfig.VERSION_NAME));
     }
 
     @Override

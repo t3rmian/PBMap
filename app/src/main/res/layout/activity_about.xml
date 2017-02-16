@@ -134,6 +134,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:linksClickable="true"
+            android:autoLink="web"
             app:swipe_descriptionTextAppearance="@style/SwipeDescriptionTextAppearance"
             app:swipe_titleTextAppearance="@style/SwipeTitleTextAppearance" />
 
@@ -145,10 +147,10 @@
             android:background="#DDDDDD" />
 
         <Button
-            android:id="@+id/about_attribution_site"
+            android:id="@+id/about_licenses"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="@string/about_attribution_site" />
+            android:text="@string/about_licenses" />
     </LinearLayout>
 </LinearLayout>

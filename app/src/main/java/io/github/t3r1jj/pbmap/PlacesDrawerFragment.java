@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import io.github.t3r1jj.pbmap.model.PBMap;
@@ -19,6 +18,7 @@ public class PlacesDrawerFragment extends NavigationDrawerFragment {
      * A pointer to the current callbacks instance (the Activity).
      */
     private PlaceNavigationDrawerCallbacks mCallbacks;
+    private int previousPosition;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -52,10 +52,22 @@ public class PlacesDrawerFragment extends NavigationDrawerFragment {
     }
 
     @Override
+    protected void onDrawerClosed() {
+        int placesCount = places.size();
+        if (placesCount != 0) {
+            if (mCurrentSelectedPosition == placesCount) {
+                mDrawerListView.setItemChecked(previousPosition, true);
+                mCurrentSelectedPosition = previousPosition;
+            }
+        }
+    }
+
+    @Override
     protected void selectItem(int position) {
+        previousPosition = mCurrentSelectedPosition;
         super.selectItem(position);
         int placesCount = places.size();
-        if (mCallbacks != null && placesCount != 0){
+        if (mCallbacks != null && placesCount != 0) {
             if (placesCount > position) {
                 mCallbacks.onPlaceDrawerItemSelected(places.get(position));
             } else if (placesCount == position) {
@@ -84,10 +96,9 @@ public class PlacesDrawerFragment extends NavigationDrawerFragment {
      * Callbacks interface that all activities using this fragment must implement.
      */
     public interface PlaceNavigationDrawerCallbacks {
-        /**
-         * Called when an item in the navigation drawer is selected.
-         */
+
         void onPlaceDrawerItemSelected(SearchSuggestion suggestion);
+
         void onAboutDrawerItemSelected();
     }
 
