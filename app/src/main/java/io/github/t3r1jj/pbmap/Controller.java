@@ -1,7 +1,6 @@
 package io.github.t3r1jj.pbmap;
 
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.widget.ImageView;
 
 import org.simpleframework.xml.Serializer;
@@ -9,7 +8,6 @@ import org.simpleframework.xml.core.Persister;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.LinkedList;
 
 import io.github.t3r1jj.pbmap.model.Coordinate;
 import io.github.t3r1jj.pbmap.model.PBMap;
@@ -21,6 +19,7 @@ import io.github.t3r1jj.pbmap.view.MapView;
 public class Controller {
     private PBMap map;
     private MapView mapView;
+    private ImageView marker;
     private final MapActivity mapActivity;
 
     Controller(MapActivity base) {
@@ -58,12 +57,18 @@ public class Controller {
         for (Place place : map.getPlaces()) {
             if (place.getName().equals(placeName)) {
                 final Coordinate center = place.getCenter();
+                if (marker != null) {
+                    mapView.removeMarker(marker);
+                }
+                marker = new ImageView(mapView.getContext());
+                marker.setImageDrawable(mapView.getContext().getResources().getDrawable(R.drawable.marker));
                 mapView.post(new Runnable() {
                     @Override
                     public void run() {
                         mapView.setScale(1f);
                         mapView.scrollToAndCenter(center.lng, center.lat);
                         mapView.setScaleFromCenter(getPinpointScale());
+                        mapView.addMarker(marker, center.lng, center.lat, -0.5f, -1.0f);
                     }
                 });
                 return;
