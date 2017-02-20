@@ -5,9 +5,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Region;
+import android.graphics.drawable.Drawable;
+import android.widget.ImageView;
 
 import com.qozix.tileview.hotspots.HotSpot;
 import com.qozix.tileview.paths.CompositePathView;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 import io.github.t3r1jj.pbmap.model.Coordinate;
 import io.github.t3r1jj.pbmap.model.Space;
@@ -17,9 +22,11 @@ public class SpaceView extends CompositePathView.DrawablePath implements PlaceVi
     private HotSpot hotSpot;
     private final Space space;
     private final SpotView spotView;
+    private final Context context;
 
     public SpaceView(Context context, Space space) {
         this.space = space;
+        this.context = context;
         path = new Path();
         paint = new Paint();
         Coordinate[] coordinates = space.getCoordinates();
@@ -63,6 +70,18 @@ public class SpaceView extends CompositePathView.DrawablePath implements PlaceVi
                 }
             });
             pbMapView.addHotSpot(hotSpot);
+        }
+        if (space.getLogoPath() != null) {
+            try {
+                InputStream inputStream = context.getAssets().open(space.getLogoPath());
+                Drawable drawable = Drawable.createFromStream(inputStream, null);
+                ImageView logo = new ImageView(context);
+                logo.setImageDrawable(drawable);
+                Coordinate center = space.getCenter();
+                pbMapView.addMarker(logo, center.lng, center.lat,  -0.5f, -1.0f);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }

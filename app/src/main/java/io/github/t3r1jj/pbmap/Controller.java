@@ -82,7 +82,11 @@ public class Controller {
 
     public void onNavigationPerformed(Space space) {
         try {
-            loadMap(space.getReferenceMapPath());
+            if(space.getReferenceMapPath() != null) {
+                loadMap(space.getReferenceMapPath());
+            } else if (space.getDescriptionResName() != null) {
+                mapActivity.popupInfo(new MapActivity.Info(space.getName(), space.getDescriptionResName()));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -107,4 +111,7 @@ public class Controller {
         mapActivity.setLogo(logo);
     }
 
+    public void loadDescription() {
+        mapActivity.popupInfo(new MapActivity.Info(map.getName(), map.getDescriptionResName()));
+    }
 }

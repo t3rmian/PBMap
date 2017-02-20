@@ -13,7 +13,7 @@ import java.util.List;
 
 import io.github.t3r1jj.pbmap.view.MapView;
 
-public class PBMap extends Place {
+public class PBMap extends Space {
 
     @Attribute
     private int width;
@@ -32,9 +32,6 @@ public class PBMap extends Place {
     private List<Place> places;
     @ElementArray(name = "tiles_configs")
     private TilesConfig[] tilesConfigs;
-    @Element(required = false)
-    private String description;
-    private String path;
 
     @Override
     public String toString() {
@@ -63,15 +60,8 @@ public class PBMap extends Place {
         return primary;
     }
 
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
     public String getPreviousMapPath() {
         return previousMapPath;
     }
+
 }

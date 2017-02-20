@@ -35,7 +35,7 @@ public class PlacesDrawerFragment extends NavigationDrawerFragment {
             List<PBMap> maps = dao.loadMaps();
             for (PBMap map : maps) {
                 if (map.isPrimary()) {
-                    places.add(new SearchSuggestion(map.getName(), map.getPath()));
+                    places.add(new SearchSuggestion(map.getName(), map.getReferenceMapPath()));
                 }
             }
             Log.d(getClass().getSimpleName(), places.size() + " size");

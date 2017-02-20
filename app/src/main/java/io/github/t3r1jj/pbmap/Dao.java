@@ -32,7 +32,7 @@ public class Dao extends ContextWrapper {
 
     private PBMap loadMap(String assetsPath) throws Exception {
         PBMap map = serializer.read(PBMap.class, getAssets().open(assetsPath));
-        map.setPath(assetsPath);
+        map.setReferenceMapPath(assetsPath);
         return map;
     }
 

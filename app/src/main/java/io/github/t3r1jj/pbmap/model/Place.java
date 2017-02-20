@@ -5,6 +5,8 @@ import android.content.Context;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.ElementArray;
 
+import javax.xml.parsers.ParserConfigurationException;
+
 import io.github.t3r1jj.pbmap.view.PlaceView;
 
 public abstract class Place {
@@ -27,7 +29,7 @@ public abstract class Place {
         return coordinates;
     }
 
-    public String getLogoPath() {
+    public String getLogoPath() throws ParserConfigurationException {
         return logoPath;
     }
 

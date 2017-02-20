@@ -132,12 +132,6 @@ public class AboutActivity extends AppCompatActivity {
 
     public static class LicensesDialogFragment extends DialogFragment {
 
-        @Nullable
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            return super.onCreateView(inflater, container, savedInstanceState);
-        }
-
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             WebView webView = (WebView) View.inflate(getActivity(), R.layout.dialog_licenses, null);
