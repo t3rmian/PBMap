@@ -4,7 +4,7 @@
         <tiles_config path="tiles/1/1000/1000.png" zoom="1" width="256" height="256"/>
     </tiles_configs>
     <coordinates length="0" />
-    <space name="First space" map_reference="data/2.xml">
+    <space name="First space" map_path="data/2.xml">
         <coordinates length="4">
             <coordinate lng="0" lat="0" mamsl="0"/>
             <coordinate lng="300" lat="0" mamsl="0"/>

@@ -22,7 +22,6 @@ public class Controller {
     private PBMap map;
     private MapView mapView;
     private final MapActivity mapActivity;
-    private LinkedList<String> road = new LinkedList<>();
 
     Controller(MapActivity base) {
         this.mapActivity = base;
@@ -39,15 +38,11 @@ public class Controller {
     }
 
     void loadPreviousMap() throws Exception {
-        Log.d(getClass().getSimpleName(), road.toString());
-        road.removeLast();
-        String mapPath = road.getLast();
-        loadNewMap(mapPath);
+        loadNewMap(map.getPreviousMapPath());
     }
 
     private void loadNewMap(String assetsMapPath) throws Exception {
         Serializer serializer = new Persister();
-        addPathToRoad(assetsMapPath);
         map = serializer.read(PBMap.class, mapActivity.getAssets().open(assetsMapPath));
         MapView nextMapView = map.createView(mapActivity);
         nextMapView.setController(this);
@@ -56,13 +51,7 @@ public class Controller {
             mapView.addToMap(nextMapView);
         }
         mapView = nextMapView;
-        mapActivity.setBackButtonVisible(road.size() > 1);
-    }
-
-    private void addPathToRoad(String newPath) {
-        if (road.isEmpty() || !newPath.equals(road.getLast())) {
-            road.add(newPath);
-        }
+        mapActivity.setBackButtonVisible(map.getPreviousMapPath() != null);
     }
 
     private void pinpointPlace(final String placeName) {
@@ -88,7 +77,7 @@ public class Controller {
 
     public void onNavigationPerformed(Space space) {
         try {
-            loadMap(space.getMapReference());
+            loadMap(space.getReferenceMapPath());
         } catch (Exception e) {
             e.printStackTrace();
         }

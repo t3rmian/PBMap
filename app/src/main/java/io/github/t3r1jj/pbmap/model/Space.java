@@ -8,15 +8,15 @@ import io.github.t3r1jj.pbmap.view.PlaceView;
 import io.github.t3r1jj.pbmap.view.SpaceView;
 
 public class Space extends Place {
-    @Attribute(name = "map_reference", required = false)
-    private String mapReference;
+    @Attribute(name = "reference_map_path", required = false)
+    private String referenceMapPath;
 
     @Override
     public PlaceView createView(Context context) {
         return new SpaceView(context, this);
     }
 
-    public String getMapReference() {
-        return mapReference;
+    public String getReferenceMapPath() {
+        return referenceMapPath;
     }
 }

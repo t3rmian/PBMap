@@ -23,6 +23,8 @@ public class PBMap extends Place {
     private String url;
     @Attribute(name="is_primary", required = false)
     private boolean primary;
+    @Attribute(name="previous_map_path", required = false)
+    private String previousMapPath;
     @ElementListUnion({
             @ElementList(entry = "space", type = Space.class, required = false, inline = true),
             @ElementList(entry = "spot", type = Spot.class, required = false, inline = true)
@@ -67,5 +69,9 @@ public class PBMap extends Place {
 
     public String getPath() {
         return path;
+    }
+
+    public String getPreviousMapPath() {
+        return previousMapPath;
     }
 }

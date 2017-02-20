@@ -5,8 +5,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Region;
-import android.util.Log;
-import android.widget.ImageView;
 
 import com.qozix.tileview.hotspots.HotSpot;
 import com.qozix.tileview.paths.CompositePathView;
@@ -40,7 +38,7 @@ public class SpaceView extends CompositePathView.DrawablePath implements PlaceVi
         path.lineTo((float) coordinates[0].lng, (float) coordinates[0].lat);
         spotView = new SpotView(context, space);
 
-        if (space.getMapReference() != null) {
+        if (space.getReferenceMapPath() != null) {
             prepareHotspot(clip);
         }
     }
@@ -56,7 +54,7 @@ public class SpaceView extends CompositePathView.DrawablePath implements PlaceVi
     public void addToMap(final MapView pbMapView) {
         pbMapView.getCompositePathView().addPath(this);
         pbMapView.addPlaceView(spotView);
-        if (space.getMapReference() != null) {
+        if (space.getReferenceMapPath() != null) {
 
             hotSpot.setHotSpotTapListener(new HotSpot.HotSpotTapListener() {
                 @Override
