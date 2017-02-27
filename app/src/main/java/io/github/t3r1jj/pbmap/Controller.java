@@ -68,7 +68,7 @@ public class Controller {
                         mapView.setScale(1f);
                         mapView.scrollToAndCenter(center.lng, center.lat);
                         mapView.setScaleFromCenter(getPinpointScale());
-                        mapView.addMarker(marker, center.lng, center.lat, -0.5f, -1.0f);
+                        mapView.addMarker(marker, center.lng, center.lat, -0.5f, 0f);
                     }
                 });
                 return;
@@ -97,17 +97,7 @@ public class Controller {
     }
 
     public void loadLogo(Place map) {
-        ImageView logo = null;
-        try {
-            InputStream inputStream = mapActivity.getAssets().open(map.getLogoPath());
-            Drawable drawable = Drawable.createFromStream(inputStream, null);
-            logo = new ImageView(mapActivity);
-            logo.setImageDrawable(drawable);
-        } catch (IllegalArgumentException | IOException e) {
-            if (map.getLogoPath() != null) {
-                e.printStackTrace();
-            }
-        }
+        ImageView logo = map.getLogo(mapActivity);
         mapActivity.setLogo(logo);
     }
 

@@ -1,11 +1,14 @@
 package io.github.t3r1jj.pbmap.model;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.widget.ImageView;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.ElementArray;
 
-import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+import java.io.InputStream;
 
 import io.github.t3r1jj.pbmap.view.PlaceView;
 
@@ -29,8 +32,23 @@ public abstract class Place {
         return coordinates;
     }
 
-    public String getLogoPath() throws ParserConfigurationException {
+    public String getLogoPath() {
         return logoPath;
+    }
+
+    public ImageView getLogo(Context context) {
+        if (logoPath != null) {
+            try {
+                InputStream inputStream = context.getAssets().open(logoPath);
+                Drawable drawable = Drawable.createFromStream(inputStream, null);
+                ImageView logo = new ImageView(context);
+                logo.setImageDrawable(drawable);
+                return logo;
+            } catch (IllegalArgumentException | IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 
     @Override
