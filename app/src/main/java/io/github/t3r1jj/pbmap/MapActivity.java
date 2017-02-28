@@ -12,6 +12,7 @@ import android.location.Criteria;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.design.widget.FloatingActionButton;
@@ -38,6 +39,7 @@ import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 public class MapActivity extends DrawerActivity
         implements PlacesDrawerFragment.PlaceNavigationDrawerCallbacks {
 
+    private static final int REQUEST_LOCATION = 1;
     private Controller controller;
     private ViewGroup mapContainer;
     private FloatingActionButton infoButton;
@@ -45,6 +47,7 @@ public class MapActivity extends DrawerActivity
     private MenuItem backButton;
     private LocationManager locationManager;
     private PBLocationListener locationListener;
+    private boolean explicitlyAskedForPermissions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +65,12 @@ public class MapActivity extends DrawerActivity
         gpsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                    new GpsDialogFragment().show(getFragmentManager(), "gps");
+                if (ActivityCompat.checkSelfPermission(MapActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                        && ActivityCompat.checkSelfPermission(MapActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    explicitlyAskedForPermissions = true;
+                    ActivityCompat.requestPermissions(MapActivity.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+                } else {
+                    requestLocationUpdates();
                 }
             }
         });
@@ -80,36 +87,49 @@ public class MapActivity extends DrawerActivity
         }
     }
 
-    // TODO: Review all permission cases, providers and ordering of method invocations
     @Override
     protected void onResume() {
         super.onResume();
         Log.d(getClass().getSimpleName(), "onResume");
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-                || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
-                || locationManager.isProviderEnabled(LocationManager.PASSIVE_PROVIDER)) {
+        if (isGpsEnabled()) {
             if (locationListener == null) {
                 locationListener = new PBLocationListener(controller);
             }
-            Log.d(getClass().getSimpleName(), "Registering location listener");
-            Criteria criteria = new Criteria();
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                ActivityCompat.requestPermissions(this,new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-                Log.d(getClass().getSimpleName(), "No permissions for accessing location?");
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                    && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 return;
             }
-            String provider = locationManager.getBestProvider(criteria, false);
-            Log.d(getClass().getSimpleName(), "Location provider:" + provider);
-            Log.d(getClass().getSimpleName(), "Registered location listener");
-            locationManager.requestLocationUpdates(provider, 5, 5, locationListener);
+            requestLocationUpdates();
+        }
+    }
+
+    private boolean isGpsEnabled() {
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+                || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+    }
+
+    @SuppressWarnings("MissingPermission")
+    private void requestLocationUpdates() {
+        if (!isGpsEnabled()) {
+            new GpsDialogFragment().show(getFragmentManager(), "gps");
+            return;
+        }
+        Criteria criteria = new Criteria();
+        String provider = locationManager.getBestProvider(criteria, true);
+        locationManager.requestLocationUpdates(provider, 5, 5, locationListener);
+    }
+
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == REQUEST_LOCATION) {
+            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                requestLocationUpdates();
+            } else if (explicitlyAskedForPermissions) {
+                if (!ActivityCompat.shouldShowRequestPermissionRationale(MapActivity.this,
+                        Manifest.permission.ACCESS_FINE_LOCATION)) {
+                    new GpsPermissionsDialogFragment().show(getFragmentManager(), "gps_permissions");
+                }
+            }
         }
     }
 
@@ -117,14 +137,8 @@ public class MapActivity extends DrawerActivity
     protected void onPause() {
         super.onPause();
         if (locationListener != null) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                    && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 return;
             }
             locationManager.removeUpdates(locationListener);
@@ -317,7 +331,17 @@ public class MapActivity extends DrawerActivity
         }
     }
 
-    // TODO: Implement map coordinates
+    public static class GpsPermissionsDialogFragment extends DialogFragment {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            return new AlertDialog.Builder(getActivity())
+                    .setTitle(R.string.location_permissions)
+                    .setMessage(getString(R.string.gps_permissions_disabled_message, getString(R.string.app_name)))
+                    .setNegativeButton(R.string.ok, null)
+                    .create();
+        }
+    }
+
     // TODO: Implement path
 
 }

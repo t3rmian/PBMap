@@ -1,20 +1,36 @@
-<map name="First map" width="2048" height="2048" logo_path="logo/logo.png" is_primary="true" description_res_name="about_description">
+<map name="First map" description_res_name="about_description" height="2048" is_primary="true"
+    logo_path="logo/logo.png" width="2048">
     <tiles_configs length="2">
-        <tiles_config path="tiles/1/500/500.png" zoom="0.5" width="256" height="256"/>
-        <tiles_config path="tiles/1/1000/1000.png" zoom="1" width="256" height="256"/>
+        <tiles_config height="256" path="tiles/1/500/500.png" width="256" zoom="0.5" />
+        <tiles_config height="256" path="tiles/1/1000/1000.png" width="256" zoom="1" />
     </tiles_configs>
-    <coordinates length="0" />
+    <coordinates length="2">
+        <bottom_left lat="1000" lng="0" alt="0" />
+        <top_right lat="0" lng="1000" alt="0" />
+    </coordinates>
     <space name="First space" reference_map_path="data/2.xml">
         <coordinates length="4">
-            <coordinate lng="0" lat="0" mamsl="0"/>
-            <coordinate lng="300" lat="0" mamsl="0"/>
-            <coordinate lng="300" lat="400" mamsl="0"/>
-            <coordinate lng="0" lat="400" mamsl="0"/>
+            <coordinate lat="0" lng="0" alt="0" />
+            <coordinate lat="0" lng="300" alt="0" />
+            <coordinate lat="400" lng="300" alt="0" />
+            <coordinate lat="400" lng="0" alt="0" />
         </coordinates>
     </space>
     <spot name="First spot">
         <coordinates length="1">
-            <coordinate lng="600" lat="600" mamsl="10"/>
+            <coordinate lat="600" lng="600" alt="10" />
         </coordinates>
     </spot>
+    <route>
+        <edges>
+            <edge>
+                <start lat="600" lng="600" alt="10" />
+                <end lat="200" lng="200" alt="10" />
+            </edge>
+            <edge>
+                <start lat="200" lng="200" alt="10" />
+                <end lat="400" lng="300" alt="10" />
+            </edge>
+        </edges>
+    </route>
 </map>

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import io.github.t3r1jj.pbmap.Controller;
-import io.github.t3r1jj.pbmap.model.Coordinate;
+import io.github.t3r1jj.pbmap.model.map.Coordinate;
 
 public class PBLocationListener implements LocationListener{
 

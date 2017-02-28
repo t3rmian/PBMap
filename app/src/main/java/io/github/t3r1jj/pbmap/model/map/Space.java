@@ -1,4 +1,4 @@
-package io.github.t3r1jj.pbmap.model;
+package io.github.t3r1jj.pbmap.model.map;
 
 import android.content.Context;
 

@@ -14,8 +14,8 @@ import java.util.Set;
 
 import io.github.t3r1jj.pbmap.BuildConfig;
 import io.github.t3r1jj.pbmap.Dao;
-import io.github.t3r1jj.pbmap.model.PBMap;
-import io.github.t3r1jj.pbmap.model.Place;
+import io.github.t3r1jj.pbmap.model.map.PBMap;
+import io.github.t3r1jj.pbmap.model.map.Place;
 
 class SuggestionsDBHelper extends SQLiteOpenHelper {
     static final String SUGGESTIONS_TABLE_NAME = "suggestions";

@@ -6,8 +6,8 @@ import android.widget.TextView;
 
 import com.qozix.tileview.markers.MarkerLayout;
 
-import io.github.t3r1jj.pbmap.model.Coordinate;
-import io.github.t3r1jj.pbmap.model.Place;
+import io.github.t3r1jj.pbmap.model.map.Coordinate;
+import io.github.t3r1jj.pbmap.model.map.Place;
 
 public class SpotView extends MarkerLayout implements PlaceView {
 

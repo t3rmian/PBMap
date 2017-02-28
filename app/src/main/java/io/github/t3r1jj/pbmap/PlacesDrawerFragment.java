@@ -8,7 +8,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.t3r1jj.pbmap.model.PBMap;
+import io.github.t3r1jj.pbmap.model.map.PBMap;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 
 public class PlacesDrawerFragment extends NavigationDrawerFragment {

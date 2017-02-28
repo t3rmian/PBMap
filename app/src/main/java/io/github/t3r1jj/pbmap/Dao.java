@@ -9,7 +9,7 @@ import org.simpleframework.xml.core.Persister;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.t3r1jj.pbmap.model.PBMap;
+import io.github.t3r1jj.pbmap.model.map.PBMap;
 
 //TODO: Standardize DAO, db or xml
 public class Dao extends ContextWrapper {

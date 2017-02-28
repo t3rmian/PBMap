@@ -2,13 +2,17 @@ package io.github.t3r1jj.pbmap;
 
 import android.widget.ImageView;
 
+import com.qozix.tileview.paths.CompositePathView;
+
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
-import io.github.t3r1jj.pbmap.model.Coordinate;
-import io.github.t3r1jj.pbmap.model.PBMap;
-import io.github.t3r1jj.pbmap.model.Place;
-import io.github.t3r1jj.pbmap.model.Space;
+import java.util.List;
+
+import io.github.t3r1jj.pbmap.model.map.Coordinate;
+import io.github.t3r1jj.pbmap.model.map.PBMap;
+import io.github.t3r1jj.pbmap.model.map.Place;
+import io.github.t3r1jj.pbmap.model.map.Space;
 import io.github.t3r1jj.pbmap.model.gps.Person;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 import io.github.t3r1jj.pbmap.view.MapView;
@@ -49,6 +53,11 @@ public class Controller {
         }
         mapView = nextMapView;
         mapActivity.setBackButtonVisible(map.getPreviousMapPath() != null);
+
+        List<CompositePathView.DrawablePath> drawablePaths = map.getRoute().createView(mapView).getDrawablePaths();
+        for (CompositePathView.DrawablePath drawablePath : drawablePaths) {
+            mapView.getCompositePathView().addPath(drawablePath);
+        }
     }
 
     private void pinpointPlace(final String placeName) {
@@ -109,13 +118,15 @@ public class Controller {
             mapView.removeMarker(personMarker);
         }
         personMarker = person.getMarker(mapActivity);
-        mapView.post(new Runnable() {
-            @Override
-            public void run() {
-                Coordinate center = person.getCoordinate();
-                mapView.scrollToAndCenter(center.lng, center.lat);
-                mapView.addMarker(personMarker, center.lng, center.lat, -0.5f, -0.5f);
-            }
-        });
+        if (mapView != null) {
+            mapView.post(new Runnable() {
+                @Override
+                public void run() {
+                    Coordinate center = person.getCoordinate();
+                    mapView.scrollToAndCenter(center.lng, center.lat);
+                    mapView.addMarker(personMarker, center.lng, center.lat, -0.5f, -0.5f);
+                }
+            });
+        }
     }
 }

@@ -1,6 +1,7 @@
 package io.github.t3r1jj.pbmap.view;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.qozix.tileview.TileView;
 
@@ -8,8 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import io.github.t3r1jj.pbmap.Controller;
-import io.github.t3r1jj.pbmap.model.PBMap;
-import io.github.t3r1jj.pbmap.model.Space;
+import io.github.t3r1jj.pbmap.model.map.PBMap;
+import io.github.t3r1jj.pbmap.model.map.Space;
 
 public class MapView extends TileView implements PlaceView {
     private static Map<String, MapViewPosition> positionsCache = new HashMap<>();
@@ -19,6 +20,9 @@ public class MapView extends TileView implements PlaceView {
     public MapView(Context context, PBMap map) {
         super(context);
         this.map = map;
+        PBMap.BoundingBox boundingBox = map.getBoundingBox();
+        Log.d(getClass().getSimpleName(), boundingBox.toString());
+        defineBounds(boundingBox.getMinLng(), boundingBox.getMaxLat(), boundingBox.getMaxLng(), boundingBox.getMinLat());
     }
 
     public void addPlaceView(PlaceView place) {

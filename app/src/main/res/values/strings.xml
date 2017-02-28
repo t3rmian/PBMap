@@ -27,5 +27,8 @@
     <string name="about_attributions">Attributions</string>
     <string name="enable">Enable</string>
     <string name="cancel">Cancel</string>
-    <string name="gps_disabled_message">%1$s needs access to your location. Please turn on Location Services</string>
+    <string name="gps_disabled_message">%1$s needs access to your location to display marker on your current position. Please turn on Location Services.</string>
+    <string name="gps_permissions_disabled_message">%1$s needs Location permissions to use Location Service. The app wants to display marker on your current position. Please allow %1$s to access Location.</string>
+    <string name="location_permissions">Location permissions</string>
+    <string name="ok">OK</string>
 </resources>

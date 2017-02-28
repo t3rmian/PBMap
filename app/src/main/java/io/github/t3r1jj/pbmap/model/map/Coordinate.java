@@ -1,30 +1,30 @@
-package io.github.t3r1jj.pbmap.model;
+package io.github.t3r1jj.pbmap.model.map;
 
 import org.simpleframework.xml.Attribute;
 
 public class Coordinate {
     /**
-     * x coordinate
+     * x coordinate [deg]
      */
     @Attribute
     public double lng;
     /**
-     * y coordinate
+     * y coordinate [deg]
      */
     @Attribute
     public double lat;
     /**
-     * meters above mean sea level
+     * meters [m] above mean sea level
      */
-    @Attribute
-    public double mamsl;
+    @Attribute(required = false)
+    public double alt;
 
     public Coordinate() {
     }
 
-    public Coordinate(double lng, double lat, double mamsl) {
+    public Coordinate(double lng, double lat, double alt) {
         this.lng = lng;
         this.lat = lat;
-        this.mamsl = mamsl;
+        this.alt = alt;
     }
 }

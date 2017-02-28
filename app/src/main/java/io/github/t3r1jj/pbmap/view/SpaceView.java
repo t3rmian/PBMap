@@ -3,18 +3,22 @@ package io.github.t3r1jj.pbmap.view;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.Region;
 
+import com.qozix.tileview.geom.CoordinateTranslater;
 import com.qozix.tileview.hotspots.HotSpot;
 import com.qozix.tileview.paths.CompositePathView;
 
-import io.github.t3r1jj.pbmap.model.Coordinate;
-import io.github.t3r1jj.pbmap.model.Space;
+import java.util.LinkedList;
+import java.util.List;
+
+import io.github.t3r1jj.pbmap.model.map.Coordinate;
+import io.github.t3r1jj.pbmap.model.map.Space;
 
 public class SpaceView extends CompositePathView.DrawablePath implements PlaceView {
 
-    private HotSpot hotSpot;
     private final Space space;
     private final SpotView spotView;
     private final Context context;
@@ -22,38 +26,16 @@ public class SpaceView extends CompositePathView.DrawablePath implements PlaceVi
     public SpaceView(Context context, Space space) {
         this.space = space;
         this.context = context;
-        path = new Path();
         paint = new Paint();
-        Coordinate[] coordinates = space.getCoordinates();
-        path.moveTo((float) coordinates[coordinates.length - 1].lng, (float) coordinates[coordinates.length - 1].lat);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(3);
         paint.setColor(Color.GRAY);
-        double[] clip = new double[4];
-        for (Coordinate coordinate : coordinates) {
-            path.lineTo((float) coordinate.lng, (float) coordinate.lat);
-            clip[0] = Math.min(coordinate.lng, clip[0]);
-            clip[1] = Math.min(coordinate.lat, clip[1]);
-            clip[2] = Math.max(coordinate.lng, clip[2]);
-            clip[3] = Math.max(coordinate.lat, clip[3]);
-        }
-        path.lineTo((float) coordinates[0].lng, (float) coordinates[0].lat);
         spotView = new SpotView(context, space);
-
-        if (space.getReferenceMapPath() != null) {
-            prepareHotspot(clip);
-        }
-    }
-
-    private void prepareHotspot(double[] clip) {
-        Region region = new Region();
-        region.setPath(path, new Region((int) (clip[0] + 0.5d), (int) (clip[1] + 0.5d), (int) (clip[2] + 0.5d), (int) (clip[3] + 0.5d)));
-        hotSpot = new HotSpot();
-        hotSpot.set(region);
     }
 
     @Override
     public void addToMap(final MapView pbMapView) {
+        scalePath(pbMapView);
         pbMapView.getCompositePathView().addPath(this);
         pbMapView.addPlaceView(spotView);
         if (space.getLogoPath() != null) {
@@ -61,7 +43,7 @@ public class SpaceView extends CompositePathView.DrawablePath implements PlaceVi
             pbMapView.addMarker(space.getLogo(context), center.lng, center.lat, -0.5f, -1.5f);
         }
         if (space.getReferenceMapPath() != null) {
-
+            HotSpot hotSpot = prepareHotspot();
             hotSpot.setHotSpotTapListener(new HotSpot.HotSpotTapListener() {
                 @Override
                 public void onHotSpotTap(HotSpot hotSpot, int x, int y) {
@@ -71,6 +53,26 @@ public class SpaceView extends CompositePathView.DrawablePath implements PlaceVi
             pbMapView.addHotSpot(hotSpot);
         }
 
+    }
+
+    private void scalePath(MapView pbMapView) {
+        CoordinateTranslater coordinateTranslater = pbMapView.getCoordinateTranslater();
+        List<double[]> positions = new LinkedList<>();
+        for (Coordinate coordinate : space.getCoordinates()) {
+            positions.add(new double[]{coordinate.lng, coordinate.lat});
+        }
+        path = coordinateTranslater.pathFromPositions(positions, true);
+    }
+
+    private HotSpot prepareHotspot() {
+        RectF bounds = new RectF();
+        path.computeBounds(bounds, true);
+        Rect rect = new Rect();
+        bounds.round(rect);
+        Region clip = new Region(rect);
+        HotSpot hotSpot = new HotSpot();
+        hotSpot.setPath(path, clip);
+        return hotSpot;
     }
 
 }

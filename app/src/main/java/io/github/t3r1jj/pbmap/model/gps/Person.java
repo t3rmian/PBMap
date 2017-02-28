@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import io.github.t3r1jj.pbmap.R;
-import io.github.t3r1jj.pbmap.model.Coordinate;
+import io.github.t3r1jj.pbmap.model.map.Coordinate;
 
 public class Person {
     Coordinate coordinate;

@@ -1,4 +1,4 @@
-package io.github.t3r1jj.pbmap.model;
+package io.github.t3r1jj.pbmap.model.map;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -64,11 +64,11 @@ public abstract class Place {
         for (Coordinate coordinate : coordinates) {
             center.lng += coordinate.lng;
             center.lat += coordinate.lat;
-            center.mamsl += coordinate.mamsl;
+            center.alt += coordinate.alt;
         }
         center.lng /= coordinates.length;
         center.lat /= coordinates.length;
-        center.mamsl /= coordinates.length;
+        center.alt /= coordinates.length;
         return center;
     }
 
