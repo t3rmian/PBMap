@@ -1,18 +1,15 @@
 package io.github.t3r1jj.pbmap;
 
-import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import io.github.t3r1jj.pbmap.model.Coordinate;
 import io.github.t3r1jj.pbmap.model.PBMap;
 import io.github.t3r1jj.pbmap.model.Place;
 import io.github.t3r1jj.pbmap.model.Space;
+import io.github.t3r1jj.pbmap.model.gps.Person;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 import io.github.t3r1jj.pbmap.view.MapView;
 
@@ -20,6 +17,7 @@ public class Controller {
     private PBMap map;
     private MapView mapView;
     private ImageView marker;
+    private ImageView personMarker;
     private final MapActivity mapActivity;
 
     Controller(MapActivity base) {
@@ -82,7 +80,7 @@ public class Controller {
 
     public void onNavigationPerformed(Space space) {
         try {
-            if(space.getReferenceMapPath() != null) {
+            if (space.getReferenceMapPath() != null) {
                 loadMap(space.getReferenceMapPath());
             } else if (space.getDescriptionResName() != null) {
                 mapActivity.popupInfo(new MapActivity.Info(space.getName(), space.getDescriptionResName()));
@@ -103,5 +101,21 @@ public class Controller {
 
     public void loadDescription() {
         mapActivity.popupInfo(new MapActivity.Info(map.getName(), map.getDescriptionResName()));
+    }
+
+    //TODO: optimize markers creation
+    public void updatePosition(final Person person) {
+        if (personMarker != null) {
+            mapView.removeMarker(personMarker);
+        }
+        personMarker = person.getMarker(mapActivity);
+        mapView.post(new Runnable() {
+            @Override
+            public void run() {
+                Coordinate center = person.getCoordinate();
+                mapView.scrollToAndCenter(center.lng, center.lat);
+                mapView.addMarker(personMarker, center.lng, center.lat, -0.5f, -0.5f);
+            }
+        });
     }
 }

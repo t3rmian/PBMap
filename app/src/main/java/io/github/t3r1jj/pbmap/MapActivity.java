@@ -1,13 +1,24 @@
 package io.github.t3r1jj.pbmap;
 
+import android.Manifest;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +31,7 @@ import android.widget.Toast;
 
 import java.io.Serializable;
 
+import io.github.t3r1jj.pbmap.model.gps.PBLocationListener;
 import io.github.t3r1jj.pbmap.search.Search;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 
@@ -29,7 +41,10 @@ public class MapActivity extends DrawerActivity
     private Controller controller;
     private ViewGroup mapContainer;
     private FloatingActionButton infoButton;
+    private FloatingActionButton gpsButton;
     private MenuItem backButton;
+    private LocationManager locationManager;
+    private PBLocationListener locationListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +58,16 @@ public class MapActivity extends DrawerActivity
                 controller.loadDescription();
             }
         });
+        gpsButton = (FloatingActionButton) findViewById(R.id.gps_fab);
+        gpsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                    new GpsDialogFragment().show(getFragmentManager(), "gps");
+                }
+            }
+        });
+
         controller = new Controller(this);
         handleIntent(getIntent());
 
@@ -52,6 +77,77 @@ public class MapActivity extends DrawerActivity
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    // TODO: Review all permission cases, providers and ordering of method invocations
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(getClass().getSimpleName(), "onResume");
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+                || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+                || locationManager.isProviderEnabled(LocationManager.PASSIVE_PROVIDER)) {
+            if (locationListener == null) {
+                locationListener = new PBLocationListener(controller);
+            }
+            Log.d(getClass().getSimpleName(), "Registering location listener");
+            Criteria criteria = new Criteria();
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                ActivityCompat.requestPermissions(this,new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                Log.d(getClass().getSimpleName(), "No permissions for accessing location?");
+                return;
+            }
+            String provider = locationManager.getBestProvider(criteria, false);
+            Log.d(getClass().getSimpleName(), "Location provider:" + provider);
+            Log.d(getClass().getSimpleName(), "Registered location listener");
+            locationManager.requestLocationUpdates(provider, 5, 5, locationListener);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (locationListener != null) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+            locationManager.removeUpdates(locationListener);
+        }
+    }
+
+    public static class GpsDialogFragment extends DialogFragment {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            return new AlertDialog.Builder(getActivity())
+                    .setMessage(getString(R.string.gps_disabled_message, getString(R.string.app_name)))
+                    .setCancelable(false)
+                    .setPositiveButton(R.string.enable, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                            startActivity(intent);
+                        }
+                    })
+                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    }).create();
         }
     }
 
@@ -191,7 +287,9 @@ public class MapActivity extends DrawerActivity
             titleText = (TextView) rootView.findViewById(R.id.info_title);
             titleText.setText(info.title);
             descriptionText = (TextView) rootView.findViewById(R.id.info_description);
-            descriptionText.setText(getStringResource(info.descriptionResName));
+            if (info.descriptionResName != null) {
+                descriptionText.setText(getStringResource(info.descriptionResName));
+            }
             return rootView;
         }
 
@@ -218,5 +316,8 @@ public class MapActivity extends DrawerActivity
             this.descriptionResName = descriptionResName;
         }
     }
+
+    // TODO: Implement map coordinates
+    // TODO: Implement path
 
 }

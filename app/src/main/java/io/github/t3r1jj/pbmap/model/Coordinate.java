@@ -18,4 +18,13 @@ public class Coordinate {
      */
     @Attribute
     public double mamsl;
+
+    public Coordinate() {
+    }
+
+    public Coordinate(double lng, double lat, double mamsl) {
+        this.lng = lng;
+        this.lat = lat;
+        this.mamsl = mamsl;
+    }
 }

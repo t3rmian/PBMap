@@ -25,4 +25,7 @@
     <string name="about_report">Report bug</string>
     <string name="about_licenses">Licenses</string>
     <string name="about_attributions">Attributions</string>
+    <string name="enable">Enable</string>
+    <string name="cancel">Cancel</string>
+    <string name="gps_disabled_message">%1$s needs access to your location. Please turn on Location Services</string>
 </resources>
