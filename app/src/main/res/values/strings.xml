@@ -31,4 +31,5 @@
     <string name="gps_permissions_disabled_message">%1$s needs Location permissions to use Location Service. The app wants to display marker on your current position. Please allow %1$s to access Location.</string>
     <string name="location_permissions">Location permissions</string>
     <string name="ok">OK</string>
+    <string name="waiting_for_location">Waiting for location...</string>
 </resources>

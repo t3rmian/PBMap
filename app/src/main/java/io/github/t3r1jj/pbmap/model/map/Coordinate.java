@@ -33,6 +33,12 @@ public class Coordinate {
         this.alt = alt;
     }
 
+    public double distance(Coordinate end) {
+        double a = end.lng - lng;
+        double b = end.lat - lat;
+        return Math.sqrt(a * a + b * b);
+    }
+
     @Override
     public String toString() {
         return "Coordinate{" +
@@ -40,5 +46,31 @@ public class Coordinate {
                 ", lat=" + lat +
                 ", alt=" + alt +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Coordinate that = (Coordinate) o;
+
+        if (Double.compare(that.lng, lng) != 0) return false;
+        if (Double.compare(that.lat, lat) != 0) return false;
+        return Double.compare(that.alt, alt) == 0;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(lng);
+        result = (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(lat);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(alt);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
 }

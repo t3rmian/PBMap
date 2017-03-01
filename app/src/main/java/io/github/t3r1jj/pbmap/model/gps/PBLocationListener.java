@@ -8,7 +8,7 @@ import android.util.Log;
 import io.github.t3r1jj.pbmap.Controller;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 
-public class PBLocationListener implements LocationListener{
+public class PBLocationListener implements LocationListener {
 
     private final Person person = new Person();
     private final Controller controller;
@@ -27,16 +27,14 @@ public class PBLocationListener implements LocationListener{
 
     @Override
     public void onStatusChanged(String s, int i, Bundle bundle) {
-
     }
 
     @Override
     public void onProviderEnabled(String s) {
-
     }
 
     @Override
     public void onProviderDisabled(String s) {
-
+        controller.removePosition();
     }
 }

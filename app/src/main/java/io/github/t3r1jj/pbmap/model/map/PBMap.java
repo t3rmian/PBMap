@@ -67,7 +67,7 @@ public class PBMap extends Space {
         return previousMapPath;
     }
 
-    public Graph getRoute() {
+    public Graph getGraph() {
         return route;
     }
 

@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Set;
 
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
-//TODO: Integrate with the rest of the logic
-public class DijkstraAlgorithm {
+
+class DijkstraAlgorithm {
 
     private final List<Coordinate> vertexes;
     private final List<Edge> edges;
@@ -22,16 +22,16 @@ public class DijkstraAlgorithm {
     private Coordinate source;
     private Coordinate target;
 
-    public DijkstraAlgorithm(List<Coordinate> vertexes, List<Edge> edges) {
+    DijkstraAlgorithm(List<Coordinate> vertexes, List<Edge> edges) {
         this.vertexes = vertexes;
         this.edges = edges;
     }
 
-    public void setSource(Coordinate source) {
+    void setSource(Coordinate source) {
         this.source = source;
     }
 
-    public void setTarget(Coordinate target) {
+    void setTarget(Coordinate target) {
         this.target = target;
     }
 
@@ -39,7 +39,7 @@ public class DijkstraAlgorithm {
      * Remember to set source and target coordinates.
      * After this call, the shortest path will be available through {@link #getShortestPath()}
      */
-    public void execute() {
+    void execute() {
         if (source == null || target == null) {
             throw new RuntimeException("Source or target not set");
         }
@@ -62,7 +62,7 @@ public class DijkstraAlgorithm {
             Q.remove(u);
 
             for (Coordinate v : getNeighbors(u)) {
-                double alt = dist.get(u) + length(u, v);
+                double alt = dist.get(u) + u.distance(v);
                 if (alt < dist.get(v)) {
                     dist.put(v, alt);
                     prev.put(v, u);
@@ -71,16 +71,7 @@ public class DijkstraAlgorithm {
         }
     }
 
-    /**
-     * @return flat distance between two geographical points (for small map)
-     */
-    protected Double length(Coordinate u, Coordinate v) {
-        double a = v.lng - u.lng;
-        double b = v.lat - u.lat;
-        return Math.sqrt(a * a + b * b);
-    }
-
-    private Coordinate vMinDistQ() {
+    Coordinate vMinDistQ() {
         Coordinate minCoordinate = null;
         Double minDist = 0d;
         for (Coordinate vertex : Q) {
@@ -109,7 +100,7 @@ public class DijkstraAlgorithm {
         return coordinates;
     }
 
-    public List<Coordinate> getShortestPath() throws NoPathException {
+    LinkedList<Coordinate> getShortestPath() throws NoPathException {
         LinkedList<Coordinate> S = new LinkedList<>();
         Coordinate u = target;
         while (prev.get(u) != null) {

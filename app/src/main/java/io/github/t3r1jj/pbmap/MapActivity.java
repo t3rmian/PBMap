@@ -65,8 +65,7 @@ public class MapActivity extends DrawerActivity
         gpsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ActivityCompat.checkSelfPermission(MapActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                        && ActivityCompat.checkSelfPermission(MapActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                if (doesNotHaveGpsPermissions()) {
                     explicitlyAskedForPermissions = true;
                     ActivityCompat.requestPermissions(MapActivity.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
                 } else {
@@ -93,15 +92,19 @@ public class MapActivity extends DrawerActivity
         Log.d(getClass().getSimpleName(), "onResume");
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (isGpsEnabled()) {
-            if (locationListener == null) {
-                locationListener = new PBLocationListener(controller);
-            }
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (doesNotHaveGpsPermissions()) {
+                controller.removePosition();
                 return;
             }
             requestLocationUpdates();
+        } else {
+            controller.removePosition();
         }
+    }
+
+    private boolean doesNotHaveGpsPermissions() {
+        return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED;
     }
 
     private boolean isGpsEnabled() {
@@ -109,25 +112,33 @@ public class MapActivity extends DrawerActivity
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
 
-    @SuppressWarnings("MissingPermission")
     private void requestLocationUpdates() {
         if (!isGpsEnabled()) {
+            controller.removePosition();
             new GpsDialogFragment().show(getFragmentManager(), "gps");
             return;
         }
         Criteria criteria = new Criteria();
+        if (locationListener == null) {
+            locationListener = new PBLocationListener(controller);
+        }
         String provider = locationManager.getBestProvider(criteria, true);
+        //noinspection MissingPermission
         locationManager.requestLocationUpdates(provider, 5, 5, locationListener);
+        Toast.makeText(this, R.string.waiting_for_location, Toast.LENGTH_SHORT).show();
     }
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == REQUEST_LOCATION) {
             if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 requestLocationUpdates();
-            } else if (explicitlyAskedForPermissions) {
-                if (!ActivityCompat.shouldShowRequestPermissionRationale(MapActivity.this,
-                        Manifest.permission.ACCESS_FINE_LOCATION)) {
-                    new GpsPermissionsDialogFragment().show(getFragmentManager(), "gps_permissions");
+            } else {
+                controller.removePosition();
+                if (explicitlyAskedForPermissions) {
+                    if (!ActivityCompat.shouldShowRequestPermissionRationale(MapActivity.this,
+                            Manifest.permission.ACCESS_FINE_LOCATION)) {
+                        new GpsPermissionsDialogFragment().show(getFragmentManager(), "gps_permissions");
+                    }
                 }
             }
         }
@@ -136,11 +147,12 @@ public class MapActivity extends DrawerActivity
     @Override
     protected void onPause() {
         super.onPause();
+        Log.d(getClass().getSimpleName(), "onPause");
         if (locationListener != null) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (doesNotHaveGpsPermissions()) {
                 return;
             }
+            //noinspection MissingPermission
             locationManager.removeUpdates(locationListener);
         }
     }
@@ -341,7 +353,5 @@ public class MapActivity extends DrawerActivity
                     .create();
         }
     }
-
-    // TODO: Implement path
 
 }

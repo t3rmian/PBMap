@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.qozix.tileview.TileView;
+import com.qozix.tileview.paths.CompositePathView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,6 +33,21 @@ public class MapView extends TileView implements PlaceView {
     @Override
     public void addToMap(MapView pbMapView) {
         positionsCache.put(map.getName(), new MapViewPosition(getCenterX(), getCenterY(), getScale()));
+    }
+
+    public void addRoute(Route route) {
+        for (CompositePathView.DrawablePath drawablePath : route.getDrawablePaths()) {
+            getCompositePathView().addPath(drawablePath);
+        }
+    }
+
+    public void removeRoute(Route route) {
+        if (route == null) {
+            return;
+        }
+        for (CompositePathView.DrawablePath drawablePath : route.getDrawablePaths()) {
+            getCompositePathView().removePath(drawablePath);
+        }
     }
 
     public void initializeZoom() {

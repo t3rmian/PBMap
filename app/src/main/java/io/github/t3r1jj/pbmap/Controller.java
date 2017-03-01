@@ -6,24 +6,28 @@ import com.qozix.tileview.paths.CompositePathView;
 
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.strategy.CycleStrategy;
 
 import java.util.List;
 
+import io.github.t3r1jj.pbmap.model.gps.Person;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
 import io.github.t3r1jj.pbmap.model.map.Place;
 import io.github.t3r1jj.pbmap.model.map.Space;
-import io.github.t3r1jj.pbmap.model.gps.Person;
+import io.github.t3r1jj.pbmap.model.map.route.Graph;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 import io.github.t3r1jj.pbmap.view.MapView;
+import io.github.t3r1jj.pbmap.view.Route;
 
 public class Controller {
     private PBMap map;
     private MapView mapView;
-    private ImageView marker;
+    private ImageView destinationMarker;
     private ImageView personMarker;
+    private Coordinate destination;
+    private Route destinationRoute;
     private final MapActivity mapActivity;
+    private Graph graph;
 
     Controller(MapActivity base) {
         this.mapActivity = base;
@@ -55,28 +59,38 @@ public class Controller {
         mapView = nextMapView;
         mapActivity.setBackButtonVisible(map.getPreviousMapPath() != null);
 
-        List<CompositePathView.DrawablePath> drawablePaths = map.getRoute().createView(mapView).getDrawablePaths();
-        for (CompositePathView.DrawablePath drawablePath : drawablePaths) {
-            mapView.getCompositePathView().addPath(drawablePath);
+        graph = map.getGraph();
+        if (graph != null) {
+            List<CompositePathView.DrawablePath> drawablePaths = graph.createView(mapView).getDrawablePaths();
+            for (CompositePathView.DrawablePath drawablePath : drawablePaths) {
+                mapView.getCompositePathView().addPath(drawablePath);
+            }
         }
+        clearContext();
+    }
+
+    private void clearContext() {
+        personMarker = null;
+        destinationMarker = null;
     }
 
     private void pinpointPlace(final String placeName) {
         for (Place place : map.getPlaces()) {
             if (place.getName().equals(placeName)) {
-                final Coordinate center = place.getCenter();
-                if (marker != null) {
-                    mapView.removeMarker(marker);
+                destination = place.getCenter();
+                if (destinationMarker != null) {
+                    mapView.removeMarker(destinationMarker);
+                } else {
+                    destinationMarker = new ImageView(mapView.getContext());
                 }
-                marker = new ImageView(mapView.getContext());
-                marker.setImageDrawable(mapView.getContext().getResources().getDrawable(R.drawable.marker));
+                destinationMarker.setImageDrawable(mapView.getContext().getResources().getDrawable(R.drawable.marker));
                 mapView.post(new Runnable() {
                     @Override
                     public void run() {
                         mapView.setScale(1f);
-                        mapView.scrollToAndCenter(center.lng, center.lat);
+                        mapView.scrollToAndCenter(destination.lng, destination.lat);
                         mapView.setScaleFromCenter(getPinpointScale());
-                        mapView.addMarker(marker, center.lng, center.lat, -0.5f, 0f);
+                        mapView.addMarker(destinationMarker, destination.lng, destination.lat, -0.5f, 0f);
                     }
                 });
                 return;
@@ -113,12 +127,15 @@ public class Controller {
         mapActivity.popupInfo(new MapActivity.Info(map.getName(), map.getDescriptionResName()));
     }
 
-    //TODO: optimize markers creation
     public void updatePosition(final Person person) {
-        if (personMarker != null) {
-            mapView.removeMarker(personMarker);
+        removePosition();
+        setPosition(person);
+    }
+
+    private void setPosition(final Person person) {
+        if (personMarker == null) {
+            personMarker = person.createMarker(mapActivity);
         }
-        personMarker = person.getMarker(mapActivity);
         if (mapView != null) {
             mapView.post(new Runnable() {
                 @Override
@@ -128,6 +145,21 @@ public class Controller {
                     mapView.addMarker(personMarker, center.lng, center.lat, -0.5f, -0.5f);
                 }
             });
+            if (destinationMarker != null && personMarker != null) {
+                updateRoute(person);
+            }
+        }
+    }
+
+    public void removePosition() {
+        mapView.removeMarker(personMarker);
+        mapView.removeRoute(destinationRoute);
+    }
+
+    private void updateRoute(Person person) {
+        if (graph != null) {
+            destinationRoute = new Route(mapView, graph.getRoute(person.getCoordinate(), destination));
+            mapView.addRoute(destinationRoute);
         }
     }
 }

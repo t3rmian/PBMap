@@ -23,13 +23,13 @@ public class DijkstraAlgorithmTest {
 
     @Before
     public void setUp() {
-        a = new Coordinate(1d, 1d);
-        Coordinate b = new Coordinate(2d, 2d);
-        c = new Coordinate(3d, 3d);
-        d = new Coordinate(4d, 4d);
-        e = new Coordinate(5d, 5d);
-        Coordinate f = new Coordinate(6d, 6d);
-        notConnected = new Coordinate(7d, 7d);
+        a = new CoordinateStub(1d, 1d);
+        Coordinate b = new CoordinateStub(2d, 2d);
+        c = new CoordinateStub(3d, 3d);
+        d = new CoordinateStub(4d, 4d);
+        e = new CoordinateStub(5d, 5d);
+        Coordinate f = new CoordinateStub(6d, 6d);
+        notConnected = new CoordinateStub(7d, 7d);
         vertexes.add(a);
         vertexes.add(b);
         vertexes.add(c);
@@ -45,7 +45,7 @@ public class DijkstraAlgorithmTest {
         edges.add(new Edge(c, f));
         edges.add(new Edge(d, e));
         edges.add(new Edge(e, f));
-        dijkstra = new DijkstraAlgorithmStub(vertexes, edges);
+        dijkstra = new DijkstraAlgorithm(vertexes, edges);
 
     }
 
@@ -60,8 +60,6 @@ public class DijkstraAlgorithmTest {
         expectedPath.add(c);
         expectedPath.add(d);
         expectedPath.add(e);
-        System.out.println(expectedPath.toString());
-        System.out.println(shortestPath.toString());
         assertTrue(expectedPath.equals(shortestPath));
     }
 
@@ -78,15 +76,15 @@ public class DijkstraAlgorithmTest {
         dijkstra.execute();
     }
 
-    private class DijkstraAlgorithmStub extends DijkstraAlgorithm {
+    private class CoordinateStub extends Coordinate {
 
-        public DijkstraAlgorithmStub(List<Coordinate> vertexes, List<Edge> edges) {
-            super(vertexes, edges);
+        private CoordinateStub(double lng, double lat) {
+            super(lng, lat);
         }
 
         @Override
-        protected Double length(Coordinate u, Coordinate v) {
-            if (u.lat == 1d) {
+        public double distance(Coordinate v) {
+            if (lat == 1d) {
                 if (v.lat == 2d) {
                     return 7d;
                 } else if (v.lat == 3d) {
@@ -94,28 +92,28 @@ public class DijkstraAlgorithmTest {
                 } else if (v.lat == 6d) {
                     return 14d;
                 }
-            } else if (u.lat == 2d) {
+            } else if (lat == 2d) {
                 if (v.lat == 3d) {
                     return 10d;
                 } else if (v.lat == 4d) {
                     return 15d;
                 }
-            } else if (u.lat == 3d) {
+            } else if (lat == 3d) {
                 if (v.lat == 4d) {
                     return 11d;
                 } else if (v.lat == 6d) {
                     return 2d;
                 }
-            } else if (u.lat == 4d) {
+            } else if (lat == 4d) {
                 if (v.lat == 5d) {
                     return 6d;
                 }
-            } else if (u.lat == 5d) {
+            } else if (lat == 5d) {
                 if (v.lat == 6d) {
                     return 9d;
                 }
             }
-            throw new RuntimeException("No connection: " + u.toString() + " -> " + v.toString());
+            throw new RuntimeException("No connection: " + toString() + " -> " + v.toString());
         }
     }
 

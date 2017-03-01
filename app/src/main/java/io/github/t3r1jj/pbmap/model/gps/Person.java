@@ -17,7 +17,7 @@ public class Person {
         return coordinate;
     }
 
-    public ImageView getMarker(Context context) {
+    public ImageView createMarker(Context context) {
         ImageView marker = new ImageView(context);
         marker.setImageDrawable(context.getResources().getDrawable(R.drawable.person_marker));
         return marker;
