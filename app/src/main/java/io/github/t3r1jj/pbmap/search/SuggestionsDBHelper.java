@@ -22,9 +22,9 @@ import static io.github.t3r1jj.pbmap.search.SearchListProvider.SUGGESTIONS_COLUM
 @Deprecated
 class SuggestionsDBHelper extends SQLiteOpenHelper implements SuggestionsDao {
     private static final String SUGGESTIONS_TABLE_NAME = "suggestions";
-    private Context context;
-    private final MapsDao dao;
     private static final String DATABASE_NAME = "search_suggestions.db";
+    private final MapsDao dao;
+    private Context context;
 
     SuggestionsDBHelper(Context base) {
         super(base, DATABASE_NAME, null, BuildConfig.VERSION_CODE);

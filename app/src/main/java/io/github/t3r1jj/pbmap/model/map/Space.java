@@ -12,6 +12,8 @@ public class Space extends Place {
     protected String referenceMapPath;
     @Attribute(name = "description_res_name", required = false)
     protected String descriptionResName;
+    @Attribute(required = false)
+    private String url;
 
     @Override
     public PlaceView createView(Context context) {
@@ -30,4 +32,7 @@ public class Space extends Place {
         return descriptionResName;
     }
 
+    public String getUrl() {
+        return url;
+    }
 }

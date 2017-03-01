@@ -2,11 +2,8 @@ package io.github.t3r1jj.pbmap.main;
 
 import android.widget.ImageView;
 
-import com.qozix.tileview.paths.CompositePathView;
-
-import java.util.List;
-
 import io.github.t3r1jj.pbmap.R;
+import io.github.t3r1jj.pbmap.model.Info;
 import io.github.t3r1jj.pbmap.model.gps.Person;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
@@ -19,6 +16,8 @@ import io.github.t3r1jj.pbmap.view.MapView;
 import io.github.t3r1jj.pbmap.view.Route;
 
 public class Controller {
+    private final MapActivity mapActivity;
+    private final MapsDao mapsDao;
     private PBMap map;
     private MapView mapView;
     private ImageView destinationMarker;
@@ -26,8 +25,6 @@ public class Controller {
     private Coordinate destination;
     private Route destinationRoute;
     private Graph graph;
-    private final MapActivity mapActivity;
-    private final MapsDao mapsDao;
 
     Controller(MapActivity mapActivity) {
         this.mapActivity = mapActivity;
@@ -52,6 +49,7 @@ public class Controller {
     }
 
     private void updateView() {
+        clearContext();
         MapView nextMapView = map.createView(mapActivity);
         nextMapView.setController(this);
         mapActivity.setMapView(nextMapView);
@@ -60,15 +58,21 @@ public class Controller {
         }
         mapView = nextMapView;
         mapActivity.setBackButtonVisible(map.getPreviousMapPath() != null);
+        mapActivity.setInfoButtonVisible(map.getDescriptionResName() != null || map.getUrl() != null);
 
         graph = map.getGraph();
+        addAllRoutes();
+    }
+
+    /**
+     * @deprecated use only for testing, no need to display all routes for user
+     */
+    @Deprecated
+    private void addAllRoutes() {
         if (graph != null) {
-            List<CompositePathView.DrawablePath> drawablePaths = graph.createView(mapView).getDrawablePaths();
-            for (CompositePathView.DrawablePath drawablePath : drawablePaths) {
-                mapView.getCompositePathView().addPath(drawablePath);
-            }
+            Route route = graph.createView(mapView);
+            mapView.addRoute(route);
         }
-        clearContext();
     }
 
     private void clearContext() {
@@ -110,7 +114,7 @@ public class Controller {
             updateView();
             mapView.loadPreviousPosition();
         } else if (space.getDescriptionResName() != null) {
-            mapActivity.popupInfo(new MapActivity.Info(space.getName(), space.getDescriptionResName()));
+            mapActivity.popupInfo(new Info(space));
         }
     }
 
@@ -119,12 +123,12 @@ public class Controller {
     }
 
     public void loadLogo(Place map) {
-        ImageView logo = map.getLogo(mapActivity);
+        ImageView logo = map.createLogo(mapActivity);
         mapActivity.setLogo(logo);
     }
 
     public void loadDescription() {
-        mapActivity.popupInfo(new MapActivity.Info(map.getName(), map.getDescriptionResName()));
+        mapActivity.popupInfo(new Info(map));
     }
 
     public void updatePosition(final Person person) {

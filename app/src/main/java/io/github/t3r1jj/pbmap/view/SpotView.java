@@ -1,11 +1,13 @@
 package io.github.t3r1jj.pbmap.view;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.widget.TextView;
 
 import com.qozix.tileview.markers.MarkerLayout;
 
+import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.Place;
 
@@ -18,8 +20,9 @@ public class SpotView extends MarkerLayout implements PlaceView {
         super(context);
         textView = new TextView(context);
         textView.setText(place.getName());
-        textView.setTextColor(Color.RED);
-        textView.setTextSize(12f);
+        Resources resources = context.getResources();
+        textView.setTextColor(resources.getColor(R.color.spot_text));
+        textView.setTextSize(resources.getDimension(R.dimen.spot_text));
         center = place.getCenter();
     }
 

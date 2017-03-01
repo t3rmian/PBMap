@@ -12,14 +12,11 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,13 +26,12 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.Serializable;
-
 import io.github.t3r1jj.pbmap.AboutActivity;
 import io.github.t3r1jj.pbmap.BuildConfig;
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.main.drawer.DrawerActivity;
 import io.github.t3r1jj.pbmap.main.drawer.PlacesDrawerFragment;
+import io.github.t3r1jj.pbmap.model.Info;
 import io.github.t3r1jj.pbmap.model.gps.PBLocationListener;
 import io.github.t3r1jj.pbmap.search.Search;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
@@ -157,26 +153,6 @@ public class MapActivity extends DrawerActivity
         }
     }
 
-    public static class GpsDialogFragment extends DialogFragment {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            return new AlertDialog.Builder(getActivity())
-                    .setMessage(getString(R.string.gps_disabled_message, getString(R.string.app_name)))
-                    .setCancelable(false)
-                    .setPositiveButton(R.string.enable, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                            startActivity(intent);
-                        }
-                    })
-                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    }).create();
-        }
-    }
-
     private void setupVersion() {
         TextView versionText = (TextView) findViewById(R.id.about_version);
         versionText.setText(getString(R.string.about_version, BuildConfig.VERSION_NAME));
@@ -188,7 +164,6 @@ public class MapActivity extends DrawerActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -261,6 +236,14 @@ public class MapActivity extends DrawerActivity
         }
     }
 
+    public void setInfoButtonVisible(boolean visible) {
+        if (visible) {
+            infoButton.show();
+        } else {
+            infoButton.hide();
+        }
+    }
+
     @Override
     public void onPlaceDrawerItemSelected(SearchSuggestion suggestion) {
         controller.loadMap(suggestion);
@@ -272,7 +255,6 @@ public class MapActivity extends DrawerActivity
         startActivity(aboutIntent);
     }
 
-
     public void popupInfo(Info info) {
         InfoSheetDialogFragment infoSheetDialogFragment = new InfoSheetDialogFragment();
         Bundle bundle = new Bundle();
@@ -281,53 +263,23 @@ public class MapActivity extends DrawerActivity
         infoSheetDialogFragment.show(getSupportFragmentManager(), "info");
     }
 
-    public static class InfoSheetDialogFragment extends BottomSheetDialogFragment {
-
-        Info info;
-        TextView titleText;
-        TextView descriptionText;
-        static String INFO_KEY = "INFO_KEY";
-
+    public static class GpsDialogFragment extends DialogFragment {
         @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            info = (Info) getArguments().getSerializable(INFO_KEY);
-        }
-
-        @Nullable
-        @Override
-        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.info_dialog, container, false);
-            titleText = (TextView) rootView.findViewById(R.id.info_title);
-            titleText.setText(info.title);
-            descriptionText = (TextView) rootView.findViewById(R.id.info_description);
-            if (info.descriptionResName != null) {
-                descriptionText.setText(getStringResource(info.descriptionResName));
-            }
-            return rootView;
-        }
-
-        @Override
-        public void onSaveInstanceState(Bundle outState) {
-            super.onSaveInstanceState(outState);
-            outState.putSerializable(INFO_KEY, info);
-        }
-
-        String getStringResource(String aString) {
-            String packageName = getActivity().getPackageName();
-            int resId = getResources().getIdentifier(aString, "string", packageName);
-            return getString(resId);
-        }
-
-    }
-
-    public static class Info implements Serializable {
-        String title;
-        String descriptionResName;
-
-        public Info(String title, String descriptionResName) {
-            this.title = title;
-            this.descriptionResName = descriptionResName;
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            return new AlertDialog.Builder(getActivity())
+                    .setMessage(getString(R.string.gps_disabled_message, getString(R.string.app_name)))
+                    .setCancelable(false)
+                    .setPositiveButton(R.string.enable, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                            startActivity(intent);
+                        }
+                    })
+                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    }).create();
         }
     }
 

@@ -1,5 +1,6 @@
 package io.github.t3r1jj.pbmap.view;
 
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.NonNull;
@@ -10,6 +11,7 @@ import com.qozix.tileview.paths.CompositePathView;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.route.Edge;
 import io.github.t3r1jj.pbmap.model.map.route.Graph;
@@ -18,7 +20,7 @@ public class Route {
     private List<CompositePathView.DrawablePath> drawablePaths = new ArrayList<>();
 
     public Route(MapView mapView, Graph graph) {
-        Paint paint = getPaint(Color.RED);
+        Paint paint = getPaint(Color.RED, mapView.getContext().getResources().getDimension(R.dimen.route_stroke_width));
         CoordinateTranslater coordinateTranslater = mapView.getCoordinateTranslater();
 
         for (Edge edge : graph.getPaths()) {
@@ -33,7 +35,8 @@ public class Route {
     }
 
     public Route(MapView mapView, List<Coordinate> coordinates) {
-        Paint paint = getPaint(Color.YELLOW);
+        Resources resources = mapView.getContext().getResources();
+        Paint paint = getPaint(resources.getColor(R.color.route), resources.getDimension(R.dimen.route_stroke_width));
         CoordinateTranslater coordinateTranslater = mapView.getCoordinateTranslater();
 
         CompositePathView.DrawablePath drawablePath = new CompositePathView.DrawablePath();
@@ -47,15 +50,15 @@ public class Route {
     }
 
     @NonNull
-    private Paint getPaint(int color) {
+    private Paint getPaint(int color, float strokeWidth) {
         Paint paint = new Paint();
         paint.setColor(color);
-        paint.setStrokeWidth(2);
+        paint.setStrokeWidth(strokeWidth);
         paint.setStyle(Paint.Style.STROKE);
         return paint;
     }
 
-    public List<CompositePathView.DrawablePath> getDrawablePaths() {
+    List<CompositePathView.DrawablePath> getDrawablePaths() {
         return drawablePaths;
     }
 }

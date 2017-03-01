@@ -1,15 +1,15 @@
-<map name="First map" description_res_name="about_description" height="2048" is_primary="true"
+<map name="First map" description_res_name="about_description" height="2048" is_primary="true" url="http://www.www.ww"
     logo_path="logo/logo.png" width="2048">
-    <tiles_configs length="2">
+    <tiles_configs>
         <tiles_config height="256" path="tiles/1/500/500.png" width="256" zoom="0.5" />
         <tiles_config height="256" path="tiles/1/1000/1000.png" width="256" zoom="1" />
     </tiles_configs>
-    <coordinates length="2">
-        <bottom_left alt="0" lat="1000" lng="0" />
-        <top_right alt="0" lat="0" lng="1000" />
+    <coordinates>
+        <coordinate alt="0" lat="1000" lng="0" />
+        <coordinate alt="0" lat="0" lng="1000" />
     </coordinates>
     <space name="First space" reference_map_path="data/2.xml">
-        <coordinates length="4">
+        <coordinates>
             <coordinate alt="0" lat="0" lng="0" />
             <coordinate alt="0" lat="0" lng="300" />
             <coordinate alt="0" lat="400" lng="300" />
@@ -17,7 +17,7 @@
         </coordinates>
     </space>
     <spot name="First spot">
-        <coordinates length="1">
+        <coordinates>
             <coordinate alt="10" lat="600" lng="600" />
         </coordinates>
     </spot>

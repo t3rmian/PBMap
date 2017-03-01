@@ -1,7 +1,6 @@
 package io.github.t3r1jj.pbmap.view;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.qozix.tileview.TileView;
 import com.qozix.tileview.paths.CompositePathView;
@@ -15,14 +14,13 @@ import io.github.t3r1jj.pbmap.model.map.Space;
 
 public class MapView extends TileView implements PlaceView {
     private static Map<String, MapViewPosition> positionsCache = new HashMap<>();
-    private Controller controller;
     private final PBMap map;
+    private Controller controller;
 
     public MapView(Context context, PBMap map) {
         super(context);
         this.map = map;
         PBMap.BoundingBox boundingBox = map.getBoundingBox();
-        Log.d(getClass().getSimpleName(), boundingBox.toString());
         defineBounds(boundingBox.getMinLng(), boundingBox.getMaxLat(), boundingBox.getMaxLng(), boundingBox.getMinLat());
     }
 
@@ -93,4 +91,24 @@ public class MapView extends TileView implements PlaceView {
         controller.loadLogo(map);
     }
 
+    private class MapViewPosition {
+        int centerX;
+        int centerY;
+        float zoom;
+
+        MapViewPosition(int centerX, int centerY, float zoom) {
+            this.centerX = centerX;
+            this.centerY = centerY;
+            this.zoom = zoom;
+        }
+
+        @Override
+        public String toString() {
+            return "MapViewPosition{" +
+                    "centerX=" + centerX +
+                    ", centerY=" + centerY +
+                    ", zoom=" + zoom +
+                    '}';
+        }
+    }
 }

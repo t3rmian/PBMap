@@ -34,10 +34,9 @@ public class SearchListProvider extends SearchRecentSuggestionsProvider {
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         if (selectionArgs != null && selectionArgs.length > 0 && selectionArgs[0].length() > 0) {
             if (db == null) {
-//                db = new MapsDao(getBaseContext());
-                db = new SuggestionsDBHelper(getBaseContext());
+                db = new MapsDao(getBaseContext());
             }
-            selectionArgs[0] =  selectionPrePostFix + selectionArgs[0].toLowerCase() + selectionPrePostFix;
+            selectionArgs[0] = selectionPrePostFix + selectionArgs[0].toLowerCase() + selectionPrePostFix;
             return db.query(null, tableColumns, whereClause, selectionArgs, null, null, orderBy);
         } else {
             return super.query(uri, projection, selection, selectionArgs, sortOrder);

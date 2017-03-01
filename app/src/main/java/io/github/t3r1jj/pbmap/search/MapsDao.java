@@ -8,13 +8,11 @@ import android.database.MatrixCursor;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 import org.w3c.dom.Attr;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -53,7 +51,6 @@ public class MapsDao extends ContextWrapper implements SuggestionsDao {
     }
 
     /**
-     *
      * @return default map
      */
     public PBMap loadMap() {

@@ -5,7 +5,6 @@ import android.content.Context;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementArray;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.ElementListUnion;
 
@@ -20,19 +19,17 @@ public class PBMap extends Space {
     private int width;
     @Attribute
     private int height;
-    @Attribute(required = false)
-    private String url;
-    @Attribute(name="is_primary", required = false)
+    @Attribute(name = "is_primary", required = false)
     private boolean primary;
-    @Attribute(name="previous_map_path", required = false)
+    @Attribute(name = "previous_map_path", required = false)
     private String previousMapPath;
     @ElementListUnion({
             @ElementList(entry = "space", type = Space.class, required = false, inline = true),
             @ElementList(entry = "spot", type = Spot.class, required = false, inline = true)
     })
     private List<Place> places;
-    @ElementArray(name = "tiles_configs")
-    private TilesConfig[] tilesConfigs;
+    @ElementList(name = "tiles_configs")
+    private List<TilesConfig> tilesConfigs;
     @Element(required = false)
     private Graph route;
 

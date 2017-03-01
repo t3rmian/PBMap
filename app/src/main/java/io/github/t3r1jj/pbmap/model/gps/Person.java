@@ -9,12 +9,12 @@ import io.github.t3r1jj.pbmap.model.map.Coordinate;
 public class Person {
     Coordinate coordinate;
 
-    void setCoordinate(Coordinate coordinate) {
-        this.coordinate = coordinate;
-    }
-
     public Coordinate getCoordinate() {
         return coordinate;
+    }
+
+    void setCoordinate(Coordinate coordinate) {
+        this.coordinate = coordinate;
     }
 
     public ImageView createMarker(Context context) {

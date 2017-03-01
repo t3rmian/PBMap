@@ -3,4 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="space_bounds">#FF0000</color>
+    <color name="route">#FF0000</color>
+    <color name="spot_text">#FF0000</color>
 </resources>

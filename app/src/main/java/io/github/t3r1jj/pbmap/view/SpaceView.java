@@ -1,7 +1,7 @@
 package io.github.t3r1jj.pbmap.view;
 
 import android.content.Context;
-import android.graphics.Color;
+import android.content.res.Resources;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
@@ -14,6 +14,7 @@ import com.qozix.tileview.paths.CompositePathView;
 import java.util.LinkedList;
 import java.util.List;
 
+import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.Space;
 
@@ -28,8 +29,9 @@ public class SpaceView extends CompositePathView.DrawablePath implements PlaceVi
         this.context = context;
         paint = new Paint();
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(3);
-        paint.setColor(Color.GRAY);
+        Resources resources = context.getResources();
+        paint.setStrokeWidth(resources.getDimension(R.dimen.space_stroke_width));
+        paint.setColor(resources.getColor(R.color.space_bounds));
         spotView = new SpotView(context, space);
     }
 
@@ -40,7 +42,7 @@ public class SpaceView extends CompositePathView.DrawablePath implements PlaceVi
         pbMapView.addPlaceView(spotView);
         if (space.getLogoPath() != null) {
             Coordinate center = space.getCenter();
-            pbMapView.addMarker(space.getLogo(context), center.lng, center.lat, -0.5f, -1.5f);
+            pbMapView.addMarker(space.createLogo(context), center.lng, center.lat, -0.5f, -1.5f);
         }
         if (space.getReferenceMapPath() != null) {
             HotSpot hotSpot = prepareHotspot();

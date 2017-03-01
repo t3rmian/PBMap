@@ -5,10 +5,11 @@ import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
 import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.ElementArray;
+import org.simpleframework.xml.ElementList;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import io.github.t3r1jj.pbmap.view.PlaceView;
 
@@ -17,8 +18,8 @@ public abstract class Place {
     protected String name;
     @Attribute(name = "logo_path", required = false)
     protected String logoPath;
-    @ElementArray
-    protected Coordinate[] coordinates;
+    @ElementList
+    protected List<Coordinate> coordinates;
 
     public String getName() {
         return name;
@@ -28,7 +29,7 @@ public abstract class Place {
         this.name = name;
     }
 
-    public Coordinate[] getCoordinates() {
+    public List<Coordinate> getCoordinates() {
         return coordinates;
     }
 
@@ -36,7 +37,7 @@ public abstract class Place {
         return logoPath;
     }
 
-    public ImageView getLogo(Context context) {
+    public ImageView createLogo(Context context) {
         if (logoPath != null) {
             try {
                 InputStream inputStream = context.getAssets().open(logoPath);
@@ -66,9 +67,10 @@ public abstract class Place {
             center.lat += coordinate.lat;
             center.alt += coordinate.alt;
         }
-        center.lng /= coordinates.length;
-        center.lat /= coordinates.length;
-        center.alt /= coordinates.length;
+        int size = coordinates.size();
+        center.lng /= size;
+        center.lat /= size;
+        center.alt /= size;
         return center;
     }
 

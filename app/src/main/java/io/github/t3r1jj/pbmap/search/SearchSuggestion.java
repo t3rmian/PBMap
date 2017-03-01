@@ -7,7 +7,7 @@ public class SearchSuggestion {
     public String place;
     public String mapPath;
 
-    public SearchSuggestion(String place, String mapPath) {
+    SearchSuggestion(String place, String mapPath) {
         this.place = place;
         this.mapPath = mapPath;
     }
