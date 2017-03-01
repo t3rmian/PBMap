@@ -1,6 +1,9 @@
 package io.github.t3r1jj.pbmap.main;
 
+import android.view.MotionEvent;
 import android.widget.ImageView;
+
+import com.qozix.tileview.geom.CoordinateTranslater;
 
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.model.Info;
@@ -84,12 +87,7 @@ public class Controller {
         for (Place place : map.getPlaces()) {
             if (place.getName().equals(placeName)) {
                 destination = place.getCenter();
-                if (destinationMarker != null) {
-                    mapView.removeMarker(destinationMarker);
-                } else {
-                    destinationMarker = new ImageView(mapView.getContext());
-                }
-                destinationMarker.setImageDrawable(mapView.getContext().getResources().getDrawable(R.drawable.marker));
+                prepareDestinationMarker();
                 mapView.post(new Runnable() {
                     @Override
                     public void run() {
@@ -101,6 +99,51 @@ public class Controller {
                 });
                 return;
             }
+        }
+    }
+
+    public void placeDestinationMark(MotionEvent event) {
+        CoordinateTranslater coordinateTranslater = mapView.getCoordinateTranslater();
+        double lng = coordinateTranslater.translateAndScaleAbsoluteToRelativeX(mapView.getScrollX() + event.getX() -mapView.getOffsetX(), mapView.getScale());
+        double lat = coordinateTranslater.translateAndScaleAbsoluteToRelativeY(mapView.getScrollY() + event.getY()-mapView.getOffsetY(), mapView.getScale());
+        if (!coordinateTranslater.contains(lng, lat)) {
+            return;
+        }
+        if (destinationMarker != null) {
+            double lngPx = coordinateTranslater.translateAndScaleX(destination.lng, mapView.getScale()) - mapView.getScrollX() +mapView.getOffsetX();
+            double latPx = coordinateTranslater.translateAndScaleY(destination.lat, mapView.getScale()) - mapView.getScrollY() +mapView.getOffsetY();
+            if (sameMarkerPressed(event, lngPx, latPx)) {
+                destination = new Coordinate(lng, lat);
+                prepareDestinationMarker();
+                destinationMarker = null;
+                return;
+            }
+        }
+        destination = new Coordinate(lng, lat);
+        prepareDestinationMarker();
+
+        mapView.post(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println(destination);
+                mapView.addMarker(destinationMarker, destination.lng, destination.lat, -0.5f, -0.5f);
+            }
+        });
+    }
+
+    private boolean sameMarkerPressed(MotionEvent event, double lngPx, double latPx) {
+        float xRange = mapView.getContext().getResources().getDimension(R.dimen.marker_width);
+        float yRange = mapView.getContext().getResources().getDimension(R.dimen.marker_height);
+        System.out.println(Math.abs(event.getX() - lngPx));
+        return Math.abs(event.getX() - lngPx) < xRange && Math.abs(event.getY() - latPx) < yRange;
+    }
+
+    private void prepareDestinationMarker() {
+        if (destinationMarker != null) {
+            mapView.removeMarker(destinationMarker);
+        } else {
+            destinationMarker = new ImageView(mapView.getContext());
+            destinationMarker.setImageDrawable(mapView.getContext().getResources().getDrawable(R.drawable.marker));
         }
     }
 

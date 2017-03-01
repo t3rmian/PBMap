@@ -8,7 +8,7 @@ import java.util.List;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.view.MapView;
 import io.github.t3r1jj.pbmap.view.Route;
-
+//TODO: Consider adding altitude to routing
 public class Graph {
     @ElementList
     private List<Edge> edges;
@@ -29,7 +29,7 @@ public class Graph {
             algorithm = new DijkstraAlgorithm(vertexes, edges);
         }
         Coordinate destinationVertex = findClosest(destination);
-        algorithm.setTarget(destination);
+        algorithm.setTarget(destinationVertex);
         Coordinate sourceVertex = findClosest(source);
         algorithm.setSource(sourceVertex);
         algorithm.execute();

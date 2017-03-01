@@ -2,7 +2,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
     <size
-        android:width="16dp"
-        android:height="16dp" />
+        android:width="@dimen/marker_width"
+        android:height="@dimen/marker_height" />
     <solid android:color="#ff00ff" />
 </shape>

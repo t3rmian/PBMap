@@ -11,4 +11,6 @@
     <dimen name="space_stroke_width">3dp</dimen>
     <dimen name="route_stroke_width">2dp</dimen>
     <dimen name="spot_text">12dp</dimen>
+    <dimen name="marker_width">16dp</dimen>
+    <dimen name="marker_height">16dp</dimen>
 </resources>
