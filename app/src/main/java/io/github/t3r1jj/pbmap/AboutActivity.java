@@ -8,17 +8,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
 import android.text.method.LinkMovementMethod;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
@@ -65,7 +62,7 @@ public class AboutActivity extends AppCompatActivity {
         report.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = getString(R.string.config_project);
+                String url = getString(R.string.about_project_link);
                 openUrl(url);
             }
         });
@@ -88,7 +85,7 @@ public class AboutActivity extends AppCompatActivity {
         report.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = getString(R.string.config_report);
+                String url = getString(R.string.about_report_link);
                 openUrl(url);
             }
         });
@@ -135,7 +132,7 @@ public class AboutActivity extends AppCompatActivity {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             WebView webView = (WebView) View.inflate(getActivity(), R.layout.dialog_licenses, null);
-            webView.loadUrl(getString(R.string.config_NOTICE));
+            webView.loadUrl(BuildConfig.NOTICE_PATH);
             final AlertDialog alertDialog = new AlertDialog.Builder(getActivity(), getTheme())
                     .setTitle(getString(R.string.about_licenses))
                     .setView(webView)

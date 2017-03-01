@@ -1,15 +1,12 @@
-package io.github.t3r1jj.pbmap;
+package io.github.t3r1jj.pbmap.main.drawer;
 
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 
-abstract class DrawerActivity extends AppCompatActivity {
+import io.github.t3r1jj.pbmap.R;
 
-    /**
-     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-     */
-    private NavigationDrawerFragment mNavigationDrawerFragment;
+public abstract class DrawerActivity extends AppCompatActivity {
 
 
     @Override
@@ -17,10 +14,10 @@ abstract class DrawerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         initializeContentView();
 
-        mNavigationDrawerFragment = (NavigationDrawerFragment)
+        NavigationDrawerFragment navigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
 
-        mNavigationDrawerFragment.setUp(
+        navigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
     }

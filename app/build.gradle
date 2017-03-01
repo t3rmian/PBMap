@@ -17,6 +17,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    buildTypes.each {
+        it.buildConfigField 'String', 'ASSETS_MAP_DIR', ASSETS_MAP_DIR
+        it.buildConfigField 'String', 'FIRST_MAP_FILENAME', FIRST_MAP_FILENAME
+        it.buildConfigField 'String', 'NOTICE_PATH', NOTICE_PATH
+    }
 }
 
 dependencies {

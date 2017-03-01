@@ -1,10 +1,9 @@
-package io.github.t3r1jj.pbmap;
+package io.github.t3r1jj.pbmap.main;
 
 import android.Manifest;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.SearchManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -32,6 +31,11 @@ import android.widget.Toast;
 
 import java.io.Serializable;
 
+import io.github.t3r1jj.pbmap.AboutActivity;
+import io.github.t3r1jj.pbmap.BuildConfig;
+import io.github.t3r1jj.pbmap.R;
+import io.github.t3r1jj.pbmap.main.drawer.DrawerActivity;
+import io.github.t3r1jj.pbmap.main.drawer.PlacesDrawerFragment;
 import io.github.t3r1jj.pbmap.model.gps.PBLocationListener;
 import io.github.t3r1jj.pbmap.search.Search;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
@@ -78,11 +82,7 @@ public class MapActivity extends DrawerActivity
         handleIntent(getIntent());
 
         if (!controller.isInitialized()) {
-            try {
-                controller.loadMap(getString(R.string.config_initial_map_path));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            controller.loadMap();
         }
     }
 
@@ -90,7 +90,7 @@ public class MapActivity extends DrawerActivity
     protected void onResume() {
         super.onResume();
         Log.d(getClass().getSimpleName(), "onResume");
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         if (isGpsEnabled()) {
             if (doesNotHaveGpsPermissions()) {
                 controller.removePosition();
@@ -195,7 +195,7 @@ public class MapActivity extends DrawerActivity
         getMenuInflater().inflate(R.menu.menu_map, menu);
 
         SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+                (SearchManager) getSystemService(SEARCH_SERVICE);
         SearchView searchView =
                 (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setIconified(false);
@@ -215,11 +215,7 @@ public class MapActivity extends DrawerActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_back:
-                try {
-                    controller.loadPreviousMap();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                controller.loadPreviousMap();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -235,21 +231,13 @@ public class MapActivity extends DrawerActivity
             Search search = new Search(this);
             SearchSuggestion placeFound = search.find(intent.getStringExtra(SearchManager.QUERY));
             if (placeFound != null) {
-                loadPlace(placeFound);
+                controller.loadMap(placeFound);
             } else {
                 Toast.makeText(this, R.string.not_found, Toast.LENGTH_LONG).show();
             }
         } else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
             SearchSuggestion suggestion = new SearchSuggestion(intent);
-            loadPlace(suggestion);
-        }
-    }
-
-    private void loadPlace(SearchSuggestion suggestion) {
-        try {
             controller.loadMap(suggestion);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -275,7 +263,7 @@ public class MapActivity extends DrawerActivity
 
     @Override
     public void onPlaceDrawerItemSelected(SearchSuggestion suggestion) {
-        loadPlace(suggestion);
+        controller.loadMap(suggestion);
     }
 
     @Override

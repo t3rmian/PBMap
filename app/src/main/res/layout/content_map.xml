@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="io.github.t3r1jj.pbmap.MapActivity"
+    tools:context="io.github.t3r1jj.pbmap.main.MapActivity"
     tools:showIn="@layout/activity_map">
 
 </RelativeLayout>

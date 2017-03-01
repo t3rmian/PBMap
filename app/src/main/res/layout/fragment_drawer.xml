@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="io.github.t3r1jj.pbmap.PlacesDrawerFragment">
+    tools:context="io.github.t3r1jj.pbmap.main.drawer.PlacesDrawerFragment">
 
     <TextView
         android:id="@+id/section_label"

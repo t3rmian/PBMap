@@ -1,36 +1,35 @@
 package io.github.t3r1jj.pbmap.search;
 
-import android.app.SearchManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.BaseColumns;
 
-import java.io.IOException;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import io.github.t3r1jj.pbmap.BuildConfig;
-import io.github.t3r1jj.pbmap.Dao;
-import io.github.t3r1jj.pbmap.model.map.PBMap;
-import io.github.t3r1jj.pbmap.model.map.Place;
 
-class SuggestionsDBHelper extends SQLiteOpenHelper {
-    static final String SUGGESTIONS_TABLE_NAME = "suggestions";
-    static final String SUGGESTIONS_COLUMN_ID = BaseColumns._ID;
-    static final String SUGGESTIONS_COLUMN_SUGGESTION = SearchManager.SUGGEST_COLUMN_TEXT_1;
-    static final String SUGGESTIONS_COLUMN_PLACE = SearchManager.SUGGEST_COLUMN_INTENT_DATA;
-    static final String SUGGESTIONS_COLUMN_MAP_PATH = SearchManager.SUGGEST_COLUMN_INTENT_EXTRA_DATA;
+import static io.github.t3r1jj.pbmap.search.SearchListProvider.SUGGESTIONS_COLUMN_ID;
+import static io.github.t3r1jj.pbmap.search.SearchListProvider.SUGGESTIONS_COLUMN_MAP_PATH;
+import static io.github.t3r1jj.pbmap.search.SearchListProvider.SUGGESTIONS_COLUMN_PLACE;
+import static io.github.t3r1jj.pbmap.search.SearchListProvider.SUGGESTIONS_COLUMN_SUGGESTION;
+
+/**
+ * @deprecated use MapsDao {@see io.github.t3r1jj.pbmap.search.MapsDao} for SuggestionsDao {@see io.github.t3r1jj.pbmap.search.SuggestionsDao}
+ * MapsDao uses static XML files in contrast to creating readonly database.
+ */
+@Deprecated
+class SuggestionsDBHelper extends SQLiteOpenHelper implements SuggestionsDao {
+    private static final String SUGGESTIONS_TABLE_NAME = "suggestions";
     private Context context;
-    private final Dao dao;
+    private final MapsDao dao;
     private static final String DATABASE_NAME = "search_suggestions.db";
 
     SuggestionsDBHelper(Context base) {
         super(base, DATABASE_NAME, null, BuildConfig.VERSION_CODE);
         this.context = base;
-        dao = new Dao(context);
+        dao = new MapsDao(context);
     }
 
     @Override
@@ -39,6 +38,14 @@ class SuggestionsDBHelper extends SQLiteOpenHelper {
             db.execSQL("DROP TABLE IF EXISTS " + SUGGESTIONS_TABLE_NAME);
         }
     }
+
+    public Cursor query(String table, String[] columns, String selection,
+                        String[] selectionArgs, String groupBy, String having,
+                        String orderBy) {
+
+        return getReadableDatabase().query(SUGGESTIONS_TABLE_NAME, columns, selection, selectionArgs, groupBy, having, orderBy);
+    }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -50,31 +57,7 @@ class SuggestionsDBHelper extends SQLiteOpenHelper {
                         SUGGESTIONS_COLUMN_MAP_PATH + " text not null" +
                         ")"
         );
-        try {
-            loadQueriesToDb(db);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    private void loadQueriesToDb(SQLiteDatabase db) throws Exception {
-        List<PBMap> maps = dao.loadMaps();
-        insertSuggestions(db, maps);
-    }
-
-
-    private void insertSuggestions(SQLiteDatabase db, List<PBMap> maps) throws IOException {
-        Set<SearchSuggestion> suggestions = new HashSet<>();
-        String[] mapPaths = context.getAssets().list(dao.getMapsPath());
-        for (int i = 0; i < mapPaths.length; i++) {
-            suggestions.add(new SearchSuggestion(maps.get(i).getName(), dao.getMapsPath() + "/" + mapPaths[i]));
-        }
-        for (int i = 0; i < mapPaths.length; i++) {
-            for (Place place : maps.get(i).getPlaces()) {
-                suggestions.add(new SearchSuggestion(place.getName(), dao.getMapsPath() + "/" + mapPaths[i]));
-            }
-        }
+        List<SearchSuggestion> suggestions = dao.getSearchSuggestions();
         for (SearchSuggestion suggestion : suggestions) {
             insertSuggestion(db, suggestion);
         }

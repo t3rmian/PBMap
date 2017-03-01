@@ -9,7 +9,7 @@ import com.qozix.tileview.paths.CompositePathView;
 import java.util.HashMap;
 import java.util.Map;
 
-import io.github.t3r1jj.pbmap.Controller;
+import io.github.t3r1jj.pbmap.main.Controller;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
 import io.github.t3r1jj.pbmap.model.map.Space;
 

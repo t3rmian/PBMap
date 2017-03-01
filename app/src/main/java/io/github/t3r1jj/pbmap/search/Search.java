@@ -9,7 +9,7 @@ public class Search extends SearchListProvider {
 
     public Search(Context context) {
         this.context = context;
-        whereClause = "lower(" + SuggestionsDBHelper.SUGGESTIONS_COLUMN_SUGGESTION + ") = ?";
+        whereClause = "lower(" + SUGGESTIONS_COLUMN_SUGGESTION + ") = ?";
         selectionPrePostFix = "";
     }
 
@@ -22,8 +22,8 @@ public class Search extends SearchListProvider {
         Cursor cursor = query(null, null, null, new String[]{userQuery}, null);
         if (cursor != null) {
             if (cursor.moveToFirst()) {
-                String place = cursor.getString(cursor.getColumnIndex(SuggestionsDBHelper.SUGGESTIONS_COLUMN_PLACE));
-                String mapPath = cursor.getString(cursor.getColumnIndex(SuggestionsDBHelper.SUGGESTIONS_COLUMN_MAP_PATH));
+                String place = cursor.getString(cursor.getColumnIndex(SUGGESTIONS_COLUMN_PLACE));
+                String mapPath = cursor.getString(cursor.getColumnIndex(SUGGESTIONS_COLUMN_MAP_PATH));
                 cursor.close();
                 return new SearchSuggestion(place, mapPath);
             }

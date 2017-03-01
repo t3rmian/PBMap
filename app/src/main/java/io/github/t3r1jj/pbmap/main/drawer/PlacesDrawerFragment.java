@@ -1,23 +1,23 @@
-package io.github.t3r1jj.pbmap;
+package io.github.t3r1jj.pbmap.main.drawer;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.t3r1jj.pbmap.model.map.PBMap;
+import io.github.t3r1jj.pbmap.R;
+import io.github.t3r1jj.pbmap.search.MapsDao;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 
 public class PlacesDrawerFragment extends NavigationDrawerFragment {
 
-    private List<SearchSuggestion> places = new ArrayList<>();
+    private List<SearchSuggestion> places;
     /**
      * A pointer to the current callbacks instance (the Activity).
      */
-    private PlaceNavigationDrawerCallbacks mCallbacks;
+    private PlaceNavigationDrawerCallbacks callbacks;
     private int previousPosition;
 
     @Override
@@ -27,27 +27,14 @@ public class PlacesDrawerFragment extends NavigationDrawerFragment {
 
     @NonNull
     @Override
-    protected String[] getPlaceNames() {
-        Dao dao = new Dao(getActivity());
-        String[] mapNames;
-        int i = 0;
-        try {
-            List<PBMap> maps = dao.loadMaps();
-            for (PBMap map : maps) {
-                if (map.isPrimary()) {
-                    places.add(new SearchSuggestion(map.getName(), map.getReferenceMapPath()));
-                }
-            }
-            Log.d(getClass().getSimpleName(), places.size() + " size");
-            mapNames = new String[places.size() + 1];
-            for (SearchSuggestion suggestion : places) {
-                mapNames[i++] = suggestion.place;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            mapNames = new String[1];
+    protected List<String> getPlaceNames() {
+        MapsDao mapsDao = new MapsDao(getActivity());
+        places = mapsDao.getMapSuggestions();
+        List<String> mapNames = new ArrayList<>();
+        for (SearchSuggestion searchSuggestion : places) {
+            mapNames.add(searchSuggestion.place);
         }
-        mapNames[i] = getString(R.string.about);
+        mapNames.add(getString(R.string.about));
         return mapNames;
     }
 
@@ -55,23 +42,26 @@ public class PlacesDrawerFragment extends NavigationDrawerFragment {
     protected void onDrawerClosed() {
         int placesCount = places.size();
         if (placesCount != 0) {
-            if (mCurrentSelectedPosition == placesCount) {
-                mDrawerListView.setItemChecked(previousPosition, true);
-                mCurrentSelectedPosition = previousPosition;
+            if (currentSelectedPosition == placesCount) {
+                drawerListView.setItemChecked(previousPosition, true);
+                currentSelectedPosition = previousPosition;
             }
         }
     }
 
     @Override
     protected void selectItem(int position) {
-        previousPosition = mCurrentSelectedPosition;
+        previousPosition = currentSelectedPosition;
         super.selectItem(position);
+        if (places == null) {
+            return;
+        }
         int placesCount = places.size();
-        if (mCallbacks != null && placesCount != 0) {
+        if (callbacks != null && placesCount != 0) {
             if (placesCount > position) {
-                mCallbacks.onPlaceDrawerItemSelected(places.get(position));
+                callbacks.onPlaceDrawerItemSelected(places.get(position));
             } else if (placesCount == position) {
-                mCallbacks.onAboutDrawerItemSelected();
+                callbacks.onAboutDrawerItemSelected();
             }
         }
     }
@@ -80,7 +70,7 @@ public class PlacesDrawerFragment extends NavigationDrawerFragment {
     public void onAttach(Context activity) {
         super.onAttach(activity);
         try {
-            mCallbacks = (PlaceNavigationDrawerCallbacks) activity;
+            callbacks = (PlaceNavigationDrawerCallbacks) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException("Activity must implement " + PlaceNavigationDrawerCallbacks.class.getSimpleName() + ".");
         }
@@ -89,7 +79,7 @@ public class PlacesDrawerFragment extends NavigationDrawerFragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        mCallbacks = null;
+        callbacks = null;
     }
 
     /**

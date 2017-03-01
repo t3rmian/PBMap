@@ -1,20 +1,19 @@
-package io.github.t3r1jj.pbmap;
+package io.github.t3r1jj.pbmap.main;
 
 import android.widget.ImageView;
 
 import com.qozix.tileview.paths.CompositePathView;
 
-import org.simpleframework.xml.Serializer;
-import org.simpleframework.xml.core.Persister;
-
 import java.util.List;
 
+import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.model.gps.Person;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
 import io.github.t3r1jj.pbmap.model.map.Place;
 import io.github.t3r1jj.pbmap.model.map.Space;
 import io.github.t3r1jj.pbmap.model.map.route.Graph;
+import io.github.t3r1jj.pbmap.search.MapsDao;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 import io.github.t3r1jj.pbmap.view.MapView;
 import io.github.t3r1jj.pbmap.view.Route;
@@ -26,30 +25,33 @@ public class Controller {
     private ImageView personMarker;
     private Coordinate destination;
     private Route destinationRoute;
-    private final MapActivity mapActivity;
     private Graph graph;
+    private final MapActivity mapActivity;
+    private final MapsDao mapsDao;
 
-    Controller(MapActivity base) {
-        this.mapActivity = base;
+    Controller(MapActivity mapActivity) {
+        this.mapActivity = mapActivity;
+        this.mapsDao = new MapsDao(mapActivity);
     }
 
-    void loadMap(SearchSuggestion suggestion) throws Exception {
-        loadNewMap(suggestion.mapPath);
+
+    void loadMap() {
+        map = mapsDao.loadMap();
+        updateView();
+    }
+
+    void loadMap(SearchSuggestion suggestion) {
+        map = mapsDao.loadMap(suggestion.mapPath);
+        updateView();
         pinpointPlace(suggestion.place);
     }
 
-    void loadMap(String assetsMapPath) throws Exception {
-        loadNewMap(assetsMapPath);
-        mapView.loadPreviousPosition();
+    void loadPreviousMap() {
+        map = mapsDao.loadMap(map.getPreviousMapPath());
+        updateView();
     }
 
-    void loadPreviousMap() throws Exception {
-        loadNewMap(map.getPreviousMapPath());
-    }
-
-    private void loadNewMap(String assetsMapPath) throws Exception {
-        Serializer serializer = new Persister();
-        map = serializer.read(PBMap.class, mapActivity.getAssets().open(assetsMapPath));
+    private void updateView() {
         MapView nextMapView = map.createView(mapActivity);
         nextMapView.setController(this);
         mapActivity.setMapView(nextMapView);
@@ -103,14 +105,12 @@ public class Controller {
     }
 
     public void onNavigationPerformed(Space space) {
-        try {
-            if (space.getReferenceMapPath() != null) {
-                loadMap(space.getReferenceMapPath());
-            } else if (space.getDescriptionResName() != null) {
-                mapActivity.popupInfo(new MapActivity.Info(space.getName(), space.getDescriptionResName()));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (space.getReferenceMapPath() != null) {
+            map = mapsDao.loadMap(space.getReferenceMapPath());
+            updateView();
+            mapView.loadPreviousPosition();
+        } else if (space.getDescriptionResName() != null) {
+            mapActivity.popupInfo(new MapActivity.Info(space.getName(), space.getDescriptionResName()));
         }
     }
 
@@ -162,4 +162,5 @@ public class Controller {
             mapView.addRoute(destinationRoute);
         }
     }
+
 }

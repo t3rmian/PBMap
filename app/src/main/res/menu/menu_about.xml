@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="io.github.t3r1jj.pbmap.MapActivity">
+    tools:context="io.github.t3r1jj.pbmap.main.MapActivity">
     <item
         android:id="@+id/action_share"
         android:icon="@android:drawable/ic_menu_share"

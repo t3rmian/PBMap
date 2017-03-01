@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="io.github.t3r1jj.pbmap.MapActivity">
+    tools:context="io.github.t3r1jj.pbmap.main.MapActivity">
 
     <include layout="@layout/toolbar" />
 

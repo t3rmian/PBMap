@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="io.github.t3r1jj.pbmap.DrawerActivity"
+    tools:context="io.github.t3r1jj.pbmap.main.drawer.DrawerActivity"
     tools:showIn="@layout/activity_map">
 
     <!-- As the main content view, the view below consumes the entire
@@ -23,7 +23,7 @@
          the container. -->
     <fragment
         android:id="@+id/navigation_drawer"
-        android:name="io.github.t3r1jj.pbmap.PlacesDrawerFragment"
+        android:name="io.github.t3r1jj.pbmap.main.drawer.PlacesDrawerFragment"
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
