@@ -10,6 +10,11 @@ public class Edge {
     @Element
     public Coordinate end;
 
+    Edge(Coordinate start, Coordinate end) {
+        this.start = start;
+        this.end = end;
+    }
+
     public Coordinate getStart() {
         return start;
     }

@@ -6,6 +6,7 @@ import com.qozix.tileview.paths.CompositePathView;
 
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.strategy.CycleStrategy;
 
 import java.util.List;
 

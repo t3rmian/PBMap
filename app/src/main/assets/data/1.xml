@@ -5,31 +5,35 @@
         <tiles_config height="256" path="tiles/1/1000/1000.png" width="256" zoom="1" />
     </tiles_configs>
     <coordinates length="2">
-        <bottom_left lat="1000" lng="0" alt="0" />
-        <top_right lat="0" lng="1000" alt="0" />
+        <bottom_left alt="0" lat="1000" lng="0" />
+        <top_right alt="0" lat="0" lng="1000" />
     </coordinates>
     <space name="First space" reference_map_path="data/2.xml">
         <coordinates length="4">
-            <coordinate lat="0" lng="0" alt="0" />
-            <coordinate lat="0" lng="300" alt="0" />
-            <coordinate lat="400" lng="300" alt="0" />
-            <coordinate lat="400" lng="0" alt="0" />
+            <coordinate alt="0" lat="0" lng="0" />
+            <coordinate alt="0" lat="0" lng="300" />
+            <coordinate alt="0" lat="400" lng="300" />
+            <coordinate alt="0" lat="400" lng="0" />
         </coordinates>
     </space>
     <spot name="First spot">
         <coordinates length="1">
-            <coordinate lat="600" lng="600" alt="10" />
+            <coordinate alt="10" lat="600" lng="600" />
         </coordinates>
     </spot>
     <route>
         <edges>
             <edge>
-                <start lat="600" lng="600" alt="10" />
-                <end lat="200" lng="200" alt="10" />
+                <start alt="10" lat="600" lng="600" />
+                <end alt="10" lat="200" lng="200" />
             </edge>
             <edge>
-                <start lat="200" lng="200" alt="10" />
-                <end lat="400" lng="300" alt="10" />
+                <start alt="10" lat="200" lng="200" />
+                <end alt="10" lat="600" lng="600" />
+            </edge>
+            <edge>
+                <start alt="10" lat="200" lng="200" />
+                <end alt="10" lat="400" lng="300" />
             </edge>
         </edges>
     </route>
