@@ -4,13 +4,11 @@ import android.content.Context;
 import android.view.MotionEvent;
 
 import com.qozix.tileview.TileView;
-import com.qozix.tileview.paths.CompositePathView;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import io.github.t3r1jj.pbmap.main.Controller;
-import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
 import io.github.t3r1jj.pbmap.model.map.Space;
 
@@ -33,21 +31,6 @@ public class MapView extends TileView implements PlaceView {
     @Override
     public void addToMap(MapView pbMapView) {
         positionsCache.put(map.getName(), new MapViewPosition(getCenterX(), getCenterY(), getScale()));
-    }
-
-    public void addRoute(Route route) {
-        for (CompositePathView.DrawablePath drawablePath : route.getDrawablePaths()) {
-            getCompositePathView().addPath(drawablePath);
-        }
-    }
-
-    public void removeRoute(Route route) {
-        if (route == null) {
-            return;
-        }
-        for (CompositePathView.DrawablePath drawablePath : route.getDrawablePaths()) {
-            getCompositePathView().removePath(drawablePath);
-        }
     }
 
     public void initializeZoom() {
@@ -96,7 +79,7 @@ public class MapView extends TileView implements PlaceView {
     @Override
     public void onLongPress(MotionEvent event) {
         super.onLongPress(event);
-        controller.placeDestinationMark(event);
+        controller.onLongPress(event);
     }
 
     private class MapViewPosition {

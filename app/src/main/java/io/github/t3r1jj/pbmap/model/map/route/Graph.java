@@ -2,12 +2,15 @@ package io.github.t3r1jj.pbmap.model.map.route;
 
 import org.simpleframework.xml.ElementList;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.view.MapView;
-import io.github.t3r1jj.pbmap.view.Route;
+import io.github.t3r1jj.pbmap.view.routing.Route;
 //TODO: Consider adding altitude to routing
 public class Graph {
     @ElementList
@@ -24,6 +27,9 @@ public class Graph {
     }
 
     public List<Coordinate> getRoute(Coordinate source, Coordinate destination) {
+        if (source == null || destination == null) {
+            return Collections.EMPTY_LIST;
+        }
         if (algorithm == null) {
             vertexes = getVertexes();
             algorithm = new DijkstraAlgorithm(vertexes, edges);

@@ -70,6 +70,7 @@ public class MapActivity extends DrawerActivity
                     ActivityCompat.requestPermissions(MapActivity.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
                 } else {
                     requestLocationUpdates();
+                    Toast.makeText(MapActivity.this, R.string.waiting_for_location, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -89,12 +90,12 @@ public class MapActivity extends DrawerActivity
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         if (isGpsEnabled()) {
             if (doesNotHaveGpsPermissions()) {
-                controller.removePosition();
+                controller.updatePosition(null);
                 return;
             }
             requestLocationUpdates();
         } else {
-            controller.removePosition();
+            controller.updatePosition(null);
         }
     }
 
@@ -110,7 +111,7 @@ public class MapActivity extends DrawerActivity
 
     private void requestLocationUpdates() {
         if (!isGpsEnabled()) {
-            controller.removePosition();
+            controller.updatePosition(null);
             new GpsDialogFragment().show(getFragmentManager(), "gps");
             return;
         }
@@ -121,7 +122,6 @@ public class MapActivity extends DrawerActivity
         String provider = locationManager.getBestProvider(criteria, true);
         //noinspection MissingPermission
         locationManager.requestLocationUpdates(provider, 5, 5, locationListener);
-        Toast.makeText(this, R.string.waiting_for_location, Toast.LENGTH_SHORT).show();
     }
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -129,7 +129,7 @@ public class MapActivity extends DrawerActivity
             if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 requestLocationUpdates();
             } else {
-                controller.removePosition();
+                controller.updatePosition(null);
                 if (explicitlyAskedForPermissions) {
                     if (!ActivityCompat.shouldShowRequestPermissionRationale(MapActivity.this,
                             Manifest.permission.ACCESS_FINE_LOCATION)) {

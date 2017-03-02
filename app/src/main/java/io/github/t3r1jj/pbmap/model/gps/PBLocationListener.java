@@ -10,7 +10,6 @@ import io.github.t3r1jj.pbmap.model.map.Coordinate;
 
 public class PBLocationListener implements LocationListener {
 
-    private final Person person = new Person();
     private final Controller controller;
 
     public PBLocationListener(Controller controller) {
@@ -21,8 +20,8 @@ public class PBLocationListener implements LocationListener {
     @Override
     public void onLocationChanged(Location location) {
         Log.d(getClass().getSimpleName(), "Location has been changed: " + location);
-        person.setCoordinate(new Coordinate(location.getLongitude(), location.getLatitude(), location.getAltitude()));
-        controller.updatePosition(person);
+        Coordinate locationCoordinate = new Coordinate(location.getLongitude(), location.getLatitude(), location.getAltitude());
+        controller.updatePosition(locationCoordinate);
     }
 
     @Override
@@ -35,6 +34,6 @@ public class PBLocationListener implements LocationListener {
 
     @Override
     public void onProviderDisabled(String s) {
-        controller.removePosition();
+        controller.updatePosition(null);
     }
 }

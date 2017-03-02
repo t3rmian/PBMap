@@ -1,4 +1,4 @@
-package io.github.t3r1jj.pbmap.view;
+package io.github.t3r1jj.pbmap.view.routing;
 
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -15,8 +15,9 @@ import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.route.Edge;
 import io.github.t3r1jj.pbmap.model.map.route.Graph;
+import io.github.t3r1jj.pbmap.view.MapView;
 
-public class Route {
+public class Route implements RemovableView {
     private List<CompositePathView.DrawablePath> drawablePaths = new ArrayList<>();
 
     public Route(MapView mapView, Graph graph) {
@@ -35,6 +36,9 @@ public class Route {
     }
 
     public Route(MapView mapView, List<Coordinate> coordinates) {
+        if (coordinates.isEmpty()) {
+            return;
+        }
         Resources resources = mapView.getContext().getResources();
         Paint paint = getPaint(resources.getColor(R.color.route), resources.getDimension(R.dimen.route_stroke_width));
         CoordinateTranslater coordinateTranslater = mapView.getCoordinateTranslater();
@@ -58,7 +62,19 @@ public class Route {
         return paint;
     }
 
-    List<CompositePathView.DrawablePath> getDrawablePaths() {
-        return drawablePaths;
+    @Override
+    public void removeFromMap(MapView pbMapView) {
+        CompositePathView compositePathView = pbMapView.getCompositePathView();
+        for (CompositePathView.DrawablePath drawablePath : drawablePaths) {
+            compositePathView.removePath(drawablePath);
+        }
+    }
+
+    @Override
+    public void addToMap(MapView pbMapView) {
+        CompositePathView compositePathView = pbMapView.getCompositePathView();
+        for (CompositePathView.DrawablePath drawablePath : drawablePaths) {
+            compositePathView.addPath(drawablePath);
+        }
     }
 }
