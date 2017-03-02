@@ -93,8 +93,12 @@ class DijkstraAlgorithm {
         List<Coordinate> coordinates = new ArrayList<>();
         for (Edge edge : edges) {
             Coordinate start = edge.getStart();
+            Coordinate end = edge.getEnd();
             if (start.equals(vertex)) {
-                coordinates.add(edge.getEnd());
+                coordinates.add(end);
+            }
+            if (end.equals(vertex)) {
+                coordinates.add(start);
             }
         }
         return coordinates;

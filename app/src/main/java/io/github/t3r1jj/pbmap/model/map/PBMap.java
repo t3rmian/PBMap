@@ -4,13 +4,11 @@ package io.github.t3r1jj.pbmap.model.map;
 import android.content.Context;
 
 import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.ElementListUnion;
 
 import java.util.List;
 
-import io.github.t3r1jj.pbmap.model.map.route.Graph;
 import io.github.t3r1jj.pbmap.view.MapView;
 
 public class PBMap extends Space {
@@ -19,8 +17,8 @@ public class PBMap extends Space {
     private int width;
     @Attribute
     private int height;
-    @Attribute(name = "is_primary", required = false)
-    private boolean primary;
+    @Attribute(name = "route_path", required = false)
+    private String routePath;
     @Attribute(name = "previous_map_path", required = false)
     private String previousMapPath;
     @ElementListUnion({
@@ -30,8 +28,7 @@ public class PBMap extends Space {
     private List<Place> places;
     @ElementList(name = "tiles_configs")
     private List<TilesConfig> tilesConfigs;
-    @Element(required = false)
-    private Graph route;
+
 
     @Override
     public String toString() {
@@ -56,16 +53,16 @@ public class PBMap extends Space {
         return places;
     }
 
-    public boolean isPrimary() {
-        return primary;
-    }
-
     public String getPreviousMapPath() {
         return previousMapPath;
     }
 
-    public Graph getGraph() {
-        return route;
+    public String getGraphPath() {
+        return routePath;
+    }
+
+    public boolean sameAltitude(Coordinate coordinate) {
+        return Math.abs(getCenter().alt - coordinate.alt) < 1d;
     }
 
     /**

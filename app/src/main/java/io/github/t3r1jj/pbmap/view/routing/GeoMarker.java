@@ -64,7 +64,7 @@ public class GeoMarker extends ImageView implements RemovableView {
         this.listener = listener;
     }
 
-    public void addToMap(MapView mapView, MotionEvent event) {
+    public void addToMap(MapView mapView, MotionEvent event, double alt) {
         CoordinateTranslater coordinateTranslater = mapView.getCoordinateTranslater();
         double lng = coordinateTranslater.translateAndScaleAbsoluteToRelativeX(mapView.getScrollX() + event.getX() - mapView.getOffsetX(), mapView.getScale());
         double lat = coordinateTranslater.translateAndScaleAbsoluteToRelativeY(mapView.getScrollY() + event.getY() - mapView.getOffsetY(), mapView.getScale());
@@ -72,7 +72,7 @@ public class GeoMarker extends ImageView implements RemovableView {
         if (!coordinateTranslater.contains(lng, lat)) {
             return;
         }
-        if (coordinate != null) {
+        if (coordinate != null && Math.abs(coordinate.alt - alt) < 1d) {
             double lngPx = coordinateTranslater.translateAndScaleX(coordinate.lng, mapView.getScale()) - mapView.getScrollX() + mapView.getOffsetX();
             double latPx = coordinateTranslater.translateAndScaleY(coordinate.lat, mapView.getScale()) - mapView.getScrollY() + mapView.getOffsetY();
             if (sameMarkerPressed(mapView, event, lngPx, latPx)) {
@@ -81,7 +81,7 @@ public class GeoMarker extends ImageView implements RemovableView {
                 return;
             }
         }
-        coordinate = new Coordinate(lng, lat);
+        coordinate = new Coordinate(lng, lat, alt);
         addToMap(mapView);
     }
 

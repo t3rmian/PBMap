@@ -14,6 +14,7 @@ import java.util.List;
 import io.github.t3r1jj.pbmap.view.PlaceView;
 
 public abstract class Place {
+    //TODO: Change name to id and base name on it with res/values.xml, same with description
     @Attribute
     protected String name;
     @Attribute(name = "logo_path", required = false)

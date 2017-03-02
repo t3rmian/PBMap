@@ -36,7 +36,26 @@ public class Coordinate {
     public double distance(Coordinate end) {
         double a = end.lng - lng;
         double b = end.lat - lat;
-        return Math.sqrt(a * a + b * b);
+        double h = end.alt - alt;
+        double base = Math.sqrt(a * a + b * b);
+        return Math.sqrt(base * base + h * h);
+    }
+
+    /**
+     * Use for extended (point not in defined route graph) routing, should not require teleporting through floors for considered buildings
+     *
+     * @param end second coordinate
+     * @return adds multiplied penalty distance for excessive height difference (gt 1m)
+     */
+    public double flatDistance(Coordinate end) {
+        double a = end.lng - lng;
+        double b = end.lat - lat;
+        double h = end.alt - alt;
+        if (Math.abs(h) >= 1d) {
+            h *= 1000d;
+        }
+        double base = Math.sqrt(a * a + b * b);
+        return Math.sqrt(base * base + h * h);
     }
 
     @Override

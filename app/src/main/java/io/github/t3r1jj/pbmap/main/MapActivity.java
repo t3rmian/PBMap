@@ -35,7 +35,8 @@ import io.github.t3r1jj.pbmap.model.Info;
 import io.github.t3r1jj.pbmap.model.gps.PBLocationListener;
 import io.github.t3r1jj.pbmap.search.Search;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
-
+//TODO: UI UPDATE
+//TODO: Google indexing?
 public class MapActivity extends DrawerActivity
         implements PlacesDrawerFragment.PlaceNavigationDrawerCallbacks {
 

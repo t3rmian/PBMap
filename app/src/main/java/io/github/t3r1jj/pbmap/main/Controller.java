@@ -4,25 +4,28 @@ import android.content.res.Resources;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
+import java.util.Iterator;
+import java.util.List;
+
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.model.Info;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
 import io.github.t3r1jj.pbmap.model.map.Place;
 import io.github.t3r1jj.pbmap.model.map.Space;
-import io.github.t3r1jj.pbmap.model.map.route.Graph;
+import io.github.t3r1jj.pbmap.model.map.route.RouteGraph;
 import io.github.t3r1jj.pbmap.search.MapsDao;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 import io.github.t3r1jj.pbmap.view.MapView;
 import io.github.t3r1jj.pbmap.view.routing.GeoMarker;
 import io.github.t3r1jj.pbmap.view.routing.Route;
-
+//TODO: refactor Route?
 public class Controller implements GeoMarker.MapListener {
     private final MapActivity mapActivity;
     private final MapsDao mapsDao;
     private PBMap map;
     private MapView mapView;
-    private Graph graph;
+    private RouteGraph routeGraph;
     private GeoMarker source;
     private GeoMarker destination;
     private Route destinationRoute;
@@ -34,12 +37,14 @@ public class Controller implements GeoMarker.MapListener {
 
     void loadMap() {
         map = mapsDao.loadMap();
+        loadRouteGraph();
         updateView();
     }
 
     void loadMap(SearchSuggestion suggestion) {
         if (map != null && !map.getReferenceMapPath().equals(suggestion.mapPath)) {
             map = mapsDao.loadMap(suggestion.mapPath);
+            loadRouteGraph();
             updateView();
         }
         pinpointPlace(suggestion.place);
@@ -47,7 +52,14 @@ public class Controller implements GeoMarker.MapListener {
 
     void loadPreviousMap() {
         map = mapsDao.loadMap(map.getPreviousMapPath());
+        loadRouteGraph();
         updateView();
+    }
+
+    private void loadRouteGraph() {
+        if (map == null || routeGraph == null || !routeGraph.getPath().equals(map.getGraphPath())) {
+            routeGraph = mapsDao.loadGraph(map);
+        }
     }
 
     private void updateView() {
@@ -61,7 +73,6 @@ public class Controller implements GeoMarker.MapListener {
         mapActivity.setBackButtonVisible(map.getPreviousMapPath() != null);
         mapActivity.setInfoButtonVisible(map.getDescriptionResName() != null || map.getUrl() != null);
 
-        graph = map.getGraph();
         reloadContext();
         addAllRoutes();
     }
@@ -71,8 +82,8 @@ public class Controller implements GeoMarker.MapListener {
      */
     @Deprecated
     private void addAllRoutes() {
-        if (graph != null) {
-            Route route = graph.createView(mapView);
+        if (routeGraph != null) {
+            Route route = routeGraph.createView(mapView);
             route.addToMap(mapView);
         }
     }
@@ -85,12 +96,15 @@ public class Controller implements GeoMarker.MapListener {
         source.setImageDrawable(resources.getDrawable(R.drawable.source_marker));
         destination.addToMap(mapView);
         source.addToMap(mapView);
+        //TODO: add lower/upper level drawables
     }
 
     private void pinpointPlace(final String placeName) {
         for (Place place : map.getPlaces()) {
             if (place.getName().equals(placeName)) {
-                destination.setCoordinate(place.getCenter());
+                Coordinate target = place.getCenter();
+                target.alt = map.getCenter().alt;
+                destination.setCoordinate(target);
                 destination.pinpointOnMap(mapView);
                 return;
             }
@@ -98,7 +112,7 @@ public class Controller implements GeoMarker.MapListener {
     }
 
     public void onLongPress(MotionEvent event) {
-        destination.addToMap(mapView, event);
+        destination.addToMap(mapView, event, map.getCenter().alt);
     }
 
     public void onNavigationPerformed(Space space) {
@@ -130,11 +144,19 @@ public class Controller implements GeoMarker.MapListener {
     }
 
     private void updateRoute() {
-        if (graph != null) {
+        if (routeGraph != null) {
             if (destinationRoute != null) {
                 destinationRoute.removeFromMap(mapView);
             }
-            destinationRoute = new Route(mapView, graph.getRoute(source.getCoordinate(), destination.getCoordinate()));
+            List<Coordinate> route = routeGraph.getRoute(source.getCoordinate(), destination.getCoordinate());
+            for (Iterator<Coordinate> routeIterator = route.iterator(); routeIterator.hasNext();) {
+                Coordinate next = routeIterator.next();
+                if (!map.sameAltitude(next)) {
+                    routeIterator.remove();
+                }
+            }
+            destinationRoute = new Route(mapView, route);
+
             destinationRoute.addToMap(mapView);
         }
     }

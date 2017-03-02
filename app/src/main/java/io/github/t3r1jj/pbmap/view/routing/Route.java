@@ -14,17 +14,17 @@ import java.util.List;
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.route.Edge;
-import io.github.t3r1jj.pbmap.model.map.route.Graph;
+import io.github.t3r1jj.pbmap.model.map.route.RouteGraph;
 import io.github.t3r1jj.pbmap.view.MapView;
 
 public class Route implements RemovableView {
     private List<CompositePathView.DrawablePath> drawablePaths = new ArrayList<>();
 
-    public Route(MapView mapView, Graph graph) {
-        Paint paint = getPaint(Color.RED, mapView.getContext().getResources().getDimension(R.dimen.route_stroke_width));
+    public Route(MapView mapView, RouteGraph routeGraph) {
+        Paint paint = getPaint(Color.GREEN, mapView.getContext().getResources().getDimension(R.dimen.route_stroke_width));
         CoordinateTranslater coordinateTranslater = mapView.getCoordinateTranslater();
 
-        for (Edge edge : graph.getPaths()) {
+        for (Edge edge : routeGraph.getPaths()) {
             CompositePathView.DrawablePath drawablePath = new CompositePathView.DrawablePath();
             List<double[]> positions = new ArrayList<>();
             positions.add(new double[]{edge.getStart().lng, edge.getStart().lat});

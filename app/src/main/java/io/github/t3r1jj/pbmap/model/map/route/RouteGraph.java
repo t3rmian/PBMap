@@ -1,9 +1,8 @@
 package io.github.t3r1jj.pbmap.model.map.route;
 
 import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,12 +10,14 @@ import java.util.List;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.view.MapView;
 import io.github.t3r1jj.pbmap.view.routing.Route;
-//TODO: Consider adding altitude to routing
-public class Graph {
+
+@Root(name = "route", strict = false)
+public class RouteGraph {
     @ElementList
     private List<Edge> edges;
     private DijkstraAlgorithm algorithm;
     private List<Coordinate> vertexes;
+    private String path;
 
     public Route createView(MapView mapView) {
         return new Route(mapView, this);
@@ -57,7 +58,7 @@ public class Graph {
         Coordinate closest = null;
         double minDistance = Double.POSITIVE_INFINITY;
         for (Coordinate coordinate : vertexes) {
-            double distance = target.distance(coordinate);
+            double distance = target.flatDistance(coordinate);
             if (minDistance > distance) {
                 minDistance = distance;
                 closest = coordinate;
@@ -81,4 +82,11 @@ public class Graph {
         return coordinates;
     }
 
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getPath() {
+        return path;
+    }
 }

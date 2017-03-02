@@ -23,6 +23,7 @@ import javax.xml.xpath.XPathFactory;
 
 import io.github.t3r1jj.pbmap.BuildConfig;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
+import io.github.t3r1jj.pbmap.model.map.route.RouteGraph;
 
 public class MapsDao extends ContextWrapper implements SuggestionsDao {
     private static final String mapsPath = BuildConfig.ASSETS_MAP_DIR;
@@ -122,4 +123,16 @@ public class MapsDao extends ContextWrapper implements SuggestionsDao {
             }
         return matrixCursor;
     }
+
+    public RouteGraph loadGraph(PBMap map) {
+        RouteGraph routeGraph = null;
+        try {
+            routeGraph = serializer.read(RouteGraph.class, openAsset(map.getGraphPath()));
+            routeGraph.setPath(map.getGraphPath());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return routeGraph;
+    }
+
 }
