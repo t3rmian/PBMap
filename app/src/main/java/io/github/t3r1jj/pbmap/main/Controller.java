@@ -1,6 +1,7 @@
 package io.github.t3r1jj.pbmap.main;
 
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
@@ -19,7 +20,9 @@ import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 import io.github.t3r1jj.pbmap.view.MapView;
 import io.github.t3r1jj.pbmap.view.routing.GeoMarker;
 import io.github.t3r1jj.pbmap.view.routing.Route;
+
 //TODO: refactor Route?
+//TODO: add custom source?
 public class Controller implements GeoMarker.MapListener {
     private final MapActivity mapActivity;
     private final MapsDao mapsDao;
@@ -90,13 +93,11 @@ public class Controller implements GeoMarker.MapListener {
 
     private void reloadContext() {
         destination = GeoMarker.recreate(destination, mapActivity, this);
-        Resources resources = mapActivity.getResources();
-        destination.setImageDrawable(resources.getDrawable(R.drawable.destination_marker));
+        destination.setLevel(map.compareAltitude(destination.getCoordinate()), GeoMarker.Marker.DESTINATION);
         source = GeoMarker.recreate(source, mapActivity, this);
-        source.setImageDrawable(resources.getDrawable(R.drawable.source_marker));
+        source.setLevel(map.compareAltitude(source.getCoordinate()), GeoMarker.Marker.SOURCE);
         destination.addToMap(mapView);
         source.addToMap(mapView);
-        //TODO: add lower/upper level drawables
     }
 
     private void pinpointPlace(final String placeName) {
@@ -105,6 +106,7 @@ public class Controller implements GeoMarker.MapListener {
                 Coordinate target = place.getCenter();
                 target.alt = map.getCenter().alt;
                 destination.setCoordinate(target);
+                destination.setLevel(map.compareAltitude(destination.getCoordinate()), GeoMarker.Marker.DESTINATION);
                 destination.pinpointOnMap(mapView);
                 return;
             }
@@ -113,6 +115,7 @@ public class Controller implements GeoMarker.MapListener {
 
     public void onLongPress(MotionEvent event) {
         destination.addToMap(mapView, event, map.getCenter().alt);
+        destination.setLevel(map.compareAltitude(destination.getCoordinate()), GeoMarker.Marker.DESTINATION);
     }
 
     public void onNavigationPerformed(Space space) {
@@ -140,6 +143,7 @@ public class Controller implements GeoMarker.MapListener {
 
     public void updatePosition(final Coordinate locationCoordinate) {
         source.setCoordinate(locationCoordinate);
+        source.setLevel(map.compareAltitude(source.getCoordinate()), GeoMarker.Marker.SOURCE);
         source.pinpointOnMap(mapView);
     }
 
@@ -149,9 +153,9 @@ public class Controller implements GeoMarker.MapListener {
                 destinationRoute.removeFromMap(mapView);
             }
             List<Coordinate> route = routeGraph.getRoute(source.getCoordinate(), destination.getCoordinate());
-            for (Iterator<Coordinate> routeIterator = route.iterator(); routeIterator.hasNext();) {
+            for (Iterator<Coordinate> routeIterator = route.iterator(); routeIterator.hasNext(); ) {
                 Coordinate next = routeIterator.next();
-                if (!map.sameAltitude(next)) {
+                if (map.compareAltitude(next) == 0) {
                     routeIterator.remove();
                 }
             }

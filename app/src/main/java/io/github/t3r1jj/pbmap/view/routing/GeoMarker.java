@@ -2,6 +2,7 @@ package io.github.t3r1jj.pbmap.view.routing;
 
 import android.content.Context;
 import android.graphics.PointF;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.view.MotionEvent;
 import android.widget.ImageView;
@@ -17,6 +18,7 @@ public class GeoMarker extends ImageView implements RemovableView {
     private Coordinate coordinate;
     private PointF anchor;
     private MapListener listener;
+    private int level = Integer.MIN_VALUE;
 
     public GeoMarker(Context context) {
         this(context, new PointF(-0.5f, -0.5f));
@@ -58,6 +60,14 @@ public class GeoMarker extends ImageView implements RemovableView {
             });
         }
         listener.onMapPositionChange();
+    }
+
+    public void setLevel(int level, Marker marker) {
+        if (this.level != level) {
+            this.level = level;
+            Drawable drawable = getResources().getDrawable(marker.getLevelDrawableId(level));
+            setImageDrawable(drawable);
+        }
     }
 
     public void setListener(MapListener listener) {
@@ -127,5 +137,20 @@ public class GeoMarker extends ImageView implements RemovableView {
 
     public interface MapListener {
         void onMapPositionChange();
+    }
+
+    public enum Marker {
+        SOURCE(new int[]{R.drawable.source_down_marker, R.drawable.source_marker, R.drawable.destination_marker}),
+        DESTINATION(new int[]{R.drawable.destination_down_marker, R.drawable.destination_marker, R.drawable.destination_up_marker});
+
+        private final int[] drawables;
+
+        Marker(int[] drawables) {
+            this.drawables = drawables;
+        }
+
+        private int getLevelDrawableId(int level) {
+            return drawables[level + 1];
+        }
     }
 }

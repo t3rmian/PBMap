@@ -61,8 +61,14 @@ public class PBMap extends Space {
         return routePath;
     }
 
-    public boolean sameAltitude(Coordinate coordinate) {
-        return Math.abs(getCenter().alt - coordinate.alt) < 1d;
+    /**
+     *
+     * @param coordinate Coordinate compared to this map
+     * @return 0 if same altitude, -1 if compared coordinate is below, 1 if above
+     */
+    public int compareAltitude(Coordinate coordinate) {
+        if (coordinate == null) return 0;
+        return Math.abs(getCenter().alt - coordinate.alt) < 1d ? 0 : (getCenter().alt - coordinate.alt) > 0d ? -1 : 1;
     }
 
     /**
