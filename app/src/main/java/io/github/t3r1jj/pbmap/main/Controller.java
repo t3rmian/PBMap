@@ -3,8 +3,6 @@ package io.github.t3r1jj.pbmap.main;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
-import java.util.List;
-
 import io.github.t3r1jj.pbmap.model.Info;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
@@ -17,20 +15,19 @@ import io.github.t3r1jj.pbmap.view.MapView;
 import io.github.t3r1jj.pbmap.view.routing.GeoMarker;
 import io.github.t3r1jj.pbmap.view.routing.Route;
 
-//TODO: refactor Route?
 public class Controller implements GeoMarker.MapListener {
     private final MapActivity mapActivity;
     private final MapsDao mapsDao;
     private PBMap map;
     private MapView mapView;
-    private RouteGraph routeGraph;
     private GeoMarker source;
     private GeoMarker destination;
-    private Route destinationRoute;
+    private Route route;
 
     Controller(MapActivity mapActivity) {
         this.mapActivity = mapActivity;
         this.mapsDao = new MapsDao(mapActivity);
+        this.route = new Route(mapActivity);
     }
 
     void loadMap() {
@@ -55,8 +52,11 @@ public class Controller implements GeoMarker.MapListener {
     }
 
     private void loadRouteGraph() {
-        if (map == null || routeGraph == null || !routeGraph.getPath().equals(map.getGraphPath())) {
+        route.setMap(map);
+        RouteGraph routeGraph = route.getRouteGraph();
+        if (routeGraph == null || !routeGraph.getPath().equals(map.getGraphPath())) {
             routeGraph = mapsDao.loadGraph(map);
+            route.setRouteGraph(routeGraph);
         }
     }
 
@@ -72,18 +72,6 @@ public class Controller implements GeoMarker.MapListener {
         mapActivity.setInfoButtonVisible(map.getDescription(mapActivity) != null || map.getUrl() != null);
 
         reloadContext();
-        addAllRoutes();
-    }
-
-    /**
-     * @deprecated use only for testing, no need to display all routes for user
-     */
-    @Deprecated
-    private void addAllRoutes() {
-        if (routeGraph != null) {
-            Route route = routeGraph.createView(mapView);
-            route.addToMap(mapView);
-        }
     }
 
     private void reloadContext() {
@@ -93,6 +81,7 @@ public class Controller implements GeoMarker.MapListener {
         source.setLevel(map.compareAltitude(source.getCoordinate()), GeoMarker.Marker.SOURCE);
         destination.addToMap(mapView);
         source.addToMap(mapView);
+        updateRoute();
     }
 
     private void pinpointPlace(final String placeId) {
@@ -120,7 +109,7 @@ public class Controller implements GeoMarker.MapListener {
         }
     }
 
-    public void onUserMarkerChoice(MotionEvent event, GeoMarker.Marker markerChoice) {
+    void onUserMarkerChoice(MotionEvent event, GeoMarker.Marker markerChoice) {
         GeoMarker marker = null;
         if (markerChoice == GeoMarker.Marker.SOURCE) {
             marker = source;
@@ -135,6 +124,7 @@ public class Controller implements GeoMarker.MapListener {
     public void onNavigationPerformed(Space space) {
         if (space.getReferenceMapPath() != null) {
             map = mapsDao.loadMap(space.getReferenceMapPath());
+            loadRouteGraph();
             updateView();
             mapView.loadPreviousPosition();
         } else if (space.getDescription(mapActivity) != null) {
@@ -151,7 +141,7 @@ public class Controller implements GeoMarker.MapListener {
         mapActivity.setLogo(logo);
     }
 
-    public void loadDescription() {
+    void loadDescription() {
         mapActivity.popupInfo(new Info(map));
     }
 
@@ -162,15 +152,10 @@ public class Controller implements GeoMarker.MapListener {
     }
 
     private void updateRoute() {
-        if (routeGraph != null) {
-            if (destinationRoute != null) {
-                destinationRoute.removeFromMap(mapView);
-            }
-            List<Coordinate> route = routeGraph.getRoute(source.getCoordinate(), destination.getCoordinate());
-            map.removeDifferentAltitudePoints(route);
-            destinationRoute = new Route(mapView, route);
-            destinationRoute.addToMap(mapView);
-        }
+        route.removeFromMap(mapView);
+        route.setSource(source);
+        route.setDestination(destination);
+        route.addToMap(mapView);
     }
 
 

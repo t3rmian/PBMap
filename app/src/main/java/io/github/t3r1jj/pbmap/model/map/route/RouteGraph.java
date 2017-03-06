@@ -19,14 +19,6 @@ public class RouteGraph {
     private List<Coordinate> vertexes;
     private String path;
 
-    public Route createView(MapView mapView) {
-        return new Route(mapView, this);
-    }
-
-    public List<Edge> getPaths() {
-        return edges;
-    }
-
     public List<Coordinate> getRoute(Coordinate source, Coordinate destination) {
         if (source == null || destination == null) {
             return Collections.EMPTY_LIST;
