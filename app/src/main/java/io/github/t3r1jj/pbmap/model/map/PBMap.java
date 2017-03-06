@@ -7,6 +7,7 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.ElementListUnion;
 
+import java.util.Iterator;
 import java.util.List;
 
 import io.github.t3r1jj.pbmap.view.MapView;
@@ -62,7 +63,6 @@ public class PBMap extends Space {
     }
 
     /**
-     *
      * @param coordinate Coordinate compared to this map
      * @return 0 if same altitude, -1 if compared coordinate is below, 1 if above
      */
@@ -80,6 +80,15 @@ public class PBMap extends Space {
             box.add(coordinate);
         }
         return box;
+    }
+
+    public void removeDifferentAltitudePoints(List<Coordinate> route) {
+        for (Iterator<Coordinate> routeIterator = route.iterator(); routeIterator.hasNext(); ) {
+            Coordinate next = routeIterator.next();
+            if (compareAltitude(next) != 0) {
+                routeIterator.remove();
+            }
+        }
     }
 
     /**

@@ -19,6 +19,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -35,6 +36,7 @@ import io.github.t3r1jj.pbmap.model.Info;
 import io.github.t3r1jj.pbmap.model.gps.PBLocationListener;
 import io.github.t3r1jj.pbmap.search.Search;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
+
 //TODO: UI UPDATE
 //TODO: Google indexing?
 public class MapActivity extends DrawerActivity
@@ -262,6 +264,18 @@ public class MapActivity extends DrawerActivity
         bundle.putSerializable(InfoSheetDialogFragment.INFO_KEY, info);
         infoSheetDialogFragment.setArguments(bundle);
         infoSheetDialogFragment.show(getSupportFragmentManager(), "info");
+    }
+
+    public void askUserForMarkerChoice(final MotionEvent event) {
+        MarkerDialogFragment markerDialogFragment = new MarkerDialogFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(MarkerDialogFragment.MOTION_EVENT_KEY, event);
+        markerDialogFragment.setArguments(bundle);
+        markerDialogFragment.show(getFragmentManager(), "marker");
+    }
+
+    Controller getController() {
+        return controller;
     }
 
     public static class GpsDialogFragment extends DialogFragment {

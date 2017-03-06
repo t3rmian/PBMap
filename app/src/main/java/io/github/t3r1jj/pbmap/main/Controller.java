@@ -3,7 +3,6 @@ package io.github.t3r1jj.pbmap.main;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
-import java.util.Iterator;
 import java.util.List;
 
 import io.github.t3r1jj.pbmap.model.Info;
@@ -19,7 +18,6 @@ import io.github.t3r1jj.pbmap.view.routing.GeoMarker;
 import io.github.t3r1jj.pbmap.view.routing.Route;
 
 //TODO: refactor Route?
-//TODO: add custom source?
 public class Controller implements GeoMarker.MapListener {
     private final MapActivity mapActivity;
     private final MapsDao mapsDao;
@@ -111,8 +109,27 @@ public class Controller implements GeoMarker.MapListener {
     }
 
     public void onLongPress(MotionEvent event) {
-        destination.addToMap(mapView, event, map.getCenter().alt);
-        destination.setLevel(map.compareAltitude(destination.getCoordinate()), GeoMarker.Marker.DESTINATION);
+        if (destination.isAtPosition(mapView, event, map.getCenter().alt)) {
+            destination.setCoordinate(null);
+            destination.removeFromMap(mapView);
+        } else if (source.isAtPosition(mapView, event, map.getCenter().alt)) {
+            source.setCoordinate(null);
+            source.removeFromMap(mapView);
+        } else {
+            mapActivity.askUserForMarkerChoice(event);
+        }
+    }
+
+    public void onUserMarkerChoice(MotionEvent event, GeoMarker.Marker markerChoice) {
+        GeoMarker marker = null;
+        if (markerChoice == GeoMarker.Marker.SOURCE) {
+            marker = source;
+        } else {
+            marker = destination;
+        }
+        marker.addToMap(mapView, event, map.getCenter().alt);
+        int level = 0;
+        marker.setLevel(level, markerChoice);
     }
 
     public void onNavigationPerformed(Space space) {
@@ -150,17 +167,12 @@ public class Controller implements GeoMarker.MapListener {
                 destinationRoute.removeFromMap(mapView);
             }
             List<Coordinate> route = routeGraph.getRoute(source.getCoordinate(), destination.getCoordinate());
-            for (Iterator<Coordinate> routeIterator = route.iterator(); routeIterator.hasNext(); ) {
-                Coordinate next = routeIterator.next();
-                if (map.compareAltitude(next) == 0) {
-                    routeIterator.remove();
-                }
-            }
+            map.removeDifferentAltitudePoints(route);
             destinationRoute = new Route(mapView, route);
-
             destinationRoute.addToMap(mapView);
         }
     }
+
 
     @Override
     public void onMapPositionChange() {

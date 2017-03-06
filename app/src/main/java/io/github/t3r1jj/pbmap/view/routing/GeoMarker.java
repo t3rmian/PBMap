@@ -78,21 +78,26 @@ public class GeoMarker extends ImageView implements RemovableView {
         CoordinateTranslater coordinateTranslater = mapView.getCoordinateTranslater();
         double lng = coordinateTranslater.translateAndScaleAbsoluteToRelativeX(mapView.getScrollX() + event.getX() - mapView.getOffsetX(), mapView.getScale());
         double lat = coordinateTranslater.translateAndScaleAbsoluteToRelativeY(mapView.getScrollY() + event.getY() - mapView.getOffsetY(), mapView.getScale());
+        coordinate = new Coordinate(lng, lat, alt);
+        addToMap(mapView);
+    }
+
+    public boolean isAtPosition(MapView mapView, MotionEvent event, double alt) {
+        CoordinateTranslater coordinateTranslater = mapView.getCoordinateTranslater();
+        double lng = coordinateTranslater.translateAndScaleAbsoluteToRelativeX(mapView.getScrollX() + event.getX() - mapView.getOffsetX(), mapView.getScale());
+        double lat = coordinateTranslater.translateAndScaleAbsoluteToRelativeY(mapView.getScrollY() + event.getY() - mapView.getOffsetY(), mapView.getScale());
 
         if (!coordinateTranslater.contains(lng, lat)) {
-            return;
+            return true;
         }
         if (coordinate != null && Math.abs(coordinate.alt - alt) < 1d) {
             double lngPx = coordinateTranslater.translateAndScaleX(coordinate.lng, mapView.getScale()) - mapView.getScrollX() + mapView.getOffsetX();
             double latPx = coordinateTranslater.translateAndScaleY(coordinate.lat, mapView.getScale()) - mapView.getScrollY() + mapView.getOffsetY();
             if (sameMarkerPressed(mapView, event, lngPx, latPx)) {
-                removeFromMap(mapView);
-                coordinate = null;
-                return;
+                return true;
             }
         }
-        coordinate = new Coordinate(lng, lat, alt);
-        addToMap(mapView);
+        return false;
     }
 
     private boolean sameMarkerPressed(MapView mapView, MotionEvent event, double lngPx, double latPx) {

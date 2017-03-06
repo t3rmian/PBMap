@@ -15,7 +15,7 @@ import io.github.t3r1jj.pbmap.model.Info;
 
 public class InfoSheetDialogFragment extends BottomSheetDialogFragment {
 
-    static String INFO_KEY = "INFO_KEY";
+    static final String INFO_KEY = "INFO_KEY";
     private Info info;
 
     @Override
