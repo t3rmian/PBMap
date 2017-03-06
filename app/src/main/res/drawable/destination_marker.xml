@@ -4,5 +4,5 @@
     <size
         android:width="@dimen/marker_width"
         android:height="@dimen/marker_height" />
-    <solid android:color="#ff00ff" />
+    <solid android:color="@color/marker_destination" />
 </shape>

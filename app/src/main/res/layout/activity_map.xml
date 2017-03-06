@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context="io.github.t3r1jj.pbmap.main.MapActivity">
 
     <include layout="@layout/toolbar" />
@@ -17,7 +16,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|start"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_info" />
+        android:scaleType="center"
+        app:srcCompat="@android:drawable/ic_menu_info_details" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/gps_fab"
@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
+        android:scaleType="center"
         app:srcCompat="@android:drawable/ic_menu_mylocation" />
 
     <RelativeLayout

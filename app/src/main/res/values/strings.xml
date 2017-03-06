@@ -41,4 +41,6 @@
     <string name="Second_map_first_space_name">Second map first space</string>
     <string name="place_destination_marker">Place Destination marker</string>
     <string name="place_source_marker">Place source marker</string>
+    <string name="help">Help</string>
+    <string name="maps">Maps</string>
 </resources>

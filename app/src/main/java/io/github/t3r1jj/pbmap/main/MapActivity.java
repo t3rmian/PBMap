@@ -31,16 +31,23 @@ import io.github.t3r1jj.pbmap.AboutActivity;
 import io.github.t3r1jj.pbmap.BuildConfig;
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.main.drawer.DrawerActivity;
-import io.github.t3r1jj.pbmap.main.drawer.PlacesDrawerFragment;
+import io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment;
 import io.github.t3r1jj.pbmap.model.Info;
 import io.github.t3r1jj.pbmap.model.gps.PBLocationListener;
+import io.github.t3r1jj.pbmap.model.map.PBMap;
 import io.github.t3r1jj.pbmap.search.Search;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 
-//TODO: UI UPDATE
-//TODO: Google indexing?
+
+/**
+ * TODO: 1. Font settings
+ * TODO: 2. Line styles and colors
+ * TODO: 3. Icon
+ * TODO: 4. Cleanup
+ * TODO: 5. First map
+ */
 public class MapActivity extends DrawerActivity
-        implements PlacesDrawerFragment.PlaceNavigationDrawerCallbacks {
+        implements MapsDrawerFragment.PlaceNavigationDrawerCallbacks {
 
     private static final int REQUEST_LOCATION = 1;
     private Controller controller;
@@ -230,6 +237,16 @@ public class MapActivity extends DrawerActivity
             getSupportActionBar().setLogo(null);
         } else {
             getSupportActionBar().setLogo(view.getDrawable());
+        }
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    public void setTitle(String nameId) {
+        int resId = getResources().getIdentifier(PBMap.getNameResIdString(nameId), "string", getPackageName());
+        if (resId > 0) {
+            getSupportActionBar().setSubtitle(resId);
+        } else {
+            getSupportActionBar().setSubtitle(resId);
         }
     }
 

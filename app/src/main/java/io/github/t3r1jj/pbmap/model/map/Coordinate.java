@@ -19,6 +19,8 @@ public class Coordinate {
     @Attribute(required = false)
     public double alt;
 
+    private boolean altitude = true;
+
     public Coordinate() {
     }
 
@@ -91,5 +93,13 @@ public class Coordinate {
         temp = Double.doubleToLongBits(alt);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
+    }
+
+    public boolean hasAltitude() {
+        return altitude;
+    }
+
+    public void setAltitude(boolean altitude) {
+        this.altitude = altitude;
     }
 }

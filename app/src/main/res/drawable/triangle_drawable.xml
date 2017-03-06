@@ -7,7 +7,7 @@
     <group>
         <path
             android:name="triangle"
-            android:fillColor="#000000"
+            android:fillColor="@color/marker_triangle"
             android:pathData="M 6.7,75 L 50,0 93.3,75 Z"/>
     </group>
 </vector>

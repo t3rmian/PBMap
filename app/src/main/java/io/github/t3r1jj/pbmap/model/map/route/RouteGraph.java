@@ -8,8 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
-import io.github.t3r1jj.pbmap.view.MapView;
-import io.github.t3r1jj.pbmap.view.routing.Route;
 
 @Root(name = "route", strict = false)
 public class RouteGraph {
@@ -74,11 +72,11 @@ public class RouteGraph {
         return coordinates;
     }
 
-    public void setPath(String path) {
-        this.path = path;
-    }
-
     public String getPath() {
         return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 }

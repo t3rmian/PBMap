@@ -29,8 +29,17 @@ public class GeoMarker extends ImageView implements RemovableView {
         this.anchor = anchor;
     }
 
-    public void setCoordinate(Coordinate coordinate) {
-        this.coordinate = coordinate;
+    public static GeoMarker recreate(@Nullable GeoMarker geoMarker, Context context, MapListener mapListener) {
+        if (geoMarker != null) {
+            GeoMarker newGeoMarker = new GeoMarker(context, geoMarker.anchor);
+            newGeoMarker.setCoordinate(geoMarker.coordinate);
+            newGeoMarker.listener = mapListener;
+            return newGeoMarker;
+        } else {
+            GeoMarker newGeoMarker = new GeoMarker(context);
+            newGeoMarker.listener = mapListener;
+            return newGeoMarker;
+        }
     }
 
     public void setAnchor(PointF anchor) {
@@ -39,6 +48,10 @@ public class GeoMarker extends ImageView implements RemovableView {
 
     public Coordinate getCoordinate() {
         return coordinate;
+    }
+
+    public void setCoordinate(Coordinate coordinate) {
+        this.coordinate = coordinate;
     }
 
     /**
@@ -127,23 +140,6 @@ public class GeoMarker extends ImageView implements RemovableView {
 
     }
 
-    public static GeoMarker recreate(@Nullable GeoMarker geoMarker, Context context, MapListener mapListener) {
-        if (geoMarker != null) {
-            GeoMarker newGeoMarker = new GeoMarker(context, geoMarker.anchor);
-            newGeoMarker.setCoordinate(geoMarker.coordinate);
-            newGeoMarker.listener = mapListener;
-            return newGeoMarker;
-        } else {
-            GeoMarker newGeoMarker = new GeoMarker(context);
-            newGeoMarker.listener = mapListener;
-            return newGeoMarker;
-        }
-    }
-
-    public interface MapListener {
-        void onMapPositionChange();
-    }
-
     public enum Marker {
         SOURCE(new int[]{R.drawable.source_down_marker, R.drawable.source_marker, R.drawable.destination_marker}),
         DESTINATION(new int[]{R.drawable.destination_down_marker, R.drawable.destination_marker, R.drawable.destination_up_marker});
@@ -157,5 +153,9 @@ public class GeoMarker extends ImageView implements RemovableView {
         private int getLevelDrawableId(int level) {
             return drawables[level + 1];
         }
+    }
+
+    public interface MapListener {
+        void onMapPositionChange();
     }
 }

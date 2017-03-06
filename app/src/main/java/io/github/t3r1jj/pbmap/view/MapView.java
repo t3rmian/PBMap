@@ -74,6 +74,7 @@ public class MapView extends TileView implements PlaceView {
     public void setController(Controller controller) {
         this.controller = controller;
         controller.loadLogo(map);
+        controller.loadTitle(map);
     }
 
     @Override

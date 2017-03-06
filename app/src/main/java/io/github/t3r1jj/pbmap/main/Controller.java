@@ -141,11 +141,18 @@ public class Controller implements GeoMarker.MapListener {
         mapActivity.setLogo(logo);
     }
 
+    public void loadTitle(PBMap map) {
+        mapActivity.setTitle(map.getId());
+    }
+
     void loadDescription() {
         mapActivity.popupInfo(new Info(map));
     }
 
     public void updatePosition(final Coordinate locationCoordinate) {
+        if (!locationCoordinate.hasAltitude()) {
+            locationCoordinate.alt = map.getCenter().alt;
+        }
         source.setCoordinate(locationCoordinate);
         source.setLevel(map.compareAltitude(source.getCoordinate()), GeoMarker.Marker.SOURCE);
         source.pinpointOnMap(mapView);

@@ -19,11 +19,11 @@ import io.github.t3r1jj.pbmap.model.map.route.RouteGraph;
 import io.github.t3r1jj.pbmap.view.MapView;
 
 public class Route implements RemovableView {
+    private final CompositePathView.DrawablePath drawablePath = new CompositePathView.DrawablePath();
     private GeoMarker source;
     private GeoMarker destination;
     private PBMap map;
     private RouteGraph routeGraph;
-    private final CompositePathView.DrawablePath drawablePath = new CompositePathView.DrawablePath();
 
     public Route(Context context) {
         Resources resources = context.getResources();

@@ -3,6 +3,11 @@ package io.github.t3r1jj.pbmap.main.drawer;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,18 +16,33 @@ import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.search.MapsDao;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 
-public class PlacesDrawerFragment extends NavigationDrawerFragment {
+public class MapsDrawerFragment extends NavigationDrawerFragment {
 
     private List<SearchSuggestion> places;
     /**
      * A pointer to the current callbacks instance (the Activity).
      */
     private PlaceNavigationDrawerCallbacks callbacks;
-    private int previousPosition;
+    private int previousItemId;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+    }
+
+    @NonNull
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        NavigationView navigationView = (NavigationView) super.onCreateView(inflater, container, savedInstanceState);
+        MapsDao mapsDao = new MapsDao(getActivity());
+        places = mapsDao.getMapSuggestions();
+        Menu menu = navigationView.getMenu();
+        int id = 0;
+        for (SearchSuggestion searchSuggestion : places) {
+            menu.add(R.id.maps_group, id--, Menu.NONE, searchSuggestion.getName(getActivity())).setIcon(android.R.drawable.ic_dialog_map);
+        }
+        super.selectItem(currentSelectedId);
+        return navigationView;
     }
 
     @NonNull
@@ -34,7 +54,6 @@ public class PlacesDrawerFragment extends NavigationDrawerFragment {
         for (SearchSuggestion searchSuggestion : places) {
             mapNames.add(searchSuggestion.getName(getActivity()));
         }
-        mapNames.add(getString(R.string.about));
         return mapNames;
     }
 
@@ -42,26 +61,22 @@ public class PlacesDrawerFragment extends NavigationDrawerFragment {
     protected void onDrawerClosed() {
         int placesCount = places.size();
         if (placesCount != 0) {
-            if (currentSelectedPosition == placesCount) {
-                drawerListView.setItemChecked(previousPosition, true);
-                currentSelectedPosition = previousPosition;
+            if (currentSelectedId == R.id.menu_about) {
+                currentSelectedId = previousItemId;
+                super.selectItem(previousItemId);
             }
         }
     }
 
     @Override
-    protected void selectItem(int position) {
-        previousPosition = currentSelectedPosition;
-        super.selectItem(position);
-        if (places == null) {
-            return;
-        }
-        int placesCount = places.size();
-        if (callbacks != null && placesCount != 0) {
-            if (placesCount > position) {
-                callbacks.onPlaceDrawerItemSelected(places.get(position));
-            } else if (placesCount == position) {
+    protected void selectItem(int itemId) {
+        previousItemId = currentSelectedId;
+        super.selectItem(itemId);
+        if (callbacks != null) {
+            if (itemId == R.id.menu_about) {
                 callbacks.onAboutDrawerItemSelected();
+            } else {
+                callbacks.onPlaceDrawerItemSelected(places.get(Math.abs(itemId)));
             }
         }
     }

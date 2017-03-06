@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -18,9 +19,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import java.util.List;
 
@@ -44,9 +42,8 @@ abstract class NavigationDrawerFragment extends Fragment {
      */
     private static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
 
-    protected int currentSelectedPosition = 0;
+    protected int currentSelectedId = 0;
 
-    protected ListView drawerListView;
     /**
      * Helper component that ties the action bar to the navigation drawer.
      */
@@ -56,6 +53,7 @@ abstract class NavigationDrawerFragment extends Fragment {
     private View fragmentContainerView;
     private boolean fromSavedInstanceState;
     private boolean userLearnedDrawer;
+    private NavigationView navigationView;
 
     public NavigationDrawerFragment() {
     }
@@ -70,12 +68,10 @@ abstract class NavigationDrawerFragment extends Fragment {
         userLearnedDrawer = sp.getBoolean(PREF_USER_LEARNED_DRAWER, false);
 
         if (savedInstanceState != null) {
-            currentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
+            currentSelectedId = savedInstanceState.getInt(STATE_SELECTED_POSITION);
             fromSavedInstanceState = true;
         }
 
-        // Select either the default item (0) or the last selected item.
-        selectItem(currentSelectedPosition);
     }
 
     @Override
@@ -85,24 +81,20 @@ abstract class NavigationDrawerFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
+    @NonNull
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        drawerListView = (ListView) inflater.inflate(
-                R.layout.drawer_drawer, container, false);
-        drawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        navigationView = (NavigationView) inflater.inflate(
+                R.layout.fragment_drawer, container, false);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectItem(position);
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                selectItem(item.getItemId());
+                return true;
             }
         });
-        drawerListView.setAdapter(new ArrayAdapter<>(
-                getActivity(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                getPlaceNames()));
-        drawerListView.setItemChecked(currentSelectedPosition, true);
-        return drawerListView;
+        return navigationView;
     }
 
     @Override
@@ -210,10 +202,19 @@ abstract class NavigationDrawerFragment extends Fragment {
         this.drawerLayout.addDrawerListener(drawerToggle);
     }
 
-    protected void selectItem(int position) {
-        currentSelectedPosition = position;
-        if (drawerListView != null) {
-            drawerListView.setItemChecked(position, true);
+    protected void selectItem(int itemId) {
+        if (navigationView == null) {
+            return;
+        }
+        Menu menu = navigationView.getMenu();
+        if (itemId == 0) {
+            menu.getItem(0).setCheckable(true);
+            menu.getItem(0).setChecked(true);
+        } else {
+            navigationView.getMenu().findItem(currentSelectedId).setChecked(false);
+            currentSelectedId = itemId;
+            navigationView.getMenu().findItem(currentSelectedId).setCheckable(true);
+            navigationView.getMenu().findItem(currentSelectedId).setChecked(true);
         }
         if (drawerLayout != null) {
             drawerLayout.closeDrawer(fragmentContainerView);
@@ -223,7 +224,7 @@ abstract class NavigationDrawerFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(STATE_SELECTED_POSITION, currentSelectedPosition);
+        outState.putInt(STATE_SELECTED_POSITION, currentSelectedId);
     }
 
     @Override
