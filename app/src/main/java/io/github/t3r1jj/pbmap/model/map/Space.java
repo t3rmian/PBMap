@@ -10,8 +10,6 @@ import io.github.t3r1jj.pbmap.view.SpaceView;
 public class Space extends Place {
     @Attribute(name = "reference_map_path", required = false)
     protected String referenceMapPath;
-    @Attribute(name = "description_res_name", required = false)
-    protected String descriptionResName;
     @Attribute(required = false)
     private String url;
 
@@ -26,10 +24,6 @@ public class Space extends Place {
 
     public void setReferenceMapPath(String referenceMapPath) {
         this.referenceMapPath = referenceMapPath;
-    }
-
-    public String getDescriptionResName() {
-        return descriptionResName;
     }
 
     public String getUrl() {

@@ -1,14 +1,11 @@
 package io.github.t3r1jj.pbmap.main;
 
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
 import java.util.Iterator;
 import java.util.List;
 
-import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.model.Info;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
@@ -50,7 +47,7 @@ public class Controller implements GeoMarker.MapListener {
             loadRouteGraph();
             updateView();
         }
-        pinpointPlace(suggestion.place);
+        pinpointPlace(suggestion.placeId);
     }
 
     void loadPreviousMap() {
@@ -74,7 +71,7 @@ public class Controller implements GeoMarker.MapListener {
         }
         mapView = nextMapView;
         mapActivity.setBackButtonVisible(map.getPreviousMapPath() != null);
-        mapActivity.setInfoButtonVisible(map.getDescriptionResName() != null || map.getUrl() != null);
+        mapActivity.setInfoButtonVisible(map.getDescription(mapActivity) != null || map.getUrl() != null);
 
         reloadContext();
         addAllRoutes();
@@ -100,9 +97,9 @@ public class Controller implements GeoMarker.MapListener {
         source.addToMap(mapView);
     }
 
-    private void pinpointPlace(final String placeName) {
+    private void pinpointPlace(final String placeId) {
         for (Place place : map.getPlaces()) {
-            if (place.getName().equals(placeName)) {
+            if (place.getId().equals(placeId)) {
                 Coordinate target = place.getCenter();
                 target.alt = map.getCenter().alt;
                 destination.setCoordinate(target);
@@ -123,7 +120,7 @@ public class Controller implements GeoMarker.MapListener {
             map = mapsDao.loadMap(space.getReferenceMapPath());
             updateView();
             mapView.loadPreviousPosition();
-        } else if (space.getDescriptionResName() != null) {
+        } else if (space.getDescription(mapActivity) != null) {
             mapActivity.popupInfo(new Info(space));
         }
     }

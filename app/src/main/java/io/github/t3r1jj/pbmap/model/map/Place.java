@@ -14,20 +14,55 @@ import java.util.List;
 import io.github.t3r1jj.pbmap.view.PlaceView;
 
 public abstract class Place {
-    //TODO: Change name to id and base name on it with res/values.xml, same with description
+
+    private static final String NAME_POSTFIX = "_name";
+    private static final String DESCRIPTION_POSTFIX = "_description";
     @Attribute
-    protected String name;
+    protected String id;
     @Attribute(name = "logo_path", required = false)
     protected String logoPath;
     @ElementList
     protected List<Coordinate> coordinates;
 
-    public String getName() {
-        return name;
+    public static String getNameResIdString(String id) {
+        return id + NAME_POSTFIX;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getNameResIdString() {
+        return getNameResIdString(id);
+    }
+
+    public String getDescriptionResIdString() {
+        return id + DESCRIPTION_POSTFIX;
+    }
+
+    public String getName(Context context) {
+        String translatedName = getStringResource(context, getNameResIdString());
+        if (translatedName == null) {
+            return id;
+        }
+        return translatedName;
+    }
+
+    public String getDescription(Context context) {
+        return getStringResource(context, getDescriptionResIdString());
+    }
+
+    private String getStringResource(Context context, String aString) {
+        String packageName = context.getPackageName();
+        int resId = context.getResources().getIdentifier(aString, "string", packageName);
+        if (resId == 0) {
+            return null;
+        }
+        return context.getString(resId);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public List<Coordinate> getCoordinates() {
@@ -56,7 +91,7 @@ public abstract class Place {
     @Override
     public String toString() {
         return "Place{" +
-                "name='" + name + '\'' +
+                "id='" + id + '\'' +
                 ", shape=" + coordinates +
                 '}';
     }

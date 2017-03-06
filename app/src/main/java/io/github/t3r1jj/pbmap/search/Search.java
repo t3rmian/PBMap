@@ -22,10 +22,10 @@ public class Search extends SearchListProvider {
         Cursor cursor = query(null, null, null, new String[]{userQuery}, null);
         if (cursor != null) {
             if (cursor.moveToFirst()) {
-                String place = cursor.getString(cursor.getColumnIndex(SUGGESTIONS_COLUMN_PLACE));
+                String placeId = cursor.getString(cursor.getColumnIndex(SUGGESTIONS_COLUMN_ID));
                 String mapPath = cursor.getString(cursor.getColumnIndex(SUGGESTIONS_COLUMN_MAP_PATH));
                 cursor.close();
-                return new SearchSuggestion(place, mapPath);
+                return new SearchSuggestion(placeId, mapPath);
             }
             cursor.close();
         }

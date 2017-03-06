@@ -41,7 +41,7 @@ public class MapsDao extends ContextWrapper implements SuggestionsDao {
             XPathFactory factory = XPathFactory.newInstance();
             XPath xPath = factory.newXPath();
             try {
-                Attr name = (Attr) xPath.evaluate("(//*/@name)[1]", new InputSource(openAsset(assetsPath)), XPathConstants.NODE);
+                Attr name = (Attr) xPath.evaluate("(//*/@id)[1]", new InputSource(openAsset(assetsPath)), XPathConstants.NODE);
                 SearchSuggestion searchSuggestion = new SearchSuggestion(name.getValue(), assetsPath);
                 searchSuggestions.add(searchSuggestion);
             } catch (XPathExpressionException e) {
@@ -76,7 +76,7 @@ public class MapsDao extends ContextWrapper implements SuggestionsDao {
             XPathFactory factory = XPathFactory.newInstance();
             XPath xPath = factory.newXPath();
             try {
-                NodeList names = (NodeList) xPath.evaluate("//*/@name", new InputSource(openAsset(assetsPath)), XPathConstants.NODESET);
+                NodeList names = (NodeList) xPath.evaluate("//*/@id", new InputSource(openAsset(assetsPath)), XPathConstants.NODESET);
                 for (int i = 0; i < names.getLength(); i++) {
                     Attr name = (Attr) names.item(i);
                     SearchSuggestion searchSuggestion = new SearchSuggestion(name.getValue(), assetsPath);
@@ -112,15 +112,16 @@ public class MapsDao extends ContextWrapper implements SuggestionsDao {
         MatrixCursor matrixCursor = new MatrixCursor(columns);
         selectionArgs[0] = selectionArgs[0].replace("%", ".*");
         List<SearchSuggestion> searchSuggestions = getSearchSuggestions();
-        int id = 1;
-        for (SearchSuggestion suggestion : searchSuggestions)
-            if (suggestion.place.toLowerCase().matches(selectionArgs[0].toLowerCase())) {
+        for (SearchSuggestion suggestion : searchSuggestions) {
+            String name = suggestion.getName(getBaseContext());
+            if (name.toLowerCase().matches(selectionArgs[0].toLowerCase())) {
                 matrixCursor.newRow()
-                        .add(id++)
-                        .add(suggestion.place.toUpperCase())
-                        .add(suggestion.place)
+                        .add(suggestion.getNameResId(getBaseContext()))
+                        .add(name.toUpperCase())
+                        .add(suggestion.placeId)
                         .add(suggestion.mapPath);
             }
+        }
         return matrixCursor;
     }
 

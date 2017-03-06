@@ -32,7 +32,7 @@ public class PlacesDrawerFragment extends NavigationDrawerFragment {
         places = mapsDao.getMapSuggestions();
         List<String> mapNames = new ArrayList<>();
         for (SearchSuggestion searchSuggestion : places) {
-            mapNames.add(searchSuggestion.place);
+            mapNames.add(searchSuggestion.getName(getActivity()));
         }
         mapNames.add(getString(R.string.about));
         return mapNames;

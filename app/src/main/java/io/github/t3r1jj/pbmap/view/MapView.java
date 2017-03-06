@@ -30,17 +30,17 @@ public class MapView extends TileView implements PlaceView {
 
     @Override
     public void addToMap(MapView pbMapView) {
-        positionsCache.put(map.getName(), new MapViewPosition(getCenterX(), getCenterY(), getScale()));
+        positionsCache.put(map.getId(), new MapViewPosition(getCenterX(), getCenterY(), getScale()));
     }
 
     public void initializeZoom() {
-        if (!positionsCache.containsKey(map.getName())) {
+        if (!positionsCache.containsKey(map.getId())) {
             post(new Runnable() {
                 @Override
                 public void run() {
                     setMinimumScaleMode(MinimumScaleMode.FIT);
                     setScale(0);
-                    positionsCache.put(map.getName(), new MapViewPosition(getCenterX(), getCenterY(), getScale()));
+                    positionsCache.put(map.getId(), new MapViewPosition(getCenterX(), getCenterY(), getScale()));
                 }
             });
         }
@@ -55,7 +55,7 @@ public class MapView extends TileView implements PlaceView {
     }
 
     public void loadPreviousPosition() {
-        final MapViewPosition previousPosition = positionsCache.get(map.getName());
+        final MapViewPosition previousPosition = positionsCache.get(map.getId());
         if (previousPosition != null) {
             post(new Runnable() {
                 @Override

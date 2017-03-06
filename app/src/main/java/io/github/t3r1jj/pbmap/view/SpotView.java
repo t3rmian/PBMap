@@ -2,7 +2,6 @@ package io.github.t3r1jj.pbmap.view;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.widget.TextView;
 
 import com.qozix.tileview.markers.MarkerLayout;
@@ -19,7 +18,7 @@ public class SpotView extends MarkerLayout implements PlaceView {
     public SpotView(Context context, Place place) {
         super(context);
         textView = new TextView(context);
-        textView.setText(place.getName());
+        textView.setText(place.getName(context));
         Resources resources = context.getResources();
         textView.setTextColor(resources.getColor(R.color.spot_text));
         textView.setTextSize(resources.getDimension(R.dimen.spot_text));

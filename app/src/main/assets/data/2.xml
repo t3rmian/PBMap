@@ -1,4 +1,5 @@
-<map name="Second map" height="2048" previous_map_path="data/1.xml" width="2048">
+<map height="2048" id="second_map" previous_map_path="data/1.xml" route_path="routes/1.xml"
+    width="2048">
     <coordinates>
         <coordinate alt="100" lat="1000" lng="0" />
         <coordinate alt="100" lat="0" lng="1000" />
@@ -7,7 +8,7 @@
         <tiles_config height="256" path="tiles/1/500/500.png" width="256" zoom="1" />
         <tiles_config height="256" path="tiles/1/1000/1000.png" width="256" zoom="0.5" />
     </tiles_configs>
-    <space name="Second map first space" logo_path="logo/logo.png" reference_map_path="data/1.xml">
+    <space id="Second_map_first_space" logo_path="logo/logo.png" reference_map_path="data/1.xml">
         <coordinates>
             <coordinate alt="0" lat="0" lng="100" />
             <coordinate alt="0" lat="0" lng="400" />
@@ -15,7 +16,7 @@
             <coordinate alt="0" lat="400" lng="100" />
         </coordinates>
     </space>
-    <spot name="Second map first spot">
+    <spot id="Second_map_first_spot">
         <coordinates>
             <coordinate alt="20" lat="900" lng="500" />
         </coordinates>

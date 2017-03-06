@@ -65,8 +65,8 @@ class SuggestionsDBHelper extends SQLiteOpenHelper implements SuggestionsDao {
 
     private void insertSuggestion(SQLiteDatabase db, SearchSuggestion suggestion) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(SUGGESTIONS_COLUMN_SUGGESTION, suggestion.place.toUpperCase());
-        contentValues.put(SUGGESTIONS_COLUMN_PLACE, suggestion.place);
+        contentValues.put(SUGGESTIONS_COLUMN_SUGGESTION, suggestion.placeId.toUpperCase());
+        contentValues.put(SUGGESTIONS_COLUMN_PLACE, suggestion.placeId);
         contentValues.put(SUGGESTIONS_COLUMN_MAP_PATH, suggestion.mapPath);
         db.insert(SUGGESTIONS_TABLE_NAME, null, contentValues);
     }

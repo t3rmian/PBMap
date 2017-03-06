@@ -7,7 +7,7 @@ interface SuggestionsDao {
     /**
      * Query the given table, returning a {@link Cursor} over the result set.
      *
-     * @param table         The table name to compile the query against.
+     * @param table         The table id to compile the query against.
      * @param columns       A list of which columns to return. Passing null will
      *                      return all columns, which is discouraged to prevent reading
      *                      data from storage that isn't going to be used.

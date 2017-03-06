@@ -1,4 +1,4 @@
-<route name="1">
+<route id="1">
     <edges>
         <edge>
             <start alt="10" lat="600" lng="600" />

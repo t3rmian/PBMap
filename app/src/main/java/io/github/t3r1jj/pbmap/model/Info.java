@@ -10,14 +10,14 @@ import java.io.Serializable;
 import io.github.t3r1jj.pbmap.model.map.Space;
 
 public class Info implements Serializable {
-    public String title;
-    public String descriptionResName;
     public String url;
+    private String nameId;
+    private String descriptionId;
     private String logoPath;
 
     public Info(Space space) {
-        this.title = space.getName();
-        this.descriptionResName = space.getDescriptionResName();
+        this.nameId = space.getNameResIdString();
+        this.descriptionId = space.getDescriptionResIdString();
         this.url = space.getUrl();
         this.logoPath = space.getLogoPath();
     }
@@ -32,6 +32,23 @@ public class Info implements Serializable {
             }
         }
         return null;
+    }
+
+    public String getName(Context context) {
+        return getStringResource(context, nameId);
+    }
+
+    public String getDescription(Context context) {
+        return getStringResource(context, descriptionId);
+    }
+
+    private String getStringResource(Context context, String aString) {
+        String packageName = context.getPackageName();
+        int resId = context.getResources().getIdentifier(aString, "string", packageName);
+        if (resId == 0) {
+            return null;
+        }
+        return context.getString(resId);
     }
 
 }

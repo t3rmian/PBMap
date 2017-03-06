@@ -32,7 +32,7 @@ public class PBMap extends Space {
 
     @Override
     public String toString() {
-        return "...place=" + places.toString();
+        return "...placeId=" + places.toString();
     }
 
     @Override
