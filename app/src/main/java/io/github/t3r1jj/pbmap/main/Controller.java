@@ -110,7 +110,7 @@ public class Controller implements GeoMarker.MapListener {
     }
 
     void onUserMarkerChoice(MotionEvent event, GeoMarker.Marker markerChoice) {
-        GeoMarker marker = null;
+        GeoMarker marker;
         if (markerChoice == GeoMarker.Marker.SOURCE) {
             marker = source;
         } else {
@@ -150,7 +150,7 @@ public class Controller implements GeoMarker.MapListener {
     }
 
     public void updatePosition(final Coordinate locationCoordinate) {
-        if (!locationCoordinate.hasAltitude()) {
+        if (locationCoordinate != null && !locationCoordinate.hasAltitude()) {
             locationCoordinate.alt = map.getCenter().alt;
         }
         source.setCoordinate(locationCoordinate);

@@ -10,10 +10,10 @@ import java.io.Serializable;
 import io.github.t3r1jj.pbmap.model.map.Space;
 
 public class Info implements Serializable {
-    public String url;
-    private String nameId;
-    private String descriptionId;
-    private String logoPath;
+    public final String url;
+    private final String nameId;
+    private final String descriptionId;
+    private final String logoPath;
 
     public Info(Space space) {
         this.nameId = space.getNameResIdString();

@@ -1,5 +1,6 @@
 package io.github.t3r1jj.pbmap.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.widget.TextView;
@@ -10,6 +11,7 @@ import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.Place;
 
+@SuppressLint("ViewConstructor")
 public class SpotView extends MarkerLayout implements PlaceView {
 
     private final TextView textView;

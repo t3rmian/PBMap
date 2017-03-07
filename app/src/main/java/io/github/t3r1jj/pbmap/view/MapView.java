@@ -1,5 +1,6 @@
 package io.github.t3r1jj.pbmap.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.MotionEvent;
 
@@ -12,6 +13,7 @@ import io.github.t3r1jj.pbmap.main.Controller;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
 import io.github.t3r1jj.pbmap.model.map.Space;
 
+@SuppressLint("ViewConstructor")
 public class MapView extends TileView implements PlaceView {
     private static Map<String, MapViewPosition> positionsCache = new HashMap<>();
     private final PBMap map;

@@ -41,7 +41,6 @@ import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 
 /**
  * TODO: 1. Font settings
- * TODO: 2. Line styles and colors
  * TODO: 3. Icon
  * TODO: 4. Cleanup
  * TODO: 5. First map

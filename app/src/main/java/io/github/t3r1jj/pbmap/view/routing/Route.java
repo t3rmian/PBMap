@@ -19,6 +19,7 @@ import io.github.t3r1jj.pbmap.model.map.route.RouteGraph;
 import io.github.t3r1jj.pbmap.view.MapView;
 
 public class Route implements RemovableView {
+    private static final boolean LINE_SMOOTH = true;
     private final CompositePathView.DrawablePath drawablePath = new CompositePathView.DrawablePath();
     private GeoMarker source;
     private GeoMarker destination;
@@ -32,7 +33,6 @@ public class Route implements RemovableView {
     }
 
     public void setMap(PBMap map) {
-        System.out.println("new map set");
         this.map = map;
     }
 
@@ -57,7 +57,9 @@ public class Route implements RemovableView {
         Paint paint = new Paint();
         paint.setColor(color);
         paint.setStrokeWidth(strokeWidth);
+        paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStyle(Paint.Style.STROKE);
+        paint.setAntiAlias(true);
         return paint;
     }
 
@@ -89,7 +91,50 @@ public class Route implements RemovableView {
         for (Coordinate coordinate : route) {
             positions.add(new double[]{coordinate.lng, coordinate.lat});
         }
-        drawablePath.path = coordinateTranslater.pathFromPositions(positions, false);
+        drawablePath.path = pathFromPositions(coordinateTranslater, positions);
+    }
+
+    /**
+     * Convenience method to convert a List of coordinates (pairs of doubles) to a Path instance.
+     *
+     * @param positions List of coordinates (pairs of doubles).
+     * @return The Path instance created from the positions supplied.
+     */
+    private Path pathFromPositions(CoordinateTranslater coordinateTranslater, List<double[]> positions) {
+        Path path = new Path();
+        double[] start = positions.get(0);
+        path.moveTo(coordinateTranslater.translateX(start[0]), coordinateTranslater.translateY(start[1]));
+        if (LINE_SMOOTH) {
+            if (positions.size() < 3) {
+                prepareLinearPath(coordinateTranslater, positions, path);
+            } else {
+                prepareQuadPath(coordinateTranslater, positions, path);
+            }
+        } else {
+            prepareLinearPath(coordinateTranslater, positions, path);
+        }
+        return path;
+    }
+
+    private void prepareLinearPath(CoordinateTranslater coordinateTranslater, List<double[]> positions, Path path) {
+        for (int i = 1; i < positions.size(); i++) {
+            double[] position = positions.get(i);
+            path.lineTo(coordinateTranslater.translateX(position[0]), coordinateTranslater.translateY(position[1]));
+        }
+    }
+
+    private void prepareQuadPath(CoordinateTranslater coordinateTranslater, List<double[]> positions, Path path) {
+        System.out.println("size: " + positions.size());
+        for (int i = 1; i < positions.size(); i += 2) {
+            double[] second = positions.get(i);
+            double[] third = positions.get(i + 1);
+            path.quadTo(coordinateTranslater.translateX(second[0]), coordinateTranslater.translateY(second[1]),
+                    coordinateTranslater.translateX(third[0]), coordinateTranslater.translateY(third[1]));
+        }
+        if (positions.size() % 2 == 0) {
+            double[] position = positions.get(positions.size() - 1);
+            path.lineTo(coordinateTranslater.translateX(position[0]), coordinateTranslater.translateY(position[1]));
+        }
     }
 
 }

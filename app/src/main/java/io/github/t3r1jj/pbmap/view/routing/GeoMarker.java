@@ -54,13 +54,6 @@ public class GeoMarker extends ImageView implements RemovableView {
         this.coordinate = coordinate;
     }
 
-    /**
-     * @return true if coordinate is set
-     */
-    public boolean hasCoordinate() {
-        return coordinate != null;
-    }
-
     @Override
     public void addToMap(final MapView pbMapView) {
         if (coordinate != null && anchor != null) {
@@ -133,8 +126,8 @@ public class GeoMarker extends ImageView implements RemovableView {
                     pbMapView.setScale(1f);
                     pbMapView.scrollToAndCenter(coordinate.lng, coordinate.lat);
                     pbMapView.setScaleFromCenter(0.5f);
-                    addToMap(pbMapView);
                 }
+                addToMap(pbMapView);
             }
         });
 
