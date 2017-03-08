@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:padding="8dp">
 
-    <Button
-        android:id="@+id/popup_destination_button"
-        android:layout_width="match_parent"
+    <TableLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:padding="16dp"
-        android:text="@string/place_destination_marker" />
+        android:layout_centerInParent="true">
 
-    <Button
-        android:id="@+id/popup_source_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/popup_destination_button"
-        android:layout_centerHorizontal="true"
-        android:padding="16dp"
-        android:text="@string/place_source_marker" />
+        <Button
+            android:id="@+id/popup_destination_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="@string/place_destination_marker"
+            android:textColor="@color/colorSecondaryText" />
 
-    <Button
-        android:id="@+id/popup_cancel_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/popup_source_button"
-        android:layout_centerHorizontal="true"
-        android:padding="16dp"
-        android:text="@string/cancel" />
+        <Button
+            android:id="@+id/popup_source_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="@string/place_source_marker"
+            android:textColor="@color/colorSecondaryText" />
+
+        <Button
+            android:id="@+id/popup_cancel_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="@string/cancel"
+            android:textColor="@color/colorSecondaryText" />
+    </TableLayout>
 </RelativeLayout>

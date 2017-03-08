@@ -28,7 +28,7 @@ public class SpaceView extends CompositePathView.DrawablePath implements PlaceVi
         this.space = space;
         this.context = context;
         paint = new Paint();
-        paint.setStyle(Paint.Style.STROKE);
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
         Resources resources = context.getResources();
         paint.setStrokeWidth(resources.getDimension(R.dimen.space_stroke_width));
         paint.setColor(resources.getColor(R.color.space_bounds));

@@ -61,7 +61,9 @@ public class GeoMarker extends ImageView implements RemovableView {
                 @Override
                 public void run() {
                     pbMapView.removeMarker(GeoMarker.this);
-                    pbMapView.addMarker(GeoMarker.this, coordinate.lng, coordinate.lat, anchor.x, anchor.y);
+                    if (coordinate != null) {
+                        pbMapView.addMarker(GeoMarker.this, coordinate.lng, coordinate.lat, anchor.x, anchor.y);
+                    }
                 }
             });
         }

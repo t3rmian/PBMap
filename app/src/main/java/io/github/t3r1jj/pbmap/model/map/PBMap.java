@@ -43,8 +43,10 @@ public class PBMap extends Space {
         for (TilesConfig tilesConfig : tilesConfigs) {
             pbMapView.addDetailLevel(tilesConfig.zoom, tilesConfig.path, tilesConfig.width, tilesConfig.height);
         }
-        for (Place place : places) {
-            pbMapView.addPlaceView(place.createView(context));
+        if (places != null) {
+            for (Place place : places) {
+                pbMapView.addPlaceView(place.createView(context));
+            }
         }
         pbMapView.initializeZoom();
         return pbMapView;

@@ -1,0 +1,16 @@
+<route id="pb_campus">
+    <edges>
+        <edge>
+            <start alt="-9" lat="53.11653" lng="23.14490" />
+            <end alt="-9" lat="53.11669" lng="23.14553" />
+        </edge>
+        <edge>
+            <start alt="-9" lat="53.11669" lng="23.14553" />
+            <end alt="-9" lat="53.11697" lng="23.14536" />
+        </edge>
+        <edge>
+            <start alt="-9" lat="53.11697" lng="23.14536" />
+            <end alt="-9" lat="53.11701" lng="23.14551" />
+        </edge>
+    </edges>
+</route>

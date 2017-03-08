@@ -1,5 +1,7 @@
 package io.github.t3r1jj.pbmap.main;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
@@ -16,8 +18,9 @@ import io.github.t3r1jj.pbmap.view.routing.GeoMarker;
 import io.github.t3r1jj.pbmap.view.routing.Route;
 
 public class Controller implements GeoMarker.MapListener {
-    private final MapActivity mapActivity;
-    private final MapsDao mapsDao;
+    static final String PARCELABLE_KEY_CONTROLLER_MEMENTO = "PARCELABLE_KEY_CONTROLLER_MEMENTO";
+    private MapActivity mapActivity;
+    private MapsDao mapsDao;
     private PBMap map;
     private MapView mapView;
     private GeoMarker source;
@@ -30,6 +33,27 @@ public class Controller implements GeoMarker.MapListener {
         this.route = new Route(mapActivity);
     }
 
+    void restoreState(Memento memento, MapActivity mapActivity) {
+        this.mapActivity = mapActivity;
+        this.mapsDao = new MapsDao(mapActivity);
+        this.route = new Route(mapActivity);
+        this.map = mapsDao.loadMap(memento.mapReferencePath);
+        loadRouteGraph();
+        if (source == null) {
+            source = new GeoMarker(mapActivity);
+        }
+        source.setCoordinate(memento.source);
+        if (destination == null) {
+            destination = new GeoMarker(mapActivity);
+        }
+        destination.setCoordinate(memento.destination);
+        updateView();
+        mapView.loadPreviousPosition();
+    }
+
+    /**
+     * Loads default map
+     */
     void loadMap() {
         map = mapsDao.loadMap();
         loadRouteGraph();
@@ -81,7 +105,6 @@ public class Controller implements GeoMarker.MapListener {
         source.setLevel(map.compareAltitude(source.getCoordinate()), GeoMarker.Marker.SOURCE);
         destination.addToMap(mapView);
         source.addToMap(mapView);
-        updateRoute();
     }
 
     private void pinpointPlace(final String placeId) {
@@ -170,6 +193,65 @@ public class Controller implements GeoMarker.MapListener {
     public void onMapPositionChange() {
         if (mapView != null) {
             updateRoute();
+        }
+    }
+
+    Memento getCurrentState() {
+        mapView.addToMap(mapView);
+        return new Memento(source.getCoordinate(), destination.getCoordinate(), map.getReferenceMapPath());
+    }
+
+    void onZoom(boolean zoomIn) {
+        if (mapView != null) {
+            if (zoomIn) {
+                mapView.setScale(mapView.getScale() * 2f);
+            } else {
+                mapView.setScale(mapView.getScale() / 2f);
+            }
+        }
+    }
+
+    static class Memento implements Parcelable {
+        private Coordinate source;
+        private Coordinate destination;
+        private String mapReferencePath;
+
+        private Memento(Coordinate source, Coordinate destination, String mapReferencePath) {
+            this.source = source;
+            this.destination = destination;
+            this.mapReferencePath = mapReferencePath;
+        }
+
+        private Memento(Parcel in) {
+            mapReferencePath = in.readString();
+            Coordinate[] coordinates = new Coordinate[2];
+            in.readTypedArray(coordinates, Coordinate.CREATOR);
+            source = coordinates[0];
+            destination = coordinates[1];
+        }
+
+        static final Creator<Memento> CREATOR = new Creator<Memento>() {
+            @Override
+            public Memento createFromParcel(Parcel in) {
+                return new Memento(in);
+            }
+
+            @Override
+            public Memento[] newArray(int size) {
+                return new Memento[size];
+            }
+        };
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(mapReferencePath);
+            Coordinate[] coordinates = new Coordinate[]{source, destination};
+            dest.writeTypedArray(coordinates, flags);
         }
     }
 

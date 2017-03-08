@@ -1,0 +1,20 @@
+<map id="pb_campus" height="3072" route_path="routes/pb_campus.xml"
+    url="http://pb.edu.pl/" width="5120">
+    <tiles_configs>
+        <tiles_config height="256" path="tiles/pb_campus/1000/tile-%d_%d.png" width="256" zoom="1" />
+        <tiles_config height="256" path="tiles/pb_campus/500/tile-%d_%d.png" width="256" zoom="0.5" />
+        <tiles_config height="256" path="tiles/pb_campus/250/tile-%d_%d.png" width="256" zoom="0.25" />
+    </tiles_configs>
+    <coordinates>
+        <coordinate alt="-9" lat="53.120405" lng="23.142700" />
+        <coordinate alt="-9" lat="53.115460" lng="23.156433" />
+    </coordinates>
+    <space id="pb_wi" url="https://wi.pb.edu.pl">
+        <coordinates>
+            <coordinate alt="-9" lng="23.14564" lat="53.11696" />
+            <coordinate alt="-9" lng="23.14709" lat="53.11726" />
+            <coordinate alt="-9" lng="23.14759" lat="53.11641" />
+            <coordinate alt="-9" lng="23.14614" lat="53.11611" />
+        </coordinates>
+    </space>
+</map>

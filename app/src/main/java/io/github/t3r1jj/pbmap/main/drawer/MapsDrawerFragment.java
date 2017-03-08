@@ -1,5 +1,7 @@
 package io.github.t3r1jj.pbmap.main.drawer;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.github.t3r1jj.pbmap.R;
+import io.github.t3r1jj.pbmap.model.map.PBMap;
+import io.github.t3r1jj.pbmap.model.map.Place;
 import io.github.t3r1jj.pbmap.search.MapsDao;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 
@@ -82,7 +86,7 @@ public class MapsDrawerFragment extends NavigationDrawerFragment {
     }
 
     @Override
-    public void onAttach(Context activity) {
+    public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
             callbacks = (PlaceNavigationDrawerCallbacks) activity;

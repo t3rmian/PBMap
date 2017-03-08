@@ -1,8 +1,11 @@
 package io.github.t3r1jj.pbmap.model.map;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.simpleframework.xml.Attribute;
 
-public class Coordinate {
+public class Coordinate implements Parcelable {
     /**
      * x coordinate [deg]
      */
@@ -15,6 +18,7 @@ public class Coordinate {
     public double lat;
     /**
      * meters [m] above mean sea level
+     * TODO: Not implemented yet, source/dest will be set based on current map
      */
     @Attribute(required = false)
     public double alt;
@@ -33,6 +37,19 @@ public class Coordinate {
         this.lng = lng;
         this.lat = lat;
         this.alt = alt;
+    }
+
+    private Coordinate(Parcel source) {
+        double[] coordinates = new double[3];
+        source.readDoubleArray(coordinates);
+        this.lng = coordinates[0];
+        this.lat = coordinates[1];
+        this.alt = coordinates[2];
+        setAltitude(source.readByte() == 1);
+    }
+
+    private double[] getCoordinates() {
+        return new double[]{lng, lat, alt};
     }
 
     public double distance(Coordinate end) {
@@ -99,7 +116,38 @@ public class Coordinate {
         return altitude;
     }
 
+    /**
+     *
+     * @param altitude not implemented yet
+     */
+    @Deprecated
     public void setAltitude(boolean altitude) {
         this.altitude = altitude;
+        this.altitude = false;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeDoubleArray(getCoordinates());
+        dest.writeByte((byte) (hasAltitude() ? 1 : 0));
+    }
+
+    public static final Parcelable.Creator<Coordinate> CREATOR = new Parcelable.Creator<Coordinate>() {
+
+        @Override
+        public Coordinate createFromParcel(Parcel source) {
+            return new Coordinate(source);
+        }
+
+        @Override
+        public Coordinate[] newArray(int size) {
+            return new Coordinate[size];
+        }
+
+    };
 }

@@ -124,8 +124,7 @@ public class Route implements RemovableView {
     }
 
     private void prepareQuadPath(CoordinateTranslater coordinateTranslater, List<double[]> positions, Path path) {
-        System.out.println("size: " + positions.size());
-        for (int i = 1; i < positions.size(); i += 2) {
+        for (int i = 1; i < positions.size() - 1; i += 2) {
             double[] second = positions.get(i);
             double[] third = positions.get(i + 1);
             path.quadTo(coordinateTranslater.translateX(second[0]), coordinateTranslater.translateY(second[1]),

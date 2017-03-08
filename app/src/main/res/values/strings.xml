@@ -43,4 +43,6 @@
     <string name="place_source_marker">Place source marker</string>
     <string name="help">Help</string>
     <string name="maps">Maps</string>
+    <string name="airplane_enabled">Please disable the airplane mode</string>
+    <string name="wifi_disabled">Please enable wifi or use gps location for more accurate tracking</string>
 </resources>

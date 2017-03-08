@@ -9,6 +9,7 @@ import android.graphics.Typeface;
 import android.widget.TextView;
 
 import com.qozix.tileview.markers.MarkerLayout;
+import com.qozix.tileview.widgets.ZoomPanLayout;
 
 import io.github.t3r1jj.pbmap.BuildConfig;
 import io.github.t3r1jj.pbmap.R;
@@ -20,6 +21,7 @@ public class SpotView extends MarkerLayout implements PlaceView {
 
     private final TextView textView;
     private final Coordinate center;
+    private final float textSize;
 
     public SpotView(Context context, Place place) {
         super(context);
@@ -27,7 +29,7 @@ public class SpotView extends MarkerLayout implements PlaceView {
         textView.setText(place.getName(context));
         Resources resources = context.getResources();
         textView.setTextColor(resources.getColor(R.color.spot_text));
-        textView.setTextSize(resources.getDimension(R.dimen.spot_text));
+        textSize = resources.getDimension(R.dimen.spot_text);
         setTypeFace(context);
         center = place.getCenter();
     }
@@ -40,8 +42,56 @@ public class SpotView extends MarkerLayout implements PlaceView {
     }
 
     @Override
-    public void addToMap(MapView pbMapView) {
+    public void addToMap(final MapView pbMapView) {
+        pbMapView.post(new Runnable() {
+            @Override
+            public void run() {
+                pbMapView.post(new Runnable() { // Double post delays getScale() enough for map to update
+                    @Override
+                    public void run() {
+                        setTextSize(pbMapView.getScale());
+                    }
+                });
+            }
+        });
         pbMapView.addMarker(textView, center.lng, center.lat, -0.5f, -1.0f);
+        pbMapView.addZoomPanListener(new ZoomListener(pbMapView));
     }
 
+    private void setTextSize(float scale) {
+        textView.setTextSize(textSize * scale);
+    }
+
+    private class ZoomListener implements ZoomPanLayout.ZoomPanListener {
+        private final MapView pbMapView;
+
+        private ZoomListener(MapView pbMapView) {
+            this.pbMapView = pbMapView;
+        }
+
+        @Override
+        public void onPanBegin(int x, int y, Origination origin) {
+        }
+
+        @Override
+        public void onPanUpdate(int x, int y, Origination origin) {
+        }
+
+        @Override
+        public void onPanEnd(int x, int y, Origination origin) {
+        }
+
+        @Override
+        public void onZoomBegin(float scale, Origination origin) {
+        }
+
+        @Override
+        public void onZoomUpdate(float scale, Origination origin) {
+            setTextSize(pbMapView.getScale());
+        }
+
+        @Override
+        public void onZoomEnd(float scale, Origination origin) {
+        }
+    }
 }

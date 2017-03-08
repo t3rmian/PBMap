@@ -4,11 +4,14 @@ import android.Manifest;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -26,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ZoomControls;
 
 import io.github.t3r1jj.pbmap.AboutActivity;
 import io.github.t3r1jj.pbmap.BuildConfig;
@@ -37,6 +41,8 @@ import io.github.t3r1jj.pbmap.model.gps.PBLocationListener;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
 import io.github.t3r1jj.pbmap.search.Search;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
+
+import static io.github.t3r1jj.pbmap.main.Controller.PARCELABLE_KEY_CONTROLLER_MEMENTO;
 
 public class MapActivity extends DrawerActivity
         implements MapsDrawerFragment.PlaceNavigationDrawerCallbacks {
@@ -72,8 +78,7 @@ public class MapActivity extends DrawerActivity
                     explicitlyAskedForPermissions = true;
                     ActivityCompat.requestPermissions(MapActivity.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
                 } else {
-                    requestLocationUpdates();
-                    Toast.makeText(MapActivity.this, R.string.waiting_for_location, Toast.LENGTH_SHORT).show();
+                    requestLocationOnDemand();
                 }
             }
         });
@@ -82,8 +87,45 @@ public class MapActivity extends DrawerActivity
         handleIntent(getIntent());
 
         if (!controller.isInitialized()) {
-            controller.loadMap();
+            if (savedInstanceState == null || !savedInstanceState.containsKey(PARCELABLE_KEY_CONTROLLER_MEMENTO)) {
+                controller.loadMap();
+            }
         }
+        setupZoomControls();
+    }
+
+    private void requestLocationOnDemand() {
+        switch (requestLocationUpdates()) {
+            case OFF:
+                controller.updatePosition(null);
+                new GpsDialogFragment().show(getFragmentManager(), "gps");
+                break;
+            case ON:
+                Toast.makeText(MapActivity.this, R.string.waiting_for_location, Toast.LENGTH_SHORT).show();
+                break;
+            case AEROPLANE:
+                Toast.makeText(MapActivity.this, R.string.airplane_enabled, Toast.LENGTH_SHORT).show();
+                break;
+            case WIFI_OFF:
+                Toast.makeText(MapActivity.this, getString(R.string.waiting_for_location) + "\n" + getString(R.string.wifi_disabled), Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+
+    private void setupZoomControls() {
+        ZoomControls zoomControls = (ZoomControls) findViewById(R.id.zoom_controls);
+        zoomControls.setOnZoomOutClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                controller.onZoom(false);
+            }
+        });
+        zoomControls.setOnZoomInClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                controller.onZoom(true);
+            }
+        });
     }
 
     @Override
@@ -91,13 +133,7 @@ public class MapActivity extends DrawerActivity
         super.onResume();
         Log.d(getClass().getSimpleName(), "onResume");
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        if (isGpsEnabled()) {
-            if (doesNotHaveGpsPermissions()) {
-                controller.updatePosition(null);
-                return;
-            }
-            requestLocationUpdates();
-        } else {
+        if (doesNotHaveGpsPermissions() || requestLocationUpdates() == LocationState.OFF) {
             controller.updatePosition(null);
         }
     }
@@ -107,30 +143,65 @@ public class MapActivity extends DrawerActivity
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED;
     }
 
-    private boolean isGpsEnabled() {
+    private boolean isLocationEnabled() {
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
 
-    private void requestLocationUpdates() {
-        if (!isGpsEnabled()) {
-            controller.updatePosition(null);
-            new GpsDialogFragment().show(getFragmentManager(), "gps");
-            return;
+    private boolean isWifiDisabled() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        return !wifiInfo.isAvailable();
+    }
+
+    private boolean isAirplaneOn() {
+        int airplaneSetting = Settings.System.getInt(getContentResolver(), Settings.System.AIRPLANE_MODE_ON, 0);
+        return airplaneSetting != 0;
+    }
+
+    /**
+     * @return true if successfully requested location updates without any problems, assure that permissions are granted
+     */
+    private LocationState requestLocationUpdates() {
+        if (!isLocationEnabled()) {
+            return LocationState.OFF;
         }
         Criteria criteria = new Criteria();
         if (locationListener == null) {
             locationListener = new PBLocationListener(controller);
         }
         String provider = locationManager.getBestProvider(criteria, true);
+        if (isAirplaneOn()) {
+            //noinspection MissingPermission
+            locationManager.requestLocationUpdates(provider, 5, 5, locationListener);
+            return LocationState.AEROPLANE;
+        }
+        if ("network".equals(provider) && isWifiDisabled()) {
+            if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                //noinspection MissingPermission
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5, 5, locationListener);
+                return LocationState.ON;
+            } else {
+                //noinspection MissingPermission
+                locationManager.requestLocationUpdates(provider, 5, 5, locationListener);
+                return LocationState.WIFI_OFF;
+            }
+        }
         //noinspection MissingPermission
         locationManager.requestLocationUpdates(provider, 5, 5, locationListener);
+        return LocationState.ON;
+    }
+
+    enum LocationState {
+        OFF, AEROPLANE, WIFI_OFF, ON
     }
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == REQUEST_LOCATION) {
             if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                requestLocationUpdates();
+                if (requestLocationUpdates() == LocationState.OFF) {
+                    new GpsDialogFragment().show(getFragmentManager(), "gps");
+                }
             } else {
                 controller.updatePosition(null);
                 if (explicitlyAskedForPermissions) {
@@ -158,7 +229,7 @@ public class MapActivity extends DrawerActivity
 
     private void setupVersion() {
         TextView versionText = (TextView) findViewById(R.id.about_version);
-        versionText.setText(getString(R.string.about_version, BuildConfig.VERSION_NAME));
+        versionText.setText(getString(R.string.about_version, BuildConfig.VERSION_NAME + ", Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL."));
     }
 
     @Override
@@ -179,6 +250,7 @@ public class MapActivity extends DrawerActivity
         searchView.setIconified(false);
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
+        searchView.clearFocus();
 
         return true;
     }
@@ -281,7 +353,22 @@ public class MapActivity extends DrawerActivity
         Bundle bundle = new Bundle();
         bundle.putParcelable(MarkerDialogFragment.MOTION_EVENT_KEY, event);
         markerDialogFragment.setArguments(bundle);
-        markerDialogFragment.show(getFragmentManager(), "marker");
+        markerDialogFragment.show(getSupportFragmentManager(), "marker");
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState.containsKey(PARCELABLE_KEY_CONTROLLER_MEMENTO)) {
+            controller.restoreState((Controller.Memento) savedInstanceState.getParcelable(PARCELABLE_KEY_CONTROLLER_MEMENTO), this);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(PARCELABLE_KEY_CONTROLLER_MEMENTO, controller.getCurrentState());
     }
 
     Controller getController() {
@@ -291,7 +378,7 @@ public class MapActivity extends DrawerActivity
     public static class GpsDialogFragment extends DialogFragment {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
-            return new AlertDialog.Builder(getActivity())
+            return new AlertDialog.Builder(getActivity(), getTheme())
                     .setMessage(getString(R.string.gps_disabled_message, getString(R.string.app_name)))
                     .setCancelable(false)
                     .setPositiveButton(R.string.enable, new DialogInterface.OnClickListener() {
@@ -311,7 +398,7 @@ public class MapActivity extends DrawerActivity
     public static class GpsPermissionsDialogFragment extends DialogFragment {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
-            return new AlertDialog.Builder(getActivity())
+            return new AlertDialog.Builder(getActivity(), getTheme())
                     .setTitle(R.string.location_permissions)
                     .setMessage(getString(R.string.gps_permissions_disabled_message, getString(R.string.app_name)))
                     .setNegativeButton(R.string.ok, null)

@@ -3,7 +3,7 @@
     <color name="colorPrimary">#424242</color>
     <color name="colorPrimaryDark">#212121</color>
     <color name="colorAccent">#689F38</color>
-    <color name="space_bounds">#777777</color>
+    <color name="space_bounds">#77777777</color>
     <color name="route">#AA00FF</color>
     <color name="spot_text">@color/colorPrimaryText</color>
     <color name="marker_triangle">#000000</color>
@@ -12,4 +12,5 @@
     <color name="menu_text_checked">#ffffff</color>
     <color name="menu_text_default">#bebebe</color>
     <color name="colorPrimaryText">#000000</color>
+    <color name="colorSecondaryText">#ffffff</color>
 </resources>

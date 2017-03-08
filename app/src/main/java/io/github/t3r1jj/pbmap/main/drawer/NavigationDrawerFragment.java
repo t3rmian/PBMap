@@ -173,22 +173,17 @@ abstract class NavigationDrawerFragment extends Fragment {
                     return;
                 }
 
-                if (!userLearnedDrawer) {
-                    // The user manually opened the drawer; store this flag to prevent auto-showing
-                    // the navigation drawer automatically in the future.
-                    userLearnedDrawer = true;
-                    SharedPreferences sp = PreferenceManager
-                            .getDefaultSharedPreferences(getActivity());
-                    sp.edit().putBoolean(PREF_USER_LEARNED_DRAWER, true).apply();
-                }
+                userLearnedDrawer();
                 getActivity().invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
             }
+
         };
 
         // If the user hasn't 'learned' about the drawer, open it to introduce them to the drawer,
         // per the navigation drawer design guidelines.
         if (!userLearnedDrawer && !fromSavedInstanceState) {
             this.drawerLayout.openDrawer(fragmentContainerView);
+            userLearnedDrawer();
         }
 
         // Defer code dependent on restoration of previous instance state.
@@ -200,6 +195,16 @@ abstract class NavigationDrawerFragment extends Fragment {
         });
 
         this.drawerLayout.addDrawerListener(drawerToggle);
+    }
+
+
+    private void userLearnedDrawer() {
+        if (!userLearnedDrawer) {
+            userLearnedDrawer = true;
+            SharedPreferences sp = PreferenceManager
+                    .getDefaultSharedPreferences(getActivity());
+            sp.edit().putBoolean(PREF_USER_LEARNED_DRAWER, true).apply();
+        }
     }
 
     protected void selectItem(int itemId) {
