@@ -2,7 +2,10 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
     <size
-        android:width="@dimen/marker_width"
-        android:height="@dimen/marker_height" />
+        android:width="@dimen/marker_size_bordered"
+        android:height="@dimen/marker_size_bordered" />
     <solid android:color="@color/marker_destination" />
+    <stroke
+        android:width="@dimen/marker_border"
+        android:color="@color/marker_triangle" />
 </shape>

@@ -5,6 +5,7 @@
         <item>Simple-XML</item>
         <item>Swipe-Selector</item>
         <item>Google Support Libraries</item>
+        <item>Exo Bold</item>
     </string-array>
     <string-array name="attribution_descriptions">
         <item>TileView asynchronously displays tile-based images, with pan and zoom functionality, and supports features like markers, hotspots, paths, multiple levels of detail, and arbitrary coordinate systems.
@@ -27,5 +28,10 @@
             \nAuthor: The Android Open Source Project
             \nLicense: Apache 2.0
             \nSite: https://developer.android.com/topic/libraries/support-library/index.html</item>
+        <item>A Sans Serif font used for displaying names on the map.
+            \n\nVersion: Exo Bold
+            \nAuthor: Natanael Gama (exo@ndiscovered.com)
+            \nLicense: SIL Open Font License v1.10
+            \nSite: https://www.fontsquirrel.com/fonts/exo</item>
     </string-array>
 </resources>

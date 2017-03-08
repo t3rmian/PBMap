@@ -3,7 +3,7 @@
     <item android:drawable="@drawable/source_marker" />
 
     <item
-        android:drawable="@drawable/triangle_drawable"
+        android:drawable="@drawable/triangle_up_drawable"
         android:gravity="center"/>
 
 </layer-list>

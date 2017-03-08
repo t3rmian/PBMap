@@ -38,13 +38,6 @@ import io.github.t3r1jj.pbmap.model.map.PBMap;
 import io.github.t3r1jj.pbmap.search.Search;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 
-
-/**
- * TODO: 1. Font settings
- * TODO: 3. Icon
- * TODO: 4. Cleanup
- * TODO: 5. First map
- */
 public class MapActivity extends DrawerActivity
         implements MapsDrawerFragment.PlaceNavigationDrawerCallbacks {
 
@@ -61,6 +54,7 @@ public class MapActivity extends DrawerActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setupVersion();
         mapContainer = (ViewGroup) findViewById(R.id.content_main);
         infoButton = (FloatingActionButton) findViewById(R.id.info_fab);

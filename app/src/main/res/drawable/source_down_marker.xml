@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/source_marker" />
-    <item>
-        <rotate
-            android:drawable="@drawable/triangle_drawable"
-            android:fromDegrees="180"
-            android:toDegrees="180"
-            android:visible="true" />
-    </item>
+    <item android:drawable="@drawable/source_marker"/>
+    <item
+        android:drawable="@drawable/triangle_down_drawable"
+        android:gravity="center"/>
 </layer-list>

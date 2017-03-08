@@ -107,8 +107,8 @@ public class GeoMarker extends ImageView implements RemovableView {
     }
 
     private boolean sameMarkerPressed(MapView mapView, MotionEvent event, double lngPx, double latPx) {
-        float xRange = mapView.getContext().getResources().getDimension(R.dimen.marker_width);
-        float yRange = mapView.getContext().getResources().getDimension(R.dimen.marker_height);
+        float xRange = mapView.getContext().getResources().getDimension(R.dimen.marker_size_bordered);
+        float yRange = mapView.getContext().getResources().getDimension(R.dimen.marker_size_bordered);
         return Math.abs(event.getX() - lngPx) < xRange && Math.abs(event.getY() - latPx) < yRange;
     }
 

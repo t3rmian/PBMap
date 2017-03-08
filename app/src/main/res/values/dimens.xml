@@ -11,7 +11,8 @@
     <dimen name="space_stroke_width">3dp</dimen>
     <dimen name="route_stroke_width">2dp</dimen>
     <dimen name="spot_text">12sp</dimen>
-    <dimen name="marker_width">16dp</dimen>
-    <dimen name="marker_height">16dp</dimen>
+    <dimen name="marker_size">20dp</dimen>
+    <dimen name="marker_size_bordered">24dp</dimen>
+    <dimen name="marker_border">3dp</dimen>
     <dimen name="about_icon_size">64dp</dimen>
 </resources>
