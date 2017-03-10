@@ -39,7 +39,7 @@ public class SearchSuggestion {
     public String getName(Context context) {
         String translatedName = getNameRes(context);
         if (translatedName == null) {
-            return placeId;
+            return placeId.toUpperCase().replace('_', ' ');
         }
         return translatedName;
     }

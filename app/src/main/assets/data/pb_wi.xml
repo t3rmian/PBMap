@@ -1,0 +1,13 @@
+<map height="1536" id="wi_pb" route_path="routes/pb_campus.xml" url="http://pb.edu.pl/" previous_map_path="data/pb_campus.xml"
+    width="1792">
+    <tiles_configs>
+        <tiles_config height="256" path="tiles/pb_campus/wi/main/tile-%d_%d.png" width="256"
+            zoom="1" />
+    </tiles_configs>
+    <coordinates>
+        <coordinate alt="-11" lat="53.117315" lng="23.145447" />
+        <coordinate alt="-11" lat="53.117315" lng="23.147850" />
+        <coordinate alt="-11" lat="53.116078" lng="23.147850" />
+        <coordinate alt="-11" lat="53.116078" lng="23.145447" />
+    </coordinates>
+</map>

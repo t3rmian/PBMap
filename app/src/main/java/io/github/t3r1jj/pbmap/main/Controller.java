@@ -5,6 +5,8 @@ import android.os.Parcelable;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
+import java.util.List;
+
 import io.github.t3r1jj.pbmap.model.Info;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
@@ -108,7 +110,11 @@ public class Controller implements GeoMarker.MapListener {
     }
 
     private void pinpointPlace(final String placeId) {
-        for (Place place : map.getPlaces()) {
+        List<Place> places = map.getPlaces();
+        if (places == null) {
+            return;
+        }
+        for (Place place : places) {
             if (place.getId().equals(placeId)) {
                 Coordinate target = place.getCenter();
                 target.alt = map.getCenter().alt;
@@ -209,6 +215,10 @@ public class Controller implements GeoMarker.MapListener {
                 mapView.setScale(mapView.getScale() / 2f);
             }
         }
+    }
+
+    String getCurrentMapId() {
+        return map.getId();
     }
 
     static class Memento implements Parcelable {

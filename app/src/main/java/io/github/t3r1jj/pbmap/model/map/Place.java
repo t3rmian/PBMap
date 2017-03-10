@@ -25,7 +25,7 @@ public abstract class Place {
     protected List<Coordinate> coordinates;
 
     public static String getNameResIdString(String id) {
-        return id + NAME_POSTFIX;
+        return id.toLowerCase() + NAME_POSTFIX;
     }
 
     public String getNameResIdString() {
@@ -39,7 +39,7 @@ public abstract class Place {
     public String getName(Context context) {
         String translatedName = getStringResource(context, getNameResIdString());
         if (translatedName == null) {
-            return id;
+            return id.replace('_', ' ');
         }
         return translatedName;
     }

@@ -1,8 +1,6 @@
 package io.github.t3r1jj.pbmap.main.drawer;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -15,8 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.github.t3r1jj.pbmap.R;
-import io.github.t3r1jj.pbmap.model.map.PBMap;
-import io.github.t3r1jj.pbmap.model.map.Place;
 import io.github.t3r1jj.pbmap.search.MapsDao;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 
@@ -27,7 +23,6 @@ public class MapsDrawerFragment extends NavigationDrawerFragment {
      * A pointer to the current callbacks instance (the Activity).
      */
     private PlaceNavigationDrawerCallbacks callbacks;
-    private int previousItemId;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -49,32 +44,21 @@ public class MapsDrawerFragment extends NavigationDrawerFragment {
         return navigationView;
     }
 
-    @NonNull
     @Override
-    protected List<String> getPlaceNames() {
-        MapsDao mapsDao = new MapsDao(getActivity());
-        places = mapsDao.getMapSuggestions();
-        List<String> mapNames = new ArrayList<>();
+    protected void onDrawerOpening() {
+        String currentMapId = callbacks.getCurrentMapId();
+        int id = 0;
         for (SearchSuggestion searchSuggestion : places) {
-            mapNames.add(searchSuggestion.getName(getActivity()));
-        }
-        return mapNames;
-    }
-
-    @Override
-    protected void onDrawerClosed() {
-        int placesCount = places.size();
-        if (placesCount != 0) {
-            if (currentSelectedId == R.id.menu_about) {
-                currentSelectedId = previousItemId;
-                super.selectItem(previousItemId);
+            if (searchSuggestion.placeId.equals(currentMapId)) {
+                currentSelectedId = id;
+                super.highlightItem(currentSelectedId);
             }
+            id--;
         }
     }
 
     @Override
     protected void selectItem(int itemId) {
-        previousItemId = currentSelectedId;
         super.selectItem(itemId);
         if (callbacks != null) {
             if (itemId == R.id.menu_about) {
@@ -109,6 +93,8 @@ public class MapsDrawerFragment extends NavigationDrawerFragment {
         void onPlaceDrawerItemSelected(SearchSuggestion suggestion);
 
         void onAboutDrawerItemSelected();
+
+        String getCurrentMapId();
     }
 
 }

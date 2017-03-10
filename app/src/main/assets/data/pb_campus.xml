@@ -9,7 +9,7 @@
         <coordinate alt="-9" lat="53.120405" lng="23.142700" />
         <coordinate alt="-9" lat="53.115460" lng="23.156433" />
     </coordinates>
-    <space id="pb_wi" url="https://wi.pb.edu.pl">
+    <space id="pb_wi" url="https://wi.pb.edu.pl" reference_map_path="data/pb_wi.xml">
         <coordinates>
             <coordinate alt="-9" lng="23.14564" lat="53.11696" />
             <coordinate alt="-9" lng="23.14709" lat="53.11726" />
@@ -17,4 +17,87 @@
             <coordinate alt="-9" lng="23.14614" lat="53.11611" />
         </coordinates>
     </space>
+
+    <spot id="bkm_529">
+        <coordinates>
+            <coordinate alt="-9" lat="53.1162607" lng="23.1451221"/>
+        </coordinates>
+    </spot>
+    <spot id="bkm_527">
+        <coordinates>
+            <coordinate alt="-9" lat="53.1150356" lng="23.1454557"/>
+        </coordinates>
+    </spot>
+    <spot id="bkm_525">
+        <coordinates>
+            <coordinate alt="-9" lat="53.1169621" lng="23.1442687"/>
+        </coordinates>
+    </spot>
+    <spot id="bkm_Pogodna/Wiejska">
+        <coordinates>
+            <coordinate alt="-9" lat="53.1174883" lng="23.1434452"/>
+        </coordinates>
+    </spot>
+    <spot id="bkm_535">
+        <coordinates>
+            <coordinate alt="-9" lat="53.1182239" lng="23.1443722"/>
+        </coordinates>
+    </spot>
+    <spot id="bkm_Wiejska/Kopernika">
+        <coordinates>
+            <coordinate alt="-9" lat="53.1206629" lng="23.1453201"/>
+        </coordinates>
+    </spot>
+    <spot id="bkm_Zwierzyniecka/Wiejska">
+        <coordinates>
+            <coordinate alt="-9" lat="53.1205048" lng="23.14715"/>
+        </coordinates>
+    </spot>
+    <spot id="bkm_587">
+        <coordinates>
+            <coordinate alt="-9" lat="53.120051" lng="23.1508861"/>
+        </coordinates>
+    </spot>
+    <spot id="bkm_588">
+        <coordinates>
+            <coordinate alt="-9" lat="53.119797" lng="23.1521605"/>
+        </coordinates>
+    </spot>
+    <spot id="bkm_586">
+        <coordinates>
+            <coordinate alt="-9" lat="53.1197055" lng="23.1546852"/>
+        </coordinates>
+    </spot>
+    <spot id="bkm_589">
+        <coordinates>
+            <coordinate alt="-9" lat="53.1194584" lng="23.1558333"/>
+        </coordinates>
+    </spot>
+
+    <spot id="BiKeR_Zwierzyniecka">
+        <coordinates>
+            <coordinate alt="-9" lat="53.1193352" lng="23.1559961"/>
+        </coordinates>
+    </spot>
+    <spot id="BiKeR_Pogodna">
+        <coordinates>
+            <coordinate alt="-9" lat="53.1171701" lng="23.1440251"/>
+        </coordinates>
+    </spot>
+    <spot id="Wiejska">
+        <coordinates>
+            <coordinate alt="-9" lat="53.11645" lng="23.14482"/>
+        </coordinates>
+    </spot>
+    <spot id="Zwierzyniecka">
+        <coordinates>
+            <coordinate alt="-9" lat="53.11998" lng="23.15176"/>
+        </coordinates>
+    </spot>
+    <spot id="Świerkowa">
+        <coordinates>
+            <coordinate alt="-9" lat="53.11850" lng="23.15545"/>
+        </coordinates>
+    </spot>
+
 </map>

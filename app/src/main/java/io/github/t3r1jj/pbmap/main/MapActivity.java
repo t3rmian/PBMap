@@ -56,6 +56,7 @@ public class MapActivity extends DrawerActivity
     private LocationManager locationManager;
     private PBLocationListener locationListener;
     private boolean explicitlyAskedForPermissions;
+    private boolean showBackButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -242,6 +243,8 @@ public class MapActivity extends DrawerActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_map, menu);
+        backButton = menu.findItem(R.id.action_back);
+        backButton.setVisible(showBackButton);
 
         SearchManager searchManager =
                 (SearchManager) getSystemService(SEARCH_SERVICE);
@@ -251,14 +254,7 @@ public class MapActivity extends DrawerActivity
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
         searchView.clearFocus();
-
         return true;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        backButton = menu.findItem(R.id.action_back);
-        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -309,16 +305,17 @@ public class MapActivity extends DrawerActivity
     public void setTitle(String nameId) {
         int resId = getResources().getIdentifier(PBMap.getNameResIdString(nameId), "string", getPackageName());
         if (resId > 0) {
-            getSupportActionBar().setSubtitle(resId);
+            getSupportActionBar().setSubtitle(getString(resId));
         } else {
-            getSupportActionBar().setSubtitle(resId);
+            getSupportActionBar().setSubtitle(nameId.replace('_', ' '));
         }
     }
 
     public void setBackButtonVisible(boolean visible) {
-        if (backButton != null) {
+        if (backButton !=null) {
             backButton.setVisible(visible);
         }
+        showBackButton = visible;
     }
 
     public void setInfoButtonVisible(boolean visible) {
@@ -338,6 +335,11 @@ public class MapActivity extends DrawerActivity
     public void onAboutDrawerItemSelected() {
         Intent aboutIntent = new Intent(this, AboutActivity.class);
         startActivity(aboutIntent);
+    }
+
+    @Override
+    public String getCurrentMapId() {
+        return controller.getCurrentMapId();
     }
 
     public void popupInfo(Info info) {

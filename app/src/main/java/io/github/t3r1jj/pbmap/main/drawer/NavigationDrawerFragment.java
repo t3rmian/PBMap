@@ -20,8 +20,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.List;
-
 import io.github.t3r1jj.pbmap.R;
 
 /**
@@ -109,10 +107,7 @@ abstract class NavigationDrawerFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (drawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        return drawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
     /**
@@ -155,28 +150,23 @@ abstract class NavigationDrawerFragment extends Fragment {
                 R.string.navigation_drawer_open,  /* "open drawer" description for accessibility */
                 R.string.navigation_drawer_close  /* "close drawer" description for accessibility */
         ) {
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-                if (!isAdded()) {
-                    return;
-                }
-
-                NavigationDrawerFragment.this.onDrawerClosed();
-                getActivity().invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
-            }
 
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                if (!isAdded()) {
-                    return;
+                if (isAdded()) {
+                    userLearnedDrawer();
                 }
 
-                userLearnedDrawer();
-                getActivity().invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
             }
 
+            @Override
+            public void onDrawerStateChanged(int newState) {
+                super.onDrawerStateChanged(newState);
+                if (newState == DrawerLayout.STATE_SETTLING && !isDrawerOpen()) {
+                    NavigationDrawerFragment.this.onDrawerOpening();
+                }
+            }
         };
 
         // If the user hasn't 'learned' about the drawer, open it to introduce them to the drawer,
@@ -197,6 +187,8 @@ abstract class NavigationDrawerFragment extends Fragment {
         this.drawerLayout.addDrawerListener(drawerToggle);
     }
 
+    protected abstract void onDrawerOpening();
+
 
     private void userLearnedDrawer() {
         if (!userLearnedDrawer) {
@@ -216,14 +208,18 @@ abstract class NavigationDrawerFragment extends Fragment {
             menu.getItem(0).setCheckable(true);
             menu.getItem(0).setChecked(true);
         } else {
-            navigationView.getMenu().findItem(currentSelectedId).setChecked(false);
-            currentSelectedId = itemId;
-            navigationView.getMenu().findItem(currentSelectedId).setCheckable(true);
-            navigationView.getMenu().findItem(currentSelectedId).setChecked(true);
+            highlightItem(itemId);
         }
         if (drawerLayout != null) {
             drawerLayout.closeDrawer(fragmentContainerView);
         }
+    }
+
+    protected final void highlightItem(int itemId) {
+        navigationView.getMenu().findItem(currentSelectedId).setChecked(false);
+        currentSelectedId = itemId;
+        navigationView.getMenu().findItem(currentSelectedId).setCheckable(true);
+        navigationView.getMenu().findItem(currentSelectedId).setChecked(true);
     }
 
     @Override
@@ -242,10 +238,5 @@ abstract class NavigationDrawerFragment extends Fragment {
     private ActionBar getActionBar() {
         return ((AppCompatActivity) getActivity()).getSupportActionBar();
     }
-
-    @NonNull
-    protected abstract List<String> getPlaceNames();
-
-    protected abstract void onDrawerClosed();
 
 }
