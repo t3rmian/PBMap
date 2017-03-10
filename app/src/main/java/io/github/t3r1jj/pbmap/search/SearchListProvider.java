@@ -10,9 +10,10 @@ import android.provider.BaseColumns;
 public class SearchListProvider extends SearchRecentSuggestionsProvider {
 
     public static final String AUTHORITY = SearchListProvider.class.getName();
-    public static final int MODE = SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES;
+    public static final int MODE = SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES | SearchRecentSuggestionsProvider.DATABASE_MODE_2LINES;
     static final String SUGGESTIONS_COLUMN_ID = BaseColumns._ID;
     static final String SUGGESTIONS_COLUMN_SUGGESTION = SearchManager.SUGGEST_COLUMN_TEXT_1;
+    static final String SUGGESTIONS_COLUMN_SUGGESTION_2 = SearchManager.SUGGEST_COLUMN_TEXT_2;
     static final String SUGGESTIONS_COLUMN_PLACE = SearchManager.SUGGEST_COLUMN_INTENT_DATA;
     static final String SUGGESTIONS_COLUMN_MAP_PATH = SearchManager.SUGGEST_COLUMN_INTENT_EXTRA_DATA;
     protected String whereClause = "lower(" + SUGGESTIONS_COLUMN_SUGGESTION + ") LIKE ?";
@@ -22,6 +23,7 @@ public class SearchListProvider extends SearchRecentSuggestionsProvider {
     private String[] tableColumns = new String[]{
             SUGGESTIONS_COLUMN_ID,
             SUGGESTIONS_COLUMN_SUGGESTION,
+            SUGGESTIONS_COLUMN_SUGGESTION_2,
             SUGGESTIONS_COLUMN_PLACE,
             SUGGESTIONS_COLUMN_MAP_PATH
     };

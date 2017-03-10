@@ -30,14 +30,14 @@ public class AboutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        setupToolbar();
-        setupIcon();
-        setupRate();
-        setupReport();
-        setupAuthor();
-        setupVersion();
-        setupAttributions();
-        setupLicenses();
+        setUpToolbar();
+        setUpIcon();
+        setUpRate();
+        setUpReport();
+        setUpAuthor();
+        setUpVersion();
+        setUpAttributions();
+        setUpLicenses();
     }
 
     @Override
@@ -57,7 +57,7 @@ public class AboutActivity extends AppCompatActivity {
         return share;
     }
 
-    private void setupIcon() {
+    private void setUpIcon() {
         View report = findViewById(R.id.about_icon);
         report.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,18 +69,18 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     @SuppressWarnings("ConstantConditions")
-    private void setupToolbar() {
+    private void setUpToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    private void setupRate() {
+    private void setUpRate() {
         View rate = findViewById(R.id.about_rate);
         rate.setOnClickListener(new OnRateClickListener());
     }
 
-    private void setupReport() {
+    private void setUpReport() {
         View report = findViewById(R.id.about_report);
         report.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,17 +96,17 @@ public class AboutActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void setupAuthor() {
+    private void setUpAuthor() {
         TextView authorText = (TextView) findViewById(R.id.about_author);
         authorText.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
-    private void setupVersion() {
+    private void setUpVersion() {
         TextView versionText = (TextView) findViewById(R.id.about_version);
         versionText.setText(getString(R.string.about_version, BuildConfig.VERSION_NAME));
     }
 
-    private void setupAttributions() {
+    private void setUpAttributions() {
         String[] titles = getResources().getStringArray(R.array.attribution_titles);
         String[] descriptions = getResources().getStringArray(R.array.attribution_descriptions);
         SwipeItem[] attributions = new SwipeItem[titles.length];
@@ -117,7 +117,7 @@ public class AboutActivity extends AppCompatActivity {
         swipeSelector.setItems(attributions);
     }
 
-    private void setupLicenses() {
+    private void setUpLicenses() {
         View licenses = findViewById(R.id.about_licenses);
         licenses.setOnClickListener(new View.OnClickListener() {
             @Override

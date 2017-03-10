@@ -8,6 +8,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
@@ -15,8 +19,9 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -30,6 +35,9 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ZoomControls;
+
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import io.github.t3r1jj.pbmap.AboutActivity;
 import io.github.t3r1jj.pbmap.BuildConfig;
@@ -52,6 +60,9 @@ public class MapActivity extends DrawerActivity
     private ViewGroup mapContainer;
     private FloatingActionButton infoButton;
     private FloatingActionButton gpsButton;
+    private FloatingActionsMenu levelMenu;
+    private FloatingActionButton levelUpButton;
+    private FloatingActionButton levelDownButton;
     private MenuItem backButton;
     private LocationManager locationManager;
     private PBLocationListener locationListener;
@@ -62,8 +73,44 @@ public class MapActivity extends DrawerActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setupVersion();
+        setUpVersion();
         mapContainer = (ViewGroup) findViewById(R.id.content_main);
+        setUpButtons();
+
+        controller = new Controller(this);
+        handleIntent(getIntent());
+
+        if (!controller.isInitialized()) {
+            if (savedInstanceState == null || !savedInstanceState.containsKey(PARCELABLE_KEY_CONTROLLER_MEMENTO)) {
+                controller.loadMap();
+            }
+        }
+        setUpZoomControls();
+
+    }
+
+    private void setUpButtons() {
+        levelMenu = (FloatingActionsMenu) findViewById(R.id.level_fab_menu);
+        levelUpButton = (FloatingActionButton) findViewById(R.id.up_fab);
+        Drawable triangleDrawable = getResources().getDrawable(R.drawable.triangle_up_drawable);
+        DrawableCompat.setTint(triangleDrawable, ContextCompat.getColor(this, R.color.colorSecondaryText));
+        levelUpButton.setIconDrawable(triangleDrawable);
+        levelUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                controller.onNavigationPerformed(PBMap.Navigation.UP);
+            }
+        });
+        levelDownButton = (FloatingActionButton) findViewById(R.id.down_fab);
+        triangleDrawable = getResources().getDrawable(R.drawable.triangle_down_drawable);
+        DrawableCompat.setTint(triangleDrawable, ContextCompat.getColor(this, R.color.colorSecondaryText));
+        levelDownButton.setIconDrawable(triangleDrawable);
+        levelDownButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                controller.onNavigationPerformed(PBMap.Navigation.DOWN);
+            }
+        });
         infoButton = (FloatingActionButton) findViewById(R.id.info_fab);
         infoButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,22 +124,12 @@ public class MapActivity extends DrawerActivity
             public void onClick(View view) {
                 if (doesNotHaveGpsPermissions()) {
                     explicitlyAskedForPermissions = true;
-                    ActivityCompat.requestPermissions(MapActivity.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+                    ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
                 } else {
                     requestLocationOnDemand();
                 }
             }
         });
-
-        controller = new Controller(this);
-        handleIntent(getIntent());
-
-        if (!controller.isInitialized()) {
-            if (savedInstanceState == null || !savedInstanceState.containsKey(PARCELABLE_KEY_CONTROLLER_MEMENTO)) {
-                controller.loadMap();
-            }
-        }
-        setupZoomControls();
     }
 
     private void requestLocationOnDemand() {
@@ -113,7 +150,7 @@ public class MapActivity extends DrawerActivity
         }
     }
 
-    private void setupZoomControls() {
+    private void setUpZoomControls() {
         ZoomControls zoomControls = (ZoomControls) findViewById(R.id.zoom_controls);
         zoomControls.setOnZoomOutClickListener(new View.OnClickListener() {
             @Override
@@ -228,7 +265,7 @@ public class MapActivity extends DrawerActivity
         }
     }
 
-    private void setupVersion() {
+    private void setUpVersion() {
         TextView versionText = (TextView) findViewById(R.id.about_version);
         versionText.setText(getString(R.string.about_version, BuildConfig.VERSION_NAME + ", Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL."));
     }
@@ -261,7 +298,7 @@ public class MapActivity extends DrawerActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_back:
-                controller.loadPreviousMap();
+                controller.onNavigationPerformed(PBMap.Navigation.BACK);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -320,9 +357,33 @@ public class MapActivity extends DrawerActivity
 
     public void setInfoButtonVisible(boolean visible) {
         if (visible) {
-            infoButton.show();
+            infoButton.setVisibility(View.VISIBLE);
         } else {
-            infoButton.hide();
+            infoButton.setVisibility(View.GONE);
+        }
+    }
+
+    public void setLevelMenuVisible(boolean visible) {
+        if (visible) {
+            levelMenu.setVisibility(View.VISIBLE);
+        } else {
+            levelMenu.setVisibility(View.GONE);
+        }
+    }
+
+    public void setLevelUpButtonVisible(boolean visible) {
+        if (visible) {
+            levelUpButton.setVisibility(View.VISIBLE);
+        } else {
+            levelUpButton.setVisibility(View.GONE);
+        }
+    }
+
+    public void setLevelDownButtonVisible(boolean visible) {
+        if (visible) {
+            levelDownButton.setVisibility(View.VISIBLE);
+        } else {
+            levelDownButton.setVisibility(View.GONE);
         }
     }
 

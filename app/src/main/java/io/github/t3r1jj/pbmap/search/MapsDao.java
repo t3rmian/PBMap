@@ -77,10 +77,16 @@ public class MapsDao extends ContextWrapper implements SuggestionsDao {
             XPath xPath = factory.newXPath();
             try {
                 NodeList names = (NodeList) xPath.evaluate("//*/@id", new InputSource(openAsset(assetsPath)), XPathConstants.NODESET);
+                String mapId = null;
                 for (int i = 0; i < names.getLength(); i++) {
                     Attr name = (Attr) names.item(i);
-                    SearchSuggestion searchSuggestion = new SearchSuggestion(name.getValue(), assetsPath);
-                    searchSuggestions.add(searchSuggestion);
+                    if (i == 0) {   // Ignore maps when downloading data for query
+                        mapId = name.getValue();
+                    } else {
+                        SearchSuggestion searchSuggestion = new SearchSuggestion(name.getValue(), assetsPath);
+                        searchSuggestions.add(searchSuggestion);
+                        searchSuggestion.setMapId(mapId);
+                    }
                 }
             } catch (XPathExpressionException e) {
                 e.printStackTrace();
@@ -114,10 +120,12 @@ public class MapsDao extends ContextWrapper implements SuggestionsDao {
         List<SearchSuggestion> searchSuggestions = getSearchSuggestions();
         for (SearchSuggestion suggestion : searchSuggestions) {
             String name = suggestion.getName(getBaseContext());
+            String map = suggestion.getMapName(getBaseContext());
             if (name.toLowerCase().matches(selectionArgs[0].toLowerCase())) {
                 matrixCursor.newRow()
                         .add(suggestion.getNameResId(getBaseContext()))
                         .add(name.toUpperCase())
+                        .add(map.toUpperCase())
                         .add(suggestion.placeId)
                         .add(suggestion.mapPath);
             }

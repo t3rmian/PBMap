@@ -15,9 +15,9 @@ import io.github.t3r1jj.pbmap.model.map.Space;
 import io.github.t3r1jj.pbmap.model.map.route.RouteGraph;
 import io.github.t3r1jj.pbmap.search.MapsDao;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
-import io.github.t3r1jj.pbmap.view.MapView;
-import io.github.t3r1jj.pbmap.view.routing.GeoMarker;
-import io.github.t3r1jj.pbmap.view.routing.Route;
+import io.github.t3r1jj.pbmap.view.map.MapView;
+import io.github.t3r1jj.pbmap.view.map.routing.GeoMarker;
+import io.github.t3r1jj.pbmap.view.map.routing.Route;
 
 public class Controller implements GeoMarker.MapListener {
     static final String PARCELABLE_KEY_CONTROLLER_MEMENTO = "PARCELABLE_KEY_CONTROLLER_MEMENTO";
@@ -71,13 +71,6 @@ public class Controller implements GeoMarker.MapListener {
         pinpointPlace(suggestion.placeId);
     }
 
-    void loadPreviousMap() {
-        map = mapsDao.loadMap(map.getPreviousMapPath());
-        loadRouteGraph();
-        updateView();
-        mapView.loadPreviousPosition();
-    }
-
     private void loadRouteGraph() {
         route.setMap(map);
         RouteGraph routeGraph = route.getRouteGraph();
@@ -95,8 +88,11 @@ public class Controller implements GeoMarker.MapListener {
             mapView.addToMap(nextMapView);
         }
         mapView = nextMapView;
-        mapActivity.setBackButtonVisible(map.getPreviousMapPath() != null);
+        mapActivity.setBackButtonVisible(map.getNavigationMapPath(PBMap.Navigation.BACK) != null);
         mapActivity.setInfoButtonVisible(map.getDescription(mapActivity) != null || map.getUrl() != null);
+        mapActivity.setLevelMenuVisible(map.getNavigationMapPath(PBMap.Navigation.UP) != null || map.getNavigationMapPath(PBMap.Navigation.DOWN) != null);
+        mapActivity.setLevelUpButtonVisible(map.getNavigationMapPath(PBMap.Navigation.UP) != null);
+        mapActivity.setLevelDownButtonVisible(map.getNavigationMapPath(PBMap.Navigation.DOWN) != null);
 
         reloadContext();
     }
@@ -211,15 +207,22 @@ public class Controller implements GeoMarker.MapListener {
     void onZoom(boolean zoomIn) {
         if (mapView != null) {
             if (zoomIn) {
-                mapView.smoothScaleFromCenter(mapView.getScale() * 1.25f);
+                mapView.smoothScaleFromCenter(mapView.getScale() * 1.125f);
             } else {
-                mapView.smoothScaleFromCenter(mapView.getScale() / 1.25f);
+                mapView.smoothScaleFromCenter(mapView.getScale() / 1.125f);
             }
         }
     }
 
     String getCurrentMapId() {
         return map.getId();
+    }
+
+    void onNavigationPerformed(PBMap.Navigation navigation) {
+        map = mapsDao.loadMap(map.getNavigationMapPath(navigation));
+        loadRouteGraph();
+        updateView();
+        mapView.loadPreviousPosition();
     }
 
     static class Memento implements Parcelable {

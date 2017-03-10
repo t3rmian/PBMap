@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,23 +11,58 @@
 
     <include layout="@layout/activity_drawer" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/info_fab"
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:layout_width="wrap_content"
+        app:fab_addButtonColorPressed="@color/colorAccent"
+        app:fab_addButtonColorNormal="@color/colorAccent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        fab:fab_addButtonSize="mini">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/info_fab"
+            android:layout_width="wrap_content"
+            app:fab_colorNormal="@color/colorAccent"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            app:fab_icon="@android:drawable/ic_menu_info_details" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/gps_fab"
+            android:layout_width="wrap_content"
+            app:fab_colorNormal="@color/colorAccent"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            app:fab_icon="@android:drawable/ic_menu_mylocation" />
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/level_fab_menu"
+        app:fab_addButtonColorPressed="@color/colorAccent"
+        app:fab_addButtonColorNormal="@color/colorAccent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|start"
         android:layout_margin="@dimen/fab_margin"
-        android:scaleType="center"
-        app:srcCompat="@android:drawable/ic_menu_info_details" />
+        fab:fab_addButtonSize="mini">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/gps_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:scaleType="center"
-        app:srcCompat="@android:drawable/ic_menu_mylocation" />
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/up_fab"
+            android:layout_width="wrap_content"
+            app:fab_colorNormal="@color/colorAccent"
+            android:layout_height="wrap_content"
+            android:scaleType="center"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/down_fab"
+            android:layout_width="wrap_content"
+            app:fab_colorNormal="@color/colorAccent"
+            android:layout_height="wrap_content"
+            android:scaleType="center"/>
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -52,10 +88,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:background="@android:color/black"
             android:gravity="center"
             android:text="@string/about_version"
             android:textColor="@android:color/white"
-            android:background="@android:color/black"
             android:textSize="7sp" />
 
     </RelativeLayout>

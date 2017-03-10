@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import io.github.t3r1jj.pbmap.R;
-import io.github.t3r1jj.pbmap.view.routing.GeoMarker;
+import io.github.t3r1jj.pbmap.view.map.routing.GeoMarker;
 
 public class MarkerDialogFragment extends DialogFragment {
 

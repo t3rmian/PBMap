@@ -4,11 +4,13 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 
+import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.model.map.Place;
 
 public class SearchSuggestion {
-    public String placeId;
-    public String mapPath;
+    public final String placeId;
+    public final String mapPath;
+    private String mapId;
 
     SearchSuggestion(String placeId, String mapPath) {
         this.placeId = placeId;
@@ -18,6 +20,14 @@ public class SearchSuggestion {
     public SearchSuggestion(Intent searchIntent) {
         this.placeId = searchIntent.getDataString();
         this.mapPath = searchIntent.getStringExtra(SearchManager.EXTRA_DATA_KEY);
+    }
+
+    public String getMapId() {
+        return mapId;
+    }
+
+    public void setMapId(String mapId) {
+        this.mapId = mapId;
     }
 
     @Override
@@ -55,5 +65,17 @@ public class SearchSuggestion {
     int getNameResId(Context context) {
         String packageName = context.getPackageName();
         return context.getResources().getIdentifier(Place.getNameResIdString(placeId), "string", packageName);
+    }
+
+    String getMapName(Context context) {
+        if (mapId == null) {
+            return context.getString(R.string.map);
+        }
+        String packageName = context.getPackageName();
+        int resId = context.getResources().getIdentifier(Place.getNameResIdString(mapId), "string", packageName);
+        if (resId == 0) {
+            return mapId.toUpperCase().replace('_', ' ');
+        }
+        return context.getString(resId);
     }
 }

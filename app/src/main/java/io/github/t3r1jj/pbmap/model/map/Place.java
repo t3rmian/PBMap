@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import io.github.t3r1jj.pbmap.view.PlaceView;
+import io.github.t3r1jj.pbmap.view.map.PlaceView;
 
 public abstract class Place {
 

@@ -79,11 +79,27 @@ public class Coordinate implements Parcelable {
 
     @Override
     public String toString() {
+        StringBuilder sb = new StringBuilder("<spot id=\"")
+                .append("_")
+                .append("\">")
+                .append("\t<coordinates>");
+        sb.append("\t\t<coordinate ")
+                .append("lat=\"")
+                .append(lat)
+                .append("\" lng=\"")
+                .append(lng)
+                .append("\" alt=\"")
+                .append("-11.0")
+                .append("\"/>");
+        sb.append("\t</coordinates>")
+                .append("</spot>");
+        System.out.println(sb.toString());
         return "Coordinate{" +
                 "lng=" + lng +
                 ", lat=" + lat +
                 ", alt=" + alt +
-                '}';
+                '}'
+                + "\nstart = new Coordinate(" + lng + ", " + lat + ");\n" + sb.toString();
     }
 
     @Override
@@ -117,7 +133,6 @@ public class Coordinate implements Parcelable {
     }
 
     /**
-     *
      * @param altitude not implemented yet
      */
     @Deprecated

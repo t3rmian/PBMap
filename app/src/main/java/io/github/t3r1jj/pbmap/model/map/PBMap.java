@@ -10,7 +10,7 @@ import org.simpleframework.xml.ElementListUnion;
 import java.util.Iterator;
 import java.util.List;
 
-import io.github.t3r1jj.pbmap.view.MapView;
+import io.github.t3r1jj.pbmap.view.map.MapView;
 
 public class PBMap extends Space {
 
@@ -22,6 +22,10 @@ public class PBMap extends Space {
     private String routePath;
     @Attribute(name = "previous_map_path", required = false)
     private String previousMapPath;
+    @Attribute(name = "up_map_path", required = false)
+    private String upMapPath;
+    @Attribute(name = "down_map_path", required = false)
+    private String downMapPath;
     @ElementListUnion({
             @ElementList(entry = "space", type = Space.class, required = false, inline = true),
             @ElementList(entry = "spot", type = Spot.class, required = false, inline = true)
@@ -56,12 +60,18 @@ public class PBMap extends Space {
         return places;
     }
 
-    public String getPreviousMapPath() {
-        return previousMapPath;
-    }
-
     public String getGraphPath() {
         return routePath;
+    }
+
+    public String getNavigationMapPath(Navigation navigation) {
+        if (navigation == Navigation.UP) {
+            return upMapPath;
+        } else if (navigation == Navigation.DOWN) {
+            return downMapPath;
+        } else {
+            return previousMapPath;
+        }
     }
 
     /**
@@ -142,5 +152,9 @@ public class PBMap extends Space {
         public String toString() {
             return "(" + minLat + "," + minLng + "," + maxLat + "," + maxLng + ")";
         }
+    }
+
+    public enum Navigation {
+        UP, DOWN, BACK
     }
 }

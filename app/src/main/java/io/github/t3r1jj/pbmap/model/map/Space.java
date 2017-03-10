@@ -4,8 +4,8 @@ import android.content.Context;
 
 import org.simpleframework.xml.Attribute;
 
-import io.github.t3r1jj.pbmap.view.PlaceView;
-import io.github.t3r1jj.pbmap.view.SpaceView;
+import io.github.t3r1jj.pbmap.view.map.PlaceView;
+import io.github.t3r1jj.pbmap.view.map.SpaceView;
 
 public class Space extends Place {
     @Attribute(name = "reference_map_path", required = false)
