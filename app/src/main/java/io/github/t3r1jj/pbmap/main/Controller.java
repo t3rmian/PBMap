@@ -75,6 +75,7 @@ public class Controller implements GeoMarker.MapListener {
         map = mapsDao.loadMap(map.getPreviousMapPath());
         loadRouteGraph();
         updateView();
+        mapView.loadPreviousPosition();
     }
 
     private void loadRouteGraph() {
@@ -210,9 +211,9 @@ public class Controller implements GeoMarker.MapListener {
     void onZoom(boolean zoomIn) {
         if (mapView != null) {
             if (zoomIn) {
-                mapView.setScale(mapView.getScale() * 2f);
+                mapView.setScaleFromCenter(mapView.getScale() * 1.25f);
             } else {
-                mapView.setScale(mapView.getScale() / 2f);
+                mapView.setScaleFromCenter(mapView.getScale() / 1.25f);
             }
         }
     }

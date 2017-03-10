@@ -32,11 +32,11 @@ public class SpaceView extends CompositePathView.DrawablePath implements PlaceVi
         Resources resources = context.getResources();
         paint.setStrokeWidth(resources.getDimension(R.dimen.space_stroke_width));
         if (space.getReferenceMapPath() != null) {
-            paint.setColor(resources.getColor(R.color.colorAccent));
+            paint.setColor(resources.getColor(R.color.space_bounds_interactive));
         } else {
             paint.setColor(resources.getColor(R.color.space_bounds));
         }
-        spotView = new SpotView(context, space);
+        spotView = new SpotView(context, space, resources.getColor(R.color.space_text));
     }
 
     @Override

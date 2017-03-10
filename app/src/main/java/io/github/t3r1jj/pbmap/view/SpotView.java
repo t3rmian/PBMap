@@ -24,11 +24,15 @@ public class SpotView extends MarkerLayout implements PlaceView {
     private final float textSize;
 
     public SpotView(Context context, Place place) {
+        this(context, place, context.getResources().getColor(R.color.spot_text));
+    }
+
+    public SpotView(Context context, Place place, int color) {
         super(context);
         textView = new TextView(context);
         textView.setText(place.getName(context));
         Resources resources = context.getResources();
-        textView.setTextColor(resources.getColor(R.color.spot_text));
+        textView.setTextColor(color);
         textSize = resources.getDimension(R.dimen.spot_text);
         setTypeFace(context);
         center = place.getCenter();
