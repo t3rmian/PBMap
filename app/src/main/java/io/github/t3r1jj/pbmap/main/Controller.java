@@ -211,9 +211,9 @@ public class Controller implements GeoMarker.MapListener {
     void onZoom(boolean zoomIn) {
         if (mapView != null) {
             if (zoomIn) {
-                mapView.setScaleFromCenter(mapView.getScale() * 1.25f);
+                mapView.smoothScaleFromCenter(mapView.getScale() * 1.25f);
             } else {
-                mapView.setScaleFromCenter(mapView.getScale() / 1.25f);
+                mapView.smoothScaleFromCenter(mapView.getScale() / 1.25f);
             }
         }
     }
