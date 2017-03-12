@@ -5,6 +5,8 @@ import android.os.Parcelable;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
+import com.qozix.tileview.geom.CoordinateTranslater;
+
 import java.util.List;
 
 import io.github.t3r1jj.pbmap.model.Info;
@@ -121,6 +123,18 @@ public class Controller implements GeoMarker.MapListener {
                 return;
             }
         }
+    }
+
+    /**
+     * @deprecated Use this only for logging coordinates
+     * @param event press event
+     */
+    @Deprecated
+    public void printPressedCoordinate(MotionEvent event) {
+        CoordinateTranslater coordinateTranslater = mapView.getCoordinateTranslater();
+        double lng = coordinateTranslater.translateAndScaleAbsoluteToRelativeX(mapView.getScrollX() + event.getX() - mapView.getOffsetX(), mapView.getScale());
+        double lat = coordinateTranslater.translateAndScaleAbsoluteToRelativeY(mapView.getScrollY() + event.getY() - mapView.getOffsetY(), mapView.getScale());
+        System.out.println(new Coordinate(lng, lat, -5.0));
     }
 
     public void onLongPress(MotionEvent event) {

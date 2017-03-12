@@ -93,7 +93,6 @@ public class Coordinate implements Parcelable {
                 .append("\"/>");
         sb.append("\t</coordinates>")
                 .append("</spot>");
-        System.out.println(sb.toString());
         return "Coordinate{" +
                 "lng=" + lng +
                 ", lat=" + lat +
