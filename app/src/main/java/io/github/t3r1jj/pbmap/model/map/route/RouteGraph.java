@@ -72,6 +72,10 @@ public class RouteGraph {
         return coordinates;
     }
 
+    public List<Edge> getEdges() {
+        return edges;
+    }
+
     public String getPath() {
         return path;
     }

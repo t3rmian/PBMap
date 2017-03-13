@@ -1,28 +1,38 @@
 <resources>
-    <string name="app_name">PBMap</string>
-    <string name="action_back">Menu</string>
-    <string name="action_search">Search</string>
-    <string name="search_hint">Search hint</string>
-    <string name="not_found">Place not found</string>
-    <string name="title_activity_drawer">DrawerActivity</string>
-
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_example">Example action</string>
-    <string name="about">About</string>
-    <string name="title_activity_about">AboutActivity</string>
-    <string name="action_share">Share</string>
-    <string name="rate">Rate</string>
-    <string name="about_description">COS PO POLSKU.</string>
-    <string name="about_author">Author:\u0020</string>
-    <string name="about_version">Version: %1$s</string>
-    <string name="could_not_open_android_market">Could not open Android market, please install the market application (Google Play).</string>
-    <string name="about_report">Report bug</string>
-    <string name="about_licenses">Licenses</string>
-    <string name="about_attributions">Attributions</string>
+    <string name="navigation_drawer_open">Otwórz menu</string>
+    <string name="navigation_drawer_close">Zamknij menu</string>
+    <string name="app_name">MapaPB</string>
+    <string name="action_back">Poprzednia mapa</string>
+    <string name="action_search">Szukaj</string>
+    <string name="search_hint">Miejsce lub sala</string>
+    <string name="not_found">Nie znaleziono</string>
+    <string name="about">O programie</string>
+    <string name="action_share">Podziel się</string>
+    <string name="rate">Oceń</string>
+    <string name="about_description">MapaPB to interaktywna mapa Politechniki Białostockiej stworzona w celu ułatwienia nawigacji, a także lokalizacji obiektów (sal, wydziałów, itp.) znajdujących się na terenie politechniki.</string>
+    <string name="about_author">"Autor: "</string>
+    <string name="about_version">Wersja: %1$s</string>
+    <string name="could_not_open_android_market">Aplikacja Android Market nie jest zainstalowana, proszę zainstalować Google Play.</string>
+    <string name="about_report">Zgłoś błąd</string>
+    <string name="about_licenses">Licencje</string>
+    <string name="about_attributions">Atrybucje</string>
+    <string name="airplane_enabled">Proszę wyłączyć tryb samolotowy</string>
+    <string name="cancel">Anuluj</string>
+    <string name="deanery_121_name">Dziekanat</string>
+    <string name="enable">Włącz</string>
+    <string name="gps_disabled_message">%1$s potrzebuje dostępu do twojej lokalizacji w celu wyświetlenia znacznika na mapie. Proszę włączyć Usługę Lokalizacyjną.</string>
+    <string name="gps_permissions_disabled_message">%1$s potrzebuje uprawnień dostępu do lokalizacji aby skorzystać z usługi lokalizacji. Aplikacja zamierza wyświetlić znacznik na mapie w miejscu twojej lokalizacji. Proszę zezwolić %1$s na dostęp do lokalizacji.</string>
+    <string name="help">Pomoc</string>
+    <string name="location_permissions">Uprawnienia lokalizacji</string>
+    <string name="logo">Logo</string>
+    <string name="map">Mapa</string>
+    <string name="maps">Mapy</string>
+    <string name="pb_campus_name">Kampus PB</string>
+    <string name="place_destination_marker">Umieść znacznik celu</string>
+    <string name="place_source_marker">Umieść znacznik źródła</string>
+    <string name="secretariat_name">Sekretariat</string>
+    <string name="waiting_for_location">Oczekiwanie na lokalizację…</string>
+    <string name="wifi_disabled">Proszę połączyć się poprzez WIFI lub użyć GPSa w celu dokładniejszego namierzania</string>
+    <string name="rector_name">Rektorat</string>
+    <string name="lodge_name">Portiernia</string>
 </resources>

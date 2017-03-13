@@ -10,6 +10,7 @@ android {
         versionCode buildVersionCode()
         versionName version
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        setProperty("archivesBaseName", "io.github.t3r1jj.pbmap-$versionName")
     }
     buildTypes {
         release {

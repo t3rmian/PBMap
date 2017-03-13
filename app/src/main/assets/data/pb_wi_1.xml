@@ -1,27 +1,27 @@
-<map down_map_path="data/pb_wi.xml" up_map_path="data/pb_wi_2.xml" height="1497" id="wi_pb_l1" previous_map_path="data/pb_wi.xml"
+<map down_map_path="data/pb_wi.xml" up_map_path="data/pb_wi_2.xml" height="1497" id="WI_PB_L1" previous_map_path="data/pb_wi.xml"
     route_path="routes/pb_campus.xml" url="http://pb.edu.pl/" width="2700">
     <tiles_configs>
         <tiles_config height="256" path="tiles/pb_campus/wi/floor/tile-%d_%d.png" width="256"
             zoom="1" />
     </tiles_configs>
     <coordinates>
-        <coordinate alt="-7.0" lat="53.1172785029204" lng="23.147262968515623" />
-        <coordinate alt="-7.0" lat="53.11671493021081" lng="23.145568992578127" />
+        <coordinate alt="155" lat="53.1172785029204" lng="23.147262968515623" />
+        <coordinate alt="155" lat="53.11671493021081" lng="23.145568992578127" />
     </coordinates>
 
-    <spot id="Sekretariat">	<coordinates>		<coordinate lat="53.11692970354774" lng="23.145730180840246" alt="-11.0"/>	</coordinates></spot>
-    <spot id="121_Dziekanat">	<coordinates>		<coordinate lat="53.11685685821586" lng="23.14576331800382" alt="-11.0"/>	</coordinates></spot>
-    <spot id="↑↓">	<coordinates>		<coordinate lat="53.117153797256506" lng="23.146949507734373" alt="-11.0"/>	</coordinates></spot>
-    <spot id="↑↓">	<coordinates>		<coordinate lat="53.117091786884856" lng="23.1463851990625" alt="-11.0"/>	</coordinates></spot>
-    <spot id="wc">	<coordinates>		<coordinate lat="53.11696284326225" lng="23.14633311178992" alt="-11.0"/>	</coordinates></spot>
-    <spot id="116">	<coordinates>		<coordinate lat="53.116940302052384" lng="23.14617187183176" alt="-11.0"/>	</coordinates></spot>
-    <spot id="130">	<coordinates>		<coordinate lat="53.11711117062716" lng="23.14648106586503" alt="-11.0"/>	</coordinates></spot>
-    <spot id="100">	<coordinates>		<coordinate lat="53.1171800350573" lng="23.147070762627695" alt="-11.0"/>	</coordinates></spot>
-    <spot id="101">	<coordinates>		<coordinate lat="53.117125750033544" lng="23.14711491104843" alt="-11.0"/>	</coordinates></spot>
-    <spot id="125">	<coordinates>		<coordinate lat="53.11722904667875" lng="23.147053082580985" alt="-11.0"/>	</coordinates></spot>
-    <spot id="103">	<coordinates>		<coordinate lat="53.11708470021558" lng="23.146942659833105" alt="-11.0"/>	</coordinates></spot>
-    <spot id="108">	<coordinates>		<coordinate lat="53.11708470021558" lng="23.146942659833105" alt="-11.0"/>	</coordinates></spot>
-    <spot id="143">	<coordinates>		<coordinate lat="53.11694428295412" lng="23.14570588370003" alt="-11.0"/>	</coordinates></spot>
-    <spot id="136">	<coordinates>		<coordinate lat="53.11701847248659" lng="23.14607028910724" alt="-11.0"/>	</coordinates></spot>
+    <spot id="secretariat">	<coordinates>		<coordinate lat="53.11692970354774" lng="23.145730180840246" alt="155"/>	</coordinates></spot>
+    <spot id="deanery_121">	<coordinates>		<coordinate lat="53.11685685821586" lng="23.14576331800382" alt="155"/>	</coordinates></spot>
+    <spot id="↑↓">	<coordinates>		<coordinate lat="53.117153797256506" lng="23.146949507734373" alt="155"/>	</coordinates></spot>
+    <spot id="↑↓">	<coordinates>		<coordinate lat="53.117091786884856" lng="23.1463851990625" alt="155"/>	</coordinates></spot>
+    <spot id="wc">	<coordinates>		<coordinate lat="53.11696284326225" lng="23.14633311178992" alt="155"/>	</coordinates></spot>
+    <spot id="116">	<coordinates>		<coordinate lat="53.116940302052384" lng="23.14617187183176" alt="155"/>	</coordinates></spot>
+    <spot id="130">	<coordinates>		<coordinate lat="53.11711117062716" lng="23.14648106586503" alt="155"/>	</coordinates></spot>
+    <spot id="100">	<coordinates>		<coordinate lat="53.1171800350573" lng="23.147070762627695" alt="155"/>	</coordinates></spot>
+    <spot id="101">	<coordinates>		<coordinate lat="53.117125750033544" lng="23.14711491104843" alt="155"/>	</coordinates></spot>
+    <spot id="125">	<coordinates>		<coordinate lat="53.11722904667875" lng="23.147053082580985" alt="155"/>	</coordinates></spot>
+    <spot id="103">	<coordinates>		<coordinate lat="53.11708470021558" lng="23.146942659833105" alt="155"/>	</coordinates></spot>
+    <spot id="108">	<coordinates>		<coordinate lat="53.11708470021558" lng="23.146942659833105" alt="155"/>	</coordinates></spot>
+    <spot id="143">	<coordinates>		<coordinate lat="53.11694428295412" lng="23.14570588370003" alt="155"/>	</coordinates></spot>
+    <spot id="136">	<coordinates>		<coordinate lat="53.11701847248659" lng="23.14607028910724" alt="155"/>	</coordinates></spot>
 
 </map>

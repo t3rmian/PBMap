@@ -19,12 +19,12 @@ import io.github.t3r1jj.pbmap.model.map.route.RouteGraph;
 import io.github.t3r1jj.pbmap.view.map.MapView;
 
 public class Route implements RemovableView {
-    private static final boolean LINE_SMOOTH = true;
-    private final CompositePathView.DrawablePath drawablePath = new CompositePathView.DrawablePath();
+    private static final boolean LINE_SMOOTH = false;
+    RouteGraph routeGraph;
+    final CompositePathView.DrawablePath drawablePath = new CompositePathView.DrawablePath();
     private GeoMarker source;
     private GeoMarker destination;
     private PBMap map;
-    private RouteGraph routeGraph;
 
     public Route(Context context) {
         Resources resources = context.getResources();
@@ -100,7 +100,7 @@ public class Route implements RemovableView {
      * @param positions List of coordinates (pairs of doubles).
      * @return The Path instance created from the positions supplied.
      */
-    private Path pathFromPositions(CoordinateTranslater coordinateTranslater, List<double[]> positions) {
+    Path pathFromPositions(CoordinateTranslater coordinateTranslater, List<double[]> positions) {
         Path path = new Path();
         double[] start = positions.get(0);
         path.moveTo(coordinateTranslater.translateX(start[0]), coordinateTranslater.translateY(start[1]));

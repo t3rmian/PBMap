@@ -18,6 +18,7 @@ import io.github.t3r1jj.pbmap.model.map.route.RouteGraph;
 import io.github.t3r1jj.pbmap.search.MapsDao;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 import io.github.t3r1jj.pbmap.view.map.MapView;
+import io.github.t3r1jj.pbmap.view.map.routing.FullRoute;
 import io.github.t3r1jj.pbmap.view.map.routing.GeoMarker;
 import io.github.t3r1jj.pbmap.view.map.routing.Route;
 

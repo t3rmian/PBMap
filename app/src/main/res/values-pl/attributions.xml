@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="attribution_titles">
+        <item>TileView</item>
+        <item>Simple-XML</item>
+        <item>Swipe-Selector</item>
+        <item>Google Support Libraries</item>
+        <item>Exo Bold</item>
+        <item>Map tiles</item>
+    </string-array>
+    <string-array name="attribution_descriptions">
+        <item>TileView pozwala na asynchroniczne wyświetlanie obrazu bazującego na kafelkach wraz z funkcjonalnościami powiększania, systemem transformacji do koordynatów geograficznych, a także innych komponentów przydatnych do wyświetlania map.
+            \n\nWersja: com.qozix:tileview:2.2.6
+            \nAutor: Mike Dunn
+            \nLicencja: MIT
+            \nStrona: https://github.com/moagrius/TileView</item>
+        <item>Framework pozwalający na serializację i deserializację dokumentu w formacie XML.
+            \n\nWersja: org.simpleframework:simple-xml:2.7.1
+            \nAutor: Niall Gallagher
+            \nLicencja: Apache 2.0
+            \nStrona: http://simple.sourceforge.net/</item>
+        <item>Widok pozwalający na zmianę treści poprzez przeciągnięcie. Wykorzystywany jako kontener obecnego tekstu.
+            \n\nWersja: com.roughike:swipe-selector:1.0.6
+            \nAutor: Iiro Krankka
+            \nLicencja: Apache 2.0
+            \nStrona: https://github.com/roughike/SwipeSelector</item>
+        <item>Grupa bibliotek pomocniczych zapewniających kompatybilność wsteczną oraz klasy pomocnicze.
+            \n\nWersja: com.android.support
+            \nAutor: The Android Open Source Project
+            \nLicencja: Apache 2.0
+            \nStrona: https://developer.android.com/topic/libraries/support-library/index.html</item>
+        <item>Czcionka typu Sans Serif wykorzystana w celu wyświetlenia nazw zmapowanych miejsc.
+            \n\nWersja: Exo Bold
+            \nAutor: Natanael Gama (exo@ndiscovered.com)
+            \nLicencja: SIL Open Font License v1.10
+            \nStrona: https://www.fontsquirrel.com/fonts/exo</item>
+        <item>Kafelki mapy, dostępne również na stronie projektu po przejściu poprzez ikonę aplikacji na górze.
+            \n\nMap tiles by Stamen Design, under CC BY 3.0.
+            \nData by OpenStreetMap (© OpenStreetMap contributors), under ODbL.
+            \nStrona: http://stamen.com/ http://www.openstreetmap.org</item>
+    </string-array>
+</resources>
