@@ -16,23 +16,26 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        fab:menu_colorNormal="@color/colorAccent">
+        fab:menu_colorNormal="@color/colorAccent"
+        fab:menu_colorPressed="@color/colorAccentPressed">
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/info_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_info_outline"
-            fab:fab_size="mini"
-            fab:fab_colorNormal="@color/colorAccentSecondary" />
+            fab:fab_colorNormal="@color/colorAccentSecondary"
+            fab:fab_colorPressed="@color/colorAccentPressed"
+            fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/gps_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_gps"
-            fab:fab_size="mini"
-            fab:fab_colorNormal="@color/colorAccentSecondary" />
+            fab:fab_colorNormal="@color/colorAccentSecondary"
+            fab:fab_colorPressed="@color/colorAccentPressed"
+            fab:fab_size="mini" />
 
     </com.github.clans.fab.FloatingActionMenu>
 
@@ -42,23 +45,26 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|start"
         android:layout_margin="@dimen/fab_margin"
-        fab:menu_icon="@drawable/ic_up_down"
         fab:menu_colorNormal="@color/colorAccent"
+        fab:menu_colorPressed="@color/colorAccentPressed"
+        fab:menu_icon="@drawable/ic_up_down"
         fab:menu_labels_position="right">
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/up_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_size="mini"
-            fab:fab_colorNormal="@color/colorAccentSecondary" />
+            fab:fab_colorNormal="@color/colorAccentSecondary"
+            fab:fab_colorPressed="@color/colorAccentPressed"
+            fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/down_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_size="mini"
-            fab:fab_colorNormal="@color/colorAccentSecondary" />
+            fab:fab_colorNormal="@color/colorAccentSecondary"
+            fab:fab_colorPressed="@color/colorAccentPressed"
+            fab:fab_size="mini" />
 
     </com.github.clans.fab.FloatingActionMenu>
 

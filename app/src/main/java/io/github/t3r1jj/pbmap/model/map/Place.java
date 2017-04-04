@@ -21,6 +21,8 @@ public abstract class Place {
     protected String id;
     @Attribute(name = "logo_path", required = false)
     protected String logoPath;
+    @Attribute(required = false)
+    protected boolean hidden;
     @ElementList
     protected List<Coordinate> coordinates;
 

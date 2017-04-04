@@ -15,7 +15,7 @@ public class Space extends Place {
 
     @Override
     public PlaceView createView(Context context) {
-        return new SpaceView(context, this);
+        return hidden ? null : new SpaceView(context, this);
     }
 
     public String getReferenceMapPath() {

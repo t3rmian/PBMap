@@ -36,6 +36,14 @@
     <string name="pb_campus_name">PB campus</string>
     <string name="rector_name">Rector\'s office</string>
     <string name="lodge_name">Lodge</string>
+    <string name="courts_name">Tennis\ncourts</string>
+    <string name="ds_alpha_name">DS\nAlpha</string>
+    <string name="ds_beta_name">DS\nBeta</string>
+    <string name="ds_gamma_name">DS\nGamma</string>
+    <string name="ds_delta_name">DS\nDelta</string>
+    <string name="gwint_name">Gwint\nclub</string>
+    <string name="assistant_hotel_name">Assist.\nhotel</string>
+    <string name="store">Store</string>
     <string name="action_search_description">Use search to find a place e.g. room or building</string>
     <string name="menu">Menu</string>
     <string name="menu_description">You can switch between maps using menu.\nYou can also find additional information about the app at the bottom.</string>

@@ -3,6 +3,8 @@
     <color name="colorPrimary">#424242</color>
     <color name="colorPrimaryDark">#212121</color>
     <color name="colorAccent">#EF6C00</color>
+    <color name="colorAccentSecondary">#BE5600</color>
+    <color name="colorAccentPressed">#EF9C00</color>
     <color name="space_bounds">#777777</color>
     <color name="space_bounds_interactive">@color/colorPrimaryDark</color>
     <color name="route">#AA00FF</color>
@@ -15,6 +17,5 @@
     <color name="menu_text_default">#bebebe</color>
     <color name="colorPrimaryText">#000000</color>
     <color name="colorSecondaryText">#ffffff</color>
-    <color name="colorAccentSecondary">#BE5600</color>
     <color name="target_circle">#000000</color>
 </resources>

@@ -34,6 +34,14 @@
     <string name="waiting_for_location">Oczekiwanie na lokalizację…</string>
     <string name="wifi_disabled">Proszę połączyć się poprzez WIFI lub użyć GPSa w celu dokładniejszego namierzania</string>
     <string name="rector_name">Rektorat</string>
+    <string name="courts_name">Korty\ntenisowe</string>
+    <string name="ds_alpha_name">DS\nAlfa</string>
+    <string name="ds_beta_name">DS\nBeta</string>
+    <string name="ds_gamma_name">DS\nGamma</string>
+    <string name="ds_delta_name">DS\nDelta</string>
+    <string name="gwint_name">Klub Gwint</string>
+    <string name="assistant_hotel_name">Hotel\nAssyst.</string>
+    <string name="store">Sklep</string>
     <string name="lodge_name">Portiernia</string>
     <string name="action_search_description">W celu odnalezienia miejsca np. sali bądź budynku</string>
     <string name="menu">Menu</string>

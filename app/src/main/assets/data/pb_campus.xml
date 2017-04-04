@@ -1,102 +1,297 @@
-<map id="PB_campus" height="3072" route_path="routes/pb_campus.xml"
-    url="http://pb.edu.pl/" width="5120">
+<map height="3072" id="PB_campus" route_path="routes/pb_campus.xml" url="http://pb.edu.pl/"
+    width="5120">
     <tiles_configs>
-        <tiles_config height="256" path="tiles/pb_campus/1000/tile-%d_%d.png" width="256" zoom="1" />
-        <tiles_config height="256" path="tiles/pb_campus/500/tile-%d_%d.png" width="256" zoom="0.5" />
-        <tiles_config height="256" path="tiles/pb_campus/250/tile-%d_%d.png" width="256" zoom="0.25" />
+        <tiles_config height="256" path="tiles/pb_campus/1000/tile-%d_%d.png" width="256"
+            zoom="1" />
+        <tiles_config height="256" path="tiles/pb_campus/500/tile-%d_%d.png" width="256"
+            zoom="0.5" />
+        <tiles_config height="256" path="tiles/pb_campus/250/tile-%d_%d.png" width="256"
+            zoom="0.25" />
     </tiles_configs>
     <coordinates>
         <coordinate alt="150" lat="53.120405" lng="23.142700" />
         <coordinate alt="150" lat="53.115460" lng="23.156433" />
     </coordinates>
-    <space id="PB_WI" url="https://wi.pb.edu.pl" reference_map_path="data/pb_wi.xml">
+    <space id="PB_WI" reference_map_path="data/pb_wi.xml" url="https://wi.pb.edu.pl">
         <coordinates>
-            <coordinate alt="150" lng="23.14564" lat="53.11696" />
-            <coordinate alt="150" lng="23.14709" lat="53.11726" />
-            <coordinate alt="150" lng="23.14759" lat="53.11641" />
-            <coordinate alt="150" lng="23.14614" lat="53.11611" />
+            <coordinate alt="150" lat="53.11696" lng="23.14564" />
+            <coordinate alt="150" lat="53.11726" lng="23.14709" />
+            <coordinate alt="150" lat="53.11641" lng="23.14759" />
+            <coordinate alt="150" lat="53.11611" lng="23.14614" />
         </coordinates>
     </space>
 
     <spot id="bkm_529">
         <coordinates>
-            <coordinate alt="150" lat="53.1162607" lng="23.1451221"/>
+            <coordinate alt="150" lat="53.1162607" lng="23.1451221" />
         </coordinates>
     </spot>
     <spot id="bkm_527">
         <coordinates>
-            <coordinate alt="150" lat="53.1150356" lng="23.1454557"/>
+            <coordinate alt="150" lat="53.1150356" lng="23.1454557" />
         </coordinates>
     </spot>
     <spot id="bkm_525">
         <coordinates>
-            <coordinate alt="150" lat="53.1169621" lng="23.1442687"/>
+            <coordinate alt="150" lat="53.1169621" lng="23.1442687" />
         </coordinates>
     </spot>
     <spot id="bkm_Pogodna/Wiejska">
         <coordinates>
-            <coordinate alt="150" lat="53.1174883" lng="23.1434452"/>
+            <coordinate alt="150" lat="53.1174883" lng="23.1434452" />
         </coordinates>
     </spot>
     <spot id="bkm_535">
         <coordinates>
-            <coordinate alt="150" lat="53.1182239" lng="23.1443722"/>
+            <coordinate alt="150" lat="53.1182239" lng="23.1443722" />
         </coordinates>
     </spot>
     <spot id="bkm_Wiejska/Kopernika">
         <coordinates>
-            <coordinate alt="150" lat="53.1206629" lng="23.1453201"/>
+            <coordinate alt="150" lat="53.1206629" lng="23.1453201" />
         </coordinates>
     </spot>
     <spot id="bkm_Zwierzyniecka/Wiejska">
         <coordinates>
-            <coordinate alt="150" lat="53.1205048" lng="23.14715"/>
+            <coordinate alt="150" lat="53.1205048" lng="23.14715" />
         </coordinates>
     </spot>
     <spot id="bkm_587">
         <coordinates>
-            <coordinate alt="150" lat="53.120051" lng="23.1508861"/>
+            <coordinate alt="150" lat="53.120051" lng="23.1508861" />
         </coordinates>
     </spot>
     <spot id="bkm_588">
         <coordinates>
-            <coordinate alt="150" lat="53.119797" lng="23.1521605"/>
+            <coordinate alt="150" lat="53.119797" lng="23.1521605" />
         </coordinates>
     </spot>
     <spot id="bkm_586">
         <coordinates>
-            <coordinate alt="150" lat="53.1197055" lng="23.1546852"/>
+            <coordinate alt="150" lat="53.1197055" lng="23.1546852" />
         </coordinates>
     </spot>
     <spot id="bkm_589">
         <coordinates>
-            <coordinate alt="150" lat="53.1194584" lng="23.1558333"/>
+            <coordinate alt="150" lat="53.1194584" lng="23.1558333" />
         </coordinates>
     </spot>
 
     <spot id="BiKeR_Zwierzyniecka">
         <coordinates>
-            <coordinate alt="150" lat="53.1193352" lng="23.1559961"/>
+            <coordinate alt="150" lat="53.1193352" lng="23.1559961" />
         </coordinates>
     </spot>
     <spot id="BiKeR_Pogodna">
         <coordinates>
-            <coordinate alt="150" lat="53.1171701" lng="23.1440251"/>
+            <coordinate alt="150" lat="53.1171701" lng="23.1440251" />
         </coordinates>
     </spot>
     <spot id="Wiejska">
         <coordinates>
-            <coordinate alt="150" lat="53.11645" lng="23.14482"/>
+            <coordinate alt="150" lat="53.11645" lng="23.14482" />
         </coordinates>
     </spot>
     <spot id="Zwierzyniecka">
         <coordinates>
-            <coordinate alt="150" lat="53.11998" lng="23.15176"/>
+            <coordinate alt="150" lat="53.11998" lng="23.15176" />
         </coordinates>
     </spot>
     <spot id="Świerkowa">
         <coordinates>
-            <coordinate alt="150" lat="53.11850" lng="23.15545"/>
+            <coordinate alt="150" lat="53.11850" lng="23.15545" />
+        </coordinates>
+    </spot>
+
+    <space id="ACS">
+        <coordinates>
+            <coordinate alt="150" lat="53.1189101" lng="23.1457074" />
+            <coordinate alt="150" lat="53.1189409" lng="23.1458524" />
+            <coordinate alt="150" lat="53.1189039" lng="23.1458742" />
+            <coordinate alt="150" lat="53.1189356" lng="23.1460234" />
+            <coordinate alt="150" lat="53.11897" lng="23.1460032" />
+            <coordinate alt="150" lat="53.1190056" lng="23.1461709" />
+            <coordinate alt="150" lat="53.1184577" lng="23.146494" />
+            <coordinate alt="150" lat="53.1183847" lng="23.1461503" />
+            <coordinate alt="150" lat="53.1183623" lng="23.1461635" />
+            <coordinate alt="150" lat="53.1183525" lng="23.1461172" />
+            <coordinate alt="150" lat="53.1188681" lng="23.1458131" />
+            <coordinate alt="150" lat="53.1188528" lng="23.1457412" />
+        </coordinates>
+    </space>
+
+    <space id="courts">
+        <coordinates>
+            <coordinate alt="150" lat="53.118033785374955" lng="23.14503445912476" />
+            <coordinate alt="150" lat="53.11813376286825" lng="23.145512524099733" />
+            <coordinate alt="150" lat="53.11738972910563" lng="23.145942141357423" />
+            <coordinate alt="150" lat="53.11729302131653" lng="23.14546411829224" />
+        </coordinates>
+    </space>
+
+    <space id="PB_WM">
+        <coordinates>
+            <coordinate alt="150" lat="53.1173419" lng="23.1474247" />
+            <coordinate alt="150" lat="53.1177009" lng="23.1491259" />
+            <coordinate alt="150" lat="53.1168498" lng="23.1496136" />
+            <coordinate alt="150" lat="53.116491" lng="23.1479126" />
+        </coordinates>
+    </space>
+
+    <space id="PB_WE">
+        <coordinates>
+            <coordinate alt="150" lat="53.1177364" lng="23.1493463" />
+            <coordinate alt="150" lat="53.117797977020935" lng="23.149497447072505" />
+            <coordinate alt="150" lat="53.1178629" lng="23.1498987" />
+            <coordinate alt="150" lat="53.1179985" lng="23.14989" />
+            <coordinate alt="150" lat="53.1180394" lng="23.1500802" />
+            <coordinate alt="150" lat="53.1179221" lng="23.1502163" />
+            <coordinate alt="150" lat="53.11794969109853" lng="23.15028695024567" />
+            <coordinate alt="150" lat="53.11778375361124" lng="23.150383636131288" />
+            <coordinate alt="150" lat="53.11777" lng="23.15032" />
+            <coordinate alt="150" lat="53.11767" lng="23.15028" />
+            <coordinate alt="150" lat="53.11763" lng="23.15013" />
+            <coordinate alt="150" lat="53.1176882" lng="23.1499591" />
+            <coordinate alt="150" lat="53.1176337" lng="23.1496967" />
+            <coordinate alt="150" lat="53.11759" lng="23.1497219" />
+            <coordinate alt="150" lat="53.11763" lng="23.14992" />
+            <coordinate alt="150" lat="53.11759" lng="23.15001" />
+            <coordinate alt="150" lat="53.11722" lng="23.15022" />
+            <coordinate alt="150" lat="53.11711" lng="23.14970" />
+        </coordinates>
+    </space>
+
+    <space id="PB_WB">
+        <coordinates>
+            <coordinate alt="150" lat="53.1180721" lng="23.1509341" />
+            <coordinate alt="150" lat="53.1184248" lng="23.1526077" />
+            <coordinate alt="150" lat="53.1182668" lng="23.1527001" />
+            <coordinate alt="150" lat="53.11825" lng="23.15263" />
+            <coordinate alt="150" lat="53.1178454" lng="23.1528716" />
+            <coordinate alt="150" lat="53.1175017" lng="23.1512523" />
+        </coordinates>
+    </space>
+
+    <space id="Inno-Eko-Tech">
+        <coordinates>
+            <coordinate alt="150" lat="53.1174207" lng="23.1512974" />
+            <coordinate alt="150" lat="53.1177547" lng="23.1529156" />
+            <coordinate alt="150" lat="53.11744559074402" lng="23.15311697168274" />
+            <coordinate alt="150" lat="53.11710249816895" lng="23.151465998368835" />
+        </coordinates>
+    </space>
+
+    <space id="CNK">
+        <coordinates>
+            <coordinate alt="150" lat="53.119147346013385" lng="23.153748573173523" />
+            <coordinate alt="150" lat="53.11930028013865" lng="23.154417495332336" />
+            <coordinate alt="150" lat="53.11909894181569" lng="23.154524931079102" />
+            <coordinate alt="150" lat="53.119107053197226" lng="23.154575746699525" />
+            <coordinate alt="150" lat="53.11892338385264" lng="23.154680479264833" />
+            <coordinate alt="150" lat="53.11891376337687" lng="23.15463483950348" />
+            <coordinate alt="150" lat="53.11870752049764" lng="23.154755665428162" />
+            <coordinate alt="150" lat="53.118564156545" lng="23.15407622391205" />
+
+            <coordinate alt="150" lat="53.118712412478125" lng="23.153995631385804" />
+            <coordinate alt="150" lat="53.11880242994944" lng="23.15438752983246" />
+            <coordinate alt="150" lat="53.11885414157867" lng="23.154360875205995" />
+            <coordinate alt="150" lat="53.11883320289612" lng="23.154248095960998" />
+            <coordinate alt="150" lat="53.11900234720866" lng="23.15415141007538" />
+            <coordinate alt="150" lat="53.11902634180704" lng="23.154255891181947" />
+            <coordinate alt="150" lat="53.119079688288366" lng="23.154232002601624" />
+            <coordinate alt="150" lat="53.11899750553131" lng="23.15382916569977" />
+        </coordinates>
+    </space>
+
+    <space id="ds_alpha">
+        <coordinates>
+            <coordinate alt="150" lat="53.1194927" lng="23.152765" />
+            <coordinate alt="150" lat="53.1195514" lng="23.1530517" />
+            <coordinate alt="150" lat="53.11924" lng="23.1532279" />
+            <coordinate alt="150" lat="53.1191819" lng="23.1529409" />
+        </coordinates>
+    </space>
+    <space id="ds_beta">
+        <coordinates>
+            <coordinate alt="150" lat="53.1195889" lng="23.1518443" />
+            <coordinate alt="150" lat="53.1196476" lng="23.1521309" />
+            <coordinate alt="150" lat="53.1193361" lng="23.1523071" />
+            <coordinate alt="150" lat="53.1192781" lng="23.1520201" />
+        </coordinates>
+    </space>
+    <space id="ds_gamma">
+        <coordinates>
+            <coordinate alt="150" lat="53.1196878" lng="23.1509214" />
+            <coordinate alt="150" lat="53.1197465" lng="23.151208" />
+            <coordinate alt="150" lat="53.1194351" lng="23.1513842" />
+            <coordinate alt="150" lat="53.119377" lng="23.1510972" />
+        </coordinates>
+    </space>
+    <space id="ds_delta">
+        <coordinates>
+            <coordinate alt="150" lat="53.1197767" lng="23.1499903" />
+            <coordinate alt="150" lat="53.1198354" lng="23.150277" />
+            <coordinate alt="150" lat="53.119524" lng="23.1504532" />
+            <coordinate alt="150" lat="53.1194659" lng="23.1501661" />
+        </coordinates>
+    </space>
+    <space id="assistant_hotel">
+        <coordinates>
+            <coordinate alt="150" lat="53.1198745" lng="23.1490671" />
+            <coordinate alt="150" lat="53.1199332" lng="23.1493538" />
+            <coordinate alt="150" lat="53.1196218" lng="23.14953" />
+            <coordinate alt="150" lat="53.1195637" lng="23.149243" />
+        </coordinates>
+    </space>
+
+    <space id="Gwint">
+        <coordinates>
+            <coordinate alt="150" lat="53.1186890" lng="23.1516894" />
+            <coordinate alt="150" lat="53.1187079" lng="23.1517798" />
+            <coordinate alt="150" lat="53.1186596" lng="23.1518078" />
+            <coordinate alt="150" lat="53.1186407" lng="23.1517173" />
+            <coordinate alt="150" lat="53.1185877" lng="23.1517480" />
+            <coordinate alt="150" lat="53.1184639" lng="23.1511553" />
+            <coordinate alt="150" lat="53.1185135" lng="23.1511264" />
+            <coordinate alt="150" lat="53.1184963" lng="23.1510442" />
+            <coordinate alt="150" lat="53.1185503" lng="23.1510128" />
+            <coordinate alt="150" lat="53.1185852" lng="23.1511795" />
+            <coordinate alt="150" lat="53.1186342" lng="23.1511510" />
+            <coordinate alt="150" lat="53.1185644" lng="23.1508174" />
+            <coordinate alt="150" lat="53.1186166" lng="23.1507871" />
+            <coordinate alt="150" lat="53.1186051" lng="23.1507325" />
+            <coordinate alt="150" lat="53.1186568" lng="23.1507025" />
+            <coordinate alt="150" lat="53.1186509" lng="23.1506744" />
+            <coordinate alt="150" lat="53.1186020" lng="23.1507029" />
+            <coordinate alt="150" lat="53.1186076" lng="23.1507298" />
+            <coordinate alt="150" lat="53.1184028" lng="23.1508489" />
+            <coordinate alt="150" lat="53.1183656" lng="23.1506714" />
+            <coordinate alt="150" lat="53.1185706" lng="23.1505522" />
+            <coordinate alt="150" lat="53.1185826" lng="23.1506099" />
+            <coordinate alt="150" lat="53.1186315" lng="23.1505815" />
+            <coordinate alt="150" lat="53.1186219" lng="23.1505355" />
+            <coordinate alt="150" lat="53.1188268" lng="23.1504164" />
+            <coordinate alt="150" lat="53.1188640" lng="23.1505940" />
+            <coordinate alt="150" lat="53.1187623" lng="23.1506531" />
+            <coordinate alt="150" lat="53.1188260" lng="23.1509571" />
+            <coordinate alt="150" lat="53.1189239" lng="23.1509001" />
+            <coordinate alt="150" lat="53.1190657" lng="23.1515770" />
+            <coordinate alt="150" lat="53.1189671" lng="23.1516343" />
+            <coordinate alt="150" lat="53.1189838" lng="23.1517137" />
+            <coordinate alt="150" lat="53.1189287" lng="23.1517458" />
+            <coordinate alt="150" lat="53.1189625" lng="23.1519072" />
+            <coordinate alt="150" lat="53.1189169" lng="23.1519337" />
+            <coordinate alt="150" lat="53.1188665" lng="23.1516931" />
+            <coordinate alt="150" lat="53.1188131" lng="23.1517242" />
+            <coordinate alt="150" lat="53.1188304" lng="23.1518067" />
+            <coordinate alt="150" lat="53.1187792" lng="23.1518365" />
+            <coordinate alt="150" lat="53.1187420" lng="23.1516586" />
+        </coordinates>
+    </space>
+
+    <spot id="Store">
+        <coordinates>
+            <coordinate alt="150" lat="53.1201922" lng="23.1524426" />
         </coordinates>
     </spot>
 

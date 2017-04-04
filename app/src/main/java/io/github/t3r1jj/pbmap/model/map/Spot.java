@@ -9,6 +9,6 @@ public class Spot extends Place {
 
     @Override
     public PlaceView createView(Context context) {
-        return new SpotView(context, this);
+        return hidden ? null : new SpotView(context, this);
     }
 }
