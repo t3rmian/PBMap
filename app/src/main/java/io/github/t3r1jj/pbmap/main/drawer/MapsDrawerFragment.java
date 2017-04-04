@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.github.t3r1jj.pbmap.R;
@@ -63,6 +62,8 @@ public class MapsDrawerFragment extends NavigationDrawerFragment {
         if (callbacks != null) {
             if (itemId == R.id.menu_about) {
                 callbacks.onAboutDrawerItemSelected();
+            } else if (itemId == R.id.menu_help) {
+                callbacks.onHelpDrawerItemSelected();
             } else {
                 callbacks.onPlaceDrawerItemSelected(places.get(Math.abs(itemId)));
             }
@@ -93,6 +94,8 @@ public class MapsDrawerFragment extends NavigationDrawerFragment {
         void onPlaceDrawerItemSelected(SearchSuggestion suggestion);
 
         void onAboutDrawerItemSelected();
+
+        void onHelpDrawerItemSelected();
 
         String getCurrentMapId();
     }

@@ -8,9 +8,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.content.res.TypedArray;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.LocationManager;
@@ -25,6 +25,7 @@ import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -36,8 +37,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ZoomControls;
 
-import com.getbase.floatingactionbutton.FloatingActionButton;
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 
 import io.github.t3r1jj.pbmap.AboutActivity;
 import io.github.t3r1jj.pbmap.BuildConfig;
@@ -51,6 +54,7 @@ import io.github.t3r1jj.pbmap.search.Search;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 
 import static io.github.t3r1jj.pbmap.main.Controller.PARCELABLE_KEY_CONTROLLER_MEMENTO;
+import static java.security.AccessController.getContext;
 
 public class MapActivity extends DrawerActivity
         implements MapsDrawerFragment.PlaceNavigationDrawerCallbacks {
@@ -60,7 +64,8 @@ public class MapActivity extends DrawerActivity
     private ViewGroup mapContainer;
     private FloatingActionButton infoButton;
     private FloatingActionButton gpsButton;
-    private FloatingActionsMenu levelMenu;
+    private FloatingActionMenu levelMenu;
+    private FloatingActionMenu moreOptions;
     private FloatingActionButton levelUpButton;
     private FloatingActionButton levelDownButton;
     private MenuItem backButton;
@@ -68,6 +73,7 @@ public class MapActivity extends DrawerActivity
     private PBLocationListener locationListener;
     private boolean explicitlyAskedForPermissions;
     private boolean showBackButton;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,11 +96,12 @@ public class MapActivity extends DrawerActivity
     }
 
     private void setUpButtons() {
-        levelMenu = (FloatingActionsMenu) findViewById(R.id.level_fab_menu);
+        moreOptions = (FloatingActionMenu) findViewById(R.id.more_fab_menu);
+        levelMenu = (FloatingActionMenu) findViewById(R.id.level_fab_menu);
         levelUpButton = (FloatingActionButton) findViewById(R.id.up_fab);
         Drawable triangleDrawable = getResources().getDrawable(R.drawable.triangle_up_drawable);
         DrawableCompat.setTint(triangleDrawable, ContextCompat.getColor(this, R.color.colorSecondaryText));
-        levelUpButton.setIconDrawable(triangleDrawable);
+        levelUpButton.setImageDrawable(triangleDrawable);
         levelUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,7 +111,7 @@ public class MapActivity extends DrawerActivity
         levelDownButton = (FloatingActionButton) findViewById(R.id.down_fab);
         triangleDrawable = getResources().getDrawable(R.drawable.triangle_down_drawable);
         DrawableCompat.setTint(triangleDrawable, ContextCompat.getColor(this, R.color.colorSecondaryText));
-        levelDownButton.setIconDrawable(triangleDrawable);
+        levelDownButton.setImageDrawable(triangleDrawable);
         levelDownButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -273,7 +280,7 @@ public class MapActivity extends DrawerActivity
     @Override
     protected void initializeContentView() {
         setContentView(R.layout.activity_map);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 
@@ -349,7 +356,7 @@ public class MapActivity extends DrawerActivity
     }
 
     public void setBackButtonVisible(boolean visible) {
-        if (backButton !=null) {
+        if (backButton != null) {
             backButton.setVisible(visible);
         }
         showBackButton = visible;
@@ -357,7 +364,7 @@ public class MapActivity extends DrawerActivity
 
     public void setInfoButtonVisible(boolean visible) {
         if (visible) {
-            infoButton.setVisibility(View.VISIBLE);
+            infoButton.setVisibility(moreOptions.isOpened() ? View.VISIBLE : View.INVISIBLE);
         } else {
             infoButton.setVisibility(View.GONE);
         }
@@ -396,6 +403,84 @@ public class MapActivity extends DrawerActivity
     public void onAboutDrawerItemSelected() {
         Intent aboutIntent = new Intent(this, AboutActivity.class);
         startActivity(aboutIntent);
+    }
+
+    @Override
+    public void onHelpDrawerItemSelected() {
+        final int levelMenuVisibility = levelMenu.getVisibility();
+        if (levelMenuVisibility != View.VISIBLE) {
+            levelMenu.setVisibility(View.VISIBLE);
+        }
+        final boolean backItemVisible = backButton.isVisible();
+        if (!backItemVisible) {
+            backButton.setVisible(true);
+        }
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+        int height = size.y;
+        int[] attrs = new int[] {R.attr.actionBarSize};
+        TypedArray ta = obtainStyledAttributes(attrs);
+        int toolBarHeight = ta.getDimensionPixelSize(0, -1);
+        ta.recycle();
+        Rect screenRect = new Rect(0, toolBarHeight, width, height);
+        new TapTargetSequence(this)
+                .targets(
+                        defaultWrap(TapTarget.forView(findViewById(R.id.action_search),
+                                getString(R.string.action_search), getString(R.string.action_search_description))),
+                        defaultWrap(TapTarget.forToolbarNavigationIcon(toolbar,
+                                getString(R.string.menu), getString(R.string.menu_description))),
+                        defaultWrap(TapTarget.forView(levelMenu.getChildAt(levelMenu.getChildCount() - 1),
+                                getString(R.string.floor), getString(R.string.floor_description)))
+                                .transparentTarget(true)
+                        ,
+                        defaultWrap(TapTarget.forView(moreOptions.getChildAt(moreOptions.getChildCount() - 1),
+                                getString(R.string.more_features), getString(R.string.more_features_description)))
+                                .transparentTarget(true)
+                        ,
+                        defaultWrap(TapTarget.forBounds(screenRect,
+                                getString(R.string.map), getString(R.string.maps_description)))
+                                .transparentTarget(true)
+                                .targetRadius(getResources().getDimensionPixelSize(R.dimen.target_map_radius))
+                        ,
+                        defaultWrap(TapTarget.forView(findViewById(R.id.action_back) != null ? findViewById(R.id.action_back) : findViewById(R.id.action_search),
+                                getString(R.string.action_back), getString(R.string.action_back_description)))
+
+                )
+                .continueOnCancel(true)
+                .considerOuterCircleCanceled(true)
+                .listener(new TapTargetSequence.Listener() {
+                    @Override
+                    public void onSequenceFinish() {
+                        levelMenu.setVisibility(levelMenuVisibility);
+                        backButton.setVisible(backItemVisible);
+                    }
+
+                    @Override
+                    public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
+
+                    }
+
+                    @Override
+                    public void onSequenceCanceled(TapTarget lastTarget) {
+                    }
+                })
+                .start();
+    }
+
+    TapTarget defaultWrap(TapTarget tapTarget) {
+        tapTarget.targetCircleColor(R.color.colorAccent)
+                .outerCircleColor(R.color.colorAccentSecondary)
+                .textColor(R.color.colorSecondaryText)
+                .titleTextColor(R.color.colorSecondaryText)
+                .descriptionTextColor(R.color.colorSecondaryText)
+                .tintTarget(false)
+                .drawShadow(true)
+                .outerCircleAlpha(1)
+                .transparentTarget(false);
+        return tapTarget;
     }
 
     @Override

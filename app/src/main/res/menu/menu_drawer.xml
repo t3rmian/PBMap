@@ -12,8 +12,12 @@
         <menu>
             <group>
                 <item
+                    android:id="@+id/menu_help"
+                    android:icon="@drawable/ic_help"
+                    android:title="@string/help" />
+                <item
                     android:id="@+id/menu_about"
-                    android:icon="@android:drawable/ic_dialog_info"
+                    android:icon="@drawable/ic_info"
                     android:title="@string/about" />
             </group>
         </menu>

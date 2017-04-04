@@ -15,4 +15,5 @@
     <dimen name="marker_size_bordered">24dp</dimen>
     <dimen name="marker_border">3dp</dimen>
     <dimen name="about_icon_size">64dp</dimen>
+    <dimen name="target_map_radius">50dp</dimen>
 </resources>

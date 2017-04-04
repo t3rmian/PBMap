@@ -4,8 +4,11 @@
         <item>TileView</item>
         <item>Simple-XML</item>
         <item>Swipe-Selector</item>
+        <item>FloatingActionButton</item>
+        <item>TapTargetView</item>
         <item>Google Support Libraries</item>
         <item>Exo Bold</item>
+        <item>Icons</item>
         <item>Map tiles</item>
     </string-array>
     <string-array name="attribution_descriptions">
@@ -24,6 +27,16 @@
             \nAuthor: Iiro Krankka
             \nLicense: Apache 2.0
             \nSite: https://github.com/roughike/SwipeSelector</item>
+        <item>Yet another implementation of Floating Action Button for Android with lots of features.
+            \n\nVersion: com.github.clans:fab:1.6.4
+            \nAuthor: Dmytro Tarianyk
+            \nLicense: Apache 2.0
+            \nSite: https://github.com/Clans/FloatingActionButton</item>
+        <item>An implementation of tap targets from Google\'s Material Design guidelines on feature discovery.
+            \n\nVersion: com.getkeepsafe.taptargetview:taptargetview:1.9.1
+            \nAuthor: Keepsafe Software Inc.
+            \nLicense: Apache 2.0
+            \nSite: https://github.com/KeepSafe/TapTargetView</item>
         <item>A group of support libraries offering backward compatibility and convenient helper classes.
             \n\nVersion: com.android.support
             \nAuthor: The Android Open Source Project
@@ -34,6 +47,10 @@
             \nAuthor: Natanael Gama (exo@ndiscovered.com)
             \nLicense: SIL Open Font License v1.10
             \nSite: https://www.fontsquirrel.com/fonts/exo</item>
+        <item>Icons generated thanks to Austin Andrews - https://materialdesignicons.com/
+            \nCredits: Google Inc.
+            \nLicense: Apache 2.0
+            \nSite: https://github.com/google/material-design-icons</item>
         <item>Map tiles, also available at project site accessible through launcher icon at the top.
             \n\nMap tiles by Stamen Design, under CC BY 3.0.
             \nData by OpenStreetMap (© OpenStreetMap contributors), under ODbL.
