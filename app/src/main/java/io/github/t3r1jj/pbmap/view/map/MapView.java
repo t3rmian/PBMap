@@ -27,7 +27,9 @@ public class MapView extends TileView implements PlaceView {
     }
 
     public void addPlaceView(PlaceView place) {
-        place.addToMap(this);
+        if (place != null) {
+            place.addToMap(this);
+        }
     }
 
     @Override

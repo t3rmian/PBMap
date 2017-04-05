@@ -294,5 +294,55 @@
             <coordinate alt="150" lat="53.1201922" lng="23.1524426" />
         </coordinates>
     </spot>
+    <spot id="Store">
+        <coordinates>
+            <coordinate alt="150" lat="53.1201922" lng="23.1524426" />
+        </coordinates>
+    </spot>
+    <spot id="Store">
+        <coordinates>
+            <coordinate alt="150" lat="53.120301627044675" lng="23.151521298336792" />
+        </coordinates>
+    </spot>
+    <spot id="P">
+        <coordinates>
+            <coordinate alt="150" lat="53.11793788243612" lng="23.14736531400757" />
+        </coordinates>
+    </spot>
+    <spot id="P">
+        <coordinates>
+            <coordinate alt="150" lat="53.11605325009664" lng="23.146935529110717" />
+        </coordinates>
+    </spot>
+    <spot id="P">
+        <coordinates>
+            <coordinate alt="150" lat="53.118536640726724" lng="23.152681528964234" />
+        </coordinates>
+    </spot>
+    <spot id="P">
+        <coordinates>
+            <coordinate alt="150" lat="53.11886849054972" lng="23.153163575369263" />
+        </coordinates>
+    </spot>
+    <spot id="P">
+        <coordinates>
+            <coordinate alt="150" lat="53.11841098347982" lng="23.15347513274841" />
+        </coordinates>
+    </spot>
+    <spot id="P">
+        <coordinates>
+            <coordinate alt="150" lat="53.1183433257548" lng="23.154377492437746" />
+        </coordinates>
+    </spot>
+    <spot id="P">
+        <coordinates>
+            <coordinate alt="150" lat="53.115834179916384" lng="23.148302626461792" />
+        </coordinates>
+    </spot>
+    <spot id="ATM">
+        <coordinates>
+            <coordinate alt="150" lat="53.11722" lng="23.14690" />
+        </coordinates>
+    </spot>
 
 </map>

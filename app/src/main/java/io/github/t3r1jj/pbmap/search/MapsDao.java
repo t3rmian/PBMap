@@ -42,8 +42,10 @@ public class MapsDao extends ContextWrapper implements SuggestionsDao {
             XPath xPath = factory.newXPath();
             try {
                 Attr name = (Attr) xPath.evaluate("(//*/@id)[1]", new InputSource(openAsset(assetsPath)), XPathConstants.NODE);
-                SearchSuggestion searchSuggestion = new SearchSuggestion(name.getValue(), assetsPath);
-                searchSuggestions.add(searchSuggestion);
+                if (!"true".equals(name.getOwnerElement().getAttribute("hidden"))) {
+                    SearchSuggestion searchSuggestion = new SearchSuggestion(name.getValue(), assetsPath);
+                    searchSuggestions.add(searchSuggestion);
+                }
             } catch (XPathExpressionException e) {
                 e.printStackTrace();
             }

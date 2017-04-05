@@ -1,0 +1,22 @@
+<map up_map_path="data/pb_wi.xml" height="1497" id="WI_PB_L0" previous_map_path="data/pb_wi.xml"
+    route_path="routes/pb_campus.xml" url="https://wi.pb.edu.pl/" width="2700" hidden="true">
+    <tiles_configs>
+        <tiles_config height="256" path="tiles/pb_campus/wi/floor/tile-%d_%d.png" width="256"
+            zoom="1" />
+    </tiles_configs>
+    <coordinates>
+        <coordinate alt="145" lat="53.1172785029204" lng="23.147262968515623" />
+        <coordinate alt="145" lat="53.11671493021081" lng="23.145568992578127" />
+    </coordinates>
+
+    <spot id="↑">	<coordinates>		<coordinate lat="53.117153797256506" lng="23.146949507734373" alt="145"/>	</coordinates></spot>
+    <spot id="↑">	<coordinates>		<coordinate lat="53.117091786884856" lng="23.1463851990625" alt="145"/>	</coordinates></spot>
+    <spot id="↑">	<coordinates>		<coordinate lat="53.11696321908695" lng="23.14584642033115" alt="145"/>	</coordinates></spot>
+    <spot id="ATM">
+        <coordinates>
+            <coordinate alt="145" lat="53.11724355948689" lng="23.14688384015195" />
+        </coordinates>
+    </spot>
+    <spot id="↵">	<coordinates>		<coordinate lat="53.11723032460363" lng="23.146770930625" alt="145"/>	</coordinates></spot>
+    <spot id="↵">	<coordinates>		<coordinate lat="53.11701964582435" lng="23.14691271350248" alt="145"/>	</coordinates></spot>
+</map>

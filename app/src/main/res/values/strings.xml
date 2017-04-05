@@ -53,4 +53,5 @@
     <string name="more_features_description">You can enable gps for easier navigation on the map (might be inaccurate indoors).\nSometimes there can be additional info about currently viewed place.</string>
     <string name="action_back_description">After going deep into the map a back button will appear which will allow you to go back a map</string>
     <string name="maps_description">By interacting with map you can navigate to different places.\nUse long press to put a source/destination markers after which a shortest route between those locations will be drawn.</string>
+    <string name="atm_name">ATM</string>
 </resources>

@@ -1,4 +1,4 @@
-<map height="2314" id="WI_PB" previous_map_path="data/pb_campus.xml" up_map_path="data/pb_wi_1.xml"
+<map down_map_path="data/pb_wi_0.xml" height="2314" id="WI_PB" previous_map_path="data/pb_campus.xml" up_map_path="data/pb_wi_2.xml"
     route_path="routes/pb_campus.xml" url="https://wi.pb.edu.pl/" width="2700">
     <tiles_configs>
         <tiles_config height="256" path="tiles/pb_campus/wi/main/tile-%d_%d.png" width="256"
@@ -11,7 +11,7 @@
         <coordinate alt="150" lat="53.116078" lng="23.145447" />
     </coordinates>
 
-    <spot id="wc">
+    <spot id="WC">
         <coordinates>
             <coordinate alt="150" lat="53.11694903654988" lng="23.1464198349217" />
             <coordinate alt="150" lat="53.116937126784165" lng="23.146363468880747" />
@@ -68,7 +68,7 @@
         </coordinates>
     </spot>
 
-    <spot id="_">
+    <spot id="1B"  hidden="true">
         <coordinates>
             <coordinate alt="150" lat="53.116827978885354" lng="23.147160284288557" />
             <coordinate alt="150" lat="53.116818773628935" lng="23.14711671803607" />
@@ -76,7 +76,7 @@
             <coordinate alt="150" lat="53.11687884704301" lng="23.147130591071036" />
         </coordinates>
     </spot>
-    <spot id="_">
+    <spot id="2B"  hidden="true">
         <coordinates>
             <coordinate alt="150" lat="53.116818773628935" lng="23.14711671803607" />
             <coordinate alt="150" lat="53.11680956837252" lng="23.147073151783584" />
@@ -84,7 +84,7 @@
             <coordinate alt="150" lat="53.11686964178659" lng="23.14708702481855" />
         </coordinates>
     </spot>
-    <spot id="_">
+    <spot id="3B"  hidden="true">
         <coordinates>
             <coordinate alt="150" lat="53.11680956837252" lng="23.147073151783584" />
             <coordinate alt="150" lat="53.11679115785967" lng="23.14698601927861" />
@@ -92,7 +92,7 @@
             <coordinate alt="150" lat="53.116860436530175" lng="23.147043458566063" />
         </coordinates>
     </spot>
-    <spot id="4b">
+    <spot id="4B">
         <coordinates>
             <coordinate alt="150" lat="53.11679115785967" lng="23.14698601927861" />
             <coordinate alt="150" lat="53.11677274734683" lng="23.146898886773638" />
@@ -100,7 +100,7 @@
             <coordinate alt="150" lat="53.11684202601733" lng="23.14695632606109" />
         </coordinates>
     </spot>
-    <spot id="_">
+    <spot id="5B" hidden="true">
         <coordinates>
             <coordinate alt="150" lat="53.11677274734683" lng="23.146898886773638" />
             <coordinate alt="150" lat="53.116754336833985" lng="23.146811754268665" />
@@ -108,7 +108,7 @@
             <coordinate alt="150" lat="53.11682361550449" lng="23.146869193556117" />
         </coordinates>
     </spot>
-    <spot id="6b">
+    <spot id="6B">
         <coordinates>
             <coordinate alt="150" lat="53.116754336833985" lng="23.146811754268665" />
             <coordinate alt="150" lat="53.116717515808304" lng="23.146637489258715" />
@@ -168,5 +168,6 @@
     <spot id="↵">	<coordinates>		<coordinate lat="53.11723032460363" lng="23.146770930625" alt="150"/>	</coordinates></spot>
     <spot id="↵">	<coordinates>		<coordinate lat="53.11636529495395" lng="23.147278091562498" alt="150"/>	</coordinates></spot>
     <spot id="↵">	<coordinates>		<coordinate lat="53.116185333504006" lng="23.146427638330078" alt="150"/>	</coordinates></spot>
-
+    <spot id="↑↓">	<coordinates>		<coordinate lat="53.11696321908695" lng="23.14584642033115" alt="150"/>	</coordinates></spot>
+    <spot id="WC">	<coordinates>		<coordinate lat="53.116854641449926" lng="23.147175362291257" alt="150"/>	</coordinates></spot>
 </map>
