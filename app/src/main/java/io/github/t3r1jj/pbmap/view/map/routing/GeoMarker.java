@@ -136,7 +136,7 @@ public class GeoMarker extends ImageView implements RemovableView {
     }
 
     public enum Marker {
-        SOURCE(new int[]{R.drawable.source_down_marker, R.drawable.source_marker, R.drawable.destination_marker}),
+        SOURCE(new int[]{R.drawable.source_down_marker, R.drawable.source_marker, R.drawable.source_up_marker}),
         DESTINATION(new int[]{R.drawable.destination_down_marker, R.drawable.destination_marker, R.drawable.destination_up_marker});
 
         private final int[] drawables;

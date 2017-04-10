@@ -33,16 +33,30 @@ public class SpotView extends MarkerLayout implements PlaceView {
         textView.setText(place.getName(context));
         Resources resources = context.getResources();
         textView.setTextColor(color);
-        textSize = resources.getDimension(R.dimen.spot_text);
+        if (isSpecialText()) {
+            textSize = resources.getDimension(R.dimen.spot_text) * 2;
+        } else {
+            textSize = resources.getDimension(R.dimen.spot_text);
+        }
         setTypeFace(context);
         center = place.getCenter();
+    }
+
+    private boolean isSpecialText() {
+        return (textView.getText().length() == 1 && !Character.isLetterOrDigit(textView.getText().charAt(0))) ||
+                (textView.getText().length() == 2 && !Character.isLetterOrDigit(textView.getText().charAt(0))
+                        && !Character.isLetterOrDigit(textView.getText().charAt(1)));
     }
 
     private void setTypeFace(Context context) {
         final AssetManager assetManager = context.getAssets();
         final Typeface typeface = Typeface.createFromAsset(assetManager, BuildConfig.FONT_PATH);
         textView.setPaintFlags(textView.getPaintFlags() | Paint.SUBPIXEL_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
-        textView.setTypeface(typeface);
+        if (isSpecialText()) {
+            textView.setTypeface(typeface, Typeface.BOLD);
+        } else {
+            textView.setTypeface(typeface);
+        }
     }
 
     @Override

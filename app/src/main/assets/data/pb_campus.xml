@@ -344,5 +344,6 @@
             <coordinate alt="150" lat="53.11722" lng="23.14690" />
         </coordinates>
     </spot>
-
+    <spot id="P">	<coordinates>		<coordinate lat="53.116984361241656" lng="23.150066860983276" alt="-11.0"/>	</coordinates></spot>
+    <spot id="P">	<coordinates>		<coordinate lat="53.11708094327291" lng="23.15241875458069" alt="-11.0"/>	</coordinates></spot>
 </map>
