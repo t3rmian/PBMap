@@ -234,7 +234,11 @@ public class Controller implements GeoMarker.MapListener {
     }
 
     void onNavigationPerformed(PBMap.Navigation navigation) {
-        map = mapsDao.loadMap(map.getNavigationMapPath(navigation));
+        String navigationMapPath = map.getNavigationMapPath(navigation);
+        if (navigationMapPath == null) {
+            return;
+        }
+        map = mapsDao.loadMap(navigationMapPath);
         loadRouteGraph();
         updateView();
         mapView.loadPreviousPosition();
