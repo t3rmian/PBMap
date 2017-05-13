@@ -6,6 +6,7 @@ import android.content.SearchRecentSuggestionsProvider;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
+import android.support.annotation.NonNull;
 
 public class SearchListProvider extends SearchRecentSuggestionsProvider {
 
@@ -38,11 +39,24 @@ public class SearchListProvider extends SearchRecentSuggestionsProvider {
             if (db == null) {
                 db = new MapsDao(getBaseContext());
             }
-            selectionArgs[0] = selectionPrePostFix + selectionArgs[0].toLowerCase() + selectionPrePostFix;
-            return db.query(null, tableColumns, whereClause, selectionArgs, null, null, orderBy);
+            return db.query(null, tableColumns, whereClause, prepareScopedSelectionArgs(selectionArgs), null, null, orderBy);
         } else {
             return super.query(uri, projection, selection, selectionArgs, sortOrder);
         }
+    }
+
+    private String[] prepareScopedSelectionArgs(String[] selectionArgs) {
+        String[] scopedSelectionArgs = selectionArgs[0].split("@");
+        scopedSelectionArgs[0] = addWildcards(scopedSelectionArgs[0]);
+        if (scopedSelectionArgs.length > 1) {
+            scopedSelectionArgs[1] = addWildcards(scopedSelectionArgs[1]);
+        }
+        return scopedSelectionArgs;
+    }
+
+    @NonNull
+    private String addWildcards(String argument) {
+        return selectionPrePostFix + argument.toLowerCase() + selectionPrePostFix;
     }
 
     protected Context getBaseContext() {

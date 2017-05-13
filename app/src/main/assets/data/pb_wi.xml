@@ -177,7 +177,7 @@
     <spot id="16C" hidden="true">	<coordinates>		<coordinate lat="53.11658636142772" lng="23.147331477656248" alt="150"/>	</coordinates></spot>
     <spot id="17C" hidden="true">	<coordinates>		<coordinate lat="53.116592792999135" lng="23.147360013281247" alt="150"/>	</coordinates></spot>
     <spot id="38B">	<coordinates>		<coordinate lat="53.11679318519443" lng="23.146356996970216" alt="150"/>	</coordinates></spot>
-    <spot id="WB">	<coordinates>		<coordinate lat="53.11669164062674" lng="23.146416443798827" alt="150"/>	</coordinates></spot>
+    <spot id="WC">	<coordinates>		<coordinate lat="53.11669164062674" lng="23.146416443798827" alt="150"/>	</coordinates></spot>
     <spot id="45B">	<coordinates>		<coordinate lat="53.11668729748889" lng="23.145844285646362" alt="150"/>	</coordinates></spot>
     <spot id="47B">	<coordinates>		<coordinate lat="53.11658361091296" lng="23.145900096017762" alt="150"/>	</coordinates></spot>
     <spot id="26B" hidden="true">	<coordinates>		<coordinate lat="53.1165890418582" lng="23.145945193633423" alt="150"/>	</coordinates></spot>

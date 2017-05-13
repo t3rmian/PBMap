@@ -118,12 +118,14 @@ public class MapsDao extends ContextWrapper implements SuggestionsDao {
     @Override
     public Cursor query(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String whereRegex, String orderBy) {
         MatrixCursor matrixCursor = new MatrixCursor(columns);
-        selectionArgs[0] = selectionArgs[0].replace("%", ".*");
+        for (int i = 0; i < selectionArgs.length; i++) {
+            selectionArgs[i] = selectionArgs[i].replace("%", ".*");
+        }
         List<SearchSuggestion> searchSuggestions = getSearchSuggestions();
         for (SearchSuggestion suggestion : searchSuggestions) {
             String name = suggestion.getName(getBaseContext());
             String map = suggestion.getMapName(getBaseContext());
-            if (name.toLowerCase().matches(selectionArgs[0].toLowerCase())) {
+            if (queryMatchesSuggestion(selectionArgs, name, map)) {
                 matrixCursor.newRow()
                         .add(suggestion.getNameResId(getBaseContext()))
                         .add(name.toUpperCase())
@@ -133,6 +135,16 @@ public class MapsDao extends ContextWrapper implements SuggestionsDao {
             }
         }
         return matrixCursor;
+    }
+
+    private boolean queryMatchesSuggestion(String[] selectionArgs, String name, String map) {
+        String[] nameAndMap = new String[]{name, map};
+        for (int i = 0; i < selectionArgs.length; i++) {
+            if (!nameAndMap[i].toLowerCase().matches(selectionArgs[i].toLowerCase())) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public RouteGraph loadGraph(PBMap map) {
