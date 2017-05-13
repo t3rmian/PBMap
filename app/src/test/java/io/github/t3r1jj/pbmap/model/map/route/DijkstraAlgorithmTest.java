@@ -79,7 +79,7 @@ public class DijkstraAlgorithmTest {
     private class CoordinateStub extends Coordinate {
 
         private CoordinateStub(double lng, double lat) {
-            super(lng, lat);
+            super(lat, lng);
         }
 
         @Override

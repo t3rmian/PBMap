@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Integration</string>
+    <string name="could_not_open_android_market">Could not open android market</string>
+    <string name="integration_description">This is a sample application which integrates with PBMap\n\nYou can:\n- pinpoint defined place (place_id@map_id)\n- pinpoint custom location (map_id + location coordinates)</string>
+    <string name="search_query_hint">place_id@map_id</string>
+    <string name="search_query">130@pb_wi_l2</string>
+    <string name="pinpoint_defined_location">Pinpoint defined place</string>
+    <string name="pinpoint_custom_location">Pinpoint custom location</string>
+    <string name="map_id_hint">map_id</string>
+    <string name="map_id">pb_campus</string>
+    <string name="lat_hint">Latitude</string>
+    <string name="lng_hint">Longitude</string>
+    <string name="lat">53.11878</string>
+    <string name="lng">23.14878</string>
+    <string name="incorrect_location_format">Incorrect location format</string>
+</resources>

@@ -9,8 +9,6 @@ public class Search extends SearchListProvider {
 
     public Search(Context context) {
         this.context = context;
-        whereClause = "lower(" + SUGGESTIONS_COLUMN_SUGGESTION + ") = ?";
-        selectionPrePostFix = "";
     }
 
     @Override
@@ -18,11 +16,16 @@ public class Search extends SearchListProvider {
         return context;
     }
 
-    public SearchSuggestion find(String userQuery) {
-        Cursor cursor = query(null, null, null, new String[]{userQuery}, null);
+    public SearchSuggestion findFirst(String query, boolean searchById) {
+        this.searchById = searchById;
+        Cursor cursor = query(null, null, null, new String[]{query}, null);
+        return search(cursor);
+    }
+
+    private SearchSuggestion search(Cursor cursor) {
         if (cursor != null) {
             if (cursor.moveToFirst()) {
-                String placeId = cursor.getString(cursor.getColumnIndex(SUGGESTIONS_COLUMN_ID));
+                String placeId = cursor.getString(cursor.getColumnIndex(SUGGESTIONS_COLUMN_PLACE));
                 String mapPath = cursor.getString(cursor.getColumnIndex(SUGGESTIONS_COLUMN_MAP_PATH));
                 cursor.close();
                 return new SearchSuggestion(placeId, mapPath);

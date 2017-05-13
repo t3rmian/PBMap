@@ -4,7 +4,7 @@
     <string name="app_name">MapaPB</string>
     <string name="action_back">Poprzednia mapa</string>
     <string name="action_search">Szukaj</string>
-    <string name="search_hint">Podpowiedź: WB, 116@wi,…</string>
+    <string name="search_hint">Podpowiedź: PB WB, 116@wi,…</string>
     <string name="not_found">Nie znaleziono</string>
     <string name="about">O programie</string>
     <string name="action_share">Podziel się</string>

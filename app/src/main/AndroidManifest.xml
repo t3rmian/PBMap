@@ -31,7 +31,8 @@
 
         <provider
             android:name=".search.SearchListProvider"
-            android:authorities="io.github.t3r1jj.pbmap.search.SearchListProvider" />
+            android:authorities="io.github.t3r1jj.pbmap.search.SearchListProvider"
+            android:exported="false" />
 
         <activity
             android:name=".AboutActivity"

@@ -13,6 +13,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.location.Criteria;
+import android.location.Location;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -317,16 +318,36 @@ public class MapActivity extends DrawerActivity
 
     private void handleIntent(Intent intent) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            Search search = new Search(this);
-            SearchSuggestion placeFound = search.find(intent.getStringExtra(SearchManager.QUERY));
-            if (placeFound != null) {
-                controller.loadMap(placeFound);
-            } else {
-                Toast.makeText(this, R.string.not_found, Toast.LENGTH_LONG).show();
-            }
+            handleSearchQuery(intent);
         } else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
             SearchSuggestion suggestion = new SearchSuggestion(intent);
             controller.loadMap(suggestion);
+        }
+    }
+
+    private void handleSearchQuery(Intent intent) {
+        Search search = new Search(this);
+        String searchQuery = intent.getStringExtra(SearchManager.QUERY);
+        boolean searchById = !intent.hasExtra(SearchManager.USER_QUERY);
+        SearchSuggestion placeFound = null;
+        try {
+            if (intent.hasExtra(SearchManager.EXTRA_DATA_KEY)) {
+                Location location = (Location) intent.getExtras().get(SearchManager.EXTRA_DATA_KEY);
+                if (!searchQuery.contains("@")) {
+                    searchQuery = ".*@" + searchQuery;
+                }
+                placeFound = search.findFirst(".*" + searchQuery, searchById);
+                placeFound.setLocationCoordinate(location);
+            } else {
+                placeFound = search.findFirst(searchQuery, searchById);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (placeFound == null) {
+            Toast.makeText(this, R.string.not_found, Toast.LENGTH_LONG).show();
+        } else {
+            controller.loadMap(placeFound);
         }
     }
 

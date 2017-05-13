@@ -165,24 +165,24 @@ public class AboutActivity extends AppCompatActivity {
             Intent rate = new Intent(Intent.ACTION_VIEW);
             try {
                 Uri marketRateUri = Uri.parse("market://details?id=" + packageName);
-                startRateActivityAndLog(rate, marketRateUri);
+                startRateActivity(rate, marketRateUri);
             } catch (ActivityNotFoundException e) {
                 Uri defaultRateUri = Uri.parse("https://play.google.com/store/apps/details?id=" + packageName);
-                tryStartDefaultRating(rate, defaultRateUri);
+                tryStartingDefaultRating(rate, defaultRateUri);
             }
         }
 
-        private void startRateActivityAndLog(Intent rate, Uri rateUri) {
-            rate.setData(rateUri);
-            startActivity(rate);
-        }
-
-        private void tryStartDefaultRating(Intent rate, Uri rateUri) {
+        private void tryStartingDefaultRating(Intent rate, Uri rateUri) {
             try {
-                startRateActivityAndLog(rate, rateUri);
+                startRateActivity(rate, rateUri);
             } catch (ActivityNotFoundException e) {
                 Toast.makeText(AboutActivity.this, getString(R.string.could_not_open_android_market), Toast.LENGTH_SHORT).show();
             }
+        }
+
+        private void startRateActivity(Intent rate, Uri rateUri) {
+            rate.setData(rateUri);
+            startActivity(rate);
         }
     }
 

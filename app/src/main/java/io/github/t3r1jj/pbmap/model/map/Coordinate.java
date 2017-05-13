@@ -7,15 +7,15 @@ import org.simpleframework.xml.Attribute;
 
 public class Coordinate implements Parcelable {
     /**
-     * x coordinate [deg]
-     */
-    @Attribute
-    public double lng;
-    /**
      * y coordinate [deg]
      */
     @Attribute
     public double lat;
+    /**
+     * x coordinate [deg]
+     */
+    @Attribute
+    public double lng;
     /**
      * meters [m] above mean sea level
      * TODO: Not implemented yet, source/dest will be set based on current map
@@ -28,12 +28,12 @@ public class Coordinate implements Parcelable {
     public Coordinate() {
     }
 
-    public Coordinate(double lng, double lat) {
+    public Coordinate(double lat, double lng) {
         this.lng = lng;
         this.lat = lat;
     }
 
-    public Coordinate(double lng, double lat, double alt) {
+    public Coordinate(double lat, double lng, double alt) {
         this.lng = lng;
         this.lat = lat;
         this.alt = alt;
@@ -42,14 +42,14 @@ public class Coordinate implements Parcelable {
     private Coordinate(Parcel source) {
         double[] coordinates = new double[3];
         source.readDoubleArray(coordinates);
-        this.lng = coordinates[0];
-        this.lat = coordinates[1];
+        this.lat = coordinates[0];
+        this.lng = coordinates[1];
         this.alt = coordinates[2];
         setAltitude(source.readByte() == 1);
     }
 
     private double[] getCoordinates() {
-        return new double[]{lng, lat, alt};
+        return new double[]{lat, lng, alt};
     }
 
     public double distance(Coordinate end) {

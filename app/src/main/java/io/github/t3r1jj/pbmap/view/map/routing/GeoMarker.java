@@ -86,7 +86,7 @@ public class GeoMarker extends ImageView implements RemovableView {
         CoordinateTranslater coordinateTranslater = mapView.getCoordinateTranslater();
         double lng = coordinateTranslater.translateAndScaleAbsoluteToRelativeX(mapView.getScrollX() + event.getX() - mapView.getOffsetX(), mapView.getScale());
         double lat = coordinateTranslater.translateAndScaleAbsoluteToRelativeY(mapView.getScrollY() + event.getY() - mapView.getOffsetY(), mapView.getScale());
-        coordinate = new Coordinate(lng, lat, alt);
+        coordinate = new Coordinate(lat, lng, alt);
         addToMap(mapView);
     }
 

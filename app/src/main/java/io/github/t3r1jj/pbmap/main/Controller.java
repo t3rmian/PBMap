@@ -66,12 +66,20 @@ public class Controller implements GeoMarker.MapListener {
     }
 
     void loadMap(SearchSuggestion suggestion) {
-        if (map != null && !map.getReferenceMapPath().equals(suggestion.mapPath)) {
-            map = mapsDao.loadMap(suggestion.mapPath);
+        if (map == null) {
+            loadMap();
+        }
+        if (!map.getReferenceMapPath().equals(suggestion.getMapPath())) {
+            map = mapsDao.loadMap(suggestion.getMapPath());
             loadRouteGraph();
             updateView();
         }
-        pinpointPlace(suggestion.placeId);
+        Coordinate coordinate = suggestion.getCoordinate();
+        if (coordinate != null) {
+            pinpointLocation(coordinate);
+        } else {
+            pinpointPlace(suggestion.getPlaceId());
+        }
     }
 
     private void loadRouteGraph() {
@@ -109,6 +117,13 @@ public class Controller implements GeoMarker.MapListener {
         source.addToMap(mapView);
     }
 
+    private void pinpointLocation(Coordinate target) {
+        target.alt = map.getCenter().alt;
+        destination.setCoordinate(target);
+        destination.setLevel(map.compareAltitude(destination.getCoordinate()), GeoMarker.Marker.DESTINATION);
+        destination.pinpointOnMap(mapView);
+    }
+
     private void pinpointPlace(final String placeId) {
         List<Place> places = map.getPlaces();
         if (places == null) {
@@ -127,15 +142,15 @@ public class Controller implements GeoMarker.MapListener {
     }
 
     /**
-     * @deprecated Use this only for logging coordinates
      * @param event press event
+     * @deprecated Use this only for logging coordinates
      */
     @Deprecated
     public void printPressedCoordinate(MotionEvent event) {
         CoordinateTranslater coordinateTranslater = mapView.getCoordinateTranslater();
         double lng = coordinateTranslater.translateAndScaleAbsoluteToRelativeX(mapView.getScrollX() + event.getX() - mapView.getOffsetX(), mapView.getScale());
         double lat = coordinateTranslater.translateAndScaleAbsoluteToRelativeY(mapView.getScrollY() + event.getY() - mapView.getOffsetY(), mapView.getScale());
-        System.out.println(new Coordinate(lng, lat, -5.0));
+        System.out.println(new Coordinate(lat, lng, -5.0));
     }
 
     public void onLongPress(MotionEvent event) {

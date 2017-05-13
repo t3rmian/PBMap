@@ -3,14 +3,18 @@ package io.github.t3r1jj.pbmap.search;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.support.annotation.Nullable;
 
 import io.github.t3r1jj.pbmap.R;
+import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.Place;
 
 public class SearchSuggestion {
-    public final String placeId;
-    public final String mapPath;
+    private final String placeId;
+    private final String mapPath;
     private String mapId;
+    private Coordinate coordinate;
 
     SearchSuggestion(String placeId, String mapPath) {
         this.placeId = placeId;
@@ -22,12 +26,29 @@ public class SearchSuggestion {
         this.mapPath = searchIntent.getStringExtra(SearchManager.EXTRA_DATA_KEY);
     }
 
-    public String getMapId() {
+    String getMapId() {
         return mapId;
     }
 
-    public void setMapId(String mapId) {
+    public String getPlaceId() {
+        return placeId;
+    }
+
+    public String getMapPath() {
+        return mapPath;
+    }
+
+    void setMapId(String mapId) {
         this.mapId = mapId;
+    }
+
+    @Nullable
+    public Coordinate getCoordinate() {
+        return coordinate;
+    }
+
+    public void setLocationCoordinate(Location location) {
+        this.coordinate = new Coordinate(location.getLatitude(), location.getLongitude(), location.getAltitude());
     }
 
     @Override
@@ -37,7 +58,7 @@ public class SearchSuggestion {
 
         SearchSuggestion that = (SearchSuggestion) o;
 
-        return placeId.equals(that.placeId);
+        return placeId.equals(that.placeId) && mapId.equals(that.mapId);
 
     }
 

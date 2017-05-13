@@ -6,7 +6,6 @@ import android.content.SearchRecentSuggestionsProvider;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
-import android.support.annotation.NonNull;
 
 public class SearchListProvider extends SearchRecentSuggestionsProvider {
 
@@ -17,10 +16,8 @@ public class SearchListProvider extends SearchRecentSuggestionsProvider {
     static final String SUGGESTIONS_COLUMN_SUGGESTION_2 = SearchManager.SUGGEST_COLUMN_TEXT_2;
     static final String SUGGESTIONS_COLUMN_PLACE = SearchManager.SUGGEST_COLUMN_INTENT_DATA;
     static final String SUGGESTIONS_COLUMN_MAP_PATH = SearchManager.SUGGEST_COLUMN_INTENT_EXTRA_DATA;
-    protected String whereClause = "lower(" + SUGGESTIONS_COLUMN_SUGGESTION + ") LIKE ?";
-    protected String selectionPrePostFix = "%";
-    protected String orderBy = SUGGESTIONS_COLUMN_SUGGESTION;
-    private SuggestionsDao db;
+    protected boolean searchById = false;
+    private MapsDao mapsDao;
     private String[] tableColumns = new String[]{
             SUGGESTIONS_COLUMN_ID,
             SUGGESTIONS_COLUMN_SUGGESTION,
@@ -35,11 +32,11 @@ public class SearchListProvider extends SearchRecentSuggestionsProvider {
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        if (selectionArgs != null && selectionArgs.length > 0 && selectionArgs[0].length() > 0) {
-            if (db == null) {
-                db = new MapsDao(getBaseContext());
+        if (selectionArgs != null && selectionArgs.length > 0 && selectionArgs[0] != null && selectionArgs[0].length() > 0) {
+            if (mapsDao == null) {
+                mapsDao = new MapsDao(getBaseContext());
             }
-            return db.query(null, tableColumns, whereClause, prepareScopedSelectionArgs(selectionArgs), null, null, orderBy);
+            return mapsDao.query(tableColumns, prepareScopedSelectionArgs(selectionArgs), searchById);
         } else {
             return super.query(uri, projection, selection, selectionArgs, sortOrder);
         }
@@ -47,16 +44,11 @@ public class SearchListProvider extends SearchRecentSuggestionsProvider {
 
     private String[] prepareScopedSelectionArgs(String[] selectionArgs) {
         String[] scopedSelectionArgs = selectionArgs[0].split("@");
-        scopedSelectionArgs[0] = addWildcards(scopedSelectionArgs[0]);
+        scopedSelectionArgs[0] = scopedSelectionArgs[0].toUpperCase();
         if (scopedSelectionArgs.length > 1) {
-            scopedSelectionArgs[1] = addWildcards(scopedSelectionArgs[1]);
+            scopedSelectionArgs[1] = scopedSelectionArgs[1].toUpperCase();
         }
         return scopedSelectionArgs;
-    }
-
-    @NonNull
-    private String addWildcards(String argument) {
-        return selectionPrePostFix + argument.toLowerCase() + selectionPrePostFix;
     }
 
     protected Context getBaseContext() {

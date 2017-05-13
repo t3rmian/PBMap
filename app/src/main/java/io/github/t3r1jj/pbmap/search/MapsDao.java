@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.database.Cursor;
 import android.database.MatrixCursor;
+import android.support.annotation.NonNull;
 
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
@@ -13,6 +14,10 @@ import org.xml.sax.InputSource;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,7 +30,7 @@ import io.github.t3r1jj.pbmap.BuildConfig;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
 import io.github.t3r1jj.pbmap.model.map.route.RouteGraph;
 
-public class MapsDao extends ContextWrapper implements SuggestionsDao {
+public class MapsDao extends ContextWrapper {
     private static final String mapsPath = BuildConfig.ASSETS_MAP_DIR;
     private static final String firstMapFilename = BuildConfig.FIRST_MAP_FILENAME;
     private final Serializer serializer = new Persister();
@@ -115,33 +120,56 @@ public class MapsDao extends ContextWrapper implements SuggestionsDao {
         return new String[]{};
     }
 
-    @Override
-    public Cursor query(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String whereRegex, String orderBy) {
-        MatrixCursor matrixCursor = new MatrixCursor(columns);
-        for (int i = 0; i < selectionArgs.length; i++) {
-            selectionArgs[i] = selectionArgs[i].replace("%", ".*");
-        }
-        List<SearchSuggestion> searchSuggestions = getSearchSuggestions();
-        for (SearchSuggestion suggestion : searchSuggestions) {
-            String name = suggestion.getName(getBaseContext());
-            System.out.println(name);
-            String map = suggestion.getMapName(getBaseContext());
-            if (queryMatchesSuggestion(selectionArgs, name, map)) {
-                matrixCursor.newRow()
-                        .add(suggestion.getNameResId(getBaseContext()))
-                        .add(name.toUpperCase())
-                        .add(map.toUpperCase())
-                        .add(suggestion.placeId)
-                        .add(suggestion.mapPath);
+    public Cursor query(String[] columns, String[] selectionArgs, boolean searchById) {
+        prepareQueryArguments(selectionArgs, searchById);
+        List<Object[]> results = findQueryResults(selectionArgs, searchById);
+        Collections.sort(results, new Comparator<Object[]>() {
+            @Override
+            public int compare(Object[] o1, Object[] o2) {
+                int byName = String.valueOf(o1[1]).compareTo(String.valueOf(o2[1]));
+                return byName == 0 ? String.valueOf(o1[2]).compareTo(String.valueOf(o2[2])) : byName;
             }
+        });
+        MatrixCursor matrixCursor = new MatrixCursor(columns);
+        for (Object[] result : results) {
+            matrixCursor.addRow(result);
         }
         return matrixCursor;
     }
 
-    private boolean queryMatchesSuggestion(String[] selectionArgs, String name, String map) {
-        String[] nameAndMap = new String[]{name, map};
+    private void prepareQueryArguments(String[] selectionArgs, boolean searchById) {
+        if (!searchById) {
+            for (int i = 0; i < selectionArgs.length; i++) {
+                selectionArgs[i] = ".*" + selectionArgs[i] + ".*";
+            }
+        }
+    }
+
+    @NonNull
+    private List<Object[]> findQueryResults(String[] selectionArgs, boolean searchById) {
+        List<SearchSuggestion> searchSuggestions = getSearchSuggestions();
+        List<Object[]> results = new ArrayList<>();
+        for (SearchSuggestion suggestion : searchSuggestions) {
+            String name = searchById ? suggestion.getPlaceId().toUpperCase() : suggestion.getName(getBaseContext()).toUpperCase();
+            String map = searchById ? suggestion.getMapId().toUpperCase() : suggestion.getMapName(getBaseContext()).toUpperCase();
+            if (queryMatchesSuggestion(selectionArgs, name, map)) {
+                results.add(new Object[]{
+                        suggestion.getNameResId(getBaseContext()),
+                        name,
+                        map,
+                        suggestion.getPlaceId(),
+                        suggestion.getMapPath()
+                });
+            }
+        }
+        return results;
+    }
+
+    private boolean queryMatchesSuggestion(String[] selectionArgs, String place, String map) {
+        String[] placeAndMap = new String[]{place, map};
+        System.out.println(Arrays.toString(placeAndMap));
         for (int i = 0; i < selectionArgs.length; i++) {
-            if (!nameAndMap[i].toLowerCase().matches(selectionArgs[i].toLowerCase())) {
+            if (!placeAndMap[i].matches(selectionArgs[i])) {
                 return false;
             }
         }

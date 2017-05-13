@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static io.github.t3r1jj.pbmap.model.map.ManualSpaceMapper.DirectionHorizontal.EAST;
-import static io.github.t3r1jj.pbmap.model.map.ManualSpaceMapper.DirectionHorizontal.WEST;
 import static io.github.t3r1jj.pbmap.model.map.ManualSpaceMapper.StartingCoordinate.NORTH;
 import static io.github.t3r1jj.pbmap.model.map.ManualSpaceMapper.StartingCoordinate.SOUTH;
 
@@ -64,7 +63,7 @@ public class ManualSpaceMapper {
 //                6.18333333333*2,
 //        };
         lat = -11;
-        start = new Coordinate(23.145878893359374, 53.11655453350192);
+        start = new Coordinate(53.11655453350192, 23.145878893359374);
 //        end = new Coordinate(23.145788148125, 53.11670482763208);
 
         id = "___";
@@ -105,7 +104,7 @@ public class ManualSpaceMapper {
             dyw = -dyw;
         }
 
-        coordinates[1] = new Coordinate(start.lng - dxw, start.lat - dyw);
+        coordinates[1] = new Coordinate(start.lat - dyw, start.lng - dxw);
         double tgaTemp = tga;
         tga = 1d / -tga;
         double dxh = metersToLng(dx(heightMeter));
@@ -115,8 +114,8 @@ public class ManualSpaceMapper {
             dxh = -dxh;
             dyh = -dyh;
         }
-        coordinates[3] = new Coordinate(start.lng - dxh, start.lat + dyh);
-        coordinates[2] = new Coordinate(start.lng - dxw - dxh, start.lat - dyw + dyh);
+        coordinates[3] = new Coordinate(start.lat + dyh, start.lng - dxh);
+        coordinates[2] = new Coordinate(start.lat - dyw + dyh, start.lng - dxw - dxh);
         tga = tgaTemp;
         return coordinates;
     }

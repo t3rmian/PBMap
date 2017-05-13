@@ -48,7 +48,7 @@ public class MapsDrawerFragment extends NavigationDrawerFragment {
         String currentMapId = callbacks.getCurrentMapId();
         int id = 0;
         for (SearchSuggestion searchSuggestion : places) {
-            if (searchSuggestion.placeId.equals(currentMapId)) {
+            if (searchSuggestion.getPlaceId().equals(currentMapId)) {
                 currentSelectedId = id;
                 super.highlightItem(currentSelectedId);
             }
