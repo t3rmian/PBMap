@@ -21,7 +21,7 @@ import io.github.t3r1jj.pbmap.view.map.MapView;
 public class Route implements RemovableView {
     private static final boolean LINE_SMOOTH = false;
     RouteGraph routeGraph;
-    final CompositePathView.DrawablePath drawablePath = new CompositePathView.DrawablePath();
+    private final CompositePathView.DrawablePath drawablePath = new CompositePathView.DrawablePath();
     private GeoMarker source;
     private GeoMarker destination;
     private PBMap map;
@@ -53,7 +53,7 @@ public class Route implements RemovableView {
     }
 
     @NonNull
-    private Paint getPaint(int color, float strokeWidth) {
+    Paint getPaint(int color, float strokeWidth) {
         Paint paint = new Paint();
         paint.setColor(color);
         paint.setStrokeWidth(strokeWidth);

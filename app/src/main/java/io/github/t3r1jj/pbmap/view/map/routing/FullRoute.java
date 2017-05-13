@@ -1,7 +1,9 @@
 package io.github.t3r1jj.pbmap.view.map.routing;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Path;
 
 import com.qozix.tileview.paths.CompositePathView;
 
@@ -9,6 +11,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.model.map.route.Edge;
 import io.github.t3r1jj.pbmap.view.map.MapView;
 
@@ -18,16 +21,21 @@ import io.github.t3r1jj.pbmap.view.map.MapView;
 @Deprecated
 public class FullRoute extends Route {
 
-    List<CompositePathView.DrawablePath> paths = new LinkedList<>();
+    private final CompositePathView.DrawablePath drawablePath = new CompositePathView.DrawablePath();
+    private List<CompositePathView.DrawablePath> paths = new LinkedList<>();
 
     public FullRoute(Context context) {
         super(context);
+        Resources resources = context.getResources();
+        drawablePath.paint = getPaint(resources.getColor(R.color.route), resources.getDimension(R.dimen.route_stroke_width));
+        drawablePath.path = new Path();
         drawablePath.paint.setColor(Color.RED);
     }
 
 
     @Override
     public void removeFromMap(MapView pbMapView) {
+        super.removeFromMap(pbMapView);
         CompositePathView compositePathView = pbMapView.getCompositePathView();
         for (CompositePathView.DrawablePath path : paths) {
             compositePathView.removePath(path);
@@ -36,6 +44,7 @@ public class FullRoute extends Route {
 
     @Override
     public void addToMap(MapView pbMapView) {
+        super.addToMap(pbMapView);
         paths.clear();
         List<Edge> edges = routeGraph.getEdges();
         for (Edge edge : edges) {

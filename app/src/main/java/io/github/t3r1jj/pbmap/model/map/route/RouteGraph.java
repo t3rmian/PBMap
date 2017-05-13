@@ -54,6 +54,7 @@ public class RouteGraph {
                 closest = coordinate;
             }
         }
+        System.out.println("Closest: " + closest.toString());
         return closest;
     }
 

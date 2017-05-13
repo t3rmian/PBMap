@@ -1,5 +1,6 @@
 <route id="pb_campus">
     <edges>
+        <!--CAMPUS BEGIN-->
         <edge>
             <start alt="150" lat="53.11653" lng="23.14490" />
             <end alt="150" lat="53.11669" lng="23.14553" />
@@ -30,6 +31,7 @@
         <edge>
             <start alt="150" lat="53.11728" lng="23.14675" />
             <end alt="150" lat="53.11749" lng="23.14776" />
+            <!--wm entry 1-->
         </edge>
         <edge>
             <start alt="150" lat="53.11749" lng="23.14776" />
@@ -76,10 +78,10 @@
         </edge>
         <edge>
             <start alt="150" lat="53.11632" lng="23.14730" />
-            <end alt="150" lat="53.11647" lng="23.14783" />
+            <end alt="150" lat="53.11642" lng="23.14785" />
         </edge>
         <edge>
-            <start alt="150" lat="53.11647" lng="23.14783" />
+            <start alt="150" lat="53.11642" lng="23.14785" />
             <end alt="150" lat="53.11755" lng="23.14716" />
         </edge>
 
@@ -92,6 +94,716 @@
             <end alt="150" lat="53.11728" lng="23.14675" />
         </edge>
 
+        <edge>
+            <start alt="150" lat="53.11749" lng="23.14776" />
+            <end alt="150" lat="53.117692" lng="23.1487095" />
+            <!--wm entry 2-->
+        </edge>
+        <edge>
+            <start alt="150" lat="53.117692" lng="23.1487095" />
+            <end alt="150" lat="53.11780" lng="23.14920" />
+        </edge>
+        <edge><!--right out wm-->
+            <start alt="150" lat="53.11780" lng="23.14920" />
+            <end alt="150" lat="53.11752" lng="23.14935" />
+        </edge>
+        <edge><!--right out wm-->
+            <start alt="150" lat="53.11752" lng="23.14935" />
+            <end alt="150" lat="53.11716" lng="23.14955" />
+        </edge>
+        <edge><!--right out wm-->
+            <start alt="150" lat="53.11716" lng="23.14955" />
+            <end alt="150" lat="53.11704" lng="23.14962" />
+        </edge>
+        <edge><!--right out wm-->
+            <start alt="150" lat="53.11704" lng="23.14962" />
+            <end alt="150" lat="53.11683" lng="23.14975" />
+        </edge>
+        <edge><!--down out wm-->
+            <start alt="150" lat="53.11683" lng="23.14975" />
+            <end alt="150" lat="53.11657" lng="23.14854" />
+        </edge>
+        <edge><!--down out wm-->
+            <start alt="150" lat="53.11657" lng="23.14854" />
+            <end alt="150" lat="53.11642" lng="23.14785" />
+        </edge>
+
+        <edge><!--down out we-->
+            <start alt="150" lat="53.11704" lng="23.14962" />
+            <end alt="150" lat="53.11723" lng="23.15040" />
+        </edge>
+        <edge><!--right-down out we-->
+            <end alt="150" lat="53.11723" lng="23.15040" />
+            <start alt="150" lat="53.11761" lng="23.15018" />
+        </edge>
+        <edge><!--through out we-->
+            <start alt="150" lat="53.11761" lng="23.15018" />
+            <end alt="150" lat="53.11796" lng="23.15000" />
+            <!--we assembly out-->
+        </edge>
+
+        <edge><!--wm-tri-we out-->
+            <start alt="150" lat="53.11780" lng="23.14920" />
+            <end alt="150" lat="53.11785" lng="23.14946" />
+        </edge>
+        <edge><!--tri-we-assembly out-->
+            <start alt="150" lat="53.11785" lng="23.14946" />
+            <end alt="150" lat="53.11796" lng="23.15000" />
+        </edge>
+
+        <edge><!--we right-corner out-->
+            <start alt="150" lat="53.11796" lng="23.15000" />
+            <end alt="150" lat="53.11803" lng="23.15027" />
+        </edge>
+        <edge><!--we right out-->
+            <start alt="150" lat="53.11803" lng="23.15027" />
+            <end alt="150" lat="53.11776" lng="23.15040" />
+        </edge>
+        <edge><!--we right-down out-->
+            <start alt="150" lat="53.11776" lng="23.15040" />
+            <end alt="150" lat="53.11761" lng="23.15018" />
+        </edge>
+
+        <edge><!--we right-corner wb out-->
+            <start alt="150" lat="53.11803" lng="23.15027" />
+            <end alt="150" lat="53.11821" lng="23.15115" />
+            <!--wb entry 1-->
+        </edge>
+        <edge><!--wb top out-->
+            <start alt="150" lat="53.11821" lng="23.15115" />
+            <end alt="150" lat="53.11832" lng="23.15165" />
+        </edge>
+        <edge><!--wb top out-->
+            <start alt="150" lat="53.11832" lng="23.15165" />
+            <end alt="150" lat="53.11843" lng="23.15217" />
+            <!--wb entry 2-->
+        </edge>
+        <edge><!--wb top out entry2 road2-->
+            <start alt="150" lat="53.11843" lng="23.15217" />
+            <end alt="150" lat="53.11857" lng="23.15209" />
+        </edge>
+        <edge><!--gwint - cnk road-->
+            <start alt="150" lat="53.11857" lng="23.15209" />
+            <end alt="150" lat="53.11877" lng="23.15303" />
+        </edge>
+        <edge><!--cnk road-->
+            <start alt="150" lat="53.11877" lng="23.15303" />
+            <end alt="150" lat="53.11873" lng="23.15314" />
+        </edge>
+        <edge><!--cnk road split-->
+            <start alt="150" lat="53.11873" lng="23.15314" />
+            <end alt="150" lat="53.11881" lng="23.15356" />
+        </edge>
+        <edge><!--cnk out left entry-->
+            <start alt="150" lat="53.11881" lng="23.15356" />
+            <end alt="150" lat="53.11896" lng="23.15430" />
+        </edge>
+
+
+        <edge><!--wm entry2 road2-->
+            <start alt="150" lat="53.11764" lng="23.14768" />
+            <end alt="150" lat="53.11784" lng="23.14862" />
+        </edge>
+        <edge><!--r1-r2-->
+            <start alt="150" lat="53.117692" lng="23.1487095" />
+            <end alt="150" lat="53.11784" lng="23.14862" />
+        </edge>
+
+        <edge><!--wm entry2-diagonal road2-->
+            <start alt="150" lat="53.11784" lng="23.14862" />
+            <end alt="150" lat="53.11793" lng="23.14906" />
+        </edge>
+        <edge><!--diagonal-2 road2-->
+            <start alt="150" lat="53.11793" lng="23.14906" />
+            <end alt="150" lat="53.11799" lng="23.14937" />
+        </edge>
+        <edge><!--r1-r2-->
+            <start alt="150" lat="53.11785" lng="23.14946" />
+            <end alt="150" lat="53.11799" lng="23.14937" />
+        </edge>
+
+        <edge><!--diagonal-2-we-assembly road2-->
+            <start alt="150" lat="53.11799" lng="23.14937" />
+            <end alt="150" lat="53.11811" lng="23.14992" />
+        </edge>
+        <edge><!--r1-r2-->
+            <start alt="150" lat="53.11796" lng="23.15000" />
+            <end alt="150" lat="53.11811" lng="23.14992" />
+        </edge>
+
+        <edge><!--we-assembly-wbe1 road2-->
+            <start alt="150" lat="53.11811" lng="23.14992" />
+            <end alt="150" lat="53.11836" lng="23.15107" />
+        </edge>
+        <edge><!--we-assembly-wbe1 road2 tri-->
+            <start alt="150" lat="53.11799" lng="23.14937" />
+            <end alt="150" lat="53.11822" lng="23.14937" />
+        </edge>
+        <edge><!--diagonal road2 tri-->
+            <start alt="150" lat="53.11793" lng="23.14906" />
+            <end alt="150" lat="53.11822" lng="23.14937" />
+        </edge>
+        <edge><!--tri2 grass-->
+            <start alt="150" lat="53.11822" lng="23.14937" />
+            <end alt="150" lat="53.11839" lng="23.14957" />
+        </edge>
+
+        <edge><!--r1-r2-->
+            <start alt="150" lat="53.11821" lng="23.15115" />
+            <end alt="150" lat="53.11836" lng="23.15107" />
+        </edge>
+        <edge><!--gwint entry road2-->
+            <start alt="150" lat="53.11836" lng="23.15107" />
+            <end alt="150" lat="53.11841" lng="23.15132" />
+        </edge>
+        <edge><!--gwint - star road2-->
+            <start alt="150" lat="53.11841" lng="23.15132" />
+            <end alt="150" lat="53.11850" lng="23.15174" />
+        </edge>
+        <edge><!--star-wbe2 road2-->
+            <start alt="150" lat="53.11850" lng="23.15174" />
+            <end alt="150" lat="53.11857" lng="23.15209" />
+        </edge>
+
+
+        <edge><!--wi-wm->acs right-->
+            <start alt="150" lat="53.11752" lng="23.14717" />
+            <end alt="150" lat="53.11887" lng="23.14637" />
+        </edge>
+        <edge><!--acs right corner-->
+            <start alt="150" lat="53.11887" lng="23.14637" />
+            <end alt="150" lat="53.11904" lng="23.14626" />
+        </edge>
+        <edge><!--acs entry-->
+            <start alt="150" lat="53.11904" lng="23.14626" />
+            <end alt="150" lat="53.11896" lng="23.14591" />
+        </edge>
+        <edge><!--acs entry - r4-->
+            <start alt="150" lat="53.11896" lng="23.14591" />
+            <end alt="150" lat="53.11906" lng="23.14588" />
+        </edge>
+        <edge><!--acs entry - r4 corner-->
+            <start alt="150" lat="53.11906" lng="23.14588" />
+            <end alt="150" lat="53.11914" lng="23.14623" />
+        </edge>
+        <edge><!--acs corner - r4 corner-->
+            <start alt="150" lat="53.11904" lng="23.14626" />
+            <end alt="150" lat="53.11914" lng="23.14623" />
+        </edge>
+
+        <edge><!--center-->
+            <start alt="150" lat="53.11887" lng="23.14637" />
+            <end alt="150" lat="53.11917" lng="23.14795" />
+        </edge>
+        <edge><!--r2-center-->
+            <start alt="150" lat="53.11784" lng="23.14862" />
+            <end alt="150" lat="53.11917" lng="23.14795" />
+        </edge>
+        <edge><!--r3-center-r4-->
+            <start alt="150" lat="53.11917" lng="23.14795" />
+            <end alt="150" lat="53.11947" lng="23.14779" />
+        </edge>
+        <edge><!--acs-corner2-split-center-r4-->
+            <start alt="150" lat="53.11914" lng="23.14623" />
+            <end alt="150" lat="53.119293174819944" lng="23.147015325350953" />
+        </edge>
+        <edge><!--acs-corner2-split-center-r4-->
+            <start alt="150" lat="53.119293174819944" lng="23.147015325350953" />
+            <end alt="150" lat="53.11947" lng="23.14779" />
+        </edge>
+        <edge><!--center-r4-ha-->
+            <start alt="150" lat="53.11947" lng="23.14779" />
+            <end alt="150" lat="53.11971" lng="23.14900" />
+        </edge>
+
+        <edge><!--center-ha-->
+            <start alt="150" lat="53.11917" lng="23.14795" />
+            <end alt="150" lat="53.11939" lng="23.14916" />
+        </edge>
+        <edge><!--ha3-ha3.5-->
+            <start alt="150" lat="53.11939" lng="23.14916" />
+            <end alt="150" lat="53.11951" lng="23.14914" />
+        </edge>
+        <edge><!--ha3.5-ha4-->
+            <start alt="150" lat="53.11951" lng="23.14914" />
+            <end alt="150" lat="53.11971" lng="23.14900" />
+        </edge>
+        <edge><!--ha3.5-delta3.5-->
+            <start alt="150" lat="53.11951" lng="23.14914" />
+            <end alt="150" lat="53.11943" lng="23.14999" />
+        </edge>
+        <edge><!--delta3.5-gamma-->
+            <start alt="150" lat="53.11943" lng="23.14999" />
+            <end alt="150" lat="53.11936" lng="23.15058" />
+        </edge>
+        <edge><!--delta3.5-delta-->
+            <start alt="150" lat="53.11943" lng="23.14999" />
+            <end alt="150" lat="53.11931" lng="23.15026" />
+        </edge>
+        <edge><!--ha3-tri2-->
+            <start alt="150" lat="53.11939" lng="23.14916" />
+            <end alt="150" lat="53.11839" lng="23.14957" />
+        </edge>
+        <edge><!--ha3-delta-->
+            <start alt="150" lat="53.11939" lng="23.14916" />
+            <end alt="150" lat="53.11931" lng="23.15026" />
+        </edge>
+        <edge><!--delta-tri3-->
+            <start alt="150" lat="53.11931" lng="23.15026" />
+            <end alt="150" lat="53.11892" lng="23.15016" />
+        </edge>
+        <edge><!--tri2-tri3-->
+            <start alt="150" lat="53.11839" lng="23.14957" />
+            <end alt="150" lat="53.11892" lng="23.15016" />
+        </edge>
+
+        <edge><!--tri3-gamma-->
+            <start alt="150" lat="53.11892" lng="23.15016" />
+            <end alt="150" lat="53.11936" lng="23.15058" />
+        </edge>
+
+        <edge><!--beta-wall-->
+            <start alt="150" lat="53.11924" lng="23.15176" />
+            <end alt="150" lat="53.11892" lng="23.15197" />
+        </edge>
+        <edge><!--star-wall-->
+            <start alt="150" lat="53.11850" lng="23.15174" />
+            <end alt="150" lat="53.11892" lng="23.15197" />
+        </edge>
+        <edge><!--star-alpha-->
+            <start alt="150" lat="53.11850" lng="23.15174" />
+            <end alt="150" lat="53.11916" lng="23.15253" />
+        </edge>
+        <edge><!--gamma-beta-->
+            <start alt="150" lat="53.11936" lng="23.15058" />
+            <end alt="150" lat="53.11924" lng="23.15176" />
+        </edge>
+        <edge><!--beta-alpha-->
+            <start alt="150" lat="53.11924" lng="23.15176" />
+            <end alt="150" lat="53.11916" lng="23.15253" />
+        </edge>
+        <edge><!--alpha-split-cnk-split-->
+            <start alt="150" lat="53.11916" lng="23.15253" />
+            <end alt="150" lat="53.1190644967397" lng="23.15291085933533" />
+        </edge>
+        <edge><!--alpha-split-cnk-split-->
+            <start alt="150" lat="53.1190644967397" lng="23.15291085933533" />
+            <end alt="150" lat="53.11881" lng="23.15356" />
+        </edge>
+        <edge><!--alpha-split-cnk-road-->
+            <start alt="150" lat="53.1190644967397" lng="23.15291085933533" />
+            <end alt="150" lat="53.11873" lng="23.15314" />
+        </edge>
+
+
+        <edge><!--bottom-wiejska-right-branch-->
+            <start alt="150" lat="53.11625949297587" lng="23.145093803387454" />
+            <end alt="150" lat="53.11653" lng="23.1449" />
+        </edge>
+        <edge><!--wi-bottom-branch-->
+            <start alt="150" lat="53.11553233591715" lng="23.147349220648195" />
+            <end alt="150" lat="53.116111224466955" lng="23.14691356838074" />
+        </edge>
+        <edge><!--wi-bottom-branch-->
+            <start alt="150" lat="53.116111224466955" lng="23.14691356838074" />
+            <end alt="150" lat="53.11613" lng="23.14646" />
+        </edge>
+        <edge><!--wi-bottom-branch-->
+            <start alt="150" lat="53.116111224466955" lng="23.14691356838074" />
+            <end alt="150" lat="53.11632" lng="23.14730" />
+        </edge>
+
+
+        <edge><!--wm-bottom-branch-->
+            <start alt="150" lat="53.1159404704539" lng="23.149193712417603" />
+            <end alt="150" lat="53.11657" lng="23.14854" />
+        </edge>
+
+        <edge><!--bottom-wiejska-right-branch2-->
+            <start alt="150" lat="53.11653" lng="23.1449" />
+            <end alt="150" lat="53.11684" lng="23.14475" />
+        </edge>
+        <edge><!--bottom-wiejska-right-branch3-->
+            <start alt="150" lat="53.11684" lng="23.14475" />
+            <end alt="150" lat="53.11730" lng="23.14463" />
+        </edge>
+        <edge><!--bottom-wiejska-right-branch4-->
+            <start alt="150" lat="53.11730" lng="23.14463" />
+            <end alt="150" lat="53.11747401201884" lng="23.14454713208618" />
+        </edge>
+        <edge><!--bottom-wiejska-right-branch5-->
+            <start alt="150" lat="53.11747401201884" lng="23.14454713208618" />
+            <end alt="150" lat="53.11757381345113" lng="23.144622066790774" />
+        </edge>
+        <edge><!--bottom-wiejska-right-crossing-->
+            <start alt="150" lat="53.11757381345113" lng="23.144622066790774" />
+            <end alt="150" lat="53.11781230064392" lng="23.144579276895143" />
+        </edge>
+
+        <edge><!--wiejska-crossing-island-->
+            <start alt="150" lat="53.11747401201884" lng="23.14454713208618" />
+            <end alt="150" lat="53.11747044049581" lng="23.14405335093994" />
+        </edge>
+        <edge><!--wiejska-pogodna-down-->
+            <start alt="150" lat="53.11747044049581" lng="23.14405335093994" />
+            <end alt="150" lat="53.11734483355204" lng="23.14391919770203" />
+        </edge>
+        <edge><!--wiejska-left-branch-->
+            <start alt="150" lat="53.11734483355204" lng="23.14391919770203" />
+            <end alt="150" lat="53.116581558837886" lng="23.14434894068909" />
+        </edge>
+        <edge><!--wiejska-left-branch-south-->
+            <start alt="150" lat="53.116581558837886" lng="23.14434894068909" />
+            <end alt="150" lat="53.11574715548198" lng="23.144942928143312" />
+        </edge>
+        <edge><!--pogodna-south-branch-->
+            <start alt="150" lat="53.11734483355204" lng="23.14391919770203" />
+            <end alt="150" lat="53.117258136088054" lng="23.143043744097902" />
+        </edge>
+
+        <edge><!--pogodna-north-crossing-->
+            <start alt="150" lat="53.11747044049581" lng="23.14405335093994" />
+            <end alt="150" lat="53.11771566830953" lng="23.14391919770203" />
+        </edge>
+        <edge><!--pogodna-north-left-branch-->
+            <start alt="150" lat="53.11771566830953" lng="23.14391919770203" />
+            <end alt="150" lat="53.11753845034281" lng="23.143156523342896" />
+        </edge>
+
+        <edge><!--wiejska-east-north-branch-->
+            <start alt="150" lat="53.11771566830953" lng="23.14391919770203" />
+            <end alt="150" lat="53.1183975525411" lng="23.143940320236208" />
+        </edge>
+        <edge><!--wiejska-east-north-branch2-->
+            <start alt="150" lat="53.1183975525411" lng="23.143940320236208" />
+            <end alt="150" lat="53.119634607391355" lng="23.14442324674683" />
+        </edge>
+        <edge><!--wiejska-east-north-branch3-->
+            <start alt="150" lat="53.119634607391355" lng="23.14442324674683" />
+            <end alt="150" lat="53.12062" lng="23.14510" />
+        </edge>
+
+        <edge><!--bottom-wiejska-north-east-branch-->
+            <start alt="150" lat="53.11781230064392" lng="23.144579276895143" />
+            <end alt="150" lat="53.11851365219116" lng="23.144568086981202" />
+        </edge>
+        <edge><!--bottom-wiejska-north-east-branch2-->
+            <start alt="150" lat="53.11851365219116" lng="23.144568086981202" />
+            <end alt="150" lat="53.119125615056355" lng="23.14473966566162" />
+        </edge>
+        <edge><!--bottom-wiejska-north-east-branch3-->
+            <start alt="150" lat="53.119125615056355" lng="23.14473966566162" />
+            <end alt="150" lat="53.1197571458435" lng="23.145147406008913" />
+        </edge>
+        <edge><!--bottom-wiejska-north-east-branch4-->
+            <start alt="150" lat="53.1197571458435" lng="23.145147406008913" />
+            <end alt="150" lat="53.12047" lng="23.14606" />
+        </edge>
+        <edge><!--hidden-north-crossing-->
+            <start alt="150" lat="53.12062" lng="23.14510" />
+            <end alt="150" lat="53.12047" lng="23.14606" />
+        </edge>
+
+        <edge><!--bottom-wiejska-north-east-branch2-to-acs-->
+            <start alt="150" lat="53.119125615056355" lng="23.14473966566162" />
+            <end alt="150" lat="53.11890013122559" lng="23.145088397024537" />
+        </edge>
+        <edge><!--bottom-wiejska-north-east-branch2-acs-->
+            <start alt="150" lat="53.11890013122559" lng="23.145088397024537" />
+            <end alt="150" lat="53.11906" lng="23.14588" />
+        </edge>
+        <edge><!--r4-split-north-->
+            <start alt="150" lat="53.119293174819944" lng="23.147015325350953" />
+            <end alt="150" lat="53.119634607391355" lng="23.146864911114502" />
+        </edge>
+        <edge><!--r4-split-north2-->
+            <start alt="150" lat="53.119634607391355" lng="23.146864911114502" />
+            <end alt="150" lat="53.12047" lng="23.14606" />
+        </edge>
+        <edge><!--wiejska-zwierzyniecka-->
+            <start alt="150" lat="53.12047" lng="23.14606" />
+            <end alt="150" lat="53.12064" lng="23.14632" />
+        </edge>
+        <edge><!--zwierzyniecka-south-branch-->
+            <start alt="150" lat="53.12064" lng="23.14632" />
+            <end alt="150" lat="53.12046" lng="23.14697" />
+        </edge>
+        <edge><!--zwierzyniecka-south-branch2-->
+            <start alt="150" lat="53.12046" lng="23.14697" />
+            <end alt="150" lat="53.12038" lng="23.14729" />
+        </edge>
+        <edge><!--zwierzyniecka-south-branch2-r4-->
+            <start alt="150" lat="53.12038" lng="23.14729" />
+            <end alt="150" lat="53.11947" lng="23.14779" />
+        </edge>
+        <edge><!--zwierzyniecka-south-branch3-->
+            <start alt="150" lat="53.12038" lng="23.14729" />
+            <end alt="150" lat="53.11999226272583" lng="23.14902733055115" />
+        </edge>
+        <edge><!--zwierzyniecka-south-branch3-ha-->
+            <start alt="150" lat="53.11999226272583" lng="23.14902733055115" />
+            <end alt="150" lat="53.11971" lng="23.14900" />
+        </edge>
+        <edge><!--zwierzyniecka-south-branch4-->
+            <start alt="150" lat="53.11999226272583" lng="23.14902733055115" />
+            <end alt="150" lat="53.11999553243001" lng="23.149209554318237" />
+        </edge>
+        <edge><!--zwierzyniecka-crossing1-->
+            <start alt="150" lat="53.11999553243001" lng="23.149209554318237" />
+            <end alt="150" lat="53.12029194368998" lng="23.149295427478027" />
+        </edge>
+
+        <edge><!--north-->
+            <start alt="150" lat="53.12046" lng="23.14697" />
+            <end alt="150" lat="53.12089" lng="23.14701" />
+        </edge>
+        <edge><!--zwierzyniecka-north-branch1-->
+            <start alt="150" lat="53.12089" lng="23.14701" />
+            <end alt="150" lat="53.12029194368998" lng="23.149295427478027" />
+        </edge>
+        <edge><!--zwierzyniecka-north-branch2-->
+            <start alt="150" lat="53.12029194368998" lng="23.149295427478027" />
+            <end alt="150" lat="53.12014694488525" lng="23.150829032424927" />
+        </edge>
+        <edge><!--zwierzyniecka-north-branch3-->
+            <start alt="150" lat="53.12014694488525" lng="23.150829032424927" />
+            <end alt="150" lat="53.12008" lng="23.15153" />
+        </edge>
+        <edge><!--zwierzyniecka-north-branch3-->
+            <start alt="150" lat="53.12008" lng="23.15153" />
+            <end alt="150" lat="53.119911777699784" lng="23.153393324838255" />
+        </edge>
+        <edge><!--zwierzyniecka-north-branch4-->
+            <start alt="150" lat="53.119911777699784" lng="23.153393324838255" />
+            <end alt="150" lat="53.11975" lng="23.15518" />
+        </edge>
+        <edge><!--zwierzyniecka-north-branch5-->
+            <start alt="150" lat="53.11975" lng="23.15518" />
+            <end alt="150" lat="53.119711948471064" lng="23.155707667263794" />
+        </edge>
+
+
+        <edge><!--zwierzyniecka-south-ha-delta-->
+            <start alt="150" lat="53.11999553243001" lng="23.149209554318237" />
+            <end alt="150" lat="53.11995" lng="23.14970" />
+        </edge>
+        <edge><!--zwierzyniecka-delta-split-->
+            <start alt="150" lat="53.11995" lng="23.14970" />
+            <end alt="150" lat="53.11954" lng="23.14993" />
+        </edge>
+        <edge><!--zwierzyniecka-delta-split-->
+            <start alt="150" lat="53.11954" lng="23.14993" />
+            <end alt="150" lat="53.11943" lng="23.14999" />
+        </edge>
+
+        <edge><!--zwierzyniecka-delta-gamma-->
+            <start alt="150" lat="53.11995" lng="23.14970" />
+            <end alt="150" lat="53.11983" lng="23.15092" />
+        </edge>
+        <edge><!--zwierzyniecka-gamma-split-->
+            <start alt="150" lat="53.11983" lng="23.15092" />
+            <end alt="150" lat="53.11947" lng="23.15066" />
+        </edge>
+        <edge><!--zwierzyniecka-gamma-split-->
+            <start alt="150" lat="53.11947" lng="23.15066" />
+            <end alt="150" lat="53.11936" lng="23.15058" />
+        </edge>
+
+        <edge><!--zwierzyniecka-gamma-beta-->
+            <start alt="150" lat="53.11983" lng="23.15092" />
+            <end alt="150" lat="53.11977" lng="23.15149" />
+        </edge>
+        <edge><!--zwierzyniecka-beta-split-->
+            <start alt="150" lat="53.11977" lng="23.15149" />
+            <end alt="150" lat="53.11936" lng="23.15172" />
+        </edge>
+        <edge><!--zwierzyniecka-beta-split-->
+            <start alt="150" lat="53.11936" lng="23.15172" />
+            <end alt="150" lat="53.11924" lng="23.15176" />
+        </edge>
+
+        <edge><!--zwierzyniecka-beta-alpha-->
+            <start alt="150" lat="53.11977" lng="23.15149" />
+            <end alt="150" lat="53.11965" lng="23.15279" />
+        </edge>
+        <edge><!--zwierzyniecka-alpha-split-->
+            <start alt="150" lat="53.11965" lng="23.15279" />
+            <end alt="150" lat="53.11927" lng="23.15256" />
+        </edge>
+        <edge><!--zwierzyniecka-alpha-split-->
+            <start alt="150" lat="53.11927" lng="23.15256" />
+            <end alt="150" lat="53.11916" lng="23.15253" />
+        </edge>
+
+        <edge><!--zwierzyniecka-alpha-crossing-->
+            <start alt="150" lat="53.11965" lng="23.15279" />
+            <end alt="150" lat="53.11945" lng="23.15511" />
+        </edge>
+
+        <edge><!--zwierzyniecka-crossing2-->
+            <start alt="150" lat="53.11977" lng="23.15149" />
+            <end alt="150" lat="53.12008" lng="23.15153" />
+        </edge>
+        <edge><!--zwierzyniecka-crossing3-->
+            <start alt="150" lat="53.11945" lng="23.15511" />
+            <end alt="150" lat="53.11975" lng="23.15518" />
+        </edge>
+
+        <edge><!--zwierzyniecka-crossing3-cnk-area-->
+            <start alt="150" lat="53.11945" lng="23.15511" />
+            <end alt="150" lat="53.11919" lng="23.15514" />
+        </edge>
+        <edge><!--cnk-area-cnk-entry-->
+            <start alt="150" lat="53.11919" lng="23.15514" />
+            <end alt="150" lat="53.11908" lng="23.15457" />
+        </edge>
+        <edge><!--zwierzyniecka-crossing3-corner-->
+            <start alt="150" lat="53.11945" lng="23.15511" />
+            <end alt="150" lat="53.11929" lng="23.15636" />
+        </edge>
+        <edge><!--corner-cnk-area-->
+            <start alt="150" lat="53.11929" lng="23.15636" />
+            <end alt="150" lat="53.11919" lng="23.15514" />
+        </edge>
+        <edge><!--swierkowa-branch1-->
+            <start alt="150" lat="53.11929" lng="23.15636" />
+            <end alt="150" lat="53.11887" lng="23.15578" />
+        </edge>
+        <edge><!--swierkowa-branch1-cnk-area-->
+            <start alt="150" lat="53.11887" lng="23.15578" />
+            <end alt="150" lat="53.11919" lng="23.15514" />
+        </edge>
+        <edge><!--swierkowa-branch2-->
+            <start alt="150" lat="53.11887" lng="23.15578" />
+            <end alt="150" lat="53.11767316215515" lng="23.154194262835695" />
+        </edge>
+        <edge><!--swierkowa-pb-->
+            <start alt="150" lat="53.11767316215515" lng="23.154194262835695" />
+            <end alt="150" lat="53.11797304433187" lng="23.153565993173217" />
+        </edge>
+        <edge><!--swierkowa-pb-wb-->
+            <start alt="150" lat="53.11797304433187" lng="23.153565993173217" />
+            <end alt="150" lat="53.11863973701477" lng="23.15317371753845" />
+        </edge>
+        <edge><!--connect-north-->
+            <start alt="150" lat="53.11863973701477" lng="23.15317371753845" />
+            <end alt="150" lat="53.11873" lng="23.15314" />
+        </edge>
+        <edge><!--connect-east-->
+            <start alt="150" lat="53.11863973701477" lng="23.15317371753845" />
+            <end alt="150" lat="53.11843" lng="23.15217" />
+        </edge>
+        <edge><!--swierkowa-pb-wb-east-->
+            <start alt="150" lat="53.11797304433187" lng="23.153565993173217" />
+            <end alt="150" lat="53.11769954615275" lng="23.153228912731933" />
+        </edge>
+        <edge><!--swierkowa-pb-wb-south-east-->
+            <start alt="150" lat="53.11769954615275" lng="23.153228912731933" />
+            <end alt="150" lat="53.117387037887575" lng="23.153282263894653" />
+        </edge>
+        <edge><!--swierkowa-pb-wb-south-->
+            <start alt="150" lat="53.117387037887575" lng="23.153282263894653" />
+            <end alt="150" lat="53.11720016171773" lng="23.15233191749573" />
+        </edge>
+        <edge><!--wb-south-west-->
+            <start alt="150" lat="53.11720016171773" lng="23.15233191749573" />
+            <end alt="150" lat="53.117000458246864" lng="23.15137092601013" />
+        </edge>
+        <edge><!--wb-south-west2-->
+            <start alt="150" lat="53.117000458246864" lng="23.15137092601013" />
+            <end alt="150" lat="53.117126090342204" lng="23.15128006558533" />
+        </edge>
+        <edge><!--wb-we-south-->
+            <start alt="150" lat="53.117126090342204" lng="23.15128006558533" />
+            <end alt="150" lat="53.11697140818278" lng="23.150538765219117" />
+        </edge>
+        <edge><!--connect-north-->
+            <start alt="150" lat="53.11697140818278" lng="23.150538765219117" />
+            <end alt="150" lat="53.11723" lng="23.15040" />
+        </edge>
+        <edge><!--connect-west-->
+            <start alt="150" lat="53.11697140818278" lng="23.150538765219117" />
+            <end alt="150" lat="53.11683" lng="23.14975" />
+        </edge>
+
+        <edge><!--swierkowa-branch3-->
+            <start alt="150" lat="53.11767316215515" lng="23.154194262835695" />
+            <end alt="150" lat="53.1169713075765" lng="23.15326612862549" />
+        </edge>
+        <edge><!--swierkowa-branch4-->
+            <start alt="150" lat="53.1169713075765" lng="23.15326612862549" />
+            <end alt="150" lat="53.11601451667786" lng="23.1520640301178" />
+        </edge>
+        <edge><!--swierkowa-wb-park-->
+            <start alt="150" lat="53.1169713075765" lng="23.15326612862549" />
+            <end alt="150" lat="53.11720016171773" lng="23.15233191749573" />
+        </edge>
+
+        <edge><!--north east corner-->
+            <start alt="150" lat="53.11929" lng="23.15636" />
+            <end alt="150" lat="53.11962" lng="23.15653" />
+        </edge>
+        <edge><!--north east corner-->
+            <start alt="150" lat="53.119711948471064" lng="23.155707667263794" />
+            <end alt="150" lat="53.11962" lng="23.15653" />
+        </edge>
+
+        <edge><!--south-branch-last-->
+            <start alt="150" lat="53.11601451667786" lng="23.1520640301178" />
+            <end alt="150" lat="53.11485" lng="23.15046" />
+        </edge>
+        <edge><!--south-wm-->
+            <start alt="150" lat="53.1159404704539" lng="23.149193712417603" />
+            <end alt="150" lat="53.11485" lng="23.15046" />
+        </edge>
+        <edge><!--south-wi-wm-->
+            <start alt="150" lat="53.1159404704539" lng="23.149193712417603" />
+            <end alt="150" lat="53.11553233591715" lng="23.147349220648195" />
+        </edge>
+        <edge><!--south-wi-->
+            <start alt="150" lat="53.11553233591715" lng="23.147349220648195" />
+            <end alt="150" lat="53.11456" lng="23.14788" />
+        </edge>
+        <edge><!--south-wi-west-->
+            <start alt="150" lat="53.11456" lng="23.14788" />
+            <end alt="150" lat="53.11438" lng="23.14640" />
+        </edge>
+        <edge><!--south-wi-west-wiejska-crossing-->
+            <start alt="150" lat="53.11438" lng="23.14640" />
+            <end alt="150" lat="53.11541" lng="23.14567" />
+        </edge>
+        <edge><!--wiejska-south-crossing-towest-->
+            <start alt="150" lat="53.11541" lng="23.14567" />
+            <end alt="150" lat="53.11536" lng="23.14524" />
+        </edge>
+
+        <edge><!--wiejska-south-up-connection-->
+            <start alt="150" lat="53.11541" lng="23.14567" />
+            <end alt="150" lat="53.11625949297587" lng="23.145093803387454" />
+        </edge>
+        <edge><!--wiejska-south-west-up-connection-->
+            <start alt="150" lat="53.11536" lng="23.14524" />
+            <end alt="150" lat="53.11574715548198" lng="23.144942928143312" />
+        </edge>
+
+        <edge><!--pogodna-east-north-->
+            <start alt="150" lat="53.11753845034281" lng="23.143156523342896" />
+            <end alt="150" lat="53.11574715548198" lng="23.144942928143312" />
+        </edge>
+        <edge><!--pogodna-east-south-->
+            <start alt="150" lat="53.117258136088054" lng="23.143043744097902" />
+            <end alt="150" lat="53.11574715548198" lng="23.144942928143312" />
+        </edge>
+
+        <edge><!--through cnk-->
+            <start alt="150" lat="53.11896" lng="23.15430" />
+            <end alt="150" lat="53.11908" lng="23.15457" />
+        </edge>
+        <!--CAMPUS END-->
+
+
+        <!--SPACES BEGIN-->
+        <!--WI BEGIN-->
         <!--wi-->
         <edge>
             <start alt="150" lat="53.11728" lng="23.14675" />
@@ -393,5 +1105,8 @@
             <start alt="145" lat="53.11692970354774" lng="23.14603053485016" />
             <end alt="145" lat="53.11689397883211" lng="23.145827369401115" />
         </edge>
+        <!--WI END-->
+
+        <!--SPACES END-->
     </edges>
 </route>

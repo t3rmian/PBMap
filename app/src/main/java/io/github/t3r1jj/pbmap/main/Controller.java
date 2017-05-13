@@ -35,13 +35,13 @@ public class Controller implements GeoMarker.MapListener {
     Controller(MapActivity mapActivity) {
         this.mapActivity = mapActivity;
         this.mapsDao = new MapsDao(mapActivity);
-        this.route = new Route(mapActivity);
+        this.route = new FullRoute(mapActivity);
     }
 
     void restoreState(Memento memento, MapActivity mapActivity) {
         this.mapActivity = mapActivity;
         this.mapsDao = new MapsDao(mapActivity);
-        this.route = new Route(mapActivity);
+        this.route = new FullRoute(mapActivity);
         this.map = mapsDao.loadMap(memento.mapReferencePath);
         loadRouteGraph();
         if (source == null) {
