@@ -43,11 +43,11 @@
     <string name="assistant_hotel_name">Hotel\nAssyst.</string>
     <string name="store">Sklep</string>
     <string name="lodge_name">Portiernia</string>
-    <string name="action_search_description">W celu odnalezienia miejsca np. sali bądź budynku</string>
+    <string name="action_search_description">W celu odnalezienia miejsca np. sali bądź budynku.\n\nOgranicz wyniki wyszukiwania poprzez zastosowanie skłądni miejsce@mapa n.p. 116@wi.\n\nSpacje zostaną zachowane przy wyszukiwaniu.</string>
     <string name="menu">Menu</string>
-    <string name="menu_description">Z poziomu menu możliwe jest również przejście do innej mapy.\nDodatkowe informacje na temat aplikacji umieszczone zostały na dole.</string>
+    <string name="menu_description">Z poziomu menu możliwe jest również przejście do innej mapy.\n\nDodatkowe informacje na temat aplikacji umieszczone zostały na dole.</string>
     <string name="floor">Piętro</string>
-    <string name="floor_description">When this button appears it will mean that the opened map contains additional floors</string>
+    <string name="floor_description">Przycisk ten oznacza, że na danej mapie możliwa jest nawigacja pomiędzy piętrami.</string>
     <string name="more_features">Więcej funkcjonalności</string>
     <string name="more_features_description">Włączenie lokalizacji może pomóc w odnalezieniu się na mapie. GPS może być jednak nieprecyzyjny wewnętrz budynków.\nCzasami odnajdziesz tu możliwość wyświetlenia dodatkowych informacji na temat danego miejsca.</string>
     <string name="action_back_description">Po przejściu w głąb hierarchii map pojawi się przycisk powrotu, który pozwoli cofnąć się o jedną mapę</string>

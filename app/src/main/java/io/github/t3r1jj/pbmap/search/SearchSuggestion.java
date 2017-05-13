@@ -51,7 +51,7 @@ public class SearchSuggestion {
         if (translatedName == null) {
             return placeId.toUpperCase().replace('_', ' ');
         }
-        return translatedName;
+        return translatedName.replace("\n", " ");
     }
 
     private String getNameRes(Context context) {

@@ -124,6 +124,7 @@ public class MapsDao extends ContextWrapper implements SuggestionsDao {
         List<SearchSuggestion> searchSuggestions = getSearchSuggestions();
         for (SearchSuggestion suggestion : searchSuggestions) {
             String name = suggestion.getName(getBaseContext());
+            System.out.println(name);
             String map = suggestion.getMapName(getBaseContext());
             if (queryMatchesSuggestion(selectionArgs, name, map)) {
                 matrixCursor.newRow()

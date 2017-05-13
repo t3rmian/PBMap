@@ -44,13 +44,13 @@
     <string name="gwint_name">Gwint\nclub</string>
     <string name="assistant_hotel_name">Assist.\nhotel</string>
     <string name="store">Store</string>
-    <string name="action_search_description">Use search to find a place e.g. room or building</string>
+    <string name="action_search_description">Use search to find a place e.g. room or building.\n\nLimit search scope by using place@map syntax e.g. 116@wi.\n\nSpaces are preserved when searching.</string>
     <string name="menu">Menu</string>
-    <string name="menu_description">You can switch between maps using menu.\nYou can also find additional information about the app at the bottom.</string>
+    <string name="menu_description">You can switch between maps using menu.\n\nYou can also find additional information about the app at the bottom.</string>
     <string name="floor">Floor</string>
     <string name="floor_description">When this button appears it will mean that the opened map contains additional floors</string>
     <string name="more_features">More features</string>
-    <string name="more_features_description">You can enable gps for easier navigation on the map (might be inaccurate indoors).\nSometimes there can be additional info about currently viewed place.</string>
+    <string name="more_features_description">You can enable gps for easier navigation on the map (might be inaccurate indoors).\n\nSometimes there can be additional info about currently viewed place.</string>
     <string name="action_back_description">After going deep into the map a back button will appear which will allow you to go back a map</string>
     <string name="maps_description">By interacting with map you can navigate to different places.\nUse long press to put a source/destination markers after which a shortest route between those locations will be drawn.</string>
     <string name="atm_name">ATM</string>
