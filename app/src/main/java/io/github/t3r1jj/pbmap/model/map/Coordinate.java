@@ -89,7 +89,7 @@ public class Coordinate implements Parcelable {
                 .append("\" lng=\"")
                 .append(lng)
                 .append("\" alt=\"")
-                .append("-11.0")
+                .append(alt)
                 .append("\"/>");
         sb.append("\t</coordinates>")
                 .append("</spot>");

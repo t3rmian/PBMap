@@ -129,7 +129,7 @@
         </coordinates>
     </space>
 
-    <space id="PB_WM">
+    <space id="PB_WM" reference_map_path="data/pb_wm.xml" url="https://wm.pb.edu.pl">
         <coordinates>
             <coordinate alt="150" lat="53.1173419" lng="23.1474247" />
             <coordinate alt="150" lat="53.1177009" lng="23.1491259" />
@@ -344,6 +344,14 @@
             <coordinate alt="150" lat="53.11722" lng="23.14690" />
         </coordinates>
     </spot>
-    <spot id="P">	<coordinates>		<coordinate lat="53.116984361241656" lng="23.150066860983276" alt="-11.0"/>	</coordinates></spot>
-    <spot id="P">	<coordinates>		<coordinate lat="53.11708094327291" lng="23.15241875458069" alt="-11.0"/>	</coordinates></spot>
+    <spot id="P">
+        <coordinates>
+            <coordinate alt="150" lat="53.116984361241656" lng="23.150066860983276" />
+        </coordinates>
+    </spot>
+    <spot id="P">
+        <coordinates>
+            <coordinate alt="150" lat="53.11708094327291" lng="23.15241875458069" />
+        </coordinates>
+    </spot>
 </map>

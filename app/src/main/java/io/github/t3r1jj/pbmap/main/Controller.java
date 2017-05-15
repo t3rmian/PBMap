@@ -150,7 +150,7 @@ public class Controller implements GeoMarker.MapListener {
         CoordinateTranslater coordinateTranslater = mapView.getCoordinateTranslater();
         double lng = coordinateTranslater.translateAndScaleAbsoluteToRelativeX(mapView.getScrollX() + event.getX() - mapView.getOffsetX(), mapView.getScale());
         double lat = coordinateTranslater.translateAndScaleAbsoluteToRelativeY(mapView.getScrollY() + event.getY() - mapView.getOffsetY(), mapView.getScale());
-        System.out.println(new Coordinate(lat, lng, -5.0));
+        System.out.println(new Coordinate(lat, lng, map.getCenter().alt));
     }
 
     public void onLongPress(MotionEvent event) {

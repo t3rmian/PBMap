@@ -45,5 +45,5 @@
     <spot id="42">	<coordinates>		<coordinate lat="53.11695058746168" lng="23.145797581298673" alt="145"/>	</coordinates></spot>
     <spot id="43">	<coordinates>		<coordinate lat="53.11694002870862" lng="23.145738527415297" alt="145"/>	</coordinates></spot>
 
-    <spot id="33">	<coordinates>		<coordinate lat="53.11719396819042" lng="23.14690861580606" alt="-11.0"/>	</coordinates></spot>
+    <spot id="33">	<coordinates>		<coordinate lat="53.11719396819042" lng="23.14690861580606" alt="145"/>	</coordinates></spot>
 </map>
