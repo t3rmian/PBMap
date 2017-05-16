@@ -54,4 +54,17 @@
     <string name="maps_description">Poprzez interakcję z mapą możesz nawigować pomiędzy różnymi miejscami.\nPrzyciśnij dłużej w celu ustawienia znacznika źródła/celu, dzięki temu wyznaczona zostanie trasa pomiędzy tymi punktami.</string>
     <string name="atm_name">Bankomat</string>
     <string name="buffet_name">Bufet</string>
+    <string name="p1_21_name">P1/21\nMała czytelnia</string>
+    <string name="p1_38_name">P1/38\nDuża czytelnia</string>
+    <string name="p0_19_name">P0/19\nWypożyczalnia międzybiblioteczna</string>
+    <string name="p0_15_16_name">P0/15,16\nCzytelnia norm i\nzbiorów specjalnych</string>
+    <string name="cloak_room_name">Szatnia</string>
+    <string name="information_publishers_reading_room_name">Czytelnia wydawnictw\ninformacyjnych</string>
+    <string name="magazines_reading_room_name">Czytelnia\nczasopism</string>
+    <string name="electronic_reading_room_name">Czytelnia\nelektroniczna</string>
+    <string name="book_rental_name">Wypożyczalnia</string>
+    <string name="book_return_name">Wrzutnia\nksiążek</string>
+    <string name="main_library_name">Biblioteka\nGłówna PB</string>
+    <string name="sjo_name">Studium\nJęzyków Obcych</string>
+    <string name="ckz_name">Centrum Kształcenia Zdalnego</string>
 </resources>

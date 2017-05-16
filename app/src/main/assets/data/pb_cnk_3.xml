@@ -29,8 +29,8 @@
     <spot id="P2/11">	<coordinates>		<coordinate lat="53.11923385437149" lng="23.15426330272878" alt="150.0"/>	</coordinates></spot>
     <spot id="P2/12">	<coordinates>		<coordinate lat="53.11924152448723" lng="23.154314443023594" alt="150.0"/>	</coordinates></spot>
     <spot id="P2/13">	<coordinates>		<coordinate lat="53.11925357446556" lng="23.15437013523012" alt="150.0"/>	</coordinates></spot>
-    <spot id="WC">	<coordinates>		<coordinate lat="53.11912823756165" lng="23.154088924270237" alt="150.0"/>	</coordinates></spot>
-    <spot id="↓">	<coordinates>		<coordinate lat="53.11915723016006" lng="23.15422764914264" alt="150.0"/>	</coordinates></spot>
+    <spot id="WC">	<coordinates>		<coordinate lat="53.119139719239655" lng="23.15408790561761" alt="150.0"/>	</coordinates></spot>
+    <spot id="↓">	<coordinates>		<coordinate lat="53.11916599845047" lng="23.15422850396781" alt="150.0"/>	</coordinates></spot>
 
     <spot id="P2/26">	<coordinates>		<coordinate lat="53.11904516532867" lng="23.15434332205856" alt="150.0"/>	</coordinates></spot>
     <spot id="P2/27">	<coordinates>		<coordinate lat="53.119050079342344" lng="23.15440266872985" alt="150.0"/>	</coordinates></spot>

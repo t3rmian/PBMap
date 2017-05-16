@@ -55,4 +55,17 @@
     <string name="maps_description">By interacting with map you can navigate to different places.\nUse long press to put a source/destination markers after which a shortest route between those locations will be drawn.</string>
     <string name="atm_name">ATM</string>
     <string name="buffet_name">Buffet</string>
+    <string name="p1_21_name">P1/21\nSmall reading room</string>
+    <string name="p1_38_name">P1/38\nBig reading room</string>
+    <string name="p0_19_name">P0/19\nInterlibrary rental</string>
+    <string name="p0_15_16_name">P0/15,16\nNorms and\nspecial collections\nreading room</string>
+    <string name="cloak_room_name">Cloakroom</string>
+    <string name="information_publishers_reading_room_name">Information publishers\nreading room</string>
+    <string name="magazines_reading_room_name">Magazines\nreading room</string>
+    <string name="electronic_reading_room_name">Electronic\nreading room</string>
+    <string name="book_rental_name">Book rental</string>
+    <string name="book_return_name">Self-service\nbook return</string>
+    <string name="main_library_name">PB Main\nLibrary</string>
+    <string name="sjo_name">SJO</string>
+    <string name="ckz_name">CKZ</string>
 </resources>

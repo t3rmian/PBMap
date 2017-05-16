@@ -202,6 +202,69 @@
             <coordinate alt="150" lat="53.11899750553131" lng="23.15382916569977" />
         </coordinates>
     </space>
+    <space id="main_library" reference_map_path="data/pb_cnk.xml" url="https://biblioteka.pb.edu.pl" hidden="true">
+        <coordinates>
+            <coordinate alt="150" lat="53.119147346013385" lng="23.153748573173523" />
+            <coordinate alt="150" lat="53.11930028013865" lng="23.154417495332336" />
+            <coordinate alt="150" lat="53.11909894181569" lng="23.154524931079102" />
+            <coordinate alt="150" lat="53.119107053197226" lng="23.154575746699525" />
+            <coordinate alt="150" lat="53.11892338385264" lng="23.154680479264833" />
+            <coordinate alt="150" lat="53.11891376337687" lng="23.15463483950348" />
+            <coordinate alt="150" lat="53.11870752049764" lng="23.154755665428162" />
+            <coordinate alt="150" lat="53.118564156545" lng="23.15407622391205" />
+
+            <coordinate alt="150" lat="53.118712412478125" lng="23.153995631385804" />
+            <coordinate alt="150" lat="53.11880242994944" lng="23.15438752983246" />
+            <coordinate alt="150" lat="53.11885414157867" lng="23.154360875205995" />
+            <coordinate alt="150" lat="53.11883320289612" lng="23.154248095960998" />
+            <coordinate alt="150" lat="53.11900234720866" lng="23.15415141007538" />
+            <coordinate alt="150" lat="53.11902634180704" lng="23.154255891181947" />
+            <coordinate alt="150" lat="53.119079688288366" lng="23.154232002601624" />
+            <coordinate alt="150" lat="53.11899750553131" lng="23.15382916569977" />
+        </coordinates>
+    </space>
+    <space id="sjo" reference_map_path="data/pb_cnk.xml" url="https://sjo.pb.edu.pl" hidden="true">
+        <coordinates>
+            <coordinate alt="150" lat="53.119147346013385" lng="23.153748573173523" />
+            <coordinate alt="150" lat="53.11930028013865" lng="23.154417495332336" />
+            <coordinate alt="150" lat="53.11909894181569" lng="23.154524931079102" />
+            <coordinate alt="150" lat="53.119107053197226" lng="23.154575746699525" />
+            <coordinate alt="150" lat="53.11892338385264" lng="23.154680479264833" />
+            <coordinate alt="150" lat="53.11891376337687" lng="23.15463483950348" />
+            <coordinate alt="150" lat="53.11870752049764" lng="23.154755665428162" />
+            <coordinate alt="150" lat="53.118564156545" lng="23.15407622391205" />
+
+            <coordinate alt="150" lat="53.118712412478125" lng="23.153995631385804" />
+            <coordinate alt="150" lat="53.11880242994944" lng="23.15438752983246" />
+            <coordinate alt="150" lat="53.11885414157867" lng="23.154360875205995" />
+            <coordinate alt="150" lat="53.11883320289612" lng="23.154248095960998" />
+            <coordinate alt="150" lat="53.11900234720866" lng="23.15415141007538" />
+            <coordinate alt="150" lat="53.11902634180704" lng="23.154255891181947" />
+            <coordinate alt="150" lat="53.119079688288366" lng="23.154232002601624" />
+            <coordinate alt="150" lat="53.11899750553131" lng="23.15382916569977" />
+        </coordinates>
+    </space>
+    <space id="ckz" reference_map_path="data/pb_cnk.xml" url="https://ckz.pb.edu.pl" hidden="true">
+        <coordinates>
+            <coordinate alt="150" lat="53.119147346013385" lng="23.153748573173523" />
+            <coordinate alt="150" lat="53.11930028013865" lng="23.154417495332336" />
+            <coordinate alt="150" lat="53.11909894181569" lng="23.154524931079102" />
+            <coordinate alt="150" lat="53.119107053197226" lng="23.154575746699525" />
+            <coordinate alt="150" lat="53.11892338385264" lng="23.154680479264833" />
+            <coordinate alt="150" lat="53.11891376337687" lng="23.15463483950348" />
+            <coordinate alt="150" lat="53.11870752049764" lng="23.154755665428162" />
+            <coordinate alt="150" lat="53.118564156545" lng="23.15407622391205" />
+
+            <coordinate alt="150" lat="53.118712412478125" lng="23.153995631385804" />
+            <coordinate alt="150" lat="53.11880242994944" lng="23.15438752983246" />
+            <coordinate alt="150" lat="53.11885414157867" lng="23.154360875205995" />
+            <coordinate alt="150" lat="53.11883320289612" lng="23.154248095960998" />
+            <coordinate alt="150" lat="53.11900234720866" lng="23.15415141007538" />
+            <coordinate alt="150" lat="53.11902634180704" lng="23.154255891181947" />
+            <coordinate alt="150" lat="53.119079688288366" lng="23.154232002601624" />
+            <coordinate alt="150" lat="53.11899750553131" lng="23.15382916569977" />
+        </coordinates>
+    </space>
 
     <space id="ds_alpha">
         <coordinates>
