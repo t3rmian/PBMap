@@ -1,0 +1,12 @@
+<map height="2000" id="PB_CNK" previous_map_path="data/pb_campus.xml" up_map_path="data/pb_cnk_2.xml"
+    route_path="routes/pb_campus.xml" url="https://cnk.pb.edu.pl/" width="1745">
+    <tiles_configs>
+        <tiles_config height="256" path="tiles/pb_campus/cnk/main/tile-%d_%d.png" width="256"
+            zoom="1" />
+    </tiles_configs>
+    <coordinates>
+        <coordinate alt="150" lat="53.11931" lng="23.15479" />
+        <coordinate alt="150" lat="53.11854" lng="23.15367" />
+    </coordinates>
+
+</map>

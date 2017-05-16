@@ -181,7 +181,7 @@
         </coordinates>
     </space>
 
-    <space id="CNK">
+    <space id="CNK" reference_map_path="data/pb_cnk.xml" url="https://cnk.pb.edu.pl">
         <coordinates>
             <coordinate alt="150" lat="53.119147346013385" lng="23.153748573173523" />
             <coordinate alt="150" lat="53.11930028013865" lng="23.154417495332336" />
