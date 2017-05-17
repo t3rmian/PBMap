@@ -138,7 +138,7 @@
         </coordinates>
     </space>
 
-    <space id="PB_WE">
+    <space id="PB_WE" reference_map_path="data/pb_we.xml" url="https://we.pb.edu.pl">
         <coordinates>
             <coordinate alt="150" lat="53.1177364" lng="23.1493463" />
             <coordinate alt="150" lat="53.117797977020935" lng="23.149497447072505" />
