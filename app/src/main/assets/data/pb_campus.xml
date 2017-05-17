@@ -161,7 +161,7 @@
         </coordinates>
     </space>
 
-    <space id="PB_WB">
+    <space id="PB_WB" reference_map_path="data/pb_wb.xml" url="https://we.pb.edu.pl">
         <coordinates>
             <coordinate alt="150" lat="53.1180721" lng="23.1509341" />
             <coordinate alt="150" lat="53.1184248" lng="23.1526077" />
@@ -172,7 +172,7 @@
         </coordinates>
     </space>
 
-    <space id="Inno-Eko-Tech">
+    <space id="Inno-Eko-Tech" url="https://innoekotech.pb.edu.pl">
         <coordinates>
             <coordinate alt="150" lat="53.1174207" lng="23.1512974" />
             <coordinate alt="150" lat="53.1177547" lng="23.1529156" />
