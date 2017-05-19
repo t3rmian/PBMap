@@ -55,4 +55,7 @@
     <string name="maps_description">By interacting with map you can navigate to different places.\nUse long press to put a source/destination markers after which a shortest route between those locations will be drawn.</string>
     <string name="atm_name">ATM</string>
     <string name="buffet_name">Buffet</string>
+    <string name="assembly_hall_a_name">Assembly\nhall A</string>
+    <string name="assembly_hall_b_name">Assembly\nhall B</string>
+    <string name="assembly_hall_c_name">Assembly\nhall C</string>
 </resources>
