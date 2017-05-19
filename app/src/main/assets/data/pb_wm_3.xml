@@ -1,4 +1,4 @@
-<map down_map_path="data/pb_wm.xml" height="1447" id="PB_WM_L3" previous_map_path="data/pb_wm_2.xml"
+<map down_map_path="data/pb_wm_2.xml" height="1447" id="PB_WM_L3" previous_map_path="data/pb_wm_2.xml"
     route_path="routes/pb_campus.xml" url="https://wm.pb.edu.pl/" width="2900">
     <tiles_configs>
         <tiles_config height="256" path="tiles/pb_campus/wm/floor/tile-%d_%d.png" width="256"
