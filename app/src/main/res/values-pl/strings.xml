@@ -19,6 +19,7 @@
     <string name="airplane_enabled">Proszę wyłączyć tryb samolotowy</string>
     <string name="cancel">Anuluj</string>
     <string name="deanery_121_name">Dziekanat</string>
+    <string name="deanery_name">Dziekanat</string>
     <string name="enable">Włącz</string>
     <string name="gps_disabled_message">%1$s potrzebuje dostępu do twojej lokalizacji w celu wyświetlenia znacznika na mapie. Proszę włączyć Usługę Lokalizacyjną.</string>
     <string name="gps_permissions_disabled_message">%1$s potrzebuje uprawnień dostępu do lokalizacji aby skorzystać z usługi lokalizacji. Aplikacja zamierza wyświetlić znacznik na mapie w miejscu twojej lokalizacji. Proszę zezwolić %1$s na dostęp do lokalizacji.</string>
@@ -41,7 +42,7 @@
     <string name="ds_delta_name">DS\nDelta</string>
     <string name="gwint_name">Klub Gwint</string>
     <string name="assistant_hotel_name">Hotel\nAssyst.</string>
-    <string name="store">Sklep</string>
+    <string name="store_name">Sklep</string>
     <string name="lodge_name">Portiernia</string>
     <string name="action_search_description">W celu odnalezienia miejsca np. sali bądź budynku.\n\nOgranicz wyniki wyszukiwania poprzez zastosowanie skłądni miejsce@mapa n.p. 116@wi.\n\nSpacje zostaną zachowane przy wyszukiwaniu.</string>
     <string name="menu">Menu</string>
@@ -54,4 +55,5 @@
     <string name="maps_description">Poprzez interakcję z mapą możesz nawigować pomiędzy różnymi miejscami.\nPrzyciśnij dłużej w celu ustawienia znacznika źródła/celu, dzięki temu wyznaczona zostanie trasa pomiędzy tymi punktami.</string>
     <string name="atm_name">Bankomat</string>
     <string name="buffet_name">Bufet</string>
+    <string name="car_hall_name">Laboratorium Pojazdów Samochodowych\nHala Pojazdów </string>
 </resources>
