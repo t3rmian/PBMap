@@ -25,19 +25,19 @@
     <spot id="257">	<coordinates>		<coordinate lat="53.11725342799758" lng="23.147767151616378" alt="155.0"/>	</coordinates></spot>
     <spot id="255">	<coordinates>		<coordinate lat="53.11727056690567" lng="23.147851546497844" alt="155.0"/>	</coordinates></spot>
     <spot id="253">	<coordinates>		<coordinate lat="53.11728857614893" lng="23.14792729779095" alt="155.0"/>	</coordinates></spot>
-    <spot id="251">	<coordinates>		<coordinate lat="53.117298886273325" lng="23.147991639547413" alt="155.0"/>	</coordinates></spot>
+    <spot id="251" hidden="true">	<coordinates>		<coordinate lat="53.117298886273325" lng="23.147991639547413" alt="155.0"/>	</coordinates></spot>
     <spot id="249">	<coordinates>		<coordinate lat="53.11731344765031" lng="23.148053103825433" alt="155.0"/>	</coordinates></spot>
-    <spot id="247">	<coordinates>		<coordinate lat="53.11732201710436" lng="23.148113129364223" alt="155.0"/>	</coordinates></spot>
+    <spot id="247" hidden="true">	<coordinates>		<coordinate lat="53.11732201710436" lng="23.148113129364223" alt="155.0"/>	</coordinates></spot>
     <spot id="245">	<coordinates>		<coordinate lat="53.11733744881652" lng="23.148174593642242" alt="155.0"/>	</coordinates></spot>
-    <spot id="243">	<coordinates>		<coordinate lat="53.11734859580166" lng="23.148244556519398" alt="155.0"/>	</coordinates></spot>
+    <spot id="243" hidden="true">	<coordinates>		<coordinate lat="53.11734859580166" lng="23.148244556519398" alt="155.0"/>	</coordinates></spot>
     <spot id="241">	<coordinates>		<coordinate lat="53.11736148345715" lng="23.148293239439656" alt="155.0"/>	</coordinates></spot>
     <spot id="WC">	<coordinates>		<coordinate lat="53.117377785504495" lng="23.14836470797414" alt="155.0"/>	</coordinates></spot>
     <spot id="234">	<coordinates>		<coordinate lat="53.11734605174499" lng="23.147631575538792" alt="155.0"/>	</coordinates></spot>
-    <spot id="236">	<coordinates>		<coordinate lat="53.117331456893574" lng="23.147567267241378" alt="155.0"/>	</coordinates></spot>
+    <spot id="236" hidden="true">	<coordinates>		<coordinate lat="53.117331456893574" lng="23.147567267241378" alt="155.0"/>	</coordinates></spot>
     <spot id="238">	<coordinates>		<coordinate lat="53.11732030990843" lng="23.147505802963362" alt="155.0"/>	</coordinates></spot>
-    <spot id="205">	<coordinates>		<coordinate lat="53.11752356664651" lng="23.149082683459053" alt="155.0"/>	</coordinates></spot>
+    <spot id="205" hidden="true">	<coordinates>		<coordinate lat="53.11752356664651" lng="23.149082683459053" alt="155.0"/>	</coordinates></spot>
     <spot id="203">	<coordinates>		<coordinate lat="53.11753300643573" lng="23.14913270474138" alt="155.0"/>	</coordinates></spot>
-    <spot id="201">	<coordinates>		<coordinate lat="53.11754415342087" lng="23.149182726023707" alt="155.0"/>	</coordinates></spot>
+    <spot id="201" hidden="true">	<coordinates>		<coordinate lat="53.11754415342087" lng="23.149182726023707" alt="155.0"/>	</coordinates></spot>
     <spot id="200">	<coordinates>		<coordinate lat="53.11760588026952" lng="23.149131266002154" alt="155.0"/>	</coordinates></spot>
     <spot id="202">	<coordinates>		<coordinate lat="53.117649631349344" lng="23.14905409827586" alt="155.0"/>	</coordinates></spot>
 
@@ -55,17 +55,17 @@
     <spot id="226">	<coordinates>		<coordinate lat="53.117408648928816" lng="23.14795574913793" alt="155.0"/>	</coordinates></spot>
     <spot id="228">	<coordinates>		<coordinate lat="53.11739234688148" lng="23.14788856336207" alt="155.0"/>	</coordinates></spot>
     <spot id="232">	<coordinates>		<coordinate lat="53.11737691516932" lng="23.147809968049568" alt="155.0"/>	</coordinates></spot>
-    <spot id="233">	<coordinates>		<coordinate lat="53.11738340515517" lng="23.148395827854763" alt="155.0"/>	</coordinates></spot>
+    <spot id="233" hidden="true">	<coordinates>		<coordinate lat="53.11738340515517" lng="23.148395827854763" alt="155.0"/>	</coordinates></spot>
     <spot id="231">	<coordinates>		<coordinate lat="53.11739149480033" lng="23.148447123020777" alt="155.0"/>	</coordinates></spot>
-    <spot id="229">	<coordinates>		<coordinate lat="53.11740033388044" lng="23.148488690490304" alt="155.0"/>	</coordinates></spot>
+    <spot id="229" hidden="true">	<coordinates>		<coordinate lat="53.11740033388044" lng="23.148488690490304" alt="155.0"/>	</coordinates></spot>
     <spot id="227">	<coordinates>		<coordinate lat="53.11740887655494" lng="23.14854445557651" alt="155.0"/>	</coordinates></spot>
-    <spot id="225">	<coordinates>		<coordinate lat="53.1174209206548" lng="23.14859733203125" alt="155.0"/>	</coordinates></spot>
+    <spot id="225" hidden="true">	<coordinates>		<coordinate lat="53.1174209206548" lng="23.14859733203125" alt="155.0"/>	</coordinates></spot>
     <spot id="223">	<coordinates>		<coordinate lat="53.1174319430523" lng="23.148652177342065" alt="155.0"/>	</coordinates></spot>
-    <spot id="221">	<coordinates>		<coordinate lat="53.117444899147316" lng="23.148706188790577" alt="155.0"/>	</coordinates></spot>
+    <spot id="221" hidden="true">	<coordinates>		<coordinate lat="53.117444899147316" lng="23.148706188790577" alt="155.0"/>	</coordinates></spot>
     <spot id="219">	<coordinates>		<coordinate lat="53.11745785524233" lng="23.148762853611597" alt="155.0"/>	</coordinates></spot>
-    <spot id="217">	<coordinates>		<coordinate lat="53.117466368888216" lng="23.148817130118534" alt="155.0"/>	</coordinates></spot>
+    <spot id="217" hidden="true">	<coordinates>		<coordinate lat="53.117466368888216" lng="23.148817130118534" alt="155.0"/>	</coordinates></spot>
     <spot id="215">	<coordinates>		<coordinate lat="53.117475677761036" lng="23.148870813424367" alt="155.0"/>	</coordinates></spot>
-    <spot id="213">	<coordinates>		<coordinate lat="53.11748518486524" lng="23.14890928192349" alt="155.0"/>	</coordinates></spot>
+    <spot id="213" hidden="true">	<coordinates>		<coordinate lat="53.11748518486524" lng="23.14890928192349" alt="155.0"/>	</coordinates></spot>
     <spot id="211">	<coordinates>		<coordinate lat="53.117491176788185" lng="23.14894429682112" alt="155.0"/>	</coordinates></spot>
-    <spot id="207">	<coordinates>		<coordinate lat="53.1175006400095" lng="23.148980716998924" alt="155.0"/>	</coordinates></spot>
+    <spot id="207" hidden="true">	<coordinates>		<coordinate lat="53.1175006400095" lng="23.148980716998924" alt="155.0"/>	</coordinates></spot>
 </map>
