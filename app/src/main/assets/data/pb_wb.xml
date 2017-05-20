@@ -39,13 +39,13 @@
 
     <spot id="39B">	<coordinates>		<coordinate lat="53.118029524151595" lng="23.152313840819332" alt="150.0"/>	</coordinates></spot>
     <spot id="WC">	<coordinates>		<coordinate lat="53.11799149823886" lng="23.152350543461466" alt="150.0"/>	</coordinates></spot>
-    <spot id="40B-52B 52B-57B">	<coordinates>		<coordinate lat="53.11802460847434" lng="23.152615195863838" alt="150.0"/>	</coordinates></spot>
+    <spot id="40B-52B 57B-62B">	<coordinates>		<coordinate lat="53.11802460847434" lng="23.152615195863838" alt="150.0"/>	</coordinates></spot>
     <spot id="38B">	<coordinates>		<coordinate lat="53.117955977222046" lng="23.152182962736614" alt="150.0"/>	</coordinates></spot>
     <spot id="65B">	<coordinates>		<coordinate lat="53.11791702826241" lng="23.152399919527205" alt="150.0"/>	</coordinates></spot>
     <spot id="64B">	<coordinates>		<coordinate lat="53.1178623332085" lng="23.152430931541165" alt="150.0"/>	</coordinates></spot>
     <spot id="63B">	<coordinates>		<coordinate lat="53.11781133034221" lng="23.152466832148455" alt="150.0"/>	</coordinates></spot>
     <spot id="53B-56B">	<coordinates>		<coordinate lat="53.11791239492892" lng="23.152690319794203" alt="150.0"/>	</coordinates></spot>
-    <spot id="66B">	<coordinates>		<coordinate lat="53.11789570768878" lng="23.152292434127432" alt="150.0"/>	</coordinates></spot>
+    <spot id="66B"  hidden="true">	<coordinates>		<coordinate lat="53.11789570768878" lng="23.152292434127432" alt="150.0"/>	</coordinates></spot>
     <spot id="67B">	<coordinates>		<coordinate lat="53.117882712636266" lng="23.15221085572618" alt="150.0"/>	</coordinates></spot>
     <spot id="assembly_hall_b">	<coordinates>		<coordinate lat="53.11794023112777" lng="23.15190265792408" alt="150.0"/>	</coordinates></spot>
 
@@ -58,9 +58,8 @@
     <spot id="12B">	<coordinates>		<coordinate lat="53.117622062289" lng="23.151467369426026" alt="150.0"/>	</coordinates></spot>
     <spot id="11B">	<coordinates>		<coordinate lat="53.11775606698098" lng="23.15154472759631" alt="150.0"/>	</coordinates></spot>
     <spot id="8B">	<coordinates>		<coordinate lat="53.11764532669082" lng="23.151625586712345" alt="150.0"/>	</coordinates></spot>
-    <spot id="6B">	<coordinates>		<coordinate lat="53.11771301679725" lng="23.151739730274393" alt="150.0"/>	</coordinates></spot>
     <spot id="7B">	<coordinates>		<coordinate lat="53.11769723450506" lng="23.151661487319636" alt="150.0"/>	</coordinates></spot>
-    <spot id="6B">	<coordinates>		<coordinate lat="53.11772601184977" lng="23.151808196042484" alt="150.0"/>	</coordinates></spot>
+    <spot id="6B">	<coordinates>		<coordinate lat="53.11771765013074" lng="23.15177573272738" alt="150.0"/>	</coordinates></spot>
     <spot id="5B">	<coordinates>		<coordinate lat="53.11773712461056" lng="23.151858762429775" alt="150.0"/>	</coordinates></spot>
     <spot id="4B">	<coordinates>		<coordinate lat="53.11774917851721" lng="23.15192239052738" alt="150.0"/>	</coordinates></spot>
     <spot id="68B">	<coordinates>		<coordinate lat="53.117834497009646" lng="23.152114993466284" alt="150.0"/>	</coordinates></spot>
@@ -72,7 +71,7 @@
     <spot id="1B">	<coordinates>		<coordinate lat="53.11776680690322" lng="23.151994331779793" alt="150.0"/>	</coordinates></spot>
     <spot id="37B">	<coordinates>		<coordinate lat="53.1179020930015" lng="23.15165868019768" alt="150.0"/>	</coordinates></spot>
     <spot id="36B">	<coordinates>		<coordinate lat="53.1178589812813" lng="23.151699469398306" alt="150.0"/>	</coordinates></spot>
-    <spot id="35B">	<coordinates>		<coordinate lat="53.11785018518726" lng="23.151647260749193" alt="150.0"/>	</coordinates></spot>
-    <spot id="34B">	<coordinates>		<coordinate lat="53.11782613529062" lng="23.151498457824253" alt="145.0"/>	</coordinates></spot>
-    <spot id="31B">	<coordinates>		<coordinate lat="53.117872504823424" lng="23.15147397666545" alt="145.0"/>	</coordinates></spot>
+    <spot id="35B"  hidden="true">	<coordinates>		<coordinate lat="53.11785018518726" lng="23.151647260749193" alt="150.0"/>	</coordinates></spot>
+    <spot id="34B">	<coordinates>		<coordinate lat="53.11782613529062" lng="23.151498457824253" alt="150.0"/>	</coordinates></spot>
+    <spot id="31B">	<coordinates>		<coordinate lat="53.117872504823424" lng="23.15147397666545" alt="150.0"/>	</coordinates></spot>
 </map>
