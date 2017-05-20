@@ -57,4 +57,7 @@
     <string name="atm_name">ATM</string>
     <string name="buffet_name">Buffet</string>
     <string name="car_hall_name">Laboratory of motor vehicles\nVehicles hall</string>
+    <string name="assembly_hall_a_name">Assembly\nhall A</string>
+    <string name="assembly_hall_b_name">Assembly\nhall B</string>
+    <string name="assembly_hall_c_name">Assembly\nhall C</string>
 </resources>

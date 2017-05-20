@@ -56,4 +56,7 @@
     <string name="atm_name">Bankomat</string>
     <string name="buffet_name">Bufet</string>
     <string name="car_hall_name">Laboratorium Pojazdów Samochodowych\nHala Pojazdów </string>
+    <string name="assembly_hall_a_name">Aula A</string>
+    <string name="assembly_hall_b_name">Aula B</string>
+    <string name="assembly_hall_c_name">Aula C</string>
 </resources>
