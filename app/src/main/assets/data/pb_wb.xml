@@ -12,9 +12,9 @@
 
     <spot id="↑">	<coordinates>		<coordinate lat="53.117975227274776" lng="23.152268315793915" alt="150.0"/>	</coordinates></spot>
     <spot id="↑">	<coordinates>		<coordinate lat="53.11783818195769" lng="23.151578088426596" alt="150.0"/>	</coordinates></spot>
-    <spot id="↑">	<coordinates>		<coordinate lat="53.11821377879318" lng="23.151769367371475" alt="150.0"/>	</coordinates></spot>
-    <spot id="↑">	<coordinates>		<coordinate lat="53.11808860639315" lng="23.15112975094894" alt="150.0"/>	</coordinates></spot>
-    <spot id="↑">	<coordinates>		<coordinate lat="53.118305591192076" lng="23.152481688889132" alt="150.0"/>	</coordinates></spot>
+    <spot id="↑↓">	<coordinates>		<coordinate lat="53.11821377879318" lng="23.151769367371475" alt="150.0"/>	</coordinates></spot>
+    <spot id="↑↓">	<coordinates>		<coordinate lat="53.11808860639315" lng="23.15112975094894" alt="150.0"/>	</coordinates></spot>
+    <spot id="↑↓">	<coordinates>		<coordinate lat="53.118305591192076" lng="23.152481688889132" alt="150.0"/>	</coordinates></spot>
 
     <spot id="28A">	<coordinates>		<coordinate lat="53.11806470128818" lng="23.15102556916888" alt="150.0"/>	</coordinates></spot>
     <spot id="store">	<coordinates>		<coordinate lat="53.118013720140645" lng="23.1510345443207" alt="150.0"/>	</coordinates></spot>
