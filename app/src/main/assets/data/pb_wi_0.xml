@@ -17,8 +17,11 @@
             <coordinate alt="145" lat="53.11724355948689" lng="23.14688384015195" />
         </coordinates>
     </spot>
-    <spot id="↵">	<coordinates>		<coordinate lat="53.11718567412813" lng="23.146806938037404" alt="145"/>	</coordinates></spot>
-    <spot id="↵">	<coordinates>		<coordinate lat="53.117080939532954" lng="23.146891107466796" alt="145"/>	</coordinates></spot>
+    <spot id="↵">	<coordinates>		<coordinate lat="53.11720453920165" lng="23.14678655158301" alt="145.0"/>	</coordinates></spot>
+    <spot id="↵">	<coordinates>		<coordinate lat="53.117041883435036" lng="23.146919870367675" alt="145.0"/>	</coordinates></spot>
+    <spot id="↵">	<coordinates>		<coordinate lat="53.116973671006896" lng="23.147009368857912" alt="145.0"/>	</coordinates></spot>
+    <spot id="↵">	<coordinates>		<coordinate lat="53.116873619291965" lng="23.14650294879883" alt="145.0"/>	</coordinates></spot>
+    <spot id="↵">	<coordinates>		<coordinate lat="53.11677775965182" lng="23.14604195545337" alt="145.0"/>	</coordinates></spot>
 
     <spot id="buffet">	<coordinates>		<coordinate lat="53.11716995952712" lng="23.147070087592255" alt="145"/>	</coordinates></spot>
     <spot id="03">	<coordinates>		<coordinate lat="53.117108930522626" lng="23.147043707446144" alt="145"/>	</coordinates></spot>
@@ -46,4 +49,8 @@
     <spot id="43">	<coordinates>		<coordinate lat="53.11694002870862" lng="23.145738527415297" alt="145"/>	</coordinates></spot>
 
     <spot id="33">	<coordinates>		<coordinate lat="53.11719396819042" lng="23.14690861580606" alt="145"/>	</coordinates></spot>
+
+    <spot id="↑">	<coordinates>		<coordinate lat="53.11680528543647" lng="23.146642666328123" alt="145.0"/>	</coordinates></spot>
+    <spot id="↑">	<coordinates>		<coordinate lat="53.116381166959556" lng="23.14633796959668" alt="145.0"/>	</coordinates></spot>
+
 </map>
