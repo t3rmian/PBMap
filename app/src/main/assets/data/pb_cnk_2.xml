@@ -18,15 +18,15 @@
     <spot id="P1/01">	<coordinates>		<coordinate lat="53.11911728360199" lng="23.153780947265627" alt="155.0"/>	</coordinates></spot>
     <spot id="P1/02">	<coordinates>		<coordinate lat="53.11913741019134" lng="23.153817451171875" alt="155.0"/>	</coordinates></spot>
 
-    <spot id="P1/03">	<coordinates>		<coordinate lat="53.11915000176391" lng="23.15386909477973" alt="155.0"/>	</coordinates></spot>
+    <spot id="P1/03" hidden="true">	<coordinates>		<coordinate lat="53.11915000176391" lng="23.15386909477973" alt="155.0"/>	</coordinates></spot>
     <spot id="P1/04">	<coordinates>		<coordinate lat="53.119160736834715" lng="23.153919528485407" alt="155.0"/>	</coordinates></spot>
-    <spot id="P1/05">	<coordinates>		<coordinate lat="53.119169511422726" lng="23.153966687522388" alt="155.0"/>	</coordinates></spot>
+    <spot id="P1/05" hidden="true">	<coordinates>		<coordinate lat="53.119169511422726" lng="23.153966687522388" alt="155.0"/>	</coordinates></spot>
     <spot id="P1/06">	<coordinates>		<coordinate lat="53.119181217218014" lng="23.15402281382074" alt="155.0"/>	</coordinates></spot>
-    <spot id="P1/07">	<coordinates>		<coordinate lat="53.119193893737794" lng="23.15407813414443" alt="155.0"/>	</coordinates></spot>
+    <spot id="P1/07" hidden="true">	<coordinates>		<coordinate lat="53.119193893737794" lng="23.15407813414443" alt="155.0"/>	</coordinates></spot>
     <spot id="P1/08">	<coordinates>		<coordinate lat="53.11920413392944" lng="23.154123681232093" alt="155.0"/>	</coordinates></spot>
-    <spot id="P1/09">	<coordinates>		<coordinate lat="53.119214869000245" lng="23.15418142582602" alt="155.0"/>	</coordinates></spot>
+    <spot id="P1/09" hidden="true">	<coordinates>		<coordinate lat="53.119214869000245" lng="23.15418142582602" alt="155.0"/>	</coordinates></spot>
     <spot id="P1/10">	<coordinates>		<coordinate lat="53.119227050640866" lng="23.1542277852346" alt="155.0"/>	</coordinates></spot>
-    <spot id="P1/11">	<coordinates>		<coordinate lat="53.11923826155701" lng="23.15428391153295" alt="155.0"/>	</coordinates></spot>
+    <spot id="P1/11" hidden="true">	<coordinates>		<coordinate lat="53.11923826155701" lng="23.15428391153295" alt="155.0"/>	</coordinates></spot>
     <spot id="P1/12">	<coordinates>		<coordinate lat="53.11924802590332" lng="23.154342474794053" alt="155.0"/>	</coordinates></spot>
     <spot id="P1/13">	<coordinates>		<coordinate lat="53.11918414842529" lng="23.15438062214586" alt="155.0"/>	</coordinates></spot>
 

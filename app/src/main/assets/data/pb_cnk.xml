@@ -26,8 +26,13 @@
 
     <spot id="P0/19">	<coordinates>		<coordinate lat="53.11872770244507" lng="23.1542204638476" alt="150.0"/>	</coordinates></spot>
     <spot id="P0/15/16">	<coordinates>		<coordinate lat="53.11866380311341" lng="23.154100732421874" alt="150.0"/>	</coordinates></spot>
-    <spot id="information_publishers_reading_room">	<coordinates>		<coordinate lat="53.11871106129944" lng="23.15454171875" alt="150.0"/>	</coordinates></spot>
-    <spot id="magazines_reading_room">	<coordinates>		<coordinate lat="53.11863229764038" lng="23.15418395994135" alt="150.0"/>	</coordinates></spot>
+    <spot id="information_publishers_reading_room" hidden="true">	<coordinates>		<coordinate lat="53.11871106129944" lng="23.15454171875" alt="150.0"/>	</coordinates></spot>
+    <spot id="magazines_reading_room" hidden="true">	<coordinates>		<coordinate lat="53.11863229764038" lng="23.15418395994135" alt="150.0"/>	</coordinates></spot>
     <spot id="electronic_reading_room">	<coordinates>		<coordinate lat="53.11867607042969" lng="23.1543737939649" alt="150.0"/>	</coordinates></spot>
     <spot id="WC">	<coordinates>		<coordinate lat="53.11868721677185" lng="23.154224756973047" alt="150.0"/>	</coordinates></spot>
+
+    <spot id="P0/41">	<coordinates>		<coordinate lat="53.11922362164062" lng="23.154239316618913" alt="150.0"/>	</coordinates></spot>
+    <spot id="P0/40" hidden="true">	<coordinates>		<coordinate lat="53.119209725546874" lng="23.154182785100286" alt="150.0"/>	</coordinates></spot>
+    <spot id="P0/39">	<coordinates>		<coordinate lat="53.11919742359375" lng="23.15411978510029" alt="150.0"/>	</coordinates></spot>
+    <spot id="P0/38" hidden="true">	<coordinates>		<coordinate lat="53.1191850915625" lng="23.154056815186248" alt="150.0"/>	</coordinates></spot>
 </map>

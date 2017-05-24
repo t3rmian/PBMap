@@ -19,21 +19,21 @@
     <spot id="P2/20">	<coordinates>		<coordinate lat="53.11907788468903" lng="23.153820390625" alt="160.0"/>	</coordinates></spot>
     <spot id="P2/02">	<coordinates>		<coordinate lat="53.11912777402954" lng="23.153780947265627" alt="160.0"/>	</coordinates></spot>
     <spot id="P2/03">	<coordinates>		<coordinate lat="53.11914441519867" lng="23.153849580078127" alt="160.0"/>	</coordinates></spot>
-    <spot id="P2/04">	<coordinates>		<coordinate lat="53.11915174784607" lng="23.153889891092295" alt="160.0"/>	</coordinates></spot>
+    <spot id="P2/04" hidden="true">	<coordinates>		<coordinate lat="53.11915174784607" lng="23.153889891092295" alt="160.0"/>	</coordinates></spot>
     <spot id="P2/05">	<coordinates>		<coordinate lat="53.11916599845047" lng="23.153948340179532" alt="160.0"/>	</coordinates></spot>
-    <spot id="P2/06">	<coordinates>		<coordinate lat="53.11917749293518" lng="23.15400127560329" alt="160.0"/>	</coordinates></spot>
+    <spot id="P2/06" hidden="true">	<coordinates>		<coordinate lat="53.11917749293518" lng="23.15400127560329" alt="160.0"/>	</coordinates></spot>
     <spot id="P2/07">	<coordinates>		<coordinate lat="53.11918678680557" lng="23.154046923565097" alt="160.0"/>	</coordinates></spot>
-    <spot id="P2/08">	<coordinates>		<coordinate lat="53.1191988367839" lng="23.154100799331797" alt="160.0"/>	</coordinates></spot>
+    <spot id="P2/08" hidden="true">	<coordinates>		<coordinate lat="53.1191988367839" lng="23.154100799331797" alt="160.0"/>	</coordinates></spot>
     <spot id="P2/09">	<coordinates>		<coordinate lat="53.11920977577499" lng="23.15415467505932" alt="160.0"/>	</coordinates></spot>
-    <spot id="P2/10">	<coordinates>		<coordinate lat="53.1192218257592" lng="23.154207610483077" alt="160.0"/>	</coordinates></spot>
+    <spot id="P2/10" hidden="true">	<coordinates>		<coordinate lat="53.1192218257592" lng="23.154207610483077" alt="160.0"/>	</coordinates></spot>
     <spot id="P2/11">	<coordinates>		<coordinate lat="53.11923385437149" lng="23.15426330272878" alt="160.0"/>	</coordinates></spot>
-    <spot id="P2/12">	<coordinates>		<coordinate lat="53.11924152448723" lng="23.154314443023594" alt="160.0"/>	</coordinates></spot>
+    <spot id="P2/12" hidden="true">	<coordinates>		<coordinate lat="53.11924152448723" lng="23.154314443023594" alt="160.0"/>	</coordinates></spot>
     <spot id="P2/13">	<coordinates>		<coordinate lat="53.11925357446556" lng="23.15437013523012" alt="160.0"/>	</coordinates></spot>
     <spot id="WC">	<coordinates>		<coordinate lat="53.119139719239655" lng="23.15408790561761" alt="160.0"/>	</coordinates></spot>
     <spot id="↓">	<coordinates>		<coordinate lat="53.11916599845047" lng="23.15422850396781" alt="160.0"/>	</coordinates></spot>
 
     <spot id="P2/26">	<coordinates>		<coordinate lat="53.11904516532867" lng="23.15434332205856" alt="160.0"/>	</coordinates></spot>
-    <spot id="P2/27">	<coordinates>		<coordinate lat="53.119050079342344" lng="23.15440266872985" alt="160.0"/>	</coordinates></spot>
+    <spot id="P2/27" hidden="true">	<coordinates>		<coordinate lat="53.119050079342344" lng="23.15440266872985" alt="160.0"/>	</coordinates></spot>
     <spot id="P2/28">	<coordinates>		<coordinate lat="53.11899806357239" lng="23.15449674290383" alt="160.0"/>	</coordinates></spot>
     <spot id="P2/32">	<coordinates>		<coordinate lat="53.11894171495453" lng="23.154430066070468" alt="160.0"/>	</coordinates></spot>
     <spot id="↓">	<coordinates>		<coordinate lat="53.118883135808716" lng="23.15452783024042" alt="160.0"/>	</coordinates></spot>
