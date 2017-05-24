@@ -17,7 +17,7 @@
     <spot id="↑↓">	<coordinates>		<coordinate lat="53.118305591192076" lng="23.152481688889132" alt="150.0"/>	</coordinates></spot>
 
     <spot id="28A">	<coordinates>		<coordinate lat="53.11806470128818" lng="23.15102556916888" alt="150.0"/>	</coordinates></spot>
-    <spot id="store">	<coordinates>		<coordinate lat="53.118013720140645" lng="23.1510345443207" alt="150.0"/>	</coordinates></spot>
+    <spot id="buffet">	<coordinates>		<coordinate lat="53.118013720140645" lng="23.1510345443207" alt="150.0"/>	</coordinates></spot>
     <spot id="19A">	<coordinates>		<coordinate lat="53.11798965214505" lng="23.15117884693902" alt="150.0"/>	</coordinates></spot>
     <spot id="31A">	<coordinates>		<coordinate lat="53.11813187738419" lng="23.15133997955834" alt="150.0"/>	</coordinates></spot>
     <spot id="32A">	<coordinates>		<coordinate lat="53.118152274910905" lng="23.15144031029808" alt="150.0"/>	</coordinates></spot>
@@ -48,9 +48,9 @@
     <spot id="66B"  hidden="true">	<coordinates>		<coordinate lat="53.11789570768878" lng="23.152292434127432" alt="150.0"/>	</coordinates></spot>
     <spot id="67B">	<coordinates>		<coordinate lat="53.117882712636266" lng="23.15221085572618" alt="150.0"/>	</coordinates></spot>
     <spot id="assembly_hall_b">	<coordinates>		<coordinate lat="53.11794023112777" lng="23.15190265792408" alt="150.0"/>	</coordinates></spot>
+    <spot id="deanery">	<coordinates>		<coordinate lat="53.118100844909186" lng="23.15160980699506" alt="150.0"/>	</coordinates></spot>
 
-    <spot id="30B">	<coordinates>		<coordinate lat="53.117841917582815" lng="23.15132081347172" alt="145.0"/>	</coordinates></spot>
-    <spot id="29B">	<coordinates>		<coordinate lat="53.117796489195875" lng="23.151353429555364" alt="145.0"/>	</coordinates></spot>
+    <spot id="29B">	<coordinates>		<coordinate lat="53.11781817174869" lng="23.151340908900302" alt="150.0"/>	</coordinates></spot>
     <spot id="19B">	<coordinates>		<coordinate lat="53.11771847544327" lng="23.15126356346073" alt="150.0"/>	</coordinates></spot>
     <spot id="18B">	<coordinates>		<coordinate lat="53.117741757944046" lng="23.151389253778387" alt="150.0"/>	</coordinates></spot>
     <spot id="WC">	<coordinates>		<coordinate lat="53.11769075507776" lng="23.151425078001406" alt="150.0"/>	</coordinates></spot>
@@ -69,9 +69,9 @@
     <spot id="27B">	<coordinates>		<coordinate lat="53.1178237208895" lng="23.151204843052525" alt="150.0"/>	</coordinates></spot>
     <spot id="28B">	<coordinates>		<coordinate lat="53.11778106164328" lng="23.151230126246173" alt="150.0"/>	</coordinates></spot>
     <spot id="1B">	<coordinates>		<coordinate lat="53.11776680690322" lng="23.151994331779793" alt="150.0"/>	</coordinates></spot>
-    <spot id="37B">	<coordinates>		<coordinate lat="53.1179020930015" lng="23.15165868019768" alt="150.0"/>	</coordinates></spot>
-    <spot id="36B">	<coordinates>		<coordinate lat="53.1178589812813" lng="23.151699469398306" alt="150.0"/>	</coordinates></spot>
-    <spot id="35B"  hidden="true">	<coordinates>		<coordinate lat="53.11785018518726" lng="23.151647260749193" alt="150.0"/>	</coordinates></spot>
-    <spot id="34B">	<coordinates>		<coordinate lat="53.11782613529062" lng="23.151498457824253" alt="150.0"/>	</coordinates></spot>
-    <spot id="31B">	<coordinates>		<coordinate lat="53.117872504823424" lng="23.15147397666545" alt="150.0"/>	</coordinates></spot>
+    <spot id="34B">	<coordinates>		<coordinate lat="53.11788999927713" lng="23.151595822308142" alt="150.0"/>	</coordinates></spot>
+    <spot id="35B" hidden="true">	<coordinates>		<coordinate lat="53.117901582610855" lng="23.15164558666059" alt="150.0"/>	</coordinates></spot>
+    <spot id="37B">	<coordinates>		<coordinate lat="53.117911345189306" lng="23.151706942326136" alt="150.0"/>	</coordinates></spot>
+    <spot id="31B">	<coordinates>		<coordinate lat="53.11782613529062" lng="23.151498457824253" alt="150.0"/>	</coordinates></spot>
+    <spot id="32B">	<coordinates>		<coordinate lat="53.117872504823424" lng="23.15147397666545" alt="150.0"/>	</coordinates></spot>
 </map>
