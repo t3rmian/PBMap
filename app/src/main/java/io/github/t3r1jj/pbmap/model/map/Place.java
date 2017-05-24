@@ -27,7 +27,7 @@ public abstract class Place {
     protected List<Coordinate> coordinates;
 
     public static String getNameResIdString(String id) {
-        return id.toLowerCase() + NAME_POSTFIX;
+        return id.toLowerCase().replace("/", "_") + NAME_POSTFIX;
     }
 
     public String getNameResIdString() {

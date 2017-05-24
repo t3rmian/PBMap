@@ -1,0 +1,38 @@
+<map height="2000" id="PB_CNK" previous_map_path="data/pb_campus.xml" up_map_path="data/pb_cnk_2.xml"
+    route_path="routes/pb_campus.xml" url="https://cnk.pb.edu.pl/" width="1745">
+    <tiles_configs>
+        <tiles_config height="256" path="tiles/pb_campus/cnk/main/tile-%d_%d.png" width="256"
+            zoom="1" />
+    </tiles_configs>
+    <coordinates>
+        <coordinate alt="150" lat="53.11931" lng="23.15479" />
+        <coordinate alt="150" lat="53.11854" lng="23.15367" />
+    </coordinates>
+
+    <spot id="WC">	<coordinates>		<coordinate lat="53.119139719239655" lng="23.15408790561761" alt="150.0"/>	</coordinates></spot>
+    <spot id="↑">	<coordinates>		<coordinate lat="53.11916599845047" lng="23.15422850396781" alt="150.0"/>	</coordinates></spot>
+
+    <spot id="P0/21">	<coordinates>		<coordinate lat="53.119180498632815" lng="23.15431857808023" alt="150.0"/>	</coordinates></spot>
+    <spot id="P0/44">	<coordinates>		<coordinate lat="53.1191943796875" lng="23.154387339541547" alt="150.0"/>	</coordinates></spot>
+    <spot id="P0/33">	<coordinates>		<coordinate lat="53.119105399570316" lng="23.153884583094555" alt="150.0"/>	</coordinates></spot>
+    <spot id="lodge">	<coordinates>		<coordinate lat="53.11892992517548" lng="23.15442783203125" alt="150.0"/>	</coordinates></spot>
+    <spot id="cloak_room">	<coordinates>		<coordinate lat="53.11894135949219" lng="23.154511268624642" alt="150.0"/>	</coordinates></spot>
+
+    <spot id="↑">	<coordinates>		<coordinate lat="53.118883135808716" lng="23.15452783024042" alt="150.0"/>	</coordinates></spot>
+    <spot id="Informatorium">	<coordinates>		<coordinate lat="53.11877191136719" lng="23.15460302077364" alt="150.0"/>	</coordinates></spot>
+    <spot id="book_rental">	<coordinates>		<coordinate lat="53.11875496234375" lng="23.154425002148997" alt="150.0"/>	</coordinates></spot>
+    <spot id="book_return">	<coordinates>		<coordinate lat="53.118812414570314" lng="23.15428007808023" alt="150.0"/>	</coordinates></spot>
+    <spot id="↑↓">	<coordinates>		<coordinate lat="53.11873592947022" lng="23.154442924135925" alt="150.0"/>	</coordinates></spot>
+
+    <spot id="P0/19">	<coordinates>		<coordinate lat="53.11872770244507" lng="23.1542204638476" alt="150.0"/>	</coordinates></spot>
+    <spot id="P0/15/16">	<coordinates>		<coordinate lat="53.11866380311341" lng="23.154100732421874" alt="150.0"/>	</coordinates></spot>
+    <spot id="information_publishers_reading_room" hidden="true">	<coordinates>		<coordinate lat="53.11871106129944" lng="23.15454171875" alt="150.0"/>	</coordinates></spot>
+    <spot id="magazines_reading_room" hidden="true">	<coordinates>		<coordinate lat="53.11863229764038" lng="23.15418395994135" alt="150.0"/>	</coordinates></spot>
+    <spot id="electronic_reading_room">	<coordinates>		<coordinate lat="53.11867607042969" lng="23.1543737939649" alt="150.0"/>	</coordinates></spot>
+    <spot id="WC">	<coordinates>		<coordinate lat="53.11868721677185" lng="23.154224756973047" alt="150.0"/>	</coordinates></spot>
+
+    <spot id="P0/41">	<coordinates>		<coordinate lat="53.11922362164062" lng="23.154239316618913" alt="150.0"/>	</coordinates></spot>
+    <spot id="P0/40" hidden="true">	<coordinates>		<coordinate lat="53.119209725546874" lng="23.154182785100286" alt="150.0"/>	</coordinates></spot>
+    <spot id="P0/39">	<coordinates>		<coordinate lat="53.11919742359375" lng="23.15411978510029" alt="150.0"/>	</coordinates></spot>
+    <spot id="P0/38" hidden="true">	<coordinates>		<coordinate lat="53.1191850915625" lng="23.154056815186248" alt="150.0"/>	</coordinates></spot>
+</map>

@@ -6,6 +6,7 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.view.Gravity;
 import android.widget.TextView;
 
 import com.qozix.tileview.markers.MarkerLayout;
@@ -38,6 +39,7 @@ public class SpotView extends MarkerLayout implements PlaceView {
         } else {
             textSize = resources.getDimension(R.dimen.spot_text);
         }
+        textView.setGravity(Gravity.CENTER);
         setTypeFace(context);
         center = place.getCenter();
     }
