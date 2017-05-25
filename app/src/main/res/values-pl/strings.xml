@@ -72,4 +72,7 @@
     <string name="main_library_name">Biblioteka\nGłówna PB</string>
     <string name="sjo_name">Studium\nJęzyków Obcych</string>
     <string name="ckz_name">Centrum Kształcenia Zdalnego</string>
+    <string name="assembly_hall_i_name">Aula I</string>
+    <string name="assembly_hall_ii_name">Aula II</string>
+    <string name="assembly_hall_iii_name">Aula III</string>
 </resources>

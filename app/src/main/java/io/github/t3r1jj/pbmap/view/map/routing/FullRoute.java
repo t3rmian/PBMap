@@ -27,7 +27,7 @@ public class FullRoute extends Route {
     public FullRoute(Context context) {
         super(context);
         Resources resources = context.getResources();
-        drawablePath.paint = getPaint(resources.getColor(R.color.route), resources.getDimension(R.dimen.route_stroke_width)/2);
+        drawablePath.paint = getPaint(resources.getColor(R.color.route), resources.getDimension(R.dimen.route_stroke_width) / 2);
         drawablePath.path = new Path();
         drawablePath.paint.setColor(Color.RED);
     }

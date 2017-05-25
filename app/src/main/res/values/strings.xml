@@ -73,4 +73,7 @@
     <string name="main_library_name">PB Main\nLibrary</string>
     <string name="sjo_name">SJO</string>
     <string name="ckz_name">CKZ</string>
+    <string name="assembly_hall_i_name">Assembly\nhall I</string>
+    <string name="assembly_hall_ii_name">Assembly\nhall II</string>
+    <string name="assembly_hall_iii_name">Assembly\nhall III</string>
 </resources>
