@@ -8,4 +8,51 @@
         <coordinate alt="150" lat="53.11808" lng="23.15044" />
         <coordinate alt="150" lat="53.11706" lng="23.14927" />
     </coordinates>
+
+    <spot id="↑">	<coordinates>		<coordinate lat="53.11780397254583" lng="23.149882919692544" alt="150.0"/>	</coordinates></spot>
+    <spot id="entry">	<coordinates>		<coordinate lat="53.117785361213265" lng="23.149486255199797" alt="150.0"/>	</coordinates></spot>
+    <spot id="038">	<coordinates>		<coordinate lat="53.11774803118508" lng="23.14960654074407" alt="150.0"/>	</coordinates></spot>
+    <spot id="039">	<coordinates>		<coordinate lat="53.11775883928333" lng="23.14966993704254" alt="150.0"/>	</coordinates></spot>
+    <spot id="040">	<coordinates>		<coordinate lat="53.11777455314331" lng="23.14973009883813" alt="150.0"/>	</coordinates></spot>
+    <spot id="buffet">	<coordinates>		<coordinate lat="53.11771169767511" lng="23.149843877329744" alt="150.0"/>	</coordinates></spot>
+    <spot id="entry">	<coordinates>		<coordinate lat="53.11765574097679" lng="23.14992515855813" alt="150.0"/>	</coordinates></spot>
+    <spot id="↑">	<coordinates>		<coordinate lat="53.117680269955166" lng="23.14964718135826" alt="150.0"/>	</coordinates></spot>
+    <spot id="01">	<coordinates>		<coordinate lat="53.11771463349166" lng="23.149443978322413" alt="150.0"/>	</coordinates></spot>
+    <spot id="02">	<coordinates>		<coordinate lat="53.117682247597436" lng="23.149439107544648" alt="150.0"/>	</coordinates></spot>
+    <spot id="03">	<coordinates>		<coordinate lat="53.117658216552734" lng="23.149481305541993" alt="150.0"/>	</coordinates></spot>
+    <spot id="deanery">	<coordinates>		<coordinate lat="53.11769501033159" lng="23.14946837029329" alt="150.0"/>	</coordinates></spot>
+    <spot id="WC">	<coordinates>		<coordinate lat="53.11762234161377" lng="23.149499462700515" alt="150.0"/>	</coordinates></spot>
+    <spot id="030">	<coordinates>		<coordinate lat="53.11754773690851" lng="23.149843877329744" alt="150.0"/>	</coordinates></spot>
+    <spot id="029">	<coordinates>		<coordinate lat="53.117487832622736" lng="23.14987154186211" alt="150.0"/>	</coordinates></spot>
+    <spot id="028">	<coordinates>		<coordinate lat="53.11747802613637" lng="23.149803530788937" alt="150.0"/>	</coordinates></spot>
+    <spot id="027">	<coordinates>		<coordinate lat="53.117471524360795" lng="23.1497459178791" alt="150.0"/>	</coordinates></spot>
+    <spot id="↑">	<coordinates>		<coordinate lat="53.1174404462358" lng="23.149755897643445" alt="150.0"/>	</coordinates></spot>
+
+    <spot id="007">	<coordinates>		<coordinate lat="53.117588976208495" lng="23.149512245410357" alt="150.0"/>	</coordinates></spot>
+    <spot id="008">	<coordinates>		<coordinate lat="53.1175536008445" lng="23.149530130316865" alt="150.0"/>	</coordinates></spot>
+    <spot id="009">	<coordinates>		<coordinate lat="53.11752021846036" lng="23.149549651521678" alt="150.0"/>	</coordinates></spot>
+    <spot id="010">	<coordinates>		<coordinate lat="53.11748587795854" lng="23.149567536428183" alt="150.0"/>	</coordinates></spot>
+    <spot id="011">	<coordinates>		<coordinate lat="53.1174524955744" lng="23.149585421334688" alt="150.0"/>	</coordinates></spot>
+    <spot id="012">	<coordinates>		<coordinate lat="53.11741911319025" lng="23.14960654074407" alt="150.0"/>	</coordinates></spot>
+
+    <spot id="013">	<coordinates>		<coordinate lat="53.11737001691784" lng="23.149629296451756" alt="150.0"/>	</coordinates></spot>
+    <spot id="014">	<coordinates>		<coordinate lat="53.117320920702014" lng="23.149648817633157" alt="150.0"/>	</coordinates></spot>
+    <spot id="015">	<coordinates>		<coordinate lat="53.11727278260387" lng="23.14967644411861" alt="150.0"/>	</coordinates></spot>
+    <spot id="016">	<coordinates>		<coordinate lat="53.11721977705966" lng="23.14970734317727" alt="150.0"/>	</coordinates></spot>
+    <spot id="017">	<coordinates>		<coordinate lat="53.11716382036133" lng="23.149738204118773" alt="150.0"/>	</coordinates></spot>
+
+    <spot id="WC">	<coordinates>		<coordinate lat="53.117300301052026" lng="23.149834135774206" alt="150.0"/>	</coordinates></spot>
+    <spot id="024">	<coordinates>		<coordinate lat="53.117262012849565" lng="23.149860164031683" alt="150.0"/>	</coordinates></spot>
+    <spot id="↑">	<coordinates>		<coordinate lat="53.11718735284979" lng="23.1498942975698" alt="150.0"/>	</coordinates></spot>
+
+    <spot id="018">	<coordinates>		<coordinate lat="53.117204063171386" lng="23.150004841535125" alt="150.0"/>	</coordinates></spot>
+    <spot id="019">	<coordinates>		<coordinate lat="53.11722368638805" lng="23.15008612276351" alt="150.0"/>	</coordinates></spot>
+    <spot id="020">	<coordinates>		<coordinate lat="53.11723644906561" lng="23.150164131348458" alt="150.0"/>	</coordinates></spot>
+
+    <spot id="assembly_hall_i">	<coordinates>		<coordinate lat="53.11775587279164" lng="23.15013650493324" alt="150.0"/>	</coordinates></spot>
+    <spot id="assembly_hall_ii">	<coordinates>		<coordinate lat="53.117857024088636" lng="23.15017391097432" alt="150.0"/>	</coordinates></spot>
+    <spot id="assembly_hall_iii">	<coordinates>		<coordinate lat="53.11781383013861" lng="23.14998695662862" alt="150.0"/>	</coordinates></spot>
+
+    <spot id="entry">	<coordinates>		<coordinate lat="53.117115734161935" lng="23.149844067213117" alt="150.0"/>	</coordinates></spot>
+    <spot id="WC">	<coordinates>		<coordinate lat="53.117811755065915" lng="23.15019592489594" alt="150.0"/>	</coordinates></spot>
 </map>
