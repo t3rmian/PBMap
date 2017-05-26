@@ -99,12 +99,11 @@ public class Controller implements GeoMarker.MapListener {
             mapView.addToMap(nextMapView);
         }
         mapView = nextMapView;
-        mapActivity.setBackButtonVisible(map.getNavigationMapPath(PBMap.Navigation.BACK) != null);
         mapActivity.setInfoButtonVisible(map.getDescription(mapActivity) != null || map.getUrl() != null);
         mapActivity.setLevelMenuVisible(map.getNavigationMapPath(PBMap.Navigation.UP) != null || map.getNavigationMapPath(PBMap.Navigation.DOWN) != null);
-        mapActivity.setLevelUpButtonVisible(map.getNavigationMapPath(PBMap.Navigation.UP) != null);
-        mapActivity.setLevelDownButtonVisible(map.getNavigationMapPath(PBMap.Navigation.DOWN) != null);
-
+        for (PBMap.Navigation navigation : PBMap.Navigation.values()) {
+            mapActivity.setLevelButtonVisible(navigation, map.getNavigationMapPath(navigation) != null);
+        }
         reloadContext();
     }
 

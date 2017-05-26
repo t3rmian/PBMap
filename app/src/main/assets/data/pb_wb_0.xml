@@ -1,4 +1,4 @@
-<map height="2150" id="PB_WB_L0" previous_map_path="data/pb_wb.xml"
+<map height="2150" id="PB_WB_L0" previous_map_path="data/pb_wb.xml" right_map_path="data/pb_iet_0.xml"
     route_path="routes/pb_campus.xml" up_map_path="data/pb_wb.xml" url="https://wb.pb.edu.pl/"
     width="2700">
     <tiles_configs>
