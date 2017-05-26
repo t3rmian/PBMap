@@ -9,4 +9,7 @@
         <coordinate alt="145" lat="53.11780" lng="23.15110" />
         <coordinate alt="145" lat="53.1171443038" lng="23.15324" />
     </coordinates>
+
+    <spot id="↑">	<coordinates>		<coordinate lat="53.11746454305451" lng="23.152581003668438" alt="145.0"/>	</coordinates></spot>
+    <spot id="↑">	<coordinates>		<coordinate lat="53.11765522238082" lng="23.152931897432" alt="145.0"/>	</coordinates></spot>
 </map>
