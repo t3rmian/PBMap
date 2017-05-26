@@ -1,0 +1,35 @@
+<map down_map_path="data/pb_iet.xml" height="1400" id="PB_WB_L2_IET"
+    left_map_path="data/pb_wb_2.xml" previous_map_path="data/pb_iet.xml"
+    route_path="routes/pb_campus.xml" up_map_path="data/pb_iet_3.xml"
+    url="https://innoekotech.pb.edu.pl/" width="2700">
+    <tiles_configs>
+        <tiles_config height="256" path="tiles/pb_campus/iet/floor/tile-%d_%d.png" width="256"
+            zoom="1" />
+    </tiles_configs>
+    <coordinates>
+        <coordinate alt="155" lat="53.11780" lng="23.15110" />
+        <coordinate alt="155" lat="53.1171443038" lng="23.15324" />
+    </coordinates>
+
+    <spot id="↑↓">	<coordinates>		<coordinate lat="53.11746454305451" lng="23.152581003668438" alt="155.0"/>	</coordinates></spot>
+    <spot id="↑↓">	<coordinates>		<coordinate lat="53.11765522238082" lng="23.152931897432" alt="155.0"/>	</coordinates></spot>
+
+    <spot id="2/2">	<coordinates>		<coordinate lat="53.11754014379056" lng="23.152963769097223" alt="155.0"/>	</coordinates></spot>
+    <spot id="2/3" hidden="true">	<coordinates>		<coordinate lat="53.11752419046784" lng="23.152903470138888" alt="155.0"/>	</coordinates></spot>
+    <spot id="2/4">	<coordinates>		<coordinate lat="53.11751105458973" lng="23.152839976041665" alt="155.0"/>	</coordinates></spot>
+    <spot id="2/5" hidden="true">	<coordinates>		<coordinate lat="53.11749605261193" lng="23.15276537326389" alt="155.0"/>	</coordinates></spot>
+    <spot id="2/6">	<coordinates>		<coordinate lat="53.11748858821323" lng="23.15271774340278" alt="155.0"/>	</coordinates></spot>
+    <spot id="2/7" hidden="true">	<coordinates>		<coordinate lat="53.117474500990184" lng="23.152663797569446" alt="155.0"/>	</coordinates></spot>
+
+    <spot id="2/29">	<coordinates>		<coordinate lat="53.11768544343399" lng="23.152824111805554" alt="155.0"/>	</coordinates></spot>
+    <spot id="2/28" hidden="true">	<coordinates>		<coordinate lat="53.11767603975523" lng="23.152766970833333" alt="155.0"/>	</coordinates></spot>
+    <spot id="2/27">	<coordinates>		<coordinate lat="53.117665757911915" lng="23.152712987847224" alt="155.0"/>	</coordinates></spot>
+    <spot id="2/26" hidden="true">	<coordinates>		<coordinate lat="53.117654488133475" lng="23.152660602430554" alt="155.0"/>	</coordinates></spot>
+    <spot id="2/25">	<coordinates>		<coordinate lat="53.11764135225536" lng="23.152601901041667" alt="155.0"/>	</coordinates></spot>
+    <spot id="WC">	<coordinates>		<coordinate lat="53.11761793453393" lng="23.152500325347223" alt="155.0"/>	</coordinates></spot>
+
+    <spot id="2/22">	<coordinates>		<coordinate lat="53.117597297666926" lng="23.152400495833334" alt="155.0"/>	</coordinates></spot>
+    <spot id="2/21" hidden="true">	<coordinates>		<coordinate lat="53.117584198379" lng="23.152325893055554" alt="155.0"/>	</coordinates></spot>
+    <spot id="2/11">	<coordinates>		<coordinate lat="53.11743794739064" lng="23.152484646875" alt="155.0"/>	</coordinates></spot>
+    <spot id="2/12" hidden="true">	<coordinates>		<coordinate lat="53.117422030658105" lng="23.152410044097223" alt="155.0"/>	</coordinates></spot>
+</map>

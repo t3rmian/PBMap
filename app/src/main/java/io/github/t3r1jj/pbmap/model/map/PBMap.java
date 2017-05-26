@@ -24,6 +24,10 @@ public class PBMap extends Space {
     private String previousMapPath;
     @Attribute(name = "up_map_path", required = false)
     private String upMapPath;
+    @Attribute(name = "left_map_path", required = false)
+    private String leftMapPath;
+    @Attribute(name = "right_map_path", required = false)
+    private String rightMapPath;
     @Attribute(name = "down_map_path", required = false)
     private String downMapPath;
     @ElementListUnion({
@@ -69,6 +73,10 @@ public class PBMap extends Space {
             return upMapPath;
         } else if (navigation == Navigation.DOWN) {
             return downMapPath;
+        } else if (navigation == Navigation.LEFT) {
+            return leftMapPath;
+        } else if (navigation == Navigation.RIGHT) {
+            return rightMapPath;
         } else {
             return previousMapPath;
         }
@@ -155,6 +163,6 @@ public class PBMap extends Space {
     }
 
     public enum Navigation {
-        UP, DOWN, BACK
+        UP, DOWN, LEFT, RIGHT, BACK
     }
 }

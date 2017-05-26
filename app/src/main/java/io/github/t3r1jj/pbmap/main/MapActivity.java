@@ -9,8 +9,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.Location;
@@ -68,6 +71,8 @@ public class MapActivity extends DrawerActivity
     private FloatingActionMenu moreOptions;
     private FloatingActionButton levelUpButton;
     private FloatingActionButton levelDownButton;
+    private FloatingActionButton levelRightButton;
+    private FloatingActionButton levelLeftButton;
     private MenuItem backButton;
     private LocationManager locationManager;
     private PBLocationListener locationListener;
@@ -118,6 +123,28 @@ public class MapActivity extends DrawerActivity
                 controller.onNavigationPerformed(PBMap.Navigation.DOWN);
             }
         });
+        levelRightButton = (FloatingActionButton) findViewById(R.id.right_fab);
+        triangleDrawable = getResources().getDrawable(R.drawable.triangle_down_drawable);
+        DrawableCompat.setTint(triangleDrawable, ContextCompat.getColor(this, R.color.colorSecondaryText));
+        triangleDrawable = rotateDrawable(triangleDrawable, -90);
+        levelRightButton.setImageDrawable(triangleDrawable);
+        levelRightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                controller.onNavigationPerformed(PBMap.Navigation.RIGHT);
+            }
+        });
+        levelLeftButton = (FloatingActionButton) findViewById(R.id.left_fab);
+        triangleDrawable = getResources().getDrawable(R.drawable.triangle_down_drawable);
+        DrawableCompat.setTint(triangleDrawable, ContextCompat.getColor(this, R.color.colorSecondaryText));
+        triangleDrawable = rotateDrawable(triangleDrawable, 90);
+        levelLeftButton.setImageDrawable(triangleDrawable);
+        levelLeftButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                controller.onNavigationPerformed(PBMap.Navigation.LEFT);
+            }
+        });
         infoButton = (FloatingActionButton) findViewById(R.id.info_fab);
         infoButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,6 +164,37 @@ public class MapActivity extends DrawerActivity
                 }
             }
         });
+    }
+
+    private Drawable rotateDrawable(Drawable drawable, float angle) {
+        Bitmap originalBitmap = drawableToBitmap(drawable);
+        Bitmap rotatedBitmap = Bitmap.createBitmap(originalBitmap.getHeight(), originalBitmap.getWidth(), Bitmap.Config.ARGB_8888);
+        Canvas tempCanvas = new Canvas(rotatedBitmap);
+        int pivot = originalBitmap.getHeight() / 2;
+        tempCanvas.rotate(angle, pivot, pivot);
+        tempCanvas.drawBitmap(originalBitmap, 0, 0, null);
+        return new BitmapDrawable(getResources(), rotatedBitmap);
+    }
+
+    private static Bitmap drawableToBitmap(Drawable drawable) {
+        if (drawable instanceof BitmapDrawable) {
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+            if (bitmapDrawable.getBitmap() != null) {
+                return bitmapDrawable.getBitmap();
+            }
+        }
+
+        Bitmap bitmap;
+        if (drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
+            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
+        } else {
+            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        }
+
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+        return bitmap;
     }
 
     private void requestLocationOnDemand() {
@@ -375,13 +433,6 @@ public class MapActivity extends DrawerActivity
         }
     }
 
-    public void setBackButtonVisible(boolean visible) {
-        if (backButton != null) {
-            backButton.setVisible(visible);
-        }
-        showBackButton = visible;
-    }
-
     public void setInfoButtonVisible(boolean visible) {
         if (visible) {
             infoButton.setVisibility(moreOptions.isOpened() ? View.VISIBLE : View.INVISIBLE);
@@ -398,19 +449,36 @@ public class MapActivity extends DrawerActivity
         }
     }
 
-    public void setLevelUpButtonVisible(boolean visible) {
-        if (visible) {
-            levelUpButton.setVisibility(View.VISIBLE);
+    public void setLevelButtonVisible(PBMap.Navigation navigation, boolean visible) {
+        if (navigation == PBMap.Navigation.UP) {
+            if (visible) {
+                levelUpButton.setVisibility(View.VISIBLE);
+            } else {
+                levelUpButton.setVisibility(View.GONE);
+            }
+        } else if (navigation == PBMap.Navigation.DOWN) {
+            if (visible) {
+                levelDownButton.setVisibility(View.VISIBLE);
+            } else {
+                levelDownButton.setVisibility(View.GONE);
+            }
+        } else if (navigation == PBMap.Navigation.LEFT) {
+            if (visible) {
+                levelLeftButton.setVisibility(View.VISIBLE);
+            } else {
+                levelLeftButton.setVisibility(View.GONE);
+            }
+        } else if (navigation == PBMap.Navigation.RIGHT) {
+            if (visible) {
+                levelRightButton.setVisibility(View.VISIBLE);
+            } else {
+                levelRightButton.setVisibility(View.GONE);
+            }
         } else {
-            levelUpButton.setVisibility(View.GONE);
-        }
-    }
-
-    public void setLevelDownButtonVisible(boolean visible) {
-        if (visible) {
-            levelDownButton.setVisibility(View.VISIBLE);
-        } else {
-            levelDownButton.setVisibility(View.GONE);
+            if (backButton != null) {
+                backButton.setVisible(visible);
+            }
+            showBackButton = visible;
         }
     }
 

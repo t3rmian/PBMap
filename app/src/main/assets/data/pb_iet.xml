@@ -1,0 +1,20 @@
+<map down_map_path="data/pb_iet_0.xml" height="1580" id="PB_WB_IET"
+    left_map_path="data/pb_wb.xml" previous_map_path="data/pb_campus.xml"
+    route_path="routes/pb_campus.xml" up_map_path="data/pb_iet_2.xml"
+    url="https://innoekotech.pb.edu.pl/" width="2700">
+    <tiles_configs>
+        <tiles_config height="256" path="tiles/pb_campus/iet/main/tile-%d_%d.png" width="256"
+            zoom="1" />
+    </tiles_configs>
+    <coordinates>
+        <coordinate alt="155" lat="53.11780" lng="23.15110" />
+        <coordinate alt="155" lat="53.11706" lng="23.15324" />
+    </coordinates>
+
+    <spot id="assembly_hall_c">	<coordinates>		<coordinate lat="53.11746454305451" lng="23.152960012022568" alt="155.0"/>	</coordinates></spot>
+    <spot id="↑↓">	<coordinates>		<coordinate lat="53.11746454305451" lng="23.152581003668438" alt="155.0"/>	</coordinates></spot>
+    <spot id="lodge">	<coordinates>		<coordinate lat="53.11766825790753" lng="23.1527354232874" alt="155.0"/>	</coordinates></spot>
+    <spot id="1/2">	<coordinates>		<coordinate lat="53.117635114370614" lng="23.15280357425311" alt="155.0"/>	</coordinates></spot>
+    <spot id="1/3">	<coordinates>		<coordinate lat="53.11764810368792" lng="23.152871772433812" alt="155.0"/>	</coordinates></spot>
+    <spot id="↑↓">	<coordinates>		<coordinate lat="53.11765522238082" lng="23.152931897432" alt="155.0"/>	</coordinates></spot>
+</map>

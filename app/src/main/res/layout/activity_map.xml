@@ -59,6 +59,22 @@
             fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/right_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/colorAccentSecondary"
+            fab:fab_colorPressed="@color/colorAccentPressed"
+            fab:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/left_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/colorAccentSecondary"
+            fab:fab_colorPressed="@color/colorAccentPressed"
+            fab:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
             android:id="@+id/down_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
