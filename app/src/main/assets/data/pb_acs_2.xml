@@ -9,4 +9,7 @@
         <coordinate alt="155" lat="53.11832" lng="23.14662" />
     </coordinates>
 
+    <spot id="↓">	<coordinates>		<coordinate lat="53.118871478024154" lng="23.145846958007812"  alt="155.0"/>	</coordinates></spot>
+    <spot id="sports_hall">	<coordinates>		<coordinate lat="53.11869464874101" lng="23.14616765319824" alt="155.0"/>	</coordinates></spot>
+
 </map>

@@ -55,4 +55,9 @@
     <string name="maps_description">By interacting with map you can navigate to different places.\nUse long press to put a source/destination markers after which a shortest route between those locations will be drawn.</string>
     <string name="atm_name">ATM</string>
     <string name="buffet_name">Buffet</string>
+    <string name="gym_name">Gym</string>
+    <string name="martial_arts_hall_name">Martial\narts hall</string>
+    <string name="table_tennis_hall_name">Table\ntennis hall</string>
+    <string name="aerobics_hall_name">Aerobics\nhall</string>
+    <string name="sports_hall_name">Sports hall\nTeam games hall</string>
 </resources>
