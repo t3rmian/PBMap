@@ -1,0 +1,15 @@
+<map down_map_path="data/pb_acs.xml" height="2200" id="PB_ACS_L2" previous_map_path="data/pb_acs.xml"
+    route_path="routes/pb_campus.xml" url="https://pb.edu.pl/swfis/informacje-ogolne" width="1820">
+    <tiles_configs>
+        <tiles_config height="256" path="tiles/pb_campus/acs/main/tile-%d_%d.png" width="256"
+            zoom="1" />
+    </tiles_configs>
+    <coordinates>
+        <coordinate alt="155" lat="53.11903" lng="23.14564" />
+        <coordinate alt="155" lat="53.11832" lng="23.14662" />
+    </coordinates>
+
+    <spot id="↓">	<coordinates>		<coordinate lat="53.118871478024154" lng="23.145846958007812"  alt="155.0"/>	</coordinates></spot>
+    <spot id="sports_hall">	<coordinates>		<coordinate lat="53.11869464874101" lng="23.14616765319824" alt="155.0"/>	</coordinates></spot>
+
+</map>

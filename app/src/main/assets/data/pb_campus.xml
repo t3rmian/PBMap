@@ -103,7 +103,7 @@
         </coordinates>
     </spot>
 
-    <space id="ACS">
+    <space id="ACS" reference_map_path="data/pb_acs.xml" url="https://pb.edu.pl/swfis/informacje-ogolne">
         <coordinates>
             <coordinate alt="150" lat="53.1189101" lng="23.1457074" />
             <coordinate alt="150" lat="53.1189409" lng="23.1458524" />

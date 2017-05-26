@@ -75,4 +75,9 @@
     <string name="assembly_hall_i_name">Aula I</string>
     <string name="assembly_hall_ii_name">Aula II</string>
     <string name="assembly_hall_iii_name">Aula III</string>
+    <string name="gym_name">Siłownia</string>
+    <string name="martial_arts_hall_name">Sala sportów walki</string>
+    <string name="table_tennis_hall_name">Sala tenisa stołowego</string>
+    <string name="aerobics_hall_name">Sala earobiku</string>
+    <string name="sports_hall_name">Hala sportowa\nSala gier zespołowych</string>
 </resources>

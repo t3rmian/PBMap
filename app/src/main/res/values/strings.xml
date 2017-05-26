@@ -76,4 +76,9 @@
     <string name="assembly_hall_i_name">Assembly\nhall I</string>
     <string name="assembly_hall_ii_name">Assembly\nhall II</string>
     <string name="assembly_hall_iii_name">Assembly\nhall III</string>
+    <string name="gym_name">Gym</string>
+    <string name="martial_arts_hall_name">Martial\narts hall</string>
+    <string name="table_tennis_hall_name">Table\ntennis hall</string>
+    <string name="aerobics_hall_name">Aerobics\nhall</string>
+    <string name="sports_hall_name">Sports hall\nTeam games hall</string>
 </resources>

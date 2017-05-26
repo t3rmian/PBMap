@@ -1,0 +1,22 @@
+<map down_map_path="data/pb_acs_0.xml" height="2200" id="PB_ACS"
+    previous_map_path="data/pb_campus.xml" route_path="routes/pb_campus.xml"
+    up_map_path="data/pb_acs_2.xml" url="https://pb.edu.pl/swfis/informacje-ogolne" width="1820">
+    <tiles_configs>
+        <tiles_config height="256" path="tiles/pb_campus/acs/main/tile-%d_%d.png" width="256"
+            zoom="1" />
+    </tiles_configs>
+    <coordinates>
+        <coordinate alt="150" lat="53.11903" lng="23.14564" />
+        <coordinate alt="150" lat="53.11832" lng="23.14662" />
+    </coordinates>
+
+    <spot id="↵">	<coordinates>		<coordinate lat="53.11889672227381" lng="23.145790762329103" alt="150.0"/>	</coordinates></spot>
+    <spot id="↵">	<coordinates>		<coordinate lat="53.11893881595404" lng="23.145924896240235" alt="150.0"/>	</coordinates></spot>
+    <spot id="↑">	<coordinates>		<coordinate lat="53.118871478024154" lng="23.145846958007812"  alt="150.0"/>	</coordinates></spot>
+    <spot id="↵">	<coordinates>		<coordinate lat="53.11837474875932" lng="23.14612165588379" alt="150.0"/>	</coordinates></spot>
+
+    <spot id="gym">	<coordinates>		<coordinate lat="53.11883933267212" lng="23.14608460083008" alt="150.0"/>	</coordinates></spot>
+    <spot id="martial_arts_hall">	<coordinates>		<coordinate lat="53.11872987120029" lng="23.146148482666014" alt="150.0"/>	</coordinates></spot>
+    <spot id="table_tennis_hall">	<coordinates>		<coordinate lat="53.11862578716375" lng="23.14622133666992" alt="150.0"/>	</coordinates></spot>
+    <spot id="aerobics_hall">	<coordinates>		<coordinate lat="53.11853009801525" lng="23.146283932495116" alt="150.0"/>	</coordinates></spot>
+</map>
