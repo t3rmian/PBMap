@@ -1,0 +1,16 @@
+<map height="2094" id="PB_WZ_Shanghai" previous_map_path="data/pb_wz_campus.xml" up_map_path="data/pb_wz_shanghai_2.xml"
+    route_path="routes/pb_wz_campus.xml" url="http://wz.pb.edu.pl/" width="1464">
+    <tiles_configs>
+        <tiles_config height="256" path="tiles/pb_wz_campus/shanghai/tile-%d_%d.png" width="256"
+            zoom="1" />
+    </tiles_configs>
+    <coordinates>
+        <coordinate alt="150" lat="53.09820" lng="23.12437" />
+        <coordinate alt="150" lat="53.09749" lng="23.12520" />
+    </coordinates>
+
+    <spot id="↵">	<coordinates>		<coordinate lat="53.09755" lng="23.12482" alt="150.0"/>	</coordinates></spot>
+    <spot id="↵">	<coordinates>		<coordinate lat="53.09799" lng="23.12447" alt="150.0"/>	</coordinates></spot>
+    <spot id="↵">	<coordinates>		<coordinate lat="53.09813" lng="23.12505" alt="150.0"/>	</coordinates></spot>
+
+</map>

@@ -1,0 +1,15 @@
+<map height="1458" id="PB_WZ_Montreal" previous_map_path="data/pb_wz_campus.xml"
+    route_path="routes/pb_wz_campus.xml" url="http://wz.pb.edu.pl/" width="1104">
+    <tiles_configs>
+        <tiles_config height="256" path="tiles/pb_wz_campus/montreal/tile-%d_%d.png" width="256"
+            zoom="1" />
+    </tiles_configs>
+    <coordinates>
+        <coordinate alt="150" lat="53.09872" lng="23.12457" />
+        <coordinate alt="150" lat="53.09825" lng="23.12518" />
+    </coordinates>
+
+    <spot id="↵">	<coordinates>		<coordinate lat="53.09860" lng="23.12464" alt="150.0"/>	</coordinates></spot>
+    <spot id="↵">	<coordinates>		<coordinate lat="53.09831" lng="23.12490" alt="150.0"/>	</coordinates></spot>
+
+</map>

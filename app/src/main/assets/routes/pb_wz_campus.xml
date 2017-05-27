@@ -1,4 +1,8 @@
 <route id="pb_wz_campus">
     <edges>
+        <edge>
+            <start alt="150.0" lat="53.098116029207354" lng="23.12521091079712" />
+            <end alt="150.0" lat="53.097995657604976" lng="23.125228850799562" />
+        </edge>
     </edges>
 </route>

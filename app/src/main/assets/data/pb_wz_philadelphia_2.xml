@@ -1,0 +1,13 @@
+<map down_map_path="data/pb_wz_philadelphia.xml" height="1026" id="PB_WZ_Philadelphia_L2"
+    previous_map_path="data/pb_wz_philadelphia.xml" route_path="routes/pb_wz_campus.xml"
+    up_map_path="data/pb_wz_philadelphia_3.xml" url="http://wz.pb.edu.pl/" width="1470">
+    <tiles_configs>
+        <tiles_config height="256" path="tiles/pb_wz_campus/philadelphia/tile-%d_%d.png" width="256"
+            zoom="1" />
+    </tiles_configs>
+    <coordinates>
+        <coordinate alt="155" lat="53.09754" lng="23.12473" />
+        <coordinate alt="155" lat="53.09720" lng="23.12556" />
+    </coordinates>
+
+</map>

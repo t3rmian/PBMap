@@ -81,4 +81,11 @@
     <string name="table_tennis_hall_name">Sala tenisa stołowego</string>
     <string name="aerobics_hall_name">Sala earobiku</string>
     <string name="sports_hall_name">Hala sportowa\nSala gier zespołowych</string>
+    <string name="pb_wz_shanghai_name">WZ Szanghaj</string>
+    <string name="pb_wz_shanghai_l2_name">WZ Szanghaj L2</string>
+    <string name="pb_wz_philadelphia_name">WZ Filadelfia</string>
+    <string name="pb_wz_philadelphia_l2_name">WZ Filadelfia L2</string>
+    <string name="pb_wz_philadelphia_l3_name">WZ Filadelfia L3</string>
+    <string name="shanghai_name">Szanghaj\n\n</string>
+    <string name="philadelphia_name">Filadelfia</string>
 </resources>

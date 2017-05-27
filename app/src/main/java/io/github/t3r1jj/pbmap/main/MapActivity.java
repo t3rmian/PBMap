@@ -427,9 +427,9 @@ public class MapActivity extends DrawerActivity
     public void setTitle(String nameId) {
         int resId = getResources().getIdentifier(PBMap.getNameResIdString(nameId), "string", getPackageName());
         if (resId > 0) {
-            getSupportActionBar().setSubtitle(getString(resId));
+            getSupportActionBar().setSubtitle(getString(resId).replace("\n", " ").trim());
         } else {
-            getSupportActionBar().setSubtitle(nameId.replace('_', ' '));
+            getSupportActionBar().setSubtitle(nameId.replace('_', ' ').trim());
         }
     }
 
@@ -520,11 +520,11 @@ public class MapActivity extends DrawerActivity
                                 getString(R.string.action_search), getString(R.string.action_search_description))),
                         defaultWrap(TapTarget.forToolbarNavigationIcon(toolbar,
                                 getString(R.string.menu), getString(R.string.menu_description))),
-                        defaultWrap(TapTarget.forView(levelMenu.getChildAt(levelMenu.getChildCount() - 1),
+                        defaultWrap(TapTarget.forView(levelMenu.isOpened() ? levelMenu.getChildAt(levelMenu.getChildCount() - 2) : levelMenu.getChildAt(levelMenu.getChildCount() - 1),
                                 getString(R.string.floor), getString(R.string.floor_description)))
                                 .transparentTarget(true)
                         ,
-                        defaultWrap(TapTarget.forView(moreOptions.getChildAt(moreOptions.getChildCount() - 1),
+                        defaultWrap(TapTarget.forView(moreOptions.isOpened() ? moreOptions.getChildAt(moreOptions.getChildCount() - 2) : moreOptions.getChildAt(moreOptions.getChildCount() - 1),
                                 getString(R.string.more_features), getString(R.string.more_features_description)))
                                 .transparentTarget(true)
                         ,

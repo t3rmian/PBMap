@@ -82,4 +82,17 @@
     <string name="table_tennis_hall_name">Table\ntennis hall</string>
     <string name="aerobics_hall_name">Aerobics\nhall</string>
     <string name="sports_hall_name">Sports hall\nTeam games hall</string>
+    <string name="pb_wz_montreal_name" translatable="false">PB WZ Montreal</string>
+    <string name="pb_wz_berlin_name" translatable="false">PB WZ Berlin</string>
+    <string name="pb_wz_berlin_l2_name" translatable="false">PB WZ Berlin L2</string>
+    <string name="pb_wz_shanghai_name">PB WZ Shanghai</string>
+    <string name="pb_wz_shanghai_l2_name">PB WZ Shanghai L2</string>
+    <string name="pb_wz_philadelphia_name">PB WZ Philadelphia</string>
+    <string name="pb_wz_philadelphia_l2_name">PB WZ Philadelphia L2</string>
+    <string name="pb_wz_philadelphia_l3_name">PB WZ Philadelphia L3</string>
+    <string name="berlin_name" translatable="false">\n\n\n\n\n\nBerlin</string>
+    <string name="shanghai_name">Shanghai\n\n</string>
+    <string name="philadelphia_name">Philadelphia</string>
+    <string name="pb_we_name" translatable="false">PB WE\n</string>
+    <string name="pb_wb_name" translatable="false">"\n\nPB WB             "</string>
 </resources>
