@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import org.simpleframework.xml.Attribute;
 
 public class Coordinate implements Parcelable {
+    private static final int R = 6371008;
     /**
      * y coordinate [deg]
      */
@@ -52,28 +53,18 @@ public class Coordinate implements Parcelable {
         return new double[]{lat, lng, alt};
     }
 
-    public double distance(Coordinate end) {
-        double a = end.lng - lng;
-        double b = end.lat - lat;
-        double h = end.alt - alt;
-        double base = Math.sqrt(a * a + b * b);
-        return Math.sqrt(base * base + h * h);
-    }
-
     /**
      * Use for extended (point not in defined route graph) routing, should not require teleporting through floors for considered buildings
      *
      * @param end second coordinate
      * @return adds multiplied penalty distance for excessive height difference (gt 1m)
      */
-    public double flatDistance(Coordinate end) {
-        double a = end.lng - lng;
-        double b = end.lat - lat;
+    public double routedDistance(Coordinate end) {
         double h = end.alt - alt;
         if (Math.abs(h) >= 1d) {
             h *= 1000d;
         }
-        double base = Math.sqrt(a * a + b * b);
+        double base = this.flatDistanceTo(end);
         return Math.sqrt(base * base + h * h);
     }
 
@@ -143,6 +134,35 @@ public class Coordinate implements Parcelable {
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    /**
+     * Calculates haversine distance to the second point
+     *
+     * @param end end Coordinate
+     * @return distance [m] between this and end Coordinates on spherical Earth
+     */
+    private double flatDistanceTo(Coordinate end) {
+        double dLat = Math.toRadians(end.lat - this.lat);
+        double dLng = Math.toRadians(end.lng - this.lng);
+        double a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                        Math.cos(Math.toRadians(this.lat)) * Math.cos(Math.toRadians(end.lat)) *
+                                Math.sin(dLng / 2) * Math.sin(dLng / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return R * c;
+    }
+
+    /**
+     * Calculates haversine distance to the second point with altitude correction
+     *
+     * @param end end Coordinate
+     * @return distance [m] between this and end Coordinates on spherical Earth with altitude correction
+     */
+    public double distanceTo(Coordinate end) {
+        double h = end.alt - alt;
+        double base = this.flatDistanceTo(end);
+        return Math.sqrt(base * base + h * h);
     }
 
     @Override

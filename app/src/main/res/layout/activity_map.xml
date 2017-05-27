@@ -10,6 +10,17 @@
 
     <include layout="@layout/activity_drawer" />
 
+    <TextView
+        android:id="@+id/distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:gravity="center"
+        android:text="@string/distance"
+        android:textColor="@color/colorAccent"
+        android:visibility="gone" />
+
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/more_fab_menu"
         android:layout_width="wrap_content"

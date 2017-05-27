@@ -48,7 +48,7 @@ public class RouteGraph {
         Coordinate closest = null;
         double minDistance = Double.POSITIVE_INFINITY;
         for (Coordinate coordinate : vertexes) {
-            double distance = target.flatDistance(coordinate);
+            double distance = target.routedDistance(coordinate);
             if (minDistance > distance) {
                 minDistance = distance;
                 closest = coordinate;

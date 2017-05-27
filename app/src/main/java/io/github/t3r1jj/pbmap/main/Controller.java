@@ -9,6 +9,7 @@ import com.qozix.tileview.geom.CoordinateTranslater;
 
 import java.util.List;
 
+import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.model.Info;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
@@ -218,6 +219,23 @@ public class Controller implements GeoMarker.MapListener {
         route.setSource(source);
         route.setDestination(destination);
         route.addToMap(mapView);
+        updateDistance();
+    }
+
+    private void updateDistance() {
+        if (map.isUnfinished()) {
+            mapActivity.setDistance(mapActivity.getString(R.string.unfinished));
+            System.out.println("unfinished");
+            return;
+        }
+        long distance = Math.round(route.calculateDistance());
+        if (distance == 0) {
+            System.out.println("nullll");
+            mapActivity.setDistance(null);
+        } else {
+            System.out.println("distance: " +distance);
+            mapActivity.setDistance(mapActivity.getResources().getString(R.string.distance, distance));
+        }
     }
 
 

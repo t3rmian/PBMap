@@ -88,4 +88,6 @@
     <string name="pb_wz_philadelphia_l3_name">WZ Filadelfia L3</string>
     <string name="shanghai_name">Szanghaj\n\n</string>
     <string name="philadelphia_name">Filadelfia</string>
+    <string name="distance">Dystans: %1$d m</string>
+    <string name="unfinished">Ta mapa nie jest jeszcze ukończona. Przyciśnij dłużej w wybranym miejscu jeśli chcesz wspomóc mapowanie.</string>
 </resources>

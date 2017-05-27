@@ -1,4 +1,4 @@
-<map down_map_path="data/pb_acs_0.xml" height="2200" id="PB_ACS"
+<map down_map_path="data/pb_acs_0.xml" height="2200" id="PB_ACS" unfinished="true"
     previous_map_path="data/pb_campus.xml" route_path="routes/pb_campus.xml"
     up_map_path="data/pb_acs_2.xml" url="https://pb.edu.pl/swfis/informacje-ogolne" width="1820">
     <tiles_configs>

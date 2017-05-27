@@ -95,4 +95,6 @@
     <string name="philadelphia_name">Philadelphia</string>
     <string name="pb_we_name" translatable="false">PB WE\n</string>
     <string name="pb_wb_name" translatable="false">"\n\nPB WB             "</string>
+    <string name="distance">Distance: %1$d m</string>
+    <string name="unfinished">This map has not been finished yet. Use long press if you want to improve the data.</string>
 </resources>

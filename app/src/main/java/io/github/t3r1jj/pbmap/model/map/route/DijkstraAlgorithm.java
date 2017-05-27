@@ -62,7 +62,7 @@ class DijkstraAlgorithm {
             Q.remove(u);
 
             for (Coordinate v : getNeighbors(u)) {
-                double alt = dist.get(u) + u.distance(v);
+                double alt = dist.get(u) + u.distanceTo(v);
                 if (alt < dist.get(v)) {
                     dist.put(v, alt);
                     prev.put(v, u);

@@ -30,6 +30,8 @@ public class PBMap extends Space {
     private String rightMapPath;
     @Attribute(name = "down_map_path", required = false)
     private String downMapPath;
+    @Attribute(name = "unfinished", required = false)
+    private boolean unfinished;
     @ElementListUnion({
             @ElementList(entry = "space", type = Space.class, required = false, inline = true),
             @ElementList(entry = "spot", type = Spot.class, required = false, inline = true)
@@ -109,6 +111,10 @@ public class PBMap extends Space {
                 routeIterator.remove();
             }
         }
+    }
+
+    public boolean isUnfinished() {
+        return unfinished;
     }
 
     /**

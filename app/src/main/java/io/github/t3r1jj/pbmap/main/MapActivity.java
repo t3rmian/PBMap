@@ -73,6 +73,7 @@ public class MapActivity extends DrawerActivity
     private FloatingActionButton levelDownButton;
     private FloatingActionButton levelRightButton;
     private FloatingActionButton levelLeftButton;
+    private TextView distanceText;
     private MenuItem backButton;
     private LocationManager locationManager;
     private PBLocationListener locationListener;
@@ -84,7 +85,7 @@ public class MapActivity extends DrawerActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setUpVersion();
+        setUpTexts();
         mapContainer = (ViewGroup) findViewById(R.id.content_main);
         setUpButtons();
 
@@ -330,7 +331,8 @@ public class MapActivity extends DrawerActivity
         }
     }
 
-    private void setUpVersion() {
+    private void setUpTexts() {
+        distanceText = (TextView) findViewById(R.id.distance);
         TextView versionText = (TextView) findViewById(R.id.about_version);
         versionText.setText(getString(R.string.about_version, BuildConfig.VERSION_NAME + ", Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL."));
     }
@@ -430,6 +432,15 @@ public class MapActivity extends DrawerActivity
             getSupportActionBar().setSubtitle(getString(resId).replace("\n", " ").trim());
         } else {
             getSupportActionBar().setSubtitle(nameId.replace('_', ' ').trim());
+        }
+    }
+
+    public void setDistance(String distance) {
+        if (distance == null) {
+            distanceText.setVisibility(View.GONE);
+        } else {
+            distanceText.setText(distance);
+            distanceText.setVisibility(View.VISIBLE);
         }
     }
 
