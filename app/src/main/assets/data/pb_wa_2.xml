@@ -1,0 +1,13 @@
+<map down_map_path="data/pb_wa.xml" height="2500" id="PB_WA_L2" previous_map_path="data/pb_wa.xml"
+    route_path="routes/pb_wa.xml" up_map_path="data/pb_wa_3.xml" url="http://wa.pb.edu.pl/"
+    width="2800">
+    <tiles_configs>
+        <tiles_config height="256" path="tiles/pb_wa/floor/tile-%d_%d.png" width="256"
+            zoom="1" />
+    </tiles_configs>
+    <coordinates>
+        <coordinate alt="155" lat="53.12929" lng="23.14703" />
+        <coordinate alt="155" lat="53.12841" lng="23.14540" />
+    </coordinates>
+
+</map>
