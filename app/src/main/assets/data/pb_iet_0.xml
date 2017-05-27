@@ -1,4 +1,4 @@
-<map height="1400" id="PB_WB_L0_IET" left_map_path="data/pb_wb_0.xml"
+<map height="1400" id="PB_WB_L0_IET" left_map_path="data/pb_wb_0.xml" hidden="true"
     previous_map_path="data/pb_iet.xml" route_path="routes/pb_campus.xml"
     up_map_path="data/pb_iet.xml" url="https://innoekotech.pb.edu.pl/" width="2700">
     <tiles_configs>

@@ -62,6 +62,14 @@
                     android:scaleType="centerInside"
                     android:src="@drawable/bug" />
 
+                <ImageButton
+                    android:id="@+id/about_support"
+                    android:layout_width="@dimen/about_icon_size"
+                    android:layout_height="@dimen/about_icon_size"
+                    android:contentDescription="@string/about_report"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/coin" />
+
             </LinearLayout>
 
             <TextView
@@ -123,6 +131,7 @@
                 android:autoLink="web"
                 android:linksClickable="true"
                 app:swipe_descriptionTextAppearance="@style/SwipeDescriptionTextAppearance"
+                app:swipe_indicatorActiveColor="@color/colorAccent"
                 app:swipe_titleTextAppearance="@style/SwipeTitleTextAppearance" />
         </LinearLayout>
     </LinearLayout>

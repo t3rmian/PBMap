@@ -1,4 +1,4 @@
-<map down_map_path="data/pb_cnk_2.xml" height="2000" id="PB_CNK_L3"
+<map down_map_path="data/pb_cnk_2.xml" height="2000" id="PB_CNK_L3" hidden="true"
     previous_map_path="data/pb_cnk_2.xml" route_path="routes/pb_campus.xml"
     url="https://cnk.pb.edu.pl/" width="1745">
     <tiles_configs>

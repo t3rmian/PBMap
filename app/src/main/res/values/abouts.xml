@@ -3,4 +3,5 @@
     <string name="about_developer_link" translatable="false"><a href="https://t3r1jj.github.io/">Damian Terlecki</a></string>
     <string name="about_report_link" translatable="false">https://github.com/T3r1jj/PBMap/issues</string>
     <string name="about_project_link" translatable="false">https://github.com/T3r1jj/PBMap</string>
+    <string name="about_support_link" translatable="false">https://t3r1jj.github.io/support.html</string>
 </resources>

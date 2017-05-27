@@ -1,4 +1,4 @@
-<map down_map_path="data/pb_wz_philadelphia.xml" height="1026" id="PB_WZ_Philadelphia_L2"
+<map down_map_path="data/pb_wz_philadelphia.xml" height="1026" id="PB_WZ_Philadelphia_L2" hidden="true"
     previous_map_path="data/pb_wz_philadelphia.xml" route_path="routes/pb_wz_campus.xml"
     up_map_path="data/pb_wz_philadelphia_3.xml" url="http://wz.pb.edu.pl/" width="1470">
     <tiles_configs>

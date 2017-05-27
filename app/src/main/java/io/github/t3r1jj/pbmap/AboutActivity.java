@@ -34,6 +34,7 @@ public class AboutActivity extends AppCompatActivity {
         setUpIcon();
         setUpRate();
         setUpReport();
+        setUpSupport();
         setUpAuthor();
         setUpVersion();
         setUpAttributions();
@@ -86,6 +87,17 @@ public class AboutActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String url = getString(R.string.about_report_link);
+                openUrl(url);
+            }
+        });
+    }
+
+    private void setUpSupport() {
+        View support = findViewById(R.id.about_support);
+        support.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = getString(R.string.about_support_link);
                 openUrl(url);
             }
         });

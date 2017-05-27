@@ -1,4 +1,4 @@
-<map down_map_path="data/pb_wa_3.xml" height="2200" id="PB_WA_L4"
+<map down_map_path="data/pb_wa_3.xml" height="2200" id="PB_WA_L4" hidden="true"
     previous_map_path="data/pb_wa_3.xml" route_path="routes/pb_wa.xml" url="http://wa.pb.edu.pl/"
     width="1831">
     <tiles_configs>
