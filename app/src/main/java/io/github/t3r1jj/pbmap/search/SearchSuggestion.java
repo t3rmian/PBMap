@@ -70,9 +70,9 @@ public class SearchSuggestion {
     public String getName(Context context) {
         String translatedName = getNameRes(context);
         if (translatedName == null) {
-            return placeId.toUpperCase().replace('_', ' ');
+            return placeId.toUpperCase().replace('_', ' ').trim();
         }
-        return translatedName.replace("\n", " ");
+        return translatedName.replace("\n", " ").trim();
     }
 
     private String getNameRes(Context context) {
@@ -95,8 +95,8 @@ public class SearchSuggestion {
         String packageName = context.getPackageName();
         int resId = context.getResources().getIdentifier(Place.getNameResIdString(mapId), "string", packageName);
         if (resId == 0) {
-            return mapId.toUpperCase().replace('_', ' ');
+            return mapId.toUpperCase().replace('_', ' ').trim();
         }
-        return context.getString(resId);
+        return context.getString(resId).replace("\n", " ").trim();
     }
 }

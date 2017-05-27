@@ -1,0 +1,71 @@
+<map height="3840" id="PB_WZ_campus" route_path="routes/pb_wz_campus.xml" url="http://wz.pb.edu.pl/"
+    width="1536">
+    <tiles_configs>
+        <tiles_config height="256" path="tiles/pb_wz_campus/1000/tile-%d_%d.png" width="256"
+            zoom="1" />
+    </tiles_configs>
+    <coordinates>
+        <coordinate alt="150" lat="53.100621" lng="23.123474" />
+        <coordinate alt="150" lat="53.096498" lng="23.126221" />
+    </coordinates>
+
+    <space id="Montreal" reference_map_path="data/pb_wz_montreal.xml">
+        <coordinates>
+            <coordinate alt="150.0" lat="53.0986694" lng="23.1249345" />
+            <coordinate alt="150.0" lat="53.0983467" lng="23.125088" />
+            <coordinate alt="150.0" lat="53.0982972" lng="23.1247993" />
+            <coordinate alt="150.0" lat="53.0986199" lng="23.1246457" />
+        </coordinates>
+    </space>
+
+    <space id="Berlin" reference_map_path="data/pb_wz_berlin.xml">
+        <coordinates>
+            <coordinate alt="150.0" lat="53.0986441" lng="23.1257414" />
+            <coordinate alt="150.0" lat="53.0979973" lng="23.1260255" />
+            <coordinate alt="150.0" lat="53.0979039" lng="23.1255463" />
+            <coordinate alt="150.0" lat="53.0985541" lng="23.1251947" />
+            <coordinate alt="150.0" lat="53.09862147250163" lng="23.125536890701294" />
+            <coordinate alt="150.0" lat="53.0987175" lng="23.125495" />
+            <coordinate alt="150.0" lat="53.0987472" lng="23.1256869" />
+        </coordinates>
+    </space>
+    <space id="shanghai" reference_map_path="data/pb_wz_shanghai.xml">
+        <coordinates>
+            <!--dz bot-->
+            <coordinate alt="150.0" lat="53.0979723" lng="23.1248873" />
+            <coordinate alt="150.0" lat="53.0978773" lng="23.1249371" />
+            <coordinate alt="150.0" lat="53.0979133" lng="23.1251281" />
+            <coordinate alt="150.0" lat="53.0981442" lng="23.1250073" />
+            <coordinate alt="150.0" lat="53.0981074" lng="23.1248121" />
+            <coordinate alt="150.0" lat="53.0980656" lng="23.1248339" />
+            <!--dz top, shanghai start-->
+            <coordinate alt="150.0" lat="53.098036" lng="23.1246769" />
+            <coordinate alt="150.0" lat="53.0981154" lng="23.1246354" />
+            <coordinate alt="150.0" lat="53.0980796" lng="23.1244455" />
+            <coordinate alt="150.0" lat="53.0975442" lng="23.1247255" />
+            <coordinate alt="150.0" lat="53.0975778" lng="23.1249038" />
+            <coordinate alt="150.0" lat="53.0979397" lng="23.1247145" />
+        </coordinates>
+    </space>
+
+    <space id="philadelphia" reference_map_path="data/pb_wz_philadelphia.xml">
+        <coordinates>
+            <coordinate alt="150.0" lat="53.0973749" lng="23.1248316" />
+            <coordinate alt="150.0" lat="53.0974811" lng="23.1254119" />
+            <coordinate alt="150.0" lat="53.0973723" lng="23.1254672" />
+            <coordinate alt="150.0" lat="53.097266" lng="23.1248869" />
+        </coordinates>
+    </space>
+
+    <space id="ZPDiUT" url="http://zpdiut.pb.bialystok.pl/">
+        <coordinates>
+            <coordinate alt="150.0" lat="53.1000814" lng="23.1244172" />
+            <coordinate alt="150.0" lat="53.1002246" lng="23.1252416" />
+            <coordinate alt="150.0" lat="53.1000798" lng="23.1253113" />
+            <coordinate alt="150.0" lat="53.0999367" lng="23.124487" />
+        </coordinates>
+    </space>
+
+    <spot id="P">	<coordinates>		<coordinate lat="53.098436695931845" lng="23.124462638744355" alt="150.0"/>	</coordinates></spot>
+    <spot id="BKM">	<coordinates>		<coordinate lat="53.09685301942196" lng="23.12588658561381" alt="150.0"/>	</coordinates></spot>
+</map>
