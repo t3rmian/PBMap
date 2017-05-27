@@ -35,6 +35,7 @@
     <string name="deanery_name">Deanery</string>
     <string name="secretariat_name">Secretariat</string>
     <string name="pb_campus_name">PB campus</string>
+    <string name="pb_wz_campus_name">PB WZ campus</string>
     <string name="rector_name">Rector\'s office</string>
     <string name="lodge_name">Lodge</string>
     <string name="courts_name">Tennis\ncourts</string>

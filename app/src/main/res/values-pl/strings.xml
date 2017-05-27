@@ -29,6 +29,7 @@
     <string name="map">Mapa</string>
     <string name="maps">Mapy</string>
     <string name="pb_campus_name">Kampus PB</string>
+    <string name="pb_wz_campus_name">Kampus PB WZ</string>
     <string name="place_destination_marker">Umieść znacznik celu</string>
     <string name="place_source_marker">Umieść znacznik źródła</string>
     <string name="secretariat_name">Sekretariat</string>
