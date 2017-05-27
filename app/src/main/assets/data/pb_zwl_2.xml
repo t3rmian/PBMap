@@ -1,0 +1,11 @@
+<map down_map_path="data/pb_zwl.xml" height="3300" id="PB_ZWL_L2" previous_map_path="data/pb_zwl.xml"
+    route_path="routes/pb_zwl.xml" url="http://www.zwl.pb.edu.pl/" width="2238">
+    <tiles_configs>
+        <tiles_config height="256" path="tiles/pb_zwl/floor/tile-%d_%d.png" width="256" zoom="1" />
+    </tiles_configs>
+    <coordinates>
+        <coordinate alt="155" lat="52.73709" lng="23.59230" />
+        <coordinate alt="155" lat="52.735759" lng="23.59081" />
+    </coordinates>
+
+</map>
