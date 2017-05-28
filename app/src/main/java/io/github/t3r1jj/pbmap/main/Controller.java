@@ -21,7 +21,6 @@ import io.github.t3r1jj.pbmap.model.map.route.RouteGraph;
 import io.github.t3r1jj.pbmap.search.MapsDao;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 import io.github.t3r1jj.pbmap.view.map.MapView;
-import io.github.t3r1jj.pbmap.view.map.routing.FullRoute;
 import io.github.t3r1jj.pbmap.view.map.routing.GeoMarker;
 import io.github.t3r1jj.pbmap.view.map.routing.Route;
 
@@ -38,13 +37,13 @@ public class Controller implements GeoMarker.MapListener {
     Controller(MapActivity mapActivity) {
         this.mapActivity = mapActivity;
         this.mapsDao = new MapsDao(mapActivity);
-        this.route = new FullRoute(mapActivity);
+        this.route = new Route(mapActivity);
     }
 
     void restoreState(Memento memento, MapActivity mapActivity) {
         this.mapActivity = mapActivity;
         this.mapsDao = new MapsDao(mapActivity);
-        this.route = new FullRoute(mapActivity);
+        this.route = new Route(mapActivity);
         this.map = mapsDao.loadMap(memento.mapReferencePath);
         loadRouteGraph();
         if (source == null) {
@@ -287,7 +286,7 @@ public class Controller implements GeoMarker.MapListener {
         logger.trySendingMessages();
     }
 
-    static class Memento implements Parcelable {
+    public static class Memento implements Parcelable {
         private Coordinate source;
         private Coordinate destination;
         private String mapReferencePath;
@@ -306,7 +305,7 @@ public class Controller implements GeoMarker.MapListener {
             destination = coordinates[1];
         }
 
-        static final Creator<Memento> CREATOR = new Creator<Memento>() {
+        public static final Creator<Memento> CREATOR = new Creator<Memento>() {
             @Override
             public Memento createFromParcel(Parcel in) {
                 return new Memento(in);

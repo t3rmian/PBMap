@@ -15,7 +15,6 @@ import org.xml.sax.InputSource;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -76,7 +75,7 @@ public class MapsDao extends ContextWrapper {
         return map;
     }
 
-    List<SearchSuggestion> getSearchSuggestions() {
+    List<SearchSuggestion> getSearchSuggestions(boolean ignoreMaps) {
         List<SearchSuggestion> searchSuggestions = new LinkedList<>();
         for (String mapPath : getMapFilenames()) {
             String assetsPath = mapsPath + "/" + mapPath;
@@ -87,13 +86,15 @@ public class MapsDao extends ContextWrapper {
                 String mapId = null;
                 for (int i = 0; i < names.getLength(); i++) {
                     Attr name = (Attr) names.item(i);
-                    if (i == 0) {   // Ignore maps when downloading data for query
+                    if (i == 0) {
                         mapId = name.getValue();
-                    } else {
-                        SearchSuggestion searchSuggestion = new SearchSuggestion(name.getValue(), assetsPath);
-                        searchSuggestions.add(searchSuggestion);
-                        searchSuggestion.setMapId(mapId);
+                        if (ignoreMaps) {
+                            continue;
+                        }
                     }
+                    SearchSuggestion searchSuggestion = new SearchSuggestion(name.getValue(), assetsPath);
+                    searchSuggestions.add(searchSuggestion);
+                    searchSuggestion.setMapId(mapId);
                 }
             } catch (XPathExpressionException e) {
                 e.printStackTrace();
@@ -147,7 +148,7 @@ public class MapsDao extends ContextWrapper {
 
     @NonNull
     private List<Object[]> findQueryResults(String[] selectionArgs, boolean searchById) {
-        List<SearchSuggestion> searchSuggestions = getSearchSuggestions();
+        List<SearchSuggestion> searchSuggestions = getSearchSuggestions(!".*.*".equals(selectionArgs[0]));
         List<Object[]> results = new ArrayList<>();
         for (SearchSuggestion suggestion : searchSuggestions) {
             String name = searchById ? suggestion.getPlaceId().toUpperCase() : suggestion.getName(getBaseContext()).toUpperCase();
@@ -167,7 +168,6 @@ public class MapsDao extends ContextWrapper {
 
     private boolean queryMatchesSuggestion(String[] selectionArgs, String place, String map) {
         String[] placeAndMap = new String[]{place, map};
-        System.out.println(Arrays.toString(placeAndMap));
         for (int i = 0; i < selectionArgs.length; i++) {
             if (!placeAndMap[i].matches(selectionArgs[i])) {
                 return false;

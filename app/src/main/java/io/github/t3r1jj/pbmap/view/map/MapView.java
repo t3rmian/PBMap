@@ -81,11 +81,12 @@ public class MapView extends TileView implements PlaceView {
         controller.loadTitle(map);
     }
 
-    @Override
-    public boolean onSingleTapConfirmed(MotionEvent event) {
-        controller.printPressedCoordinate(event);
-        return super.onSingleTapConfirmed(event);
-    }
+// TODO: uncomment when logging required
+//    @Override
+//    public boolean onSingleTapConfirmed(MotionEvent event) {
+//        controller.printPressedCoordinate(event);
+//        return super.onSingleTapConfirmed(event);
+//    }
 
     @Override
     public void onLongPress(MotionEvent event) {

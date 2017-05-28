@@ -4,14 +4,13 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import android.util.Log;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -32,7 +31,7 @@ public class MapsDaoTest {
 
     @Test
     public void getSearchSuggestions() {
-        List<SearchSuggestion> searchSuggestions = dao.getSearchSuggestions();
+        List<SearchSuggestion> searchSuggestions = dao.getSearchSuggestions(true);
         assertFalse(searchSuggestions.isEmpty());
     }
 
@@ -45,7 +44,7 @@ public class MapsDaoTest {
     @TargetApi(19)
     @Test
     public void generatePlacesDocumentation() {
-        List<SearchSuggestion> searchSuggestions = dao.getSearchSuggestions();
+        List<SearchSuggestion> searchSuggestions = dao.getSearchSuggestions(false);
         Collections.sort(searchSuggestions, new Comparator<SearchSuggestion>() {
             @Override
             public int compare(SearchSuggestion o1, SearchSuggestion o2) {
@@ -54,18 +53,33 @@ public class MapsDaoTest {
             }
         });
         String lastMapId = null;
+        List<StringBuilder> stringBuilders = new ArrayList<>();
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilders.add(stringBuilder);
         String prefix = "";
         for (SearchSuggestion searchSuggestion : searchSuggestions) {
+            if (stringBuilder.length() > 3000) {
+                stringBuilder = new StringBuilder();
+                stringBuilders.add(stringBuilder);
+                prefix = "";
+            }
             if (!searchSuggestion.getMapId().equals(lastMapId)) {
                 lastMapId = searchSuggestion.getMapId();
-                stringBuilder.append(prefix).append("- ").append(lastMapId);
+                stringBuilder.append(prefix).append("* ").append(lastMapId.toLowerCase());
                 prefix = "\n";
             }
-            stringBuilder.append(prefix).append("-- ").append(searchSuggestion.getPlaceId());
+            if (!searchSuggestion.getMapId().equals(searchSuggestion.getPlaceId())) {
+                stringBuilder.append(prefix).append("  + ").append(searchSuggestion.getPlaceId().toLowerCase());
+                prefix = "\n";
+            }
         }
-        String placesMD = stringBuilder.toString();
-        System.out.println(placesMD);
-        assertTrue(!placesMD.isEmpty());
+
+        final String TAG = "DOCUMENTATION";
+        Log.i(TAG, "<START>");
+        for (StringBuilder sb : stringBuilders) {
+            Log.i(TAG, sb.toString());
+        }
+        Log.i(TAG, "<END>");
+        assertTrue(!stringBuilder.toString().isEmpty());
     }
 }
