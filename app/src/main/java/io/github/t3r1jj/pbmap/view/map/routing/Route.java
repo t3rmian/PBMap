@@ -139,14 +139,12 @@ public class Route implements RemovableView {
 
     public double calculateDistance() {
         if (route == null) {
-            System.out.println("Route is null");
             return 0;
         }
         double distance = 0;
         for (int i = 1; i < route.size(); i++) {
             distance += route.get(i - 1).distanceTo(route.get(i));
         }
-        System.out.println("DIST: " + distance);
         return distance;
     }
 

@@ -97,4 +97,8 @@
     <string name="pb_wb_name" translatable="false">"\n\nPB WB             "</string>
     <string name="distance">Distance: %1$d m</string>
     <string name="unfinished">This map has not been finished yet. Use long press if you want to improve the data.</string>
+    <string name="improve">Report new/wrong place</string>
+    <string name="improve_message">What should[not] be placed at the pressed location?</string>
+    <string name="report">Report</string>
+    <string name="required">This field is required</string>
 </resources>

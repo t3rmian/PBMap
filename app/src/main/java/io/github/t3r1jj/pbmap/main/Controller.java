@@ -10,6 +10,8 @@ import com.qozix.tileview.geom.CoordinateTranslater;
 import java.util.List;
 
 import io.github.t3r1jj.pbmap.R;
+import io.github.t3r1jj.pbmap.logging.Message;
+import io.github.t3r1jj.pbmap.logging.WebLogger;
 import io.github.t3r1jj.pbmap.model.Info;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
@@ -225,15 +227,12 @@ public class Controller implements GeoMarker.MapListener {
     private void updateDistance() {
         if (map.isUnfinished()) {
             mapActivity.setDistance(mapActivity.getString(R.string.unfinished));
-            System.out.println("unfinished");
             return;
         }
         long distance = Math.round(route.calculateDistance());
         if (distance == 0) {
-            System.out.println("nullll");
             mapActivity.setDistance(null);
         } else {
-            System.out.println("distance: " +distance);
             mapActivity.setDistance(mapActivity.getResources().getString(R.string.distance, distance));
         }
     }
@@ -274,6 +273,18 @@ public class Controller implements GeoMarker.MapListener {
         loadRouteGraph();
         updateView();
         mapView.loadPreviousPosition();
+    }
+
+    void onImprovePressed(MotionEvent event, String description) {
+        CoordinateTranslater coordinateTranslater = mapView.getCoordinateTranslater();
+        double lat = coordinateTranslater.translateAndScaleAbsoluteToRelativeY(mapView.getScrollY() + event.getY() - mapView.getOffsetY(), mapView.getScale());
+        double lng = coordinateTranslater.translateAndScaleAbsoluteToRelativeX(mapView.getScrollX() + event.getX() - mapView.getOffsetX(), mapView.getScale());
+        Coordinate coordinate = new Coordinate(lat, lng, map.getCenter().alt);
+        Message message = new Message(map.getId(), coordinate, route.getRouteGraph().findClosest(coordinate), map.findClosest(coordinate));
+        message.setDescription(description);
+        WebLogger logger = new WebLogger(mapActivity);
+        logger.logMessage(message);
+        logger.trySendingMessages();
     }
 
     static class Memento implements Parcelable {

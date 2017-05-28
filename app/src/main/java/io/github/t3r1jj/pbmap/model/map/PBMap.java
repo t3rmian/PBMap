@@ -117,6 +117,24 @@ public class PBMap extends Space {
         return unfinished;
     }
 
+    public Place findClosest(Coordinate coordinate) {
+        Place closest = null;
+        double distance = 0;
+        for (Place place : places) {
+            if (closest == null) {
+                closest = place;
+                distance = coordinate.distanceTo(place.getCenter());
+            } else {
+                double comparedDistance = coordinate.distanceTo(place.getCenter());
+                if (comparedDistance < distance) {
+                    closest = place;
+                    distance = comparedDistance;
+                }
+            }
+        }
+        return closest;
+    }
+
     /**
      * Represents max / min lng / lat
      */

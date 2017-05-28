@@ -26,9 +26,18 @@
             android:textColor="@color/colorSecondaryText" />
 
         <Button
+            android:id="@+id/popup_improve_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="@string/improve"
+            android:textColor="@color/colorSecondaryText" />
+
+        <Button
             android:id="@+id/popup_cancel_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:padding="16dp"
             android:text="@string/cancel"
             android:textColor="@color/colorSecondaryText" />

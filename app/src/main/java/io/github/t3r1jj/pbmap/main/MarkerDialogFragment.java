@@ -43,6 +43,17 @@ public class MarkerDialogFragment extends DialogFragment {
                 controller.onUserMarkerChoice(event, GeoMarker.Marker.DESTINATION);
             }
         });
+        rootView.findViewById(R.id.popup_improve_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MarkerDialogFragment.this.dismiss();
+                ImproveDialogFragment improveDialogFragment = new ImproveDialogFragment();
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(MOTION_EVENT_KEY, event);
+                improveDialogFragment.setArguments(bundle);
+                improveDialogFragment.show(getFragmentManager(), "IMPROVE_DIALOG");
+            }
+        });
         rootView.findViewById(R.id.popup_cancel_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,4 +62,5 @@ public class MarkerDialogFragment extends DialogFragment {
         });
         return rootView;
     }
+
 }

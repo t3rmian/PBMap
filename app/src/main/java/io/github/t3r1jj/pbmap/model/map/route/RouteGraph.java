@@ -21,10 +21,6 @@ public class RouteGraph {
         if (source == null || destination == null) {
             return Collections.EMPTY_LIST;
         }
-        if (algorithm == null) {
-            vertexes = getVertexes();
-            algorithm = new DijkstraAlgorithm(vertexes, edges);
-        }
         Coordinate destinationVertex = findClosest(destination);
         algorithm.setTarget(destinationVertex);
         Coordinate sourceVertex = findClosest(source);
@@ -41,7 +37,11 @@ public class RouteGraph {
 
     }
 
-    private Coordinate findClosest(Coordinate target) {
+    public Coordinate findClosest(Coordinate target) {
+        if (algorithm == null) {
+            vertexes = getVertexes();
+            algorithm = new DijkstraAlgorithm(vertexes, edges);
+        }
         if (vertexes.contains(target)) {
             return target;
         }
@@ -54,7 +54,6 @@ public class RouteGraph {
                 closest = coordinate;
             }
         }
-        System.out.println("Closest: " + closest.toString());
         return closest;
     }
 

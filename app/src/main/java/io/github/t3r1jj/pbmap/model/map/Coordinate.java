@@ -5,7 +5,9 @@ import android.os.Parcelable;
 
 import org.simpleframework.xml.Attribute;
 
-public class Coordinate implements Parcelable {
+import java.io.Serializable;
+
+public class Coordinate implements Parcelable, Serializable {
     private static final int R = 6371008;
     /**
      * y coordinate [deg]
@@ -70,26 +72,15 @@ public class Coordinate implements Parcelable {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("<spot id=\"")
-                .append("_")
-                .append("\">")
-                .append("\t<coordinates>");
-        sb.append("\t\t<coordinate ")
-                .append("lat=\"")
-                .append(lat)
-                .append("\" lng=\"")
-                .append(lng)
-                .append("\" alt=\"")
-                .append(alt)
-                .append("\"/>");
-        sb.append("\t</coordinates>")
-                .append("</spot>");
-        return "Coordinate{" +
-                "lng=" + lng +
-                ", lat=" + lat +
-                ", alt=" + alt +
-                '}'
-                + "\nstart = new Coordinate(" + lng + ", " + lat + ");\n" + sb.toString();
+        return "<spot id=\"_\">" +
+                "<coordinates>" +
+                "<coordinate " +
+                "lat=\"" + lat +
+                "\" lng=\"" + lng +
+                "\" alt=\"" + alt +
+                "\"/>" +
+                "</coordinates>" +
+                "</spot>";
     }
 
     @Override
