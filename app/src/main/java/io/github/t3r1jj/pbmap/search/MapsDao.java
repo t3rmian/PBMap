@@ -140,7 +140,7 @@ public class MapsDao extends ContextWrapper {
     private void prepareQueryArguments(String[] selectionArgs, boolean searchById) {
         if (!searchById) {
             for (int i = 0; i < selectionArgs.length; i++) {
-                selectionArgs[i] = ".*" + selectionArgs[i] + ".*";
+                selectionArgs[i] = ".*" + selectionArgs[i].trim() + ".*";
             }
         }
     }

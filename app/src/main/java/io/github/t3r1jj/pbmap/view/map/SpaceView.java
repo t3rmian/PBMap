@@ -48,7 +48,7 @@ public class SpaceView extends CompositePathView.DrawablePath implements PlaceVi
             Coordinate center = space.getCenter();
             pbMapView.addMarker(space.createLogo(context), center.lng, center.lat, -0.5f, -1.5f);
         }
-        if (space.getReferenceMapPath() != null) {
+        if (space.getReferenceMapPath() != null || space.hasInfo(context)) {
             HotSpot hotSpot = prepareHotspot();
             hotSpot.setHotSpotTapListener(new HotSpot.HotSpotTapListener() {
                 @Override

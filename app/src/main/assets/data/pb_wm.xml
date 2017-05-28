@@ -23,7 +23,7 @@
     <spot id="118">	<coordinates>		<coordinate lat="53.11745852588258" lng="23.148196445770473" alt="150.0"/>	</coordinates></spot>
     <spot id="120">	<coordinates>		<coordinate lat="53.117437373562076" lng="23.14807497470366" alt="150.0"/>	</coordinates></spot>
     <spot id="122">	<coordinates>		<coordinate lat="53.11741508330027" lng="23.147939176050645" alt="150.0"/>	</coordinates></spot>
-    <spot id="buffet">	<coordinates>		<coordinate lat="53.11726711523205" lng="23.147553241621765" alt="150.0"/>	</coordinates></spot>
+    <spot id="Xero">	<coordinates>		<coordinate lat="53.11726711523205" lng="23.147553241621765" alt="150.0"/>	</coordinates></spot>
     <spot id="WC">	<coordinates>		<coordinate lat="53.11739625595002" lng="23.14841800845905" alt="150.0"/>	</coordinates></spot>
     <spot id="deanery">	<coordinates>		<coordinate lat="53.11742534262197" lng="23.14855556074892" alt="150.0"/>	</coordinates></spot>
     <spot id="lodge">	<coordinates>		<coordinate lat="53.117447052756845" lng="23.148652980872843" alt="150.0"/>	</coordinates></spot>

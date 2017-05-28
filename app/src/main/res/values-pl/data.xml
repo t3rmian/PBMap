@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="deanery_121_name">Dziekanat</string>
+    <string name="deanery_name">Dziekanat</string>
+    <string name="pb_campus_name">Kampus PB</string>
+    <string name="pb_wz_campus_name">Kampus PB WZ</string>
+    <string name="secretariat_name">Sekretariat</string>
+    <string name="rector_name">Rektorat</string>
+    <string name="courts_name">Korty\ntenisowe</string>
+    <string name="ds_alpha_name">DS\nAlfa</string>
+    <string name="ds_beta_name">DS\nBeta</string>
+    <string name="ds_gamma_name">DS\nGamma</string>
+    <string name="ds_delta_name">DS\nDelta</string>
+    <string name="gwint_name">Klub Gwint</string>
+    <string name="assistant_hotel_name">Hotel\nAssyst.</string>
+    <string name="store_name">Sklep</string>
+    <string name="lodge_name">Portiernia</string>
+    <string name="atm_name">Bankomat</string>
+    <string name="buffet_name">Bufet</string>
+    <string name="car_hall_name">Laboratorium Pojazdów Samochodowych\nHala Pojazdów </string>
+    <string name="assembly_hall_a_name">Aula A</string>
+    <string name="assembly_hall_b_name">Aula B</string>
+    <string name="assembly_hall_c_name">Aula C</string>
+    <string name="p1_21_name">P1/21\nMała czytelnia</string>
+    <string name="p1_38_name">P1/38\nDuża czytelnia</string>
+    <string name="p0_19_name">P0/19\nWypożyczalnia międzybiblioteczna</string>
+    <string name="p0_15_16_name">P0/15,16\nCzytelnia norm i\nzbiorów specjalnych</string>
+    <string name="cloak_room_name">Szatnia</string>
+    <string name="information_publishers_reading_room_name">Czytelnia wydawnictw\ninformacyjnych</string>
+    <string name="magazines_reading_room_name">Czytelnia\nczasopism</string>
+    <string name="electronic_reading_room_name">Czytelnia\nelektroniczna</string>
+    <string name="book_rental_name">Wypożyczalnia</string>
+    <string name="book_return_name">Wrzutnia\nksiążek</string>
+    <string name="main_library_name">Biblioteka\nGłówna PB</string>
+    <string name="sjo_name">Studium\nJęzyków Obcych</string>
+    <string name="ckz_name">Centrum Kształcenia Zdalnego</string>
+    <string name="assembly_hall_i_name">Aula I</string>
+    <string name="assembly_hall_ii_name">Aula II</string>
+    <string name="assembly_hall_iii_name">Aula III</string>
+    <string name="gym_name">Siłownia</string>
+    <string name="martial_arts_hall_name">Sala sportów walki</string>
+    <string name="table_tennis_hall_name">Sala tenisa stołowego</string>
+    <string name="aerobics_hall_name">Sala earobiku</string>
+    <string name="sports_hall_name">Hala sportowa\nSala gier zespołowych</string>
+    <string name="pb_wz_shanghai_name">WZ Szanghaj</string>
+    <string name="pb_wz_shanghai_l2_name">WZ Szanghaj L2</string>
+    <string name="pb_wz_philadelphia_name">WZ Filadelfia</string>
+    <string name="pb_wz_philadelphia_l2_name">WZ Filadelfia L2</string>
+    <string name="pb_wz_philadelphia_l3_name">WZ Filadelfia L3</string>
+    <string name="shanghai_name">Szanghaj\n\n</string>
+    <string name="philadelphia_name">Filadelfia</string>
+    <string name="xero_name">Ksero</string>
+
+    <string name="pb_campus_address">Politechnika Białostocka,
+ul. Wiejska 45A, 15-351 Białystok, woj. podlaskie,
+REGON: 000001672 NIP: 5420208721,
+tel. centr. 85 746 90 00 | fax. 85 746 90 15</string>
+    <string name="pb_wi_address">Wydział Informatyki Politechniki Białostockiej,
+ul. Wiejska 45A, 15-351 Białystok,
+tel. 85-746-90-50 | fax. 85-746-90-57,
+e-mail: wi.sekretariat@pb.edu.pl</string>
+    <string name="pb_wb_address">Wydział Budownictwa i Inżynierii Środowiska Politechniki Białostockiej,
+ul. Wiejska 45E, 15-351 Białystok,
+tel. 85 746 95 60 | fax. 85 746 95 59,
+e-mail: wbiis@pb.edu.pl</string>
+    <string name="pb_zwl_address">Zamiejscowy Wydział Leśny Politechniki Białostockiej w Hajnówce,
+ul. J. Piłsudzkiego 1A, 17-200 Hajnówka, zwl.sekretariat@pb.edu.pl, tel. 85/682-95-00,
+ul. J. Piłsudzkiego 8, 17-200 Hajnówka, zwl.dziekanat@pb.edu.pl, tel. 85/682-95-01</string>
+    <string name="pb_wm_address">Wydział Mechaniczny Politechniki Białostockiej,
+ul. Wiejska 45C, 15-351 Białystok,
+wm@pb.edu.pl, tel. (85) 746-92-00,
+wm.dziekanat@pb.edu.pl, tel. (85) 746-92-09</string>
+    <string name="pb_we_address">Wydział Elektryczny Politechniki Białostockiej,
+ul. Wiejska 45D, 15-351 Białystok,
+we.sekretariat@pb.edu.pl, tel. (85) 746-9360 | fax 085-746-9400,
+we.dziekanat@pb.edu.pl, tel. (85) 746 9365</string>
+    <string name="pb_cnk_address">Centrum Nowoczesnego Kształcenia / Biblioteka Politechniki Białostockiej,
+ul. Zwierzyniecka 16, 15-333 Białystok,
+tel. (85) 746-9330 | fax. (85) 746-9329,
+biblioteka@pb.edu.pl</string>
+    <string name="pb_wa_address">Wydział Architektury Politechniki Białostockiej,
+ul. Oskara Sosnowskiego 11, 15-893 Białystok,
+wa.sekretariat@pb.edu.pl, tel. +48 85 746 99 14 | fax +48 85 746 99 13,
+wa.dziekanat@pb.edu.pl, tel. +48 85 746 99 15</string>
+    <string name="pb_wz_campus_address">Wydział Zarządzania Politechniki Białostockiej,
+Ojca Tarasiuka 2, 16-001 Kleosin,
+wz.sekretariat@pb.edu.pl, tel. +48 85 746 98 02</string>
+    <string name="pb_acs_address">Akademickie Centrum Sportu / Studium Wychowania Fizycznego Politechniki Białostockiej,
+ul. Wiejska 41, 15-351 Białystok,
+studium.wf@pb.edu.pl, tel. 085 746 97 00</string>
+    <string name="gwint_address">Klub Studencki GWINT,
+ul. Zwierzyniecka 10,
+15-333 Białystok</string>
+</resources>

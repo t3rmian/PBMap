@@ -11,15 +11,19 @@ import io.github.t3r1jj.pbmap.model.map.Space;
 
 public class Info implements Serializable {
     public final String url;
+    private final String addressId;
     private final String nameId;
+    private final String rawName;
     private final String descriptionId;
     private final String logoPath;
 
     public Info(Space space) {
         this.nameId = space.getNameResIdString();
+        this.rawName = space.getId();
         this.descriptionId = space.getDescriptionResIdString();
         this.url = space.getUrl();
         this.logoPath = space.getLogoPath();
+        this.addressId = space.getAddressResId();
     }
 
     public Drawable createLogo(Context context) {
@@ -35,11 +39,17 @@ public class Info implements Serializable {
     }
 
     public String getName(Context context) {
-        return getStringResource(context, nameId);
+        String name = getStringResource(context, nameId);
+        name = (name == null ? rawName : name);
+        return name.replace("_", " ").replace("\n", " ").trim();
     }
 
     public String getDescription(Context context) {
         return getStringResource(context, descriptionId);
+    }
+
+    public String getAddress(Context context) {
+        return getStringResource(context, addressId);
     }
 
     private String getStringResource(Context context, String aString) {

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import io.github.t3r1jj.pbmap.main.MapActivity;
 import io.github.t3r1jj.pbmap.view.map.PlaceView;
 
 public abstract class Place {
@@ -50,7 +51,7 @@ public abstract class Place {
         return getStringResource(context, getDescriptionResIdString());
     }
 
-    private String getStringResource(Context context, String aString) {
+    String getStringResource(Context context, String aString) {
         String packageName = context.getPackageName();
         int resId = context.getResources().getIdentifier(aString, "string", packageName);
         if (resId == 0) {
@@ -114,4 +115,7 @@ public abstract class Place {
 
     abstract public PlaceView createView(Context context);
 
+    public boolean hasInfo(Context context) {
+        return getDescription(context) != null;
+    }
 }

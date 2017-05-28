@@ -29,7 +29,9 @@ public class InfoSheetDialogFragment extends BottomSheetDialogFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.info_dialog, container, false);
         TextView titleText = (TextView) rootView.findViewById(R.id.info_title);
-        titleText.setText(info.getName(getActivity()).replace("\n", " "));
+        titleText.setText(info.getName(getActivity()));
+        TextView addressText = (TextView) rootView.findViewById(R.id.info_address);
+        addressText.setText(info.getAddress(getActivity()));
         TextView descriptionText = (TextView) rootView.findViewById(R.id.info_description);
         descriptionText.setText(info.getDescription(getActivity()));
         ImageView logo = (ImageView) rootView.findViewById(R.id.info_logo);
@@ -45,6 +47,5 @@ public class InfoSheetDialogFragment extends BottomSheetDialogFragment {
         super.onSaveInstanceState(outState);
         outState.putSerializable(INFO_KEY, info);
     }
-
 
 }

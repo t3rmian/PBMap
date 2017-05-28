@@ -185,7 +185,7 @@ public class Controller implements GeoMarker.MapListener {
             loadRouteGraph();
             updateView();
             mapView.loadPreviousPosition();
-        } else if (space.getDescription(mapActivity) != null) {
+        } else if (space.hasInfo(mapActivity)) {
             mapActivity.popupInfo(new Info(space));
         }
     }

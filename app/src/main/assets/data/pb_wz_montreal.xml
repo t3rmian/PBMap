@@ -1,5 +1,5 @@
 <map height="1458" id="PB_WZ_Montreal" previous_map_path="data/pb_wz_campus.xml" unfinished="true"
-    route_path="routes/pb_wz_campus.xml" url="http://wz.pb.edu.pl/" width="1104">
+    route_path="routes/pb_wz_campus.xml" width="1104">
     <tiles_configs>
         <tiles_config height="256" path="tiles/pb_wz_campus/montreal/tile-%d_%d.png" width="256"
             zoom="1" />

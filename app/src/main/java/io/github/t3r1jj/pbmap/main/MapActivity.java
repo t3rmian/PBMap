@@ -626,7 +626,7 @@ public class MapActivity extends DrawerActivity
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             return new AlertDialog.Builder(getActivity(), getTheme())
-                    .setMessage(getString(R.string.gps_disabled_message, getString(R.string.app_name)))
+                    .setMessage(getString(R.string.gps_disabled_message, getString(R.string.name_app)))
                     .setCancelable(false)
                     .setPositiveButton(R.string.enable, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
@@ -647,7 +647,7 @@ public class MapActivity extends DrawerActivity
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             return new AlertDialog.Builder(getActivity(), getTheme())
                     .setTitle(R.string.location_permissions)
-                    .setMessage(getString(R.string.gps_permissions_disabled_message, getString(R.string.app_name)))
+                    .setMessage(getString(R.string.gps_permissions_disabled_message, getString(R.string.name_app)))
                     .setNegativeButton(R.string.ok, null)
                     .create();
         }

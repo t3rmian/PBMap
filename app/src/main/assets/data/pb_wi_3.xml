@@ -1,5 +1,5 @@
 <map down_map_path="data/pb_wi_2.xml" height="1497" id="PB_WI_L3" previous_map_path="data/pb_wi_2.xml"
-    route_path="routes/pb_campus.xml" url="https://wi.pb.edu.pl/" width="2700" hidden="true">
+    route_path="routes/pb_campus.xml" width="2700" hidden="true">
     <tiles_configs>
         <tiles_config height="256" path="tiles/pb_campus/wi/floor/tile-%d_%d.png" width="256"
             zoom="1" />
