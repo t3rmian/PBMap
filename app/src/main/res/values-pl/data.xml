@@ -2,8 +2,8 @@
 <resources>
     <string name="deanery_121_name">Dziekanat</string>
     <string name="deanery_name">Dziekanat</string>
-    <string name="pb_campus_name">Kampus PB</string>
-    <string name="pb_wz_campus_name">Kampus PB WZ</string>
+    <string name="pb_campus_name">PB Kampus</string>
+    <string name="pb_wz_campus_name">PB WZ Kampus</string>
     <string name="secretariat_name">Sekretariat</string>
     <string name="rector_name">Rektorat</string>
     <string name="courts_name">Korty\ntenisowe</string>
@@ -50,6 +50,7 @@
     <string name="shanghai_name">Szanghaj\n\n</string>
     <string name="philadelphia_name">Filadelfia</string>
     <string name="xero_name">Ksero</string>
+    <string name="gym_048b_name">048B\nSiłownia</string>
 
     <string name="pb_campus_address">Politechnika Białostocka,
 ul. Wiejska 45A, 15-351 Białystok, woj. podlaskie,

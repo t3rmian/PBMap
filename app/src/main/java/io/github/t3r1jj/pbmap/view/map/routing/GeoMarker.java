@@ -125,9 +125,7 @@ public class GeoMarker extends ImageView implements RemovableView {
             @Override
             public void run() {
                 if (coordinate != null) {
-                    pbMapView.setScale(1f);
-                    pbMapView.scrollToAndCenter(coordinate.lng, coordinate.lat);
-//                    pbMapView.setScaleFromCenter(0.5f);
+                    pbMapView.slideToAndCenterWithScale(coordinate.lng, coordinate.lat, 1f);
                 }
                 addToMap(pbMapView);
             }

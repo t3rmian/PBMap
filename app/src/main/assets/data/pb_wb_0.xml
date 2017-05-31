@@ -13,7 +13,7 @@
     <spot id="WC">	<coordinates>		<coordinate lat="53.11799149823886" lng="23.152350543461466" alt="145.0"/>	</coordinates></spot>
     <spot id="046B">	<coordinates>		<coordinate lat="53.11808976110673" lng="23.152545272429247" alt="145.0"/>	</coordinates></spot>
     <spot id="047B">	<coordinates>		<coordinate lat="53.11805034157416" lng="23.15256566702956" alt="145.0"/>	</coordinates></spot>
-    <spot id="048B">	<coordinates>		<coordinate lat="53.118000732327715" lng="23.152604011933516" alt="145.0"/>	</coordinates></spot>
+    <spot id="gym_048b">	<coordinates>		<coordinate lat="53.118000732327715" lng="23.152604011933516" alt="145.0"/>	</coordinates></spot>
     <spot id="↑">	<coordinates>		<coordinate lat="53.117975227274776" lng="23.152268315793915" alt="145.0"/>	</coordinates></spot>
     <spot id="044B"  hidden="true">	<coordinates>		<coordinate lat="53.11796044404512" lng="23.152197303883465" alt="145.0"/>	</coordinates></spot>
     <spot id="043B">	<coordinates>		<coordinate lat="53.11794421651853" lng="23.152124115021294" alt="145.0"/>	</coordinates></spot>
