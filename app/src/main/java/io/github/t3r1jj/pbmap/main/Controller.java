@@ -207,7 +207,10 @@ public class Controller implements GeoMarker.MapListener {
     }
 
     public void updatePosition(final Coordinate locationCoordinate) {
-        if (locationCoordinate != null && !locationCoordinate.hasAltitude()) {
+        if (locationCoordinate == null) {
+            return;
+        }
+        if (!locationCoordinate.hasAltitude()) {
             locationCoordinate.alt = map.getCenter().alt;
         }
         source.setCoordinate(locationCoordinate);
