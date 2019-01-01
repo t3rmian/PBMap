@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.database.Cursor;
 import android.database.MatrixCursor;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;

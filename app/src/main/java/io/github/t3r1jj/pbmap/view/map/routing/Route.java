@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.qozix.tileview.geom.CoordinateTranslater;
 import com.qozix.tileview.paths.CompositePathView;

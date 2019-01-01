@@ -18,7 +18,7 @@ package io.github.t3r1jj.pbmap.sample.integration;
 import android.content.ActivityNotFoundException;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;

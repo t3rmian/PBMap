@@ -2,8 +2,8 @@ package io.github.t3r1jj.pbmap.main.drawer;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
+import androidx.annotation.NonNull;
+import com.google.android.material.navigation.NavigationView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;

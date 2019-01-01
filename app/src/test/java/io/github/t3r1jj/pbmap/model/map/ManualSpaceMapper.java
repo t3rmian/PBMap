@@ -1,6 +1,6 @@
 package io.github.t3r1jj.pbmap.model.map;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.junit.Before;
 import org.junit.Test;

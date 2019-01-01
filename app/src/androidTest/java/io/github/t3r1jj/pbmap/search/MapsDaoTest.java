@@ -2,8 +2,8 @@ package io.github.t3r1jj.pbmap.search;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.InstrumentationRegistry;
+import androidx.test.runner.AndroidJUnit4;
 import android.util.Log;
 
 import org.junit.Before;

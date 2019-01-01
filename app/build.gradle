@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "io.github.t3r1jj.pbmap"
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 28
         versionCode buildVersionCode()
         versionName version
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         setProperty("archivesBaseName", "io.github.t3r1jj.pbmap-$versionName")
     }
     buildTypes {
@@ -27,24 +27,24 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.0'
-    compile 'com.android.support:design:25.3.0'
-    compile 'com.android.support:cardview-v7:25.3.0'
-    compile 'com.qozix:tileview:2.2.6'
-    compile('org.simpleframework:simple-xml:2.7.1') {
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
+    implementation 'com.google.android.material:material:1.1.0-alpha02'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.qozix:tileview:2.2.6'
+    implementation('org.simpleframework:simple-xml:2.7.1') {
         exclude module: 'stax'
         exclude module: 'stax-api'
         exclude module: 'xpp3'
     }
-    compile 'com.roughike:swipe-selector:1.0.6'
-    compile 'com.github.clans:fab:1.6.4'
-    compile 'com.getkeepsafe.taptargetview:taptargetview:1.9.1'
+    implementation 'com.roughike:swipe-selector:1.0.6'
+    implementation 'com.github.clans:fab:1.6.4'
+    implementation 'com.getkeepsafe.taptargetview:taptargetview:1.9.1'
 
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 }
 
 task copyNOTICE(type: Copy) {

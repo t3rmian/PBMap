@@ -3,7 +3,7 @@ package io.github.t3r1jj.pbmap.view.map.routing;
 import android.content.Context;
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
