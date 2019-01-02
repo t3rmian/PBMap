@@ -3,6 +3,7 @@ package io.github.t3r1jj.pbmap.model.map;
 import androidx.annotation.NonNull;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static io.github.t3r1jj.pbmap.model.map.ManualSpaceMapper.DirectionHorizontal.EAST;
@@ -10,8 +11,9 @@ import static io.github.t3r1jj.pbmap.model.map.ManualSpaceMapper.StartingCoordin
 import static io.github.t3r1jj.pbmap.model.map.ManualSpaceMapper.StartingCoordinate.SOUTH;
 
 /**
- * Provides test execution which creates space coordinates given by starting coordinate and other mostly static for map parameters
+ * Provides test execution which creates space coordinates given by starting coordinate and other params. It can generate xml data for rectangular space.
  */
+@Ignore
 public class ManualSpaceMapper {
     /**
      * based on location

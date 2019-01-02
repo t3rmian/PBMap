@@ -9,6 +9,7 @@ import java.util.List;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 
 import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class DijkstraAlgorithmTest {
 
@@ -21,10 +22,13 @@ public class DijkstraAlgorithmTest {
     private Coordinate d;
     private Coordinate notConnected;
 
+    /**
+     * Almost diagonal path with b vertex being a bit off on a straight line
+     */
     @Before
     public void setUp() {
         a = new CoordinateStub(1d, 1d);
-        Coordinate b = new CoordinateStub(2d, 2d);
+        Coordinate b = new CoordinateStub(1d, 2d);
         c = new CoordinateStub(3d, 3d);
         d = new CoordinateStub(4d, 4d);
         e = new CoordinateStub(5d, 5d);
@@ -60,7 +64,7 @@ public class DijkstraAlgorithmTest {
         expectedPath.add(c);
         expectedPath.add(d);
         expectedPath.add(e);
-        assertTrue(expectedPath.equals(shortestPath));
+        assertEquals(expectedPath, shortestPath);
     }
 
     @Test(expected = NoPathException.class)
@@ -83,7 +87,7 @@ public class DijkstraAlgorithmTest {
         }
 
         @Override
-        public double distance(Coordinate v) {
+        public double routedDistance(Coordinate v) {
             if (lat == 1d) {
                 if (v.lat == 2d) {
                     return 7d;

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 28
@@ -13,6 +14,9 @@ android {
         setProperty("archivesBaseName", "io.github.t3r1jj.pbmap-$versionName")
     }
     buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -23,6 +27,17 @@ android {
         it.buildConfigField 'String', 'FIRST_MAP_FILENAME', FIRST_MAP_FILENAME
         it.buildConfigField 'String', 'NOTICE_PATH', NOTICE_PATH
         it.buildConfigField 'String', 'FONT_PATH', FONT_PATH
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE.md'
+        exclude 'META-INF/LICENSE-notice.md'
+    }
+    testOptions {
+        unitTests.includeAndroidResources = true
     }
 }
 
@@ -43,8 +58,12 @@ dependencies {
     implementation 'com.roughike:swipe-selector:1.0.6'
     implementation 'com.github.clans:fab:1.6.4'
     implementation 'com.getkeepsafe.taptargetview:taptargetview:1.9.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     testImplementation 'junit:junit:4.12'
+
+    androidTestImplementation 'org.mockito:mockito-core:2.22.0' //2.23.+ causes IT to fail https://github.com/mockito/mockito/issues/922
+    androidTestImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
 }
 
 task copyNOTICE(type: Copy) {
@@ -55,3 +74,6 @@ task copyNOTICE(type: Copy) {
 }
 
 preBuild.dependsOn copyNOTICE
+repositories {
+    mavenCentral()
+}
