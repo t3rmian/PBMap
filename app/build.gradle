@@ -1,6 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
+def props = new Properties()
+file("../signing.properties").withInputStream { props.load(it) }
+
 android {
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
@@ -12,6 +15,14 @@ android {
         versionName version
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         setProperty("archivesBaseName", "io.github.t3r1jj.pbmap-$versionName")
+    }
+    signingConfigs {
+        release {
+            keyAlias props.getProperty('keyAlias')
+            keyPassword props.getProperty('keyPassword')
+            storeFile file(props.getProperty('storeFile'))
+            storePassword props.getProperty('storePassword')
+        }
     }
     buildTypes {
         debug {
