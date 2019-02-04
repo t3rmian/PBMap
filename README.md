@@ -54,6 +54,13 @@ startActivity(sendIntent);
 
 If PBMap is not installed an ActivityNotFoundException exception will be thrown. The list of map and place ids can be found at [the wiki page](https://github.com/T3r1jj/PBMap/wiki/Maps-and-places). For a fully working example refer to sample app from the repository.
 
+### Manual
+
+[Running tests with coverage:](https://github.com/vanniktech/gradle-android-junit-jacoco-plugin)
+-- unit tests: ``gradlew jacocoTestReportDebug``
+-- instrumentation tests: ``gradlew createDebugCoverageReports``
+-- combined tests: ``gradlew combinedTestReportDebug``     
+
 ### Contributing
 
 Feel free to improve the app and get listed as a contributor! For bigger things It's best to create an issue first. Also, mind that I might be busy,
