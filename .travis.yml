@@ -1,0 +1,31 @@
+language: android
+jdk:
+- oraclejdk8
+sudo: required
+
+android:
+  components:
+    - tools
+    - build-tools-28.0.3
+    - android-28
+    - platform-tools
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - extra-android-support
+    - sys-img-x86-android-28
+
+before_install:
+  - cd project-folder/
+  - chmod +x gradlew
+  - gem update --system
+  - gem install fastlane --no-rdoc --no-ri --no-document --quiet
+  - echo no | android create avd --force -n test -t android-28 --abi x86 -c 100M
+  - emulator -avd test -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
+
+script:
+  - ./gradlew combinedTestReportDebug
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
