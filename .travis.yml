@@ -15,7 +15,6 @@ android:
     - sys-img-x86-android-28
 
 before_install:
-  - cd project-folder/
   - chmod +x gradlew
   - gem update --system
   - gem install fastlane --no-rdoc --no-ri --no-document --quiet
