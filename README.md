@@ -1,4 +1,6 @@
-# ![](app/src/main/res/mipmap-ldpi/ic_launcher.png) PBMap
+# ![](app/src/main/res/mipmap-ldpi/ic_launcher.png) PBMap  
+
+[![Build Status](https://travis-ci.org/T3r1jj/PBMap.svg?branch=master)](https://travis-ci.org/T3r1jj/PBMap) [![codecov](https://codecov.io/gh/T3r1jj/PBMap/branch/master/graph/badge.svg)](https://codecov.io/gh/T3r1jj/PBMap)
 
 PBMap is an offline map of mapped places (buildings, floors, rooms, etc.) at Bialystok University of Technology created for an Android project assignment. The application facilitates navigation by implementing positioning and routing systems. Furthermore it allows for easy searching for rooms through search bar (possible integration through Intent). A help feature and externally managed report/mapping system have been also implemented.
 
@@ -56,10 +58,10 @@ If PBMap is not installed an ActivityNotFoundException exception will be thrown.
 
 ### Manual
 
-[Running tests with coverage:](https://github.com/vanniktech/gradle-android-junit-jacoco-plugin)
--- unit tests: ``gradlew jacocoTestReportDebug``
--- instrumentation tests: ``gradlew createDebugCoverageReports``
--- combined tests: ``gradlew combinedTestReportDebug``     
+[Running tests with coverage:](https://github.com/vanniktech/gradle-android-junit-jacoco-plugin)  
+- unit tests: ``gradlew jacocoTestReportDebug``  
+- instrumentation tests: ``gradlew createDebugCoverageReports``  
+- combined tests: ``gradlew combinedTestReportDebug``  
 
 ### Contributing
 
