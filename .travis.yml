@@ -29,6 +29,7 @@ env:
 # Emulator Management: Create, Start and Wait
 before_script:
 - android-update-sdk --components=sys-img-$ABI-$API --accept-licenses='android-sdk-license-[0-9a-f]{8}'
+- yes | sdkmanager --licenses && sdkmanager --update
 - echo no | android create avd --force -n test -t $API --abi $ABI
 - emulator -avd test -no-window &
 - android-wait-for-emulator
