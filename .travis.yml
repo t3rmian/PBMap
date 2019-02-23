@@ -4,6 +4,18 @@ language: android
 jdk:
   - oraclejdk8
 
+#stages:
+#- name: before_script
+#  if: branch = master
+#- name: script
+#  if: branch = master
+#- name: after_success
+#  if: branch = master
+#- name: before_deploy
+#  if: branch = master
+#- name: deploy
+#  if: branch = master
+
 android:
   components:
     - tools
@@ -30,22 +42,33 @@ env:
     #- API=android-24 ABI=armeabi-v7a
     - API=android-24 ABI=arm64-v8a
 
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+  - $HOME/.gradle/caches/
+  - $HOME/.gradle/wrapper/
+
 before_install:
   - mkdir "$ANDROID_HOME/licenses" || true
   - echo -e "\nd56f5187479451eabf01fb78af6dfcb131a6481e" > "$ANDROID_HOME/licenses/android-sdk-license"
   - yes | sdkmanager "build-tools;28.0.3"
   - yes | sdkmanager "platforms;android-28"
 
+install:
+  - bundle exec fastlane unit_tests
+
 # Emulator Management: Create, Start and Wait
 before_script:
-- android-update-sdk --components=sys-img-$ABI-$API --accept-licenses='android-sdk-license-[0-9a-f]{8}'
-- echo no | android create avd --force -n test -t $API --abi $ABI
-- emulator -avd test -no-window &
-- android-wait-for-emulator
-- adb shell input keyevent 82 &
+  - android-update-sdk --components=sys-img-$ABI-$API --accept-licenses='android-sdk-license-[0-9a-f]{8}'
+  - echo no | android create avd --force -n test -t $API --abi $ABI
+  - emulator -avd test -no-window &
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
 
 script:
-- ./gradlew combinedTestReportDebug
+  - bundle exec fastlane all_tests
 
 after_success:
-- bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash)
