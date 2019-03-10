@@ -1,75 +1,56 @@
 sudo: required
 language: android
-
 jdk:
-  - oraclejdk8
-
-#stages:
-#- name: before_script
-#  if: branch = master
-#- name: script
-#  if: branch = master
-#- name: after_success
-#  if: branch = master
-#- name: before_deploy
-#  if: branch = master
-#- name: deploy
-#  if: branch = master
-
+- oraclejdk8
 android:
   components:
-    - tools
-    - platform-tools
-    - android-22
-    - android-24
-    - android-25
-    - build-tools-28.0.3
-    - extra-android-m2repository
+  - tools
+  - platform-tools
+  - android-22
+  - android-24
+  - android-25
+  - build-tools-28.0.3
+  - extra-android-m2repository
   licenses:
-    - android-sdk-preview-license-.+
-    - android-sdk-license-.+
-    - google-gdk-license-.+
-
+  - android-sdk-preview-license-.+
+  - android-sdk-license-.+
+  - google-gdk-license-.+
 env:
-  matrix:
-    #- API=android-15 ABI=armeabi-v7a
-    #- API=android-16 ABI=armeabi-v7a
-    #- API=android-17 ABI=armeabi-v7a
-    #- API=android-18 ABI=armeabi-v7a
-    #- API=android-19 ABI=armeabi-v7a
-    #- API=android-21 ABI=armeabi-v7a
-    #- API=android-22 ABI=armeabi-v7a
-    #- API=android-24 ABI=armeabi-v7a
-    - API=android-24 ABI=arm64-v8a
-
+  secure: HxYGSaP/Wu9CQNtddcog/MPAl38NJ0j1nSBmbWKJg9fSYHt9wZaKVGqwu1hGBcOtjfRK2Ty2SZ9Q8aVCdMLzaWY69HsASjz6vk99os5DhWlHjvBytCPvQ3WE953VJ1LT04zgahzCHhOKbXMtPnK/iwa71hkzHgc70ziOtbgLIbVLKUWaBvNmyuMe9rrej8AF5YX5Nx0LPOv42x2tarFQqewlYhL8nqZDqg5ZQ4Yyl0KJ66YPcBGMKXJvCyIwbC4ncgYNPR5WM3JmRDSXwNY/BLMslIvEyR3tdKxXJDZprKqsinBcRRhyNz35F/08ktS9PIX6tlhtOwuf2IRsumhYC3JPbK15YMMuehRknIbVt+fi29g0te5IMeD5zp4+h82sbiZWuuOyRCe+z+TGqKrMXDHklvX5q1Zu3744gU10gfeFtyMP5ARPZVcQ+ud8scFqGkJCyxnH/Sip4SgSI9pY04WQ2GaNGeHiKp+V14e9oFGm5ZaSy6rBTdemM0Zr2m9fREPKqhJ+/WASw15vPn8DKkziAO4X8XpjMJe0NwmSmyDh1hDrEjpujPeUvnukxm68T7HtLMxvPQMBax6IUxgZmYb216By/PCvFPmM6DsWyYsGGy6ZeUvd836JhGVb8IlJrXZalS/aKhmM3NY3RTDrz02ZzeduNWtcrmRPyOABtG8=
 before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   directories:
-  - $HOME/.gradle/caches/
-  - $HOME/.gradle/wrapper/
-
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
 before_install:
-  - mkdir "$ANDROID_HOME/licenses" || true
-  - echo -e "\nd56f5187479451eabf01fb78af6dfcb131a6481e" > "$ANDROID_HOME/licenses/android-sdk-license"
-  - yes | sdkmanager "build-tools;28.0.3"
-  - yes | sdkmanager "platforms;android-28"
-  - bundle install
-
+- mkdir "$ANDROID_HOME/licenses" || true
+- echo -e "\nd56f5187479451eabf01fb78af6dfcb131a6481e" > "$ANDROID_HOME/licenses/android-sdk-license"
+- yes | sdkmanager "build-tools;28.0.3"
+- yes | sdkmanager "platforms;android-28"
+- bundle install
 install:
-  - bundle exec fastlane unit_tests
-
-# Emulator Management: Create, Start and Wait
+- bundle exec fastlane unit_tests
 before_script:
-  - android-update-sdk --components=sys-img-$ABI-$API --accept-licenses='android-sdk-license-[0-9a-f]{8}'
-  - echo no | android create avd --force -n test -t $API --abi $ABI
-  - emulator -avd test -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
-
+- android-update-sdk --components=sys-img-$ABI-$API --accept-licenses='android-sdk-license-[0-9a-f]{8}'
+- echo no | android create avd --force -n test -t $API --abi $ABI
+- emulator -avd test -no-window &
+- android-wait-for-emulator
+- adb shell input keyevent 82 &
 script:
-  - bundle exec fastlane all_tests
-
+- bundle exec fastlane all_tests
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+- bash <(curl -s https://codecov.io/bash)
+before_deploy:
+- echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+- gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+  --project=${GOOGLE_PROJECT_ID}
+- bundle exec fastlane instrumentation_tests
+deploy:
+  provider: script
+  script:
+  - echo $GOOGLE_PLAY_KEY > gplay_key.json
+  - bundle exec fastlane supply init
+  - "./ci/download_ci_data.sh"
+  - bundle exec fastlane deploy_internal

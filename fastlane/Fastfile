@@ -26,6 +26,23 @@ platform :android do
     gradle(task: "combinedTestReportDebug")
   end
 
+  desc "Assemble a debug apk"
+  lane :assemble_debug do
+    gradle(task: "assembleDebug")
+  end
+
+  desc "Assemble an android test apk"
+  lane :assemble_android_test do
+    gradle(task: "assembleDebugAndroidTest")
+  end
+
+  desc "Run the instrumentation tests in the Firebase test lab"
+  lane :deploy_tests do
+    assemble_debug
+    assemble_android_test
+    sh("../ci/run_firebase_tests.sh")
+  end
+
   desc "Deploy the app to the internal track"
   lane :deploy_internal do
     gradle(task: "bundleRelease")
