@@ -21,6 +21,11 @@ platform :android do
     gradle(task: "test")
   end
 
+  desc "Run all tests with code coverage"
+  lane :all_tests do
+    gradle(task: "combinedTestReportDebug")
+  end
+
   desc "Assemble a debug apk"
   lane :assemble_debug do
     gradle(task: "assembleDebug")
@@ -32,10 +37,10 @@ platform :android do
   end
 
   desc "Run the instrumentation tests in the Firebase test lab"
-  lane :instrumentation_tests do
+  lane :deploy_tests do
     assemble_debug
     assemble_android_test
-    sh("../.ci/run_firebase_tests.sh")
+    sh("../ci/run_firebase_tests.sh")
   end
 
   desc "Deploy the app to the internal track"

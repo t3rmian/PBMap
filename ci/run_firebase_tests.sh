@@ -6,5 +6,4 @@ gcloud firebase test android run \
   --device-ids Nexus6 \
   --os-version-ids 21 \
   --locales en \
-  --orientations portrait \
-  --async
+  --orientations portrait
