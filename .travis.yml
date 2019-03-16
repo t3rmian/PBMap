@@ -20,7 +20,7 @@ env:
     #- API=android-24 ABI=armeabi-v7a
     - API=android-24 ABI=arm64-v8a
   global:
-    secure: HxYGSaP/Wu9CQNtddcog/MPAl38NJ0j1nSBmbWKJg9fSYHt9wZaKVGqwu1hGBcOtjfRK2Ty2SZ9Q8aVCdMLzaWY69HsASjz6vk99os5DhWlHjvBytCPvQ3WE953VJ1LT04zgahzCHhOKbXMtPnK/iwa71hkzHgc70ziOtbgLIbVLKUWaBvNmyuMe9rrej8AF5YX5Nx0LPOv42x2tarFQqewlYhL8nqZDqg5ZQ4Yyl0KJ66YPcBGMKXJvCyIwbC4ncgYNPR5WM3JmRDSXwNY/BLMslIvEyR3tdKxXJDZprKqsinBcRRhyNz35F/08ktS9PIX6tlhtOwuf2IRsumhYC3JPbK15YMMuehRknIbVt+fi29g0te5IMeD5zp4+h82sbiZWuuOyRCe+z+TGqKrMXDHklvX5q1Zu3744gU10gfeFtyMP5ARPZVcQ+ud8scFqGkJCyxnH/Sip4SgSI9pY04WQ2GaNGeHiKp+V14e9oFGm5ZaSy6rBTdemM0Zr2m9fREPKqhJ+/WASw15vPn8DKkziAO4X8XpjMJe0NwmSmyDh1hDrEjpujPeUvnukxm68T7HtLMxvPQMBax6IUxgZmYb216By/PCvFPmM6DsWyYsGGy6ZeUvd836JhGVb8IlJrXZalS/aKhmM3NY3RTDrz02ZzeduNWtcrmRPyOABtG8=
+  - secure: WdAlW1LoOdCndZP2AnlYAH6PG/IVIj9H4YXxWsIPqoSwwc4WGshEJBV+BWiGOZh6k9GJdJl49GBodXW5XiFfarenurI26m0BuSPzFcgQRmV/fLN242Z2T+HKJGtNVFMZIEs+ePaAgiBV/YWAVkTlXlzbULjXGRjNpagW5Dy35Ye/r2R3B4WLlufQHmHyCIdjmTyBag2FoSvVmhYv2Uea0ERIuHeSHYjIk7tY3d5qshOCkjzUdcI/Dozd+DAX66+EVq5a3I9Xlyet6Fc598xF+iN3Rw2yz8pWOrQkZAmBR+Gi/ZaYWGeKg6tytsuV0LwtuoT0xnzwIJeYT9k+K0GzK1BRHXIk0aDwMYnwjGmMsKIiNZ8T55Yp/Dayi5MyZx3IrJ1UAne8gRxbeZRDOVx3IUmJiAmBewcmtTdVStkBfYukyHaYIorqCjP9VupB1PD7cFHkWyuiRrMtTpFi2cgzf97P4LkoT8ZY19cjoVw5KCGaKrST7u0+XS9bfZhF7C1j5eMaoVpp5OC2/80zMhlmzl3oBgRWmLONS6jVR3kjqzFgAQjdB2JnuTkCawsuSKBzMtTMZCUPy7jaxGpFNU5jUYc/VO80o09fEOwtgoPGPWGh+2QHSMx3lA/U+83oT3/K4Ldsnhq3MjTQtYKoCLiwhZT9Jb8Qp5vvLGJtX3Dlyo8=
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -55,8 +55,9 @@ before_deploy:
   - source /home/travis/google-cloud-sdk/path.bash.inc
   - gcloud version
   - gcloud components update
-  - echo $GCLOUD_SERVICE_KEY | base64 --decode -i > ${HOME}/gcloud-service-key.json
-  - gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json --project=${GOOGLE_PROJECT_ID}
+  - echo $GCLOUD_SERVICE_KEY | base64 --decode -i > $HOME/gcloud-service-key.json
+  - gcloud config set project $GOOGLE_PROJECT_ID
+  - gcloud auth activate-service-account --key-file=$HOME/gcloud-service-key.json --project=$GOOGLE_PROJECT_ID
   - bundle exec fastlane deploy_tests
 deploy:
   provider: script
