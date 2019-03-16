@@ -49,7 +49,7 @@ after_success:
 before_deploy:
   - echo $GCLOUD_SERVICE_KEY | base64 --decode -i > ${HOME}/gcloud-service-key.json
   - gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json --project=${GOOGLE_PROJECT_ID}
-  - bundle exec fastlane instrumentation_tests
+  - bundle exec fastlane deploy_tests
 deploy:
   provider: script
   script:
