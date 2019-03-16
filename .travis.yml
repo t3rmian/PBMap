@@ -28,6 +28,7 @@ cache:
   directories:
     - "$HOME/.gradle/caches/"
     - "$HOME/.gradle/wrapper/"
+    - "$HOME/google-cloud-sdk/"
 before_install:
   - mkdir "$ANDROID_HOME/licenses" || true
   - echo -e "\nd56f5187479451eabf01fb78af6dfcb131a6481e" > "$ANDROID_HOME/licenses/android-sdk-license"
@@ -49,6 +50,7 @@ after_success:
 before_deploy:
   - chmod +x ci/download_ci_data.sh
   - chmod +x ci/run_firebase_tests.sh
+  - gcloud components update
   - echo $GCLOUD_SERVICE_KEY | base64 --decode -i > ${HOME}/gcloud-service-key.json
   - gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json --project=${GOOGLE_PROJECT_ID}
   - bundle exec fastlane deploy_tests
