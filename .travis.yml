@@ -47,6 +47,8 @@ script:
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 before_deploy:
+  - chmod +x ci/download_ci_data.sh
+  - chmod +x ci/run_firebase_tests.sh
   - echo $GCLOUD_SERVICE_KEY | base64 --decode -i > ${HOME}/gcloud-service-key.json
   - gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json --project=${GOOGLE_PROJECT_ID}
   - bundle exec fastlane deploy_tests
