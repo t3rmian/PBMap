@@ -52,7 +52,7 @@ platform :android do
   desc "Deploy the app to the internal track"
   lane :deploy_internal do
     gradle(task: "bundleRelease")
-    apk = [SharedValues::GRADLE_ALL_AAB_OUTPUT_PATHS].select do | path |
+    apk = lane_context[SharedValues::GRADLE_ALL_AAB_OUTPUT_PATHS].select do | path |
         !path.to_s.include?("sample")
     end
     supply(
