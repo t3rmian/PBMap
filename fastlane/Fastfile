@@ -40,7 +40,13 @@ platform :android do
   lane :deploy_tests do
     assemble_debug
     assemble_android_test
-    sh("../ci/run_firebase_tests.sh", lane_context[SharedValues::GRADLE_ALL_APK_OUTPUT_PATHS][1].to_s, lane_context[SharedValues::GRADLE_ALL_APK_OUTPUT_PATHS][0].to_s)
+    apk = lane_context[SharedValues::GRADLE_ALL_APK_OUTPUT_PATHS].select do | path |
+        path.to_s.include?("/apk/debug/") && !path.to_s.include?("sample")
+    end
+    testApk = lane_context[SharedValues::GRADLE_ALL_APK_OUTPUT_PATHS].select do | path |
+        path.to_s.include?("/apk/androidTest/") && !path.to_s.include?("sample")
+    end
+    sh("../ci/run_firebase_tests.sh", apk[0], testApk[0])
   end
 
   desc "Deploy the app to the internal track"
