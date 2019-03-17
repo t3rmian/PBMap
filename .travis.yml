@@ -48,7 +48,6 @@ script:
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 before_deploy:
-  - chmod +x ci/download_ci_data.sh
   - chmod +x ci/run_firebase_tests.sh
   - gcloud version || true
   - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export $CLOUDSDK_CORE_DISABLE_PROMPTS; curl https://sdk.cloud.google.com | bash; fi
@@ -64,5 +63,6 @@ deploy:
   script: >-
     echo $GOOGLE_PLAY_KEY | base64 --decode -i > gplay_key.json &&
     bundle exec fastlane supply init &&
-    ./ci/download_ci_data.sh &&
+    chmod +x ci/download_ci_data.sh &&
+    bash ci/download_ci_data.sh $DROPBOX_KEY $SIGNING_ARCHIVE_NAME &&
     bundle exec fastlane deploy_internal

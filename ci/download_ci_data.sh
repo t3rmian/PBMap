@@ -1,7 +1,7 @@
 #!/bin/bash
 curl -X POST https://content.dropboxapi.com/2/files/download \
-  --header "Authorization: Bearer $DROPBOX_KEY" \
-  --header "Dropbox-API-Arg: {\"path\": \"/$SIGNING_ARCHIVE_NAME\"}" \
-  -o "./$SIGNING_ARCHIVE_NAME" \
-  && unzip -o $SIGNING_ARCHIVE_NAME \
-  && rm $SIGNING_ARCHIVE_NAME
+  --header "Authorization: Bearer $1" \
+  --header "Dropbox-API-Arg: {\"path\": \"/$2\"}" \
+  -o "./$2" \
+  && unzip -o $2 \
+  && rm $2
