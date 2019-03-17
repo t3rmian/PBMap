@@ -61,8 +61,8 @@ before_deploy:
   - bundle exec fastlane deploy_tests
 deploy:
   provider: script
-  script:
-    - echo $GOOGLE_PLAY_KEY | base64 --decode -i > gplay_key.json
-    - bundle exec fastlane supply init
-    - "./ci/download_ci_data.sh"
-    - bundle exec fastlane deploy_internal
+  script: >-
+    echo $GOOGLE_PLAY_KEY | base64 --decode -i > gplay_key.json &&
+    bundle exec fastlane supply init &&
+    ./ci/download_ci_data.sh &&
+    bundle exec fastlane deploy_internal &&
