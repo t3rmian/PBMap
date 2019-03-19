@@ -53,6 +53,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="io.github.t3r1jj.pbmap.main.MapActivity" />
         </activity>
+        <uses-library android:name="android.test.runner"
+            android:required="false" />
     </application>
 
 </manifest>
