@@ -66,7 +66,18 @@ If PBMap is not installed an ActivityNotFoundException exception will be thrown.
 ### Contributing
 
 Feel free to improve the app and get listed as a contributor! For bigger things It's best to create an issue first. Also, mind that I might be busy,
-so for urgent things try mailing me.
+so for urgent things try mailing me. Any code is welcomed, especially well tested. At the moment Java and Kotlin are used interchangeably.
+
+### Workflow
+
+A simple workflow has been incorporated:
+
+![Build Status](./misc/workflow.png)
+
+CI & CD are configured thanks to Travis CI and fastlane:
+- unit tests and instrumentation tests (Travis CI) are run **on every branch** with code coverage reporting
+- instrumentation tests are run on Firebase Test Lab **on master branch** and the application bundle is deployed to Google Play for internal testing  
+    - the promotion from internal test track to production is done manually
 
 ### License
 
