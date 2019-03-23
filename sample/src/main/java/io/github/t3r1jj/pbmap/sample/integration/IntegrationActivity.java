@@ -18,10 +18,11 @@ package io.github.t3r1jj.pbmap.sample.integration;
 import android.content.ActivityNotFoundException;
 import android.location.Location;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class IntegrationActivity extends AppCompatActivity {
 
@@ -30,17 +31,17 @@ public class IntegrationActivity extends AppCompatActivity {
     private TextView mapIdText;
     private TextView latText;
     private TextView lngText;
-    private PBMapIntegrator pbMapIntegrator;
+    PBMapIntegrator pbMapIntegrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_integration);
         customLocation = new Location("");
-        searchQueryText = (TextView) findViewById(R.id.search_query_text);
-        mapIdText = (TextView) findViewById(R.id.map_id_text);
-        latText = (TextView) findViewById(R.id.lat_text);
-        lngText = (TextView) findViewById(R.id.lng_text);
+        searchQueryText = findViewById(R.id.search_query_text);
+        mapIdText = findViewById(R.id.map_id_text);
+        latText = findViewById(R.id.lat_text);
+        lngText = findViewById(R.id.lng_text);
         pbMapIntegrator = new PBMapIntegrator(this);
     }
 
