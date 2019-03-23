@@ -22,7 +22,8 @@ public class EndToEndIntegrationTest {
     private static final int TIMEOUT_MS = 5000;
 
     @Rule
-    public ActivityTestRule<IntegrationActivity> mActivityTestRule = new ActivityTestRule<>(IntegrationActivity.class);
+    public ActivityTestRule<IntegrationActivity> activityTestRule =
+            new ActivityTestRule<>(IntegrationActivity.class, true, true);
 
     @Test
     public void pinpointPlace() throws UiObjectNotFoundException {

@@ -36,7 +36,7 @@ public class IntegrationActivityTest {
 
     @Rule
     public ActivityTestRule<IntegrationActivity> activityRule =
-            new ActivityTestRule<>(IntegrationActivity.class);
+            new ActivityTestRule<>(IntegrationActivity.class, true, true);
 
     @Test
     public void onCreate() {
