@@ -49,6 +49,7 @@ android {
         exclude 'META-INF/LICENSE-notice.md'
     }
     testOptions {
+        animationsDisabled = true
         unitTests.includeAndroidResources = true
         unitTests.returnDefaultValues = true
     }
@@ -108,4 +109,11 @@ task copyNOTICE(type: Copy) {
 preBuild.dependsOn copyNOTICE
 repositories {
     mavenCentral()
+}
+
+project.gradle.taskGraph.whenReady {
+    connectedDebugAndroidTest.doLast {
+        installDebug.install()
+        installDebugAndroidTest.install()
+    }
 }

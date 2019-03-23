@@ -19,6 +19,8 @@ import static junit.framework.TestCase.fail;
 @RunWith(AndroidJUnit4.class)
 public class EndToEndIntegrationTest {
 
+    private static final int TIMEOUT_MS = 5000;
+
     @Rule
     public ActivityTestRule<IntegrationActivity> mActivityTestRule = new ActivityTestRule<>(IntegrationActivity.class);
 
@@ -28,11 +30,11 @@ public class EndToEndIntegrationTest {
         device.waitForIdle();
         device.findObject(new UiSelector().text("PINPOINT DEFINED PLACE")).clickAndWaitForNewWindow();
         String menuText = "PBMap";
-        if (!device.findObject(new UiSelector().textContains(menuText)).waitForExists(5000)) {
+        if (!device.findObject(new UiSelector().textContains(menuText)).waitForExists(TIMEOUT_MS)) {
             fail("Could not find UI text: " + menuText);
         }
         String placeText = "130";
-        if (!device.findObject(new UiSelector().textContains(placeText)).waitForExists(5000)) {
+        if (!device.findObject(new UiSelector().textContains(placeText)).waitForExists(TIMEOUT_MS)) {
             fail("Could not find UI text: " + placeText);
         }
     }
@@ -43,11 +45,11 @@ public class EndToEndIntegrationTest {
         device.waitForIdle();
         device.findObject(new UiSelector().text("PINPOINT CUSTOM LOCATION")).clickAndWaitForNewWindow();
         String menuText = "PBMap";
-        if (!device.findObject(new UiSelector().textContains(menuText)).waitForExists(5000)) {
+        if (!device.findObject(new UiSelector().textContains(menuText)).waitForExists(TIMEOUT_MS)) {
             fail("Could not find UI text: " + menuText);
         }
         String placeText = "PB campus";
-        if (!device.findObject(new UiSelector().textContains(placeText)).waitForExists(5000)) {
+        if (!device.findObject(new UiSelector().textContains(placeText)).waitForExists(TIMEOUT_MS)) {
             fail("Could not find UI text: " + placeText);
         }
     }

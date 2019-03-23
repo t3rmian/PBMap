@@ -2,6 +2,7 @@ package io.github.t3r1jj.pbmap.sample.integration;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.location.Location;
 import android.net.Uri;
 
 import org.junit.Before;
@@ -33,7 +34,7 @@ public class PBMapIntegratorTest {
 
     @Rule
     public ActivityTestRule<IntegrationActivity> activityTestRule =
-            new ActivityTestRule<>(IntegrationActivity.class);
+            new ActivityTestRule<>(IntegrationActivity.class, true, true);
 
     @Before
     public void setUp() {
@@ -44,7 +45,7 @@ public class PBMapIntegratorTest {
     @Test(expected = ActivityNotFoundException.class)
     public void foundNothingInstalled() {
         doThrow(new ActivityNotFoundException("Mock activity not found")).when(integrator).startActivity(any(Intent.class));
-        integrator.startActivity("");
+        integrator.startActivity("query");
     }
 
     @Test
@@ -74,6 +75,47 @@ public class PBMapIntegratorTest {
         }).when(integrator).startActivity(any(Intent.class));
         Intents.init();
         integrator.startActivity("query");
+        intended(allOf(
+                hasAction(Intent.ACTION_VIEW),
+                hasData(Uri.parse("https://play.google.com/store/apps/details?id=io.github.t3r1jj.pbmap")),
+                toPackage("com.android.vending")
+        ));
+        Intents.release();
+    }
+
+    @Test(expected = ActivityNotFoundException.class)
+    public void foundNothingInstalled_locationVariant() {
+        doThrow(new ActivityNotFoundException("Mock activity not found")).when(integrator).startActivity(any(Intent.class));
+        integrator.startActivity("query", new Location(""));
+    }
+
+    @Test
+    public void appNotInstalled_openMarket_locationVariant() {
+        doAnswer(__ -> {
+            doCallRealMethod().when(integrator).startActivity(any(Intent.class));
+            throw new ActivityNotFoundException("Mock activity not found");
+        }).when(integrator).startActivity(any(Intent.class));
+        Intents.init();
+        integrator.startActivity("query", new Location(""));
+        intended(allOf(
+                hasAction(Intent.ACTION_VIEW),
+                hasData(Uri.parse("market://details?id=io.github.t3r1jj.pbmap")),
+                toPackage("com.android.vending")
+        ));
+        Intents.release();
+    }
+
+    @Test
+    public void appAndMarketNotInstalled_openGooglePlay_locationVariant() {
+        doAnswer(__ -> {
+            doAnswer(___ -> {
+                doCallRealMethod().when(integrator).startActivity(any(Intent.class));
+                throw new ActivityNotFoundException("Mock activity 2 not found");
+            }).when(integrator).startActivity(any(Intent.class));
+            throw new ActivityNotFoundException("Mock activity 1 not found");
+        }).when(integrator).startActivity(any(Intent.class));
+        Intents.init();
+        integrator.startActivity("query", new Location(""));
         intended(allOf(
                 hasAction(Intent.ACTION_VIEW),
                 hasData(Uri.parse("https://play.google.com/store/apps/details?id=io.github.t3r1jj.pbmap")),
