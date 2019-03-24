@@ -25,6 +25,9 @@ public class EndToEndIntegrationTest {
     public ActivityTestRule<IntegrationActivity> activityTestRule =
             new ActivityTestRule<>(IntegrationActivity.class, true, true);
 
+    @Rule
+    public ScreenshotTestFailedRule screenshotRule = new ScreenshotTestFailedRule();
+
     @Test
     public void pinpointPlace() throws UiObjectNotFoundException {
         UiDevice device = UiDevice.getInstance(getInstrumentation());

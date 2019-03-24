@@ -36,6 +36,9 @@ public class PBMapIntegratorTest {
     public ActivityTestRule<IntegrationActivity> activityTestRule =
             new ActivityTestRule<>(IntegrationActivity.class, true, true);
 
+    @Rule
+    public ScreenshotTestFailedRule screenshotRule = new ScreenshotTestFailedRule();
+
     @Before
     public void setUp() {
         integrator = spy(activityTestRule.getActivity().pbMapIntegrator);

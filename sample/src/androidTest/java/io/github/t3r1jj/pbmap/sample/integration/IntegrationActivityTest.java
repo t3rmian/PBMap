@@ -38,6 +38,9 @@ public class IntegrationActivityTest {
     public ActivityTestRule<IntegrationActivity> activityRule =
             new ActivityTestRule<>(IntegrationActivity.class, true, true);
 
+    @Rule
+    public ScreenshotTestFailedRule screenshotRule = new ScreenshotTestFailedRule();
+
     @Test
     public void onCreate() {
         onView(withId(R.id.description)).check(matches(isDisplayed()));
