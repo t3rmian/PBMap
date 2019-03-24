@@ -37,7 +37,7 @@ public class EndToEndIntegrationTest {
         getInstrumentation().getTargetContext().getPackageManager().getPackageInfo("io.github.t3r1jj.pbmap", 0);
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         device.waitForIdle();
-        device.findObject(new UiSelector().text("PINPOINT DEFINED PLACE")).clickAndWaitForNewWindow();
+        device.findObject(new UiSelector().textMatches("(?i)(PINPOINT DEFINED PLACE)")).clickAndWaitForNewWindow();
         String menuText = "PBMap";
         if (!device.findObject(new UiSelector().textContains(menuText)).waitForExists(TIMEOUT_MS)) {
             fail("Could not find UI text: " + menuText);
@@ -53,7 +53,7 @@ public class EndToEndIntegrationTest {
         getInstrumentation().getTargetContext().getPackageManager().getPackageInfo("io.github.t3r1jj.pbmap", 0);
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         device.waitForIdle();
-        device.findObject(new UiSelector().text("PINPOINT CUSTOM LOCATION")).clickAndWaitForNewWindow();
+        device.findObject(new UiSelector().textMatches("(?i)(PINPOINT CUSTOM LOCATION)")).clickAndWaitForNewWindow();
         String menuText = "PBMap";
         if (!device.findObject(new UiSelector().textContains(menuText)).waitForExists(TIMEOUT_MS)) {
             fail("Could not find UI text: " + menuText);
