@@ -35,7 +35,7 @@ public class EndToEndIntegrationTest {
     public void pinpointPlace() throws UiObjectNotFoundException {
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         device.waitForIdle();
-        device.findObject(new UiSelector().text("PINPOINT DEFINED PLACE2")).clickAndWaitForNewWindow();
+        device.findObject(new UiSelector().text("PINPOINT DEFINED PLACE")).clickAndWaitForNewWindow();
         String menuText = "PBMap";
         if (!device.findObject(new UiSelector().textContains(menuText)).waitForExists(TIMEOUT_MS)) {
             fail("Could not find UI text: " + menuText);
