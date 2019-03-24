@@ -3,7 +3,6 @@ package io.github.t3r1jj.pbmap.logging;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import androidx.test.InstrumentationRegistry;
 
 import junit.framework.Assert;
 
@@ -16,6 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.Spot;
 
@@ -30,7 +30,7 @@ public class WebLoggerTest {
 
     @Before
     public void setUp() {
-        Context appContext = InstrumentationRegistry.getTargetContext();
+        Context appContext = InstrumentationRegistry.getInstrumentation().getContext();
         logger = new WebLogger(appContext);
         preferences = PreferenceManager.getDefaultSharedPreferences(appContext);
     }
@@ -39,7 +39,7 @@ public class WebLoggerTest {
     public void scheduleMessage() {
         preferences.edit().clear().apply();
         ArrayList<Message> messages = logger.getMessages();
-        assertTrue("Messages empty initially", messages.isEmpty() );
+        assertTrue("Messages empty initially", messages.isEmpty());
         Message message = new Message(null, null, null, null);
         logger.logMessage(message);
         messages = logger.getMessages();
@@ -65,7 +65,7 @@ public class WebLoggerTest {
     public void sendCompleteMessages() throws InterruptedException {
         preferences.edit().clear().apply();
         ArrayList<Message> messages = logger.getMessages();
-        assertTrue("Messages empty initially", messages.isEmpty() );
+        assertTrue("Messages empty initially", messages.isEmpty());
         Spot closestPlace = new Spot() {
             @Override
             public List<Coordinate> getCoordinates() {
@@ -88,7 +88,7 @@ public class WebLoggerTest {
     public void sendTwoCompleteMessages() throws InterruptedException {
         preferences.edit().clear().apply();
         ArrayList<Message> messages = logger.getMessages();
-        assertTrue("Messages empty initially", messages.isEmpty() );
+        assertTrue("Messages empty initially", messages.isEmpty());
         Spot closestPlace = new Spot() {
             @Override
             public List<Coordinate> getCoordinates() {

@@ -11,12 +11,12 @@ env:
 
 matrix:
   include:
-    - name: "Android 19"
+    - name: "Android 22"
       env:
-        - EMULATOR_API_LEVEL=19
+        - EMULATOR_API_LEVEL=22
         - ANDROID_ABI=armeabi-v7a
-        - ANDROID_ABI_ADDON=";google_apis;armeabi-v7a"
-        - ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-19
+        - ANDROID_ABI_ADDON=";default;armeabi-v7a"
+        - ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-22
 
 android:
   components:
