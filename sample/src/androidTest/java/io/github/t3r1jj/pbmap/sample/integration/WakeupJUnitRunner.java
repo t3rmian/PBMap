@@ -1,20 +1,34 @@
 package io.github.t3r1jj.pbmap.sample.integration;
 
-import android.os.Bundle;
+import android.app.KeyguardManager;
+import android.content.Context;
+import android.os.PowerManager;
 
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnitRunner;
 import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
 import androidx.test.runner.lifecycle.Stage;
 
+import static android.content.Context.POWER_SERVICE;
+import static android.os.PowerManager.ACQUIRE_CAUSES_WAKEUP;
+import static android.os.PowerManager.FULL_WAKE_LOCK;
+import static android.os.PowerManager.ON_AFTER_RELEASE;
 import static android.view.WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD;
 import static android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
 import static android.view.WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON;
 
 public class WakeupJUnitRunner extends AndroidJUnitRunner {
     @Override
-    public void onCreate(Bundle arguments) {
-        super.onCreate(arguments);
-
+    public void onStart() {
+        runOnMainSync(() -> {
+            Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+            KeyguardManager km = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
+            KeyguardManager.KeyguardLock keyguardLock = km.newKeyguardLock(getClass().getSimpleName());
+            keyguardLock.disableKeyguard();
+            PowerManager power = (PowerManager) context.getSystemService(POWER_SERVICE);
+            power.newWakeLock(FULL_WAKE_LOCK | ACQUIRE_CAUSES_WAKEUP | ON_AFTER_RELEASE, getClass().getSimpleName())
+                    .acquire();
+        });
         ActivityLifecycleMonitorRegistry.getInstance().addLifecycleCallback((activity, stage) -> {
             if (stage == Stage.PRE_ON_CREATE) {
                 activity.getWindow().addFlags(FLAG_DISMISS_KEYGUARD | FLAG_TURN_SCREEN_ON | FLAG_KEEP_SCREEN_ON);

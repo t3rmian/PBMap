@@ -86,8 +86,8 @@ after_failure:
 - chmod +x ci/upload_screenshots.sh
 - mkdir io.github.t3r1jj.pbmap.sample.integration
 - adb logcat -d > io.github.t3r1jj.pbmap.sample.integration/logcat.log
-- adb pull /storage/emulated/0/test_screenshots/io.github.t3r1jj.pbmap.sample.integration &&
-  bash ci/upload_screenshots.sh $DROPBOX_KEY io.github.t3r1jj.pbmap.sample.integration
+- adb pull /storage/emulated/0/test_screenshots/io.github.t3r1jj.pbmap.sample.integration
+- bash ci/upload_screenshots.sh $DROPBOX_KEY io.github.t3r1jj.pbmap.sample.integration
 
 before_deploy:
 - chmod +x ci/run_firebase_tests.sh
