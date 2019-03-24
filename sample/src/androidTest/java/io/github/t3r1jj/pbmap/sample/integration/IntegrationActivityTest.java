@@ -8,6 +8,7 @@ import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
 
 import androidx.test.espresso.intent.Intents;
@@ -35,11 +36,9 @@ import static org.hamcrest.Matchers.equalTo;
 public class IntegrationActivityTest {
 
     @Rule
-    public ActivityTestRule<IntegrationActivity> activityRule =
-            new ActivityTestRule<>(IntegrationActivity.class, true, true);
-
-    @Rule
-    public ScreenshotTestFailedRule screenshotRule = new ScreenshotTestFailedRule();
+    public RuleChain testRule = RuleChain.outerRule(
+            new ActivityTestRule<>(IntegrationActivity.class, true, true))
+            .around(new ScreenshotTestFailedRule());
 
     @Test
     public void onCreate() {

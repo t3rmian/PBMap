@@ -1,7 +1,7 @@
 package io.github.t3r1jj.pbmap.sample.integration;
 
 import android.graphics.Bitmap;
-import androidx.test.runner.screenshot.CustomScreenCaptureProcessor;
+import android.util.Log;
 
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
@@ -9,6 +9,7 @@ import org.junit.runner.Description;
 import java.io.IOException;
 import java.util.HashSet;
 
+import androidx.test.runner.screenshot.CustomScreenCaptureProcessor;
 import androidx.test.runner.screenshot.ScreenCapture;
 import androidx.test.runner.screenshot.ScreenCaptureProcessor;
 import androidx.test.runner.screenshot.Screenshot;
@@ -29,12 +30,15 @@ public class ScreenshotTestFailedRule extends TestWatcher {
         capture.setFormat(Bitmap.CompressFormat.JPEG);
 
         HashSet<ScreenCaptureProcessor> processors = new HashSet<>();
-        processors.add(new CustomScreenCaptureProcessor());
+        CustomScreenCaptureProcessor captureProcessor = new CustomScreenCaptureProcessor();
+        processors.add(captureProcessor);
 
         try {
+            //noinspection AccessStaticViaInstance
+            Log.i("Screenshot", "Taking a screenshot from failed test into" + captureProcessor.getPath() + "/" + filename);
             capture.process(processors);
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e("Screenshot", "Failed to capture the screenshot", e);
         }
     }
 }

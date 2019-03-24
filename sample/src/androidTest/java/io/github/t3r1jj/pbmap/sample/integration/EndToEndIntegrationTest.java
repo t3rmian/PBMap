@@ -1,13 +1,17 @@
 package io.github.t3r1jj.pbmap.sample.integration;
 
 
+import android.Manifest;
+
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
+import androidx.test.rule.GrantPermissionRule;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiSelector;
@@ -22,17 +26,16 @@ public class EndToEndIntegrationTest {
     private static final int TIMEOUT_MS = 5000;
 
     @Rule
-    public ActivityTestRule<IntegrationActivity> activityTestRule =
-            new ActivityTestRule<>(IntegrationActivity.class, true, true);
-
-    @Rule
-    public ScreenshotTestFailedRule screenshotRule = new ScreenshotTestFailedRule();
+    public RuleChain testRule = RuleChain.outerRule(
+            new ActivityTestRule<>(IntegrationActivity.class, true, true))
+            .around(RuleChain.outerRule(GrantPermissionRule.grant(Manifest.permission.WRITE_EXTERNAL_STORAGE))
+                    .around(new ScreenshotTestFailedRule()));
 
     @Test
     public void pinpointPlace() throws UiObjectNotFoundException {
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         device.waitForIdle();
-        device.findObject(new UiSelector().text("PINPOINT DEFINED PLACE")).clickAndWaitForNewWindow();
+        device.findObject(new UiSelector().text("PINPOINT DEFINED PLACE2")).clickAndWaitForNewWindow();
         String menuText = "PBMap";
         if (!device.findObject(new UiSelector().textContains(menuText)).waitForExists(TIMEOUT_MS)) {
             fail("Could not find UI text: " + menuText);

@@ -36,9 +36,6 @@ public class PBMapIntegratorTest {
     public ActivityTestRule<IntegrationActivity> activityTestRule =
             new ActivityTestRule<>(IntegrationActivity.class, true, true);
 
-    @Rule
-    public ScreenshotTestFailedRule screenshotRule = new ScreenshotTestFailedRule();
-
     @Before
     public void setUp() {
         integrator = spy(activityTestRule.getActivity().pbMapIntegrator);
@@ -61,8 +58,7 @@ public class PBMapIntegratorTest {
         integrator.startActivity("query");
         intended(allOf(
                 hasAction(Intent.ACTION_VIEW),
-                hasData(Uri.parse("market://details?id=io.github.t3r1jj.pbmap")),
-                toPackage("com.android.vending")
+                hasData(Uri.parse("market://details?id=io.github.t3r1jj.pbmap"))
         ));
         Intents.release();
     }
@@ -80,8 +76,7 @@ public class PBMapIntegratorTest {
         integrator.startActivity("query");
         intended(allOf(
                 hasAction(Intent.ACTION_VIEW),
-                hasData(Uri.parse("https://play.google.com/store/apps/details?id=io.github.t3r1jj.pbmap")),
-                toPackage("com.android.vending")
+                hasData(Uri.parse("https://play.google.com/store/apps/details?id=io.github.t3r1jj.pbmap"))
         ));
         Intents.release();
     }
@@ -102,8 +97,7 @@ public class PBMapIntegratorTest {
         integrator.startActivity("query", new Location(""));
         intended(allOf(
                 hasAction(Intent.ACTION_VIEW),
-                hasData(Uri.parse("market://details?id=io.github.t3r1jj.pbmap")),
-                toPackage("com.android.vending")
+                hasData(Uri.parse("market://details?id=io.github.t3r1jj.pbmap"))
         ));
         Intents.release();
     }
@@ -121,8 +115,7 @@ public class PBMapIntegratorTest {
         integrator.startActivity("query", new Location(""));
         intended(allOf(
                 hasAction(Intent.ACTION_VIEW),
-                hasData(Uri.parse("https://play.google.com/store/apps/details?id=io.github.t3r1jj.pbmap")),
-                toPackage("com.android.vending")
+                hasData(Uri.parse("https://play.google.com/store/apps/details?id=io.github.t3r1jj.pbmap"))
         ));
         Intents.release();
     }
