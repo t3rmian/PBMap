@@ -2,6 +2,7 @@ package io.github.t3r1jj.pbmap.sample.integration;
 
 
 import android.Manifest;
+import android.content.pm.PackageManager;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -32,7 +33,8 @@ public class EndToEndIntegrationTest {
                     .around(new ScreenshotTestFailedRule()));
 
     @Test
-    public void pinpointPlace() throws UiObjectNotFoundException {
+    public void pinpointPlace() throws UiObjectNotFoundException, PackageManager.NameNotFoundException {
+        getInstrumentation().getTargetContext().getPackageManager().getPackageInfo("io.github.t3r1jj.pbmap", 0);
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         device.waitForIdle();
         device.findObject(new UiSelector().text("PINPOINT DEFINED PLACE")).clickAndWaitForNewWindow();
@@ -47,7 +49,8 @@ public class EndToEndIntegrationTest {
     }
 
     @Test
-    public void customPinpoint() throws UiObjectNotFoundException {
+    public void customPinpoint() throws UiObjectNotFoundException, PackageManager.NameNotFoundException {
+        getInstrumentation().getTargetContext().getPackageManager().getPackageInfo("io.github.t3r1jj.pbmap", 0);
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         device.waitForIdle();
         device.findObject(new UiSelector().text("PINPOINT CUSTOM LOCATION")).clickAndWaitForNewWindow();
