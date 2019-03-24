@@ -75,6 +75,7 @@ before_script:
 - adb shell settings put global animator_duration_scale 0 &
 - adb shell input keyevent 82 &
 - adb shell input keyevent 1 &
+- adb shell input tap 315 195
 - mkdir logs
 - adb logcat -v time *:V > logs/`date "+%Y.%m.%dT%H.%M.%S"`_logcat.log &
 
@@ -86,6 +87,7 @@ after_success:
 
 after_failure:
 - chmod +x ci/upload_logs.sh
+- cat logs/*.log
 - adb pull /storage/emulated/0/test_screenshots/io.github.t3r1jj.pbmap.sample.integration logs
 - bash ci/upload_logs.sh logs
 
