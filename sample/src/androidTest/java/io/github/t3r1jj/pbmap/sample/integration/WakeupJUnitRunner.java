@@ -4,7 +4,6 @@ import android.app.KeyguardManager;
 import android.content.Context;
 import android.os.PowerManager;
 
-import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnitRunner;
 import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
 import androidx.test.runner.lifecycle.Stage;
@@ -21,18 +20,27 @@ public class WakeupJUnitRunner extends AndroidJUnitRunner {
     @Override
     public void onStart() {
         runOnMainSync(() -> {
-            Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
-            KeyguardManager km = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
-            KeyguardManager.KeyguardLock keyguardLock = km.newKeyguardLock(getClass().getSimpleName());
-            keyguardLock.disableKeyguard();
-            PowerManager power = (PowerManager) context.getSystemService(POWER_SERVICE);
-            power.newWakeLock(FULL_WAKE_LOCK | ACQUIRE_CAUSES_WAKEUP | ON_AFTER_RELEASE, getClass().getSimpleName())
-                    .acquire();
+            Context context = WakeupJUnitRunner.this.getTargetContext();
+            unlockScreen(context);
+            keepScreenOn(context);
         });
         ActivityLifecycleMonitorRegistry.getInstance().addLifecycleCallback((activity, stage) -> {
             if (stage == Stage.PRE_ON_CREATE) {
                 activity.getWindow().addFlags(FLAG_DISMISS_KEYGUARD | FLAG_TURN_SCREEN_ON | FLAG_KEEP_SCREEN_ON);
             }
         });
+        super.onStart();
+    }
+
+    private void keepScreenOn(Context context) {
+        PowerManager power = (PowerManager) context.getSystemService(POWER_SERVICE);
+        power.newWakeLock(FULL_WAKE_LOCK | ACQUIRE_CAUSES_WAKEUP | ON_AFTER_RELEASE, getClass().getSimpleName())
+                .acquire();
+    }
+
+    private void unlockScreen(Context context) {
+        KeyguardManager km = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
+        KeyguardManager.KeyguardLock keyguardLock = km.newKeyguardLock(getClass().getSimpleName());
+        keyguardLock.disableKeyguard();
     }
 }
