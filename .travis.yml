@@ -76,7 +76,7 @@ before_script:
 - adb shell input keyevent 82 &
 - adb shell input keyevent 1 &
 - mkdir logs
-- adb logcat -v time > logs/`date "+%Y.%m.%dT%H.%M.%S"`_logcat.log &
+- adb logcat -v time *:V > logs/`date "+%Y.%m.%dT%H.%M.%S"`_logcat.log &
 
 script:
 - bundle exec fastlane all_tests
