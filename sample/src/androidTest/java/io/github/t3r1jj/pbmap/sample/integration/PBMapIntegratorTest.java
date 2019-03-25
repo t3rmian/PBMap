@@ -4,7 +4,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
-import android.view.WindowManager;
 
 import org.junit.After;
 import org.junit.Before;
@@ -42,9 +41,6 @@ public class PBMapIntegratorTest {
         IntegrationActivity activity = testRule.getActivity();
         integrator = spy(activity.pbMapIntegrator);
         Intents.init();
-        activity.runOnUiThread(() -> activity.getWindow()
-                .addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
-                        WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED));
     }
 
     @After

@@ -2,9 +2,7 @@ package io.github.t3r1jj.pbmap.sample.integration;
 
 
 import android.content.pm.PackageManager;
-import android.view.WindowManager;
 
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,14 +26,6 @@ public class EndToEndIntegrationTest {
     @Rule
     public ActivityTestRule<IntegrationActivity> testRule =
             new ActivityTestRule<>(IntegrationActivity.class, true, true);
-
-    @Before
-    public void setUp() {
-        IntegrationActivity activity = testRule.getActivity();
-        activity.runOnUiThread(() -> activity.getWindow()
-                .addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
-                        WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED));
-    }
 
     @Test
     public void pinpointPlace() throws UiObjectNotFoundException, PackageManager.NameNotFoundException {

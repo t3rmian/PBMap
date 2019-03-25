@@ -3,7 +3,6 @@ package io.github.t3r1jj.pbmap.sample.integration;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.location.Location;
-import android.view.WindowManager;
 
 import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;
@@ -44,10 +43,6 @@ public class IntegrationActivityTest {
     @Before
     public void setUp() {
         Intents.init();
-        IntegrationActivity activity = testRule.getActivity();
-        activity.runOnUiThread(() -> activity.getWindow()
-                .addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
-                        WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED));
     }
 
     @After
