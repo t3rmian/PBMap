@@ -3,9 +3,12 @@ package io.github.t3r1jj.pbmap.sample.integration;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.location.Location;
+import android.view.WindowManager;
 
 import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,6 +41,20 @@ public class IntegrationActivityTest {
     public ActivityTestRule<IntegrationActivity> testRule =
             new ActivityTestRule<>(IntegrationActivity.class, true, true);
 
+    @Before
+    public void setUp() {
+        Intents.init();
+        IntegrationActivity activity = testRule.getActivity();
+        activity.runOnUiThread(() -> activity.getWindow()
+                .addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
+                        WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED));
+    }
+
+    @After
+    public void tearDown() {
+        Intents.release();
+    }
+
     @Test
     public void onCreate() {
         onView(withId(R.id.description)).check(matches(isDisplayed()));
@@ -55,14 +72,12 @@ public class IntegrationActivityTest {
         onView(withId(R.id.search_query_text))
                 .perform(clearText())
                 .perform(typeText(query), closeSoftKeyboard());
-        Intents.init();
         onView(withId(R.id.pinpoint_place_button)).perform(click());
         intended(allOf(
                 hasAction(Intent.ACTION_SEARCH),
                 hasExtra(SearchManager.QUERY, query),
                 toPackage("io.github.t3r1jj.pbmap")
         ));
-        Intents.release();
     }
 
     @Test
@@ -82,7 +97,6 @@ public class IntegrationActivityTest {
         onView(withId(R.id.lng_text))
                 .perform(clearText())
                 .perform(typeText(Double.toString(lng)), closeSoftKeyboard());
-        Intents.init();
         onView(withId(R.id.pinpoint_location_button)).perform(click());
         intended(allOf(
                 hasAction(Intent.ACTION_SEARCH),
@@ -90,7 +104,6 @@ public class IntegrationActivityTest {
                 hasExtra(equalTo(SearchManager.EXTRA_DATA_KEY), new LocationMatcher(location)),
                 toPackage("io.github.t3r1jj.pbmap")
         ));
-        Intents.release();
     }
 
     private static class LocationMatcher extends TypeSafeMatcher<Location> {

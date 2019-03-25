@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Base64;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -53,6 +54,8 @@ public class WebLogger extends ContextWrapper {
         NetworkInfo wifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         if (wifi.isConnected()) {
             sendMessages();
+        } else {
+            Log.w("WebLogger", "Tried uploading logs but there is no connection");
         }
     }
 
@@ -66,13 +69,14 @@ public class WebLogger extends ContextWrapper {
                 String data = params[0];
                 String result = "";
                 try {
+                    Log.i("WebLogger", "Initiating log upload");
                     HttpURLConnection urlConnection = (HttpURLConnection) ((new URL(URL).openConnection()));
                     urlConnection.setDoOutput(true);
                     urlConnection.setRequestProperty("Content-Type", "application/json");
                     urlConnection.setRequestProperty("Accept", "application/json");
                     urlConnection.setRequestMethod("POST");
-                    urlConnection.setReadTimeout(5000);
-                    urlConnection.setConnectTimeout(5000);
+                    urlConnection.setReadTimeout(15000);
+                    urlConnection.setConnectTimeout(15000);
                     urlConnection.connect();
 
                     OutputStream outputStream = urlConnection.getOutputStream();
@@ -91,9 +95,10 @@ public class WebLogger extends ContextWrapper {
 
                     bufferedReader.close();
                     result = sb.toString();
+                    urlConnection.disconnect();
 
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Log.e("WebLogger", "Error during log upload", e);
                 }
                 return result;
             }
@@ -102,6 +107,9 @@ public class WebLogger extends ContextWrapper {
             protected void onPostExecute(String result) {
                 if ("success".equals(result)) {
                     preferences.edit().putString(PREF_KEY_MESSAGES, objectToString(new ArrayList<>())).apply();
+                    Log.i("WebLogger", "Successfully uploaded log");
+                } else {
+                    Log.e("WebLogger", "Log not uploaded: " + result);
                 }
             }
         }.execute(messages);

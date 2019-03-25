@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import junit.framework.Assert;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +17,7 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.Spot;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -56,7 +55,9 @@ public class WebLoggerTest {
         messages = logger.getMessages();
         assertFalse("Scheduled at least one message", messages.isEmpty());
         logger.sendMessages();
-        Thread.sleep(5000);
+        for (int i = 0; !logger.getMessages().isEmpty() && i < 15; i++) {
+            Thread.sleep(1000);
+        }
         messages = logger.getMessages();
         assertTrue("All scheduled messages have been sent", messages.isEmpty());
     }
@@ -79,7 +80,9 @@ public class WebLoggerTest {
         messages = logger.getMessages();
         assertFalse("Scheduled at least one message", messages.isEmpty());
         logger.sendMessages();
-        Thread.sleep(5000);
+        for (int i = 0; !logger.getMessages().isEmpty() && i < 15; i++) {
+            Thread.sleep(1000);
+        }
         messages = logger.getMessages();
         assertTrue("All scheduled messages have been sent", messages.isEmpty());
     }
@@ -102,9 +105,11 @@ public class WebLoggerTest {
         logger.logMessage(message);
         logger.logMessage(message2);
         messages = logger.getMessages();
-        Assert.assertEquals("Scheduled two messages", 2, messages.size());
+        assertEquals("Scheduled two messages", 2, messages.size());
         logger.sendMessages();
-        Thread.sleep(5000);
+        for (int i = 0; !logger.getMessages().isEmpty() && i < 15; i++) {
+            Thread.sleep(1000);
+        }
         messages = logger.getMessages();
         assertTrue("All scheduled messages have been sent", messages.isEmpty());
     }

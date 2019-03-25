@@ -74,7 +74,6 @@ before_script:
 - adb shell settings put global transition_animation_scale 0 &
 - adb shell settings put global animator_duration_scale 0 &
 - adb shell input keyevent 82 &
-- adb shell input keyevent 1 &
 - adb shell input tap 650 400 &
 - mkdir logs
 - adb logcat -v time *:V > logs/`date "+%Y.%m.%dT%H.%M.%S"`_logcat.log &
