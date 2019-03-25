@@ -37,7 +37,7 @@ public class EndToEndIntegrationTest {
         if (!device.findObject(new UiSelector().textContains(menuText)).waitForExists(TIMEOUT_MS)) {
             fail("Could not find UI text: " + menuText);
         }
-        String placeText = "130";
+        String placeText = "PB WI L2";
         if (!device.findObject(new UiSelector().textContains(placeText)).waitForExists(TIMEOUT_MS)) {
             fail("Could not find UI text: " + placeText);
         }
@@ -48,12 +48,12 @@ public class EndToEndIntegrationTest {
         getInstrumentation().getTargetContext().getPackageManager().getPackageInfo("io.github.t3r1jj.pbmap", 0);
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         device.waitForIdle();
-        device.findObject(new UiSelector().textMatches("(?i)(PINPOINT CUSTOM LOCATION)")).clickAndWaitForNewWindow();
+        device.findObject(new UiSelector().textMatches("(?i)(PINPOINT DEFINED PLACE)")).clickAndWaitForNewWindow();
         String menuText = "PBMap";
         if (!device.findObject(new UiSelector().textContains(menuText)).waitForExists(TIMEOUT_MS)) {
             fail("Could not find UI text: " + menuText);
         }
-        String placeText = "PB WI L2";
+        String placeText = "PB campus";
         if (!device.findObject(new UiSelector().textContains(placeText)).waitForExists(TIMEOUT_MS)) {
             fail("Could not find UI text: " + placeText);
         }
