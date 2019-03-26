@@ -1,5 +1,6 @@
 # ![](app/src/main/res/mipmap-ldpi/ic_launcher.png) PBMap  
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/cb0b81a801684f458360b84cef4fdbb3)](https://app.codacy.com/app/T3r1jj/PBMap?utm_source=github.com&utm_medium=referral&utm_content=T3r1jj/PBMap&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.org/T3r1jj/PBMap.svg?branch=master)](https://travis-ci.org/T3r1jj/PBMap) [![codecov](https://codecov.io/gh/T3r1jj/PBMap/branch/master/graph/badge.svg)](https://codecov.io/gh/T3r1jj/PBMap)
 
 PBMap is an offline map of mapped places (buildings, floors, rooms, etc.) at Bialystok University of Technology created for an Android project assignment. The application facilitates navigation by implementing positioning and routing systems. Furthermore it allows for easy searching for rooms through search bar (possible integration through Intent). A help feature and externally managed report/mapping system have been also implemented.
