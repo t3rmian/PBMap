@@ -22,7 +22,7 @@ import static junit.framework.TestCase.fail;
 @RunWith(AndroidJUnit4.class)
 public class EndToEndIntegrationTest {
 
-    private static final int TIMEOUT_MS = 5000;
+    private static final int TIMEOUT_MS = 60000;
 
     @Rule
     public RuleChain testRule =
