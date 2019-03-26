@@ -9,6 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
 
 import androidx.test.espresso.intent.Intents;
@@ -30,15 +31,16 @@ import static org.mockito.Mockito.spy;
 @SmallTest
 public class PBMapIntegratorTest {
 
-    private PBMapIntegrator integrator;
-
+    private final ActivityTestRule<IntegrationActivity> activityRule = new ActivityTestRule<>(IntegrationActivity.class, true, true);
     @Rule
-    public ActivityTestRule<IntegrationActivity> testRule =
-            new ActivityTestRule<>(IntegrationActivity.class, true, true);
+    public RuleChain testRule =
+            RuleChain.outerRule(activityRule)
+                    .around(new ScreenshotOnTestFailedRule());
+    private PBMapIntegrator integrator;
 
     @Before
     public void setUp() {
-        IntegrationActivity activity = testRule.getActivity();
+        IntegrationActivity activity = activityRule.getActivity();
         integrator = spy(activity.pbMapIntegrator);
         Intents.init();
     }

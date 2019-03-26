@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -24,8 +25,9 @@ public class EndToEndIntegrationTest {
     private static final int TIMEOUT_MS = 5000;
 
     @Rule
-    public ActivityTestRule<IntegrationActivity> testRule =
-            new ActivityTestRule<>(IntegrationActivity.class, true, true);
+    public RuleChain testRule =
+            RuleChain.outerRule(new ActivityTestRule<>(IntegrationActivity.class, true, true))
+                    .around(new ScreenshotOnTestFailedRule());
 
     @Test
     public void pinpointPlace() throws UiObjectNotFoundException, PackageManager.NameNotFoundException {
