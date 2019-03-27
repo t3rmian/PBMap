@@ -1,0 +1,53 @@
+version: "2"
+checks:
+  argument-count:
+    config:
+      threshold: 4
+  complex-logic:
+    config:
+      threshold: 4
+  file-lines:
+    config:
+      threshold: 250
+  method-complexity:
+    config:
+      threshold: 5
+  method-count:
+    config:
+      threshold: 20
+  method-lines:
+    config:
+      threshold: 25
+  nested-control-flow:
+    config:
+      threshold: 4
+  return-statements:
+    config:
+      threshold: 4
+  similar-code:
+    config:
+      threshold: # language-specific defaults. an override will affect all languages.
+  identical-code:
+    config:
+      threshold: # language-specific defaults. an override will affect all languages.
+plugins:
+  checkstyle:
+    enabled: true
+  pmd:
+    enabled: true
+    config:
+      rules:
+      - "category/java/bestpractices.xml"
+      - "category/java/codestyle.xml"
+      - "category/java/design.xml"
+      - "category/java/errorprone.xml"
+      - "category/java/multithreading.xml"
+      - "category/java/performance.xml"
+      - "category/java/security.xml"
+  sonar-java:
+    enabled: true
+    config:
+      sonar.java.source: "7"
+      tests_patterns:
+      - "**/test/"
+      - "**/androidTest/"
