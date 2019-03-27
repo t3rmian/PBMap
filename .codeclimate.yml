@@ -1,4 +1,35 @@
 version: "2"
+checks:
+  argument-count:
+    config:
+      threshold: 4
+  complex-logic:
+    config:
+      threshold: 4
+  file-lines:
+    config:
+      threshold: 250
+  method-complexity:
+    config:
+      threshold: 5
+  method-count:
+    config:
+      threshold: 20
+  method-lines:
+    config:
+      threshold: 25
+  nested-control-flow:
+    config:
+      threshold: 4
+  return-statements:
+    config:
+      threshold: 4
+  similar-code:
+    config:
+      threshold: # language-specific defaults. an override will affect all languages.
+  identical-code:
+    config:
+      threshold: # language-specific defaults. an override will affect all languages.
 plugins:
   checkstyle:
     enabled: true
@@ -29,7 +60,8 @@ plugins:
     config:
       sonar.java.source: "7"
       tests_patterns:
-      - sample/src/test/**
-      - sample/src/androidTest/**
-      - app/src/test/**
-      - app/src/androidTest/**
+      - "**/test/"
+      - "**/androidTest/"
+exclude_patterns:
+- "**/test/"
+- "**/androidTest/"
