@@ -37,24 +37,13 @@ plugins:
     enabled: true
     config:
       rules:
-      - "java-basic"
+      - "java-bestpractices"
+      - "java-codestyle"
       - "java-design"
-      - "java-android"
-      - "java-braces"
-      - "java-clone-implementation"
-      - "java-code-size"
-      - "java-empty-code"
-      - "java-import-statements"
-      - "java-junit"
-      - "java-java-logging"
-      - "java-migration"
-      - "java-naming"
-      - "java-naming"
-      - "java-strict-exceptions"
-      - "java-string-and-stringbuffer"
-      - "java-security-code-guidelines"
-      - "java-unnecessary"
-      - "java-unused-code"
+      - "java-errorprone"
+      - "java-multithreading"
+      - "java-performance"
+      - "java-security"
   sonar-java:
     enabled: true
     config:
@@ -62,6 +51,3 @@ plugins:
       tests_patterns:
       - "**/test/"
       - "**/androidTest/"
-exclude_patterns:
-- "**/test/"
-- "**/androidTest/"
