@@ -1,7 +1,9 @@
 # ![](app/src/main/res/mipmap-ldpi/ic_launcher.png) PBMap  
 
+[![Build Status](https://travis-ci.org/T3r1jj/PBMap.svg?branch=master)](https://travis-ci.org/T3r1jj/PBMap)
+[![codecov](https://codecov.io/gh/T3r1jj/PBMap/branch/master/graph/badge.svg)](https://codecov.io/gh/T3r1jj/PBMap)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cb0b81a801684f458360b84cef4fdbb3)](https://app.codacy.com/app/T3r1jj/PBMap?utm_source=github.com&utm_medium=referral&utm_content=T3r1jj/PBMap&utm_campaign=Badge_Grade_Dashboard)
-[![Build Status](https://travis-ci.org/T3r1jj/PBMap.svg?branch=master)](https://travis-ci.org/T3r1jj/PBMap) [![codecov](https://codecov.io/gh/T3r1jj/PBMap/branch/master/graph/badge.svg)](https://codecov.io/gh/T3r1jj/PBMap)
+[![Maintainability](https://api.codeclimate.com/v1/badges/9f2e04a025180ab4f211/maintainability)](https://codeclimate.com/github/T3r1jj/PBMap/maintainability)
 
 PBMap is an offline map of mapped places (buildings, floors, rooms, etc.) at Bialystok University of Technology created for an Android project assignment. The application facilitates navigation by implementing positioning and routing systems. Furthermore it allows for easy searching for rooms through search bar (possible integration through Intent). A help feature and externally managed report/mapping system have been also implemented.
 
@@ -78,7 +80,8 @@ A simple workflow has been incorporated:
 CI & CD are configured thanks to Travis CI and fastlane:
 - unit tests and instrumentation tests (Travis CI) are run **on every branch** with code coverage reporting
 - instrumentation tests are run on Firebase Test Lab **on master branch** and the application bundle is deployed to Google Play for internal testing  
-    - the promotion from internal test track to production is done manually
+    - the promotion from internal test track to production is done manually  
+You can use Travis for your own fork with the exception of deployment step (master branch).
 
 ### License
 

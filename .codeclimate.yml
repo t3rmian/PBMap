@@ -1,0 +1,35 @@
+version: "2"
+plugins:
+  checkstyle:
+    enabled: true
+  pmd:
+    enabled: true
+    config:
+      rules:
+      - "java-basic"
+      - "java-design"
+      - "java-android"
+      - "java-braces"
+      - "java-clone-implementation"
+      - "java-code-size"
+      - "java-empty-code"
+      - "java-import-statements"
+      - "java-junit"
+      - "java-java-logging"
+      - "java-migration"
+      - "java-naming"
+      - "java-naming"
+      - "java-strict-exceptions"
+      - "java-string-and-stringbuffer"
+      - "java-security-code-guidelines"
+      - "java-unnecessary"
+      - "java-unused-code"
+  sonar-java:
+    enabled: true
+    config:
+      sonar.java.source: "7"
+      tests_patterns:
+      - sample/src/test/**
+      - sample/src/androidTest/**
+      - app/src/test/**
+      - app/src/androidTest/**
