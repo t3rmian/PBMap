@@ -75,8 +75,7 @@ before_script:
 - adb shell settings put global animator_duration_scale 0 &
 - adb shell input keyevent 82 &
 - adb shell input tap 650 400 &
-- mkdir logs
-- adb logcat -v time *:V > logs/`date "+%Y.%m.%dT%H.%M.%S"`_logcat.log &
+- adb logcat -v time *:V > logcat.log &
 
 script:
 - bundle exec fastlane all_tests
@@ -85,10 +84,7 @@ after_success:
 - bash <(curl -s https://codecov.io/bash)
 
 after_failure:
-- cat logs/*_logcat.log
-- chmod +x ci/upload_logs.sh
-- adb pull /storage/emulated/0/test_screenshots/io.github.t3r1jj.pbmap.sample.integration logs
-- bash ci/upload_logs.sh logs
+- cat logcat.log
 
 before_deploy:
 - chmod +x ci/run_firebase_tests.sh

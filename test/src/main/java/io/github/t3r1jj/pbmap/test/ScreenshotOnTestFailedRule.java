@@ -1,4 +1,4 @@
-package io.github.t3r1jj.pbmap.sample.integration;
+package io.github.t3r1jj.pbmap.test;
 
 import android.graphics.Bitmap;
 import android.util.Log;
@@ -14,6 +14,7 @@ import androidx.test.runner.screenshot.ScreenCaptureProcessor;
 import androidx.test.runner.screenshot.Screenshot;
 
 public class ScreenshotOnTestFailedRule extends TestWatcher {
+    private static final String TAG = ScreenshotOnTestFailedRule.class.getSimpleName();
 
     @Override
     protected void failed(Throwable e, Description description) {
@@ -22,22 +23,23 @@ public class ScreenshotOnTestFailedRule extends TestWatcher {
     }
 
     private void takeScreenshot(Description description) {
-        String filename = description.getTestClass().getSimpleName() + "-" + description.getMethodName();
+        Log.i(TAG, "Taking a screenshot of failed test");
 
+        Bitmap.CompressFormat format = Bitmap.CompressFormat.JPEG;
+        String filename = description.getTestClass().getSimpleName() + "-" + description.getMethodName() + "." + format;
         ScreenCapture capture = Screenshot.capture();
         capture.setName(filename);
-        capture.setFormat(Bitmap.CompressFormat.JPEG);
+        capture.setFormat(format);
 
         HashSet<ScreenCaptureProcessor> processors = new HashSet<>();
         UploadScreenCaptureProcessor captureProcessor = new UploadScreenCaptureProcessor();
         processors.add(captureProcessor);
 
         try {
-            //noinspection AccessStaticViaInstance
-            Log.i("Screenshot", "Taking a screenshot from failed test");
+            Log.i(TAG, "Processing the screenshot");
             capture.process(processors);
         } catch (IOException e) {
-            Log.e("Screenshot", "Failed to capture the screenshot", e);
+            Log.e(TAG, "Failed to process the screenshot", e);
         }
     }
 }

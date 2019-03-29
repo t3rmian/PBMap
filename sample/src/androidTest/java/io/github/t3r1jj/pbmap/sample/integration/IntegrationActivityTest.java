@@ -17,6 +17,7 @@ import androidx.test.espresso.intent.Intents;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
+import io.github.t3r1jj.pbmap.test.ScreenshotOnTestFailedRule;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.clearText;
@@ -38,9 +39,9 @@ import static org.hamcrest.Matchers.equalTo;
 public class IntegrationActivityTest {
 
     @Rule
-    public RuleChain testRule =
-            RuleChain.outerRule(new ActivityTestRule<>(IntegrationActivity.class, true, true))
-                    .around(new ScreenshotOnTestFailedRule());
+    public RuleChain testRule = RuleChain
+            .outerRule(new ActivityTestRule<>(IntegrationActivity.class, true, true))
+            .around(new ScreenshotOnTestFailedRule());
 
     @Before
     public void setUp() {
@@ -118,7 +119,8 @@ public class IntegrationActivityTest {
 
         @Override
         public void describeTo(Description description) {
-            description.appendText("with location that matches lat: " + location.getLatitude() + ", lng: " + location.getLongitude());
+            description.appendText("with location that matches lat: "
+                    + location.getLatitude() + ", lng: " + location.getLongitude());
         }
     }
 }

@@ -16,6 +16,7 @@ import androidx.test.espresso.intent.Intents;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.SmallTest;
 import androidx.test.rule.ActivityTestRule;
+import io.github.t3r1jj.pbmap.test.ScreenshotOnTestFailedRule;
 
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
@@ -33,9 +34,9 @@ public class PBMapIntegratorTest {
 
     private final ActivityTestRule<IntegrationActivity> activityRule = new ActivityTestRule<>(IntegrationActivity.class, true, true);
     @Rule
-    public RuleChain testRule =
-            RuleChain.outerRule(activityRule)
-                    .around(new ScreenshotOnTestFailedRule());
+    public RuleChain testRule = RuleChain
+            .outerRule(activityRule)
+            .around(new ScreenshotOnTestFailedRule());
     private PBMapIntegrator integrator;
 
     @Before
@@ -52,7 +53,8 @@ public class PBMapIntegratorTest {
 
     @Test(expected = ActivityNotFoundException.class)
     public void foundNothingInstalled() {
-        doThrow(new ActivityNotFoundException("Mock activity not found")).when(integrator).startActivity(any(Intent.class));
+        doThrow(new ActivityNotFoundException("Mock activity not found"))
+                .when(integrator).startActivity(any(Intent.class));
         integrator.startActivity("query");
     }
 
@@ -87,7 +89,8 @@ public class PBMapIntegratorTest {
 
     @Test(expected = ActivityNotFoundException.class)
     public void foundNothingInstalled_locationVariant() {
-        doThrow(new ActivityNotFoundException("Mock activity not found")).when(integrator).startActivity(any(Intent.class));
+        doThrow(new ActivityNotFoundException("Mock activity not found"))
+                .when(integrator).startActivity(any(Intent.class));
         integrator.startActivity("query", new Location(""));
     }
 

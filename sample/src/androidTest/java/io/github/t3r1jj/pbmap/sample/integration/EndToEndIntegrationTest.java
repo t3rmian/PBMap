@@ -14,6 +14,7 @@ import androidx.test.rule.ActivityTestRule;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiSelector;
+import io.github.t3r1jj.pbmap.test.ScreenshotOnTestFailedRule;
 
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import static junit.framework.TestCase.fail;
@@ -25,13 +26,14 @@ public class EndToEndIntegrationTest {
     private static final int TIMEOUT_MS = 60000;
 
     @Rule
-    public RuleChain testRule =
-            RuleChain.outerRule(new ActivityTestRule<>(IntegrationActivity.class, true, true))
-                    .around(new ScreenshotOnTestFailedRule());
+    public RuleChain testRule = RuleChain
+            .outerRule(new ActivityTestRule<>(IntegrationActivity.class, true, true))
+            .around(new ScreenshotOnTestFailedRule());
 
     @Test
     public void pinpointPlace() throws UiObjectNotFoundException, PackageManager.NameNotFoundException {
-        getInstrumentation().getTargetContext().getPackageManager().getPackageInfo("io.github.t3r1jj.pbmap", 0);
+        getInstrumentation().getTargetContext().getPackageManager()
+                .getPackageInfo("io.github.t3r1jj.pbmap", 0);
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         device.waitForIdle();
         device.findObject(new UiSelector().textMatches("^(?i)(PINPOINT DEFINED PLACE)$")).clickAndWaitForNewWindow();
@@ -47,7 +49,8 @@ public class EndToEndIntegrationTest {
 
     @Test
     public void customPinpoint() throws UiObjectNotFoundException, PackageManager.NameNotFoundException {
-        getInstrumentation().getTargetContext().getPackageManager().getPackageInfo("io.github.t3r1jj.pbmap", 0);
+        getInstrumentation().getTargetContext().getPackageManager()
+                .getPackageInfo("io.github.t3r1jj.pbmap", 0);
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         device.waitForIdle();
         device.findObject(new UiSelector().textMatches("^(?i)(PINPOINT CUSTOM LOCATION)$")).clickAndWaitForNewWindow();

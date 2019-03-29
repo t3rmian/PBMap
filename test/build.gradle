@@ -1,25 +1,24 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+
     defaultConfig {
-        applicationId "io.github.t3r1jj.pbmap.sample.integration"
         minSdkVersion 14
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
     }
+
     buildTypes {
         debug {
             testCoverageEnabled true
         }
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -35,12 +34,11 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.1', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+
+    testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:core:1.1.0'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
+    implementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test:rules:1.1.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.ext:truth:1.1.0'
@@ -48,5 +46,12 @@ dependencies {
     androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.1'
     androidTestImplementation 'org.mockito:mockito-android:2.22.0'
-    androidTestImplementation project(":test")
+    androidTestImplementation group: 'org.powermock', name: 'powermock-core', version: '2.0.0'
+    androidTestImplementation group: 'org.powermock', name: 'powermock-module-junit4', version: '2.0.0'
+    androidTestImplementation group: 'org.powermock', name: 'powermock-api-mockito2', version: '2.0.0'
+    testImplementation group: 'org.powermock', name: 'powermock-core', version: '2.0.0'
+    testImplementation group: 'org.powermock', name: 'powermock-module-junit4', version: '2.0.0'
+    testImplementation group: 'org.powermock', name: 'powermock-api-mockito2', version: '2.0.0'
+    testImplementation 'org.mockito:mockito-core:2.22.0'
+    testImplementation 'org.mockito:mockito-inline:2.22.0'
 }

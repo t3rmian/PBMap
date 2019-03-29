@@ -35,3 +35,12 @@ junitJacoco {
     includeNoLocationClasses = true
     includeInstrumentationCoverageInMergedReport = true
 }
+
+apply plugin: 'idea'
+
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
