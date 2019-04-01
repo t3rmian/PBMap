@@ -25,27 +25,27 @@ import static org.powermock.api.mockito.PowerMockito.when;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(value = {Log.class, Screenshot.class})
 public class ScreenshotOnTestFailedRuleTest {
-    @Test(expected = ExceptionMock.class)
+    @Test(expected = MockedOutcome.class)
     public void testScreenshotOnTestFailedRule_takingScreenshot() {
         PowerMockito.mockStatic(Log.class);
         ScreenshotOnTestFailedRule rule = new ScreenshotOnTestFailedRule();
         when(Log.i(eq(ScreenshotOnTestFailedRule.class.getSimpleName()), contains("Taking a screenshot")))
-                .thenThrow(ExceptionMock.class);
+                .thenThrow(MockedOutcome.class);
         rule.failed(new RuntimeException(), createSuiteDescription(getClass()));
     }
 
-    @Test(expected = ExceptionMock.class)
+    @Test(expected = MockedOutcome.class)
     public void testScreenshotOnTestFailedRule_processingScreenshot() {
         PowerMockito.mockStatic(Log.class);
         PowerMockito.mockStatic(Screenshot.class);
         when(Screenshot.capture()).thenReturn(ScreenCaptureFactory.createScreenCapture(null));
         when(Log.i(eq(ScreenshotOnTestFailedRule.class.getSimpleName()), contains("Processing the screenshot")))
-                .thenThrow(ExceptionMock.class);
+                .thenThrow(MockedOutcome.class);
         ScreenshotOnTestFailedRule rule = new ScreenshotOnTestFailedRule();
         rule.failed(new RuntimeException(), createSuiteDescription(getClass()));
     }
 
-    @Test(expected = ExceptionMock.class)
+    @Test(expected = MockedOutcome.class)
     public void testScreenshotOnTestFailedRule_failedToProcessScreenshot() throws IOException {
         PowerMockito.mockStatic(Log.class);
         PowerMockito.mockStatic(Screenshot.class);
@@ -56,11 +56,9 @@ public class ScreenshotOnTestFailedRuleTest {
         when(Log.e(eq(ScreenshotOnTestFailedRule.class.getSimpleName()),
                 contains("Failed to process the screenshot"),
                 eq(ioException))
-        ).thenThrow(ExceptionMock.class);
+        ).thenThrow(MockedOutcome.class);
         ScreenshotOnTestFailedRule rule = new ScreenshotOnTestFailedRule();
         rule.failed(new RuntimeException(), createSuiteDescription(getClass()));
     }
 
-    private static class ExceptionMock extends RuntimeException {
-    }
 }
