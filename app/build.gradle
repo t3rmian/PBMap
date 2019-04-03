@@ -53,10 +53,6 @@ android {
         unitTests.includeAndroidResources = true
         unitTests.returnDefaultValues = true
     }
-    adbOptions {
-        timeOutInMs 10 * 60 * 1000
-        installOptions "-d","-t"
-    }
     useLibrary 'android.test.runner'
     useLibrary 'android.test.base'
     useLibrary 'android.test.mock'
