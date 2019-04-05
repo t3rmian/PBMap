@@ -4,12 +4,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
-import android.os.IBinder;
-import android.view.WindowManager;
 
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -17,14 +12,12 @@ import org.junit.Test;
 import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
 
-import androidx.test.espresso.Root;
-import androidx.test.espresso.intent.Intents;
+import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
-import androidx.test.filters.MediumTest;
-import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
+import androidx.test.uiautomator.UiDevice;
 import io.github.t3r1jj.pbmap.test.ScreenshotOnTestFailedRule;
 
 import static androidx.test.espresso.Espresso.onView;
@@ -51,7 +44,7 @@ import static org.mockito.Mockito.spy;
 @LargeTest
 public class PBMapIntegratorTest {
 
-    private final ActivityTestRule<IntegrationActivity> activityRule = new ActivityTestRule<>(IntegrationActivity.class, true, true);
+    private final ActivityTestRule<IntegrationActivity> activityRule = new IntentsTestRule<>(IntegrationActivity.class, true, true);
     @Rule
     public RuleChain testRule = RuleChain
             .outerRule(activityRule)
@@ -64,12 +57,13 @@ public class PBMapIntegratorTest {
         Thread.sleep(3500);
         activity = activityRule.getActivity();
         integrator = activity.pbMapIntegrator = spy(activity.pbMapIntegrator);
-        Intents.init();
     }
 
     @After
     public void tearDown() {
-        Intents.release();
+        UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        device.pressBack();
+        device.pressBack();
     }
 
     @Test(expected = ActivityNotFoundException.class)

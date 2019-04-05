@@ -7,16 +7,16 @@ import android.location.Location;
 import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
 
-import androidx.test.espresso.intent.Intents;
+import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
-import androidx.test.rule.ActivityTestRule;
+import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.uiautomator.UiDevice;
 import io.github.t3r1jj.pbmap.test.ScreenshotOnTestFailedRule;
 
 import static androidx.test.espresso.Espresso.onView;
@@ -40,17 +40,14 @@ public class IntegrationActivityTest {
 
     @Rule
     public RuleChain testRule = RuleChain
-            .outerRule(new ActivityTestRule<>(IntegrationActivity.class, true, true))
+            .outerRule(new IntentsTestRule<>(IntegrationActivity.class, true, true))
             .around(new ScreenshotOnTestFailedRule());
-
-    @Before
-    public void setUp() {
-        Intents.init();
-    }
 
     @After
     public void tearDown() {
-        Intents.release();
+        UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        device.pressBack();
+        device.pressBack();
     }
 
     @Test
