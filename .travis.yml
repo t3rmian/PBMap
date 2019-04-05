@@ -11,12 +11,12 @@ env:
 
 matrix:
   include:
-  - name: "Android 25"
+  - name: "Android 24"
     env:
-    - EMULATOR_API_LEVEL=22
+    - EMULATOR_API_LEVEL=24
     - ANDROID_ABI=armeabi-v7a
-    - ANDROID_ABI_TAG="default;armeabi-v7a"
-    - ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-22
+    - ANDROID_ABI_TAG=default
+    - ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-24
 
 android:
   components:
@@ -56,7 +56,7 @@ before_install:
 - yes | sdkmanager "platforms;android-$ANDROID_API_LEVEL"
 - yes | sdkmanager "extras;android;m2repository"
 - yes | sdkmanager "extras;google;m2repository"
-- yes | sdkmanager "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI_TAG"
+- yes | sdkmanager "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI_TAG;$ANDROID_ABI"
 - yes | sdkmanager --update
 - yes | sdkmanager --licenses
 - sdkmanager --list || true
@@ -66,7 +66,7 @@ install:
 - bundle exec fastlane unit_tests
 
 before_script:
-- echo no | avdmanager -v create avd -f -n test -k "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI_TAG"
+- echo no | avdmanager -v create avd -f -n test -k "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI_TAG;$ANDROID_ABI"
 - $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window -gpu swiftshader_indirect -skin 768x1280 &
 - android-wait-for-emulator
 - adb shell setprop ro.test_harness true &
