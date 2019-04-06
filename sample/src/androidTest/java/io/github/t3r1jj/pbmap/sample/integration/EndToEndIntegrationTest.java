@@ -3,20 +3,27 @@ package io.github.t3r1jj.pbmap.sample.integration;
 
 import android.content.pm.PackageManager;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
 
+import java.util.regex.Pattern;
+
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.uiautomator.UiDevice;
+import androidx.test.uiautomator.UiObject2;
 import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiSelector;
 import io.github.t3r1jj.pbmap.test.ScreenshotOnTestFailedRule;
 
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
+import static androidx.test.uiautomator.By.text;
 import static junit.framework.TestCase.fail;
 
 @LargeTest
@@ -30,6 +37,22 @@ public class EndToEndIntegrationTest {
             .outerRule(new ActivityTestRule<>(IntegrationActivity.class, true, true))
             .around(new ScreenshotOnTestFailedRule());
 
+    @Before
+    public void setUp() {
+        UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        UiObject2 waitButton = device.findObject(text(Pattern.compile("^(?i)(WAIT)$")));
+        if (waitButton != null) {
+            waitButton.click();
+        }
+    }
+
+    @After
+    public void tearDown() {
+        UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        device.pressBack();
+        device.pressBack();
+    }
+
     @Test
     public void pinpointPlace() throws UiObjectNotFoundException, PackageManager.NameNotFoundException {
         getInstrumentation().getTargetContext().getPackageManager()
@@ -42,7 +65,7 @@ public class EndToEndIntegrationTest {
             fail("Could not find UI text: " + menuText);
         }
         String placeText = "PB WI L2";
-        if (!device.findObject(new UiSelector().textContains(placeText)).waitForExists(TIMEOUT_MS)) {
+        if (!device.findObject(new UiSelector().textContains(placeText)).exists()) {
             fail("Could not find UI text: " + placeText);
         }
     }
@@ -59,7 +82,7 @@ public class EndToEndIntegrationTest {
             fail("Could not find UI text: " + menuText);
         }
         String placeText = "PB campus";
-        if (!device.findObject(new UiSelector().textContains(placeText)).waitForExists(TIMEOUT_MS)) {
+        if (!device.findObject(new UiSelector().textContains(placeText)).exists()) {
             fail("Could not find UI text: " + placeText);
         }
     }
