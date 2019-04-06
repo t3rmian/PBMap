@@ -18,9 +18,8 @@ public class PBLocationListener implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
-        Coordinate locationCoordinate = new Coordinate(location.getLatitude(), location.getLongitude(), location.getAltitude());
-        locationCoordinate.setAltitude(location.hasAltitude());
-        controller.updatePosition(locationCoordinate);
+        Coordinate coordinate = new Coordinate(location);
+        controller.updatePosition(coordinate);
     }
 
     @Override

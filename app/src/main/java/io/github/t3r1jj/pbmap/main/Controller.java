@@ -9,6 +9,7 @@ import com.qozix.tileview.geom.CoordinateTranslater;
 
 import java.util.List;
 
+import androidx.annotation.Nullable;
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.logging.Message;
 import io.github.t3r1jj.pbmap.logging.WebLogger;
@@ -206,7 +207,7 @@ public class Controller implements GeoMarker.MapListener {
         mapActivity.popupInfo(new Info(map));
     }
 
-    public void updatePosition(final Coordinate locationCoordinate) {
+    public void updatePosition(@Nullable final Coordinate locationCoordinate) {
         if (locationCoordinate == null) {
             return;
         }
