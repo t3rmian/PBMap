@@ -14,9 +14,8 @@ matrix:
   - name: "Android 24"
     env:
     - EMULATOR_API_LEVEL=24
-    - ANDROID_ABI=armeabi-v7a
+    - ANDROID_ABI=x86_64
     - ANDROID_ABI_TAG=default
-    - ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-24
 
 android:
   components:
@@ -27,9 +26,6 @@ android:
   - extra-android-support
   - extra-google-m2repository
   - extra-android-m2repository
-  - android-$ANDROID_API_LEVEL
-  - android-$EMULATOR_API_LEVEL
-  - $ANDROID_EMULATOR_IMAGE
   licenses:
   - android-sdk-preview-license-.+
   - android-sdk-license-.+
@@ -49,11 +45,12 @@ cache:
 before_install:
 - touch ~/.android/repositories.cfg
 - sdkmanager --list || true
-- yes | sdkmanager "emulator"
+- yes | sdkmanager --channel=4 "emulator"
 - yes | sdkmanager "tools"
 - yes | sdkmanager "platform-tools"
 - yes | sdkmanager "build-tools;$ANDROID_BUILD_TOOLS_VERSION"
 - yes | sdkmanager "platforms;android-$ANDROID_API_LEVEL"
+- yes | sdkmanager "platforms;android-$EMULATOR_API_LEVEL"
 - yes | sdkmanager "extras;android;m2repository"
 - yes | sdkmanager "extras;google;m2repository"
 - yes | sdkmanager "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI_TAG;$ANDROID_ABI"
@@ -66,8 +63,8 @@ install:
 - bundle exec fastlane unit_tests
 
 before_script:
-- echo no | avdmanager -v create avd -f -n test -k "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI_TAG;$ANDROID_ABI"
-- $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window -gpu swiftshader_indirect -skin 768x1280 &
+- echo no | avdmanager -v create avd -f -n test -k "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI_TAG;$ANDROID_ABI" -c 10M
+- emulator -verbose -avd test -no-audio -no-window -skin 768x1280 -selinux permissive -qemu -m 1536 &
 - android-wait-for-emulator
 - adb shell setprop ro.test_harness true &
 - adb shell am broadcast -a android.intent.action.CLOSE_SYSTEM_DIALOGS &
