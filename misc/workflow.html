@@ -1,0 +1,104 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>PBMap workflow</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gitgraph.js/1.15.1/gitgraph.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/gitgraph.js/1.15.1/gitgraph.css" />
+</head>
+<body>
+<canvas id="gitGraph"></canvas>
+<noscript>
+Please enable Javascript
+</noscript>
+<script>
+const myTemplate = new GitGraph.Template( {
+    colors: [ "#9993FF", "#47E8D4", "#6BDB52", "#FFA657", "#F85BB5", "#FFFF00" ],
+    branch: {
+        color: "#000000",
+        lineWidth: 3,
+        spacingX: 60,
+        mergeStyle: "straight",
+        showLabel: true,
+        labelFont: "normal 10pt Arial",
+        labelRotation: 0
+    },
+    commit: {
+        spacingY: -40,
+        dot: {
+            size: 8,
+            strokeColor: "#000000",
+            strokeWidth: 4
+        },
+        tag: {
+            font: "normal 10pt Arial",
+            color: "yellow"
+        },
+        message: {
+            color: "black",
+            font: "normal 12pt Arial",
+            displayAuthor: false,
+            displayBranch: false,
+            displayHash: false,
+        }
+    },
+    arrow: {
+        size: 10,
+        offset: 3
+    }
+} );
+const gitGraph = new GitGraph({
+    template: myTemplate,
+    reverseArrow: false,
+    orientation: "horizontal"
+});
+
+const master = gitGraph.branch({
+    name: "master",
+    column: 5
+});
+master.commit();
+const develop = master.branch({
+    name: "develop",
+    column: 3
+});
+develop.commit();
+const feature = develop.branch({
+    name: "feature",
+    column: 2
+});
+feature.commit();
+const feature2 = develop.branch({
+    name: "feature2",
+    column: 1
+});
+feature2.commit();
+feature.commit();
+feature2.commit();
+const feature3 = feature.branch({
+    name: "feature3",
+    column: 0
+});
+feature.commit();
+feature.merge(develop);
+feature2.merge(develop);
+develop.commit({message: "Bump version", tag: "1.0.0-rc1", tagColor: "#FFA657"});
+feature3.commit();
+develop.merge(master, { tag: "1.0.0"} );
+
+const hotfix = gitGraph.branch({
+  parentBranch: master,
+  name: "hotfix",
+  column: 4
+});
+hotfix.commit()
+feature3.commit();
+hotfix.commit({message: "Bump version", tag: "1.0.1-rc1", tagColor: "#F85BB5"});
+feature3.commit();
+hotfix.merge(master, {tag: "1.0.1"} );
+hotfix.merge(develop);
+
+develop.merge(feature3);
+feature3.commit();
+</script>
+</body>
+</html>
