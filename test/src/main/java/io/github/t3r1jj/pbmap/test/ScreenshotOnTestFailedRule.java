@@ -36,8 +36,8 @@ public class ScreenshotOnTestFailedRule extends TestWatcher {
         UploadScreenCaptureProcessor captureProcessor = new UploadScreenCaptureProcessor();
         processors.add(captureProcessor);
 
+        Log.i(TAG, String.format("Processing the screenshot (%s)", testName));
         try {
-            Log.i(TAG, String.format("Processing the screenshot (%s)", testName));
             capture.process(processors);
         } catch (IOException e) {
             Log.e(TAG, String.format("Failed to process the screenshot (%s)", testName), e);
