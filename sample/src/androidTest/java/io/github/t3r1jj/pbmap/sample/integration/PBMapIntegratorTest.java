@@ -1,5 +1,6 @@
 package io.github.t3r1jj.pbmap.sample.integration;
 
+import android.app.Instrumentation;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.location.Location;
@@ -102,7 +103,9 @@ public class PBMapIntegratorTest {
                 .perform(clearText())
                 .perform(typeText(""), closeSoftKeyboard());
 
-        InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> activity.onCustomPinpoint(null));
+        Instrumentation instrumentation = InstrumentationRegistry.getInstrumentation();
+        instrumentation.runOnMainSync(() -> activity.onCustomPinpoint(null));
+        instrumentation.waitForIdleSync();
         onView(withText(R.string.incorrect_location_format))
                 .inRoot(withDecorView(not(activity.getWindow().getDecorView())))
                 .check(matches(isDisplayed()));
@@ -117,7 +120,10 @@ public class PBMapIntegratorTest {
                 .perform(clearText())
                 .perform(typeText(""), closeSoftKeyboard());
 
-        InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> activity.onCustomPinpoint(null));
+        Instrumentation instrumentation = InstrumentationRegistry.getInstrumentation();
+        instrumentation.runOnMainSync(() -> activity.onCustomPinpoint(null));
+        instrumentation.waitForIdleSync();
+
         onView(withText(R.string.incorrect_location_format))
                 .inRoot(withDecorView(not(activity.getWindow().getDecorView())))
                 .check(matches(isDisplayed()));

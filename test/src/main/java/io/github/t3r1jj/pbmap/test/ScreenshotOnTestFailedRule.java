@@ -25,8 +25,9 @@ public class ScreenshotOnTestFailedRule extends TestWatcher {
     private void takeScreenshot(Description description) {
         Log.i(TAG, "Taking a screenshot of failed test");
 
+        String testName = description.getTestClass().getSimpleName() + "-" + description.getMethodName();
         Bitmap.CompressFormat format = Bitmap.CompressFormat.JPEG;
-        String filename = description.getTestClass().getSimpleName() + "-" + description.getMethodName() + "." + format;
+        String filename = testName + "." + format;
         ScreenCapture capture = Screenshot.capture();
         capture.setName(filename);
         capture.setFormat(format);
@@ -36,10 +37,10 @@ public class ScreenshotOnTestFailedRule extends TestWatcher {
         processors.add(captureProcessor);
 
         try {
-            Log.i(TAG, "Processing the screenshot");
+            Log.i(TAG, String.format("Processing the screenshot (%s)", testName));
             capture.process(processors);
         } catch (IOException e) {
-            Log.e(TAG, "Failed to process the screenshot", e);
+            Log.e(TAG, String.format("Failed to process the screenshot (%s)", testName), e);
         }
     }
 }
