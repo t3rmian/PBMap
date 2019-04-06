@@ -8,7 +8,6 @@ import java.util.List;
 
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 
-import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 
 public class DijkstraAlgorithmTest {

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="io.github.t3r1jj.pbmap.sample.integration">
+
+    <uses-sdk tools:overrideLibrary="android_libs.ub_uiautomator" />
+
+    <application>
+        <uses-library android:name="android.test.runner"
+            android:required="false" />
+    </application>
+</manifest>

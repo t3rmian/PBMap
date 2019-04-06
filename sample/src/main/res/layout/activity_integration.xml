@@ -13,6 +13,7 @@
     tools:context="io.github.t3r1jj.pbmap.sample.integration.IntegrationActivity">
 
     <TextView
+        android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_vertical_margin"
@@ -29,6 +30,7 @@
         android:text="@string/search_query" />
 
     <Button
+        android:id="@+id/pinpoint_place_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_vertical_margin"
@@ -69,6 +71,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/pinpoint_location_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_vertical_margin"

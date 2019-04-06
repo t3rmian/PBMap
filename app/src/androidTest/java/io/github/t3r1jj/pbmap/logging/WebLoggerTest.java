@@ -3,10 +3,6 @@ package io.github.t3r1jj.pbmap.logging;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import androidx.test.InstrumentationRegistry;
-import androidx.test.runner.AndroidJUnit4;
-
-import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,8 +12,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.Spot;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 public class WebLoggerTest {
@@ -27,7 +29,7 @@ public class WebLoggerTest {
 
     @Before
     public void setUp() {
-        Context appContext = InstrumentationRegistry.getTargetContext();
+        Context appContext = InstrumentationRegistry.getInstrumentation().getContext();
         logger = new WebLogger(appContext);
         preferences = PreferenceManager.getDefaultSharedPreferences(appContext);
     }
@@ -36,33 +38,35 @@ public class WebLoggerTest {
     public void scheduleMessage() {
         preferences.edit().clear().apply();
         ArrayList<Message> messages = logger.getMessages();
-        Assert.assertTrue(messages.isEmpty());
+        assertTrue("Messages empty initially", messages.isEmpty());
         Message message = new Message(null, null, null, null);
         logger.logMessage(message);
         messages = logger.getMessages();
-        Assert.assertTrue(!messages.isEmpty());
+        assertFalse("Scheduled at least one message", messages.isEmpty());
     }
 
     @Test
     public void sendIncompleteMessages() throws InterruptedException {
         preferences.edit().clear().apply();
         ArrayList<Message> messages = logger.getMessages();
-        Assert.assertTrue(messages.isEmpty());
+        assertTrue("Messages empty initially", messages.isEmpty());
         Message message = new Message(null, null, null, null);
         logger.logMessage(message);
         messages = logger.getMessages();
-        Assert.assertTrue(!messages.isEmpty());
+        assertFalse("Scheduled at least one message", messages.isEmpty());
         logger.sendMessages();
-        Thread.sleep(5000);
+        for (int i = 0; !logger.getMessages().isEmpty() && i < 15; i++) {
+            Thread.sleep(1000);
+        }
         messages = logger.getMessages();
-        Assert.assertTrue(messages.isEmpty());
+        assertTrue("All scheduled messages have been sent", messages.isEmpty());
     }
 
     @Test
     public void sendCompleteMessages() throws InterruptedException {
         preferences.edit().clear().apply();
         ArrayList<Message> messages = logger.getMessages();
-        Assert.assertTrue(messages.isEmpty());
+        assertTrue("Messages empty initially", messages.isEmpty());
         Spot closestPlace = new Spot() {
             @Override
             public List<Coordinate> getCoordinates() {
@@ -74,18 +78,20 @@ public class WebLoggerTest {
         message.setDescription("desc");
         logger.logMessage(message);
         messages = logger.getMessages();
-        Assert.assertTrue(!messages.isEmpty());
+        assertFalse("Scheduled at least one message", messages.isEmpty());
         logger.sendMessages();
-        Thread.sleep(5000);
+        for (int i = 0; !logger.getMessages().isEmpty() && i < 15; i++) {
+            Thread.sleep(1000);
+        }
         messages = logger.getMessages();
-        Assert.assertTrue(messages.isEmpty());
+        assertTrue("All scheduled messages have been sent", messages.isEmpty());
     }
 
     @Test
     public void sendTwoCompleteMessages() throws InterruptedException {
         preferences.edit().clear().apply();
         ArrayList<Message> messages = logger.getMessages();
-        Assert.assertTrue(messages.isEmpty());
+        assertTrue("Messages empty initially", messages.isEmpty());
         Spot closestPlace = new Spot() {
             @Override
             public List<Coordinate> getCoordinates() {
@@ -99,11 +105,13 @@ public class WebLoggerTest {
         logger.logMessage(message);
         logger.logMessage(message2);
         messages = logger.getMessages();
-        Assert.assertTrue(messages.size() == 2);
+        assertEquals("Scheduled two messages", 2, messages.size());
         logger.sendMessages();
-        Thread.sleep(5000);
+        for (int i = 0; !logger.getMessages().isEmpty() && i < 15; i++) {
+            Thread.sleep(1000);
+        }
         messages = logger.getMessages();
-        Assert.assertTrue(messages.isEmpty());
+        assertTrue("All scheduled messages have been sent", messages.isEmpty());
     }
 
 }

@@ -1,63 +1,90 @@
 sudo: required
 language: android
-jdk:
-  - oraclejdk8
+jdk: oraclejdk8
+
+env:
+  global:
+  - ANDROID_API_LEVEL=28
+  - ANDROID_BUILD_TOOLS_VERSION=28.0.3
+  - ADB_INSTALL_TIMEOUT=20
+  - ANDROID_HOME=/usr/local/android-sdk
+  - TOOLS=${ANDROID_HOME}/tools
+  - PATH=${ANDROID_HOME}:${ANDROID_HOME}/emulator:${TOOLS}:${TOOLS}/bin:${ANDROID_HOME}/platform-tools:${PATH}
+  - secure: WdAlW1LoOdCndZP2AnlYAH6PG/IVIj9H4YXxWsIPqoSwwc4WGshEJBV+BWiGOZh6k9GJdJl49GBodXW5XiFfarenurI26m0BuSPzFcgQRmV/fLN242Z2T+HKJGtNVFMZIEs+ePaAgiBV/YWAVkTlXlzbULjXGRjNpagW5Dy35Ye/r2R3B4WLlufQHmHyCIdjmTyBag2FoSvVmhYv2Uea0ERIuHeSHYjIk7tY3d5qshOCkjzUdcI/Dozd+DAX66+EVq5a3I9Xlyet6Fc598xF+iN3Rw2yz8pWOrQkZAmBR+Gi/ZaYWGeKg6tytsuV0LwtuoT0xnzwIJeYT9k+K0GzK1BRHXIk0aDwMYnwjGmMsKIiNZ8T55Yp/Dayi5MyZx3IrJ1UAne8gRxbeZRDOVx3IUmJiAmBewcmtTdVStkBfYukyHaYIorqCjP9VupB1PD7cFHkWyuiRrMtTpFi2cgzf97P4LkoT8ZY19cjoVw5KCGaKrST7u0+XS9bfZhF7C1j5eMaoVpp5OC2/80zMhlmzl3oBgRWmLONS6jVR3kjqzFgAQjdB2JnuTkCawsuSKBzMtTMZCUPy7jaxGpFNU5jUYc/VO80o09fEOwtgoPGPWGh+2QHSMx3lA/U+83oT3/K4Ldsnhq3MjTQtYKoCLiwhZT9Jb8Qp5vvLGJtX3Dlyo8=
+
+matrix:
+  include:
+  - name: "Android 22"
+    env:
+    - EMULATOR_API_LEVEL=22
+    - ANDROID_ABI=x86_64
+    - ANDROID_ABI_TAG=default
+
 android:
   components:
-    - tools
-    - platform-tools
-    - android-22
-    - android-24
-    - android-25
-    - build-tools-28.0.3
-    - extra-android-m2repository
+  - tools
   licenses:
-    - android-sdk-preview-license-.+
-    - android-sdk-license-.+
-    - google-gdk-license-.+
-env:
-  matrix:
-    #- API=android-24 ABI=armeabi-v7a
-    - API=android-24 ABI=arm64-v8a
-  global:
-  - secure: WdAlW1LoOdCndZP2AnlYAH6PG/IVIj9H4YXxWsIPqoSwwc4WGshEJBV+BWiGOZh6k9GJdJl49GBodXW5XiFfarenurI26m0BuSPzFcgQRmV/fLN242Z2T+HKJGtNVFMZIEs+ePaAgiBV/YWAVkTlXlzbULjXGRjNpagW5Dy35Ye/r2R3B4WLlufQHmHyCIdjmTyBag2FoSvVmhYv2Uea0ERIuHeSHYjIk7tY3d5qshOCkjzUdcI/Dozd+DAX66+EVq5a3I9Xlyet6Fc598xF+iN3Rw2yz8pWOrQkZAmBR+Gi/ZaYWGeKg6tytsuV0LwtuoT0xnzwIJeYT9k+K0GzK1BRHXIk0aDwMYnwjGmMsKIiNZ8T55Yp/Dayi5MyZx3IrJ1UAne8gRxbeZRDOVx3IUmJiAmBewcmtTdVStkBfYukyHaYIorqCjP9VupB1PD7cFHkWyuiRrMtTpFi2cgzf97P4LkoT8ZY19cjoVw5KCGaKrST7u0+XS9bfZhF7C1j5eMaoVpp5OC2/80zMhlmzl3oBgRWmLONS6jVR3kjqzFgAQjdB2JnuTkCawsuSKBzMtTMZCUPy7jaxGpFNU5jUYc/VO80o09fEOwtgoPGPWGh+2QHSMx3lA/U+83oT3/K4Ldsnhq3MjTQtYKoCLiwhZT9Jb8Qp5vvLGJtX3Dlyo8=
+  - android-sdk-preview-license-.+
+  - android-sdk-license-.+
+  - google-gdk-license-.+
+  - '.+'
+
 before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
 cache:
   directories:
-    - "$HOME/.gradle/caches/"
-    - "$HOME/.gradle/wrapper/"
-    - "$HOME/google-cloud-sdk/"
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
+  - "$HOME/google-cloud-sdk/"
+
 before_install:
-  - mkdir "$ANDROID_HOME/licenses" || true
-  - echo -e "\nd56f5187479451eabf01fb78af6dfcb131a6481e" > "$ANDROID_HOME/licenses/android-sdk-license"
-  - yes | sdkmanager "build-tools;28.0.3"
-  - yes | sdkmanager "platforms;android-28"
-  - bundle install
+- touch ~/.android/repositories.cfg
+- sdkmanager --list || true
+- yes | sdkmanager "platform-tools" > /dev/null
+- yes | sdkmanager "tools" > /dev/null
+- yes | sdkmanager "build-tools;$ANDROID_BUILD_TOOLS_VERSION" > /dev/null
+- yes | sdkmanager "platforms;android-$ANDROID_API_LEVEL" > /dev/null
+- yes | sdkmanager "platforms;android-$EMULATOR_API_LEVEL" > /dev/null
+- yes | sdkmanager --channel=4 "emulator"
+- ls -lat ${ANDROID_HOME}/emulator
+- yes | sdkmanager "extras;android;m2repository" > /dev/null
+- yes | sdkmanager "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI_TAG;$ANDROID_ABI"
+- bundle install
+
 install:
-  - bundle exec fastlane unit_tests
+- bundle exec fastlane unit_tests
+
 before_script:
-  - android-update-sdk --components=sys-img-$ABI-$API --accept-licenses='android-sdk-license-[0-9a-f]{8}'
-  - echo no | android create avd --force -n test -t $API --abi $ABI
-  - emulator -avd test -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
+- echo no | avdmanager -v create avd -f -n test -k "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI_TAG;$ANDROID_ABI" -c 10M
+- emulator -verbose -avd test -no-audio -no-window -no-accel -no-snapshot -camera-back none -camera-front none -skin 768x1280 -selinux permissive -qemu -m 1536 &
+- android-wait-for-emulator
+- adb shell input keyevent 82 &
+- adb shell input tap 650 400 &
+- adb logcat -v time *:V > logcat.log &
+
 script:
-  - bundle exec fastlane all_tests
+- bundle exec fastlane all_tests
+
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+- bash <(curl -s https://codecov.io/bash)
+
+after_failure:
+- cat logcat.log
+
 before_deploy:
-  - chmod +x ci/run_firebase_tests.sh
-  - gcloud version || true
-  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export $CLOUDSDK_CORE_DISABLE_PROMPTS; curl https://sdk.cloud.google.com | bash; fi
-  - source /home/travis/google-cloud-sdk/path.bash.inc
-  - gcloud version
-  - gcloud components update
-  - echo $GCLOUD_SERVICE_KEY | base64 --decode -i > $HOME/gcloud-service-key.json
-  - gcloud config set project $GOOGLE_PROJECT_ID
-  - gcloud auth activate-service-account --key-file=$HOME/gcloud-service-key.json --project=$GOOGLE_PROJECT_ID
-  - bundle exec fastlane deploy_tests
+- chmod +x ci/run_firebase_tests.sh
+- gcloud version || true
+- if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export $CLOUDSDK_CORE_DISABLE_PROMPTS; curl https://sdk.cloud.google.com | bash; fi
+- source /home/travis/google-cloud-sdk/path.bash.inc
+- gcloud version
+- gcloud components update
+- echo $GCLOUD_SERVICE_KEY | base64 --decode -i > $HOME/gcloud-service-key.json
+- gcloud config set project $GOOGLE_PROJECT_ID
+- gcloud auth activate-service-account --key-file=$HOME/gcloud-service-key.json --project=$GOOGLE_PROJECT_ID
+- bundle exec fastlane deploy_tests
+
 deploy:
   provider: script
   script: >-
