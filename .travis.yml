@@ -46,13 +46,13 @@ before_install:
 - touch ~/.android/repositories.cfg
 - sdkmanager --list || true
 - yes | sdkmanager --channel=4 "emulator"
-- yes | sdkmanager "tools"
-- yes | sdkmanager "platform-tools"
-- yes | sdkmanager "build-tools;$ANDROID_BUILD_TOOLS_VERSION"
-- yes | sdkmanager "platforms;android-$ANDROID_API_LEVEL"
-- yes | sdkmanager "platforms;android-$EMULATOR_API_LEVEL"
-- yes | sdkmanager "extras;android;m2repository"
-- yes | sdkmanager "extras;google;m2repository"
+- yes | sdkmanager "tools" > /dev/null
+- yes | sdkmanager "platform-tools" > /dev/null
+- yes | sdkmanager "build-tools;$ANDROID_BUILD_TOOLS_VERSION" > /dev/null
+- yes | sdkmanager "platforms;android-$ANDROID_API_LEVEL" > /dev/null
+- yes | sdkmanager "platforms;android-$EMULATOR_API_LEVEL" > /dev/null
+- yes | sdkmanager "extras;android;m2repository" > /dev/null
+- yes | sdkmanager "extras;google;m2repository" > /dev/null
 - yes | sdkmanager "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI_TAG;$ANDROID_ABI"
 - yes | sdkmanager --update
 - yes | sdkmanager --licenses
