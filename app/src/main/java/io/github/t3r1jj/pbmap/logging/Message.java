@@ -50,12 +50,6 @@ public class Message implements Serializable {
     }
 
     String toJson() {
-        String descriptionString = null;
-        try {
-            descriptionString = (description == null ? "null" : URLEncoder.encode(description, "UTF8"));
-        } catch (UnsupportedEncodingException e) {
-            descriptionString = (description == null ? "null" : description.replace("\\", "") + " (ENCODING NOT SUPPORTED)");
-        }
         return "{" +
                 "\"id\":\"" + id + "\"" +
                 ",\"epochMs\":" + epochMs +
@@ -66,11 +60,22 @@ public class Message implements Serializable {
                 "\"id\":\" " + closestPlace + "\"" +
                 ", \"coordinate\": " + jsonStringify(closestPlaceCoordinate) +
                 "}" +
-                ",\"description\":\"" + descriptionString + "\"" +
+                ",\"description\":\"" + encodeText(description) + "\"" +
                 ",\"ddRoute\":" + ddRoute +
                 ",\"ddPlace\":" + ddPlace +
                 ",\"code\":\"" + (coordinate == null ? "null" : coordinate.toString().replace("\"", "\\\"")) + "\"" +
                 '}';
+    }
+
+    private String encodeText(String text) {
+        if (text == null) {
+            return "null";
+        }
+        try {
+            return URLEncoder.encode(text, "UTF8");
+        } catch (UnsupportedEncodingException e) {
+            return URLEncoder.encode(text);
+        }
     }
 
     private String jsonStringify(Coordinate coordinate) {
