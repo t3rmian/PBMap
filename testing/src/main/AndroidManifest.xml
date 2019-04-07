@@ -1,0 +1,3 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="io.github.t3r1jj.pbmap.testing"
+    android:sharedUserId="io.github.t3r1jj.pbmap.testing" />

@@ -15,7 +15,6 @@ android {
         versionName version
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         setProperty("archivesBaseName", "io.github.t3r1jj.pbmap-$versionName")
-        multiDexEnabled true
     }
     signingConfigs {
         release {
@@ -99,7 +98,7 @@ dependencies {
 
     androidTestImplementation 'com.linkedin.dexmaker:dexmaker-mockito:2.19.0'
 
-    androidTestImplementation project(":test")
+    androidTestImplementation project(':testing')
 }
 
 task copyNOTICE(type: Copy) {
