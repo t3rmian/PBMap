@@ -1,5 +1,5 @@
 <map down_map_path="data/pb_zwl.xml" height="3300" id="PB_ZWL_L2" previous_map_path="data/pb_zwl.xml"
-    route_path="routes/pb_zwl.xml" width="2238" hidden="true" unfinished="true">
+    route_path="routes/pb_zwl.xml" width="2238" hidden="true">
     <tiles_configs>
         <tiles_config height="256" path="tiles/pb_zwl/floor/tile-%d_%d.png" width="256" zoom="1" />
     </tiles_configs>
@@ -7,5 +7,43 @@
         <coordinate alt="155" lat="52.73709" lng="23.59230" />
         <coordinate alt="155" lat="52.735759" lng="23.59081" />
     </coordinates>
+
+    <!--    offset-->
+    <spot id="↓"><coordinates><coordinate lat="52.736925955638426" lng="23.591935117135684" alt="155.0"/></coordinates></spot>
+    <spot id="24B"><coordinates><coordinate lat="52.736994554898686" lng="23.591976359953282" alt="155.0"/></coordinates></spot>
+    <spot id="25B"><coordinates><coordinate lat="52.73692915571818" lng="23.59203841459791" alt="155.0"/></coordinates></spot>
+    <spot id="26B"><coordinates><coordinate lat="52.736853373609215" lng="23.592003303605015" alt="155.0"/></coordinates></spot>
+
+    <spot id="WC"><coordinates><coordinate lat="52.73600249926758" lng="23.591406793309247" alt="155.0"/></coordinates></spot>
+    <spot id="↓"><coordinates><coordinate lat="52.73604256696615" lng="23.59139385952511" alt="155.0"/></coordinates></spot>
+
+    <spot id="10A"><coordinates><coordinate lat="52.73611112575521" lng="23.591391862693698" alt="155.0"/></coordinates></spot>
+    <spot id="11A"><coordinates><coordinate lat="52.736145416966146" lng="23.591454444706624" alt="155.0"/></coordinates></spot>
+    <spot id="12A"><coordinates><coordinate lat="52.73611805607747" lng="23.591526315520888" alt="155.0"/></coordinates></spot>
+    <spot id="13A"><coordinates><coordinate lat="52.73605102751302" lng="23.59153633673756" alt="155.0"/></coordinates></spot>
+    <spot id="14A"><coordinates><coordinate lat="52.73597885290365" lng="23.59154831772601" alt="155.0"/></coordinates></spot>
+    <spot id="15A" hidden="true"><coordinates><coordinate lat="52.735971573997396" lng="23.59149172620731" alt="155.0"/></coordinates></spot>
+    <spot id="16A"><coordinates><coordinate lat="52.73596431872396" lng="23.591423153700163" alt="155.0"/></coordinates></spot>
+
+    <space id="">
+        <coordinates>
+            <coordinate lat="52.73620798769287" lng="23.59100633586785" alt="155.0"/>
+            <coordinate lat="52.73599940714844" lng="23.591037668200673" alt="155.0"/>
+            <coordinate lat="52.73601796835938" lng="23.59137522194434" alt="155.0"/>
+            <coordinate lat="52.73606960290365" lng="23.591367893402403" alt="155.0"/>
+            <coordinate lat="52.73605962355469" lng="23.591197220353443" alt="155.0"/>
+            <coordinate lat="52.73621670642822" lng="23.59116711631168" alt="155.0"/>
+        </coordinates>
+    </space>
+
+    <spot id="CNB"><coordinates><coordinate lat="52.73653731692962" lng="23.59206370158204" alt="155.0"/></coordinates></spot>
+
+    <spot id="forest_environment_monitoring_lab"><coordinates><coordinate lat="52.736647229410806" lng="23.592026383871534" alt="155.0"/></coordinates></spot>
+    <spot id="entomology_lab"><coordinates><coordinate lat="52.736600160725914" lng="23.592030543896332" alt="155.0"/></coordinates></spot>
+    <spot id="photodetection_and_computer_image_analysis_lab"><coordinates><coordinate lat="52.73648923421224" lng="23.59204718415807" alt="155.0"/></coordinates></spot>
+    <spot id="forest_by-products_lab"><coordinates><coordinate lat="52.736425376383465" lng="23.592051344264135" alt="155.0"/></coordinates></spot>
+
+<!--    offset-->
+    <spot id="↓"><coordinates><coordinate lat="52.736536325046536" lng="23.591985604458795" alt="155.0"/></coordinates></spot>
 
 </map>
