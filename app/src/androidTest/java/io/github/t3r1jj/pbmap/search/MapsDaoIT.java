@@ -4,23 +4,22 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.test.InstrumentationRegistry;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-
-import androidx.test.InstrumentationRegistry;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
-public class MapsDaoTest {
+public class MapsDaoIT {
 
     private MapsDao dao;
 
@@ -46,12 +45,9 @@ public class MapsDaoTest {
     @Test
     public void generatePlacesDocumentation() {
         List<SearchSuggestion> searchSuggestions = dao.getSearchSuggestions(false);
-        Collections.sort(searchSuggestions, new Comparator<SearchSuggestion>() {
-            @Override
-            public int compare(SearchSuggestion o1, SearchSuggestion o2) {
-                int mapComparison = o1.getMapId().compareTo(o2.getMapId());
-                return mapComparison == 0 ? o1.getPlaceId().compareTo(o2.getPlaceId()) : mapComparison;
-            }
+        Collections.sort(searchSuggestions, (o1, o2) -> {
+            int mapComparison = o1.getMapId().compareTo(o2.getMapId());
+            return mapComparison == 0 ? o1.getPlaceId().compareTo(o2.getPlaceId()) : mapComparison;
         });
         String lastMapId = null;
         List<StringBuilder> stringBuilders = new ArrayList<>();

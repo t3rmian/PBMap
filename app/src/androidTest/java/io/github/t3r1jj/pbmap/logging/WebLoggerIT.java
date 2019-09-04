@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,8 +15,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.platform.app.InstrumentationRegistry;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.Spot;
 
@@ -22,7 +23,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
-public class WebLoggerTest {
+public class WebLoggerIT {
 
     private WebLogger logger;
     private SharedPreferences preferences;
@@ -68,12 +69,15 @@ public class WebLoggerTest {
         ArrayList<Message> messages = logger.getMessages();
         assertTrue("Messages empty initially", messages.isEmpty());
         Spot closestPlace = new Spot() {
+            {
+                this.id = "closestPlaceId";
+            }
+
             @Override
             public List<Coordinate> getCoordinates() {
                 return Collections.singletonList(new Coordinate(7, 8, 9));
             }
         };
-        closestPlace.setId("closestPlaceId");
         Message message = new Message("map", new Coordinate(1, 2, 3), new Coordinate(4, 5, 6), closestPlace);
         message.setDescription("desc");
         logger.logMessage(message);
@@ -93,12 +97,15 @@ public class WebLoggerTest {
         ArrayList<Message> messages = logger.getMessages();
         assertTrue("Messages empty initially", messages.isEmpty());
         Spot closestPlace = new Spot() {
+            {
+                this.id = "closestPlaceId";
+            }
+
             @Override
             public List<Coordinate> getCoordinates() {
                 return Collections.singletonList(new Coordinate(7, 8, 9));
             }
         };
-        closestPlace.setId("closestPlaceId");
         Message message = new Message("map1", new Coordinate(1, 2, 3), new Coordinate(4, 5, 6), closestPlace);
         Message message2 = new Message("map2", new Coordinate(1, 2, 3), new Coordinate(4, 5, 6), closestPlace);
         message.setDescription("desc");

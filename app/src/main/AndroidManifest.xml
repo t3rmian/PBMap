@@ -45,7 +45,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".AboutActivity"
+            android:name=".about.AboutActivity"
             android:label="@string/about"
             android:parentActivityName=".main.MapActivity"
             android:theme="@style/AppTheme.NoActionBar">
