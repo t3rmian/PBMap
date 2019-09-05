@@ -56,7 +56,7 @@ class DijkstraAlgorithm {
 
         while (!Q.isEmpty()) {
             Coordinate u = vMinDistQ();
-            if (u == target) {
+            if (u.equals(target)) {
                 return;
             }
             Q.remove(u);
@@ -111,7 +111,7 @@ class DijkstraAlgorithm {
             S.addFirst(u);
             u = prev.get(u);
         }
-        if (u != source) {
+        if (!source.equals(u)) {
             throw new NoPathException("Cannot get from " + source.toString() + " to " + target.toString());
         }
         S.addFirst(u);
