@@ -2,6 +2,7 @@ package io.github.t3r1jj.pbmap.testing;
 
 import android.annotation.SuppressLint;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.StringRes;
@@ -41,7 +42,8 @@ public class TestUtils {
             int currentIndex;
             int viewObjHash;
 
-            @SuppressLint("DefaultLocale") @Override
+            @SuppressLint("DefaultLocale")
+            @Override
             public void describeTo(Description description) {
                 description.appendText(String.format("with index: %d ", index));
                 matcher.describeTo(description);
@@ -64,5 +66,25 @@ public class TestUtils {
         } finally {
             Intents.release();
         }
+    }
+
+    public static Matcher<View> nthChildOf(final Matcher<View> parentMatcher, final int childPosition) {
+        return new TypeSafeMatcher<View>() {
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("position " + childPosition + " of parent ");
+                parentMatcher.describeTo(description);
+            }
+
+            @Override
+            public boolean matchesSafely(View view) {
+                if (!(view.getParent() instanceof ViewGroup)) return false;
+                ViewGroup parent = (ViewGroup) view.getParent();
+
+                return parentMatcher.matches(parent)
+                        && parent.getChildCount() > childPosition
+                        && parent.getChildAt(childPosition).equals(view);
+            }
+        };
     }
 }

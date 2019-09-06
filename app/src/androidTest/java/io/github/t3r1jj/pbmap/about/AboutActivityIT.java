@@ -3,8 +3,10 @@ package io.github.t3r1jj.pbmap.about;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.SystemClock;
 import android.util.Log;
 
+import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
@@ -34,17 +36,17 @@ import static androidx.test.espresso.intent.matcher.IntentMatchers.hasData;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasType;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
-import static io.github.t3r1jj.pbmap.testing.TestUtils.withIndex;
+import static io.github.t3r1jj.pbmap.testing.TestUtils.nthChildOf;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.withIntents;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.withMenuIdOrContentDescription;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.any;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.isEmptyOrNullString;
-import static org.hamcrest.core.IsNot.not;
 
 @RunWith(AndroidJUnit4.class)
 public class AboutActivityIT {
@@ -59,7 +61,6 @@ public class AboutActivityIT {
         UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
         device.pressBack();
         device.pressBack();
-        Log.e("AAA", "BAAAAAAACK");
     }
 
     @Test
@@ -117,10 +118,18 @@ public class AboutActivityIT {
     }
 
     @Test
+    @LargeTest
     public void onShare_correctIntent() {
         withIntents(() -> {
-            onView(withMenuIdOrContentDescription(R.id.action_share, R.string.action_share)).perform(click());
-            onView(withIndex(not(withText(isEmptyOrNullString())), 1)).perform(click());
+            SystemClock.sleep(1000);
+            try {
+                onView(withMenuIdOrContentDescription(R.id.action_share, R.string.action_share)).perform(click());
+                SystemClock.sleep(5000);
+                onView(nthChildOf(withContentDescription(containsString("Choose")), 0)).perform(click());
+            } catch (NoMatchingViewException no) {
+                Log.w(AboutActivityIT.class.getSimpleName(), no);
+                onView(withId(R.id.default_activity_button)).perform(click());
+            }
             intended(allOf(
                     hasAction(Intent.ACTION_SEND),
                     hasType("text/plain"),
