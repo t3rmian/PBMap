@@ -11,12 +11,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import io.github.t3r1jj.pbmap.main.MapActivity;
 import io.github.t3r1jj.pbmap.view.map.PlaceView;
 
 public abstract class Place {
 
-    private static final String NAME_POSTFIX = "_name";
+    public static final String NAME_POSTFIX = "_name";
     private static final String DESCRIPTION_POSTFIX = "_description";
     @Attribute
     protected String id;
@@ -27,16 +26,29 @@ public abstract class Place {
     @ElementList
     protected List<Coordinate> coordinates;
 
-    public static String getNameResIdString(String id) {
-        return id.toLowerCase().replace("/", "_") + NAME_POSTFIX;
+    /**
+     *
+     * @param id of the place
+     * @return name res id with slashes replaced by _ and with appended postfix
+     */
+    public static String getResIdString(String id, String postfix) {
+        return id.toLowerCase().replace("/", "_") + postfix;
     }
 
+    /**
+     *
+     * @return see {@link #getResIdString(String, String)} with name postfix
+     */
     public String getNameResIdString() {
-        return getNameResIdString(id);
+        return getResIdString(id, NAME_POSTFIX);
     }
 
+    /**
+     *
+     * @return see {@link #getResIdString(String, String)} with description postfix
+     */
     public String getDescriptionResIdString() {
-        return id + DESCRIPTION_POSTFIX;
+        return getResIdString(id, DESCRIPTION_POSTFIX);
     }
 
     public String getName(Context context) {
@@ -62,10 +74,6 @@ public abstract class Place {
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public List<Coordinate> getCoordinates() {

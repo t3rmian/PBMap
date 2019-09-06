@@ -46,7 +46,7 @@ import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
-import io.github.t3r1jj.pbmap.AboutActivity;
+import io.github.t3r1jj.pbmap.about.AboutActivity;
 import io.github.t3r1jj.pbmap.BuildConfig;
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.main.drawer.DrawerActivity;
@@ -54,6 +54,7 @@ import io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment;
 import io.github.t3r1jj.pbmap.model.Info;
 import io.github.t3r1jj.pbmap.model.gps.PBLocationListener;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
+import io.github.t3r1jj.pbmap.model.map.Place;
 import io.github.t3r1jj.pbmap.search.Search;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 
@@ -427,7 +428,7 @@ public class MapActivity extends DrawerActivity
 
     @SuppressWarnings("ConstantConditions")
     public void setTitle(String nameId) {
-        int resId = getResources().getIdentifier(PBMap.getNameResIdString(nameId), "string", getPackageName());
+        int resId = getResources().getIdentifier(PBMap.getResIdString(nameId, Place.NAME_POSTFIX), "string", getPackageName());
         if (resId > 0) {
             getSupportActionBar().setSubtitle(getString(resId).replace("\n", " ").trim());
         } else {

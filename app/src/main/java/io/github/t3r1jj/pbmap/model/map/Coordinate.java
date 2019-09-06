@@ -35,6 +35,7 @@ public class Coordinate implements Parcelable, Serializable {
     public Coordinate(double lat, double lng) {
         this.lng = lng;
         this.lat = lat;
+        this.altitude = false;
     }
 
     public Coordinate(double lat, double lng, double alt) {

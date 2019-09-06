@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import io.github.t3r1jj.pbmap.main.Controller;
+import io.github.t3r1jj.pbmap.model.map.BoundingBox;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
 import io.github.t3r1jj.pbmap.model.map.Space;
 
@@ -22,7 +23,7 @@ public class MapView extends TileView implements PlaceView {
     public MapView(Context context, PBMap map) {
         super(context);
         this.map = map;
-        PBMap.BoundingBox boundingBox = map.getBoundingBox();
+        BoundingBox boundingBox = map.getBoundingBox();
         defineBounds(boundingBox.getMinLng(), boundingBox.getMaxLat(), boundingBox.getMaxLng(), boundingBox.getMinLat());
     }
 
