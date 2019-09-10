@@ -5,11 +5,14 @@ import android.os.Parcelable;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
+import androidx.annotation.Nullable;
+
 import com.qozix.tileview.geom.CoordinateTranslater;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import androidx.annotation.Nullable;
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.logging.Message;
 import io.github.t3r1jj.pbmap.logging.WebLogger;
@@ -41,7 +44,7 @@ public class Controller implements GeoMarker.MapListener {
         this.route = new Route(mapActivity);
     }
 
-    void restoreState(Memento memento, MapActivity mapActivity) {
+    void restoreState(@NotNull Memento memento, @NotNull MapActivity mapActivity) {
         this.mapActivity = mapActivity;
         this.mapsDao = new MapsDao(mapActivity);
         this.route = new Route(mapActivity);

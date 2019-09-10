@@ -1,9 +1,12 @@
 package io.github.t3r1jj.pbmap.main;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.MotionEvent;
 
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.android21buttons.fragmenttestrule.FragmentTestRule;
@@ -13,7 +16,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
 
 import java.lang.reflect.Field;
 
@@ -32,7 +34,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(AndroidJUnit4.class)
 public class ImproveDialogFragmentIT {
 
     private final ImproveDialogFragment fragment = new ImproveDialogFragment();
@@ -53,24 +55,15 @@ public class ImproveDialogFragmentIT {
     private int improvementCount;
 
     @Before
-    public void setUp() throws NoSuchFieldException, IllegalAccessException {
+    public void setUp() {
         Bundle bundle = new Bundle();
         MotionEvent motionEvent = MotionEvent.obtain(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(),
                 MotionEvent.ACTION_DOWN, 0, 0, 0);
         bundle.putParcelable(MarkerDialogFragment.MOTION_EVENT_KEY, motionEvent);
         fragment.setArguments(bundle);
         MapActivity map = (MapActivity) outerRule.getActivity();
-        Controller controller = new Controller(map) {
-            @Override
-            void onImprovePressed(MotionEvent event, String description) {
-                assertEquals(motionEvent, event);
-                assertEquals(typedText, description);
-                improvementCount++;
-            }
-        };
-        Field field = map.getClass().getDeclaredField("controller");
-        field.setAccessible(true);
-        field.set(map, controller);
+        Controller controller = new ControllerTestProxy(map, motionEvent);
+        injectMapController(map, controller);
         fragment.show(map.getSupportFragmentManager(), "test");
     }
 
@@ -111,4 +104,53 @@ public class ImproveDialogFragmentIT {
         assertEquals(1, improvementCount);
     }
 
+    @Test
+    @LargeTest
+    public void onCreateDialog_Rotate_ReportOk() {
+        onView(withId(android.R.id.edit)).perform(typeText(typedText));
+        closeSoftKeyboard();
+
+        outerRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        outerRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        SystemClock.sleep(5000);
+
+        onView(withText(R.string.report)).perform(click());
+        onView(withText(R.string.improve)).check(doesNotExist());
+        onView(withText(R.string.improve_message)).check(doesNotExist());
+        onView(withText(R.string.report)).check(doesNotExist());
+        onView(withText(R.string.cancel)).check(doesNotExist());
+    }
+
+    private void injectMapController(MapActivity map, Controller controller) {
+        try {
+            Field field = map.getClass().getDeclaredField("controller");
+            field.setAccessible(true);
+            field.set(map, controller);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private class ControllerTestProxy extends Controller {
+        private final MotionEvent motionEvent;
+        private final Controller oldController;
+
+        private ControllerTestProxy(MapActivity map, MotionEvent motionEvent) {
+            super(map);
+            this.motionEvent = motionEvent;
+            this.oldController = map.getController();
+        }
+
+        @Override
+        void onImprovePressed(MotionEvent event, String description) {
+            assertEquals(motionEvent, event);
+            assertEquals(typedText, description);
+            improvementCount++;
+        }
+
+        @Override
+        Memento getCurrentState() {
+            return oldController.getCurrentState();
+        }
+    }
 }

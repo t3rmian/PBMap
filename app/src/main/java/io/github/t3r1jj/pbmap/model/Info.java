@@ -10,7 +10,7 @@ import java.io.Serializable;
 import io.github.t3r1jj.pbmap.model.map.Space;
 
 public class Info implements Serializable {
-    public final String url;
+    private final String url;
     private final String addressId;
     private final String nameId;
     private final String rawName;
@@ -61,4 +61,7 @@ public class Info implements Serializable {
         return context.getString(resId);
     }
 
+    public String getUrl() {
+        return url;
+    }
 }
