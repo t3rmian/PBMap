@@ -2,6 +2,7 @@ package io.github.t3r1jj.pbmap.model;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,7 +33,7 @@ public class Info implements Serializable {
                 InputStream inputStream = context.getAssets().open(logoPath);
                 return Drawable.createFromStream(inputStream, null);
             } catch (IllegalArgumentException | IOException e) {
-                e.printStackTrace();
+                Log.w("createLogo", e);
             }
         }
         return null;
