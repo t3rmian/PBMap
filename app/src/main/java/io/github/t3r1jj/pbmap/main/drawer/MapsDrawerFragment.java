@@ -39,7 +39,17 @@ public class MapsDrawerFragment extends NavigationDrawerFragment {
         for (SearchSuggestion searchSuggestion : places) {
             menu.add(R.id.maps_group, id--, Menu.NONE, searchSuggestion.getName(getActivity())).setIcon(android.R.drawable.ic_dialog_map);
         }
-        super.selectItem(currentSelectedId);
+
+        id = 0;
+        for (SearchSuggestion searchSuggestion : places) {
+            if (searchSuggestion.getPlaceId().equals("PB_campus")) {
+                currentSelectedId = id;
+                super.selectItem(currentSelectedId);
+                return navigationView;
+            }
+            id--;
+        }
+        super.selectItem(0);
         return navigationView;
     }
 
@@ -49,11 +59,27 @@ public class MapsDrawerFragment extends NavigationDrawerFragment {
         int id = 0;
         for (SearchSuggestion searchSuggestion : places) {
             if (searchSuggestion.getPlaceId().equals(currentMapId)) {
-                currentSelectedId = id;
-                super.highlightItem(currentSelectedId);
+                selectById(id);
+                return;
             }
             id--;
         }
+
+        if (currentSelectedId > 0) {
+            id = 0;
+            for (SearchSuggestion searchSuggestion : places) {
+                if (searchSuggestion.getPlaceId().equals("PB_campus")) {
+                    selectById(id);
+                    return;
+                }
+                id--;
+            }
+        }
+    }
+
+    private void selectById(int id) {
+        currentSelectedId = id;
+        super.highlightItem(currentSelectedId);
     }
 
     @Override
