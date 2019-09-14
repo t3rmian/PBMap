@@ -36,6 +36,7 @@ import static androidx.test.espresso.intent.matcher.IntentMatchers.toPackage;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.uiautomator.By.text;
+import static io.github.t3r1jj.pbmap.testing.TestUtils.pressDoubleBack;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -60,8 +61,7 @@ public class IntegrationActivityTest {
     @After
     public void tearDown() {
         UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-        device.pressBack();
-        device.pressBack();
+        pressDoubleBack(device);
     }
 
     @Test

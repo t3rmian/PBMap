@@ -1,6 +1,7 @@
 package io.github.t3r1jj.pbmap.testing;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -9,6 +10,7 @@ import androidx.annotation.StringRes;
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.intent.Intents;
 import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.uiautomator.UiDevice;
 
 import org.hamcrest.Description;
 import org.hamcrest.Factory;
@@ -110,6 +112,17 @@ public class TestUtils {
         @Factory
         public static Matcher<String> containsIgnoringCase(final String subString) {
             return new CaseInsensitiveSubstringMatcher(subString);
+        }
+    }
+
+    public static void pressDoubleBack(UiDevice device) {
+        try {
+            device.waitForIdle();
+            device.pressBack();
+            device.waitForIdle();
+            device.pressBack();
+        } catch (Exception e) {
+            Log.w("DoubleBackPress", e);
         }
     }
 }

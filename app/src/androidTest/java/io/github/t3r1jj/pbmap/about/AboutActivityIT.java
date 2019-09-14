@@ -21,6 +21,8 @@ import org.junit.Test;
 import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
 
+import java.util.regex.Pattern;
+
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 
@@ -40,6 +42,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
+import static androidx.test.uiautomator.By.text;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.nthChildOf;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.withIntents;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.withMenuIdOrContentDescription;
@@ -59,8 +62,10 @@ public class AboutActivityIT {
     @After
     public void tearDown() {
         UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-        device.pressBack();
-        device.pressBack();
+        device.waitForIdle();
+        if (device.findObject(text(Pattern.compile("^(?i)(Open with)$"))) != null) {
+            device.pressBack();
+        }
     }
 
     @Test
