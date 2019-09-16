@@ -64,4 +64,10 @@ public class ConnectionChangeBroadcastReceiverIT {
         WebLogger yetAnotherWebLogger = new WebLogger(InstrumentationRegistry.getInstrumentation().getContext());
         assertTrue(yetAnotherWebLogger.isEmpty());
     }
+
+    @Test
+    public void onReceive_Empty() {
+        ConnectionChangeBroadcastReceiver receiver = new ConnectionChangeBroadcastReceiver();
+        receiver.onReceive(InstrumentationRegistry.getInstrumentation().getContext(), null);
+    }
 }

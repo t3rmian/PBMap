@@ -3,7 +3,10 @@ package io.github.t3r1jj.pbmap.about;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
+import android.os.Looper;
+import android.widget.Toast;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
@@ -13,12 +16,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 
-import java.util.Arrays;
-
 import io.github.t3r1jj.pbmap.BuildConfig;
+import io.github.t3r1jj.pbmap.R;
 
 import static org.hamcrest.core.IsCollectionContaining.hasItem;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doNothing;
@@ -30,23 +34,76 @@ import static org.mockito.Mockito.when;
 @RunWith(AndroidJUnit4.class)
 public class OnRateClickListenerIT {
 
+    private boolean verifiedToastCreation = false;
+
     @Test
     public void onClick() {
         Context context = mock(Context.class);
         when(context.getApplicationContext()).thenReturn(context);
         when(context.getPackageName()).thenReturn(BuildConfig.APPLICATION_ID);
         OnRateClickListener listener = new OnRateClickListener(context);
+
+        listener.onClick(null);
+
+        ArgumentCaptor<Intent> intentCaptor = ArgumentCaptor.forClass(Intent.class);
+        verify(context, times(1)).startActivity(intentCaptor.capture());
+        assertThat(intentCaptor.getAllValues(), hasItem(
+                new StoreRedirectIntentMatcher("market://details?id=")
+        ));
+    }
+
+    @Test
+    public void onClick_Fallback() {
+        Context context = mock(Context.class);
+        when(context.getApplicationContext()).thenReturn(context);
+        when(context.getPackageName()).thenReturn(BuildConfig.APPLICATION_ID);
+        OnRateClickListener listener = new OnRateClickListener(context);
+
         doAnswer(answer -> {
             doNothing().when(context).startActivity(any(Intent.class));
-            assertThat(Arrays.asList(answer.getArguments()), hasItem(new StoreRedirectIntentMatcher("market://details?id=")));
             throw new ActivityNotFoundException("Mock activity not found");
         }).when(context).startActivity(any(Intent.class));
+
         listener.onClick(null);
+
         ArgumentCaptor<Intent> intentCaptor = ArgumentCaptor.forClass(Intent.class);
         verify(context, times(2)).startActivity(intentCaptor.capture());
         assertThat(intentCaptor.getAllValues(), hasItem(
                 new StoreRedirectIntentMatcher("https://play.google.com/store/apps/details?id=")
         ));
+    }
+
+    @Test
+    public void onClick_FallbackDidNotWork() {
+        Context context = mock(Context.class);
+        when(context.getApplicationContext()).thenReturn(context);
+        when(context.getPackageName()).thenReturn(BuildConfig.APPLICATION_ID);
+        OnRateClickListener listener = new OnRateClickListener(context);
+
+        doAnswer(answer -> {
+            doAnswer(answer2 -> {
+                doNothing().when(context).startActivity(any(Intent.class));
+                throw new ActivityNotFoundException("Mock activity not found");
+            }).when(context).startActivity(any(Intent.class));
+            throw new ActivityNotFoundException("Mock activity not found");
+        }).when(context).startActivity(any(Intent.class));
+        Resources resources = mock(Resources.class);
+        when(context.getResources()).thenReturn(resources);
+        doAnswer((ans) -> {
+            assertEquals(R.string.could_not_open_android_market, Long.parseLong(ans.getArgument(0).toString()));
+            verifiedToastCreation = true;
+            return "mock";
+        }).when(resources).getString(R.string.could_not_open_android_market);
+
+        Looper.prepare();
+
+        try {
+            listener.onClick(null);
+        } catch (NullPointerException toastException) {
+            assertEquals(toastException.getStackTrace()[1].getClassName(), Toast.class.getName());
+        }
+
+        assertTrue(verifiedToastCreation);
     }
 
     private static class StoreRedirectIntentMatcher extends TypeSafeMatcher<Intent> {
