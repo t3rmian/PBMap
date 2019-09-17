@@ -1,8 +1,8 @@
 package io.github.t3r1jj.pbmap.logging;
 
+import org.json.JSONObject;
+
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.Place;
@@ -60,7 +60,7 @@ public class Message implements Serializable {
                 "\"id\":\" " + closestPlace + "\"" +
                 ", \"coordinate\": " + jsonStringify(closestPlaceCoordinate) +
                 "}" +
-                ",\"description\":\"" + encodeText(description) + "\"" +
+                ",\"description\":" + encodeText(description) +
                 ",\"ddRoute\":" + ddRoute +
                 ",\"ddPlace\":" + ddPlace +
                 ",\"code\":\"" + (coordinate == null ? "null" : coordinate.toString().replace("\"", "\\\"")) + "\"" +
@@ -69,13 +69,9 @@ public class Message implements Serializable {
 
     private String encodeText(String text) {
         if (text == null) {
-            return "null";
+            return "\"null\"";
         }
-        try {
-            return URLEncoder.encode(text, "UTF8");
-        } catch (UnsupportedEncodingException e) {
-            return URLEncoder.encode(text);
-        }
+        return JSONObject.quote(text);
     }
 
     private String jsonStringify(Coordinate coordinate) {

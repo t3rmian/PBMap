@@ -109,7 +109,7 @@ public class WebLogger extends ContextWrapper {
                     preferences.edit().putString(PREF_KEY_MESSAGES, objectToString(new ArrayList<>())).apply();
                     Log.i("WebLogger", "Successfully uploaded log");
                 } else {
-                    Log.e("WebLogger", "Log not uploaded: " + result);
+                    Log.e("WebLogger", "Log not uploaded with result: " + result);
                 }
             }
         }.execute(messages);
@@ -133,14 +133,13 @@ public class WebLogger extends ContextWrapper {
 
     private String objectToString(Serializable object) {
         String encoded = null;
-        try {
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
+        try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream)) {
             objectOutputStream.writeObject(object);
             objectOutputStream.close();
             encoded = Base64.encodeToString(byteArrayOutputStream.toByteArray(), 0);
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e("WebLogger", "Error during message encoding", e);
         }
         return encoded;
     }
@@ -152,7 +151,7 @@ public class WebLogger extends ContextWrapper {
             ObjectInputStream objectInputStream = new ObjectInputStream(new ByteArrayInputStream(bytes));
             object = (Serializable) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException | ClassCastException e) {
-            e.printStackTrace();
+            Log.e("WebLogger", "Error during message decoding", e);
         }
         return object;
     }
