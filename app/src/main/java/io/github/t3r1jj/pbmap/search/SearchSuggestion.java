@@ -4,7 +4,13 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
+
 import androidx.annotation.Nullable;
+import androidx.core.util.ObjectsCompat;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
@@ -16,14 +22,17 @@ public class SearchSuggestion {
     private String mapId;
     private Coordinate coordinate;
 
-    SearchSuggestion(String placeId, String mapPath) {
-        this.placeId = placeId;
-        this.mapPath = mapPath;
+    SearchSuggestion(@NotNull String placeId, @NotNull String mapPath) {
+        this.placeId = Objects.requireNonNull(placeId);
+        this.mapPath = Objects.requireNonNull(mapPath);
     }
 
-    public SearchSuggestion(Intent searchIntent) {
-        this.placeId = searchIntent.getDataString();
-        this.mapPath = searchIntent.getStringExtra(SearchManager.EXTRA_DATA_KEY);
+    /**
+     * @param searchIntent with non-null data and extra mandatory non-null string with {@link SearchManager#EXTRA_DATA_KEY} key
+     */
+    public SearchSuggestion(@NotNull Intent searchIntent) {
+        this.placeId = Objects.requireNonNull(searchIntent.getDataString());
+        this.mapPath = Objects.requireNonNull(searchIntent.getStringExtra(SearchManager.EXTRA_DATA_KEY));
     }
 
     String getMapId() {
@@ -58,13 +67,14 @@ public class SearchSuggestion {
 
         SearchSuggestion that = (SearchSuggestion) o;
 
-        return placeId.equals(that.placeId) && mapId.equals(that.mapId);
-
+        return placeId.equals(that.placeId)
+                && ObjectsCompat.equals(mapId, that.mapId)
+                && ObjectsCompat.equals(coordinate, that.coordinate);
     }
 
     @Override
     public int hashCode() {
-        return placeId.hashCode();
+        return ObjectsCompat.hash(placeId, mapId, coordinate);
     }
 
     public String getName(Context context) {

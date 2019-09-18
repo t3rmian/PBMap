@@ -1,6 +1,7 @@
 package io.github.t3r1jj.pbmap.main;
 
 import android.content.Context;
+import android.os.SystemClock;
 
 import androidx.annotation.StringRes;
 import androidx.test.espresso.matcher.RootMatchers;
@@ -81,6 +82,17 @@ public class MapActivityTestSearchIT {
         onView(withIndex(withText(getFormattedString(R.string.pb_campus_name)), 0))
                 .inRoot(RootMatchers.isPlatformPopup())
                 .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void testSearch_ListOfSpaces_SelectOne() {
+        onView(withId(R.id.action_search)).perform(click());
+        onView(withId(R.id.search_src_text)).perform(typeText("PB"));
+        onView(withText(getFormattedString(R.string.main_library_name)))
+                .inRoot(RootMatchers.isPlatformPopup())
+                .perform(click());
+        onView(withContentDescription("Collapse")).perform(click());
+        onView(withText("CNK")).check(matches(isDisplayed()));
     }
 
     @Test
