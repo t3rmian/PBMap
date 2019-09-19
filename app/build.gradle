@@ -92,10 +92,11 @@ dependencies {
     androidTestImplementation "org.junit.jupiter:junit-jupiter-api:$junit_jupiter_version"
     androidTestImplementation "org.mockito:mockito-core:$mockito_version"
     androidTestImplementation 'com.linkedin.dexmaker:dexmaker-mockito:2.19.0'
-    androidTestImplementation 'com.21buttons:fragment-test-rule:2.0.1'
+    androidTestImplementation "com.21buttons:fragment-test-rule:$fragment_test_rule_version"
+    androidTestImplementation "androidx.test.uiautomator:uiautomator:$uiautomator_version"
     androidTestImplementation project(':testing')
 
-    debugImplementation 'com.21buttons:fragment-test-rule-extras:2.0.1'
+    debugImplementation "com.21buttons:fragment-test-rule-extras:$fragment_test_rule_version"
 }
 
 task copyNOTICE(type: Copy) {

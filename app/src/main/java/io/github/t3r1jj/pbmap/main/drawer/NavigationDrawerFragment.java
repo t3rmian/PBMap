@@ -85,12 +85,9 @@ abstract class NavigationDrawerFragment extends Fragment {
                              Bundle savedInstanceState) {
         navigationView = (NavigationView) inflater.inflate(
                 R.layout.fragment_drawer, container, false);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                selectItem(item.getItemId());
-                return true;
-            }
+        navigationView.setNavigationItemSelectedListener(item -> {
+            selectItem(item.getItemId());
+            return true;
         });
         return navigationView;
     }
@@ -157,7 +154,7 @@ abstract class NavigationDrawerFragment extends Fragment {
                 if (isAdded()) {
                     userLearnedDrawer();
                 }
-
+                NavigationDrawerFragment.this.drawerLayout.bringToFront();
             }
 
             @Override
@@ -177,11 +174,9 @@ abstract class NavigationDrawerFragment extends Fragment {
         }
 
         // Defer code dependent on restoration of previous instance state.
-        this.drawerLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                drawerToggle.syncState();
-            }
+        this.drawerLayout.post(() -> {
+            drawerToggle.syncState();
+            drawerLayout.bringToFront();
         });
 
         this.drawerLayout.addDrawerListener(drawerToggle);

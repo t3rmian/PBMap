@@ -84,22 +84,16 @@ public class MapActivity extends DrawerActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        controller = new Controller(this);
+        handleIntent(getIntent(), true);
+
         super.onCreate(savedInstanceState);
+        mapContainer = findViewById(R.id.content_main);
 
         setUpTexts();
-        mapContainer = (ViewGroup) findViewById(R.id.content_main);
         setUpButtons();
-
-        controller = new Controller(this);
-        handleIntent(getIntent());
-
-        if (!controller.isInitialized()) {
-            if (savedInstanceState == null || !savedInstanceState.containsKey(PARCELABLE_KEY_CONTROLLER_MEMENTO)) {
-                controller.loadMap();
-            }
-        }
         setUpZoomControls();
-
+        controller.postLoad();
     }
 
     private void setUpButtons() {
@@ -374,19 +368,22 @@ public class MapActivity extends DrawerActivity
 
     @Override
     protected void onNewIntent(Intent intent) {
-        handleIntent(intent);
+        super.onNewIntent(intent);
+        handleIntent(intent, false);
     }
 
-    private void handleIntent(Intent intent) {
+    private void handleIntent(Intent intent, boolean preload) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            handleSearchQuery(intent);
+            handleSearchQuery(intent, preload);
         } else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
             SearchSuggestion suggestion = new SearchSuggestion(intent);
-            controller.loadMap(suggestion);
+            controller.loadMap(suggestion, preload);
+        } else if (!controller.isInitialized()) {
+            controller.loadMap();
         }
     }
 
-    private void handleSearchQuery(Intent intent) {
+    private void handleSearchQuery(Intent intent, boolean preload) {
         Search search = new Search(this);
         String searchQuery = intent.getStringExtra(SearchManager.QUERY);
         boolean searchById = !intent.hasExtra(SearchManager.USER_QUERY);
@@ -408,7 +405,7 @@ public class MapActivity extends DrawerActivity
         if (placeFound == null) {
             Toast.makeText(this, R.string.not_found, Toast.LENGTH_LONG).show();
         } else {
-            controller.loadMap(placeFound);
+            controller.loadMap(placeFound, preload);
         }
     }
 
@@ -496,7 +493,7 @@ public class MapActivity extends DrawerActivity
 
     @Override
     public void onPlaceDrawerItemSelected(SearchSuggestion suggestion) {
-        controller.loadMap(suggestion);
+        controller.loadMap(suggestion, false);
     }
 
     @Override

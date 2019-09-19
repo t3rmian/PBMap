@@ -2,12 +2,14 @@ package io.github.t3r1jj.pbmap.main.drawer;
 
 import android.app.Activity;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import com.google.android.material.navigation.NavigationView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 
@@ -40,46 +42,26 @@ public class MapsDrawerFragment extends NavigationDrawerFragment {
             menu.add(R.id.maps_group, id--, Menu.NONE, searchSuggestion.getName(getActivity())).setIcon(android.R.drawable.ic_dialog_map);
         }
 
-        id = 0;
-        for (SearchSuggestion searchSuggestion : places) {
-            if (searchSuggestion.getPlaceId().equals("PB_campus")) {
-                currentSelectedId = id;
-                super.selectItem(currentSelectedId);
-                return navigationView;
-            }
-            id--;
-        }
-        super.selectItem(0);
+        onUpdateSelection(() -> super.selectItem(currentSelectedId));
         return navigationView;
     }
 
     @Override
     protected void onDrawerOpening() {
+        onUpdateSelection(() -> super.highlightItem(currentSelectedId));
+    }
+
+    private void onUpdateSelection(Runnable updateCallback) {
         String currentMapId = callbacks.getCurrentMapId();
         int id = 0;
         for (SearchSuggestion searchSuggestion : places) {
             if (searchSuggestion.getPlaceId().equals(currentMapId)) {
-                selectById(id);
+                currentSelectedId = id;
+                updateCallback.run();
                 return;
             }
             id--;
         }
-
-        if (currentSelectedId > 0) {
-            id = 0;
-            for (SearchSuggestion searchSuggestion : places) {
-                if (searchSuggestion.getPlaceId().equals("PB_campus")) {
-                    selectById(id);
-                    return;
-                }
-                id--;
-            }
-        }
-    }
-
-    private void selectById(int id) {
-        currentSelectedId = id;
-        super.highlightItem(currentSelectedId);
     }
 
     @Override

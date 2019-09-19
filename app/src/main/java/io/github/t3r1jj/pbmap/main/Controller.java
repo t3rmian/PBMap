@@ -37,6 +37,7 @@ public class Controller implements GeoMarker.MapListener {
     private GeoMarker source;
     private GeoMarker destination;
     private Route route;
+    private SearchSuggestion preloadedSuggestion;
 
     Controller(MapActivity mapActivity) {
         this.mapActivity = mapActivity;
@@ -68,18 +69,32 @@ public class Controller implements GeoMarker.MapListener {
     void loadMap() {
         map = mapsDao.loadMap();
         loadRouteGraph();
-        updateView();
     }
 
-    void loadMap(SearchSuggestion suggestion) {
-        if (map == null) {
-            loadMap();
-        }
-        if (!map.getReferenceMapPath().equals(suggestion.getMapPath())) {
+    void loadMap(SearchSuggestion suggestion, boolean preload) {
+        if (map == null || !map.getReferenceMapPath().equals(suggestion.getMapPath())) {
             map = mapsDao.loadMap(suggestion.getMapPath());
             loadRouteGraph();
-            updateView();
+            if (!preload) {
+                updateView();
+            }
         }
+        if (!preload) {
+            pinpointSuggestion(suggestion);
+        } else {
+            preloadedSuggestion = suggestion;
+        }
+    }
+
+    public void postLoad() {
+        updateView();
+        if (preloadedSuggestion != null) {
+            pinpointSuggestion(preloadedSuggestion);
+            preloadedSuggestion = null;
+        }
+    }
+
+    private void pinpointSuggestion(SearchSuggestion suggestion) {
         Coordinate coordinate = suggestion.getCoordinate();
         if (coordinate != null) {
             pinpointLocation(coordinate);
