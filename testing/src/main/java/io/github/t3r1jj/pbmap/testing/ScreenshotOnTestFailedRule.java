@@ -3,7 +3,6 @@ package io.github.t3r1jj.pbmap.testing;
 import android.graphics.Bitmap;
 import android.util.Log;
 
-import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 
 import java.io.IOException;
@@ -13,7 +12,7 @@ import androidx.test.runner.screenshot.ScreenCapture;
 import androidx.test.runner.screenshot.ScreenCaptureProcessor;
 import androidx.test.runner.screenshot.Screenshot;
 
-public class ScreenshotOnTestFailedRule extends TestWatcher {
+public class ScreenshotOnTestFailedRule extends ProfiledTestWatcher {
     private static final String TAG = ScreenshotOnTestFailedRule.class.getSimpleName();
 
     @Override

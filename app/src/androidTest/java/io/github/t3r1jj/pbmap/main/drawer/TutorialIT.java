@@ -30,7 +30,7 @@ import static io.github.t3r1jj.pbmap.testing.TestUtils.withIndex;
 @RunWith(AndroidJUnit4.class)
 public class TutorialIT {
 
-    private static final int TIMEOUT_MS = 250;
+    private static final int TIMEOUT_MS = 100;
     private final ActivityTestRule<MapActivity> activityRule =
             new ActivityTestRule<>(MapActivity.class, true, false);
 
@@ -47,7 +47,6 @@ public class TutorialIT {
 
         for (int i = 0; i < 20; i++) {
             onView(withIndex(withId(R.id.design_menu_item_text), 1)).perform(swipeUp());
-            SystemClock.sleep(TIMEOUT_MS);
         }
 
         UiDevice device = UiDevice.getInstance(getInstrumentation());
