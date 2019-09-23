@@ -121,7 +121,7 @@ public class ImproveDialogFragmentIT {
         onView(withText(R.string.cancel)).check(doesNotExist());
     }
 
-    private void injectMapController(MapActivity map, Controller controller) {
+    static void injectMapController(MapActivity map, Controller controller) {
         try {
             Field field = map.getClass().getDeclaredField("controller");
             field.setAccessible(true);

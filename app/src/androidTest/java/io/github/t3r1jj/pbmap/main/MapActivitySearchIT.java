@@ -31,7 +31,7 @@ import static io.github.t3r1jj.pbmap.testing.TestUtils.withIndex;
 import static org.hamcrest.core.IsNot.not;
 
 @RunWith(AndroidJUnit4.class)
-public class MapActivityTestSearchIT {
+public class MapActivitySearchIT {
 
     private final ActivityTestRule<MapActivity> activityRule =
             new ActivityTestRule<>(MapActivity.class, true, true);

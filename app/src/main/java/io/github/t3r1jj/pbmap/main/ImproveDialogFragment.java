@@ -20,7 +20,7 @@ import io.github.t3r1jj.pbmap.R;
 /**
  * Displays dialog with improve input option for pressed coordinates
  * Supports {@link MapActivity} only
- * Requires setting argument bundle with {@link MarkerDialogFragment.MOTION_EVENT_KEY}
+ * Requires setting argument bundle with {@link MarkerDialogFragment#MOTION_EVENT_KEY}
  */
 public class ImproveDialogFragment extends DialogFragment {
     private MapActivity mapActivity;
@@ -31,7 +31,7 @@ public class ImproveDialogFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        mapActivity = (MapActivity) getActivity();
+        mapActivity = (MapActivity) Objects.requireNonNull(getActivity());
         Bundle arguments = Objects.requireNonNull(getArguments());
         event = Objects.requireNonNull(arguments.getParcelable(MarkerDialogFragment.MOTION_EVENT_KEY));
 
