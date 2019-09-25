@@ -97,67 +97,45 @@ public class MapActivity extends DrawerActivity
     }
 
     private void setUpButtons() {
-        moreOptions = (FloatingActionMenu) findViewById(R.id.more_fab_menu);
-        levelMenu = (FloatingActionMenu) findViewById(R.id.level_fab_menu);
-        levelUpButton = (FloatingActionButton) findViewById(R.id.up_fab);
+        moreOptions = findViewById(R.id.more_fab_menu);
+        moreOptions.getMenuIconView().setContentDescription(getString(R.string.more_features));
+
+        levelMenu = findViewById(R.id.level_fab_menu);
+        levelMenu.getMenuIconView().setContentDescription(getString(R.string.floor));
+        levelUpButton = findViewById(R.id.up_fab);
+
         Drawable triangleDrawable = getResources().getDrawable(R.drawable.triangle_up_drawable);
         DrawableCompat.setTint(triangleDrawable, ContextCompat.getColor(this, R.color.colorSecondaryText));
         levelUpButton.setImageDrawable(triangleDrawable);
-        levelUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                controller.onNavigationPerformed(PBMap.Navigation.UP);
-            }
-        });
-        levelDownButton = (FloatingActionButton) findViewById(R.id.down_fab);
+        levelUpButton.setOnClickListener(v -> controller.onNavigationPerformed(PBMap.Navigation.UP));
+        levelDownButton = findViewById(R.id.down_fab);
         triangleDrawable = getResources().getDrawable(R.drawable.triangle_down_drawable);
         DrawableCompat.setTint(triangleDrawable, ContextCompat.getColor(this, R.color.colorSecondaryText));
         levelDownButton.setImageDrawable(triangleDrawable);
-        levelDownButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                controller.onNavigationPerformed(PBMap.Navigation.DOWN);
-            }
-        });
-        levelRightButton = (FloatingActionButton) findViewById(R.id.right_fab);
+        levelDownButton.setOnClickListener(v -> controller.onNavigationPerformed(PBMap.Navigation.DOWN));
+        levelRightButton = findViewById(R.id.right_fab);
         triangleDrawable = getResources().getDrawable(R.drawable.triangle_down_drawable);
         DrawableCompat.setTint(triangleDrawable, ContextCompat.getColor(this, R.color.colorSecondaryText));
         triangleDrawable = rotateDrawable(triangleDrawable, -90);
         levelRightButton.setImageDrawable(triangleDrawable);
-        levelRightButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                controller.onNavigationPerformed(PBMap.Navigation.RIGHT);
-            }
-        });
-        levelLeftButton = (FloatingActionButton) findViewById(R.id.left_fab);
+        levelRightButton.setOnClickListener(v -> controller.onNavigationPerformed(PBMap.Navigation.RIGHT));
+        levelLeftButton = findViewById(R.id.left_fab);
         triangleDrawable = getResources().getDrawable(R.drawable.triangle_down_drawable);
         DrawableCompat.setTint(triangleDrawable, ContextCompat.getColor(this, R.color.colorSecondaryText));
         triangleDrawable = rotateDrawable(triangleDrawable, 90);
         levelLeftButton.setImageDrawable(triangleDrawable);
-        levelLeftButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                controller.onNavigationPerformed(PBMap.Navigation.LEFT);
-            }
-        });
-        infoButton = (FloatingActionButton) findViewById(R.id.info_fab);
-        infoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                controller.loadDescription();
-            }
-        });
-        gpsButton = (FloatingActionButton) findViewById(R.id.gps_fab);
-        gpsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (doesNotHaveGpsPermissions()) {
-                    explicitlyAskedForPermissions = true;
-                    ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
-                } else {
-                    requestLocationOnDemand();
-                }
+        levelLeftButton.setOnClickListener(v -> controller.onNavigationPerformed(PBMap.Navigation.LEFT));
+
+        infoButton = findViewById(R.id.info_fab);
+        infoButton.setOnClickListener(view -> controller.loadDescription());
+
+        gpsButton = findViewById(R.id.gps_fab);
+        gpsButton.setOnClickListener(view -> {
+            if (doesNotHaveGpsPermissions()) {
+                explicitlyAskedForPermissions = true;
+                ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+            } else {
+                requestLocationOnDemand();
             }
         });
     }

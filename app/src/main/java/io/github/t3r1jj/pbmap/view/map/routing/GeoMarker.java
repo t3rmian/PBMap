@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
@@ -74,6 +76,7 @@ public class GeoMarker extends ImageView implements RemovableView {
         if (this.level != level) {
             this.level = level;
             Drawable drawable = getResources().getDrawable(marker.getLevelDrawableId(level));
+            setContentDescription(getResources().getString(marker.getContentDescriptionResId()));
             setImageDrawable(drawable);
         }
     }
@@ -134,17 +137,24 @@ public class GeoMarker extends ImageView implements RemovableView {
     }
 
     public enum Marker {
-        SOURCE(new int[]{R.drawable.source_down_marker, R.drawable.source_marker, R.drawable.source_up_marker}),
-        DESTINATION(new int[]{R.drawable.destination_down_marker, R.drawable.destination_marker, R.drawable.destination_up_marker});
+        SOURCE(new int[]{R.drawable.source_down_marker, R.drawable.source_marker, R.drawable.source_up_marker}, R.string.source),
+        DESTINATION(new int[]{R.drawable.destination_down_marker, R.drawable.destination_marker, R.drawable.destination_up_marker}, R.string.destination);
 
         private final int[] drawables;
+        private final int contentDescriptionResId;
 
-        Marker(int[] drawables) {
+        Marker(int[] drawables, @StringRes int contentDescriptionResId) {
             this.drawables = drawables;
+            this.contentDescriptionResId = contentDescriptionResId;
         }
 
         private int getLevelDrawableId(int level) {
             return drawables[level + 1];
+        }
+
+        @StringRes
+        public int getContentDescriptionResId() {
+            return contentDescriptionResId;
         }
     }
 

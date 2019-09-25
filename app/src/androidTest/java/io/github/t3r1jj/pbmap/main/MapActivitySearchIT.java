@@ -113,7 +113,7 @@ public class MapActivitySearchIT {
                 .check(matches(isDisplayed()));
     }
 
-    private String getFormattedString(@StringRes int resId) {
+    static String getFormattedString(@StringRes int resId) {
         Context ctx = InstrumentationRegistry.getInstrumentation().getTargetContext();
         return ctx.getString(resId)
                 .toUpperCase()

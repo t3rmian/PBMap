@@ -1,16 +1,23 @@
 package io.github.t3r1jj.pbmap.testing;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.StringRes;
+import androidx.core.content.ContextCompat;
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.intent.Intents;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.UiDevice;
+import androidx.test.uiautomator.UiObject;
+import androidx.test.uiautomator.UiObjectNotFoundException;
+import androidx.test.uiautomator.UiSelector;
 
 import org.hamcrest.Description;
 import org.hamcrest.Factory;
@@ -23,6 +30,7 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 
 public class TestUtils {
     public static Matcher<View> withMenuIdOrContentDescription(@IdRes int id, @StringRes int menuText) {
@@ -32,7 +40,7 @@ public class TestUtils {
             return matcher;
         } catch (NoMatchingViewException noId) {
             try {
-                openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getInstrumentation().getTargetContext());
+                openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
             } catch (NoMatchingViewException noBar) {
                 return withContentDescription(menuText);
             }
@@ -123,6 +131,33 @@ public class TestUtils {
             device.pressBack();
         } catch (Exception e) {
             Log.w("DoubleBackPress", e);
+        }
+    }
+
+    public static void allowPermissionsIfNeeded(String permissionNeeded) throws UiObjectNotFoundException {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !hasNeededPermission(permissionNeeded)) {
+            UiDevice device = UiDevice.getInstance(getInstrumentation());
+            UiObject allowPermissions = device.findObject(new UiSelector()
+                    .clickable(true)
+                    .checkable(false)
+                    .index(1));
+            if (allowPermissions.exists()) {
+                allowPermissions.click();
+            }
+        }
+    }
+
+    private static boolean hasNeededPermission(String permissionNeeded) {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        int permissionStatus = ContextCompat.checkSelfPermission(context, permissionNeeded);
+        return permissionStatus == PackageManager.PERMISSION_GRANTED;
+    }
+
+    public static void allowMockLocation() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getInstrumentation().getUiAutomation().executeShellCommand("appops set "
+                    + getInstrumentation().getTargetContext().getPackageName()
+                    + " android:mock_location allow");
         }
     }
 }

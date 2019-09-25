@@ -154,7 +154,6 @@ abstract class NavigationDrawerFragment extends Fragment {
                 if (isAdded()) {
                     userLearnedDrawer();
                 }
-                NavigationDrawerFragment.this.drawerLayout.bringToFront();
             }
 
             @Override
@@ -176,7 +175,6 @@ abstract class NavigationDrawerFragment extends Fragment {
         // Defer code dependent on restoration of previous instance state.
         this.drawerLayout.post(() -> {
             drawerToggle.syncState();
-            drawerLayout.bringToFront();
         });
 
         this.drawerLayout.addDrawerListener(drawerToggle);

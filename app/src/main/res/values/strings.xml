@@ -46,4 +46,6 @@
     <string name="improve_message">What should[not] be placed at the pressed location?</string>
     <string name="report">Report</string>
     <string name="required">This field is required</string>
+    <string name="source">Source</string>
+    <string name="destination">Destination</string>
 </resources>

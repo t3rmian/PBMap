@@ -45,4 +45,6 @@
     <string name="improve_message">Co [nie]powinno się znaleźć w miejscu naciśnięcia?</string>
     <string name="report">Zgłoś</string>
     <string name="required">To pole jest wymagane</string>
+    <string name="source">Punkt startowy</string>
+    <string name="destination">Punkt docelowy</string>
 </resources>

@@ -14,6 +14,7 @@
         android:label="@string/name_app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:largeHeap="true"
         tools:replace="android:label">
         <receiver android:name=".logging.ConnectionChangeBroadcastReceiver">
             <intent-filter>
