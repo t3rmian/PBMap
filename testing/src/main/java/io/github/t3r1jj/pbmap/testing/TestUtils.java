@@ -153,11 +153,4 @@ public class TestUtils {
         return permissionStatus == PackageManager.PERMISSION_GRANTED;
     }
 
-    public static void allowMockLocation() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getInstrumentation().getUiAutomation().executeShellCommand("appops set "
-                    + getInstrumentation().getTargetContext().getPackageName()
-                    + " android:mock_location allow");
-        }
-    }
 }

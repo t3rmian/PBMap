@@ -629,4 +629,7 @@ public class MapActivity extends DrawerActivity
         }
     }
 
+    PBLocationListener getLocationListener() {
+        return locationListener;
+    }
 }

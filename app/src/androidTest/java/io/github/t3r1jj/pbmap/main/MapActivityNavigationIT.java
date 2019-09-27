@@ -1,22 +1,15 @@
 package io.github.t3r1jj.pbmap.main;
 
 import android.Manifest;
-import android.app.Instrumentation;
 import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
-import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Build;
 import android.os.SystemClock;
 
-import androidx.test.espresso.NoMatchingViewException;
-import androidx.test.espresso.matcher.RootMatchers;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
-import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.uiautomator.UiObjectNotFoundException;
 
@@ -26,27 +19,23 @@ import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
 
 import io.github.t3r1jj.pbmap.R;
+import io.github.t3r1jj.pbmap.model.gps.PBLocationListener;
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.longClick;
-import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import static io.github.t3r1jj.pbmap.main.MapActivitySearchIT.getFormattedString;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.CaseInsensitiveSubstringMatcher.containsIgnoringCase;
-import static io.github.t3r1jj.pbmap.testing.TestUtils.allowMockLocation;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.allowPermissionsIfNeeded;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.withIndex;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.isEmptyOrNullString;
 
 @RunWith(AndroidJUnit4.class)
 public class MapActivityNavigationIT {
@@ -170,18 +159,8 @@ public class MapActivityNavigationIT {
         allowPermissionsIfNeeded(Manifest.permission.ACCESS_FINE_LOCATION);
         allowPermissionsIfNeeded(Manifest.permission.ACCESS_COARSE_LOCATION);
 
-        allowMockLocation();
-        LocationManager lm = (LocationManager) getInstrumentation().getTargetContext().getSystemService(Context.LOCATION_SERVICE);
-        Criteria criteria = new Criteria();
-        criteria.setAccuracy(Criteria.ACCURACY_FINE);
-
-        String mocLocationProvider = LocationManager.GPS_PROVIDER;//lm.getBestProvider( criteria, true );
-
-        lm.addTestProvider(mocLocationProvider, false, false,
-                false, false, true, true, true, 0, 5);
-        lm.setTestProviderEnabled(mocLocationProvider, true);
-
-        Location mockLocation = new Location(mocLocationProvider);
+        PBLocationListener locationListener = activityRule.getActivity().getLocationListener();
+        Location mockLocation = new Location("");
         mockLocation.setLatitude(53.1177825529975);
         mockLocation.setLongitude(23.15214421044988);
         mockLocation.setAltitude(150);
@@ -190,9 +169,9 @@ public class MapActivityNavigationIT {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             mockLocation.setElapsedRealtimeNanos(SystemClock.elapsedRealtimeNanos());
         }
-        lm.setTestProviderLocation(mocLocationProvider, mockLocation);
-
-        SystemClock.sleep(2500);
+        activityRule.getActivity().runOnUiThread(()->{
+            locationListener.onLocationChanged(mockLocation);
+        });
 
         onView(withText("69B")).check(matches(isDisplayed()));
         onView(withContentDescription(R.string.source)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
