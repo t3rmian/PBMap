@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.Collections;
-import java.util.stream.DoubleStream;
 
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.Place;
@@ -57,7 +56,8 @@ public class MessageIT {
         assertThat(json, containsString(id));
         assertThat(json, containsString(description));
         assertThat(json, containsString(String.valueOf(currentTimeMillis)));
-        DoubleStream.of(0.1, 0.2, 0.3, 0.4, 0.5, 0.6)
-                .forEach(coordinate -> assertThat(json, containsString(String.valueOf(coordinate))));
+        for (double coordinate : new double[]{0.1, 0.2, 0.3, 0.4, 0.5, 0.6}) {
+            assertThat(json, containsString(String.valueOf(coordinate)));
+        }
     }
 }

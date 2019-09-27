@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,6 +19,7 @@ import java.util.List;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.Spot;
 
+import static io.github.t3r1jj.pbmap.logging.WebLogger.PREF_KEY_MESSAGES;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -30,9 +32,22 @@ public class WebLoggerIT {
 
     @Before
     public void setUp() {
-        Context appContext = InstrumentationRegistry.getInstrumentation().getContext();
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         logger = new WebLogger(appContext);
         preferences = PreferenceManager.getDefaultSharedPreferences(appContext);
+        clearMessages();
+    }
+
+
+    @After
+    public void tearDown() {
+        clearMessages();
+    }
+
+    private void clearMessages() {
+        SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(InstrumentationRegistry.getInstrumentation().getTargetContext());
+        preferences.edit().remove(PREF_KEY_MESSAGES).apply();
     }
 
     @Test

@@ -1,7 +1,7 @@
 package io.github.t3r1jj.pbmap.logging;
 
+import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.SystemClock;
 import android.preference.PreferenceManager;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -27,6 +27,8 @@ import static org.mockito.Mockito.when;
 @RunWith(AndroidJUnit4.class)
 public class ConnectionChangeBroadcastReceiverIT {
 
+    private Context context;
+
     @Before
     public void setUp() {
         clearMessages();
@@ -38,36 +40,37 @@ public class ConnectionChangeBroadcastReceiverIT {
     }
 
     private void clearMessages() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(InstrumentationRegistry.getInstrumentation().getContext());
+        context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         preferences.edit().remove(PREF_KEY_MESSAGES).apply();
     }
 
     @Test
     @LargeTest
     public void onReceive() {
-        WebLogger webLogger = new WebLogger(InstrumentationRegistry.getInstrumentation().getContext());
+        WebLogger webLogger = new WebLogger(context);
         assertTrue(webLogger.isEmpty());
         Place place = mock(Place.class);
         when(place.getCoordinates()).thenReturn(Collections.singletonList(new Coordinate()));
 
         webLogger.logMessage(new Message("test", new Coordinate(), new Coordinate(), place));
         assertFalse(webLogger.isEmpty());
-        WebLogger differentWebLogger = new WebLogger(InstrumentationRegistry.getInstrumentation().getContext());
+        WebLogger differentWebLogger = new WebLogger(context);
         assertFalse(differentWebLogger.isEmpty());
 
         ConnectionChangeBroadcastReceiver receiver = new ConnectionChangeBroadcastReceiver();
-        receiver.onReceive(InstrumentationRegistry.getInstrumentation().getContext(), null);
-        SystemClock.sleep(10000);
+        receiver.onReceive(context, null);
+        clearMessages();
 
         assertTrue(webLogger.isEmpty());
         assertTrue(differentWebLogger.isEmpty());
-        WebLogger yetAnotherWebLogger = new WebLogger(InstrumentationRegistry.getInstrumentation().getContext());
+        WebLogger yetAnotherWebLogger = new WebLogger(context);
         assertTrue(yetAnotherWebLogger.isEmpty());
     }
 
     @Test
     public void onReceive_Empty() {
         ConnectionChangeBroadcastReceiver receiver = new ConnectionChangeBroadcastReceiver();
-        receiver.onReceive(InstrumentationRegistry.getInstrumentation().getContext(), null);
+        receiver.onReceive(context, null);
     }
 }
