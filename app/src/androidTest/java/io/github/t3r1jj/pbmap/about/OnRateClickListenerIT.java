@@ -12,9 +12,12 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;
+import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
+
+import java.util.Arrays;
 
 import io.github.t3r1jj.pbmap.BuildConfig;
 import io.github.t3r1jj.pbmap.R;
@@ -100,7 +103,8 @@ public class OnRateClickListenerIT {
         try {
             listener.onClick(null);
         } catch (NullPointerException toastException) {
-            assertEquals(toastException.getStackTrace()[1].getClassName(), Toast.class.getName());
+            assertThat(Arrays.asList(toastException.getStackTrace()),
+                    hasItem(new StackTraceElementTypeSafeMatcher(Toast.class)));
         }
 
         assertTrue(verifiedToastCreation);
@@ -123,6 +127,25 @@ public class OnRateClickListenerIT {
         protected boolean matchesSafely(Intent item) {
             return Intent.ACTION_VIEW.equals(item.getAction()) &&
                     Uri.parse(uriBase + BuildConfig.APPLICATION_ID).equals(item.getData());
+        }
+    }
+
+    private static class StackTraceElementTypeSafeMatcher extends TypeSafeMatcher<StackTraceElement> {
+
+        private final Class aClass;
+
+        StackTraceElementTypeSafeMatcher(@NotNull Class aClass) {
+            this.aClass = aClass;
+        }
+
+        @Override
+        protected boolean matchesSafely(StackTraceElement item) {
+            return aClass.getName().equals(item.getClassName());
+        }
+
+        @Override
+        public void describeTo(Description description) {
+            description.appendText("of Toast class");
         }
     }
 }
