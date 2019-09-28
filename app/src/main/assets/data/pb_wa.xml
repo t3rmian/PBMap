@@ -1,5 +1,5 @@
 <map height="2500" id="PB_WA" route_path="routes/pb_wa.xml" up_map_path="data/pb_wa_2.xml"
-    url="http://wa.pb.edu.pl/" width="2800" unfinished="true">
+    down_map_path="data/pb_wa_0.xml" url="http://wa.pb.edu.pl/" width="2800">
     <tiles_configs>
         <tiles_config height="256" path="tiles/pb_wa/main/tile-%d_%d.png" width="256"
             zoom="1" />
@@ -9,4 +9,43 @@
         <coordinate alt="150" lat="53.12841" lng="23.14540" />
     </coordinates>
 
+    <spot id="↑↓"><coordinates><coordinate lat="53.128885903269534" lng="23.146265144017683" alt="150.0"/></coordinates></spot>
+    <spot id="↑↓"><coordinates><coordinate lat="53.12864940722266" lng="23.145724929978506" alt="150.0"/></coordinates></spot>
+    <spot id="Hall"><coordinates><coordinate lat="53.1287944115" lng="23.145976300820486" alt="150.0"/></coordinates></spot>
+
+    <spot id="WC"><coordinates><coordinate lat="53.128814410273435" lng="23.1463572944179" alt="150.0"/></coordinates></spot>
+    <spot id="30"><coordinates><coordinate lat="53.128593897527345" lng="23.145839276138524" alt="150.0"/></coordinates></spot>
+    <spot id="32"><coordinates><coordinate lat="53.128784838234374" lng="23.14559146767044" alt="150.0"/></coordinates></spot>
+    <spot id="55"><coordinates><coordinate lat="53.12883796217578" lng="23.14570582401014" alt="150.0"/></coordinates></spot>
+    <spot id="53"><coordinates><coordinate lat="53.128951228574216" lng="23.14598267230726" alt="150.0"/></coordinates></spot>
+
+    <spot id="020"><coordinates><coordinate lat="53.12878933130469" lng="23.146270284171404" alt="150.0"/></coordinates></spot>
+    <spot id="022"><coordinates><coordinate lat="53.12874372521875" lng="23.146163358556258" alt="150.0"/></coordinates></spot>
+    <spot id="024"><coordinates><coordinate lat="53.12870413922656" lng="23.146070529439434" alt="150.0"/></coordinates></spot>
+    <spot id="026"><coordinates><coordinate lat="53.1286745671875" lng="23.145992616312082" alt="150.0"/></coordinates></spot>
+    <spot id="028"><coordinates><coordinate lat="53.128634981238285" lng="23.14590060675746" alt="150.0"/></coordinates></spot>
+
+    <spot id="↑↓"><coordinates><coordinate lat="53.129124138261716" lng="23.146245418456594" alt="150.0"/></coordinates></spot>
+    <spot id="Xero"><coordinates><coordinate lat="53.129087547664064" lng="23.146298471483068" alt="150.0"/></coordinates></spot>
+    <spot id="Student_council"><coordinates><coordinate lat="53.12892717746094" lng="23.146347372051565" alt="150.0"/></coordinates></spot>
+    <spot id="Cloak_room"><coordinates><coordinate lat="53.129158203349604" lng="23.14642942974897" alt="150.0"/></coordinates></spot>
+    <spot id="14"><coordinates><coordinate lat="53.12912111351953" lng="23.14650982885088" alt="150.0"/></coordinates></spot>
+    <spot id="15"><coordinates><coordinate lat="53.12910058635937" lng="23.14645098424203" alt="150.0"/></coordinates></spot>
+    <spot id="Deanery"><coordinates><coordinate lat="53.12905647794922" lng="23.14651231482544" alt="150.0"/></coordinates></spot>
+    <spot id="11"><coordinates><coordinate lat="53.12901386186523" lng="23.14658173308716" alt="150.0"/></coordinates></spot>
+    <spot id="WC"><coordinates><coordinate lat="53.12888306905078" lng="23.146731138146972" alt="150.0"/></coordinates></spot>
+
+    <spot id="Library"><coordinates><coordinate lat="53.1288580018125" lng="23.146553765287127" alt="150.0"/></coordinates></spot>
+    <spot id="45"><coordinates><coordinate lat="53.128685793289065" lng="23.146528066508267" alt="150.0"/></coordinates></spot>
+    <spot id="28"><coordinates><coordinate lat="53.12872118351172" lng="23.146553765287127" alt="150.0"/></coordinates></spot>
+    <spot id="29"><coordinates><coordinate lat="53.1287758051289" lng="23.146620067961774" alt="150.0"/></coordinates></spot>
+
+    <spot id="31"><coordinates><coordinate lat="53.1287868331875" lng="23.146686377955845" alt="150.0"/></coordinates></spot>
+    <spot id="35"><coordinates><coordinate lat="53.128742239273436" lng="23.146695494972448" alt="150.0"/></coordinates></spot>
+    <spot id="↑"><coordinates><coordinate lat="53.12883679200781" lng="23.146811211356898" alt="155.0"/></coordinates></spot>
+
+    <spot id="↵"><coordinates><coordinate lat="53.12860020353516" lng="23.145737469038608" alt="150.0"/></coordinates></spot>
+    <spot id="↵"><coordinates><coordinate lat="53.128946118" lng="23.145835426086425" alt="150.0"/></coordinates></spot>
+    <spot id="↵"><coordinates><coordinate lat="53.12918506967871" lng="23.146303991394042" alt="150.0"/></coordinates></spot>
+    <spot id="↵"><coordinates><coordinate lat="53.12887280106641" lng="23.14687113184989" alt="150.0"/></coordinates></spot>
 </map>
