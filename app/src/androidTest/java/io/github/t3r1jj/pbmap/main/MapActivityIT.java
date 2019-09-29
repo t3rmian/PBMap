@@ -1,6 +1,7 @@
 package io.github.t3r1jj.pbmap.main;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.uiautomator.UiDevice;
@@ -30,6 +31,7 @@ public class MapActivityIT {
             .around(new ScreenshotOnTestFailedRule());
 
     @Test
+    @LargeTest
     public void initiateImprovementUseCase() {
         UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
         int x = device.getDisplayWidth() / 2;

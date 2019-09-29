@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Build;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Test;
@@ -18,6 +19,7 @@ import static org.junit.Assert.assertThat;
 public class LollipopFixedWebViewIT {
 
     @Test
+    @SmallTest
     public void testConstructors() throws Throwable {
         Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
         runOnUiThread(() -> {

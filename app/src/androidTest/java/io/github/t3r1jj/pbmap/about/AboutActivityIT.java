@@ -69,6 +69,7 @@ public class AboutActivityIT {
     }
 
     @Test
+    @MediumTest
     public void onAboutCreate() {
         onView(ViewMatchers.withId(R.id.about_icon)).check(matches(isDisplayed()));
         onView(withId(R.id.about_rate)).check(matches(isDisplayed()));
@@ -79,6 +80,7 @@ public class AboutActivityIT {
     }
 
     @Test
+    @LargeTest
     public void onBugReportPress_correctIntent() {
         withIntents(() -> {
             onView(withId(R.id.about_report)).perform(click());
@@ -90,6 +92,7 @@ public class AboutActivityIT {
     }
 
     @Test
+    @LargeTest
     public void onSupportPress_correctIntent() {
         withIntents(() -> {
             onView(withId(R.id.about_support)).perform(click());
@@ -101,6 +104,7 @@ public class AboutActivityIT {
     }
 
     @Test
+    @LargeTest
     public void onRatePress_correctIntent() {
         withIntents(() -> {
             onView(withId(R.id.about_rate)).perform(click());
@@ -112,6 +116,7 @@ public class AboutActivityIT {
     }
 
     @Test
+    @LargeTest
     public void onProjectPress_correctIntent() {
         withIntents(() -> {
             onView(withId(R.id.about_icon)).perform(click());

@@ -1,6 +1,7 @@
 package io.github.t3r1jj.pbmap.main.drawer;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.MediumTest;
 import androidx.test.rule.ActivityTestRule;
 
 import org.junit.Rule;
@@ -22,6 +23,7 @@ public class MapsDrawerFragmentIncorrectIT {
             .around(new ScreenshotOnTestFailedRule());
 
     @Test(expected = ClassCastException.class)
+    @MediumTest
     public void onAttach() {
         new MapsDrawerFragment().onAttach(activityRule.getActivity());
     }

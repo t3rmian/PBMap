@@ -17,6 +17,8 @@ import java.util.regex.Pattern;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
+import androidx.test.filters.MediumTest;
+import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.uiautomator.UiDevice;
@@ -78,6 +80,7 @@ public class PBMapIntegratorTest {
     }
 
     @Test(expected = ActivityNotFoundException.class)
+    @MediumTest
     public void foundNothingInstalled() {
         doThrow(new ActivityNotFoundException("Mock activity not found"))
                 .when(integrator).startActivity(any(Intent.class));
@@ -85,6 +88,7 @@ public class PBMapIntegratorTest {
     }
 
     @Test
+    @MediumTest
     public void foundNothingInstalled_activityToast_onDefinedPinpoint() {
         doThrow(new ActivityNotFoundException("Mock activity not found"))
                 .when(integrator).startActivity(any(Intent.class));
@@ -95,6 +99,7 @@ public class PBMapIntegratorTest {
     }
 
     @Test
+    @MediumTest
     public void foundNothingInstalled_activityToast_onCustomPinpoint() {
         doThrow(new ActivityNotFoundException("Mock activity not found"))
                 .when(integrator).startActivity(any(Intent.class));
@@ -105,6 +110,7 @@ public class PBMapIntegratorTest {
     }
 
     @Test
+    @MediumTest
     public void invalidNumberFormat_lat_activityToast_onCustomPinpoint() {
         doThrow(new NumberFormatException("Mock location parsing"))
                 .when(integrator).startActivity(any(Intent.class));
@@ -121,6 +127,7 @@ public class PBMapIntegratorTest {
     }
 
     @Test
+    @MediumTest
     public void invalidNumberFormat_lng_activityToast_onCustomPinpoint() {
         doThrow(new NumberFormatException("Mock location parsing"))
                 .when(integrator).startActivity(any(Intent.class));
@@ -137,6 +144,7 @@ public class PBMapIntegratorTest {
     }
 
     @Test
+    @MediumTest
     public void appNotInstalled_openMarket() {
         doAnswer(__ -> {
             doCallRealMethod().when(integrator).startActivity(any(Intent.class));
@@ -150,6 +158,7 @@ public class PBMapIntegratorTest {
     }
 
     @Test
+    @MediumTest
     public void appAndMarketNotInstalled_openGooglePlay() {
         doAnswer(__ -> {
             doAnswer(___ -> {
@@ -166,6 +175,7 @@ public class PBMapIntegratorTest {
     }
 
     @Test(expected = ActivityNotFoundException.class)
+    @MediumTest
     public void foundNothingInstalled_locationVariant() {
         doThrow(new ActivityNotFoundException("Mock activity not found"))
                 .when(integrator).startActivity(any(Intent.class));
@@ -173,6 +183,7 @@ public class PBMapIntegratorTest {
     }
 
     @Test
+    @MediumTest
     public void appNotInstalled_openMarket_locationVariant() {
         doAnswer(__ -> {
             doCallRealMethod().when(integrator).startActivity(any(Intent.class));
@@ -186,6 +197,7 @@ public class PBMapIntegratorTest {
     }
 
     @Test
+    @MediumTest
     public void appAndMarketNotInstalled_openGooglePlay_locationVariant() {
         doAnswer(__ -> {
             doAnswer(___ -> {

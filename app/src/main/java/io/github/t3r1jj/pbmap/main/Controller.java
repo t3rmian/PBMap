@@ -232,9 +232,13 @@ public class Controller implements GeoMarker.MapListener {
         if (!locationCoordinate.hasAltitude()) {
             locationCoordinate.alt = map.getCenter().alt;
         }
+        Coordinate sourceCoordinate = source.getCoordinate();
         source.setCoordinate(locationCoordinate);
-        source.setLevel(map.compareAltitude(source.getCoordinate()), GeoMarker.Marker.SOURCE);
-        source.pinpointOnMap(mapView);
+        if (!map.getBoundingBox().isInside(sourceCoordinate) &&
+                map.getBoundingBox().isInside(locationCoordinate)) {
+            source.pinpointOnMap(mapView);
+        }
+        source.setLevel(map.compareAltitude(sourceCoordinate), GeoMarker.Marker.SOURCE);
     }
 
     private void updateRoute() {

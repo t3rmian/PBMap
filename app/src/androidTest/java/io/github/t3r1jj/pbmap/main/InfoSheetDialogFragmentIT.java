@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
+import androidx.test.filters.MediumTest;
 
 import com.android21buttons.fragmenttestrule.FragmentTestRule;
 
@@ -59,6 +60,7 @@ public class InfoSheetDialogFragmentIT {
     }
 
     @Test
+    @MediumTest
     public void onCreate() {
         info = mock(Info.class);
         lazySetUp();
@@ -70,6 +72,7 @@ public class InfoSheetDialogFragmentIT {
     }
 
     @Test
+    @MediumTest
     public void onCreate_InfoIsDisplayed() {
         info = mock(Info.class);
         when(info.getName(any())).thenReturn("test title");

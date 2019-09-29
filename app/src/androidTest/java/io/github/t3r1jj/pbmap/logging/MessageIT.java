@@ -3,6 +3,7 @@ package io.github.t3r1jj.pbmap.logging;
 import android.content.Context;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.SmallTest;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -49,6 +50,7 @@ public class MessageIT {
     }
 
     @Test
+    @SmallTest
     public void toJson_containsImportantFields() {
         String json = message.toJson();
         assertThat(json, containsString(mapName));

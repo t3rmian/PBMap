@@ -18,6 +18,8 @@ import java.util.regex.Pattern;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
+import androidx.test.filters.MediumTest;
+import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObject2;
@@ -65,6 +67,9 @@ public class IntegrationActivityTest {
     }
 
     @Test
+    @SmallTest
+    @MediumTest
+    @LargeTest
     public void onCreate() {
         onView(withId(R.id.description)).check(matches(isDisplayed()));
         onView(withId(R.id.search_query_text)).check(matches(isDisplayed()));
@@ -76,6 +81,7 @@ public class IntegrationActivityTest {
     }
 
     @Test
+    @MediumTest
     public void onDefinedPinpoint() {
         String query = "130@pb_wi_l2";
         onView(withId(R.id.search_query_text))
@@ -90,6 +96,7 @@ public class IntegrationActivityTest {
     }
 
     @Test
+    @MediumTest
     public void onCustomPinpoint() {
         String map = "pb_campus";
         double lat = 53.11878;

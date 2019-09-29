@@ -604,17 +604,11 @@ public class MapActivity extends DrawerActivity
             return new AlertDialog.Builder(getActivity(), getTheme())
                     .setMessage(getString(R.string.gps_disabled_message, getString(R.string.name_app)))
                     .setCancelable(false)
-                    .setPositiveButton(R.string.enable, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                            startActivity(intent);
-                        }
+                    .setPositiveButton(R.string.enable, (dialog, id) -> {
+                        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivity(intent);
                     })
-                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    }).create();
+                    .setNegativeButton(R.string.cancel, (dialog, id) -> dialog.cancel()).create();
         }
     }
 

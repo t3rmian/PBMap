@@ -49,6 +49,7 @@ public class MapActivityNavigationIT {
             .around(new ScreenshotOnTestFailedRule());
 
     @Test
+    @LargeTest
     public void navigateBack_ActionBar() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -60,6 +61,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
+    @LargeTest
     public void navigateUp() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -72,6 +74,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
+    @LargeTest
     public void navigateDown() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -84,6 +87,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
+    @LargeTest
     public void navigateRight() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -96,6 +100,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
+    @LargeTest
     public void navigateRightLeft() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -109,6 +114,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
+    @LargeTest
     public void navigateShowHide() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -126,6 +132,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
+    @LargeTest
     public void showInfo() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);

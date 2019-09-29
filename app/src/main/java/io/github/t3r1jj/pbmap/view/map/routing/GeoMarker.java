@@ -59,13 +59,10 @@ public class GeoMarker extends ImageView implements RemovableView {
     @Override
     public void addToMap(final MapView pbMapView) {
         if (coordinate != null && anchor != null) {
-            pbMapView.post(new Runnable() {
-                @Override
-                public void run() {
-                    pbMapView.removeMarker(GeoMarker.this);
-                    if (coordinate != null) {
-                        pbMapView.addMarker(GeoMarker.this, coordinate.lng, coordinate.lat, anchor.x, anchor.y);
-                    }
+            pbMapView.post(() -> {
+                pbMapView.removeMarker(GeoMarker.this);
+                if (coordinate != null) {
+                    pbMapView.addMarker(GeoMarker.this, coordinate.lng, coordinate.lat, anchor.x, anchor.y);
                 }
             });
         }
@@ -124,14 +121,11 @@ public class GeoMarker extends ImageView implements RemovableView {
     }
 
     public void pinpointOnMap(final MapView pbMapView) {
-        pbMapView.post(new Runnable() {
-            @Override
-            public void run() {
-                if (coordinate != null) {
-                    pbMapView.slideToAndCenterWithScale(coordinate.lng, coordinate.lat, 1f);
-                }
-                addToMap(pbMapView);
+        pbMapView.post(() -> {
+            if (coordinate != null) {
+                pbMapView.slideToAndCenterWithScale(coordinate.lng, coordinate.lat, 1f);
             }
+            addToMap(pbMapView);
         });
 
     }

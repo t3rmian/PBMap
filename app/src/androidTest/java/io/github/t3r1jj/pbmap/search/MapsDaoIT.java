@@ -6,6 +6,7 @@ import android.util.Log;
 
 import androidx.test.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.SmallTest;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -30,12 +31,14 @@ public class MapsDaoIT {
     }
 
     @Test
+    @SmallTest
     public void getSearchSuggestions() {
         List<SearchSuggestion> searchSuggestions = dao.getSearchSuggestions(true);
         assertFalse(searchSuggestions.isEmpty());
     }
 
     @Test
+    @SmallTest
     public void getMapSuggestions() {
         List<SearchSuggestion> searchSuggestions = dao.getMapSuggestions();
         assertFalse(searchSuggestions.isEmpty());
@@ -43,6 +46,7 @@ public class MapsDaoIT {
 
     @TargetApi(19)
     @Test
+    @SmallTest
     public void generatePlacesDocumentation() {
         List<SearchSuggestion> searchSuggestions = dao.getSearchSuggestions(false);
         Collections.sort(searchSuggestions, (o1, o2) -> {

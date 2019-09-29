@@ -3,6 +3,7 @@ package io.github.t3r1jj.pbmap.search;
 import android.content.Context;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Test;
@@ -16,6 +17,7 @@ import static org.junit.Assert.assertEquals;
 public class SearchSuggestionIT {
 
     @Test
+    @SmallTest
     public void getMapName_PlaceIsRootMap() {
         Context ctx = InstrumentationRegistry.getInstrumentation().getTargetContext();
         String mapName = new SearchSuggestion("", "").getMapName(ctx);

@@ -6,6 +6,7 @@ import android.preference.PreferenceManager;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
+import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.After;
@@ -46,7 +47,7 @@ public class ConnectionChangeBroadcastReceiverIT {
     }
 
     @Test
-    @LargeTest
+    @SmallTest
     public void onReceive() {
         WebLogger webLogger = new WebLogger(context);
         assertTrue(webLogger.isEmpty());
@@ -69,6 +70,7 @@ public class ConnectionChangeBroadcastReceiverIT {
     }
 
     @Test
+    @SmallTest
     public void onReceive_Empty() {
         ConnectionChangeBroadcastReceiver receiver = new ConnectionChangeBroadcastReceiver();
         receiver.onReceive(context, null);

@@ -5,6 +5,8 @@ import android.os.SystemClock;
 import android.view.MotionEvent;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
+import androidx.test.filters.MediumTest;
 
 import com.android21buttons.fragmenttestrule.FragmentTestRule;
 
@@ -61,6 +63,7 @@ public class MarkerDialogFragmentIT {
     }
 
     @Test
+    @MediumTest
     public void onCreate() {
         onView(withText(R.string.place_destination_marker)).check(matches(isDisplayed()));
         onView(withText(R.string.place_source_marker)).check(matches(isDisplayed()));
@@ -69,6 +72,7 @@ public class MarkerDialogFragmentIT {
     }
 
     @Test
+    @LargeTest
     public void onDestinationClick() {
         onView(withText(R.string.place_destination_marker)).perform(click());
         assertEquals(motionEvent, capturedEvent);
@@ -77,6 +81,7 @@ public class MarkerDialogFragmentIT {
     }
 
     @Test
+    @LargeTest
     public void onSourceClick() {
         onView(withText(R.string.place_source_marker)).perform(click());
         assertEquals(motionEvent, capturedEvent);
@@ -85,6 +90,7 @@ public class MarkerDialogFragmentIT {
     }
 
     @Test
+    @LargeTest
     public void onImproveClick() {
         onView(withText(R.string.improve)).perform(click());
         assertNull(capturedEvent);
@@ -97,6 +103,7 @@ public class MarkerDialogFragmentIT {
     }
 
     @Test
+    @LargeTest
     public void onCancel() {
         onView(withText(R.string.place_destination_marker)).perform(click());
         verifyFragmentDoesNotExist();

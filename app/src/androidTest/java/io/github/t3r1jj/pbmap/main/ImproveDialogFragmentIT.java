@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
+import androidx.test.filters.MediumTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.android21buttons.fragmenttestrule.FragmentTestRule;
@@ -68,6 +69,7 @@ public class ImproveDialogFragmentIT {
     }
 
     @Test
+    @MediumTest
     public void onCreateDialog() {
         onView(withText(R.string.improve)).check(matches(isDisplayed()));
         onView(withText(R.string.improve_message)).check(matches(isDisplayed()));
@@ -76,6 +78,7 @@ public class ImproveDialogFragmentIT {
     }
 
     @Test
+    @LargeTest
     public void onCreateDialog_Cancel() {
         onView(withText(R.string.cancel)).perform(click());
         onView(withText(R.string.improve)).check(doesNotExist());
@@ -85,6 +88,7 @@ public class ImproveDialogFragmentIT {
     }
 
     @Test
+    @LargeTest
     public void onCreateDialog_ReportEmpty() {
         String errorText = InstrumentationRegistry.getInstrumentation().getTargetContext().getString(R.string.required);
         closeSoftKeyboard();
@@ -93,6 +97,7 @@ public class ImproveDialogFragmentIT {
     }
 
     @Test
+    @LargeTest
     public void onCreateDialog_ReportOk() {
         onView(withId(android.R.id.edit)).perform(typeText(typedText));
         closeSoftKeyboard();

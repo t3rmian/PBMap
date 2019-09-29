@@ -9,6 +9,8 @@ import android.os.Looper;
 import android.widget.Toast;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.MediumTest;
+import androidx.test.filters.SmallTest;
 
 import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;
@@ -40,6 +42,7 @@ public class OnRateClickListenerIT {
     private boolean verifiedToastCreation = false;
 
     @Test
+    @SmallTest
     public void onClick() {
         Context context = mock(Context.class);
         when(context.getApplicationContext()).thenReturn(context);
@@ -56,6 +59,7 @@ public class OnRateClickListenerIT {
     }
 
     @Test
+    @SmallTest
     public void onClick_Fallback() {
         Context context = mock(Context.class);
         when(context.getApplicationContext()).thenReturn(context);
@@ -77,6 +81,7 @@ public class OnRateClickListenerIT {
     }
 
     @Test
+    @MediumTest
     public void onClick_FallbackDidNotWork() {
         Context context = mock(Context.class);
         when(context.getApplicationContext()).thenReturn(context);

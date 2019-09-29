@@ -49,4 +49,9 @@ public class BoundingBox {
     public String toString() {
         return "(" + minLat + "," + minLng + "," + maxLat + "," + maxLng + ")";
     }
+
+    public boolean isInside(Coordinate sourceCoordinate) {
+        return sourceCoordinate != null && sourceCoordinate.lat <= maxLat && sourceCoordinate.lat >= minLat
+                && sourceCoordinate.lng <= maxLng && sourceCoordinate.lng >= minLng;
+    }
 }

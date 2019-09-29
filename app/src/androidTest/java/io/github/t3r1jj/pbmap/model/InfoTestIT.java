@@ -2,6 +2,7 @@ package io.github.t3r1jj.pbmap.model;
 
 import android.graphics.drawable.Drawable;
 
+import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Before;
@@ -28,6 +29,7 @@ public class InfoTestIT {
     }
 
     @Test
+    @SmallTest
     public void createLogo() {
         Info info = new Info(space);
         Drawable logo = info.createLogo(InstrumentationRegistry.getInstrumentation().getContext());
@@ -35,6 +37,7 @@ public class InfoTestIT {
     }
 
     @Test
+    @SmallTest
     public void createLogo_UnknownAsset() {
         when(space.getLogoPath()).thenReturn("unknown");
         Info info = new Info(space);
@@ -43,6 +46,7 @@ public class InfoTestIT {
     }
 
     @Test
+    @SmallTest
     public void createLogo_KnownAsset() {
         when(space.getLogoPath()).thenReturn("test_logo.png");
         Info info = new Info(space);
@@ -51,6 +55,7 @@ public class InfoTestIT {
     }
 
     @Test
+    @SmallTest
     public void getName() {
         Info info = new Info(space);
         String name = info.getName(InstrumentationRegistry.getInstrumentation().getTargetContext());
@@ -58,6 +63,7 @@ public class InfoTestIT {
     }
 
     @Test
+    @SmallTest
     public void getName_Known() {
         whenGetResIdReturnWithPrefix("deanery");
         Info info = new Info(space);
@@ -66,6 +72,7 @@ public class InfoTestIT {
     }
 
     @Test
+    @SmallTest
     public void getDescription() {
         Info info = new Info(space);
         String description = info.getDescription(InstrumentationRegistry.getInstrumentation().getTargetContext());
@@ -73,6 +80,7 @@ public class InfoTestIT {
     }
 
     @Test
+    @SmallTest
     public void getDescription_Known() {
         whenGetResIdReturnWithPrefix("about");
         Info info = new Info(space);
@@ -81,6 +89,7 @@ public class InfoTestIT {
     }
 
     @Test
+    @SmallTest
     public void getAddress() {
         Info info = new Info(space);
         String address = info.getAddress(InstrumentationRegistry.getInstrumentation().getTargetContext());
@@ -88,6 +97,7 @@ public class InfoTestIT {
     }
 
     @Test
+    @SmallTest
     public void getAddress_Known() {
         whenGetResIdReturnWithPrefix("pb_wi");
         Info info = new Info(space);
@@ -97,6 +107,7 @@ public class InfoTestIT {
     }
 
     @Test
+    @SmallTest
     public void getUrl() {
         Info info = new Info(space);
         String url = info.getUrl();
@@ -104,6 +115,7 @@ public class InfoTestIT {
     }
 
     @Test
+    @SmallTest
     public void getUrl_NotEmpty() {
         when(space.getUrl()).thenReturn("url");
         Info info = new Info(space);

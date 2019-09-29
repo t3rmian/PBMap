@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
+import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.After;
@@ -51,6 +53,7 @@ public class WebLoggerIT {
     }
 
     @Test
+    @SmallTest
     public void scheduleMessage() {
         preferences.edit().clear().apply();
         ArrayList<Message> messages = logger.getMessages();
@@ -62,6 +65,7 @@ public class WebLoggerIT {
     }
 
     @Test
+    @LargeTest
     public void sendIncompleteMessages() throws InterruptedException {
         preferences.edit().clear().apply();
         ArrayList<Message> messages = logger.getMessages();
@@ -79,6 +83,7 @@ public class WebLoggerIT {
     }
 
     @Test
+    @LargeTest
     public void sendCompleteMessages() throws InterruptedException {
         preferences.edit().clear().apply();
         ArrayList<Message> messages = logger.getMessages();
@@ -107,6 +112,7 @@ public class WebLoggerIT {
     }
 
     @Test
+    @LargeTest
     public void sendTwoCompleteMessages() throws InterruptedException {
         preferences.edit().clear().apply();
         ArrayList<Message> messages = logger.getMessages();
