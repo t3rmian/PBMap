@@ -154,7 +154,7 @@ public class AboutActivityIT {
     @MediumTest
     public void onLicensesClick_correctContent() throws InterruptedException {
         onView(withId(R.id.about_licenses)).perform(click());
-        Thread.sleep(1000);
+        Thread.sleep(30000);
         onView(withId(R.id.dialog_licenses)).check(matches(isDisplayed()));
         onView(withText(R.string.about_licenses)).check(matches(isDisplayed()));
     }

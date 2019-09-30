@@ -70,7 +70,7 @@ public class MapsDrawerFragmentIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void testDrawer_OpenManually_CloseManually() {
         autoOpenDrawerReturningPreferences(false);
         activityRule.launchActivity(new Intent());
@@ -90,7 +90,7 @@ public class MapsDrawerFragmentIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void testDrawer_NavigatesToCNK() {
         autoOpenDrawerReturningPreferences(true);
         activityRule.launchActivity(new Intent());
@@ -108,7 +108,7 @@ public class MapsDrawerFragmentIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void testDrawer_NavigatesToCNK_SelectionState() {
         autoOpenDrawerReturningPreferences(true);
         activityRule.launchActivity(new Intent());

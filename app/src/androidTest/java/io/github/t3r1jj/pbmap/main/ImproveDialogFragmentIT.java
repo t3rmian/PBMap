@@ -88,7 +88,7 @@ public class ImproveDialogFragmentIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void onCreateDialog_ReportEmpty() {
         String errorText = InstrumentationRegistry.getInstrumentation().getTargetContext().getString(R.string.required);
         closeSoftKeyboard();
@@ -97,7 +97,7 @@ public class ImproveDialogFragmentIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void onCreateDialog_ReportOk() {
         onView(withId(android.R.id.edit)).perform(typeText(typedText));
         closeSoftKeyboard();

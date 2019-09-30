@@ -99,7 +99,7 @@ public class InfoSheetDialogFragmentIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void onCreateAndRotate_InfoIsDisplayed() {
         info = mock(Info.class);
         when(info.getName(any())).thenReturn("test title");

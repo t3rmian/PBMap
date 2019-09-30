@@ -72,7 +72,7 @@ public class MarkerDialogFragmentIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void onDestinationClick() {
         onView(withText(R.string.place_destination_marker)).perform(click());
         assertEquals(motionEvent, capturedEvent);
@@ -81,7 +81,7 @@ public class MarkerDialogFragmentIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void onSourceClick() {
         onView(withText(R.string.place_source_marker)).perform(click());
         assertEquals(motionEvent, capturedEvent);
@@ -103,7 +103,7 @@ public class MarkerDialogFragmentIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void onCancel() {
         onView(withText(R.string.place_destination_marker)).perform(click());
         verifyFragmentDoesNotExist();
