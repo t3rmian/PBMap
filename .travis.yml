@@ -14,11 +14,24 @@ env:
 
 matrix:
   include:
-  - name: "Android 22"
+  - name: "Android 22 small"
     env:
     - EMULATOR_API_LEVEL=22
     - ANDROID_ABI=x86_64
     - ANDROID_ABI_TAG=default
+    - TEST_SUITE=small
+  - name: "Android 22 medium"
+    env:
+    - EMULATOR_API_LEVEL=22
+    - ANDROID_ABI=x86_64
+    - ANDROID_ABI_TAG=default
+    - TEST_SUITE=medium
+  - name: "Android 22 large"
+    env:
+    - EMULATOR_API_LEVEL=22
+    - ANDROID_ABI=x86_64
+    - ANDROID_ABI_TAG=default
+    - TEST_SUITE=large
 
 android:
   components:
@@ -66,7 +79,7 @@ before_script:
 #- adb logcat -v time *:V > logcat.log &
 
 script:
-- bundle exec fastlane all_tests
+- bundle exec fastlane all_tests_${TEST_SUITE}
 
 after_success:
 - bash <(curl -s https://codecov.io/bash)
