@@ -3,7 +3,10 @@ package io.github.t3r1jj.pbmap.testing;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 
-class ServiceGenerator {
+final class ServiceGenerator {
+
+    private ServiceGenerator() {
+    }
 
     private static final String BASE_URL = "https://file.io";
 

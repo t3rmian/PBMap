@@ -3,6 +3,9 @@ package io.github.t3r1jj.pbmap.testing;
 import android.graphics.Bitmap;
 import android.util.Log;
 
+import androidx.test.runner.screenshot.ScreenCapture;
+import androidx.test.runner.screenshot.Screenshot;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -13,8 +16,6 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.io.IOException;
 
-import androidx.test.runner.screenshot.ScreenCapture;
-import androidx.test.runner.screenshot.Screenshot;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;

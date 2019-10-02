@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 import androidx.test.espresso.NoMatchingViewException;
@@ -32,7 +33,11 @@ import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 
-public class TestUtils {
+public final class TestUtils {
+
+    private TestUtils() {
+    }
+
     public static Matcher<View> withMenuIdOrContentDescription(@IdRes int id, @StringRes int menuText) {
         Matcher<View> matcher = withId(id);
         try {
@@ -70,7 +75,7 @@ public class TestUtils {
         };
     }
 
-    public static void withIntents(Runnable runnable) {
+    public static void withIntents(@NonNull Runnable runnable) {
         Intents.init();
         try {
             runnable.run();
