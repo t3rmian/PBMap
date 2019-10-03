@@ -38,6 +38,7 @@ public final class TestUtils {
     private TestUtils() {
     }
 
+    @Factory
     public static Matcher<View> withMenuIdOrContentDescription(@IdRes int id, @StringRes int menuText) {
         Matcher<View> matcher = withId(id);
         try {
@@ -53,26 +54,19 @@ public final class TestUtils {
         return withContentDescription(menuText);
     }
 
+    @Factory
     public static Matcher<View> withIndex(final Matcher<View> matcher, final int index) {
-        return new TypeSafeMatcher<View>() {
-            int currentIndex;
-            int viewObjHash;
+        return new ViewIndexMatcher(index, matcher);
+    }
 
-            @SuppressLint("DefaultLocale")
-            @Override
-            public void describeTo(Description description) {
-                description.appendText(String.format("with index: %d ", index));
-                matcher.describeTo(description);
-            }
+    @Factory
+    public static Matcher<View> nthChildOf(final Matcher<View> parentMatcher, final int childPosition) {
+        return new ChildViewMatcher(childPosition, parentMatcher);
+    }
 
-            @Override
-            public boolean matchesSafely(View view) {
-                if (matcher.matches(view) && currentIndex++ == index) {
-                    viewObjHash = view.hashCode();
-                }
-                return view.hashCode() == viewObjHash;
-            }
-        };
+    @Factory
+    public static Matcher<String> containsIgnoringCase(final String subString) {
+        return new CaseInsensitiveSubstringMatcher(subString);
     }
 
     public static void withIntents(@NonNull Runnable runnable) {
@@ -81,50 +75,6 @@ public final class TestUtils {
             runnable.run();
         } finally {
             Intents.release();
-        }
-    }
-
-    public static Matcher<View> nthChildOf(final Matcher<View> parentMatcher, final int childPosition) {
-        return new TypeSafeMatcher<View>() {
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("position " + childPosition + " of parent ");
-                parentMatcher.describeTo(description);
-            }
-
-            @Override
-            public boolean matchesSafely(View view) {
-                if (!(view.getParent() instanceof ViewGroup)) return false;
-                ViewGroup parent = (ViewGroup) view.getParent();
-
-                return parentMatcher.matches(parent)
-                        && parent.getChildCount() > childPosition
-                        && parent.getChildAt(childPosition).equals(view);
-            }
-        };
-    }
-
-    public static class CaseInsensitiveSubstringMatcher extends TypeSafeMatcher<String> {
-
-        private final String subString;
-
-        private CaseInsensitiveSubstringMatcher(final String subString) {
-            this.subString = subString;
-        }
-
-        @Override
-        protected boolean matchesSafely(final String actualString) {
-            return actualString.toLowerCase().contains(this.subString.toLowerCase());
-        }
-
-        @Override
-        public void describeTo(final Description description) {
-            description.appendText("containing substring \"" + this.subString + "\"");
-        }
-
-        @Factory
-        public static Matcher<String> containsIgnoringCase(final String subString) {
-            return new CaseInsensitiveSubstringMatcher(subString);
         }
     }
 
@@ -158,4 +108,76 @@ public final class TestUtils {
         return permissionStatus == PackageManager.PERMISSION_GRANTED;
     }
 
+    private static class ViewIndexMatcher extends TypeSafeMatcher<View> {
+        private final int index;
+        private final Matcher<View> matcher;
+        int currentIndex;
+        int viewObjHash;
+
+        public ViewIndexMatcher(int index, Matcher<View> matcher) {
+            this.index = index;
+            this.matcher = matcher;
+        }
+
+        @SuppressLint("DefaultLocale")
+        @Override
+        public void describeTo(Description description) {
+            description.appendText(String.format("with index: %d ", index));
+            matcher.describeTo(description);
+        }
+
+        @Override
+        public boolean matchesSafely(View view) {
+            if (matcher.matches(view) && currentIndex++ == index) {
+                viewObjHash = view.hashCode();
+            }
+            return view.hashCode() == viewObjHash;
+        }
+    }
+
+    private static class ChildViewMatcher extends TypeSafeMatcher<View> {
+        private final int childIndex;
+        private final Matcher<View> parentMatcher;
+
+        public ChildViewMatcher(int childIndex, Matcher<View> parentMatcher) {
+            this.childIndex = childIndex;
+            this.parentMatcher = parentMatcher;
+        }
+
+        @Override
+        public void describeTo(Description description) {
+            description.appendText("index " + childIndex + " of parent ");
+            parentMatcher.describeTo(description);
+        }
+
+        @Override
+        public boolean matchesSafely(View view) {
+            if (!(view.getParent() instanceof ViewGroup)) return false;
+            ViewGroup parent = (ViewGroup) view.getParent();
+
+            return parentMatcher.matches(parent)
+                    && parent.getChildCount() > childIndex
+                    && parent.getChildAt(childIndex).equals(view);
+        }
+    }
+
+    public static class CaseInsensitiveSubstringMatcher extends TypeSafeMatcher<String> {
+
+        private final String subString;
+
+        private CaseInsensitiveSubstringMatcher(final String subString) {
+            this.subString = subString;
+        }
+
+        @Override
+        protected boolean matchesSafely(final String actualString) {
+            return actualString.toLowerCase().contains(this.subString.toLowerCase());
+        }
+
+        @Override
+        public void describeTo(final Description description) {
+            description.appendText("containing substring \"" + this.subString + "\"");
+        }
+
+    }
 }

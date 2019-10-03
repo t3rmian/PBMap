@@ -32,8 +32,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibilit
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static io.github.t3r1jj.pbmap.main.MapActivitySearchIT.getFormattedString;
-import static io.github.t3r1jj.pbmap.testing.TestUtils.CaseInsensitiveSubstringMatcher.containsIgnoringCase;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.allowPermissionsIfNeeded;
+import static io.github.t3r1jj.pbmap.testing.TestUtils.containsIgnoringCase;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.withIndex;
 import static org.hamcrest.Matchers.allOf;
 

@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import io.github.t3r1jj.pbmap.model.map.Space;
 
-import static io.github.t3r1jj.pbmap.testing.TestUtils.CaseInsensitiveSubstringMatcher.containsIgnoringCase;
+import static io.github.t3r1jj.pbmap.testing.TestUtils.containsIgnoringCase;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
