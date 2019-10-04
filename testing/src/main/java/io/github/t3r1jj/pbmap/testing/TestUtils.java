@@ -114,7 +114,7 @@ public final class TestUtils {
         int currentIndex;
         int viewObjHash;
 
-        public ViewIndexMatcher(int index, Matcher<View> matcher) {
+        private ViewIndexMatcher(int index, Matcher<View> matcher) {
             this.index = index;
             this.matcher = matcher;
         }
@@ -139,7 +139,7 @@ public final class TestUtils {
         private final int childIndex;
         private final Matcher<View> parentMatcher;
 
-        public ChildViewMatcher(int childIndex, Matcher<View> parentMatcher) {
+        private ChildViewMatcher(int childIndex, Matcher<View> parentMatcher) {
             this.childIndex = childIndex;
             this.parentMatcher = parentMatcher;
         }
@@ -161,7 +161,7 @@ public final class TestUtils {
         }
     }
 
-    public static class CaseInsensitiveSubstringMatcher extends TypeSafeMatcher<String> {
+    private static class CaseInsensitiveSubstringMatcher extends TypeSafeMatcher<String> {
 
         private final String subString;
 
@@ -178,6 +178,6 @@ public final class TestUtils {
         public void describeTo(final Description description) {
             description.appendText("containing substring \"" + this.subString + "\"");
         }
-
     }
+
 }

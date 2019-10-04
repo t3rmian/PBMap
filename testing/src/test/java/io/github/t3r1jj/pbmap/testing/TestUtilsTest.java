@@ -3,7 +3,9 @@ package io.github.t3r1jj.pbmap.testing;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.test.uiautomator.UiDevice;
+import androidx.test.uiautomator.UiObjectNotFoundException;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -12,6 +14,8 @@ import org.hamcrest.TypeSafeMatcher;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import static io.github.t3r1jj.pbmap.testing.TestUtils.allowPermissionsIfNeeded;
+import static io.github.t3r1jj.pbmap.testing.TestUtils.containsIgnoringCase;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.nthChildOf;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.pressDoubleBack;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.withIndex;
@@ -193,5 +197,48 @@ public class TestUtilsTest {
         Matcher viewMatcherMock = mock(Matcher.class);
         Matcher indexMatcher = nthChildOf(viewMatcherMock, index);
         indexMatcher.describeTo(Description.NONE);
+    }
+
+    @Test
+    public void testContainsIgnoringCase() {
+        Matcher stringMatcher = containsIgnoringCase("abc");
+        assertFalse(stringMatcher.matches(new Object() {
+            @NonNull
+            @Override
+            public String toString() {
+                return "aBc";
+            }
+        }));
+        assertTrue(stringMatcher.matches("aBc"));
+        assertFalse(stringMatcher.matches(null));
+    }
+
+    @Test
+    public void testContainsIgnoringCaseMatcher() {
+        Matcher stringMatcher = containsIgnoringCase("aBc");
+        assertTrue(stringMatcher.matches("abc"));
+    }
+
+    @Test
+    public void testContainsIgnoringCaseDescription() {
+        String substring = "aBc";
+        Matcher matcher = containsIgnoringCase(substring);
+        StringDescription mismatchDescription = new StringDescription();
+        assertFalse(matcher.matches(mock(View.class)));
+        matcher.describeTo(mismatchDescription);
+        String description = mismatchDescription.toString();
+        assertThat(description, containsString("substring"));
+        assertThat(description, containsString(substring));
+    }
+
+    @Test
+    public void testContainsIgnoringCaseDescription_None() {
+        Matcher stringMatcher = containsIgnoringCase("aBc");
+        stringMatcher.describeTo(Description.NONE);
+    }
+
+    @Test
+    public void testAllowPermissionsIfNeeded_Unsupported() throws UiObjectNotFoundException {
+        allowPermissionsIfNeeded("some permission");
     }
 }
