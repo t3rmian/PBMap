@@ -4,33 +4,50 @@ import android.app.Instrumentation;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.util.Log;
+import android.view.View;
 
 import androidx.core.content.ContextCompat;
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.GraphHolder;
+import androidx.test.espresso.NoMatchingViewException;
+import androidx.test.espresso.ViewAssertion;
+import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.intent.Intents;
+import androidx.test.espresso.util.EspressoOptional;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObject;
 import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiSelector;
 
+import org.hamcrest.Matcher;
+import org.hamcrest.StringDescription;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.core.classloader.annotations.SuppressStaticInitializationFor;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
+import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.allowPermissionsIfNeeded;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.pressDoubleBack;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.withIntents;
+import static io.github.t3r1jj.pbmap.testing.TestUtils.withMenuIdOrContentDescription;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.powermock.api.mockito.PowerMockito.doAnswer;
+import static org.powermock.api.mockito.PowerMockito.doThrow;
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.spy;
@@ -153,5 +170,94 @@ public class TestUtilsPowerTest {
         allowPermissionsIfNeeded("some permission");
 
         assertEquals(1, count.get());
+    }
+
+    @Test
+    @PrepareForTest(value = {Espresso.class})
+    @SuppressStaticInitializationFor("androidx.test.espresso.Espresso")
+    public void testWithMenuIdOrContentDescription() {
+        mockStatic(Espresso.class);
+        when(Espresso.onView(any())).thenReturn(mock(ViewInteraction.class));
+        Matcher<View> withId = withMenuIdOrContentDescription(1, 1);
+        StringDescription description = new StringDescription();
+        withId.describeTo(description);
+        StringDescription description2 = new StringDescription();
+        withId(1).describeTo(description2);
+        assertEquals(description.toString(), description2.toString());
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    @PrepareForTest(value = {Espresso.class, InstrumentationRegistry.class})
+    @SuppressStaticInitializationFor("androidx.test.espresso.Espresso")
+    public void testWithMenuIdOrContentDescription_NoId() {
+        mockStatic(Espresso.class);
+        mockStatic(InstrumentationRegistry.class);
+        when(InstrumentationRegistry.getInstrumentation()).thenReturn(mock(Instrumentation.class));
+        ViewInteraction viewInteraction = mock(ViewInteraction.class);
+        when(Espresso.onView(any())).thenReturn(viewInteraction);
+        NoMatchingViewException noMatchingViewException = new NoMatchingViewException.Builder()
+                .withViewMatcher(mock(Matcher.class))
+                .withRootView(mock(View.class))
+                .withAdapterViews(Collections.emptyList())
+                .withAdapterViewWarning(EspressoOptional.absent())
+                .build();
+        when(viewInteraction.check(any())).thenThrow(noMatchingViewException);
+
+        Matcher<View> withContentDescription = withMenuIdOrContentDescription(2, 3);
+        StringDescription description = new StringDescription();
+        withContentDescription.describeTo(description);
+        StringDescription description2 = new StringDescription();
+        withContentDescription(3).describeTo(description2);
+        assertEquals(description.toString(), description2.toString());
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    @PrepareForTest(value = {Espresso.class, InstrumentationRegistry.class})
+    @SuppressStaticInitializationFor("androidx.test.espresso.Espresso")
+    public void testWithMenuIdOrContentDescription_NoId_NoBar() throws Exception {
+        mockStatic(Espresso.class);
+        mockStatic(InstrumentationRegistry.class);
+        when(InstrumentationRegistry.getInstrumentation()).thenReturn(mock(Instrumentation.class));
+        ViewInteraction viewInteraction = mock(ViewInteraction.class);
+        when(Espresso.onView(any())).thenReturn(viewInteraction);
+        NoMatchingViewException noMatchingViewException = new NoMatchingViewException.Builder()
+                .withViewMatcher(mock(Matcher.class))
+                .withRootView(mock(View.class))
+                .withAdapterViews(Collections.emptyList())
+                .withAdapterViewWarning(EspressoOptional.absent())
+                .build();
+        when(viewInteraction.check(any())).thenThrow(noMatchingViewException);
+        doThrow(noMatchingViewException).when(Espresso.class, "openActionBarOverflowOrOptionsMenu", any());
+
+        Matcher<View> withContentDescription = withMenuIdOrContentDescription(2, 3);
+        StringDescription description = new StringDescription();
+        withContentDescription.describeTo(description);
+        StringDescription description2 = new StringDescription();
+        withContentDescription(3).describeTo(description2);
+        assertEquals(description.toString(), description2.toString());
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test(expected = MockedOutcome.class)
+    @PrepareForTest(value = {Espresso.class, InstrumentationRegistry.class})
+    @SuppressStaticInitializationFor("androidx.test.espresso.Espresso")
+    public void testWithMenuIdOrContentDescription_NoId_OpenBar_AndDrinkLegally() throws Exception {
+        mockStatic(Espresso.class);
+        mockStatic(InstrumentationRegistry.class);
+        when(InstrumentationRegistry.getInstrumentation()).thenReturn(mock(Instrumentation.class));
+        ViewInteraction viewInteraction = mock(ViewInteraction.class);
+        when(Espresso.onView(any())).thenReturn(viewInteraction);
+        NoMatchingViewException noMatchingViewException = new NoMatchingViewException.Builder()
+                .withViewMatcher(mock(Matcher.class))
+                .withRootView(mock(View.class))
+                .withAdapterViews(Collections.emptyList())
+                .withAdapterViewWarning(EspressoOptional.absent())
+                .build();
+        when(viewInteraction.check(any())).thenThrow(noMatchingViewException);
+        doThrow(new MockedOutcome()).when(Espresso.class, "openActionBarOverflowOrOptionsMenu", any());
+
+        withMenuIdOrContentDescription(2, 3);
     }
 }
