@@ -32,7 +32,7 @@ public class Space extends Place {
     }
 
     public String getAddressResId() {
-        return id.toLowerCase().replace("/", "_") + ADDRESS_POSTFIX;
+        return getResIdString(id, ADDRESS_POSTFIX);
     }
 
     public boolean hasInfo(Context context) {

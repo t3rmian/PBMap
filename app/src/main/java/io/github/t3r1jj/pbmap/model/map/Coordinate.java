@@ -1,5 +1,6 @@
 package io.github.t3r1jj.pbmap.model.map;
 
+import android.location.Location;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -34,12 +35,18 @@ public class Coordinate implements Parcelable, Serializable {
     public Coordinate(double lat, double lng) {
         this.lng = lng;
         this.lat = lat;
+        this.altitude = false;
     }
 
     public Coordinate(double lat, double lng, double alt) {
         this.lng = lng;
         this.lat = lat;
         this.alt = alt;
+    }
+
+    public Coordinate(Location location) {
+        this(location.getLatitude(), location.getLongitude(), location.getAltitude());
+        this.altitude = true;
     }
 
     private Coordinate(Parcel source) {

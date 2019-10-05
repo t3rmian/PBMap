@@ -18,10 +18,12 @@ import java.util.regex.Pattern;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
+import androidx.test.filters.MediumTest;
+import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObject2;
-import io.github.t3r1jj.pbmap.test.ScreenshotOnTestFailedRule;
+import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.clearText;
@@ -36,6 +38,7 @@ import static androidx.test.espresso.intent.matcher.IntentMatchers.toPackage;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.uiautomator.By.text;
+import static io.github.t3r1jj.pbmap.testing.TestUtils.pressDoubleBack;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -60,11 +63,11 @@ public class IntegrationActivityTest {
     @After
     public void tearDown() {
         UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-        device.pressBack();
-        device.pressBack();
+        pressDoubleBack(device);
     }
 
     @Test
+    @MediumTest
     public void onCreate() {
         onView(withId(R.id.description)).check(matches(isDisplayed()));
         onView(withId(R.id.search_query_text)).check(matches(isDisplayed()));
@@ -76,6 +79,7 @@ public class IntegrationActivityTest {
     }
 
     @Test
+    @MediumTest
     public void onDefinedPinpoint() {
         String query = "130@pb_wi_l2";
         onView(withId(R.id.search_query_text))
@@ -90,6 +94,7 @@ public class IntegrationActivityTest {
     }
 
     @Test
+    @MediumTest
     public void onCustomPinpoint() {
         String map = "pb_campus";
         double lat = 53.11878;

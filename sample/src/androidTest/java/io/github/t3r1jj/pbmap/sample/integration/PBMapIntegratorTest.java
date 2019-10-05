@@ -17,11 +17,12 @@ import java.util.regex.Pattern;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
+import androidx.test.filters.MediumTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObject2;
-import io.github.t3r1jj.pbmap.test.ScreenshotOnTestFailedRule;
+import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.clearText;
@@ -36,6 +37,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static androidx.test.uiautomator.By.text;
+import static io.github.t3r1jj.pbmap.testing.TestUtils.pressDoubleBack;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.core.IsNot.not;
 import static org.mockito.ArgumentMatchers.any;
@@ -73,11 +75,11 @@ public class PBMapIntegratorTest {
     @After
     public void tearDown() {
         UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-        device.pressBack();
-        device.pressBack();
+        pressDoubleBack(device);
     }
 
     @Test(expected = ActivityNotFoundException.class)
+    @MediumTest
     public void foundNothingInstalled() {
         doThrow(new ActivityNotFoundException("Mock activity not found"))
                 .when(integrator).startActivity(any(Intent.class));
@@ -85,6 +87,7 @@ public class PBMapIntegratorTest {
     }
 
     @Test
+    @MediumTest
     public void foundNothingInstalled_activityToast_onDefinedPinpoint() {
         doThrow(new ActivityNotFoundException("Mock activity not found"))
                 .when(integrator).startActivity(any(Intent.class));
@@ -95,6 +98,7 @@ public class PBMapIntegratorTest {
     }
 
     @Test
+    @MediumTest
     public void foundNothingInstalled_activityToast_onCustomPinpoint() {
         doThrow(new ActivityNotFoundException("Mock activity not found"))
                 .when(integrator).startActivity(any(Intent.class));
@@ -105,6 +109,7 @@ public class PBMapIntegratorTest {
     }
 
     @Test
+    @MediumTest
     public void invalidNumberFormat_lat_activityToast_onCustomPinpoint() {
         doThrow(new NumberFormatException("Mock location parsing"))
                 .when(integrator).startActivity(any(Intent.class));
@@ -121,6 +126,7 @@ public class PBMapIntegratorTest {
     }
 
     @Test
+    @MediumTest
     public void invalidNumberFormat_lng_activityToast_onCustomPinpoint() {
         doThrow(new NumberFormatException("Mock location parsing"))
                 .when(integrator).startActivity(any(Intent.class));
@@ -137,6 +143,7 @@ public class PBMapIntegratorTest {
     }
 
     @Test
+    @MediumTest
     public void appNotInstalled_openMarket() {
         doAnswer(__ -> {
             doCallRealMethod().when(integrator).startActivity(any(Intent.class));
@@ -150,6 +157,7 @@ public class PBMapIntegratorTest {
     }
 
     @Test
+    @MediumTest
     public void appAndMarketNotInstalled_openGooglePlay() {
         doAnswer(__ -> {
             doAnswer(___ -> {
@@ -166,6 +174,7 @@ public class PBMapIntegratorTest {
     }
 
     @Test(expected = ActivityNotFoundException.class)
+    @MediumTest
     public void foundNothingInstalled_locationVariant() {
         doThrow(new ActivityNotFoundException("Mock activity not found"))
                 .when(integrator).startActivity(any(Intent.class));
@@ -173,6 +182,7 @@ public class PBMapIntegratorTest {
     }
 
     @Test
+    @MediumTest
     public void appNotInstalled_openMarket_locationVariant() {
         doAnswer(__ -> {
             doCallRealMethod().when(integrator).startActivity(any(Intent.class));
@@ -186,6 +196,7 @@ public class PBMapIntegratorTest {
     }
 
     @Test
+    @MediumTest
     public void appAndMarketNotInstalled_openGooglePlay_locationVariant() {
         doAnswer(__ -> {
             doAnswer(___ -> {

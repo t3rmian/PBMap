@@ -9,7 +9,9 @@ import com.qozix.tileview.TileView;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.github.t3r1jj.pbmap.logging.Config;
 import io.github.t3r1jj.pbmap.main.Controller;
+import io.github.t3r1jj.pbmap.model.map.BoundingBox;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
 import io.github.t3r1jj.pbmap.model.map.Space;
 
@@ -22,7 +24,7 @@ public class MapView extends TileView implements PlaceView {
     public MapView(Context context, PBMap map) {
         super(context);
         this.map = map;
-        PBMap.BoundingBox boundingBox = map.getBoundingBox();
+        BoundingBox boundingBox = map.getBoundingBox();
         defineBounds(boundingBox.getMinLng(), boundingBox.getMaxLat(), boundingBox.getMaxLng(), boundingBox.getMinLat());
     }
 
@@ -39,13 +41,10 @@ public class MapView extends TileView implements PlaceView {
 
     public void initializeZoom() {
         if (!positionsCache.containsKey(map.getId())) {
-            post(new Runnable() {
-                @Override
-                public void run() {
-                    setMinimumScaleMode(MinimumScaleMode.FIT);
-                    setScale(0);
-                    positionsCache.put(map.getId(), new MapViewPosition(getCenterX(), getCenterY(), getScale()));
-                }
+            post(() -> {
+                setMinimumScaleMode(MinimumScaleMode.FIT);
+                setScale(0);
+                positionsCache.put(map.getId(), new MapViewPosition(getCenterX(), getCenterY(), getScale()));
             });
         }
     }
@@ -61,12 +60,9 @@ public class MapView extends TileView implements PlaceView {
     public void loadPreviousPosition() {
         final MapViewPosition previousPosition = positionsCache.get(map.getId());
         if (previousPosition != null) {
-            post(new Runnable() {
-                @Override
-                public void run() {
-                    setMinimumScaleMode(MinimumScaleMode.FIT);
-                    slideToAndCenterWithScale(previousPosition.centerX, previousPosition.centerY, previousPosition.zoom);
-                }
+            post(() -> {
+                setMinimumScaleMode(MinimumScaleMode.FIT);
+                slideToAndCenterWithScale(previousPosition.centerX, previousPosition.centerY, previousPosition.zoom);
             });
         }
     }
@@ -81,12 +77,13 @@ public class MapView extends TileView implements PlaceView {
         controller.loadTitle(map);
     }
 
-// TODO: uncomment when logging required
-//    @Override
-//    public boolean onSingleTapConfirmed(MotionEvent event) {
-//        controller.printPressedCoordinate(event);
-//        return super.onSingleTapConfirmed(event);
-//    }
+    @Override
+    public boolean onSingleTapConfirmed(MotionEvent event) {
+        if (Config.getInstance().isDebug()) {
+            controller.printPressedCoordinate(event);
+        }
+        return super.onSingleTapConfirmed(event);
+    }
 
     @Override
     public void onLongPress(MotionEvent event) {

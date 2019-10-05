@@ -1,8 +1,8 @@
 package io.github.t3r1jj.pbmap.logging;
 
+import org.json.JSONObject;
+
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.Place;
@@ -50,12 +50,6 @@ public class Message implements Serializable {
     }
 
     String toJson() {
-        String descriptionString = null;
-        try {
-            descriptionString = (description == null ? "null" : URLEncoder.encode(description, "UTF8"));
-        } catch (UnsupportedEncodingException e) {
-            descriptionString = (description == null ? "null" : description.replace("\\", "") + " (ENCODING NOT SUPPORTED)");
-        }
         return "{" +
                 "\"id\":\"" + id + "\"" +
                 ",\"epochMs\":" + epochMs +
@@ -66,11 +60,18 @@ public class Message implements Serializable {
                 "\"id\":\" " + closestPlace + "\"" +
                 ", \"coordinate\": " + jsonStringify(closestPlaceCoordinate) +
                 "}" +
-                ",\"description\":\"" + descriptionString + "\"" +
+                ",\"description\":" + encodeText(description) +
                 ",\"ddRoute\":" + ddRoute +
                 ",\"ddPlace\":" + ddPlace +
                 ",\"code\":\"" + (coordinate == null ? "null" : coordinate.toString().replace("\"", "\\\"")) + "\"" +
                 '}';
+    }
+
+    private String encodeText(String text) {
+        if (text == null) {
+            return "\"null\"";
+        }
+        return JSONObject.quote(text);
     }
 
     private String jsonStringify(Coordinate coordinate) {

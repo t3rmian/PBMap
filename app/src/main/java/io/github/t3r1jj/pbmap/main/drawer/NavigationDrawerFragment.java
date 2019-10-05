@@ -38,9 +38,9 @@ abstract class NavigationDrawerFragment extends Fragment {
      * Per the design guidelines, you should show the drawer on launch until the user manually
      * expands it. This shared preference tracks this.
      */
-    private static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
+    static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
 
-    protected int currentSelectedId = 0;
+    protected int currentSelectedId = 1;
 
     /**
      * Helper component that ties the action bar to the navigation drawer.
@@ -85,12 +85,9 @@ abstract class NavigationDrawerFragment extends Fragment {
                              Bundle savedInstanceState) {
         navigationView = (NavigationView) inflater.inflate(
                 R.layout.fragment_drawer, container, false);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                selectItem(item.getItemId());
-                return true;
-            }
+        navigationView.setNavigationItemSelectedListener(item -> {
+            selectItem(item.getItemId());
+            return true;
         });
         return navigationView;
     }
@@ -157,7 +154,6 @@ abstract class NavigationDrawerFragment extends Fragment {
                 if (isAdded()) {
                     userLearnedDrawer();
                 }
-
             }
 
             @Override
@@ -177,11 +173,8 @@ abstract class NavigationDrawerFragment extends Fragment {
         }
 
         // Defer code dependent on restoration of previous instance state.
-        this.drawerLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                drawerToggle.syncState();
-            }
+        this.drawerLayout.post(() -> {
+            drawerToggle.syncState();
         });
 
         this.drawerLayout.addDrawerListener(drawerToggle);

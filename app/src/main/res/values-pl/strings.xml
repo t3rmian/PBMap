@@ -7,7 +7,7 @@
     <string name="search_hint">Podpowiedź: PB WB, 116@wi,…</string>
     <string name="not_found">Nie znaleziono</string>
     <string name="about">O programie</string>
-    <string name="action_share">Podziel się</string>
+    <string name="action_share">Podziel się z</string>
     <string name="rate">Oceń</string>
     <string name="about_description">MapaPB to interaktywna mapa Politechniki Białostockiej stworzona w celu ułatwienia nawigacji, a także lokalizacji obiektów (sal, wydziałów, itp.) znajdujących się na terenie politechniki.</string>
     <string name="about_author">"Autor: "</string>
@@ -45,4 +45,6 @@
     <string name="improve_message">Co [nie]powinno się znaleźć w miejscu naciśnięcia?</string>
     <string name="report">Zgłoś</string>
     <string name="required">To pole jest wymagane</string>
+    <string name="source">Punkt startowy</string>
+    <string name="destination">Punkt docelowy</string>
 </resources>

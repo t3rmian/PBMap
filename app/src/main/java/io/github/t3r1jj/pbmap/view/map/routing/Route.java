@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Paint;
 import android.graphics.Path;
+
 import androidx.annotation.NonNull;
 
 import com.qozix.tileview.geom.CoordinateTranslater;
@@ -13,13 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.github.t3r1jj.pbmap.R;
+import io.github.t3r1jj.pbmap.logging.Config;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
 import io.github.t3r1jj.pbmap.model.map.route.RouteGraph;
 import io.github.t3r1jj.pbmap.view.map.MapView;
 
 public class Route implements RemovableView {
-    private static final boolean LINE_SMOOTH = false;
     RouteGraph routeGraph;
     private final CompositePathView.DrawablePath drawablePath = new CompositePathView.DrawablePath();
     private GeoMarker source;
@@ -27,6 +28,7 @@ public class Route implements RemovableView {
     private PBMap map;
     private List<Coordinate> route;
 
+    @Deprecated
     public Route(Context context) {
         Resources resources = context.getResources();
         drawablePath.paint = getPaint(resources.getColor(R.color.route), resources.getDimension(R.dimen.route_stroke_width));
@@ -105,34 +107,13 @@ public class Route implements RemovableView {
         Path path = new Path();
         double[] start = positions.get(0);
         path.moveTo(coordinateTranslater.translateX(start[0]), coordinateTranslater.translateY(start[1]));
-        if (LINE_SMOOTH) {
-            if (positions.size() < 3) {
-                prepareLinearPath(coordinateTranslater, positions, path);
-            } else {
-                prepareQuadPath(coordinateTranslater, positions, path);
-            }
-        } else {
-            prepareLinearPath(coordinateTranslater, positions, path);
-        }
+        prepareLinearPath(coordinateTranslater, positions, path);
         return path;
     }
 
     private void prepareLinearPath(CoordinateTranslater coordinateTranslater, List<double[]> positions, Path path) {
         for (int i = 1; i < positions.size(); i++) {
             double[] position = positions.get(i);
-            path.lineTo(coordinateTranslater.translateX(position[0]), coordinateTranslater.translateY(position[1]));
-        }
-    }
-
-    private void prepareQuadPath(CoordinateTranslater coordinateTranslater, List<double[]> positions, Path path) {
-        for (int i = 1; i < positions.size() - 1; i += 2) {
-            double[] second = positions.get(i);
-            double[] third = positions.get(i + 1);
-            path.quadTo(coordinateTranslater.translateX(second[0]), coordinateTranslater.translateY(second[1]),
-                    coordinateTranslater.translateX(third[0]), coordinateTranslater.translateY(third[1]));
-        }
-        if (positions.size() % 2 == 0) {
-            double[] position = positions.get(positions.size() - 1);
             path.lineTo(coordinateTranslater.translateX(position[0]), coordinateTranslater.translateY(position[1]));
         }
     }

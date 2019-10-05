@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
@@ -42,10 +44,6 @@ public class GeoMarker extends ImageView implements RemovableView {
         }
     }
 
-    public void setAnchor(PointF anchor) {
-        this.anchor = anchor;
-    }
-
     public Coordinate getCoordinate() {
         return coordinate;
     }
@@ -57,13 +55,10 @@ public class GeoMarker extends ImageView implements RemovableView {
     @Override
     public void addToMap(final MapView pbMapView) {
         if (coordinate != null && anchor != null) {
-            pbMapView.post(new Runnable() {
-                @Override
-                public void run() {
-                    pbMapView.removeMarker(GeoMarker.this);
-                    if (coordinate != null) {
-                        pbMapView.addMarker(GeoMarker.this, coordinate.lng, coordinate.lat, anchor.x, anchor.y);
-                    }
+            pbMapView.post(() -> {
+                pbMapView.removeMarker(GeoMarker.this);
+                if (coordinate != null) {
+                    pbMapView.addMarker(GeoMarker.this, coordinate.lng, coordinate.lat, anchor.x, anchor.y);
                 }
             });
         }
@@ -74,12 +69,9 @@ public class GeoMarker extends ImageView implements RemovableView {
         if (this.level != level) {
             this.level = level;
             Drawable drawable = getResources().getDrawable(marker.getLevelDrawableId(level));
+            setContentDescription(getResources().getString(marker.getContentDescriptionResId()));
             setImageDrawable(drawable);
         }
-    }
-
-    public void setListener(MapListener listener) {
-        this.listener = listener;
     }
 
     public void addToMap(MapView mapView, MotionEvent event, double alt) {
@@ -121,30 +113,34 @@ public class GeoMarker extends ImageView implements RemovableView {
     }
 
     public void pinpointOnMap(final MapView pbMapView) {
-        pbMapView.post(new Runnable() {
-            @Override
-            public void run() {
-                if (coordinate != null) {
-                    pbMapView.slideToAndCenterWithScale(coordinate.lng, coordinate.lat, 1f);
-                }
-                addToMap(pbMapView);
+        pbMapView.post(() -> {
+            if (coordinate != null) {
+                pbMapView.slideToAndCenterWithScale(coordinate.lng, coordinate.lat, 1f);
             }
+            addToMap(pbMapView);
         });
 
     }
 
     public enum Marker {
-        SOURCE(new int[]{R.drawable.source_down_marker, R.drawable.source_marker, R.drawable.source_up_marker}),
-        DESTINATION(new int[]{R.drawable.destination_down_marker, R.drawable.destination_marker, R.drawable.destination_up_marker});
+        SOURCE(new int[]{R.drawable.source_down_marker, R.drawable.source_marker, R.drawable.source_up_marker}, R.string.source),
+        DESTINATION(new int[]{R.drawable.destination_down_marker, R.drawable.destination_marker, R.drawable.destination_up_marker}, R.string.destination);
 
         private final int[] drawables;
+        private final int contentDescriptionResId;
 
-        Marker(int[] drawables) {
+        Marker(int[] drawables, @StringRes int contentDescriptionResId) {
             this.drawables = drawables;
+            this.contentDescriptionResId = contentDescriptionResId;
         }
 
         private int getLevelDrawableId(int level) {
             return drawables[level + 1];
+        }
+
+        @StringRes
+        public int getContentDescriptionResId() {
+            return contentDescriptionResId;
         }
     }
 

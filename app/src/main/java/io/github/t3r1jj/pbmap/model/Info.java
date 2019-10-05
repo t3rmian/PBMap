@@ -2,6 +2,7 @@ package io.github.t3r1jj.pbmap.model;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,7 +11,7 @@ import java.io.Serializable;
 import io.github.t3r1jj.pbmap.model.map.Space;
 
 public class Info implements Serializable {
-    public final String url;
+    private final String url;
     private final String addressId;
     private final String nameId;
     private final String rawName;
@@ -32,7 +33,7 @@ public class Info implements Serializable {
                 InputStream inputStream = context.getAssets().open(logoPath);
                 return Drawable.createFromStream(inputStream, null);
             } catch (IllegalArgumentException | IOException e) {
-                e.printStackTrace();
+                Log.w("createLogo", e);
             }
         }
         return null;
@@ -61,4 +62,7 @@ public class Info implements Serializable {
         return context.getString(resId);
     }
 
+    public String getUrl() {
+        return url;
+    }
 }

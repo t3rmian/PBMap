@@ -14,11 +14,30 @@ env:
 
 matrix:
   include:
-  - name: "Android 22"
+  - name: "API 22 UT/IT(small) :app"
     env:
     - EMULATOR_API_LEVEL=22
     - ANDROID_ABI=x86_64
     - ANDROID_ABI_TAG=default
+    - TEST_SUITE=small
+  - name: "API 22 IT(medium) :app"
+    env:
+    - EMULATOR_API_LEVEL=22
+    - ANDROID_ABI=x86_64
+    - ANDROID_ABI_TAG=default
+    - TEST_SUITE=medium
+  - name: "API 22 IT(large) :app"
+    env:
+    - EMULATOR_API_LEVEL=22
+    - ANDROID_ABI=x86_64
+    - ANDROID_ABI_TAG=default
+    - TEST_SUITE=large
+  - name: "API 22 UT/IT/E2E :testing/:sample"
+    env:
+    - EMULATOR_API_LEVEL=22
+    - ANDROID_ABI=x86_64
+    - ANDROID_ABI_TAG=default
+    - TEST_SUITE=e2e
 
 android:
   components:
@@ -53,8 +72,9 @@ before_install:
 - yes | sdkmanager "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI_TAG;$ANDROID_ABI"
 - bundle install
 
-install:
-- bundle exec fastlane unit_tests
+#install:
+#- chmod +x ci/run_unit_tests.sh
+#- bash ci/run_unit_tests.sh
 
 before_script:
 - echo no | avdmanager -v create avd -f -n test -k "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI_TAG;$ANDROID_ABI" -c 10M
@@ -62,16 +82,18 @@ before_script:
 - android-wait-for-emulator
 - adb shell input keyevent 82 &
 - adb shell input tap 650 400 &
+#- adb logcat -v time -s "ProfiledTestWatcher" &
 - adb logcat -v time *:V > logcat.log &
 
 script:
-- bundle exec fastlane all_tests
+- bundle exec fastlane all_tests_${TEST_SUITE}
 
 after_success:
 - bash <(curl -s https://codecov.io/bash)
 
 after_failure:
-- cat logcat.log
+- grep "ScreenshotOnTestFailedRule\|UploadScreenCaptureProcessor\|ProfiledTestWatcher" logcat.log
+#- grep "TestRunner\|ScreenshotOnTestFailedRule\|UploadScreenCaptureProcessor\|Choreographer\|ViewInteraction\|LifecycleMonitor" logcat.log
 
 before_deploy:
 - chmod +x ci/run_firebase_tests.sh

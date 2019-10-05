@@ -70,6 +70,11 @@ public class PBMap extends Space {
         return routePath;
     }
 
+    /**
+     *
+     * @param navigation direction
+     * @return path to the map or null if there is no map in the requested direction
+     */
     public String getNavigationMapPath(Navigation navigation) {
         if (navigation == Navigation.UP) {
             return upMapPath;
@@ -133,57 +138,6 @@ public class PBMap extends Space {
             }
         }
         return closest;
-    }
-
-    /**
-     * Represents max / min lng / lat
-     */
-    public static class BoundingBox {
-        private double maxLng = Double.NEGATIVE_INFINITY;
-        private double minLng = Double.POSITIVE_INFINITY;
-        private double maxLat = Double.NEGATIVE_INFINITY;
-        private double minLat = Double.POSITIVE_INFINITY;
-
-        private void add(Coordinate coordinate) {
-            maxLng = Math.max(coordinate.lng, maxLng);
-            minLng = Math.min(coordinate.lng, minLng);
-            maxLat = Math.max(coordinate.lat, maxLat);
-            minLat = Math.min(coordinate.lat, minLat);
-        }
-
-        /**
-         * @return @see {@link Coordinate#lng}
-         */
-        public double getMaxLng() {
-            return maxLng;
-        }
-
-        /**
-         * @return @see {@link Coordinate#lng}
-         */
-        public double getMinLng() {
-            return minLng;
-        }
-
-
-        /**
-         * @return @see {@link Coordinate#lat}
-         */
-        public double getMaxLat() {
-            return maxLat;
-        }
-
-        /**
-         * @return @see {@link Coordinate#lat}
-         */
-        public double getMinLat() {
-            return minLat;
-        }
-
-        @Override
-        public String toString() {
-            return "(" + minLat + "," + minLng + "," + maxLat + "," + maxLng + ")";
-        }
     }
 
     public enum Navigation {

@@ -14,16 +14,18 @@ import java.util.regex.Pattern;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
+import androidx.test.filters.MediumTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObject2;
 import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiSelector;
-import io.github.t3r1jj.pbmap.test.ScreenshotOnTestFailedRule;
+import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import static androidx.test.uiautomator.By.text;
+import static io.github.t3r1jj.pbmap.testing.TestUtils.pressDoubleBack;
 import static junit.framework.TestCase.fail;
 
 @LargeTest
@@ -49,11 +51,11 @@ public class EndToEndIntegrationTest {
     @After
     public void tearDown() {
         UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-        device.pressBack();
-        device.pressBack();
+        pressDoubleBack(device);
     }
 
     @Test
+    @MediumTest
     public void pinpointPlace() throws UiObjectNotFoundException, PackageManager.NameNotFoundException {
         getInstrumentation().getTargetContext().getPackageManager()
                 .getPackageInfo("io.github.t3r1jj.pbmap", 0);
@@ -71,6 +73,7 @@ public class EndToEndIntegrationTest {
     }
 
     @Test
+    @MediumTest
     public void customPinpoint() throws UiObjectNotFoundException, PackageManager.NameNotFoundException {
         getInstrumentation().getTargetContext().getPackageManager()
                 .getPackageInfo("io.github.t3r1jj.pbmap", 0);
