@@ -19,7 +19,7 @@ public class RouteGraph {
 
     public List<Coordinate> getRoute(Coordinate source, Coordinate destination) {
         if (source == null || destination == null) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         }
         Coordinate destinationVertex = findClosest(destination);
         algorithm.setTarget(destinationVertex);

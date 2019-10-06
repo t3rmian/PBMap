@@ -3,12 +3,11 @@ package io.github.t3r1jj.pbmap.logging;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Base64;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -25,14 +24,18 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import io.github.t3r1jj.pbmap.main.DeviceServices;
+
 public class WebLogger extends ContextWrapper {
 
     static final String PREF_KEY_MESSAGES = "io.github.t3r1jj.pbmap.logging.WebLogger.PREF_KEY_MESSAGES";
     private static final String URL = "https://script.google.com/macros/s/AKfycbwXqgqKd4DhM6iV5PoaqNlwdw5W1o5s3YBau5Exgh0HCR8JRzzF/exec";
     private final SharedPreferences preferences;
+    private final DeviceServices deviceServices;
 
     public WebLogger(Context base) {
         super(base);
+        deviceServices = new DeviceServices(this);
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
     }
 
@@ -49,10 +52,10 @@ public class WebLogger extends ContextWrapper {
     }
 
     public void trySendingMessages() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo wifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if (wifi.isConnected()) {
+        if (deviceServices.isWifiConnected()) {
             sendMessages();
+        } else {
+            Log.w("WebLogger", "Tried uploading logs but there is no connection");
         }
     }
 
@@ -66,13 +69,14 @@ public class WebLogger extends ContextWrapper {
                 String data = params[0];
                 String result = "";
                 try {
+                    Log.i("WebLogger", "Initiating log upload");
                     HttpURLConnection urlConnection = (HttpURLConnection) ((new URL(URL).openConnection()));
                     urlConnection.setDoOutput(true);
                     urlConnection.setRequestProperty("Content-Type", "application/json");
                     urlConnection.setRequestProperty("Accept", "application/json");
                     urlConnection.setRequestMethod("POST");
-                    urlConnection.setReadTimeout(5000);
-                    urlConnection.setConnectTimeout(5000);
+                    urlConnection.setReadTimeout(15000);
+                    urlConnection.setConnectTimeout(15000);
                     urlConnection.connect();
 
                     OutputStream outputStream = urlConnection.getOutputStream();
@@ -91,9 +95,10 @@ public class WebLogger extends ContextWrapper {
 
                     bufferedReader.close();
                     result = sb.toString();
+                    urlConnection.disconnect();
 
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Log.e("WebLogger", "Error during log upload", e);
                 }
                 return result;
             }
@@ -102,6 +107,9 @@ public class WebLogger extends ContextWrapper {
             protected void onPostExecute(String result) {
                 if ("success".equals(result)) {
                     preferences.edit().putString(PREF_KEY_MESSAGES, objectToString(new ArrayList<>())).apply();
+                    Log.i("WebLogger", "Successfully uploaded log");
+                } else {
+                    Log.e("WebLogger", "Log not uploaded with result: " + result);
                 }
             }
         }.execute(messages);
@@ -125,14 +133,13 @@ public class WebLogger extends ContextWrapper {
 
     private String objectToString(Serializable object) {
         String encoded = null;
-        try {
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
+        try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream)) {
             objectOutputStream.writeObject(object);
             objectOutputStream.close();
             encoded = Base64.encodeToString(byteArrayOutputStream.toByteArray(), 0);
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e("WebLogger", "Error during message encoding", e);
         }
         return encoded;
     }
@@ -144,7 +151,7 @@ public class WebLogger extends ContextWrapper {
             ObjectInputStream objectInputStream = new ObjectInputStream(new ByteArrayInputStream(bytes));
             object = (Serializable) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException | ClassCastException e) {
-            e.printStackTrace();
+            Log.e("WebLogger", "Error during message decoding", e);
         }
         return object;
     }

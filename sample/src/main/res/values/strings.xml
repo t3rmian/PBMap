@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Integration</string>
+    <string name="app_name">PBMap Integration</string>
     <string name="could_not_open_android_market">Could not open android market</string>
     <string name="integration_description">This is a sample application which integrates with PBMap\n\nYou can:\n- pinpoint defined place (place_id@map_id)\n- pinpoint custom location (map_id + location coordinates)</string>
     <string name="search_query_hint">place_id@map_id</string>

@@ -24,6 +24,7 @@ public class FullRoute extends Route {
     private final CompositePathView.DrawablePath drawablePath = new CompositePathView.DrawablePath();
     private List<CompositePathView.DrawablePath> paths = new LinkedList<>();
 
+    @Deprecated
     public FullRoute(Context context) {
         super(context);
         Resources resources = context.getResources();
@@ -48,9 +49,6 @@ public class FullRoute extends Route {
         paths.clear();
         List<Edge> edges = routeGraph.getEdges();
         for (Edge edge : edges) {
-//            if (edge.getStart().alt != 160d) {
-//                continue;
-//            }
             List<double[]> positions = new ArrayList<>();
             positions.add(new double[]{edge.getStart().lng, edge.getStart().lat});
             positions.add(new double[]{edge.getEnd().lng, edge.getEnd().lat});

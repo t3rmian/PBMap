@@ -49,18 +49,20 @@ android {
         exclude 'META-INF/LICENSE-notice.md'
     }
     testOptions {
+        animationsDisabled = true
         unitTests.includeAndroidResources = true
+        unitTests.returnDefaultValues = true
     }
+    useLibrary 'android.test.runner'
+    useLibrary 'android.test.base'
+    useLibrary 'android.test.mock'
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.1', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
-    implementation 'com.google.android.material:material:1.1.0-alpha02'
+    implementation "androidx.appcompat:appcompat:$androidx_appcompat_version"
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
     implementation 'com.qozix:tileview:2.2.6'
     implementation('org.simpleframework:simple-xml:2.7.1') {
         exclude module: 'stax'
@@ -72,10 +74,29 @@ dependencies {
     implementation 'com.getkeepsafe.taptargetview:taptargetview:1.9.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation "androidx.test.ext:truth:$androidx_test_version"
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_jupiter_version"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
 
-    androidTestImplementation 'org.mockito:mockito-core:2.22.0' //2.23.+ causes IT to fail https://github.com/mockito/mockito/issues/922
-    androidTestImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    androidTestImplementation("androidx.test.espresso:espresso-core:$espresso_version", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestImplementation "androidx.test:core:$androidx_test_version"
+    androidTestImplementation "androidx.test:runner:$androidx_test_version"
+    androidTestImplementation "androidx.test:rules:$androidx_test_version"
+    androidTestImplementation "androidx.test.ext:junit:$androidx_test_junit_version"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$espresso_version"
+    androidTestImplementation "androidx.test.uiautomator:uiautomator:$uiautomator_version"
+    androidTestImplementation "org.junit.jupiter:junit-jupiter-api:$junit_jupiter_version"
+    androidTestImplementation "org.mockito:mockito-core:$mockito_version"
+    androidTestImplementation 'com.linkedin.dexmaker:dexmaker-mockito:2.19.0'
+    androidTestImplementation "com.21buttons:fragment-test-rule:$fragment_test_rule_version"
+    androidTestImplementation "androidx.test.uiautomator:uiautomator:$uiautomator_version"
+    androidTestImplementation project(':testing')
+
+    debugImplementation "com.21buttons:fragment-test-rule-extras:$fragment_test_rule_version"
 }
 
 task copyNOTICE(type: Copy) {
@@ -88,4 +109,11 @@ task copyNOTICE(type: Copy) {
 preBuild.dependsOn copyNOTICE
 repositories {
     mavenCentral()
+}
+
+project.gradle.taskGraph.whenReady {
+    connectedDebugAndroidTest.doLast {
+        installDebug.install()
+        installDebugAndroidTest.install()
+    }
 }

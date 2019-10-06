@@ -93,8 +93,8 @@ public class MapsDao extends ContextWrapper {
                         }
                     }
                     SearchSuggestion searchSuggestion = new SearchSuggestion(name.getValue(), assetsPath);
-                    searchSuggestions.add(searchSuggestion);
                     searchSuggestion.setMapId(mapId);
+                    searchSuggestions.add(searchSuggestion);
                 }
             } catch (XPathExpressionException e) {
                 e.printStackTrace();
@@ -124,12 +124,9 @@ public class MapsDao extends ContextWrapper {
     public Cursor query(String[] columns, String[] selectionArgs, boolean searchById) {
         prepareQueryArguments(selectionArgs, searchById);
         List<Object[]> results = findQueryResults(selectionArgs, searchById);
-        Collections.sort(results, new Comparator<Object[]>() {
-            @Override
-            public int compare(Object[] o1, Object[] o2) {
-                int byName = String.valueOf(o1[1]).compareTo(String.valueOf(o2[1]));
-                return byName == 0 ? String.valueOf(o1[2]).compareTo(String.valueOf(o2[2])) : byName;
-            }
+        Collections.sort(results, (o1, o2) -> {
+            int byName = String.valueOf(o1[1]).compareTo(String.valueOf(o2[1]));
+            return byName == 0 ? String.valueOf(o1[2]).compareTo(String.valueOf(o2[2])) : byName;
         });
         MatrixCursor matrixCursor = new MatrixCursor(columns);
         for (Object[] result : results) {

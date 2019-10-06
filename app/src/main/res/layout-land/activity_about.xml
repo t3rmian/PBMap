@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical"
-    tools:context="io.github.t3r1jj.pbmap.AboutActivity">
+    tools:context="io.github.t3r1jj.pbmap.about.AboutActivity">
 
     <include layout="@layout/toolbar" />
 

@@ -1,55 +1,56 @@
 package io.github.t3r1jj.pbmap.model
 
-import android.content.Context
-import android.content.ContextWrapper
+import android.content.res.Resources
 import android.util.Log
-import androidx.core.os.ConfigurationCompat
-import java.util.*
+import io.github.t3r1jj.pbmap.BuildConfig
 
-class Translator(base: Context) : ContextWrapper(base) {
-    var locale: Locale = ConfigurationCompat.getLocales(resources.configuration)[0]
-
-    fun translateDescription(resStr: String, vararg formatArgs: Any): String {
-        return translate(resStr + "_description", formatArgs)
+open class Translator(val resources: Resources) {
+    companion object {
+        const val DESCRIPTION_SUFFIX = "_description"
+        const val NAME_SUFFIX = "_name"
     }
 
-    fun translateDescription(resStr: String): String {
-        return translate(resStr + "_description")
+    open fun translateDescription(resStr: String, vararg formatArgs: Any): String {
+        return translate(resStr + DESCRIPTION_SUFFIX, formatArgs) ?: resStr
     }
 
-    fun translateName(resStr: String, vararg formatArgs: Any): String {
-        return translate(resStr + "_name", formatArgs)
+    open fun translateDescription(resStr: String): String {
+        return translate(resStr + DESCRIPTION_SUFFIX) ?: resStr
     }
 
-    fun translateName(resStr: String): String {
-        return translate(resStr + "_name")
+    open fun translateName(resStr: String, vararg formatArgs: Any): String {
+        return translate(resStr + NAME_SUFFIX, formatArgs) ?: resStr
     }
 
-    fun translate(resStr: String, vararg formatArgs: Any): String {
+    open fun translateName(resStr: String): String {
+        return translate(resStr + NAME_SUFFIX) ?: resStr
+    }
+
+    open fun translate(resStr: String, vararg formatArgs: Any): String? {
         val resId = getStringResource(resStr)
         return if (resId == 0) {
-            Log.w("i18n", String.format("Unable to translate %s, missing resource string"))
-            resStr
+            Log.w("i18n", String.format("Unable to translate %s, missing resource string", resStr))
+            null
         } else translate(resId, formatArgs)
     }
 
-    fun translate(resStr: String): String {
+    open fun translate(resStr: String): String? {
         val resId = getStringResource(resStr)
         return if (resId == 0) {
-            Log.w("i18n", String.format("Unable to translate %s, missing resource string"))
-            resStr
+            Log.w("i18n", String.format("Unable to translate %s, missing resource string", resStr))
+            null
         } else translate(resId)
     }
 
     private fun getStringResource(aString: String): Int {
-        return resources.getIdentifier(aString, "string", packageName)
+        return resources.getIdentifier(aString, "string", BuildConfig.APPLICATION_ID)
     }
 
-    fun translate(resId: Int): String {
-        return this.getString(resId)
+    private fun translate(resId: Int): String {
+        return resources.getString(resId)
     }
 
-    fun translate(resId: Int, vararg formatArgs: Any): String {
-        return this.getString(resId, formatArgs)
+    private fun translate(resId: Int, vararg formatArgs: Any): String {
+        return resources.getString(resId, formatArgs)
     }
 }

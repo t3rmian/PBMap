@@ -4,12 +4,18 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.view.MotionEvent;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 
 import com.qozix.tileview.geom.CoordinateTranslater;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 import io.github.t3r1jj.pbmap.R;
+import io.github.t3r1jj.pbmap.logging.Config;
 import io.github.t3r1jj.pbmap.logging.Message;
 import io.github.t3r1jj.pbmap.logging.WebLogger;
 import io.github.t3r1jj.pbmap.model.Info;
@@ -33,17 +39,18 @@ public class Controller implements GeoMarker.MapListener {
     private GeoMarker source;
     private GeoMarker destination;
     private Route route;
+    private SearchSuggestion preloadedSuggestion;
 
     Controller(MapActivity mapActivity) {
         this.mapActivity = mapActivity;
         this.mapsDao = new MapsDao(mapActivity);
-        this.route = new Route(mapActivity);
+        this.route = Config.getInstance().createRoute(mapActivity);
     }
 
-    void restoreState(Memento memento, MapActivity mapActivity) {
+    void restoreState(@NotNull Memento memento, @NotNull MapActivity mapActivity) {
         this.mapActivity = mapActivity;
         this.mapsDao = new MapsDao(mapActivity);
-        this.route = new Route(mapActivity);
+        this.route = Config.getInstance().createRoute(mapActivity);
         this.map = mapsDao.loadMap(memento.mapReferencePath);
         loadRouteGraph();
         if (source == null) {
@@ -64,18 +71,32 @@ public class Controller implements GeoMarker.MapListener {
     void loadMap() {
         map = mapsDao.loadMap();
         loadRouteGraph();
-        updateView();
     }
 
-    void loadMap(SearchSuggestion suggestion) {
-        if (map == null) {
-            loadMap();
-        }
-        if (!map.getReferenceMapPath().equals(suggestion.getMapPath())) {
+    void loadMap(SearchSuggestion suggestion, boolean preload) {
+        if (map == null || !map.getReferenceMapPath().equals(suggestion.getMapPath())) {
             map = mapsDao.loadMap(suggestion.getMapPath());
             loadRouteGraph();
-            updateView();
+            if (!preload) {
+                updateView();
+            }
         }
+        if (!preload) {
+            pinpointSuggestion(suggestion);
+        } else {
+            preloadedSuggestion = suggestion;
+        }
+    }
+
+    public void postLoad() {
+        updateView();
+        if (preloadedSuggestion != null) {
+            pinpointSuggestion(preloadedSuggestion);
+            preloadedSuggestion = null;
+        }
+    }
+
+    private void pinpointSuggestion(SearchSuggestion suggestion) {
         Coordinate coordinate = suggestion.getCoordinate();
         if (coordinate != null) {
             pinpointLocation(coordinate);
@@ -152,6 +173,7 @@ public class Controller implements GeoMarker.MapListener {
         double lng = coordinateTranslater.translateAndScaleAbsoluteToRelativeX(mapView.getScrollX() + event.getX() - mapView.getOffsetX(), mapView.getScale());
         double lat = coordinateTranslater.translateAndScaleAbsoluteToRelativeY(mapView.getScrollY() + event.getY() - mapView.getOffsetY(), mapView.getScale());
         System.out.println(new Coordinate(lat, lng, map.getCenter().alt));
+        Toast.makeText(mapActivity, String.format("lat=%f; lng=%f; alt=%f", lat, lng, map.getCenter().alt), Toast.LENGTH_SHORT).show();
     }
 
     public void onLongPress(MotionEvent event) {
@@ -206,16 +228,20 @@ public class Controller implements GeoMarker.MapListener {
         mapActivity.popupInfo(new Info(map));
     }
 
-    public void updatePosition(final Coordinate locationCoordinate) {
+    public void updatePosition(@Nullable final Coordinate locationCoordinate) {
         if (locationCoordinate == null) {
             return;
         }
         if (!locationCoordinate.hasAltitude()) {
             locationCoordinate.alt = map.getCenter().alt;
         }
+        Coordinate sourceCoordinate = source.getCoordinate();
         source.setCoordinate(locationCoordinate);
-        source.setLevel(map.compareAltitude(source.getCoordinate()), GeoMarker.Marker.SOURCE);
-        source.pinpointOnMap(mapView);
+        if (!map.getBoundingBox().isInside(sourceCoordinate) &&
+                map.getBoundingBox().isInside(locationCoordinate)) {
+            source.pinpointOnMap(mapView);
+        }
+        source.setLevel(map.compareAltitude(sourceCoordinate), GeoMarker.Marker.SOURCE);
     }
 
     private void updateRoute() {
@@ -263,7 +289,7 @@ public class Controller implements GeoMarker.MapListener {
     }
 
     String getCurrentMapId() {
-        return map.getId();
+        return map == null ? null : map.getId();
     }
 
     void onNavigationPerformed(PBMap.Navigation navigation) {

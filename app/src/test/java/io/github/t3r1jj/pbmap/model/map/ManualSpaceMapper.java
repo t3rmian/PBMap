@@ -13,7 +13,7 @@ import static io.github.t3r1jj.pbmap.model.map.ManualSpaceMapper.StartingCoordin
 /**
  * Provides test execution which creates space coordinates given by starting coordinate and other params. It can generate xml data for rectangular space.
  */
-@Ignore
+@Ignore("Not a test case - generator")
 public class ManualSpaceMapper {
     /**
      * based on location

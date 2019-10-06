@@ -20,6 +20,8 @@
         <include layout="@layout/content_map" />
     </FrameLayout>
 
+    <include layout="@layout/activity_map_overlay" />
+
     <!-- The drawer is given a fixed width in dp and extends the full height of
          the container. -->
     <fragment

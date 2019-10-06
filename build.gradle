@@ -7,7 +7,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.2'
+        classpath 'com.android.tools.build:gradle:3.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "com.vanniktech:gradle-android-junit-jacoco-plugin:0.13.0"
     }
@@ -34,4 +34,26 @@ junitJacoco {
     excludes
     includeNoLocationClasses = true
     includeInstrumentationCoverageInMergedReport = true
+}
+
+apply plugin: 'idea'
+
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
+
+project.ext {
+    androidx_appcompat_version = '1.1.0'
+    androidx_test_version = '1.2.0'
+    androidx_test_junit_version = '1.1.1'
+    fragment_test_rule_version = '2.0.1'
+    junit_version = '4.12'
+    junit_jupiter_version = '5.3.1'
+    mockito_version = '2.22.0' //2.23.+ causes IT to fail https://github.com/mockito/mockito/issues/922
+    powermock_version = '2.0.2'
+    espresso_version = '3.2.0'
+    uiautomator_version = '2.2.0'
 }
