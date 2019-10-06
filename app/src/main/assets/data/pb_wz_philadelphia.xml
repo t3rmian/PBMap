@@ -1,5 +1,5 @@
 <map height="1026" id="PB_WZ_Philadelphia" previous_map_path="data/pb_wz_campus.xml" up_map_path="data/pb_wz_philadelphia_2.xml"
-    route_path="routes/pb_wz_campus.xml" width="1470" unfinished="true">
+    route_path="routes/pb_wz_campus.xml" width="1470">
     <tiles_configs>
         <tiles_config height="256" path="tiles/pb_wz_campus/philadelphia/tile-%d_%d.png" width="256"
             zoom="1" />
@@ -9,6 +9,23 @@
         <coordinate alt="150" lat="53.09720" lng="23.12556" />
     </coordinates>
 
-    <spot id="↵">	<coordinates>		<coordinate lat="53.09746" lng="23.12518" alt="150.0"/>	</coordinates></spot>
-
+    <spot id="↵"><coordinates><coordinate lat="53.09742320259734" lng="23.12503430969238" alt="150.0"/></coordinates></spot>
+    <spot id="3"><coordinates><coordinate lat="53.0973943424152" lng="23.12540242458712" alt="150.0"/></coordinates></spot>
+    <spot id="4"><coordinates><coordinate lat="53.09738215876351" lng="23.12534094970703" alt="150.0"/></coordinates></spot>
+    <spot id="5"><coordinates><coordinate lat="53.09736772867244" lng="23.1252779296875" alt="150.0"/></coordinates></spot>
+    <spot id="6"><coordinates><coordinate lat="53.09735734217831" lng="23.125212604675294" alt="150.0"/></coordinates></spot>
+    <spot id="7"><coordinates><coordinate lat="53.097342462805436" lng="23.125142669677736" alt="150.0"/></coordinates></spot>
+    <spot id="8"><coordinates><coordinate lat="53.097333450612446" lng="23.12508656463623" alt="150.0"/></coordinates></spot>
+    <spot id="9"><coordinates><coordinate lat="53.09732261481629" lng="23.125021239624022" alt="150.0"/></coordinates></spot>
+    <spot id="10"><coordinates><coordinate lat="53.097310906892" lng="23.12496206970215" alt="150.0"/></coordinates></spot>
+    <spot id="10A"><coordinates><coordinate lat="53.097300071116074" lng="23.124905964660645" alt="150.0"/></coordinates></spot>
+    <spot id="1"><coordinates><coordinate lat="53.09736339432566" lng="23.12487565651407" alt="150.0"/></coordinates></spot>
+    <spot id="WC"><coordinates><coordinate lat="53.09733841920849" lng="23.124932864685057" alt="150.0"/></coordinates></spot>
+    <spot id="Cloakroom"><coordinates><coordinate lat="53.09736737481725" lng="23.12499196585519" alt="150.0"/></coordinates></spot>
+    <spot id="2"><coordinates><coordinate lat="53.097447120608805" lng="23.125366304592003" alt="150.0"/></coordinates></spot>
+    <spot id="WC"><coordinates><coordinate lat="53.09743538624903" lng="23.125291759643556" alt="150.0"/></coordinates></spot>
+    <spot id="↑"><coordinates><coordinate lat="53.09741553825988" lng="23.125192619628905" alt="150.0"/></coordinates></spot>
+    <spot id="15" hidden="true"><coordinates><coordinate lat="53.09741553825988" lng="23.125192619628905" alt="150.0"/></coordinates></spot>
+    <spot id="↵"><coordinates><coordinate lat="53.0973321027468" lng="23.124856799926757" alt="150.0"/></coordinates></spot>
+    <spot id="↵"><coordinates><coordinate lat="53.09744035484508" lng="23.125429324611535" alt="150.0"/></coordinates></spot>
 </map>
