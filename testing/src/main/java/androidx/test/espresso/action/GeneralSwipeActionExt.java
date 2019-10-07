@@ -40,7 +40,7 @@ final class GeneralSwipeActionExt implements ViewAction {
     final Swiper swiper;
     final PrecisionDescriber precisionDescriber;
 
-    public GeneralSwipeActionExt(
+    GeneralSwipeActionExt(
             Swiper swiper,
             CoordinatesProvider startCoordinatesProvider,
             CoordinatesProvider endCoordinatesProvider,
