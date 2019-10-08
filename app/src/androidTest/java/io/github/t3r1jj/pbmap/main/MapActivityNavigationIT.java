@@ -10,8 +10,13 @@ import android.os.SystemClock;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
+import androidx.test.filters.MediumTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
+import androidx.test.uiautomator.By;
+import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObjectNotFoundException;
+import androidx.test.uiautomator.Until;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -142,7 +147,6 @@ public class MapActivityNavigationIT {
         onView(withContentDescription(R.string.more_features)).perform(click());
         onView(withId(R.id.info_fab)).perform(click());
         onView(withId(R.id.design_bottom_sheet)).check(matches(isDisplayed()));
-        onView(withId(R.id.design_bottom_sheet)).check(matches(isDisplayed()));
         onView(withId(R.id.info_title))
                 .check(matches(allOf(isDisplayed(), withText(getFormattedString(R.string.pb_wb_name)))));
         onView(withId(R.id.info_url))
@@ -176,13 +180,74 @@ public class MapActivityNavigationIT {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             mockLocation.setElapsedRealtimeNanos(SystemClock.elapsedRealtimeNanos());
         }
-        activityRule.getActivity().runOnUiThread(()->{
+        activityRule.getActivity().runOnUiThread(() -> {
             locationListener.onLocationChanged(mockLocation);
         });
 
         onView(withText("69B")).check(matches(isDisplayed()));
         onView(withContentDescription(R.string.source)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
         onView(withId(R.id.distance)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    @MediumTest
+    public void pinpointStartEndWithCustomLocation() {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEARCH);
+        sendIntent.putExtra(SearchManager.QUERY, "pb_campus");
+        Location customLocation = new Location("");
+        customLocation.setLatitude(53.11878);
+        customLocation.setLongitude(23.14878);
+        sendIntent.putExtra(SearchManager.EXTRA_DATA_KEY, customLocation);
+        activityRule.launchActivity(sendIntent);
+
+        UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+
+        int x = 200;
+        final int y = device.getDisplayHeight() / 2;
+        final int steps = 200;
+        device.swipe(x, y, x, y, steps);
+        device.findObject(By.text(getFormattedString(R.string.place_source_marker))).click();
+
+        SystemClock.sleep(250);
+        x = device.getDisplayWidth() - 200;
+        device.swipe(x, y, x, y, steps);
+        device.findObject(By.text(getFormattedString(R.string.place_destination_marker))).click();;
+
+        device.wait(Until.findObject(By.textContains("Distance")), 250);
+        device.wait(Until.findObject(By.descContains("Source")), 50);
+        device.wait(Until.findObject(By.descContains("Destination")), 50);
+    }
+
+    @Test
+    @MediumTest
+    public void onSpaceNavigation() {
+        activityRule.launchActivity(new Intent());
+        UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        device.findObject(By.textContains("PB WI")).click();
+        device.wait(Until.findObject(By.descContains("12b")), 250);
+    }
+
+    @Test
+    @MediumTest
+    public void onSpaceNavigationInfo() {
+        activityRule.launchActivity(new Intent());
+        UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        device.findObject(By.textContains("Gwint\n" +
+                "club")).click();
+        SystemClock.sleep(2500);
+        onView(withId(R.id.design_bottom_sheet)).check(matches(isDisplayed()));
+        onView(withId(R.id.info_address))
+                .check(matches(allOf(isDisplayed(), withText(R.string.gwint_address))));
+    }
+
+    @Test
+    @MediumTest
+    public void onZoom() {
+        activityRule.launchActivity(new Intent());
+        UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        device.findObject(By.res("android:id/zoomIn")).click();
+        device.findObject(By.res("android:id/zoomOut")).click();
     }
 
 }

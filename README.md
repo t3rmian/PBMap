@@ -52,7 +52,7 @@ Location customLocation = new Location("");
 customLocation.setLatitude(53.11878);
 customLocation.setLongitude(23.14878);
 
-sendIntent.putExtra(SearchManager.EXTRA_DATA_KEY, location);
+sendIntent.putExtra(SearchManager.EXTRA_DATA_KEY, customLocation);
 
 startActivity(sendIntent);
 ````
