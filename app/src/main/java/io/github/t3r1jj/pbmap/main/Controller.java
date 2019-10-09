@@ -286,7 +286,7 @@ public class Controller implements GeoMarker.MapListener {
     }
 
     String getCurrentMapId() {
-        return map.getId();
+        return map == null ? null : map.getId();
     }
 
     void onNavigationPerformed(PBMap.Navigation navigation) {

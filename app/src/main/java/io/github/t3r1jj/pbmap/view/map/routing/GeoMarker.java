@@ -44,10 +44,6 @@ public class GeoMarker extends ImageView implements RemovableView {
         }
     }
 
-    public void setAnchor(PointF anchor) {
-        this.anchor = anchor;
-    }
-
     public Coordinate getCoordinate() {
         return coordinate;
     }
@@ -76,10 +72,6 @@ public class GeoMarker extends ImageView implements RemovableView {
             setContentDescription(getResources().getString(marker.getContentDescriptionResId()));
             setImageDrawable(drawable);
         }
-    }
-
-    public void setListener(MapListener listener) {
-        this.listener = listener;
     }
 
     public void addToMap(MapView mapView, MotionEvent event, double alt) {

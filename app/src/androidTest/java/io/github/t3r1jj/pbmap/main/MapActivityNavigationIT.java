@@ -23,6 +23,8 @@ import org.junit.Test;
 import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
 
+import java.util.regex.Pattern;
+
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.model.gps.PBLocationListener;
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
@@ -191,28 +193,24 @@ public class MapActivityNavigationIT {
 
     @Test
     @MediumTest
-    public void pinpointStartEndWithCustomLocation() {
+    public void pinpointStartEnd() {
         Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEARCH);
-        sendIntent.putExtra(SearchManager.QUERY, "pb_campus");
-        Location customLocation = new Location("");
-        customLocation.setLatitude(53.11878);
-        customLocation.setLongitude(23.14878);
-        sendIntent.putExtra(SearchManager.EXTRA_DATA_KEY, customLocation);
         activityRule.launchActivity(sendIntent);
-
         UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
 
         int x = 200;
         final int y = device.getDisplayHeight() / 2;
         final int steps = 200;
         device.swipe(x, y, x, y, steps);
-        device.findObject(By.text(getFormattedString(R.string.place_source_marker))).click();
+        SystemClock.sleep(1000);
+        device.findObject(By.text(Pattern.compile("^.*(?i)(SOURCE).*$"))).click();
 
-        SystemClock.sleep(250);
+        SystemClock.sleep(1000);
         x = device.getDisplayWidth() - 200;
         device.swipe(x, y, x, y, steps);
-        device.findObject(By.text(getFormattedString(R.string.place_destination_marker))).click();;
+        SystemClock.sleep(1000);
+        device.findObject(By.text(Pattern.compile("^.*(?i)(DESTINATION).*$"))).click();;
+        SystemClock.sleep(1000);
 
         device.wait(Until.findObject(By.textContains("Distance")), 250);
         device.wait(Until.findObject(By.descContains("Source")), 50);
@@ -222,8 +220,13 @@ public class MapActivityNavigationIT {
     @Test
     @MediumTest
     public void onSpaceNavigation() {
-        activityRule.launchActivity(new Intent());
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEARCH);
+        sendIntent.putExtra(SearchManager.QUERY, "wi@pb_wb");
+        activityRule.launchActivity(sendIntent);
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync();
         UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        maxZoomOut(device);
         device.findObject(By.textContains("PB WI")).click();
         device.wait(Until.findObject(By.descContains("12b")), 250);
     }
@@ -231,23 +234,30 @@ public class MapActivityNavigationIT {
     @Test
     @MediumTest
     public void onSpaceNavigationInfo() {
-        activityRule.launchActivity(new Intent());
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEARCH);
+        sendIntent.putExtra(SearchManager.QUERY, "pb_campus");
+        Location customLocation = new Location("");
+        customLocation.setLatitude(53.1186219);
+        customLocation.setLongitude(23.1505355);
+        sendIntent.putExtra(SearchManager.EXTRA_DATA_KEY, customLocation);
+        activityRule.launchActivity(sendIntent);
         UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-        device.findObject(By.textContains("Gwint\n" +
-                "club")).click();
+        maxZoomOut(device);
+        device.findObject(By.text(Pattern.compile("^.*(?i)(GWINT).*$", Pattern.DOTALL))).click();
         SystemClock.sleep(2500);
         onView(withId(R.id.design_bottom_sheet)).check(matches(isDisplayed()));
         onView(withId(R.id.info_address))
                 .check(matches(allOf(isDisplayed(), withText(R.string.gwint_address))));
     }
 
-    @Test
-    @MediumTest
-    public void onZoom() {
-        activityRule.launchActivity(new Intent());
-        UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+    private void maxZoomOut(UiDevice device) {
         device.findObject(By.res("android:id/zoomIn")).click();
-        device.findObject(By.res("android:id/zoomOut")).click();
+        SystemClock.sleep(250);
+        for (int i = 0; i < 25; i++) {
+            device.findObject(By.res("android:id/zoomOut")).click();
+            SystemClock.sleep(250);
+        }
     }
 
 }

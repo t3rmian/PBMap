@@ -14,7 +14,7 @@ env:
 
 matrix:
   include:
-  - name: "Android 22 small"
+  - name: "Android 22 small and unit"
     env:
     - EMULATOR_API_LEVEL=22
     - ANDROID_ABI=x86_64
@@ -67,7 +67,8 @@ before_install:
 - bundle install
 
 install:
-- bundle exec fastlane unit_tests
+- chmod +x ci/run_unit_tests.sh
+- bash ci/run_unit_tests.sh
 
 before_script:
 - echo no | avdmanager -v create avd -f -n test -k "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI_TAG;$ANDROID_ABI" -c 10M

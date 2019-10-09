@@ -382,6 +382,9 @@ public class MapActivity extends DrawerActivity
         }
         if (placeFound == null) {
             Toast.makeText(this, R.string.not_found, Toast.LENGTH_LONG).show();
+            if (!controller.isInitialized()) {
+                controller.loadMap();
+            }
         } else {
             controller.loadMap(placeFound, preload);
         }
