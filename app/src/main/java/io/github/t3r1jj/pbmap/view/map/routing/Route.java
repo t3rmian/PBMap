@@ -105,7 +105,7 @@ public class Route implements RemovableView {
         Path path = new Path();
         double[] start = positions.get(0);
         path.moveTo(coordinateTranslater.translateX(start[0]), coordinateTranslater.translateY(start[1]));
-        if (LINE_SMOOTH) {
+        if (LINE_SMOOTH) {//TODO: enable and test it
             if (positions.size() < 3) {
                 prepareLinearPath(coordinateTranslater, positions, path);
             } else {

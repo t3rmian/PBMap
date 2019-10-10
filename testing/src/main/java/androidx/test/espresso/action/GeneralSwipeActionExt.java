@@ -35,10 +35,10 @@ final class GeneralSwipeActionExt implements ViewAction {
     /** The minimum amount of a view that must be displayed in order to swipe across it. */
     private static final int VIEW_DISPLAY_PERCENTAGE = 1;
 
-    final CoordinatesProvider startCoordinatesProvider;
-    final CoordinatesProvider endCoordinatesProvider;
-    final Swiper swiper;
-    final PrecisionDescriber precisionDescriber;
+    private final CoordinatesProvider startCoordinatesProvider;
+    private final CoordinatesProvider endCoordinatesProvider;
+    private final Swiper swiper;
+    private final PrecisionDescriber precisionDescriber;
 
     GeneralSwipeActionExt(
             Swiper swiper,

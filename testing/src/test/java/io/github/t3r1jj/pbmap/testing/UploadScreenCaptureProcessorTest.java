@@ -41,7 +41,9 @@ public class UploadScreenCaptureProcessorTest {
     @Mock
     private Bitmap bitmapMock;
 
-    @Test(expected = MockedOutcome.class)
+    private final VerifyAnswer verifyAnswer = new VerifyAnswer();
+
+    @Test
     public void process_successful_noBody() throws IOException {
         PowerMockito.mockStatic(Log.class);
         PowerMockito.mockStatic(ServiceGenerator.class);
@@ -52,14 +54,14 @@ public class UploadScreenCaptureProcessorTest {
         when(callMock.execute()).thenReturn(responseMock);
         when(responseMock.message()).thenReturn("msg");
         when(responseMock.isSuccessful()).thenReturn(true);
-
         UploadScreenCaptureProcessor processor = new UploadScreenCaptureProcessor();
         when(Log.println(eq(Log.INFO), eq(UploadScreenCaptureProcessor.class.getSimpleName()), eq("msg")))
-                .thenThrow(MockedOutcome.class);
+                .then(verifyAnswer);
         processor.process(screenCaptureMock);
+        verifyAnswer.assertCalled();
     }
 
-    @Test(expected = MockedOutcome.class)
+    @Test
     public void process_unsuccessful_noBody() throws IOException {
         PowerMockito.mockStatic(Log.class);
         PowerMockito.mockStatic(ServiceGenerator.class);
@@ -73,11 +75,12 @@ public class UploadScreenCaptureProcessorTest {
 
         UploadScreenCaptureProcessor processor = new UploadScreenCaptureProcessor();
         when(Log.println(eq(Log.ERROR), eq(UploadScreenCaptureProcessor.class.getSimpleName()), eq("msg")))
-                .thenThrow(MockedOutcome.class);
+                .then(verifyAnswer);
         processor.process(screenCaptureMock);
+        verifyAnswer.assertCalled();
     }
 
-    @Test(expected = MockedOutcome.class)
+    @Test
     public void process_successful() throws IOException {
         PowerMockito.mockStatic(Log.class);
         PowerMockito.mockStatic(ServiceGenerator.class);
@@ -92,11 +95,12 @@ public class UploadScreenCaptureProcessorTest {
 
         UploadScreenCaptureProcessor processor = new UploadScreenCaptureProcessor();
         when(Log.println(eq(Log.INFO), eq(UploadScreenCaptureProcessor.class.getSimpleName()), eq("body")))
-                .thenThrow(MockedOutcome.class);
+                .then(verifyAnswer);
         processor.process(screenCaptureMock);
+        verifyAnswer.assertCalled();
     }
 
-    @Test(expected = MockedOutcome.class)
+    @Test
     public void process_unsuccessful() throws IOException {
         PowerMockito.mockStatic(Log.class);
         PowerMockito.mockStatic(ServiceGenerator.class);
@@ -111,8 +115,9 @@ public class UploadScreenCaptureProcessorTest {
 
         UploadScreenCaptureProcessor processor = new UploadScreenCaptureProcessor();
         when(Log.println(eq(Log.ERROR), eq(UploadScreenCaptureProcessor.class.getSimpleName()), eq("body")))
-                .thenThrow(MockedOutcome.class);
+                .then(verifyAnswer);
         processor.process(screenCaptureMock);
+        verifyAnswer.assertCalled();
     }
 
 }

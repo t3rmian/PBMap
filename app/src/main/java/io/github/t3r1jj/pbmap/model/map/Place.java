@@ -84,7 +84,7 @@ public abstract class Place {
         return logoPath;
     }
 
-    public ImageView createLogo(Context context) {
+    public ImageView createLogo(Context context) {//TODO: Test it
         if (logoPath != null) {
             try {
                 InputStream inputStream = context.getAssets().open(logoPath);

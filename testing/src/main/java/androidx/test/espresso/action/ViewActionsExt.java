@@ -20,7 +20,10 @@ import androidx.test.espresso.ViewAction;
 
 import static androidx.test.espresso.action.ViewActions.actionWithAssertions;
 
-public class ViewActionsExt {
+public final class ViewActionsExt {
+
+    private ViewActionsExt() {
+    }
 
     private static final float EDGE_FUZZ_FACTOR = 0.083f;
 

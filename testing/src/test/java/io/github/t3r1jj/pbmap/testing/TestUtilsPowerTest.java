@@ -8,9 +8,7 @@ import android.view.View;
 
 import androidx.core.content.ContextCompat;
 import androidx.test.espresso.Espresso;
-import androidx.test.espresso.GraphHolder;
 import androidx.test.espresso.NoMatchingViewException;
-import androidx.test.espresso.ViewAssertion;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.intent.Intents;
 import androidx.test.espresso.util.EspressoOptional;
@@ -24,17 +22,17 @@ import org.hamcrest.Matcher;
 import org.hamcrest.StringDescription;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Answers;
+import org.mockito.invocation.InvocationOnMock;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.core.classloader.annotations.SuppressStaticInitializationFor;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.allowPermissionsIfNeeded;
@@ -57,33 +55,50 @@ import static org.powermock.api.mockito.PowerMockito.whenNew;
 @RunWith(PowerMockRunner.class)
 public class TestUtilsPowerTest {
 
-    @Test(expected = MockedOutcome.class)
+    private VerifyAnswer verifyAnswer;
+
+    @Test
     @PrepareForTest(value = {Intents.class})
     public void testWithIntents_Init() throws Exception {
+        verifyAnswer = new VerifyAnswer(Answers.RETURNS_DEFAULTS);
         mockStatic(Intents.class);
-        when(Intents.class, "init").thenThrow(new MockedOutcome());
+        when(Intents.class, "init").then(verifyAnswer);
         withIntents(() -> {
         });
+        verifyAnswer.assertCalled();
     }
 
-    @Test(expected = MockedOutcome.class)
+    @Test
     @PrepareForTest(value = {Intents.class})
     public void testWithIntents_Release() throws Exception {
+        verifyAnswer = new VerifyAnswer(Answers.RETURNS_SMART_NULLS);
         mockStatic(Intents.class);
-        when(Intents.class, "release").thenThrow(new MockedOutcome());
+        when(Intents.class, "release").then(verifyAnswer);
         withIntents(() -> {
         });
+        verifyAnswer.assertCalled();
     }
 
-    @Test(expected = MockedOutcome.class)
+    @Test
     @PrepareForTest(value = {Intents.class})
     public void testWithIntents_InitFirst() throws Exception {
+        AtomicReference<Boolean> runnableCalled = new AtomicReference<>(false);
+        verifyAnswer = new VerifyAnswer(Answers.RETURNS_SMART_NULLS);
+        VerifyAnswer verifyReleaseAnswer = new VerifyAnswer(Answers.RETURNS_SMART_NULLS) {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                assertTrue(runnableCalled.get());
+                return super.answer(invocation);
+            }
+        };
         mockStatic(Intents.class);
-        when(Intents.class, "init").thenThrow(new MockedOutcome());
-        when(Intents.class, "release").thenThrow(new RuntimeException("release"));
+        when(Intents.class, "init").then(verifyAnswer);
+        when(Intents.class, "release").then(verifyReleaseAnswer);
         withIntents(() -> {
-            throw new RuntimeException("runnable");
+            verifyAnswer.assertCalled();
+            runnableCalled.set(true);
         });
+        verifyReleaseAnswer.assertCalled();
     }
 
     @Test
@@ -101,16 +116,18 @@ public class TestUtilsPowerTest {
         assertTrue(intended.get());
     }
 
-    @Test(expected = MockedOutcome.class)
+    @Test
     @PrepareForTest(value = {Log.class})
     public void testDoubleBack_WithExceptionWarning() {
+        verifyAnswer = new VerifyAnswer();
         mockStatic(Log.class);
         UiDevice deviceMock = mock(UiDevice.class);
         RuntimeException throwableMock = new RuntimeException("mocked exception");
-        when(deviceMock.pressBack()).thenThrow(throwableMock);
+        when(deviceMock.pressBack()).then(verifyAnswer);
         when(Log.w(eq("DoubleBackPress"), eq(throwableMock)))
-                .thenThrow(MockedOutcome.class);
+                .then(verifyAnswer);
         pressDoubleBack(deviceMock);
+        verifyAnswer.assertCalled();
     }
 
     @Test
@@ -240,10 +257,11 @@ public class TestUtilsPowerTest {
     }
 
     @SuppressWarnings("unchecked")
-    @Test(expected = MockedOutcome.class)
+    @Test
     @PrepareForTest(value = {Espresso.class, InstrumentationRegistry.class})
     @SuppressStaticInitializationFor("androidx.test.espresso.Espresso")
     public void testWithMenuIdOrContentDescription_NoId_OpenBar_AndDrinkLegally() throws Exception {
+        verifyAnswer = new VerifyAnswer(Answers.RETURNS_SMART_NULLS);
         mockStatic(Espresso.class);
         mockStatic(InstrumentationRegistry.class);
         when(InstrumentationRegistry.getInstrumentation()).thenReturn(mock(Instrumentation.class));
@@ -256,8 +274,9 @@ public class TestUtilsPowerTest {
                 .withAdapterViewWarning(EspressoOptional.absent())
                 .build();
         when(viewInteraction.check(any())).thenThrow(noMatchingViewException);
-        doThrow(new MockedOutcome()).when(Espresso.class, "openActionBarOverflowOrOptionsMenu", any());
+        when(Espresso.class, "openActionBarOverflowOrOptionsMenu", any()).then(verifyAnswer);
 
         withMenuIdOrContentDescription(2, 3);
+        verifyAnswer.assertCalled();
     }
 }

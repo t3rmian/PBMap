@@ -131,7 +131,7 @@ public class MapActivity extends DrawerActivity
 
         gpsButton = findViewById(R.id.gps_fab);
         gpsButton.setOnClickListener(view -> {
-            if (doesNotHaveGpsPermissions()) {
+            if (doesNotHaveGpsPermissions()) {//TODO: test it
                 explicitlyAskedForPermissions = true;
                 ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
             } else {
@@ -273,7 +273,7 @@ public class MapActivity extends DrawerActivity
         OFF, AEROPLANE, WIFI_OFF, ON
     }
 
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {//TODO: test it
         if (requestCode == REQUEST_LOCATION) {
             if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 if (requestLocationUpdates() == LocationState.OFF) {
@@ -396,7 +396,7 @@ public class MapActivity extends DrawerActivity
     }
 
     @SuppressWarnings("ConstantConditions")
-    public void setLogo(ImageView view) {
+    public void setLogo(ImageView view) {//TODO: test it
         if (view == null) {
             getSupportActionBar().setLogo(null);
         } else {
@@ -601,7 +601,7 @@ public class MapActivity extends DrawerActivity
         return controller;
     }
 
-    public static class GpsDialogFragment extends DialogFragment {
+    public static class GpsDialogFragment extends DialogFragment {//TODO: test it
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             return new AlertDialog.Builder(getActivity(), getTheme())

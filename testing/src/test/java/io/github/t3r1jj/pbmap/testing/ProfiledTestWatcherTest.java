@@ -21,25 +21,30 @@ import static org.powermock.api.mockito.PowerMockito.when;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(value = {Log.class, Screenshot.class})
 public class ProfiledTestWatcherTest {
-    @Test(expected = MockedOutcome.class)
+
+    private final VerifyAnswer verifyAnswer = new VerifyAnswer();
+
+    @Test
     public void testProfiledLog() {
         ProfiledTestWatcher profiledTestWatcher = new ProfiledTestWatcher();
         String mockedName = "mocked name";
         PowerMockito.mockStatic(Log.class);
         when(Log.i(eq(ProfiledTestWatcher.class.getSimpleName()), argThat(s -> s.contains(mockedName) && s.matches(".*\\dms"))))
-                .thenThrow(MockedOutcome.class);
+                .then(verifyAnswer);
         profiledTestWatcher.starting(Description.createTestDescription(ProfiledTestWatcherTest.class, mockedName));
         profiledTestWatcher.finished(Description.createTestDescription(ProfiledTestWatcherTest.class, mockedName));
+        verifyAnswer.assertCalled();
     }
 
-    @Test(expected = MockedOutcome.class)
+    @Test
     public void testProfiledLogWithoutStart() {
         ProfiledTestWatcher profiledTestWatcher = new ProfiledTestWatcher();
         String mockedName = "mocked name";
         PowerMockito.mockStatic(Log.class);
         when(Log.i(eq(ProfiledTestWatcher.class.getSimpleName()), argThat(s -> s.contains(mockedName) && s.matches(".*\\dms"))))
-                .thenThrow(MockedOutcome.class);
+                .then(verifyAnswer);
         profiledTestWatcher.finished(Description.createTestDescription(ProfiledTestWatcherTest.class, mockedName));
+        verifyAnswer.assertCalled();
     }
 
     @Test
@@ -48,7 +53,8 @@ public class ProfiledTestWatcherTest {
         String mockedName = "mocked name";
         PowerMockito.mockStatic(Log.class);
         when(Log.i(eq(ProfiledTestWatcher.class.getSimpleName()), argThat(s -> s.contains(mockedName) && s.matches(".*\\dms"))))
-                .thenThrow(MockedOutcome.class);
+                .then(verifyAnswer);
         profiledTestWatcher.starting(Description.createTestDescription(ProfiledTestWatcherTest.class, mockedName));
+        verifyAnswer.assertNotCalled();
     }
 }

@@ -5,7 +5,7 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import io.github.t3r1jj.pbmap.testing.MockedOutcome;
+import io.github.t3r1jj.pbmap.testing.VerifyAnswer;
 
 import static androidx.test.espresso.action.ViewActionsExt.swipeDownExt;
 import static androidx.test.espresso.action.ViewActionsExt.swipeLeftExt;
@@ -20,39 +20,45 @@ import static org.powermock.api.mockito.PowerMockito.whenNew;
 @PrepareForTest(ViewActionsExt.class)
 public class ViewActionsExtTest {
 
-    @Test(expected = MockedOutcome.class)
+    private final VerifyAnswer verifyAnswer = new VerifyAnswer();
+
+    @Test
     public void testSwipeLeftExt() throws Exception {
         whenNew(GeneralSwipeActionExt.class)
                 .withAnyArguments()
-                .thenThrow(new MockedOutcome());
+                .then(verifyAnswer);
 
         swipeLeftExt();
+        verifyAnswer.assertCalled();
     }
 
-    @Test(expected = MockedOutcome.class)
+    @Test
     public void testSwipeRightExt() throws Exception {
         whenNew(GeneralSwipeActionExt.class)
                 .withAnyArguments()
-                .thenThrow(new MockedOutcome());
+                .then(verifyAnswer);
 
         swipeRightExt();
+        verifyAnswer.assertCalled();
     }
 
-    @Test(expected = MockedOutcome.class)
+    @Test
     public void testSwipeDownExt() throws Exception {
         whenNew(GeneralSwipeActionExt.class)
                 .withAnyArguments()
-                .thenThrow(new MockedOutcome());
+                .then(verifyAnswer);
 
         swipeDownExt();
+        verifyAnswer.assertCalled();
     }
 
-    @Test(expected = MockedOutcome.class)
+    @Test
     public void testSwipeUpExt() throws Exception {
         whenNew(GeneralSwipeActionExt.class)
                 .withAnyArguments()
-                .thenThrow(new MockedOutcome());
+                .then(verifyAnswer);
 
         swipeUpExt();
+        verifyAnswer.assertCalled();
     }
 }
