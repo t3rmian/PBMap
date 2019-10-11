@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.view.MotionEvent;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -14,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 import io.github.t3r1jj.pbmap.R;
+import io.github.t3r1jj.pbmap.logging.Config;
 import io.github.t3r1jj.pbmap.logging.Message;
 import io.github.t3r1jj.pbmap.logging.WebLogger;
 import io.github.t3r1jj.pbmap.model.Info;
@@ -42,13 +44,13 @@ public class Controller implements GeoMarker.MapListener {
     Controller(MapActivity mapActivity) {
         this.mapActivity = mapActivity;
         this.mapsDao = new MapsDao(mapActivity);
-        this.route = new Route(mapActivity);
+        this.route = Config.getInstance().createRoute(mapActivity);
     }
 
     void restoreState(@NotNull Memento memento, @NotNull MapActivity mapActivity) {
         this.mapActivity = mapActivity;
         this.mapsDao = new MapsDao(mapActivity);
-        this.route = new Route(mapActivity);
+        this.route = Config.getInstance().createRoute(mapActivity);
         this.map = mapsDao.loadMap(memento.mapReferencePath);
         loadRouteGraph();
         if (source == null) {
@@ -171,6 +173,7 @@ public class Controller implements GeoMarker.MapListener {
         double lng = coordinateTranslater.translateAndScaleAbsoluteToRelativeX(mapView.getScrollX() + event.getX() - mapView.getOffsetX(), mapView.getScale());
         double lat = coordinateTranslater.translateAndScaleAbsoluteToRelativeY(mapView.getScrollY() + event.getY() - mapView.getOffsetY(), mapView.getScale());
         System.out.println(new Coordinate(lat, lng, map.getCenter().alt));
+        Toast.makeText(mapActivity, String.format("lat=%f; lng=%f; alt=%f", lat, lng, map.getCenter().alt), Toast.LENGTH_SHORT).show();
     }
 
     public void onLongPress(MotionEvent event) {//TODO: test it

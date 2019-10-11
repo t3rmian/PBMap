@@ -107,7 +107,7 @@ public class GeoMarker extends ImageView implements RemovableView {
     }
 
     @Override
-    public void removeFromMap(MapView pbMapView) {//TODO: test it
+    public void removeFromMap(MapView pbMapView) {
         pbMapView.removeMarker(this);
         listener.onMapPositionChange();
     }

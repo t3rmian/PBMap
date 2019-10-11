@@ -9,6 +9,7 @@ import com.qozix.tileview.TileView;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.github.t3r1jj.pbmap.logging.Config;
 import io.github.t3r1jj.pbmap.main.Controller;
 import io.github.t3r1jj.pbmap.model.map.BoundingBox;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
@@ -76,12 +77,13 @@ public class MapView extends TileView implements PlaceView {
         controller.loadTitle(map);
     }
 
-// TODO: uncomment when logging required
-//    @Override
-//    public boolean onSingleTapConfirmed(MotionEvent event) {
-//        controller.printPressedCoordinate(event);
-//        return super.onSingleTapConfirmed(event);
-//    }
+    @Override
+    public boolean onSingleTapConfirmed(MotionEvent event) {
+        if (Config.getInstance().isDebug()) {
+            controller.printPressedCoordinate(event);
+        }
+        return super.onSingleTapConfirmed(event);
+    }
 
     @Override
     public void onLongPress(MotionEvent event) {

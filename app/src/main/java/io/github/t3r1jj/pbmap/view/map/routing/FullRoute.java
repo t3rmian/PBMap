@@ -19,11 +19,12 @@ import io.github.t3r1jj.pbmap.view.map.MapView;
  * @deprecated use only for testing
  */
 @Deprecated
-public class FullRoute extends Route {//TODO: test it
+public class FullRoute extends Route {
 
     private final CompositePathView.DrawablePath drawablePath = new CompositePathView.DrawablePath();
     private List<CompositePathView.DrawablePath> paths = new LinkedList<>();
 
+    @Deprecated
     public FullRoute(Context context) {
         super(context);
         Resources resources = context.getResources();

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Paint;
 import android.graphics.Path;
+
 import androidx.annotation.NonNull;
 
 import com.qozix.tileview.geom.CoordinateTranslater;
@@ -13,13 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.github.t3r1jj.pbmap.R;
+import io.github.t3r1jj.pbmap.logging.Config;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
 import io.github.t3r1jj.pbmap.model.map.route.RouteGraph;
 import io.github.t3r1jj.pbmap.view.map.MapView;
 
 public class Route implements RemovableView {
-    private static final boolean LINE_SMOOTH = false;
     RouteGraph routeGraph;
     private final CompositePathView.DrawablePath drawablePath = new CompositePathView.DrawablePath();
     private GeoMarker source;
@@ -27,6 +28,7 @@ public class Route implements RemovableView {
     private PBMap map;
     private List<Coordinate> route;
 
+    @Deprecated
     public Route(Context context) {
         Resources resources = context.getResources();
         drawablePath.paint = getPaint(resources.getColor(R.color.route), resources.getDimension(R.dimen.route_stroke_width));
@@ -105,7 +107,7 @@ public class Route implements RemovableView {
         Path path = new Path();
         double[] start = positions.get(0);
         path.moveTo(coordinateTranslater.translateX(start[0]), coordinateTranslater.translateY(start[1]));
-        if (LINE_SMOOTH) {//TODO: enable and test it
+        if (Config.getInstance().isSmooth()) {
             if (positions.size() < 3) {
                 prepareLinearPath(coordinateTranslater, positions, path);
             } else {
