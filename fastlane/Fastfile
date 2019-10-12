@@ -28,17 +28,22 @@ platform :android do
 
   desc "Run all tests with code coverage (small)"
   lane :all_tests_small do
-    gradle(task: "combinedTestReportDebug -Pandroid.testInstrumentationRunnerArguments.size=small")
+    gradle(task: "combinedTestReportDebug -Pandroid.testInstrumentationRunnerArguments.size=small -Pandroid.testInstrumentationRunnerArguments.notAnnotation=androidx.test.filters.FlakyTest")
   end
 
   desc "Run instrumentation tests with code coverage (medium)"
   lane :all_tests_medium do
-    gradle(task: "createDebugCoverageReport -Pandroid.testInstrumentationRunnerArguments.size=medium")
+    gradle(task: "createDebugCoverageReport -Pandroid.testInstrumentationRunnerArguments.size=medium -Pandroid.testInstrumentationRunnerArguments.notAnnotation=androidx.test.filters.FlakyTest")
   end
 
   desc "Run instrumentation tests with code coverage (large)"
   lane :all_tests_large do
-    gradle(task: "createDebugCoverageReport -Pandroid.testInstrumentationRunnerArguments.size=large")
+    gradle(task: "createDebugCoverageReport -Pandroid.testInstrumentationRunnerArguments.size=large -Pandroid.testInstrumentationRunnerArguments.notAnnotation=androidx.test.filters.FlakyTest")
+  end
+
+  desc "Run app instrumentation tests with code coverage (flaky)"
+  lane :all_tests_flaky do
+    gradle(task: ":app:createDebugCoverageReport -Pandroid.testInstrumentationRunnerArguments.notAnnotation=androidx.test.filters.MediumTest,androidx.test.filters.SmallTest,androidx.test.filters.LargeTest")
   end
 
   desc "Assemble a debug apk"

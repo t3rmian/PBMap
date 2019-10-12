@@ -6,7 +6,6 @@ import android.os.SystemClock;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.FlakyTest;
-import androidx.test.filters.LargeTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.uiautomator.By;
@@ -24,6 +23,7 @@ import io.github.t3r1jj.pbmap.logging.Config;
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.longClick;
 import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -54,9 +54,20 @@ public class MapActivityDebugIT {
         sendIntent.setAction(Intent.ACTION_SEARCH);
         sendIntent.putExtra(SearchManager.QUERY, "berlin@pb_wz_campus");
         activityRule.launchActivity(sendIntent);
+
         UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-        final int x = device.getDisplayWidth()/2;
+        final int x = device.getDisplayWidth() / 2;
         final int y = device.getDisplayHeight() / 2;
+        device.click(x, y);
+        SystemClock.sleep(100);
+
+        device.click(x, y);
+        SystemClock.sleep(100);
+
+        device.click(x, y);
+        SystemClock.sleep(1000);
+
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync();
         device.click(x, y);
 
         onView(withText(allOf(containsString("lat"), containsString("lng"))))
@@ -82,9 +93,29 @@ public class MapActivityDebugIT {
         sendIntent.setAction(Intent.ACTION_SEARCH);
         sendIntent.putExtra(SearchManager.QUERY, "berlin@pb_wz_campus");
         activityRule.launchActivity(sendIntent);
+
+        UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        final int x = device.getDisplayWidth() / 2;
+        final int y = device.getDisplayHeight() / 2;
+        device.click(x, y);
+        SystemClock.sleep(100);
+
+        device.click(x, y);
+        SystemClock.sleep(100);
+
+        device.click(x, y);
+        SystemClock.sleep(100);
+
+        device.swipe(x, y, x, y, 300);
+        SystemClock.sleep(250);
+
+        device.findObject(By.text(Pattern.compile("^.*(?i)(DESTINATION).*$"))).click();
+        SystemClock.sleep(250);
+
         onView(withContentDescription(R.string.destination)).perform(longClick());
+        SystemClock.sleep(250);
         onView(withContentDescription(R.string.destination)).check(doesNotExist());
-        SystemClock.sleep(15000);
+        SystemClock.sleep(250);
     }
 
 }

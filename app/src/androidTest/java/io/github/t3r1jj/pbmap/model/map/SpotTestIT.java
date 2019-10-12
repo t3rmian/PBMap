@@ -2,6 +2,7 @@ package io.github.t3r1jj.pbmap.model.map;
 
 import android.widget.ImageView;
 
+import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Test;
@@ -20,6 +21,7 @@ public class SpotTestIT {
     private final Serializer serializer = new Persister();
 
     @Test
+    @SmallTest
     public void createLogo() throws Exception {
         Spot space = serializer.read(Spot.class, data);
         ImageView logo = space.createLogo(InstrumentationRegistry.getInstrumentation().getContext());
@@ -27,6 +29,7 @@ public class SpotTestIT {
     }
 
     @Test
+    @SmallTest
     public void createLogo_404() throws Exception {
         String dataLogo404 = data.replace("test_logo.png", "unknown");
         Spot space = serializer.read(Spot.class, dataLogo404);

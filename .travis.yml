@@ -32,6 +32,12 @@ matrix:
     - ANDROID_ABI=x86_64
     - ANDROID_ABI_TAG=default
     - TEST_SUITE=large
+  - name: "Android 22 flaky app"
+    env:
+    - EMULATOR_API_LEVEL=22
+    - ANDROID_ABI=x86_64
+    - ANDROID_ABI_TAG=default
+    - TEST_SUITE=flaky
 
 android:
   components:
