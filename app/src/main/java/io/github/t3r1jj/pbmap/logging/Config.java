@@ -8,7 +8,6 @@ import io.github.t3r1jj.pbmap.view.map.routing.Route;
 public class Config {
     private static Config instance = new Config();
     private boolean debug;
-    private boolean smooth;
 
     private Config() {
     }
@@ -31,13 +30,5 @@ public class Config {
         } else {
             return new Route(context);
         }
-    }
-
-    public boolean isSmooth() {
-        return smooth;
-    }
-
-    public void setSmooth(boolean smooth) {
-        this.smooth = smooth;
     }
 }

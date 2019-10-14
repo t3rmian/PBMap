@@ -54,6 +54,16 @@ public class MapActivityDebugIT {
         sendIntent.setAction(Intent.ACTION_SEARCH);
         sendIntent.putExtra(SearchManager.QUERY, "berlin@pb_wz_campus");
         activityRule.launchActivity(sendIntent);
+    }
+
+    @Test
+    @FlakyTest
+    public void showDebug() {
+        Config.getInstance().setDebug(true);
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEARCH);
+        sendIntent.putExtra(SearchManager.QUERY, "berlin@pb_wz_campus");
+        activityRule.launchActivity(sendIntent);
 
         UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
         final int x = device.getDisplayWidth() / 2;
@@ -73,17 +83,6 @@ public class MapActivityDebugIT {
         onView(withText(allOf(containsString("lat"), containsString("lng"))))
                 .inRoot(withDecorView(not(activityRule.getActivity().getWindow().getDecorView())))
                 .check(matches(isDisplayed()));
-    }
-
-    @Test
-    @FlakyTest
-    public void showSmoothRoute() {
-        Config.getInstance().setDebug(true);
-        Config.getInstance().setSmooth(true);
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEARCH);
-        sendIntent.putExtra(SearchManager.QUERY, "berlin@pb_wz_campus");
-        activityRule.launchActivity(sendIntent);
     }
 
     @Test
@@ -115,6 +114,38 @@ public class MapActivityDebugIT {
         onView(withContentDescription(R.string.destination)).perform(longClick());
         SystemClock.sleep(250);
         onView(withContentDescription(R.string.destination)).check(doesNotExist());
+        SystemClock.sleep(250);
+    }
+
+    @Test
+    @FlakyTest
+    public void removeSourceMark() {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEARCH);
+        sendIntent.putExtra(SearchManager.QUERY, "berlin@pb_wz_campus");
+        activityRule.launchActivity(sendIntent);
+
+        UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        final int x = device.getDisplayWidth() / 2;
+        final int y = device.getDisplayHeight() / 2;
+        device.click(x, y);
+        SystemClock.sleep(100);
+
+        device.click(x, y);
+        SystemClock.sleep(100);
+
+        device.click(x, y);
+        SystemClock.sleep(100);
+
+        device.swipe(x, y, x, y, 300);
+        SystemClock.sleep(250);
+
+        device.findObject(By.text(Pattern.compile("^.*(?i)(SOURCE).*$"))).click();
+        SystemClock.sleep(250);
+
+        onView(withContentDescription(R.string.source)).perform(longClick());
+        SystemClock.sleep(250);
+        onView(withContentDescription(R.string.source)).check(doesNotExist());
         SystemClock.sleep(250);
     }
 

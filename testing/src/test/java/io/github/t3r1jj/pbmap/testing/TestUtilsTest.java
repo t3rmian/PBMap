@@ -160,6 +160,23 @@ public class TestUtilsTest {
 
     @SuppressWarnings("unchecked")
     @Test
+    public void testNthChild_HasLessChildren() {
+        final int index = 2;
+        Matcher viewMatcherMock = mock(Matcher.class);
+        Matcher indexMatcher = nthChildOf(viewMatcherMock, index);
+
+        ViewGroup viewGroup = mock(ViewGroup.class);
+        View childViewMock = mock(View.class);
+        when(viewGroup.getChildCount()).thenReturn(index);
+        when(viewGroup.getChildAt(index)).thenReturn(mock(View.class));
+        when(viewMatcherMock.matches(viewGroup)).thenReturn(true);
+        when(childViewMock.getParent()).thenReturn(viewGroup);
+
+        assertFalse(indexMatcher.matches(childViewMock));
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
     public void testNthChild() {
         final int index = 2;
         Matcher viewMatcherMock = mock(Matcher.class);

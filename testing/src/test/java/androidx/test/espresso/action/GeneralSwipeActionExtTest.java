@@ -8,6 +8,8 @@ import androidx.test.espresso.UiController;
 import org.hamcrest.StringDescription;
 import org.junit.Test;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 import static androidx.test.espresso.action.ViewActions.swipeDown;
 import static androidx.test.espresso.action.ViewActions.swipeLeft;
 import static androidx.test.espresso.action.ViewActions.swipeRight;
@@ -20,7 +22,10 @@ import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 import static org.powermock.api.mockito.PowerMockito.mock;
 
@@ -79,6 +84,33 @@ public class GeneralSwipeActionExtTest {
                 Press.FINGER);
         UiController controllerMock = mock(UiController.class);
         swipe.perform(controllerMock, mock(View.class));
+    }
+
+    @Test
+    public void testPerform_Retry() {
+        AtomicReference<Boolean> thirdTimeCallSuccess = new AtomicReference<>(false);
+        Swipe swiper = mock(Swipe.class);
+        GeneralLocation locationMock = mock(GeneralLocation.class);
+        when(locationMock.calculateCoordinates(any())).thenReturn(new float[]{0f, 0f, 0f, 0f});
+        GeneralSwipeActionExt swipe = spy(new GeneralSwipeActionExt(
+                swiper,
+                locationMock,
+                locationMock,
+                Press.FINGER));
+        UiController controllerMock = mock(UiController.class);
+        doAnswer(a -> {
+            doAnswer(a2 -> {
+                doAnswer(a3 -> {
+                    thirdTimeCallSuccess.set(true);
+                    return Swiper.Status.SUCCESS;
+                }).when(swiper).sendSwipe(any(), any(), any(), any());
+                return Swiper.Status.FAILURE;
+            }).when(swiper).sendSwipe(any(), any(), any(), any());
+            return Swiper.Status.FAILURE;
+        }).when(swiper).sendSwipe(any(), any(), any(), any());
+        swipe.perform(controllerMock, mock(View.class));
+
+        assertTrue(thirdTimeCallSuccess.get());
     }
 
     @Test(expected = PerformException.class)

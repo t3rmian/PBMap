@@ -54,7 +54,7 @@ public class Controller implements GeoMarker.MapListener {
         this.map = mapsDao.loadMap(memento.mapReferencePath);
         loadRouteGraph();
         if (source == null) {
-            source = new GeoMarker(mapActivity);//TODO: test it
+            source = new GeoMarker(mapActivity);
         }
         source.setCoordinate(memento.source);
         if (destination == null) {
@@ -168,7 +168,7 @@ public class Controller implements GeoMarker.MapListener {
      * @deprecated Use this only for logging coordinates
      */
     @Deprecated
-    public void printPressedCoordinate(MotionEvent event) {//TODO: test it
+    public void printPressedCoordinate(MotionEvent event) {
         CoordinateTranslater coordinateTranslater = mapView.getCoordinateTranslater();
         double lng = coordinateTranslater.translateAndScaleAbsoluteToRelativeX(mapView.getScrollX() + event.getX() - mapView.getOffsetX(), mapView.getScale());
         double lat = coordinateTranslater.translateAndScaleAbsoluteToRelativeY(mapView.getScrollY() + event.getY() - mapView.getOffsetY(), mapView.getScale());
@@ -176,7 +176,7 @@ public class Controller implements GeoMarker.MapListener {
         Toast.makeText(mapActivity, String.format("lat=%f; lng=%f; alt=%f", lat, lng, map.getCenter().alt), Toast.LENGTH_SHORT).show();
     }
 
-    public void onLongPress(MotionEvent event) {//TODO: test it
+    public void onLongPress(MotionEvent event) {
         if (destination.isAtPosition(mapView, event, map.getCenter().alt)) {
             destination.setCoordinate(null);
             destination.removeFromMap(mapView);

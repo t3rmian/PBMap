@@ -49,9 +49,6 @@ public class FullRoute extends Route {
         paths.clear();
         List<Edge> edges = routeGraph.getEdges();
         for (Edge edge : edges) {
-//            if (edge.getStart().alt != 160d) {
-//                continue;
-//            }
             List<double[]> positions = new ArrayList<>();
             positions.add(new double[]{edge.getStart().lng, edge.getStart().lat});
             positions.add(new double[]{edge.getEnd().lng, edge.getEnd().lat});

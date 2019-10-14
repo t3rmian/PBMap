@@ -1,11 +1,8 @@
 package io.github.t3r1jj.pbmap.main;
 
 import android.Manifest;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
@@ -26,10 +23,9 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
-import android.util.Log;
+
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -131,7 +127,7 @@ public class MapActivity extends DrawerActivity
 
         gpsButton = findViewById(R.id.gps_fab);
         gpsButton.setOnClickListener(view -> {
-            if (doesNotHaveGpsPermissions()) {//TODO: test it
+            if (doesNotHaveGpsPermissions()) {
                 explicitlyAskedForPermissions = true;
                 ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
             } else {
@@ -190,25 +186,14 @@ public class MapActivity extends DrawerActivity
     }
 
     private void setUpZoomControls() {
-        ZoomControls zoomControls = (ZoomControls) findViewById(R.id.zoom_controls);
-        zoomControls.setOnZoomOutClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                controller.onZoom(false);
-            }
-        });
-        zoomControls.setOnZoomInClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                controller.onZoom(true);
-            }
-        });
+        ZoomControls zoomControls = findViewById(R.id.zoom_controls);
+        zoomControls.setOnZoomOutClickListener(v -> controller.onZoom(false));
+        zoomControls.setOnZoomInClickListener(v -> controller.onZoom(true));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(getClass().getSimpleName(), "onResume");
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         if (doesNotHaveGpsPermissions() || requestLocationUpdates() == LocationState.OFF) {
             controller.updatePosition(null);
@@ -273,7 +258,8 @@ public class MapActivity extends DrawerActivity
         OFF, AEROPLANE, WIFI_OFF, ON
     }
 
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {//TODO: test it
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == REQUEST_LOCATION) {
             if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 if (requestLocationUpdates() == LocationState.OFF) {
@@ -294,7 +280,6 @@ public class MapActivity extends DrawerActivity
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d(getClass().getSimpleName(), "onPause");
         if (locationListener != null) {
             if (doesNotHaveGpsPermissions()) {
                 return;
@@ -305,15 +290,15 @@ public class MapActivity extends DrawerActivity
     }
 
     private void setUpTexts() {
-        distanceText = (TextView) findViewById(R.id.distance);
-        TextView versionText = (TextView) findViewById(R.id.about_version);
+        distanceText = findViewById(R.id.distance);
+        TextView versionText = findViewById(R.id.about_version);
         versionText.setText(getString(R.string.about_version, BuildConfig.VERSION_NAME + ", Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL."));
     }
 
     @Override
     protected void initializeContentView() {
         setContentView(R.layout.activity_map);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 
@@ -396,7 +381,7 @@ public class MapActivity extends DrawerActivity
     }
 
     @SuppressWarnings("ConstantConditions")
-    public void setLogo(ImageView view) {//TODO: test it
+    public void setLogo(ImageView view) {
         if (view == null) {
             getSupportActionBar().setLogo(null);
         } else {
@@ -592,38 +577,13 @@ public class MapActivity extends DrawerActivity
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(PARCELABLE_KEY_CONTROLLER_MEMENTO, controller.getCurrentState());
     }
 
     Controller getController() {
         return controller;
-    }
-
-    public static class GpsDialogFragment extends DialogFragment {//TODO: test it
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            return new AlertDialog.Builder(getActivity(), getTheme())
-                    .setMessage(getString(R.string.gps_disabled_message, getString(R.string.name_app)))
-                    .setCancelable(false)
-                    .setPositiveButton(R.string.enable, (dialog, id) -> {
-                        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                        startActivity(intent);
-                    })
-                    .setNegativeButton(R.string.cancel, (dialog, id) -> dialog.cancel()).create();
-        }
-    }
-
-    public static class GpsPermissionsDialogFragment extends DialogFragment {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            return new AlertDialog.Builder(getActivity(), getTheme())
-                    .setTitle(R.string.location_permissions)
-                    .setMessage(getString(R.string.gps_permissions_disabled_message, getString(R.string.name_app)))
-                    .setNegativeButton(R.string.ok, null)
-                    .create();
-        }
     }
 
     PBLocationListener getLocationListener() {

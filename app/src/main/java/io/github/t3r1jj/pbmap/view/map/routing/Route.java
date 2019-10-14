@@ -107,34 +107,13 @@ public class Route implements RemovableView {
         Path path = new Path();
         double[] start = positions.get(0);
         path.moveTo(coordinateTranslater.translateX(start[0]), coordinateTranslater.translateY(start[1]));
-        if (Config.getInstance().isSmooth()) {
-            if (positions.size() < 3) {
-                prepareLinearPath(coordinateTranslater, positions, path);
-            } else {
-                prepareQuadPath(coordinateTranslater, positions, path);
-            }
-        } else {
-            prepareLinearPath(coordinateTranslater, positions, path);
-        }
+        prepareLinearPath(coordinateTranslater, positions, path);
         return path;
     }
 
     private void prepareLinearPath(CoordinateTranslater coordinateTranslater, List<double[]> positions, Path path) {
         for (int i = 1; i < positions.size(); i++) {
             double[] position = positions.get(i);
-            path.lineTo(coordinateTranslater.translateX(position[0]), coordinateTranslater.translateY(position[1]));
-        }
-    }
-
-    private void prepareQuadPath(CoordinateTranslater coordinateTranslater, List<double[]> positions, Path path) {
-        for (int i = 1; i < positions.size() - 1; i += 2) {
-            double[] second = positions.get(i);
-            double[] third = positions.get(i + 1);
-            path.quadTo(coordinateTranslater.translateX(second[0]), coordinateTranslater.translateY(second[1]),
-                    coordinateTranslater.translateX(third[0]), coordinateTranslater.translateY(third[1]));
-        }
-        if (positions.size() % 2 == 0) {
-            double[] position = positions.get(positions.size() - 1);
             path.lineTo(coordinateTranslater.translateX(position[0]), coordinateTranslater.translateY(position[1]));
         }
     }
