@@ -1,8 +1,8 @@
 package io.github.t3r1jj.pbmap.main;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
@@ -14,18 +14,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.provider.Settings;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,14 +28,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ZoomControls;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
+
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
-import io.github.t3r1jj.pbmap.about.AboutActivity;
 import io.github.t3r1jj.pbmap.BuildConfig;
 import io.github.t3r1jj.pbmap.R;
+import io.github.t3r1jj.pbmap.about.AboutActivity;
 import io.github.t3r1jj.pbmap.main.drawer.DrawerActivity;
 import io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment;
 import io.github.t3r1jj.pbmap.model.Info;
@@ -60,6 +58,7 @@ public class MapActivity extends DrawerActivity
         implements MapsDrawerFragment.PlaceNavigationDrawerCallbacks {
 
     private static final int REQUEST_LOCATION = 1;
+    private DeviceServices deviceServices;
     private Controller controller;
     private ViewGroup mapContainer;
     private FloatingActionButton infoButton;
@@ -73,13 +72,14 @@ public class MapActivity extends DrawerActivity
     private TextView distanceText;
     private MenuItem backButton;
     private LocationManager locationManager;
-    private PBLocationListener locationListener;
+    private LocationListener locationListener;
     private boolean explicitlyAskedForPermissions;
     private boolean showBackButton;
     private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        deviceServices = new DeviceServices(this);
         controller = new Controller(this);
         handleIntent(getIntent(), true);
 
@@ -127,7 +127,7 @@ public class MapActivity extends DrawerActivity
 
         gpsButton = findViewById(R.id.gps_fab);
         gpsButton.setOnClickListener(view -> {
-            if (doesNotHaveGpsPermissions()) {
+            if (deviceServices.doesNotHaveGpsPermissions()) {
                 explicitlyAskedForPermissions = true;
                 ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
             } else {
@@ -194,38 +194,18 @@ public class MapActivity extends DrawerActivity
     @Override
     protected void onResume() {
         super.onResume();
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        if (doesNotHaveGpsPermissions() || requestLocationUpdates() == LocationState.OFF) {
+        locationManager = deviceServices.getLocationManager();
+        if (deviceServices.doesNotHaveGpsPermissions() || requestLocationUpdates() == LocationState.OFF) {
             controller.updatePosition(null);
         }
-    }
-
-    private boolean doesNotHaveGpsPermissions() {
-        return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED;
-    }
-
-    private boolean isLocationEnabled() {
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-                || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-    }
-
-    private boolean isWifiDisabled() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        return !wifiInfo.isAvailable();
-    }
-
-    private boolean isAirplaneOn() {
-        int airplaneSetting = Settings.System.getInt(getContentResolver(), Settings.System.AIRPLANE_MODE_ON, 0);
-        return airplaneSetting != 0;
     }
 
     /**
      * @return true if successfully requested location updates without any problems, assure that permissions are granted
      */
+    @SuppressLint("MissingPermission")
     private LocationState requestLocationUpdates() {
-        if (!isLocationEnabled()) {
+        if (!deviceServices.isLocationEnabled(locationManager)) {
             return LocationState.OFF;
         }
         Criteria criteria = new Criteria();
@@ -233,23 +213,19 @@ public class MapActivity extends DrawerActivity
             locationListener = new PBLocationListener(controller);
         }
         String provider = locationManager.getBestProvider(criteria, true);
-        if (isAirplaneOn()) {
-            //noinspection MissingPermission
+        if (deviceServices.isAirplaneOn()) {
             locationManager.requestLocationUpdates(provider, 5, 5, locationListener);
             return LocationState.AEROPLANE;
         }
-        if ("network".equals(provider) && isWifiDisabled()) {
+        if ("network".equals(provider) && deviceServices.isWifiDisabled()) {
             if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                //noinspection MissingPermission
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5, 5, locationListener);
                 return LocationState.ON;
             } else {
-                //noinspection MissingPermission
                 locationManager.requestLocationUpdates(provider, 5, 5, locationListener);
                 return LocationState.WIFI_OFF;
             }
         }
-        //noinspection MissingPermission
         locationManager.requestLocationUpdates(provider, 5, 5, locationListener);
         return LocationState.ON;
     }
@@ -281,7 +257,7 @@ public class MapActivity extends DrawerActivity
     protected void onPause() {
         super.onPause();
         if (locationListener != null) {
-            if (doesNotHaveGpsPermissions()) {
+            if (deviceServices.doesNotHaveGpsPermissions()) {
                 return;
             }
             //noinspection MissingPermission
@@ -523,7 +499,6 @@ public class MapActivity extends DrawerActivity
 
                     @Override
                     public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
-
                     }
 
                     @Override
@@ -586,7 +561,7 @@ public class MapActivity extends DrawerActivity
         return controller;
     }
 
-    PBLocationListener getLocationListener() {
+    LocationListener getLocationListener() {
         return locationListener;
     }
 }

@@ -3,8 +3,6 @@ package io.github.t3r1jj.pbmap.logging;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.preference.PreferenceManager;
@@ -26,14 +24,18 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import io.github.t3r1jj.pbmap.main.DeviceServices;
+
 public class WebLogger extends ContextWrapper {
 
     static final String PREF_KEY_MESSAGES = "io.github.t3r1jj.pbmap.logging.WebLogger.PREF_KEY_MESSAGES";
     private static final String URL = "https://script.google.com/macros/s/AKfycbwXqgqKd4DhM6iV5PoaqNlwdw5W1o5s3YBau5Exgh0HCR8JRzzF/exec";
     private final SharedPreferences preferences;
+    private final DeviceServices deviceServices;
 
     public WebLogger(Context base) {
         super(base);
+        deviceServices = new DeviceServices(this);
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
     }
 
@@ -50,9 +52,7 @@ public class WebLogger extends ContextWrapper {
     }
 
     public void trySendingMessages() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo wifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if (wifi.isConnected()) {
+        if (deviceServices.isWifiConnected()) {
             sendMessages();
         } else {
             Log.w("WebLogger", "Tried uploading logs but there is no connection");

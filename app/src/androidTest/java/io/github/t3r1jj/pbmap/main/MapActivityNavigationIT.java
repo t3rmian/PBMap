@@ -5,7 +5,9 @@ import android.app.SearchManager;
 import android.app.UiAutomation;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.SystemClock;
@@ -43,6 +45,7 @@ import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
+import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
@@ -54,10 +57,15 @@ import static io.github.t3r1jj.pbmap.testing.TestUtils.allowPermissionsIfNeeded;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.containsIgnoringCase;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.withIndex;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.withIntents;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.any;
+import static org.hamcrest.core.IsNot.not;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
 @RunWith(AndroidJUnit4.class)
@@ -72,7 +80,7 @@ public class MapActivityNavigationIT {
             .around(new ScreenshotOnTestFailedRule());
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         UiAutomation uiAutomation = InstrumentationRegistry.getInstrumentation().getUiAutomation();
         uiAutomation.
                 executeShellCommand("pm revoke ${getTargetContext().packageName} " + Manifest.permission.ACCESS_COARSE_LOCATION);
@@ -197,7 +205,7 @@ public class MapActivityNavigationIT {
         allowPermissionsIfNeeded(Manifest.permission.ACCESS_FINE_LOCATION);
         allowPermissionsIfNeeded(Manifest.permission.ACCESS_COARSE_LOCATION);
 
-        PBLocationListener locationListener = activityRule.getActivity().getLocationListener();
+        LocationListener locationListener = activityRule.getActivity().getLocationListener();
         Location mockLocation = new Location("");
         mockLocation.setLatitude(53.1177825529975);
         mockLocation.setLongitude(23.15214421044988);
@@ -236,7 +244,8 @@ public class MapActivityNavigationIT {
         x = device.getDisplayWidth() - 200;
         device.swipe(x, y, x, y, steps);
         SystemClock.sleep(1000);
-        device.findObject(By.text(Pattern.compile("^.*(?i)(DESTINATION).*$"))).click();;
+        device.findObject(By.text(Pattern.compile("^.*(?i)(DESTINATION).*$"))).click();
+        ;
         SystemClock.sleep(1000);
 
         device.wait(Until.findObject(By.textContains("Distance")), 250);
@@ -262,7 +271,8 @@ public class MapActivityNavigationIT {
         x = device.getDisplayWidth() - 200;
         device.swipe(x, y, x, y, steps);
         SystemClock.sleep(1000);
-        device.findObject(By.text(Pattern.compile("^.*(?i)(DESTINATION).*$"))).click();;
+        device.findObject(By.text(Pattern.compile("^.*(?i)(DESTINATION).*$"))).click();
+        ;
         SystemClock.sleep(1000);
 
         activityRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -319,14 +329,13 @@ public class MapActivityNavigationIT {
 
     @Test
     @FlakyTest
-    public void onGpsOff() throws UiObjectNotFoundException {
+    public void onGpsOff() throws UiObjectNotFoundException, NoSuchFieldException, IllegalAccessException {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
         sendIntent.putExtra(SearchManager.QUERY, "12b@pb_wi");
         activityRule.launchActivity(sendIntent);
-        LocationManager locationManagerMock = mock(LocationManager.class);
-        when(locationManagerMock.isProviderEnabled(anyString())).thenReturn(false);
-        injectLocationManager(activityRule.getActivity(), locationManagerMock);
+
+        stubActivityGpsOff();
 
         onView(withContentDescription(R.string.more_features)).perform(click());
         onView(withId(R.id.gps_fab)).perform(click());
@@ -338,14 +347,13 @@ public class MapActivityNavigationIT {
 
     @Test
     @FlakyTest
-    public void onGpsOff_Cancel() throws UiObjectNotFoundException {
+    public void onGpsOff_Cancel() throws UiObjectNotFoundException, NoSuchFieldException, IllegalAccessException {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
         sendIntent.putExtra(SearchManager.QUERY, "12b@pb_wi");
         activityRule.launchActivity(sendIntent);
-        LocationManager locationManagerMock = mock(LocationManager.class);
-        when(locationManagerMock.isProviderEnabled(anyString())).thenReturn(false);
-        injectLocationManager(activityRule.getActivity(), locationManagerMock);
+
+        stubActivityGpsOff();
 
         onView(withContentDescription(R.string.more_features)).perform(click());
         onView(withId(R.id.gps_fab)).perform(click());
@@ -358,14 +366,15 @@ public class MapActivityNavigationIT {
 
     @Test
     @FlakyTest
-    public void onGpsOff_Enable() throws UiObjectNotFoundException {
+    public void onGpsOff_Enable() throws UiObjectNotFoundException, NoSuchFieldException, IllegalAccessException {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
         sendIntent.putExtra(SearchManager.QUERY, "12b@pb_wi");
         activityRule.launchActivity(sendIntent);
-        LocationManager locationManagerMock = mock(LocationManager.class);
-        when(locationManagerMock.isProviderEnabled(anyString())).thenReturn(false);
-        injectLocationManager(activityRule.getActivity(), locationManagerMock);
+
+        MapActivity activity = stubActivityGpsOff();
+        injectLocationListener(activity, new PBLocationListener(activity.getController()));
+
         onView(withContentDescription(R.string.more_features)).perform(click());
         onView(withId(R.id.gps_fab)).perform(click());
         allowPermissionsIfNeeded(Manifest.permission.ACCESS_COARSE_LOCATION);
@@ -377,16 +386,159 @@ public class MapActivityNavigationIT {
         });
         UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
         device.wait(Until.findObject(By.res("com.android.settings")), 3000);
+        device.pressBack();
+        SystemClock.sleep(3000);
     }
 
-    private void injectLocationManager(MapActivity map, LocationManager locationManager) {
-        try {
-            Field field = map.getClass().getDeclaredField("locationManager");
-            field.setAccessible(true);
-            field.set(map, locationManager);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
+    private MapActivity stubActivityGpsOff() throws NoSuchFieldException, IllegalAccessException {
+        MapActivity activity = activityRule.getActivity();
+        LocationManager locationManagerMock = mock(LocationManager.class);
+        when(locationManagerMock.isProviderEnabled(anyString())).thenReturn(false);
+        DeviceServices deviceServices = spy(new DeviceServices(InstrumentationRegistry.getInstrumentation().getTargetContext()));
+        when(deviceServices.getLocationManager()).thenReturn(locationManagerMock);
+        injectDeviceServices(activity, deviceServices);
+        injectLocationManager(activity, locationManagerMock);
+        return activity;
+    }
+
+    @Test
+    @FlakyTest
+    public void onAirplaneOn() throws UiObjectNotFoundException, NoSuchFieldException, IllegalAccessException {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEARCH);
+        sendIntent.putExtra(SearchManager.QUERY, "12b@pb_wi");
+        activityRule.launchActivity(sendIntent);
+
+        MapActivity activity = activityRule.getActivity();
+        LocationManager locationManagerMock = mock(LocationManager.class);
+        when(locationManagerMock.isProviderEnabled(eq(LocationManager.GPS_PROVIDER))).thenReturn(true);
+        DeviceServices deviceServices = new DeviceServices(InstrumentationRegistry.getInstrumentation().getTargetContext()) {
+            @Override
+            boolean isAirplaneOn() {
+                return true;
+            }
+
+            @Override
+            public LocationManager getLocationManager() {
+                return locationManagerMock;
+            }
+        };
+        injectDeviceServices(activity, deviceServices);
+        injectLocationListener(activity, new PBLocationListener(activity.getController()));
+        injectLocationManager(activity, locationManagerMock);
+
+        onView(withContentDescription(R.string.more_features)).perform(click());
+        onView(withId(R.id.gps_fab)).perform(click());
+        allowPermissionsIfNeeded(Manifest.permission.ACCESS_COARSE_LOCATION);
+        allowPermissionsIfNeeded(Manifest.permission.ACCESS_FINE_LOCATION);
+
+        onView(withText(R.string.airplane_enabled))
+                .inRoot(withDecorView(not(activityRule.getActivity().getWindow().getDecorView())))
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    @FlakyTest
+    public void onWifiDisabled_NetworkBest() throws UiObjectNotFoundException, NoSuchFieldException, IllegalAccessException {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEARCH);
+        sendIntent.putExtra(SearchManager.QUERY, "12b@pb_wi");
+        activityRule.launchActivity(sendIntent);
+
+        MapActivity activity = activityRule.getActivity();
+        LocationManager locationManagerMock = mock(LocationManager.class);
+        when(locationManagerMock.isProviderEnabled(eq(LocationManager.NETWORK_PROVIDER))).thenReturn(true);
+        when(locationManagerMock.getBestProvider(any(), anyBoolean())).thenReturn("network");
+        DeviceServices deviceServices = new DeviceServices(InstrumentationRegistry.getInstrumentation().getTargetContext()) {
+            @Override
+            boolean isAirplaneOn() {
+                return false;
+            }
+
+            @Override
+            boolean isWifiDisabled() {
+                return true;
+            }
+
+            @Override
+            public LocationManager getLocationManager() {
+                return locationManagerMock;
+            }
+        };
+        injectDeviceServices(activity, deviceServices);
+        injectLocationListener(activity, new PBLocationListener(activity.getController()));
+        injectLocationManager(activity, locationManagerMock);
+
+        onView(withContentDescription(R.string.more_features)).perform(click());
+        onView(withId(R.id.gps_fab)).perform(click());
+        allowPermissionsIfNeeded(Manifest.permission.ACCESS_COARSE_LOCATION);
+        allowPermissionsIfNeeded(Manifest.permission.ACCESS_FINE_LOCATION);
+
+        onView(withText(
+                allOf(containsString(activity.getString(R.string.waiting_for_location)),
+                        containsString(activity.getString(R.string.wifi_disabled)))))
+                .inRoot(withDecorView(not(activityRule.getActivity().getWindow().getDecorView())))
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    @FlakyTest
+    public void onWifiDisabled_NetworkBest_ForceGps() throws UiObjectNotFoundException, NoSuchFieldException, IllegalAccessException {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEARCH);
+        sendIntent.putExtra(SearchManager.QUERY, "12b@pb_wi");
+        activityRule.launchActivity(sendIntent);
+
+        MapActivity activity = activityRule.getActivity();
+        LocationManager locationManagerMock = mock(LocationManager.class);
+        when(locationManagerMock.isProviderEnabled(eq(LocationManager.GPS_PROVIDER))).thenReturn(true);
+        when(locationManagerMock.getBestProvider(any(), anyBoolean())).thenReturn("network");
+        DeviceServices deviceServices = new DeviceServices(InstrumentationRegistry.getInstrumentation().getTargetContext()) {
+            @Override
+            boolean isAirplaneOn() {
+                return false;
+            }
+
+            @Override
+            boolean isWifiDisabled() {
+                return true;
+            }
+
+            @Override
+            public LocationManager getLocationManager() {
+                return locationManagerMock;
+            }
+        };
+        injectDeviceServices(activity, deviceServices);
+        injectLocationListener(activity, new PBLocationListener(activity.getController()));
+        injectLocationManager(activity, locationManagerMock);
+
+        onView(withContentDescription(R.string.more_features)).perform(click());
+        onView(withId(R.id.gps_fab)).perform(click());
+        allowPermissionsIfNeeded(Manifest.permission.ACCESS_COARSE_LOCATION);
+        allowPermissionsIfNeeded(Manifest.permission.ACCESS_FINE_LOCATION);
+
+        onView(withText(R.string.waiting_for_location))
+                .inRoot(withDecorView(not(activityRule.getActivity().getWindow().getDecorView())))
+                .check(matches(isDisplayed()));
+    }
+
+    private void injectDeviceServices(MapActivity map, DeviceServices deviceServices) throws NoSuchFieldException, IllegalAccessException {
+        Field field = map.getClass().getDeclaredField("deviceServices");
+        field.setAccessible(true);
+        field.set(map, deviceServices);
+    }
+
+    private void injectLocationListener(MapActivity map, LocationListener locationListener) throws NoSuchFieldException, IllegalAccessException {
+        Field field = map.getClass().getDeclaredField("locationListener");
+        field.setAccessible(true);
+        field.set(map, locationListener);
+    }
+
+    private void injectLocationManager(MapActivity map, LocationManager locationManager) throws IllegalAccessException, NoSuchFieldException {
+        Field field = map.getClass().getDeclaredField("locationManager");
+        field.setAccessible(true);
+        field.set(map, locationManager);
     }
 
     @Test
@@ -415,17 +567,17 @@ public class MapActivityNavigationIT {
 
     @Test
     @FlakyTest
-    public void onRequestPermission_1_DidNotGet_AskedExplicitly() throws UiObjectNotFoundException {
+    public void onRequestPermission_1_DidNotGet_AskedExplicitly() throws UiObjectNotFoundException, NoSuchFieldException, IllegalAccessException {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
         sendIntent.putExtra(SearchManager.QUERY, "12b@pb_wi");
         activityRule.launchActivity(sendIntent);
 
+        setExplicitlyAskedForPermissions(activityRule.getActivity());
         onView(withContentDescription(R.string.more_features)).perform(click());
         onView(withId(R.id.gps_fab)).perform(click());
         allowPermissionsIfNeeded(Manifest.permission.ACCESS_COARSE_LOCATION);
         allowPermissionsIfNeeded(Manifest.permission.ACCESS_FINE_LOCATION);
-        setExplicitlyAskedForPermissions(activityRule.getActivity());
 
         activityRule.getActivity().runOnUiThread(() -> activityRule.getActivity()
                 .onRequestPermissionsResult(1, new String[]{}, new int[]{})
@@ -436,14 +588,66 @@ public class MapActivityNavigationIT {
         onView(withSubstring("Please allow")).check(doesNotExist());
     }
 
+    @Test
+    @FlakyTest
+    public void onRequestPermission_1_Denied() throws UiObjectNotFoundException, NoSuchFieldException, IllegalAccessException {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEARCH);
+        sendIntent.putExtra(SearchManager.QUERY, "12b@pb_wi");
+        activityRule.launchActivity(sendIntent);
 
-    private void setExplicitlyAskedForPermissions(MapActivity map) {
-        try {
-            Field field = map.getClass().getDeclaredField("explicitlyAskedForPermissions");
-            field.setAccessible(true);
-            field.set(map, true);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
+        setExplicitlyAskedForPermissions(activityRule.getActivity());
+        onView(withContentDescription(R.string.more_features)).perform(click());
+        onView(withId(R.id.gps_fab)).perform(click());
+        allowPermissionsIfNeeded(Manifest.permission.ACCESS_COARSE_LOCATION);
+        allowPermissionsIfNeeded(Manifest.permission.ACCESS_FINE_LOCATION);
+
+        activityRule.getActivity().runOnUiThread(() -> activityRule.getActivity()
+                .onRequestPermissionsResult(1, new String[]{null}, new int[]{PackageManager.PERMISSION_DENIED})
+        );
+
+        onView(withSubstring("Please allow")).check(matches(isDisplayed()));
+        onView(withText(R.string.ok)).perform(click());
+        onView(withSubstring("Please allow")).check(doesNotExist());
+    }
+
+    @Test
+    @FlakyTest
+    public void onRequestPermission_1_GrantedButGpsOff() throws UiObjectNotFoundException, NoSuchFieldException, IllegalAccessException {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEARCH);
+        sendIntent.putExtra(SearchManager.QUERY, "12b@pb_wi");
+        activityRule.launchActivity(sendIntent);
+
+        setExplicitlyAskedForPermissions(activityRule.getActivity());
+        onView(withContentDescription(R.string.more_features)).perform(click());
+        onView(withId(R.id.gps_fab)).perform(click());
+        allowPermissionsIfNeeded(Manifest.permission.ACCESS_COARSE_LOCATION);
+        allowPermissionsIfNeeded(Manifest.permission.ACCESS_FINE_LOCATION);
+
+        activityRule.getActivity().runOnUiThread(() -> activityRule.getActivity()
+                .onRequestPermissionsResult(1, new String[]{null}, new int[]{})
+        );
+
+        onView(withSubstring("access")).check(matches(isDisplayed()));
+    }
+
+
+    private void setExplicitlyAskedForPermissions(MapActivity activity) throws NoSuchFieldException, IllegalAccessException {
+        LocationManager locationManagerMock = mock(LocationManager.class);
+        DeviceServices deviceServices = new DeviceServices(InstrumentationRegistry.getInstrumentation().getTargetContext()) {
+            @Override
+            boolean doesNotHaveGpsPermissions() {
+                return true;
+            }
+
+            @Override
+            public LocationManager getLocationManager() {
+                return locationManagerMock;
+            }
+        };
+        when(locationManagerMock.isProviderEnabled(any())).thenReturn(false);
+        injectDeviceServices(activity, deviceServices);
+        injectLocationManager(activity, locationManagerMock);
     }
 }
