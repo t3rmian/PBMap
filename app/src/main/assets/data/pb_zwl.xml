@@ -1,5 +1,5 @@
 <map height="3500" id="PB_ZWL" route_path="routes/pb_zwl.xml" up_map_path="data/pb_zwl_2.xml"
-    url="http://www.zwl.pb.edu.pl/" width="2369" unfinished="true">
+    url="http://www.zwl.pb.edu.pl/" width="2369">
     <tiles_configs>
         <tiles_config height="256" path="tiles/pb_zwl/main/tile-%d_%d.png" width="256" zoom="1" />
     </tiles_configs>
@@ -12,4 +12,52 @@
     <spot id="↵">	<coordinates>		<coordinate lat="52.73726344459057" lng="23.591927715769195" alt="150.0"/>	</coordinates></spot>
     <spot id="↵">	<coordinates>		<coordinate lat="52.73654548925323" lng="23.592200758035" alt="150.0"/>	</coordinates></spot>
 
+    <spot id="2B"><coordinates><coordinate lat="52.73718952185058" lng="23.59199998185795" alt="150.0"/></coordinates></spot>
+    <spot id="5B"><coordinates><coordinate lat="52.73710787878418" lng="23.59201770652916" alt="150.0"/></coordinates></spot>
+    <spot id="WC"><coordinates><coordinate lat="52.737016459350585" lng="23.592067204134334" alt="150.0"/></coordinates></spot>
+
+    <spot id="1B"><coordinates><coordinate lat="52.73719352600097" lng="23.591876614503292" alt="150.0"/></coordinates></spot>
+    <spot id="3B"><coordinates><coordinate lat="52.73712855229606" lng="23.591891627180775" alt="150.0"/></coordinates></spot>
+    <spot id="4B"><coordinates><coordinate lat="52.73706617321777" lng="23.591911333433433" alt="150.0"/></coordinates></spot>
+    <spot id="8B"><coordinates><coordinate lat="52.737011597167964" lng="23.59192019576904" alt="150.0"/></coordinates></spot>
+    <spot id="↑"><coordinates><coordinate lat="52.73696588745117" lng="23.59193275886017" alt="150.0"/></coordinates></spot>
+
+    <spot id="12B"><coordinates><coordinate lat="52.73691407695732" lng="23.591934071888954" alt="150.0"/></coordinates></spot>
+    <spot id="11B"><coordinates><coordinate lat="52.736922777073666" lng="23.592049213989824" alt="150.0"/></coordinates></spot>
+    <spot id="13B"><coordinates><coordinate lat="52.736853119346996" lng="23.592058873286376" alt="150.0"/></coordinates></spot>
+    <spot id="10B"><coordinates><coordinate lat="52.736844901007075" lng="23.591955009201907" alt="150.0"/></coordinates></spot>
+
+    <spot id="31B"><coordinates><coordinate lat="52.73702401870117" lng="23.59216914425877" alt="150.0"/></coordinates></spot>
+    <spot id="32B" hidden="true"><coordinates><coordinate lat="52.73703352663536" lng="23.59227304233897" alt="150.0"/></coordinates></spot>
+    <spot id="34B"><coordinates><coordinate lat="52.73703352663536" lng="23.59227304233897" alt="150.0"/></coordinates></spot>
+    <spot id="37B"><coordinates><coordinate lat="52.73704086733398" lng="23.592379673423526" alt="150.0"/></coordinates></spot>
+    <spot id="38B"><coordinates><coordinate lat="52.73697297878418" lng="23.592377457839625" alt="150.0"/></coordinates></spot>
+    <spot id="33B"><coordinates><coordinate lat="52.73695613015136" lng="23.59221937227622" alt="150.0"/></coordinates></spot>
+
+    <spot id="14B"><coordinates><coordinate lat="52.73680248707657" lng="23.591955812565235" alt="150.0"/></coordinates></spot>
+    <spot id="15B"><coordinates><coordinate lat="52.73676885725097" lng="23.591957135693544" alt="150.0"/></coordinates></spot>
+    <spot id="16B"><coordinates><coordinate lat="52.73673380793457" lng="23.591963782445248" alt="150.0"/></coordinates></spot>
+    <spot id="17B"><coordinates><coordinate lat="52.73669499687271" lng="23.591972410688225" alt="150.0"/></coordinates></spot>
+    <spot id="18B"><coordinates><coordinate lat="52.73670040729675" lng="23.592058061897532" alt="150.0"/></coordinates></spot>
+    <spot id="↵"><coordinates><coordinate lat="52.73690942532844" lng="23.592297077591887" alt="150.0"/></coordinates></spot>
+
+    <spot id="1A"><coordinates><coordinate lat="52.73613761258392" lng="23.59108343499328" alt="150.0"/></coordinates></spot>
+    <spot id="2A"><coordinates><coordinate lat="52.73610411801757" lng="23.59139719046184" alt="150.0"/></coordinates></spot>
+    <spot id="9A"><coordinates><coordinate lat="52.73611120935058" lng="23.59151316766741" alt="150.0"/></coordinates></spot>
+    <spot id="6A"><coordinates><coordinate lat="52.73615071176758" lng="23.591448903650917" alt="150.0"/></coordinates></spot>
+    <spot id="8A"><coordinates><coordinate lat="52.73599051281738" lng="23.59154272303364" alt="150.0"/></coordinates></spot>
+    <spot id="Deanery"><coordinates><coordinate lat="52.73596211975097" lng="23.59148214750896" alt="150.0"/></coordinates></spot>
+    <spot id="5A" hidden="true"><coordinates><coordinate lat="52.73595546350097" lng="23.59141714081648" alt="150.0"/></coordinates></spot>
+    <spot id="WC"><coordinates><coordinate lat="52.73600249926758" lng="23.591406793309247" alt="150.0"/></coordinates></spot>
+    <spot id="↑"><coordinates><coordinate lat="52.73604256696615" lng="23.59139385952511" alt="150.0"/></coordinates></spot>
+    <spot id="CNB"><coordinates><coordinate lat="52.73655676798935" lng="23.592061689882353" alt="150.0"/></coordinates></spot>
+    <spot id="assembly_hall"><coordinates><coordinate lat="52.73644062233124" lng="23.59206372520772" alt="150.0"/></coordinates></spot>
+    <spot id="WC"><coordinates><coordinate lat="52.73660030759964" lng="23.591985599589382" alt="150.0"/></coordinates></spot>
+    <spot id="WC"><coordinates><coordinate lat="52.736512165643305" lng="23.592003714084328" alt="150.0"/></coordinates></spot>
+    <spot id="↑"><coordinates><coordinate lat="52.73656005180435" lng="23.591992847443336" alt="150.0"/></coordinates></spot>
+    <spot id="↵"><coordinates><coordinate lat="52.7366574181488" lng="23.592128711250275" alt="150.0"/></coordinates></spot>
+
+    <spot id="Marszałka Jóżefa Piłsudskiego"><coordinates><coordinate lat="52.73628816148834" lng="23.591736649837213" alt="150.0"/></coordinates></spot>
+    <spot id="3 Maja"><coordinates><coordinate lat="52.73724904038472" lng="23.592454788661197" alt="150.0"/></coordinates></spot>
+    <spot id="P"><coordinates><coordinate lat="52.7366196000534" lng="23.592417292000224" alt="150.0"/></coordinates></spot>
 </map>

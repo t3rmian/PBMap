@@ -1,5 +1,5 @@
 <map height="2380" id="PB_WZ_Berlin" previous_map_path="data/pb_wz_campus.xml" up_map_path="data/pb_wz_berlin_2.xml"
-    route_path="routes/pb_wz_campus.xml" width="1470" unfinished="true">
+    route_path="routes/pb_wz_campus.xml" width="1470">
     <tiles_configs>
         <tiles_config height="256" path="tiles/pb_wz_campus/berlin/tile-%d_%d.png" width="256"
             zoom="1" />
@@ -9,7 +9,31 @@
         <coordinate alt="150" lat="53.09783" lng="23.12612" />
     </coordinates>
 
+    <spot id="↑"><coordinates><coordinate lat="53.09867668324498" lng="23.125632048422883" alt="150.0"/></coordinates></spot>
     <spot id="↵">	<coordinates>		<coordinate lat="53.09806" lng="23.12543" alt="150.0"/>	</coordinates></spot>
     <spot id="↵">	<coordinates>		<coordinate lat="53.09862" lng="23.12548" alt="150.0"/>	</coordinates></spot>
+    <spot id="24"><coordinates><coordinate lat="53.098500937508206" lng="23.12534994316257" alt="150.0"/></coordinates></spot>
+    <spot id="22"><coordinates><coordinate lat="53.098433075285584" lng="23.12529577248917" alt="150.0"/></coordinates></spot>
+    <spot id="23"><coordinates><coordinate lat="53.09844759944525" lng="23.12538878568688" alt="150.0"/></coordinates></spot>
+    <spot id="21"><coordinates><coordinate lat="53.098459744329375" lng="23.125475667674785" alt="150.0"/></coordinates></spot>
+    <spot id="1"><coordinates><coordinate lat="53.098546995740875" lng="23.125677022240048" alt="150.0"/></coordinates></spot>
 
+    <spot id="17"><coordinates><coordinate lat="53.09797973726366" lng="23.12557174651892" alt="150.0"/></coordinates></spot>
+    <spot id="16"><coordinates><coordinate lat="53.09800459519433" lng="23.125680087865714" alt="150.0"/></coordinates></spot>
+    <spot id="WC"><coordinates><coordinate lat="53.098026399159664" lng="23.12577923233551" alt="150.0"/></coordinates></spot>
+    <spot id="12"><coordinates><coordinate lat="53.09804763496258" lng="23.12589882553412" alt="150.0"/></coordinates></spot>
+    <spot id="↑"><coordinates><coordinate lat="53.098113082408744" lng="23.125859983009807" alt="150.0"/></coordinates></spot>
+    <spot id="Cloakroom"><coordinates><coordinate lat="53.09819852273175" lng="23.12582727173682" alt="150.0"/></coordinates></spot>
+    <spot id="20"><coordinates><coordinate lat="53.098381548311124" lng="23.125404113835963" alt="150.0"/></coordinates></spot>
+    <spot id="19"><coordinates><coordinate lat="53.09829305399816" lng="23.12544295638104" alt="150.0"/></coordinates></spot>
+    <spot id="18"><coordinates><coordinate lat="53.09818275569525" lng="23.125497127054434" alt="150.0"/></coordinates></spot>
+    <spot id="↑"><coordinates><coordinate lat="53.09847607955292" lng="23.125700536636042" alt="150.0"/></coordinates></spot>
+    <spot id="3"><coordinates><coordinate lat="53.09839912643612" lng="23.12572199601569" alt="150.0"/></coordinates></spot>
+    <spot id="4"><coordinates><coordinate lat="53.09833911223083" lng="23.125760838540007" alt="150.0"/></coordinates></spot>
+    <spot id="5"><coordinates><coordinate lat="53.09826762785583" lng="23.125790484187327" alt="150.0"/></coordinates></spot>
+    <spot id="↵"><coordinates><coordinate lat="53.09817913351825" lng="23.125931536807105" alt="150.0"/></coordinates></spot>
+    <spot id="↵"><coordinates><coordinate lat="53.09846883524816" lng="23.125805812357168" alt="150.0"/></coordinates></spot>
+    <spot id="↑"><coordinates><coordinate lat="53.098273061072085" lng="23.12562898279722" alt="150.0"/></coordinates></spot>
+    <spot id="WC"><coordinates><coordinate lat="53.0985257954635" lng="23.12552370707609" alt="150.0"/></coordinates></spot>
+    <spot id="Xero"><coordinates><coordinate lat="53.09847426846442" lng="23.12555129774859" alt="150.0"/></coordinates></spot>
 </map>

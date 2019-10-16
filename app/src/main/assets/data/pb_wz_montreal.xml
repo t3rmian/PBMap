@@ -9,7 +9,22 @@
         <coordinate alt="150" lat="53.09825" lng="23.12518" />
     </coordinates>
 
-    <spot id="↵">	<coordinates>		<coordinate lat="53.09860" lng="23.12464" alt="150.0"/>	</coordinates></spot>
-    <spot id="↵">	<coordinates>		<coordinate lat="53.09831" lng="23.12490" alt="150.0"/>	</coordinates></spot>
+    <spot id="↵"><coordinates><coordinate lat="53.098646866502385" lng="23.124939931640625" alt="150.0"/></coordinates></spot>
+    <spot id="↵"><coordinates><coordinate lat="53.09858985002034" lng="23.124658108215332" alt="150.0"/></coordinates></spot>
+    <spot id="↵"><coordinates><coordinate lat="53.09833745604129" lng="23.12493484954834" alt="150.0"/></coordinates></spot>
 
+    <spot id="Cloakroom"><coordinates><coordinate lat="53.09860435032011" lng="23.124894751281737" alt="150.0"/></coordinates></spot>
+    <spot id="5"><coordinates><coordinate lat="53.09856942217582" lng="23.124909997558593" alt="150.0"/></coordinates></spot>
+    <spot id="WC"><coordinates><coordinate lat="53.09853285285939" lng="23.124929767456056" alt="150.0"/></coordinates></spot>
+    <spot id="8"><coordinates><coordinate lat="53.09848045098241" lng="23.124951231384276" alt="150.0"/></coordinates></spot>
+    <spot id="9"><coordinates><coordinate lat="53.09842741194193" lng="23.124977777404784" alt="150.0"/></coordinates></spot>
+    <spot id="10"><coordinates><coordinate lat="53.09837501008462" lng="23.125012793579103" alt="150.0"/></coordinates></spot>
+    <spot id="19"><coordinates><coordinate lat="53.0985684374686" lng="23.12479195526123" alt="150.0"/></coordinates></spot>
+    <spot id="17"><coordinates><coordinate lat="53.09854339501903" lng="23.124798731384278" alt="150.0"/></coordinates></spot>
+    <spot id="18"><coordinates><coordinate lat="53.0985199937416" lng="23.12481058959961" alt="150.0"/></coordinates></spot>
+    <spot id="20"><coordinates><coordinate lat="53.098552952471444" lng="23.124730951538083" alt="150.0"/></coordinates></spot>
+    <spot id="15"><coordinates><coordinate lat="53.09846695470112" lng="23.124787431640623" alt="150.0"/></coordinates></spot>
+    <spot id="14"><coordinates><coordinate lat="53.09837896823459" lng="23.124815113220215" alt="150.0"/></coordinates></spot>
+    <spot id="13"><coordinates><coordinate lat="53.09835095232258" lng="23.124873287353516" alt="150.0"/></coordinates></spot>
+    <spot id="11"><coordinates><coordinate lat="53.09836249851054" lng="23.124954619445802" alt="150.0"/></coordinates></spot>
 </map>
