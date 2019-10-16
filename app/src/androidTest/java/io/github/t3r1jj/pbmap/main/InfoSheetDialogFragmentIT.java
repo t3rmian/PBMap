@@ -9,6 +9,7 @@ import android.os.SystemClock;
 import androidx.fragment.app.FragmentActivity;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
 import androidx.test.filters.MediumTest;
 import androidx.test.filters.SmallTest;
 
@@ -99,7 +100,7 @@ public class InfoSheetDialogFragmentIT {
     }
 
     @Test
-    @MediumTest
+    @LargeTest
     public void onCreateAndRotate_InfoIsDisplayed() {
         info = mock(Info.class);
         when(info.getName(any())).thenReturn("test title");

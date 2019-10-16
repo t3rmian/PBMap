@@ -103,7 +103,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @MediumTest
+    @LargeTest
     public void navigateUp() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -142,7 +142,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @MediumTest
+    @LargeTest
     public void navigateRightLeft() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -156,7 +156,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @MediumTest
+    @LargeTest
     public void navigateShowHide() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);

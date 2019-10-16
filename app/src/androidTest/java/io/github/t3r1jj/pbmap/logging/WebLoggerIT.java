@@ -135,8 +135,14 @@ public class WebLoggerIT {
         messages = logger.getMessages();
         assertEquals("Scheduled two messages", 2, messages.size());
         logger.sendMessages();
-        for (int i = 0; !logger.getMessages().isEmpty() && i < 15; i++) {
+        for (int i = 0; !logger.getMessages().isEmpty() && i < 20; i++) {
             Thread.sleep(1000);
+        }
+        if (!logger.getMessages().isEmpty()) {
+            logger.sendMessages();
+            for (int i = 0; !logger.getMessages().isEmpty() && i < 20; i++) {
+                Thread.sleep(1000);
+            }
         }
         messages = logger.getMessages();
         assertTrue("All scheduled messages have been sent", messages.isEmpty());

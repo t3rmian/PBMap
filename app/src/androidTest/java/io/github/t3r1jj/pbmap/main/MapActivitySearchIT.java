@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.annotation.StringRes;
 import androidx.test.espresso.matcher.RootMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
 import androidx.test.filters.MediumTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
@@ -52,7 +53,7 @@ public class MapActivitySearchIT {
     }
 
     @Test
-    @MediumTest
+    @LargeTest
     public void testSearch_Space() {
         onView(withId(R.id.action_search)).perform(click());
         onView(withId(R.id.search_src_text)).perform(typeText("PB WI"), pressImeActionButton());
