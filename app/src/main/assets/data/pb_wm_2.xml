@@ -68,4 +68,10 @@
     <spot id="213" hidden="true">	<coordinates>		<coordinate lat="53.11748518486524" lng="23.14890928192349" alt="155.0"/>	</coordinates></spot>
     <spot id="211">	<coordinates>		<coordinate lat="53.117491176788185" lng="23.14894429682112" alt="155.0"/>	</coordinates></spot>
     <spot id="207" hidden="true">	<coordinates>		<coordinate lat="53.1175006400095" lng="23.148980716998924" alt="155.0"/>	</coordinates></spot>
+
+    <spot id="↓" hidden="true"><coordinates><coordinate lat="53.11654525143482" lng="23.14791724632042" alt="155.0"/></coordinates></spot>
+    <spot id="↓" hidden="true"><coordinates><coordinate lat="53.11662015851225" lng="23.148308664887104" alt="155.0"/></coordinates></spot>
+    <spot id="↓" hidden="true"><coordinates><coordinate lat="53.1167027456475" lng="23.148705762543777" alt="155.0"/></coordinates></spot>
+    <spot id="↓" hidden="true"><coordinates><coordinate lat="53.116852506531075" lng="23.149095738732488" alt="155.0"/></coordinates></spot>
+    <spot id="↓" hidden="true"><coordinates><coordinate lat="53.116922326620454" lng="23.149508454600788" alt="155.0"/></coordinates></spot>
 </map>

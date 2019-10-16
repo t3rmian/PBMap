@@ -45,5 +45,6 @@
     <spot id="P2/40">	<coordinates>		<coordinate lat="53.11863739310974" lng="23.154262248427425" alt="160.0"/>	</coordinates></spot>
     <spot id="P2/41">	<coordinates>		<coordinate lat="53.118617138876346" lng="23.15417005490016" alt="160.0"/>	</coordinates></spot>
     <spot id="P2/42">	<coordinates>		<coordinate lat="53.11859744014832" lng="23.15408422984196" alt="160.0"/>	</coordinates></spot>
+    <spot id="P2/45"><coordinates><coordinate lat="53.11866308894592" lng="23.154028784199276" alt="160.0"/></coordinates></spot>
     <spot id="WC">	<coordinates>		<coordinate lat="53.11868721677185" lng="23.154224756973047" alt="160.0"/>	</coordinates></spot>
 </map>

@@ -1,6 +1,6 @@
 <map down_map_path="data/pb_wz_philadelphia_2.xml" height="1026" id="PB_WZ_Philadelphia_L3" hidden="true"
     previous_map_path="data/pb_wz_philadelphia_2.xml" route_path="routes/pb_wz_campus.xml"
-    width="1470" unfinished="true">
+    width="1470">
     <tiles_configs>
         <tiles_config height="256" path="tiles/pb_wz_campus/philadelphia/tile-%d_%d.png" width="256"
             zoom="1" />
@@ -10,4 +10,16 @@
         <coordinate alt="160" lat="53.09720" lng="23.12556" />
     </coordinates>
 
+    <spot id="↓"><coordinates><coordinate lat="53.09741553825988" lng="23.125192619628905" alt="160.0"/></coordinates></spot>
+    <spot id="200"><coordinates><coordinate lat="53.097447120608805" lng="23.125366304592003" alt="160.0"/></coordinates></spot>
+    <spot id="WC"><coordinates><coordinate lat="53.09743538624903" lng="23.125291759643556" alt="160.0"/></coordinates></spot>
+    <spot id="201"><coordinates><coordinate lat="53.09739055875366" lng="23.125413742606028" alt="160.0"/></coordinates></spot>
+    <spot id="202"><coordinates><coordinate lat="53.097378966785456" lng="23.125344291972258" alt="160.0"/></coordinates></spot>
+    <spot id="203"><coordinates><coordinate lat="53.09736737481725" lng="23.125275976517656" alt="160.0"/></coordinates></spot>
+    <spot id="204"><coordinates><coordinate lat="53.0973527926261" lng="23.125200880866018" alt="160.0"/></coordinates></spot>
+    <spot id="205"><coordinates><coordinate lat="53.097340190972226" lng="23.125129736768244" alt="160.0"/></coordinates></spot>
+    <spot id="206"><coordinates><coordinate lat="53.09732461851243" lng="23.125048431886427" alt="160.0"/></coordinates></spot>
+    <spot id="207"><coordinates><coordinate lat="53.09730904605263" lng="23.124978981252656" alt="160.0"/></coordinates></spot>
+    <spot id="208"><coordinates><coordinate lat="53.09729375463415" lng="23.124903659667968" alt="160.0"/></coordinates></spot>
+    <spot id="214"><coordinates><coordinate lat="53.097370424403735" lng="23.124944389648437" alt="155.0"/></coordinates></spot>
 </map>

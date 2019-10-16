@@ -1,5 +1,5 @@
 <map down_map_path="data/pb_acs.xml" height="2200" id="PB_ACS_L2" previous_map_path="data/pb_acs.xml" hidden="true"
-    route_path="routes/pb_campus.xml" width="1820" unfinished="true">
+    route_path="routes/pb_campus.xml" width="1820">
     <tiles_configs>
         <tiles_config height="256" path="tiles/pb_campus/acs/main/tile-%d_%d.png" width="256"
             zoom="1" />
