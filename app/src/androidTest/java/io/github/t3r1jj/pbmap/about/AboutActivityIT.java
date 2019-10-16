@@ -129,7 +129,7 @@ public class AboutActivityIT {
     }
 
     @Test
-    @MediumTest
+    @LargeTest
     public void onShare_correctIntent() {
         withIntents(() -> {
             SystemClock.sleep(1000);

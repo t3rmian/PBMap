@@ -5,7 +5,7 @@ import android.widget.ImageView;
 
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.MediumTest;
+import androidx.test.filters.LargeTest;
 import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
@@ -43,7 +43,7 @@ public class MapActivityIT {
             .around(new ScreenshotOnTestFailedRule());
 
     @Test
-    @MediumTest
+    @LargeTest
     public void initiateImprovementUseCase() {
         UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
         int x = device.getDisplayWidth() / 2;

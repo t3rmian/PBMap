@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.SystemClock;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
 import androidx.test.filters.MediumTest;
 import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -92,7 +93,7 @@ public class MapActivityDebugIT {
     }
 
     @Test
-    @MediumTest
+    @LargeTest
     public void removeDestinationMark() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -124,7 +125,7 @@ public class MapActivityDebugIT {
     }
 
     @Test
-    @MediumTest
+    @LargeTest
     public void removeSourceMark() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);

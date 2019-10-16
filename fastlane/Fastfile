@@ -49,6 +49,7 @@ platform :android do
   desc "Run UT/E2E tests on :testing/:sample"
   lane :all_tests_e2e do
     gradle(task: ":testing:combinedTestReportDebug")
+    gradle(task: ":app:installDebug")
     gradle(task: ":sample:combinedTestReportDebug")
   end
 

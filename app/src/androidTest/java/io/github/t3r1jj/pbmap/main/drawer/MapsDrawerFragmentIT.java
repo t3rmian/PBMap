@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
 import androidx.test.filters.MediumTest;
 import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -129,7 +130,7 @@ public class MapsDrawerFragmentIT {
     }
 
     @Test
-    @MediumTest
+    @LargeTest
     public void testDrawer_Navigation_AboutActivity() {
         autoOpenDrawerReturningPreferences(true);
         activityRule.launchActivity(new Intent());

@@ -97,6 +97,8 @@ public class MapActivityNavigationIT {
         activityRule.launchActivity(sendIntent);
         onView(withIndex(withText(getFormattedString(R.string.pb_wb_name)), 0)).check(matches(isDisplayed()));
         onView(withContentDescription(R.string.action_back)).perform(click());
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+        SystemClock.sleep(1000);
         onView(withIndex(withText(R.string.pb_campus_name), 0)).check(matches(isDisplayed()));
     }
 
