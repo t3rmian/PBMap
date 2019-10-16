@@ -8,8 +8,8 @@ import android.preference.PreferenceManager;
 
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.LargeTest;
 import androidx.test.filters.MediumTest;
+import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 
@@ -51,7 +51,7 @@ public class MapsDrawerFragmentIT {
             .around(new ScreenshotOnTestFailedRule());
 
     @Test
-    @MediumTest
+    @SmallTest
     public void testDrawer_OpenOnFirstTry() {
         SharedPreferences preferences = autoOpenDrawerReturningPreferences(true);
         preferences.edit().remove(NavigationDrawerFragment.PREF_USER_LEARNED_DRAWER).apply();
@@ -61,7 +61,7 @@ public class MapsDrawerFragmentIT {
     }
 
     @Test
-    @MediumTest
+    @SmallTest
     public void testDrawer_ClosedOnSecondTry() {
         SharedPreferences preferences = autoOpenDrawerReturningPreferences(false);
         activityRule.launchActivity(new Intent());
@@ -81,7 +81,7 @@ public class MapsDrawerFragmentIT {
     }
 
     @Test
-    @MediumTest
+    @SmallTest
     public void testDrawer_DisplaysSpaces() {
         autoOpenDrawerReturningPreferences(true);
         activityRule.launchActivity(new Intent());
@@ -100,7 +100,7 @@ public class MapsDrawerFragmentIT {
     }
 
     @Test
-    @MediumTest
+    @SmallTest
     public void testDrawer_SelectionState() {
         autoOpenDrawerReturningPreferences(true);
         activityRule.launchActivity(new Intent());
@@ -118,7 +118,7 @@ public class MapsDrawerFragmentIT {
     }
 
     @Test
-    @LargeTest
+    @SmallTest
     public void testDrawer_OpensAtCNK_SelectionState() {
         autoOpenDrawerReturningPreferences(true);
         Intent searchIntent = new Intent();
@@ -129,7 +129,7 @@ public class MapsDrawerFragmentIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void testDrawer_Navigation_AboutActivity() {
         autoOpenDrawerReturningPreferences(true);
         activityRule.launchActivity(new Intent());

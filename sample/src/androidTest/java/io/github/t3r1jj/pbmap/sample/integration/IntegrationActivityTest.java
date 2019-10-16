@@ -67,9 +67,7 @@ public class IntegrationActivityTest {
     }
 
     @Test
-    @SmallTest
     @MediumTest
-    @LargeTest
     public void onCreate() {
         onView(withId(R.id.description)).check(matches(isDisplayed()));
         onView(withId(R.id.search_query_text)).check(matches(isDisplayed()));

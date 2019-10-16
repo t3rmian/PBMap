@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.annotation.StringRes;
 import androidx.test.espresso.matcher.RootMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.LargeTest;
+import androidx.test.filters.MediumTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 
@@ -42,7 +42,7 @@ public class MapActivitySearchIT {
             .around(new ScreenshotOnTestFailedRule());
 
     @Test
-    @LargeTest
+    @MediumTest
     public void testSearch_PlaceInSpace() {
         onView(withId(R.id.action_search)).perform(click());
         onView(withId(R.id.search_src_text)).perform(typeText("116@wi"), pressImeActionButton());
@@ -52,7 +52,7 @@ public class MapActivitySearchIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void testSearch_Space() {
         onView(withId(R.id.action_search)).perform(click());
         onView(withId(R.id.search_src_text)).perform(typeText("PB WI"), pressImeActionButton());
@@ -62,7 +62,7 @@ public class MapActivitySearchIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void testSearch_NotFound() {
         onView(withId(R.id.action_search)).perform(click());
         onView(withId(R.id.search_src_text)).perform(typeText("PB WI L3"), pressImeActionButton());
@@ -73,7 +73,7 @@ public class MapActivitySearchIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void testSearch_ListOfSpaces() {
         onView(withId(R.id.action_search)).perform(click());
         onView(withId(R.id.search_src_text)).perform(typeText("PB"));
@@ -89,7 +89,7 @@ public class MapActivitySearchIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void testSearch_ListOfSpaces_SelectOne() {
         onView(withId(R.id.action_search)).perform(click());
         onView(withId(R.id.search_src_text)).perform(typeText("PB"));
@@ -101,7 +101,7 @@ public class MapActivitySearchIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void testSearch_ListOfPlacesInSpaces() {
         onView(withId(R.id.action_search)).perform(click());
         onView(withId(R.id.search_src_text)).perform(typeText("10"));

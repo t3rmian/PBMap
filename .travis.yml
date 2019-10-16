@@ -14,30 +14,30 @@ env:
 
 matrix:
   include:
-  - name: "Android 22 small and unit"
+  - name: "API 22 UT/IT(small) :app"
     env:
     - EMULATOR_API_LEVEL=22
     - ANDROID_ABI=x86_64
     - ANDROID_ABI_TAG=default
     - TEST_SUITE=small
-  - name: "Android 22 medium"
+  - name: "API 22 IT(medium) :app"
     env:
     - EMULATOR_API_LEVEL=22
     - ANDROID_ABI=x86_64
     - ANDROID_ABI_TAG=default
     - TEST_SUITE=medium
-  - name: "Android 22 large"
+  - name: "API 22 IT(large) :app"
     env:
     - EMULATOR_API_LEVEL=22
     - ANDROID_ABI=x86_64
     - ANDROID_ABI_TAG=default
     - TEST_SUITE=large
-  - name: "Android 22 flaky app"
+  - name: "API 22 UT/IT/E2E :testing/:sample"
     env:
     - EMULATOR_API_LEVEL=22
     - ANDROID_ABI=x86_64
     - ANDROID_ABI_TAG=default
-    - TEST_SUITE=flaky
+    - TEST_SUITE=e2e
 
 android:
   components:
@@ -72,9 +72,9 @@ before_install:
 - yes | sdkmanager "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI_TAG;$ANDROID_ABI"
 - bundle install
 
-install:
-- chmod +x ci/run_unit_tests.sh
-- bash ci/run_unit_tests.sh
+#install:
+#- chmod +x ci/run_unit_tests.sh
+#- bash ci/run_unit_tests.sh
 
 before_script:
 - echo no | avdmanager -v create avd -f -n test -k "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI_TAG;$ANDROID_ABI" -c 10M

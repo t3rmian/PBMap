@@ -26,24 +26,30 @@ platform :android do
     gradle(task: "combinedTestReportDebug")
   end
 
-  desc "Run all tests with code coverage (small)"
+  desc "Run UT/IT(small) tests on :app [ignore flaky]"
   lane :all_tests_small do
-    gradle(task: "combinedTestReportDebug -Pandroid.testInstrumentationRunnerArguments.size=small -Pandroid.testInstrumentationRunnerArguments.notAnnotation=androidx.test.filters.FlakyTest")
+    gradle(task: ":app:combinedTestReportDebug -Pandroid.testInstrumentationRunnerArguments.size=small -Pandroid.testInstrumentationRunnerArguments.notAnnotation=androidx.test.filters.FlakyTest")
   end
 
-  desc "Run instrumentation tests with code coverage (medium)"
+  desc "Run IT(medium) tests on :app [ignore flaky]"
   lane :all_tests_medium do
-    gradle(task: "createDebugCoverageReport -Pandroid.testInstrumentationRunnerArguments.size=medium -Pandroid.testInstrumentationRunnerArguments.notAnnotation=androidx.test.filters.FlakyTest")
+    gradle(task: ":app:createDebugCoverageReport -Pandroid.testInstrumentationRunnerArguments.size=medium -Pandroid.testInstrumentationRunnerArguments.notAnnotation=androidx.test.filters.FlakyTest")
   end
 
-  desc "Run instrumentation tests with code coverage (large)"
+  desc "Run IT(large) tests on :app [ignore flaky]"
   lane :all_tests_large do
-    gradle(task: "createDebugCoverageReport -Pandroid.testInstrumentationRunnerArguments.size=large -Pandroid.testInstrumentationRunnerArguments.notAnnotation=androidx.test.filters.FlakyTest")
+    gradle(task: ":app:createDebugCoverageReport -Pandroid.testInstrumentationRunnerArguments.size=large -Pandroid.testInstrumentationRunnerArguments.notAnnotation=androidx.test.filters.FlakyTest")
   end
 
-  desc "Run app instrumentation tests with code coverage (flaky)"
+  desc "Run IT(flaky) tests on :app [ignore small/medium/large]"
   lane :all_tests_flaky do
     gradle(task: ":app:createDebugCoverageReport -Pandroid.testInstrumentationRunnerArguments.notAnnotation=androidx.test.filters.MediumTest,androidx.test.filters.SmallTest,androidx.test.filters.LargeTest")
+  end
+
+  desc "Run UT/E2E tests on :testing/:sample"
+  lane :all_tests_e2e do
+    gradle(task: ":testing:combinedTestReportDebug")
+    gradle(task: ":sample:combinedTestReportDebug")
   end
 
   desc "Assemble a debug apk"

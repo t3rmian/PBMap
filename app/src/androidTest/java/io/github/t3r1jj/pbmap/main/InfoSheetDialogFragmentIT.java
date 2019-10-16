@@ -9,8 +9,8 @@ import android.os.SystemClock;
 import androidx.fragment.app.FragmentActivity;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.LargeTest;
 import androidx.test.filters.MediumTest;
+import androidx.test.filters.SmallTest;
 
 import com.android21buttons.fragmenttestrule.FragmentTestRule;
 
@@ -60,7 +60,7 @@ public class InfoSheetDialogFragmentIT {
     }
 
     @Test
-    @MediumTest
+    @SmallTest
     public void onCreate() {
         info = mock(Info.class);
         lazySetUp();

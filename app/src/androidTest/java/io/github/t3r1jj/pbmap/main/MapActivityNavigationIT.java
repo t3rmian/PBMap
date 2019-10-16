@@ -15,9 +15,9 @@ import android.provider.Settings;
 
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.FlakyTest;
 import androidx.test.filters.LargeTest;
 import androidx.test.filters.MediumTest;
+import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.uiautomator.By;
@@ -89,7 +89,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void navigateBack_ActionBar() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -101,7 +101,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void navigateUp() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -114,7 +114,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void navigateDown() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -127,7 +127,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void navigateRight() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -140,7 +140,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void navigateRightLeft() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -154,7 +154,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void navigateShowHide() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -172,7 +172,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void showInfo() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -191,7 +191,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void trackLocation() throws UiObjectNotFoundException {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -227,7 +227,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @MediumTest
+    @LargeTest
     public void pinpointStartEnd() {
         Intent sendIntent = new Intent();
         activityRule.launchActivity(sendIntent);
@@ -254,7 +254,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @FlakyTest
+    @LargeTest
     public void pinpointStartEnd_Rotate() {
         Intent sendIntent = new Intent();
         activityRule.launchActivity(sendIntent);
@@ -272,7 +272,6 @@ public class MapActivityNavigationIT {
         device.swipe(x, y, x, y, steps);
         SystemClock.sleep(1000);
         device.findObject(By.text(Pattern.compile("^.*(?i)(DESTINATION).*$"))).click();
-        ;
         SystemClock.sleep(1000);
 
         activityRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -285,7 +284,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @MediumTest
+    @LargeTest
     public void onSpaceNavigation() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -299,7 +298,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @MediumTest
+    @LargeTest
     public void onSpaceNavigationInfo() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -328,7 +327,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @FlakyTest
+    @MediumTest
     public void onGpsOff() throws UiObjectNotFoundException, NoSuchFieldException, IllegalAccessException {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -346,7 +345,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @FlakyTest
+    @MediumTest
     public void onGpsOff_Cancel() throws UiObjectNotFoundException, NoSuchFieldException, IllegalAccessException {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -365,7 +364,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @FlakyTest
+    @LargeTest
     public void onGpsOff_Enable() throws UiObjectNotFoundException, NoSuchFieldException, IllegalAccessException {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -402,7 +401,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @FlakyTest
+    @MediumTest
     public void onAirplaneOn() throws UiObjectNotFoundException, NoSuchFieldException, IllegalAccessException {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -438,7 +437,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @FlakyTest
+    @MediumTest
     public void onWifiDisabled_NetworkBest() throws UiObjectNotFoundException, NoSuchFieldException, IllegalAccessException {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -482,7 +481,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @FlakyTest
+    @MediumTest
     public void onWifiDisabled_NetworkBest_ForceGps() throws UiObjectNotFoundException, NoSuchFieldException, IllegalAccessException {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -542,7 +541,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @FlakyTest
+    @SmallTest
     public void onRequestPermission_Other_Ignore() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -554,7 +553,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @FlakyTest
+    @SmallTest
     public void onRequestPermission_1_DidNotGet_ClearLocation() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -566,7 +565,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @FlakyTest
+    @MediumTest
     public void onRequestPermission_1_DidNotGet_AskedExplicitly() throws UiObjectNotFoundException, NoSuchFieldException, IllegalAccessException {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -589,7 +588,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @FlakyTest
+    @MediumTest
     public void onRequestPermission_1_Denied() throws UiObjectNotFoundException, NoSuchFieldException, IllegalAccessException {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -612,7 +611,7 @@ public class MapActivityNavigationIT {
     }
 
     @Test
-    @FlakyTest
+    @MediumTest
     public void onRequestPermission_1_GrantedButGpsOff() throws UiObjectNotFoundException, NoSuchFieldException, IllegalAccessException {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);

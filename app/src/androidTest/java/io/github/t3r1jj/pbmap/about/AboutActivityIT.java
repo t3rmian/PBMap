@@ -11,6 +11,7 @@ import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.filters.MediumTest;
+import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.uiautomator.UiDevice;
@@ -69,7 +70,7 @@ public class AboutActivityIT {
     }
 
     @Test
-    @MediumTest
+    @SmallTest
     public void onAboutCreate() {
         onView(ViewMatchers.withId(R.id.about_icon)).check(matches(isDisplayed()));
         onView(withId(R.id.about_rate)).check(matches(isDisplayed()));
@@ -80,7 +81,7 @@ public class AboutActivityIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void onBugReportPress_correctIntent() {
         withIntents(() -> {
             onView(withId(R.id.about_report)).perform(click());
@@ -92,7 +93,7 @@ public class AboutActivityIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void onSupportPress_correctIntent() {
         withIntents(() -> {
             onView(withId(R.id.about_support)).perform(click());
@@ -104,7 +105,7 @@ public class AboutActivityIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void onRatePress_correctIntent() {
         withIntents(() -> {
             onView(withId(R.id.about_rate)).perform(click());
@@ -116,7 +117,7 @@ public class AboutActivityIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void onProjectPress_correctIntent() {
         withIntents(() -> {
             onView(withId(R.id.about_icon)).perform(click());
@@ -128,7 +129,7 @@ public class AboutActivityIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void onShare_correctIntent() {
         withIntents(() -> {
             SystemClock.sleep(1000);
@@ -151,7 +152,7 @@ public class AboutActivityIT {
     }
 
     @Test
-    @MediumTest
+    @LargeTest
     public void onLicensesClick_correctContent() throws InterruptedException {
         onView(withId(R.id.about_licenses)).perform(click());
         Thread.sleep(30000);

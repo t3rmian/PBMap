@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.LargeTest;
+import androidx.test.filters.MediumTest;
 import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 
@@ -65,7 +65,7 @@ public class WebLoggerIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void sendIncompleteMessages() throws InterruptedException {
         preferences.edit().clear().apply();
         ArrayList<Message> messages = logger.getMessages();
@@ -83,7 +83,7 @@ public class WebLoggerIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void sendCompleteMessages() throws InterruptedException {
         preferences.edit().clear().apply();
         ArrayList<Message> messages = logger.getMessages();
@@ -112,7 +112,7 @@ public class WebLoggerIT {
     }
 
     @Test
-    @LargeTest
+    @MediumTest
     public void sendTwoCompleteMessages() throws InterruptedException {
         preferences.edit().clear().apply();
         ArrayList<Message> messages = logger.getMessages();

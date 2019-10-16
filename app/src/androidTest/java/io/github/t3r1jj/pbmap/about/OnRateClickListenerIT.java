@@ -9,7 +9,6 @@ import android.os.Looper;
 import android.widget.Toast;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.MediumTest;
 import androidx.test.filters.SmallTest;
 
 import org.hamcrest.Description;
@@ -81,7 +80,7 @@ public class OnRateClickListenerIT {
     }
 
     @Test
-    @MediumTest
+    @SmallTest
     public void onClick_FallbackDidNotWork() {
         Context context = mock(Context.class);
         when(context.getApplicationContext()).thenReturn(context);

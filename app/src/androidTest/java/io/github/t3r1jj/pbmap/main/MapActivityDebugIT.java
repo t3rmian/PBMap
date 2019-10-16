@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.os.SystemClock;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.FlakyTest;
+import androidx.test.filters.MediumTest;
+import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.UiDevice;
 
+import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.RuleChain;
@@ -23,7 +25,6 @@ import io.github.t3r1jj.pbmap.logging.Config;
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 
 import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.longClick;
 import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -46,8 +47,13 @@ public class MapActivityDebugIT {
             .outerRule(activityRule)
             .around(new ScreenshotOnTestFailedRule());
 
+    @After
+    public void tearDown() {
+        Config.getInstance().setDebug(false);
+    }
+
     @Test
-    @FlakyTest
+    @SmallTest
     public void showFullRoute() {
         Config.getInstance().setDebug(true);
         Intent sendIntent = new Intent();
@@ -57,7 +63,7 @@ public class MapActivityDebugIT {
     }
 
     @Test
-    @FlakyTest
+    @MediumTest
     public void showDebug() {
         Config.getInstance().setDebug(true);
         Intent sendIntent = new Intent();
@@ -86,7 +92,7 @@ public class MapActivityDebugIT {
     }
 
     @Test
-    @FlakyTest
+    @MediumTest
     public void removeDestinationMark() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -118,7 +124,7 @@ public class MapActivityDebugIT {
     }
 
     @Test
-    @FlakyTest
+    @MediumTest
     public void removeSourceMark() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
