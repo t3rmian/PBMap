@@ -4,6 +4,8 @@ import android.location.Location;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.simpleframework.xml.Attribute;
 
 import java.io.Serializable;
@@ -28,6 +30,8 @@ public class Coordinate implements Parcelable, Serializable {
     public double alt;
 
     private boolean altitude = true;
+
+    private boolean detachedFromNext;
 
     public Coordinate() {
     }
@@ -182,4 +186,16 @@ public class Coordinate implements Parcelable, Serializable {
         }
 
     };
+
+    public boolean sameAltitude(@NonNull Coordinate that) {
+        return Double.compare(that.alt, alt) == 0 || !hasAltitude() || !that.hasAltitude();
+    }
+
+    public boolean isDetachedFromNext() {
+        return detachedFromNext;
+    }
+
+    public void setDetachedFromNext(boolean detachedFromNext) {
+        this.detachedFromNext = detachedFromNext;
+    }
 }

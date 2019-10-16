@@ -12,6 +12,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.isA;
 import static org.hamcrest.core.IsCollectionContaining.hasItem;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -101,6 +102,8 @@ public class PBMapTest {
         ));
         map.removeDifferentAltitudePoints(route);
         assertEquals(Arrays.asList(sameAltCoordinate1, sameAltCoordinate2, sameAltCoordinate3), route);
+        assertFalse(sameAltCoordinate2.isDetachedFromNext());
+        assertTrue(sameAltCoordinate3.isDetachedFromNext());
     }
 
     @Test

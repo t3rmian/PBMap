@@ -110,10 +110,16 @@ public class PBMap extends Space {
     }
 
     public void removeDifferentAltitudePoints(List<Coordinate> route) {
+        Coordinate prev = null;
         for (Iterator<Coordinate> routeIterator = route.iterator(); routeIterator.hasNext(); ) {
             Coordinate next = routeIterator.next();
             if (compareAltitude(next) != 0) {
                 routeIterator.remove();
+                if (prev != null) {
+                    prev.setDetachedFromNext(true);
+                }
+            } else {
+                prev = next;
             }
         }
     }
