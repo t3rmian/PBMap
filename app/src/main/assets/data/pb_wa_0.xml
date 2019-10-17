@@ -1,0 +1,26 @@
+<map height="2500" id="PB_WA_L0" route_path="routes/pb_wa.xml" up_map_path="data/pb_wa.xml"
+    url="http://wa.pb.edu.pl/" previous_map_path="data/pb_wa.xml" width="2800" hidden="true">
+    <tiles_configs>
+        <tiles_config height="256" path="tiles/pb_wa/main/tile-%d_%d.png" width="256"
+            zoom="1" />
+    </tiles_configs>
+    <coordinates>
+        <coordinate alt="145" lat="53.12929" lng="23.14703" />
+        <coordinate alt="145" lat="53.12841" lng="23.14540" />
+    </coordinates>
+
+    <spot id="↑↓"><coordinates><coordinate lat="53.128885903269534" lng="23.146265144017683" alt="145.0"/></coordinates></spot>
+    <spot id="↑↓"><coordinates><coordinate lat="53.12864940722266" lng="23.145724929978506" alt="145.0"/></coordinates></spot>
+    <spot id="↑↓"><coordinates><coordinate lat="53.129124138261716" lng="23.146245418456594" alt="145.0"/></coordinates></spot>
+
+    <spot id="01"><coordinates><coordinate lat="53.12897075525" lng="23.146298225109863" alt="145.0"/></coordinates></spot>
+    <spot id="02"><coordinates><coordinate lat="53.128922183374996" lng="23.146347707963344" alt="145.0"/></coordinates></spot>
+    <spot id="03"><coordinates><coordinate lat="53.12881088434375" lng="23.146330772168405" alt="145.0"/></coordinates></spot>
+    <spot id="06"><coordinates><coordinate lat="53.12875226886719" lng="23.14619486135341" alt="145.0"/></coordinates></spot>
+    <spot id="08"><coordinates><coordinate lat="53.12870214036328" lng="23.146066381245205" alt="145.0"/></coordinates></spot>
+    <spot id="09"><coordinates><coordinate lat="53.12866105665235" lng="23.14596112204241" alt="145.0"/></coordinates></spot>
+    <spot id="11"><coordinates><coordinate lat="53.12861694824219" lng="23.14585668243735" alt="145.0"/></coordinates></spot>
+    <spot id="14"><coordinates><coordinate lat="53.12870666278125" lng="23.145759700827025" alt="145.0"/></coordinates></spot>
+    <spot id="Archive"><coordinates><coordinate lat="53.12911711968164" lng="23.146421138761248" alt="145.0"/></coordinates></spot>
+
+</map>

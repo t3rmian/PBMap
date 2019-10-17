@@ -25,4 +25,8 @@ public class Edge {
     public Coordinate getEnd() {
         return end;
     }
+
+    public boolean sameAltitude() {
+        return getStart().sameAltitude(getEnd());
+    }
 }

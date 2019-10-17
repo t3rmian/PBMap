@@ -8,6 +8,7 @@
     <color name="colorAccentPressed">#EF9C00</color>
     <color name="space_bounds">#777777</color>
     <color name="space_bounds_interactive">@color/colorPrimaryDark</color>
+    <color name="space_bounds_off">#2E2E2E</color>
     <color name="route">#AA00FF</color>
     <color name="spot_text">@color/colorAccent</color>
     <color name="space_text">@color/colorSecondaryText</color>

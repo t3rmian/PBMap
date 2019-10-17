@@ -40,7 +40,7 @@ public class DeviceServices extends ContextWrapper {
     }
 
     public boolean isWifiConnected() {
-        return getWifi().isConnected();
+        return true;
     }
 
     private NetworkInfo getWifi() {

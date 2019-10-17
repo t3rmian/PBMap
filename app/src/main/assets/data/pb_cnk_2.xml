@@ -30,10 +30,12 @@
     <spot id="P1/12">	<coordinates>		<coordinate lat="53.11924802590332" lng="23.154342474794053" alt="155.0"/>	</coordinates></spot>
     <spot id="P1/13">	<coordinates>		<coordinate lat="53.11918414842529" lng="23.15438062214586" alt="155.0"/>	</coordinates></spot>
 
-    <spot id="P1/21">	<coordinates>		<coordinate lat="53.11899119339966" lng="23.15441029787115" alt="155.0"/>	</coordinates></spot>
+    <spot id="P1/21">	<coordinates>		<coordinate lat="53.11896353675171" lng="23.154346108457197" alt="155.0"/>	</coordinates></spot>
+    <spot id="P1/22-26"><coordinates><coordinate lat="53.11900585385376" lng="23.15445811527355" alt="155.0"/></coordinates></spot>
     <spot id="↑↓">	<coordinates>		<coordinate lat="53.118883135808716" lng="23.15452783024042" alt="155.0"/>	</coordinates></spot>
 
     <spot id="P1/38">	<coordinates>		<coordinate lat="53.11871444560547" lng="23.154326984167934" alt="155.0"/>	</coordinates></spot>
     <spot id="↑↓">	<coordinates>		<coordinate lat="53.11873592947022" lng="23.154442924135925" alt="155.0"/>	</coordinates></spot>
+    <spot id="WC">	<coordinates>		<coordinate lat="53.11868721677185" lng="23.154224756973047" alt="155.0"/>	</coordinates></spot>
 
 </map>

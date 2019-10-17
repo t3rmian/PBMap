@@ -74,4 +74,6 @@
     <spot id="37B">	<coordinates>		<coordinate lat="53.117911345189306" lng="23.151706942326136" alt="150.0"/>	</coordinates></spot>
     <spot id="31B">	<coordinates>		<coordinate lat="53.11782613529062" lng="23.151498457824253" alt="150.0"/>	</coordinates></spot>
     <spot id="32B">	<coordinates>		<coordinate lat="53.117872504823424" lng="23.15147397666545" alt="150.0"/>	</coordinates></spot>
+    <spot id="13B"><coordinates><coordinate lat="53.11760803197603" lng="23.1513177949006" alt="150.0"/></coordinates></spot>
+    <spot id="74B"><coordinates><coordinate lat="53.11781190226931" lng="23.152294694425528" alt="150.0"/></coordinates></spot>
 </map>

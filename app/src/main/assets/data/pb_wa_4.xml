@@ -1,5 +1,5 @@
 <map down_map_path="data/pb_wa_3.xml" height="2200" id="PB_WA_L4" hidden="true"
-    previous_map_path="data/pb_wa_3.xml" route_path="routes/pb_wa.xml" width="1831" unfinished="true">
+    previous_map_path="data/pb_wa_3.xml" route_path="routes/pb_wa.xml" width="1831">
     <tiles_configs>
         <tiles_config height="256" path="tiles/pb_wa/top/tile-%d_%d.png" width="256"
             zoom="1" />
@@ -9,4 +9,22 @@
         <coordinate alt="165" lat="53.12866" lng="23.14695" />
     </coordinates>
 
+    <spot id="↑↓"><coordinates><coordinate lat="53.129124138261716" lng="23.146245418456594" alt="165.0"/></coordinates></spot>
+    <spot id="↑↓"><coordinates><coordinate lat="53.12883679200781" lng="23.146811211356898" alt="165.0"/></coordinates></spot>
+    <spot id="WC"><coordinates><coordinate lat="53.12888306905078" lng="23.146731138146972" alt="165.0"/></coordinates></spot>
+
+    <spot id="302"><coordinates><coordinate lat="53.129081097484246" lng="23.14629929016113" alt="165.0"/></coordinates></spot>
+    <spot id="304"><coordinates><coordinate lat="53.12903346937145" lng="23.146361550916986" alt="165.0"/></coordinates></spot>
+    <spot id="306"><coordinates><coordinate lat="53.12898860466975" lng="23.146408621826172" alt="165.0"/></coordinates></spot>
+    <spot id="308"><coordinates><coordinate lat="53.12895208438388" lng="23.146448861083986" alt="165.0"/></coordinates></spot>
+    <spot id="310"><coordinates><coordinate lat="53.128874871570936" lng="23.146539974989253" alt="165.0"/></coordinates></spot>
+    <spot id="312"><coordinates><coordinate lat="53.128786550947716" lng="23.14663564333788" alt="165.0"/></coordinates></spot>
+
+    <spot id="303"><coordinates><coordinate lat="53.1291800382413" lng="23.146420007948237" alt="165.0"/></coordinates></spot>
+    <spot id="305"><coordinates><coordinate lat="53.12913934573919" lng="23.146464050916986" alt="165.0"/></coordinates></spot>
+    <spot id="307"><coordinates><coordinate lat="53.129095889826" lng="23.146508844618157" alt="165.0"/></coordinates></spot>
+    <spot id="309"><coordinates><coordinate lat="53.129057960726655" lng="23.146544529432614" alt="165.0"/></coordinates></spot>
+    <spot id="311"><coordinates><coordinate lat="53.12901726823287" lng="23.14658704589844" alt="165.0"/></coordinates></spot>
+    <spot id="313"><coordinates><coordinate lat="53.12897936623313" lng="23.146628811659173" alt="165.0"/></coordinates></spot>
+    <spot id="315"><coordinates><coordinate lat="53.12893452863104" lng="23.146671328125" alt="165.0"/></coordinates></spot>
 </map>
