@@ -4,6 +4,8 @@
 [![codecov](https://codecov.io/gh/t3rmian/PBMap/branch/master/graph/badge.svg)](https://codecov.io/gh/t3rmian/PBMap)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cb0b81a801684f458360b84cef4fdbb3)](https://app.codacy.com/app/t3rmian/PBMap?utm_source=github.com&utm_medium=referral&utm_content=t3rmian/PBMap&utm_campaign=Badge_Grade_Dashboard)
 [![Maintainability](https://api.codeclimate.com/v1/badges/9f2e04a025180ab4f211/maintainability)](https://codeclimate.com/github/t3rmian/PBMap/maintainability)
+[![Lines of code](https://tokei.rs/b1/github/t3rmian/PBMap)](https://github.com/Aaronepower/tokei)
+[![More information](https://img.shields.io/badge/Wiki-%F0%9F%93%96-blue)](https://img.shields.io/badge/Wiki-%F0%9F%93%96-blue)
 
 PBMap is an offline map of mapped places (buildings, floors, rooms, etc.) at Bialystok University of Technology created for an Android project assignment. The application facilitates navigation by implementing positioning and routing systems. Furthermore it allows for easy searching for rooms through search bar (possible integration through Intent). A help feature and externally managed report/mapping system have been also implemented.
 
@@ -80,7 +82,16 @@ A simple workflow has been incorporated:
 CI & CD are configured thanks to Travis CI and fastlane:
 - unit tests and instrumentation tests (Travis CI) are run **on every branch** with code coverage reporting
 - instrumentation tests are run on Firebase Test Lab **on master branch** and the application bundle is deployed to Google Play for internal testing  
-    - the promotion from internal test track to production is done manually  
+    - the promotion from internal test track to production is done manually
+
+Tests on Travis are run in parallel to speed up the build and meet timeout limits (50 min). There are currently 4 jobs running:
+- unit and small integration tests of `:app` module
+- medium integration tests of `:app` module
+- large integration tests of `:app` module
+- unit, integration and end to end (`:sample` on `:app`) tests of `:sample` and `:testing` modules
+
+The `@FlakyTest` annotation is open for future use. It's recommended to keep the first job as short as possible and equalize the distribution
+across `@MediumTest` and `@LargeTest`. Check our wiki for [more insights](https://github.com/t3rmian/PBMap/wiki/Test-parallelization).
 You can use Travis for your own fork with the exception of deployment step (master branch).
 
 ### License
