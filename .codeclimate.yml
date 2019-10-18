@@ -51,3 +51,7 @@ plugins:
       tests_patterns:
       - "**/test/"
       - "**/androidTest/"
+
+exclude_patterns:
+  - "**/test/"
+  - "**/androidTest/"

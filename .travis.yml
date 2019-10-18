@@ -1,6 +1,7 @@
 sudo: required
 language: android
 jdk: oraclejdk8
+if: tag is blank
 
 env:
   global:
@@ -109,6 +110,9 @@ before_deploy:
 
 deploy:
   provider: script
+  on:
+    branch: master
+    condition: $TEST_SUITE = small
   script: >-
     echo $GOOGLE_PLAY_KEY | base64 --decode -i > gplay_key.json &&
     bundle exec fastlane supply init &&
