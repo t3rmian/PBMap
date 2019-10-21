@@ -80,7 +80,6 @@ public class MapActivity extends DrawerActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Config.getInstance().setDebug(true);
         deviceServices = new DeviceServices(this);
         controller = new Controller(this);
         handleIntent(getIntent(), true);
