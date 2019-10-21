@@ -10,11 +10,9 @@ import androidx.annotation.NonNull;
 import com.qozix.tileview.geom.CoordinateTranslater;
 import com.qozix.tileview.paths.CompositePathView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.github.t3r1jj.pbmap.R;
-import io.github.t3r1jj.pbmap.logging.Config;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
 import io.github.t3r1jj.pbmap.model.map.route.RouteGraph;
@@ -31,7 +29,7 @@ public class Route implements RemovableView {
     @Deprecated
     public Route(Context context) {
         Resources resources = context.getResources();
-        drawablePath.paint = getPaint(resources.getColor(R.color.route), resources.getDimension(R.dimen.route_stroke_width));
+        drawablePath.paint = createPaint(resources.getColor(R.color.route), resources.getDimension(R.dimen.route_stroke_width));
         drawablePath.path = new Path();
     }
 
@@ -56,7 +54,7 @@ public class Route implements RemovableView {
     }
 
     @NonNull
-    Paint getPaint(int color, float strokeWidth) {
+    Paint createPaint(int color, float strokeWidth) {
         Paint paint = new Paint();
         paint.setColor(color);
         paint.setStrokeWidth(strokeWidth);
@@ -64,6 +62,11 @@ public class Route implements RemovableView {
         paint.setStyle(Paint.Style.STROKE);
         paint.setAntiAlias(true);
         return paint;
+    }
+
+    @NonNull
+    Path createPath() {
+        return new Path();
     }
 
     @Override
@@ -90,11 +93,7 @@ public class Route implements RemovableView {
             drawablePath.path = new Path();
             return;
         }
-        List<double[]> positions = new ArrayList<>();
-        for (Coordinate coordinate : route) {
-            positions.add(new double[]{coordinate.lng, coordinate.lat});
-        }
-        drawablePath.path = pathFromPositions(coordinateTranslater, positions);
+        drawablePath.path = pathFromPositions(coordinateTranslater, route);
     }
 
     /**
@@ -103,18 +102,23 @@ public class Route implements RemovableView {
      * @param positions List of coordinates (pairs of doubles).
      * @return The Path instance created from the positions supplied.
      */
-    Path pathFromPositions(CoordinateTranslater coordinateTranslater, List<double[]> positions) {
-        Path path = new Path();
-        double[] start = positions.get(0);
-        path.moveTo(coordinateTranslater.translateX(start[0]), coordinateTranslater.translateY(start[1]));
+    Path pathFromPositions(CoordinateTranslater coordinateTranslater, List<Coordinate> positions) {
+        Path path = createPath();
+        Coordinate start = positions.get(0);
+        path.moveTo(coordinateTranslater.translateX(start.lng), coordinateTranslater.translateY(start.lat));
         prepareLinearPath(coordinateTranslater, positions, path);
         return path;
     }
 
-    private void prepareLinearPath(CoordinateTranslater coordinateTranslater, List<double[]> positions, Path path) {
+    private void prepareLinearPath(CoordinateTranslater coordinateTranslater, List<Coordinate> positions, Path path) {
         for (int i = 1; i < positions.size(); i++) {
-            double[] position = positions.get(i);
-            path.lineTo(coordinateTranslater.translateX(position[0]), coordinateTranslater.translateY(position[1]));
+            Coordinate from = positions.get(i - 1);
+            Coordinate to = positions.get(i);
+            if (from.isDetachedFromNext()) {
+                path.moveTo(coordinateTranslater.translateX(to.lng), coordinateTranslater.translateY(to.lat));
+            } else {
+                path.lineTo(coordinateTranslater.translateX(to.lng), coordinateTranslater.translateY(to.lat));
+            }
         }
     }
 

@@ -43,6 +43,7 @@ import com.github.clans.fab.FloatingActionMenu;
 import io.github.t3r1jj.pbmap.BuildConfig;
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.about.AboutActivity;
+import io.github.t3r1jj.pbmap.logging.Config;
 import io.github.t3r1jj.pbmap.main.drawer.DrawerActivity;
 import io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment;
 import io.github.t3r1jj.pbmap.model.Info;
@@ -79,6 +80,7 @@ public class MapActivity extends DrawerActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Config.getInstance().setDebug(false);
         deviceServices = new DeviceServices(this);
         controller = new Controller(this);
         handleIntent(getIntent(), true);
