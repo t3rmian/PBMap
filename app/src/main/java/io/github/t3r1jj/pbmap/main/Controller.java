@@ -154,7 +154,6 @@ public class Controller implements GeoMarker.MapListener {
         for (Place place : places) {
             if (place.getId().equals(placeId)) {
                 Coordinate target = place.getCenter();
-                target.alt = map.getCenter().alt;
                 destination.setCoordinate(target);
                 destination.setLevel(map.compareAltitude(destination.getCoordinate()), GeoMarker.Marker.DESTINATION);
                 destination.pinpointOnMap(mapView);
