@@ -3,6 +3,7 @@ package io.github.t3r1jj.pbmap.view.map;
 import android.content.Context;
 import android.graphics.Paint;
 
+import androidx.core.content.ContextCompat;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -31,7 +32,7 @@ public class SpaceViewTest {
         when(space.getId()).thenReturn("");
         Context targetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         Paint paint = getPaint(space, targetContext);
-        assertEquals(targetContext.getColor(R.color.space_bounds_off), paint.getColor());
+        assertEquals(ContextCompat.getColor(targetContext, R.color.space_bounds_off), paint.getColor());
     }
 
     @SmallTest
@@ -42,7 +43,7 @@ public class SpaceViewTest {
         when(space.getReferenceMapPath()).thenReturn("A");
         Context targetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         Paint paint = getPaint(space, targetContext);
-        assertEquals(targetContext.getColor(R.color.space_bounds_interactive), paint.getColor());
+        assertEquals(ContextCompat.getColor(targetContext, R.color.space_bounds_interactive), paint.getColor());
     }
 
     @SmallTest
@@ -52,7 +53,7 @@ public class SpaceViewTest {
         when(space.getId()).thenReturn("a");
         Context targetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         Paint paint = getPaint(space, targetContext);
-        assertEquals(targetContext.getColor(R.color.space_bounds), paint.getColor());
+        assertEquals(ContextCompat.getColor(targetContext, R.color.space_bounds), paint.getColor());
     }
 
     private Paint getPaint(Space space, Context targetContext) throws NoSuchFieldException, IllegalAccessException {

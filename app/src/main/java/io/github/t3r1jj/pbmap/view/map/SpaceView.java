@@ -7,6 +7,8 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Region;
 
+import androidx.core.content.ContextCompat;
+
 import com.qozix.tileview.geom.CoordinateTranslater;
 import com.qozix.tileview.hotspots.HotSpot;
 import com.qozix.tileview.paths.CompositePathView;
@@ -32,13 +34,13 @@ public class SpaceView extends CompositePathView.DrawablePath implements PlaceVi
         Resources resources = context.getResources();
         paint.setStrokeWidth(resources.getDimension(R.dimen.space_stroke_width));
         if (space.getReferenceMapPath() != null) {
-            paint.setColor(resources.getColor(R.color.space_bounds_interactive));
+            paint.setColor(ContextCompat.getColor(context, R.color.space_bounds_interactive));
         } else if (space.getId().isEmpty()) {
-            paint.setColor(resources.getColor(R.color.space_bounds_off));
+            paint.setColor(ContextCompat.getColor(context, R.color.space_bounds_off));
         } else {
-            paint.setColor(resources.getColor(R.color.space_bounds));
+            paint.setColor(ContextCompat.getColor(context, R.color.space_bounds));
         }
-        spotView = new SpotView(context, space, resources.getColor(R.color.space_text));
+        spotView = new SpotView(context, space, ContextCompat.getColor(context, R.color.space_text));
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.qozix.tileview.geom.CoordinateTranslater;
 import com.qozix.tileview.paths.CompositePathView;
@@ -29,7 +30,7 @@ public class Route implements RemovableView {
     @Deprecated
     public Route(Context context) {
         Resources resources = context.getResources();
-        drawablePath.paint = createPaint(resources.getColor(R.color.route), resources.getDimension(R.dimen.route_stroke_width));
+        drawablePath.paint = createPaint(ContextCompat.getColor(context, R.color.route), resources.getDimension(R.dimen.route_stroke_width));
         drawablePath.path = new Path();
     }
 

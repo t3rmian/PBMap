@@ -9,6 +9,8 @@ import android.graphics.Typeface;
 import android.view.Gravity;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+
 import com.qozix.tileview.markers.MarkerLayout;
 import com.qozix.tileview.widgets.ZoomPanLayout;
 
@@ -25,7 +27,7 @@ public class SpotView extends MarkerLayout implements PlaceView {
     private final float textSize;
 
     public SpotView(Context context, Place place) {
-        this(context, place, context.getResources().getColor(R.color.spot_text));
+        this(context, place, ContextCompat.getColor(context, R.color.spot_text));
     }
 
     public SpotView(Context context, Place place, int color) {
