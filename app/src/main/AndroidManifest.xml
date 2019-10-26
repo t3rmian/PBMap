@@ -54,6 +54,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="io.github.t3r1jj.pbmap.main.MapActivity" />
         </activity>
+
+        <activity
+            android:name=".settings.SettingsActivity"
+            android:label="@string/settings"
+            android:parentActivityName=".main.MapActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.github.t3r1jj.pbmap.main.MapActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -48,4 +48,5 @@
     <string name="required">This field is required</string>
     <string name="source">Source</string>
     <string name="destination">Destination</string>
+    <string name="settings">Settings</string>
 </resources>
