@@ -118,3 +118,22 @@ project.gradle.taskGraph.whenReady {
         installDebugAndroidTest.install()
     }
 }
+
+task buildDictionary << {
+    def foundLocales = new StringBuilder()
+    foundLocales.append("new String[]{")
+
+    fileTree("src/main/res").visit { FileVisitDetails details ->
+        if(details.file.path.endsWith("strings.xml")){
+            def languageCode = details.file.parent.split("\\\\|/").last().replaceAll('values-','').replaceAll('-r','-')
+            languageCode = (languageCode == "values") ? "en" : languageCode
+            foundLocales.append("\"").append(languageCode).append("\"").append(",")
+        }
+    }
+
+    foundLocales.append("}")
+    def foundLocalesString = foundLocales.toString().replaceAll(',}','}')
+    android.defaultConfig.buildConfigField "String[]", "LANGUAGES", foundLocalesString
+
+}
+preBuild.dependsOn buildDictionary
