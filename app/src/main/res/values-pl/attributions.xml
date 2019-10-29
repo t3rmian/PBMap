@@ -17,6 +17,11 @@
             \nAutor: Mike Dunn
             \nLicencja: MIT
             \nStrona: https://github.com/moagrius/TileView</item>
+        <item>Lingver to biblioteka do zarządzania ustawieniami regionalnymi i językiem aplikacji.
+            \n\nWersja: com.github.YarikSOffice:lingver:1.1.0
+            \nAutor: Yaroslav Berezanskyi
+            \nLicencja: MIT
+            \nStrona: https://github.com/YarikSOffice/lingver</item>
         <item>Framework pozwalający na serializację i deserializację dokumentu w formacie XML.
             \n\nWersja: org.simpleframework:simple-xml:2.7.1
             \nAutor: Niall Gallagher

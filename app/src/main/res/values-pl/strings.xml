@@ -48,4 +48,5 @@
     <string name="source">Punkt startowy</string>
     <string name="destination">Punkt docelowy</string>
     <string name="settings">Opcje</string>
+    <string name="language">Język</string>
 </resources>
