@@ -52,4 +52,6 @@
     <string name="language">Language</string>
     <string name="LANGUAGES.pl" tools:ignore="ExtraTranslation">Polski</string>
     <string name="LANGUAGES.en" tools:ignore="ExtraTranslation">English</string>
+    <string name="debug" translatable="false">Debug</string>
+    <string name="show_all_routes">Display all routes</string>
 </resources>

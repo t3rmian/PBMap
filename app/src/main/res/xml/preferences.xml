@@ -3,4 +3,11 @@
     <PreferenceCategory
         app:key="io.github.t3r1jj.pbmap.MapApplication.LANG"
         app:title="@string/language" />
+    <PreferenceCategory
+        app:key="debug"
+        app:title="@string/debug" >
+        <SwitchPreference
+            app:key="io.github.t3r1jj.pbmap.MapApplication.DEBUG"
+            app:title="@string/show_all_routes" />
+    </PreferenceCategory>
 </PreferenceScreen>

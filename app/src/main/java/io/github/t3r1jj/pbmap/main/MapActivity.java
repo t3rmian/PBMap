@@ -43,7 +43,6 @@ import com.github.clans.fab.FloatingActionMenu;
 import io.github.t3r1jj.pbmap.BuildConfig;
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.about.AboutActivity;
-import io.github.t3r1jj.pbmap.logging.Config;
 import io.github.t3r1jj.pbmap.main.drawer.DrawerActivity;
 import io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment;
 import io.github.t3r1jj.pbmap.model.Info;
@@ -54,6 +53,7 @@ import io.github.t3r1jj.pbmap.search.Search;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 
 import static io.github.t3r1jj.pbmap.main.Controller.PARCELABLE_KEY_CONTROLLER_MEMENTO;
+import static io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment.RECREATE_REQUEST_RESULT_CODE;
 
 public class MapActivity extends DrawerActivity
         implements MapsDrawerFragment.PlaceNavigationDrawerCallbacks {
@@ -80,7 +80,6 @@ public class MapActivity extends DrawerActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Config.getInstance().setDebug(true);
         deviceServices = new DeviceServices(this);
         controller = new Controller(this);
         handleIntent(getIntent(), true);
@@ -557,6 +556,14 @@ public class MapActivity extends DrawerActivity
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(PARCELABLE_KEY_CONTROLLER_MEMENTO, controller.getCurrentState());
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RECREATE_REQUEST_RESULT_CODE && resultCode == RECREATE_REQUEST_RESULT_CODE) {
+            recreate();
+        }
     }
 
     Controller getController() {

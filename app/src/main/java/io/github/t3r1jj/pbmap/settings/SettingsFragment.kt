@@ -2,12 +2,12 @@ package io.github.t3r1jj.pbmap.settings
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.preference.CheckBoxPreference
-import androidx.preference.PreferenceCategory
-import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.*
 import com.yariksoffice.lingver.Lingver
 import io.github.t3r1jj.pbmap.MapApplication
 import io.github.t3r1jj.pbmap.R
+import io.github.t3r1jj.pbmap.logging.Config
+import io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment
 import io.github.t3r1jj.pbmap.model.Dictionary
 
 class SettingsFragment : PreferenceFragmentCompat(), PreferenceGroupListener.PreferenceActivationListener {
@@ -26,6 +26,15 @@ class SettingsFragment : PreferenceFragmentCompat(), PreferenceGroupListener.Pre
             val prefs = preferenceManager.sharedPreferences
             val langPref = createLanguagePreference(it, prefs, langPrefs)
             languageCategory.addPreference(langPref)
+        }
+        preferenceManager.findPreference<SwitchPreference>(MapApplication.DEBUG)!!
+                .onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _, newValue ->
+            Config.getInstance().isDebug = true == newValue
+            activity?.let {
+                it.setResult(MapsDrawerFragment.RECREATE_REQUEST_RESULT_CODE)
+                it.finish()
+            }
+            true
         }
     }
 
