@@ -4,8 +4,8 @@ import androidx.preference.CheckBoxPreference
 import androidx.preference.Preference
 import io.github.t3r1jj.pbmap.MapApplication
 
-internal class PreferenceGroupListener(private val group: List<CheckBoxPreference>,
-                                       private val listener: PreferenceActivationListener) : Preference.OnPreferenceChangeListener {
+internal class SettingsGroupListener(private val group: List<CheckBoxPreference>,
+                                     private val listener: PreferenceActivationListener) : Preference.OnPreferenceChangeListener {
     override fun onPreferenceChange(pref: Preference, newValue: Any?): Boolean {
         pref.isEnabled = false
         group.filter { it.key != pref.key }

@@ -10,7 +10,7 @@ import io.github.t3r1jj.pbmap.logging.Config
 import io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment
 import io.github.t3r1jj.pbmap.model.Dictionary
 
-class SettingsFragment : PreferenceFragmentCompat(), PreferenceGroupListener.PreferenceActivationListener {
+class SettingsFragment : PreferenceFragmentCompat(), SettingsGroupListener.PreferenceActivationListener {
     private val dictionary = Dictionary()
 
     override fun onPreferenceActivate(key: String) {
@@ -45,7 +45,7 @@ class SettingsFragment : PreferenceFragmentCompat(), PreferenceGroupListener.Pre
         langPref.title = dictionary.getI18nLanguage(context!!, lang)
         langPref.isEnabled = langPref.key != sharedPreferences.getString(MapApplication.LANG, null)
         langPref.isChecked = langPref.key == sharedPreferences.getString(MapApplication.LANG, null)
-        langPref.onPreferenceChangeListener = PreferenceGroupListener(langPrefs, this)
+        langPref.onPreferenceChangeListener = SettingsGroupListener(langPrefs, this)
         langPrefs.add(langPref)
         return langPref
     }
