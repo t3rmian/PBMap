@@ -17,7 +17,10 @@
     <string name="store_name">Store</string>
     <string name="atm_name">ATM</string>
     <string name="buffet_name">Buffet</string>
-    <string name="car_hall_name">Laboratory of motor vehicles\nVehicles hall</string>
+    <string name="car_hall_name">Car hall</string>
+    <string name="machine_hall_name">Machine hall</string>
+    <string name="mechanical_hall_name">Mechanical hall</string>
+    <string name="applied_mechanics_lab_name">Applied\nmechanics hall</string>
     <string name="assembly_hall_a_name">Assembly\nhall A</string>
     <string name="assembly_hall_b_name">Assembly\nhall B</string>
     <string name="assembly_hall_c_name">Assembly\nhall C</string>
@@ -26,9 +29,11 @@
     <string name="p0_19_name">P0/19\nInterlibrary loan</string>
     <string name="p0_15_16_name">P0/15,16\nNorms and\nspecial collections\nreading room</string>
     <string name="cloak_room_name">Cloakroom</string>
+    <string name="cloakroom_name">Cloakroom</string>
     <string name="information_publishers_reading_room_name">Information publishers\nreading room</string>
     <string name="magazines_reading_room_name">Magazines\nreading room</string>
     <string name="electronic_reading_room_name">Electronic\nreading room</string>
+    <string name="informatorium_name">Informatorium</string>
     <string name="book_rental_name">Book loan</string>
     <string name="book_return_name">Self-service\nbook return</string>
     <string name="main_library_name">PB Main\nLibrary</string>
@@ -57,7 +62,16 @@
     <string name="pb_wb_name" translatable="false">"\n\nPB WB             "</string>
     <string name="xero_name">Xero</string>
     <string name="gym_048b_name">048B\nGym</string>
-
+    <string name="forest_environment_monitoring_lab_name">Forest environment\nmonitoring lab</string>
+    <string name="entomology_lab_name">Entomology lab</string>
+    <string name="photodetection_and_computer_image_analysis_lab_name">Photodetection and computer\nimage analysis lab</string>
+    <string name="forest_by-products_lab_name">Forest\nby-products lab</string>
+    <string name="assembly_hall_name">Assembly\nhall</string>
+    <string name="cnb_name">Scientific-Research\nCentre</string>
+    <string name="faculty_council_hall_name">Faculty council\nhall</string>
+    <string name="hall_name">Hall</string>
+    <string name="library_name">Library</string>
+    <string name="student_council">Student council</string>
 
     <string name="pb_campus_address">Bialystok University of Technology,
 Wiejska 45A St., 15-351 Białystok, voi. podlaskie,
