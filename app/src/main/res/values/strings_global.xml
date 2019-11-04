@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="LANGUAGES.pl" translatable="false" tools:ignore="ExtraTranslation">Polski</string>
+    <string name="LANGUAGES.en" translatable="false" tools:ignore="ExtraTranslation">English</string>
+    <string name="debug" translatable="false" tools:ignore="ExtraTranslation">Debug</string>
+</resources>

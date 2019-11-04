@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="name_app">PBMap</string>
@@ -50,8 +50,5 @@
     <string name="destination">Destination</string>
     <string name="settings">Settings</string>
     <string name="language">Language</string>
-    <string name="LANGUAGES.pl" tools:ignore="ExtraTranslation">Polski</string>
-    <string name="LANGUAGES.en" tools:ignore="ExtraTranslation">English</string>
-    <string name="debug" translatable="false">Debug</string>
     <string name="show_all_routes">Display all routes</string>
 </resources>

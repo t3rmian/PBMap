@@ -1,6 +1,8 @@
 package io.github.t3r1jj.pbmap.settings
 
+import android.app.SearchManager
 import android.content.Intent
+import android.os.SystemClock
 import android.preference.PreferenceManager
 import android.view.View
 import android.view.ViewGroup
@@ -75,34 +77,63 @@ class SettingsActivityIT {
         }
         onView(withText("Settings")).check(matches(isDisplayed()))
 
-        onView(CheckBoxMatcher("English")).check(matches(isDisplayed()))
-        onView(CheckBoxMatcher("English")).check(matches(isChecked()))
-        onView(CheckBoxMatcher("English")).check(matches(not(isEnabled())))
+        onView(SettingsMatcher(android.R.id.checkbox,"English")).check(matches(isDisplayed()))
+        onView(SettingsMatcher(android.R.id.checkbox,"English")).check(matches(isChecked()))
+        onView(SettingsMatcher(android.R.id.checkbox,"English")).check(matches(not(isEnabled())))
 
-        onView(CheckBoxMatcher("Polski")).check(matches(isDisplayed()))
-        onView(CheckBoxMatcher("Polski")).check(matches(not(isChecked())))
-        onView(CheckBoxMatcher("Polski")).check(matches(isEnabled()))
+        onView(SettingsMatcher(android.R.id.checkbox,"Polski")).check(matches(isDisplayed()))
+        onView(SettingsMatcher(android.R.id.checkbox,"Polski")).check(matches(not(isChecked())))
+        onView(SettingsMatcher(android.R.id.checkbox,"Polski")).check(matches(isEnabled()))
 
-        onView(withText(io.github.t3r1jj.pbmap.R.string.LANGUAGES_pl)).perform(click())
+        onView(withText(R.string.LANGUAGES_pl)).perform(click())
 
-        onView(CheckBoxMatcher("English")).check(matches(not(isChecked())))
-        onView(CheckBoxMatcher("English")).check(matches(isEnabled()))
+        onView(SettingsMatcher(android.R.id.checkbox,"English")).check(matches(not(isChecked())))
+        onView(SettingsMatcher(android.R.id.checkbox,"English")).check(matches(isEnabled()))
 
-        onView(CheckBoxMatcher("Polski")).check(matches(isChecked()))
-        onView(CheckBoxMatcher("Polski")).check(matches(not(isEnabled())))
+        onView(SettingsMatcher(android.R.id.checkbox,"Polski")).check(matches(isChecked()))
+        onView(SettingsMatcher(android.R.id.checkbox,"Polski")).check(matches(not(isEnabled())))
 
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync()
         onView(withText("Opcje")).check(matches(isDisplayed()))
         pressBack()
+
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync()
         onView(withText("MapaPB")).check(matches(isDisplayed()))
     }
 
-    class CheckBoxMatcher(private val text: String) : TypeSafeMatcher<View>() {
+    @Test
+    @LargeTest
+    fun testDrawer_Navigation_SettingsActivity_EnableDebug() {
+        MapsDrawerFragmentIT.autoOpenDrawerReturningPreferences(true)
+        val sendIntent = Intent()
+        sendIntent.action = Intent.ACTION_SEARCH
+        sendIntent.putExtra(SearchManager.QUERY, "wc@pb_wa")
+        mainActivityRule.launchActivity(Intent(sendIntent))
+        for (i in 0..19) {
+            onView(withIndex(withId(R.id.design_menu_item_text), 1)).perform(swipeUp())
+        }
+        withIntents {
+            onView(withText(R.string.settings)).perform(click())
+            intended(hasComponent(SettingsActivity::class.java.name))
+        }
+        onView(withText("Settings")).check(matches(isDisplayed()))
+
+        onView(SettingsMatcher(android.R.id.switch_widget,"Debug")).check(matches(isEnabled()))
+        onView(SettingsMatcher(android.R.id.switch_widget,"Debug")).check(matches(not(isChecked())))
+        onView(SettingsMatcher(android.R.id.switch_widget,"Debug")).perform(click())
+        onView(SettingsMatcher(android.R.id.switch_widget,"Debug")).check(matches(isEnabled()))
+        onView(SettingsMatcher(android.R.id.switch_widget,"Debug")).check(matches(isChecked()))
+        pressBack()
+        mainActivityRule.
+    }
+
+    class SettingsMatcher(private val interactiveId: Int, private val text: String) : TypeSafeMatcher<View>() {
         override fun describeTo(description: Description?) {
             description?.appendText("checkbox with text: $text")
         }
 
         override fun matchesSafely(item: View): Boolean {
-            if (android.R.id.checkbox != item.id) {
+            if (interactiveId != item.id) {
                 return false
             }
             if (item.parent is ViewGroup) {
