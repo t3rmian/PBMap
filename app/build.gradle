@@ -80,7 +80,10 @@ dependencies {
     testImplementation "junit:junit:$junit_version"
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_jupiter_version"
     testImplementation "org.mockito:mockito-core:$mockito_version"
-    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
+    testImplementation group: 'org.powermock', name: 'powermock-core', version: "$powermock_version"
+    testImplementation group: 'org.powermock', name: 'powermock-module-junit4', version: "$powermock_version"
+    testImplementation group: 'org.powermock', name: 'powermock-api-mockito2', version: "$powermock_version"
 
     androidTestImplementation("androidx.test.espresso:espresso-core:$espresso_version", {
         exclude group: 'com.android.support', module: 'support-annotations'

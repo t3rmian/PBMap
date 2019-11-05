@@ -1,14 +1,13 @@
-package io.github.t3r1jj.pbmap.settings
+package io.github.t3r1jj.pbmap.main
 
 import android.app.SearchManager
 import android.content.Intent
-import android.os.SystemClock
 import android.preference.PreferenceManager
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.Espresso.pressBack
+import androidx.test.espresso.Espresso.pressBackUnconditionally
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.swipeUp
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -19,12 +18,16 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
+import androidx.test.uiautomator.By
+import androidx.test.uiautomator.UiDevice
+import androidx.test.uiautomator.Until
 import io.github.t3r1jj.pbmap.R
-import io.github.t3r1jj.pbmap.main.MapActivity
 import io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragmentIT
+import io.github.t3r1jj.pbmap.settings.SettingsActivity
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule
 import io.github.t3r1jj.pbmap.testing.TestUtils.withIndex
 import io.github.t3r1jj.pbmap.testing.TestUtils.withIntents
+import junit.framework.Assert.assertFalse
 import org.hamcrest.Description
 import org.hamcrest.Matchers.not
 import org.hamcrest.TypeSafeMatcher
@@ -38,6 +41,9 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class SettingsActivityIT {
+    companion object {
+        private const val TIMEOUT_MS = 3 * 60 * 1000L
+    }
 
     private val mainActivityRule = ActivityTestRule(MapActivity::class.java, true, false)
 
@@ -77,28 +83,28 @@ class SettingsActivityIT {
         }
         onView(withText("Settings")).check(matches(isDisplayed()))
 
-        onView(SettingsMatcher(android.R.id.checkbox,"English")).check(matches(isDisplayed()))
-        onView(SettingsMatcher(android.R.id.checkbox,"English")).check(matches(isChecked()))
-        onView(SettingsMatcher(android.R.id.checkbox,"English")).check(matches(not(isEnabled())))
+        onView(SettingsMatcher(android.R.id.checkbox, "English")).check(matches(isDisplayed()))
+        onView(SettingsMatcher(android.R.id.checkbox, "English")).check(matches(isChecked()))
+        onView(SettingsMatcher(android.R.id.checkbox, "English")).check(matches(not(isEnabled())))
 
-        onView(SettingsMatcher(android.R.id.checkbox,"Polski")).check(matches(isDisplayed()))
-        onView(SettingsMatcher(android.R.id.checkbox,"Polski")).check(matches(not(isChecked())))
-        onView(SettingsMatcher(android.R.id.checkbox,"Polski")).check(matches(isEnabled()))
+        onView(SettingsMatcher(android.R.id.checkbox, "Polski")).check(matches(isDisplayed()))
+        onView(SettingsMatcher(android.R.id.checkbox, "Polski")).check(matches(not(isChecked())))
+        onView(SettingsMatcher(android.R.id.checkbox, "Polski")).check(matches(isEnabled()))
 
         onView(withText(R.string.LANGUAGES_pl)).perform(click())
 
-        onView(SettingsMatcher(android.R.id.checkbox,"English")).check(matches(not(isChecked())))
-        onView(SettingsMatcher(android.R.id.checkbox,"English")).check(matches(isEnabled()))
+        onView(SettingsMatcher(android.R.id.checkbox, "English")).check(matches(not(isChecked())))
+        onView(SettingsMatcher(android.R.id.checkbox, "English")).check(matches(isEnabled()))
 
-        onView(SettingsMatcher(android.R.id.checkbox,"Polski")).check(matches(isChecked()))
-        onView(SettingsMatcher(android.R.id.checkbox,"Polski")).check(matches(not(isEnabled())))
+        onView(SettingsMatcher(android.R.id.checkbox, "Polski")).check(matches(isChecked()))
+        onView(SettingsMatcher(android.R.id.checkbox, "Polski")).check(matches(not(isEnabled())))
 
         InstrumentationRegistry.getInstrumentation().waitForIdleSync()
         onView(withText("Opcje")).check(matches(isDisplayed()))
-        pressBack()
+        pressBackUnconditionally()
 
-        InstrumentationRegistry.getInstrumentation().waitForIdleSync()
-        onView(withText("MapaPB")).check(matches(isDisplayed()))
+        val device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
+        device.wait(Until.findObject(By.text("MapaPB")), TIMEOUT_MS)
     }
 
     @Test
@@ -118,13 +124,16 @@ class SettingsActivityIT {
         }
         onView(withText("Settings")).check(matches(isDisplayed()))
 
-        onView(SettingsMatcher(android.R.id.switch_widget,"Debug")).check(matches(isEnabled()))
-        onView(SettingsMatcher(android.R.id.switch_widget,"Debug")).check(matches(not(isChecked())))
-        onView(SettingsMatcher(android.R.id.switch_widget,"Debug")).perform(click())
-        onView(SettingsMatcher(android.R.id.switch_widget,"Debug")).check(matches(isEnabled()))
-        onView(SettingsMatcher(android.R.id.switch_widget,"Debug")).check(matches(isChecked()))
-        pressBack()
-        mainActivityRule.
+        val debugText = InstrumentationRegistry.getInstrumentation().targetContext.getString(R.string.show_all_routes)
+        onView(SettingsMatcher(android.R.id.switch_widget, debugText)).check(matches(isDisplayed()))
+        onView(SettingsMatcher(android.R.id.switch_widget, debugText)).check(matches(isEnabled()))
+        onView(SettingsMatcher(android.R.id.switch_widget, debugText)).check(matches(not(isChecked())))
+
+        val controller = mainActivityRule.activity.controller
+        onView(SettingsMatcher(android.R.id.switch_widget, debugText)).perform(click())
+        val device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
+        device.wait(Until.findObject(By.text("PBMap")), TIMEOUT_MS)
+        assertFalse(controller == mainActivityRule.activity.controller)
     }
 
     class SettingsMatcher(private val interactiveId: Int, private val text: String) : TypeSafeMatcher<View>() {
