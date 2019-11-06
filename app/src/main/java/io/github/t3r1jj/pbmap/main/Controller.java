@@ -62,7 +62,6 @@ public class Controller implements GeoMarker.MapListener {
         }
         destination.setCoordinate(memento.destination);
         updateView();
-        mapView.loadPreviousPosition();
     }
 
     /**
@@ -88,7 +87,7 @@ public class Controller implements GeoMarker.MapListener {
         }
     }
 
-    public void postLoad() {
+    void postLoad() {
         updateView();
         if (preloadedSuggestion != null) {
             pinpointSuggestion(preloadedSuggestion);
@@ -119,7 +118,7 @@ public class Controller implements GeoMarker.MapListener {
         nextMapView.setController(this);
         mapActivity.setMapView(nextMapView);
         if (isInitialized()) {
-            mapView.addToMap(nextMapView);
+            mapView.addToMap(mapView);
         }
         mapView = nextMapView;
         mapActivity.setInfoButtonVisible(map.getDescription(mapActivity) != null || map.getUrl() != null);
@@ -204,7 +203,6 @@ public class Controller implements GeoMarker.MapListener {
             map = mapsDao.loadMap(space.getReferenceMapPath());
             loadRouteGraph();
             updateView();
-            mapView.loadPreviousPosition();
         } else if (space.hasInfo(mapActivity)) {
             mapActivity.popupInfo(new Info(space));
         }
@@ -299,7 +297,6 @@ public class Controller implements GeoMarker.MapListener {
         map = mapsDao.loadMap(navigationMapPath);
         loadRouteGraph();
         updateView();
-        mapView.loadPreviousPosition();
     }
 
     void onImprovePressed(MotionEvent event, String description) {
