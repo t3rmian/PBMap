@@ -22,6 +22,7 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
 import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.action.ViewActionsExt.tap;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -45,7 +46,7 @@ public class MapActivitySearchIT {
     @Test
     @MediumTest
     public void testSearch_PlaceInSpace() {
-        onView(withId(R.id.action_search)).perform(click());
+        onView(withId(R.id.action_search)).perform(tap());
         onView(withId(R.id.search_src_text)).perform(typeText("116@wi"), pressImeActionButton());
         onView(withContentDescription("Collapse")).perform(click());
         onView(withText("116")).check(matches(isDisplayed()));
@@ -55,7 +56,7 @@ public class MapActivitySearchIT {
     @Test
     @LargeTest
     public void testSearch_Space() {
-        onView(withId(R.id.action_search)).perform(click());
+        onView(withId(R.id.action_search)).perform(tap());
         onView(withId(R.id.search_src_text)).perform(typeText("PB WI"), pressImeActionButton());
         onView(withContentDescription("Clear query")).perform(click());
         onView(withContentDescription("Collapse")).perform(click());
@@ -65,7 +66,7 @@ public class MapActivitySearchIT {
     @Test
     @MediumTest
     public void testSearch_NotFound() {
-        onView(withId(R.id.action_search)).perform(click());
+        onView(withId(R.id.action_search)).perform(tap());
         onView(withId(R.id.search_src_text)).perform(typeText("PB WI L3"), pressImeActionButton());
         onView(withContentDescription("Collapse")).perform(click());
         onView(withText(R.string.not_found))
@@ -76,7 +77,7 @@ public class MapActivitySearchIT {
     @Test
     @MediumTest
     public void testSearch_ListOfSpaces() {
-        onView(withId(R.id.action_search)).perform(click());
+        onView(withId(R.id.action_search)).perform(tap());
         onView(withId(R.id.search_src_text)).perform(typeText("PB"));
         onView(withText(getFormattedString(R.string.main_library_name)))
                 .inRoot(RootMatchers.isPlatformPopup())
@@ -92,7 +93,7 @@ public class MapActivitySearchIT {
     @Test
     @MediumTest
     public void testSearch_ListOfSpaces_SelectOne() {
-        onView(withId(R.id.action_search)).perform(click());
+        onView(withId(R.id.action_search)).perform(tap());
         onView(withId(R.id.search_src_text)).perform(typeText("PB"));
         onView(withText(getFormattedString(R.string.main_library_name)))
                 .inRoot(RootMatchers.isPlatformPopup())
@@ -104,7 +105,7 @@ public class MapActivitySearchIT {
     @Test
     @MediumTest
     public void testSearch_ListOfPlacesInSpaces() {
-        onView(withId(R.id.action_search)).perform(click());
+        onView(withId(R.id.action_search)).perform(tap());
         onView(withId(R.id.search_src_text)).perform(typeText("10"));
         onView(withIndex(withText("010"), 0))
                 .inRoot(RootMatchers.isPlatformPopup())
