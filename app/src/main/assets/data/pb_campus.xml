@@ -172,7 +172,7 @@
         </coordinates>
     </space>
 
-    <space id="Inno-Eko-Tech" reference_map_path="data/pb_iet.xml"
+    <space id="Inno_Eko_Tech" reference_map_path="data/pb_iet.xml"
         url="https://innoekotech.pb.edu.pl">
         <coordinates>
             <coordinate alt="150" lat="53.1174207" lng="23.1512974" />
