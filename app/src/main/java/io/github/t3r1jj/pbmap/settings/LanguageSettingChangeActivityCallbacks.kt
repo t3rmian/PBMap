@@ -6,12 +6,13 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import com.yariksoffice.lingver.Lingver
 import io.github.t3r1jj.pbmap.MapApplication
+import io.github.t3r1jj.pbmap.model.i18n.LocaleUtils
 
 class LanguageSettingChangeActivityCallbacks : Application.ActivityLifecycleCallbacks {
     override fun onActivityPaused(activity: Activity) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity)
         sharedPreferences.edit()
-                .putString(getCurrentActivityLangKey(activity), Lingver.getInstance().getLanguage())
+                .putString(getCurrentActivityLangKey(activity), LocaleUtils.toString(Lingver.getInstance().getLocale()))
                 .apply()
     }
 
@@ -19,7 +20,7 @@ class LanguageSettingChangeActivityCallbacks : Application.ActivityLifecycleCall
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity)
         val prevLang = sharedPreferences.getString(getCurrentActivityLangKey(activity), null)
         prevLang?.let {
-            if (prevLang != Lingver.getInstance().getLanguage()) {
+            if (prevLang != LocaleUtils.toString(Lingver.getInstance().getLocale())) {
                 activity.recreate()
             }
         }

@@ -2,5 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="LANGUAGES.pl" translatable="false" tools:ignore="ExtraTranslation">Polski</string>
     <string name="LANGUAGES.en" translatable="false" tools:ignore="ExtraTranslation">English</string>
+    <string name="LANGUAGES.en_GB" translatable="false" tools:ignore="ExtraTranslation">British English</string>
+    <string name="LANGUAGES.en_US" translatable="false" tools:ignore="ExtraTranslation">American English</string>
     <string name="debug" translatable="false" tools:ignore="ExtraTranslation">Debug</string>
 </resources>

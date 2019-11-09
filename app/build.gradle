@@ -8,6 +8,7 @@ android {
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
     defaultConfig {
+        resConfigs "en", "en_GB", "en_US", "pl"
         applicationId "io.github.t3r1jj.pbmap"
         minSdkVersion 14
         targetSdkVersion 28
@@ -124,13 +125,14 @@ project.gradle.taskGraph.whenReady {
 }
 
 task buildDictionary << {
+    def defaultLanguage = "default"
     def foundLocales = new StringBuilder()
     foundLocales.append("new String[]{")
 
     fileTree("src/main/res").visit { FileVisitDetails details ->
         if(details.file.path.endsWith("strings.xml")){
-            def languageCode = details.file.parent.split("\\\\|/").last().replaceAll('values-','').replaceAll('-r','-')
-            languageCode = (languageCode == "values") ? "en" : languageCode
+            def languageCode = details.file.parent.split("\\\\|/").last().replaceAll('values-','').replaceAll('-r','_')
+            languageCode = (languageCode == "values") ? defaultLanguage : languageCode
             foundLocales.append("\"").append(languageCode).append("\"").append(",")
         }
     }
@@ -138,6 +140,7 @@ task buildDictionary << {
     foundLocales.append("}")
     def foundLocalesString = foundLocales.toString().replaceAll(',}','}')
     android.defaultConfig.buildConfigField "String[]", "LANGUAGES", foundLocalesString
+    android.defaultConfig.buildConfigField "String", "DEFAULT_LANGUAGE", "\"${defaultLanguage}\""
 
 }
 preBuild.dependsOn buildDictionary

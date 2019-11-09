@@ -4,6 +4,9 @@
         app:key="io.github.t3r1jj.pbmap.MapApplication.LANG"
         app:title="@string/language" />
     <PreferenceCategory
+        app:key="io.github.t3r1jj.pbmap.MapApplication.UNIT_SYSTEM"
+        app:title="@string/unit_system" />
+    <PreferenceCategory
         app:key="debug"
         app:title="@string/debug" >
         <SwitchPreference
