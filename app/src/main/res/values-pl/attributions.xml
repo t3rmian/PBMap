@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="attribution_titles">
-        <item>TileView</item>
-        <item>Simple-XML</item>
-        <item>Swipe-Selector</item>
-        <item>FloatingActionButton</item>
-        <item>TapTargetView</item>
-        <item>Google Support Libraries</item>
-        <item>Exo Bold</item>
-        <item>Ikony</item>
-        <item>Map tiles</item>
-    </string-array>
     <string-array name="attribution_descriptions">
         <item>TileView pozwala na asynchroniczne wyświetlanie obrazu bazującego na kafelkach wraz z funkcjonalnościami powiększania, systemem transformacji do koordynatów geograficznych, a także innych komponentów przydatnych do wyświetlania map.
             \n\nWersja: com.qozix:tileview:2.2.6
@@ -33,15 +22,15 @@
             \nLicencja: Apache 2.0
             \nStrona: https://github.com/roughike/SwipeSelector</item>
         <item>Jedna z bibliotek implementujących Floating Action Button dla Androida z dużą ilością funkcjonalności.
-            \n\nVersion: com.github.clans:fab:1.6.4
-            \nAuthor: Dmytro Tarianyk
-            \nLicense: Apache 2.0
-            \nSite: https://github.com/Clans/FloatingActionButton</item>
+            \n\nWersja: com.github.clans:fab:1.6.4
+            \nAutor: Dmytro Tarianyk
+            \nLicencja: Apache 2.0
+            \nStrona: https://github.com/Clans/FloatingActionButton</item>
         <item>Implementacja "tap targets" z wytycznych Google Material Design.
-            \n\nVersion: com.getkeepsafe.taptargetview:taptargetview:1.9.1
-            \nAuthor: Keepsafe Software Inc.
-            \nLicense: Apache 2.0
-            \nSite: https://github.com/KeepSafe/TapTargetView</item>
+            \n\nWersja: com.getkeepsafe.taptargetview:taptargetview:1.9.1
+            \nAutor: Keepsafe Software Inc.
+            \nLicencja: Apache 2.0
+            \nStrona: https://github.com/KeepSafe/TapTargetView</item>
         <item>Grupa bibliotek pomocniczych zapewniających kompatybilność wsteczną oraz klasy pomocnicze.
             \n\nWersja: com.android.support
             \nAutor: The Android Open Source Project
@@ -53,9 +42,9 @@
             \nLicencja: SIL Open Font License v1.10
             \nStrona: https://www.fontsquirrel.com/fonts/exo</item>
         <item>Ikony wygenerowane dzięki Austin Andrews - https://materialdesignicons.com/
-            \nCredits: Google Inc.
-            \nLicense: Apache 2.0
-            \nSite: https://github.com/google/material-design-icons</item>
+            \nAtrybucja: Google Inc.
+            \nLicencja: Apache 2.0
+            \nStrona: https://github.com/google/material-design-icons</item>
         <item>Kafelki mapy, dostępne również na stronie projektu po przejściu poprzez ikonę aplikacji na górze.
             \n\nMap tiles by Stamen Design, under CC BY 3.0.
             \nData by OpenStreetMap (© OpenStreetMap contributors), under ODbL.

@@ -95,7 +95,7 @@ public class SearchSuggestion {
 
     int getNameResId(Context context) {
         String packageName = context.getPackageName();
-        return context.getResources().getIdentifier(Place.getResIdString(placeId, Place.NAME_POSTFIX), "string", packageName);
+        return context.getResources().getIdentifier(Place.getResIdString(placeId, Place.NAME_PREFIX), "string", packageName);
     }
 
     String getMapName(Context context) {
@@ -103,7 +103,7 @@ public class SearchSuggestion {
             return context.getString(R.string.map);
         }
         String packageName = context.getPackageName();
-        int resId = context.getResources().getIdentifier(Place.getResIdString(mapId, Place.NAME_POSTFIX), "string", packageName);
+        int resId = context.getResources().getIdentifier(Place.getResIdString(mapId, Place.NAME_PREFIX), "string", packageName);
         if (resId == 0) {
             return mapId.toUpperCase().replace('_', ' ').trim();
         }

@@ -1,158 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="acs_name">ACS</string>
-    <string name="applied_mechanics_lab_name">Laboratorium\nmechaniki stosowanej</string>
-    <string name="archive_name">Archiwum</string>
-    <string name="assembly_hall_name">Aula</string>
-    <string name="bank_name">Bank</string>
-    <string name="berlin_name">\n\nBerlin</string>
-    <string name="cloakroom_name">Szatnia</string>
-    <string name="cnb_name">CNB</string>
-    <string name="cnk_name">CNK</string>
-    <string name="dean_name">Dziekan</string>
-    <string name="entomology_lab_name">Laboratorium\nEntomologiczne</string>
-    <string name="erasmus_name">Erasmus</string>
-    <string name="faculty_council_hall_name">Sala\nrady wydziału</string>
-    <string name="forest_by_products_lab_name">Laboratorium Ubocznych\nProduktów Leśnych</string>
-    <string name="forest_environment_monitoring_lab_name">Laboratorium Monitoring\nŚrodowiska Leśnego</string>
-    <string name="hall_name">Hala</string>
-    <string name="informatorium_name">Informatorium</string>
-    <string name="inno_eko_tech_name">Inno-Eko-Tech</string>
-    <string name="library_name">Biblioteka</string>
-    <string name="machine_hall_name">Hala maszyn</string>
-    <string name="mechanical_hall_name">Hala mechaniczna</string>
-    <string name="montreal_name">Montreal</string>
-    <string name="p_name">P</string>
-    <string name="pb_acs_name">ACS</string>
-    <string name="pb_acs_l2_name">ACS P2</string>
-    <string name="pb_cnk_name">CNK</string>
-    <string name="pb_cnk_l2_name">CNK P1</string>
-    <string name="pb_cnk_l3_name">CNK P2</string>
-    <string name="pb_wa_name">WA</string>
-    <string name="pb_wa_l0_name">WA P-1</string>
-    <string name="pb_wa_l2_name">WA P1</string>
-    <string name="pb_wa_l3_name">WA P2</string>
-    <string name="pb_wa_l4_name">WA P3</string>
-    <string name="pb_wb_name">WB</string>
-    <string name="pb_wb_iet_name">WB IET</string>
-    <string name="pb_wb_l0_name">WB P-1</string>
-    <string name="pb_wb_l0_iet_name">WB IET P-1</string>
-    <string name="pb_wb_l2_name">WB P1</string>
-    <string name="pb_wb_l2_iet_name">WB IET P1</string>
-    <string name="pb_wb_l3_name">WB P2</string>
-    <string name="pb_wb_l3_iet_name">WB IET P2</string>
-    <string name="pb_wb_l4_iet_name">WB IET P3</string>
-    <string name="pb_we_name">WE\n</string>
-    <string name="pb_we_l2_name">WE P1</string>
-    <string name="pb_we_l3_name">WE P2</string>
-    <string name="pb_we_l4_name">WE P3</string>
-    <string name="pb_wi_name">WI</string>
-    <string name="pb_wi_l0_name">WI P0</string>
-    <string name="pb_wi_l2_name">WI P1</string>
-    <string name="pb_wi_l3_name">WI P2</string>
-    <string name="pb_wm_name">WM</string>
-    <string name="pb_wm_l2_name">WM P1</string>
-    <string name="pb_wm_l3_name">WM P2</string>
-    <string name="pb_wz_berlin_name">WZ Berlin</string>
-    <string name="pb_wz_berlin_l2_name">WZ Berlin P1</string>
-    <string name="pb_wz_montreal_name">WZ Montreal</string>
-    <string name="pb_zwl_name">ZWL</string>
-    <string name="pb_zwl_l2_name">ZWL P1</string>
-    <string name="photodetection_and_computer_image_analysis_lab_name">Laboratorium Fotodetekcji i\nKomputerowej Analizy Obrazu</string>
-    <string name="shop_name">Sklep</string>
-    <string name="silent_zone_name">Strefa ciszy</string>
-    <string name="student_council_name">Samorząd studencki</string>
-    <string name="wc_name">WC</string>
-    <string name="zpdiut_name">ZPDiUT</string>
-    <string name="deanery_121_name">Dziekanat</string>
-    <string name="deanery_name">Dziekanat</string>
-    <string name="pb_campus_name">PB kampus</string>
-    <string name="pb_wz_campus_name">WZ kampus</string>
-    <string name="secretariat_name">Sekretariat</string>
-    <string name="rector_name">Rektorat</string>
-    <string name="courts_name">Korty\ntenisowe</string>
-    <string name="ds_alpha_name">DS\nAlfa</string>
-    <string name="ds_beta_name">DS\nBeta</string>
-    <string name="ds_gamma_name">DS\nGamma</string>
-    <string name="ds_delta_name">DS\nDelta</string>
-    <string name="gwint_name">Klub Gwint</string>
-    <string name="assistant_hotel_name">Hotel\nAssyst.</string>
-    <string name="store_name">Sklep</string>
-    <string name="lodge_name">Portiernia</string>
-    <string name="atm_name">Bankomat</string>
-    <string name="buffet_name">Bufet</string>
-    <string name="car_hall_name">Laboratorium Pojazdów Samochodowych\nHala Pojazdów </string>
-    <string name="assembly_hall_a_name">Aula A</string>
-    <string name="assembly_hall_b_name">Aula B</string>
-    <string name="assembly_hall_c_name">Aula C</string>
-    <string name="p1_21_name">P1/21\nMała czytelnia</string>
-    <string name="p1_38_name">P1/38\nDuża czytelnia</string>
-    <string name="p0_19_name">P0/19\nWypożyczalnia międzybiblioteczna</string>
-    <string name="p0_15_16_name">P0/15,16\nCzytelnia norm i\nzbiorów specjalnych</string>
-    <string name="information_publishers_reading_room_name">Czytelnia wydawnictw\ninformacyjnych</string>
-    <string name="magazines_reading_room_name">Czytelnia\nczasopism</string>
-    <string name="electronic_reading_room_name">Czytelnia\nelektroniczna</string>
-    <string name="book_rental_name">Wypożyczalnia</string>
-    <string name="book_return_name">Wrzutnia\nksiążek</string>
-    <string name="main_library_name">Biblioteka\nGłówna PB</string>
-    <string name="sjo_name">Studium\nJęzyków Obcych</string>
-    <string name="ckz_name">Centrum Kształcenia Zdalnego</string>
-    <string name="assembly_hall_i_name">Aula I</string>
-    <string name="assembly_hall_ii_name">Aula II</string>
-    <string name="assembly_hall_iii_name">Aula III</string>
-    <string name="gym_name">Siłownia</string>
-    <string name="martial_arts_hall_name">Sala sportów walki</string>
-    <string name="table_tennis_hall_name">Sala tenisa stołowego</string>
-    <string name="aerobics_hall_name">Sala earobiku</string>
-    <string name="sports_hall_name">Hala sportowa\nSala gier zespołowych</string>
-    <string name="pb_wz_shanghai_name">WZ Szanghaj</string>
-    <string name="pb_wz_shanghai_l2_name">WZ Szanghaj P1</string>
-    <string name="pb_wz_philadelphia_name">WZ Filadelfia</string>
-    <string name="pb_wz_philadelphia_l2_name">WZ Filadelfia P1</string>
-    <string name="pb_wz_philadelphia_l3_name">WZ Filadelfia P2</string>
-    <string name="shanghai_name">Szanghaj\n</string>
-    <string name="philadelphia_name">Filadelfia</string>
-    <string name="xero_name">Ksero</string>
-    <string name="gym_048b_name">048B\nSiłownia</string>
+    <string name="name_acs">ACS</string>
+    <string name="name_applied_mechanics_lab">Laboratorium\nmechaniki stosowanej</string>
+    <string name="name_archive">Archiwum</string>
+    <string name="name_assembly_hall">Aula</string>
+    <string name="name_bank">Bank</string>
+    <string name="name_berlin">\n\nBerlin</string>
+    <string name="name_cloakroom">Szatnia</string>
+    <string name="name_cnb">CNB</string>
+    <string name="name_cnk">CNK</string>
+    <string name="name_dean">Dziekan</string>
+    <string name="name_entomology_lab">Laboratorium\nEntomologiczne</string>
+    <string name="name_erasmus">Erasmus</string>
+    <string name="name_faculty_council_hall">Sala\nrady wydziału</string>
+    <string name="name_forest_by_products_lab">Laboratorium Ubocznych\nProduktów Leśnych</string>
+    <string name="name_forest_environment_monitoring_lab">Laboratorium Monitoring\nŚrodowiska Leśnego</string>
+    <string name="name_hall">Hala</string>
+    <string name="name_informatorium">Informatorium</string>
+    <string name="name_inno_eko_tech">Inno-Eko-Tech</string>
+    <string name="name_library">Biblioteka</string>
+    <string name="name_machine_hall">Hala maszyn</string>
+    <string name="name_mechanical_hall">Hala mechaniczna</string>
+    <string name="name_montreal">Montreal</string>
+    <string name="name_p">P</string>
+    <string name="name_pb_acs">ACS</string>
+    <string name="name_pb_acs_l2">ACS P2</string>
+    <string name="name_pb_cnk">CNK</string>
+    <string name="name_pb_cnk_l2">CNK P1</string>
+    <string name="name_pb_cnk_l3">CNK P2</string>
+    <string name="name_pb_wa">WA</string>
+    <string name="name_pb_wa_l0">WA P-1</string>
+    <string name="name_pb_wa_l2">WA P1</string>
+    <string name="name_pb_wa_l3">WA P2</string>
+    <string name="name_pb_wa_l4">WA P3</string>
+    <string name="name_pb_wb">WB</string>
+    <string name="name_pb_wb_iet">WB IET</string>
+    <string name="name_pb_wb_l0">WB P-1</string>
+    <string name="name_pb_wb_l0_iet">WB IET P-1</string>
+    <string name="name_pb_wb_l2">WB P1</string>
+    <string name="name_pb_wb_l2_iet">WB IET P1</string>
+    <string name="name_pb_wb_l3">WB P2</string>
+    <string name="name_pb_wb_l3_iet">WB IET P2</string>
+    <string name="name_pb_wb_l4_iet">WB IET P3</string>
+    <string name="name_pb_we">WE\n</string>
+    <string name="name_pb_we_l2">WE P1</string>
+    <string name="name_pb_we_l3">WE P2</string>
+    <string name="name_pb_we_l4">WE P3</string>
+    <string name="name_pb_wi">WI</string>
+    <string name="name_pb_wi_l0">WI P0</string>
+    <string name="name_pb_wi_l2">WI P1</string>
+    <string name="name_pb_wi_l3">WI P2</string>
+    <string name="name_pb_wm">WM</string>
+    <string name="name_pb_wm_l2">WM P1</string>
+    <string name="name_pb_wm_l3">WM P2</string>
+    <string name="name_pb_wz_berlin">WZ Berlin</string>
+    <string name="name_pb_wz_berlin_l2">WZ Berlin P1</string>
+    <string name="name_pb_wz_montreal">WZ Montreal</string>
+    <string name="name_pb_zwl">ZWL</string>
+    <string name="name_pb_zwl_l2">ZWL P1</string>
+    <string name="name_photodetection_and_computer_image_analysis_lab">Laboratorium Fotodetekcji i\nKomputerowej Analizy Obrazu</string>
+    <string name="name_shop">Sklep</string>
+    <string name="name_silent_zone">Strefa ciszy</string>
+    <string name="name_student_council">Samorząd studencki</string>
+    <string name="name_wc">WC</string>
+    <string name="name_zpdiut">ZPDiUT</string>
+    <string name="name_deanery_121">Dziekanat</string>
+    <string name="name_deanery">Dziekanat</string>
+    <string name="name_pb_campus">PB kampus</string>
+    <string name="name_pb_wz_campus">WZ kampus</string>
+    <string name="name_secretariat">Sekretariat</string>
+    <string name="name_rector">Rektorat</string>
+    <string name="name_courts">Korty\ntenisowe</string>
+    <string name="name_ds_alpha">DS\nAlfa</string>
+    <string name="name_ds_beta">DS\nBeta</string>
+    <string name="name_ds_gamma">DS\nGamma</string>
+    <string name="name_ds_delta">DS\nDelta</string>
+    <string name="name_gwint">Klub Gwint</string>
+    <string name="name_assistant_hotel">Hotel\nAssyst.</string>
+    <string name="name_store">Sklep</string>
+    <string name="name_lodge">Portiernia</string>
+    <string name="name_atm">Bankomat</string>
+    <string name="name_buffet">Bufet</string>
+    <string name="name_car_hall">Hala Pojazdów</string>
+    <string name="name_assembly_hall_a">Aula A</string>
+    <string name="name_assembly_hall_b">Aula B</string>
+    <string name="name_assembly_hall_c">Aula C</string>
+    <string name="name_p1_21">P1/21\nMała czytelnia</string>
+    <string name="name_p1_38">P1/38\nDuża czytelnia</string>
+    <string name="name_p0_19">P0/19\nWypożyczalnia międzybiblioteczna</string>
+    <string name="name_p0_15_16">P0/15,16\nCzytelnia norm i\nzbiorów specjalnych</string>
+    <string name="name_information_publishers_reading_room">Czytelnia wydawnictw\ninformacyjnych</string>
+    <string name="name_magazines_reading_room">Czytelnia\nczasopism</string>
+    <string name="name_electronic_reading_room">Czytelnia\nelektroniczna</string>
+    <string name="name_book_rental">Wypożyczalnia</string>
+    <string name="name_book_return">Wrzutnia\nksiążek</string>
+    <string name="name_main_library">Biblioteka\nGłówna PB</string>
+    <string name="name_sjo">Studium\nJęzyków Obcych</string>
+    <string name="name_ckz">Centrum Kształcenia Zdalnego</string>
+    <string name="name_assembly_hall_i">Aula I</string>
+    <string name="name_assembly_hall_ii">Aula II</string>
+    <string name="name_assembly_hall_iii">Aula III</string>
+    <string name="name_gym">Siłownia</string>
+    <string name="name_martial_arts_hall">Sala sportów walki</string>
+    <string name="name_table_tennis_hall">Sala tenisa stołowego</string>
+    <string name="name_aerobics_hall">Sala aerobiku</string>
+    <string name="name_sports_hall">Hala sportowa\nSala gier zespołowych</string>
+    <string name="name_pb_wz_shanghai">WZ Szanghaj</string>
+    <string name="name_pb_wz_shanghai_l0">WZ Szanghaj P-1</string>
+    <string name="name_pb_wz_shanghai_l2">WZ Szanghaj P1</string>
+    <string name="name_pb_wz_philadelphia">WZ Filadelfia</string>
+    <string name="name_pb_wz_philadelphia_l2">WZ Filadelfia P1</string>
+    <string name="name_pb_wz_philadelphia_l3">WZ Filadelfia P2</string>
+    <string name="name_shanghai">Szanghaj\n</string>
+    <string name="name_philadelphia">Filadelfia</string>
+    <string name="name_xero">Ksero</string>
+    <string name="name_gym_048b">048B\nSiłownia</string>
 
-    <string name="pb_campus_address">Politechnika Białostocka,
+    <string name="address_pb_campus">Politechnika Białostocka,
 ul. Wiejska 45A, 15-351 Białystok, woj. podlaskie,
 REGON: 000001672 NIP: 5420208721,
-tel. centr. 85-746-90-00 | fax. 85-746-90-15</string>
-    <string name="pb_wi_address">Wydział Informatyki Politechniki Białostockiej,
+tel. centr. 85-746-90-00 | faks 85-746-90-15</string>
+    <string name="address_pb_wi">Wydział Informatyki Politechniki Białostockiej,
 ul. Wiejska 45A, 15-351 Białystok,
-tel. 85-746-90-50 | fax. 85-746-90-57,
+tel. 85-746-90-50 | faks 85-746-90-57,
 e-mail: wi.sekretariat@pb.edu.pl</string>
-    <string name="pb_wb_address">Wydział Budownictwa i Inżynierii Środowiska Politechniki Białostockiej,
+    <string name="address_pb_wb">Wydział Budownictwa i Inżynierii Środowiska Politechniki Białostockiej,
 ul. Wiejska 45E, 15-351 Białystok,
-tel. 85-746-95-60 | fax. 85-746-95-59,
+tel. 85-746-95-60 | faks 85-746-95-59,
 e-mail: wbiis@pb.edu.pl</string>
-    <string name="pb_zwl_address">Zamiejscowy Wydział Leśny Politechniki Białostockiej w Hajnówce,
+    <string name="address_pb_zwl">Zamiejscowy Wydział Leśny Politechniki Białostockiej w Hajnówce,
 ul. J. Piłsudzkiego 1A, 17-200 Hajnówka, zwl.sekretariat@pb.edu.pl, tel. 85-682-95-00,
 ul. J. Piłsudzkiego 8, 17-200 Hajnówka, zwl.dziekanat@pb.edu.pl, tel. 85-682-95-01</string>
-    <string name="pb_wm_address">Wydział Mechaniczny Politechniki Białostockiej,
+    <string name="address_pb_wm">Wydział Mechaniczny Politechniki Białostockiej,
 ul. Wiejska 45C, 15-351 Białystok,
 wm@pb.edu.pl, tel. 85-746-92-00,
 wm.dziekanat@pb.edu.pl, tel. 85-746-92-09</string>
-    <string name="pb_we_address">Wydział Elektryczny Politechniki Białostockiej,
+    <string name="address_pb_we">Wydział Elektryczny Politechniki Białostockiej,
 ul. Wiejska 45D, 15-351 Białystok,
-we.sekretariat@pb.edu.pl, tel. 85-746-9360 | fax 85-746-9400,
+we.sekretariat@pb.edu.pl, tel. 85-746-9360 | faks 85-746-9400,
 we.dziekanat@pb.edu.pl, tel. 85-746-9365</string>
-    <string name="pb_cnk_address">Centrum Nowoczesnego Kształcenia / Biblioteka Politechniki Białostockiej,
+    <string name="address_pb_cnk">Centrum Nowoczesnego Kształcenia / Biblioteka Politechniki Białostockiej,
 ul. Zwierzyniecka 16, 15-333 Białystok,
-tel. 85-746-9330 | fax. 85-746-9329,
+tel. 85-746-9330 | faks 85-746-9329,
 biblioteka@pb.edu.pl</string>
-    <string name="pb_wa_address">Wydział Architektury Politechniki Białostockiej,
+    <string name="address_pb_wa">Wydział Architektury Politechniki Białostockiej,
 ul. Oskara Sosnowskiego 11, 15-893 Białystok,
-wa.sekretariat@pb.edu.pl, tel. 85-746-99-14 | fax 85-746-99-13,
+wa.sekretariat@pb.edu.pl, tel. 85-746-99-14 | faks 85-746-99-13,
 wa.dziekanat@pb.edu.pl, tel. 85-746-99-15</string>
-    <string name="pb_wz_campus_address">Wydział Inżynierii Zarządzania Politechniki Białostockiej,
+    <string name="address_pb_wz_campus">Wydział Inżynierii Zarządzania Politechniki Białostockiej,
 Ojca Tarasiuka 2, 16-001 Kleosin,
 wz.sekretariat@pb.edu.pl, tel. 85-746-98-02</string>
-    <string name="pb_acs_address">Akademickie Centrum Sportu / Studium Wychowania Fizycznego Politechniki Białostockiej,
+    <string name="address_pb_acs">Akademickie Centrum Sportu / Studium Wychowania Fizycznego Politechniki Białostockiej,
 ul. Wiejska 41, 15-351 Białystok,
 studium.wf@pb.edu.pl, tel. 85-746-97-00</string>
-    <string name="gwint_address">Klub Studencki GWINT,
+    <string name="address_gwint">Klub Studencki GWINT,
 ul. Zwierzyniecka 10,
 15-333 Białystok</string>
 </resources>
