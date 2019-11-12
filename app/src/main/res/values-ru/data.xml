@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="name_acs">Академический\nспортивный\nцентр\n[АЦС]</string>
+    <string name="name_applied_mechanics_lab">Лаборатория\nприкладной\nмеханики</string>
+    <string name="name_archive">Архив</string>
+    <string name="name_assembly_hall">Зал</string>
+    <string name="name_bank">Банк</string>
+    <string name="name_berlin">\n\nБерлин</string>
+    <string name="name_cloakroom">Раздевалка</string>
+    <string name="name_cnb">Научно-исследовательский Центр</string>
+    <string name="name_cnk">Центр\nСовременного\nОбразования\n[ЦНК]</string>
+    <string name="name_dean">Декан</string>
+    <string name="name_entomology_lab">Энтомологическая\nлаборатория</string>
+    <string name="name_erasmus">Эразмус</string>
+    <string name="name_faculty_council_hall">Зал Совета\nфакультета</string>
+    <string name="name_forest_by_products_lab">Лаборатория лесных\nпобочных продуктов</string>
+    <string name="name_forest_environment_monitoring_lab">Лаборатория мониторинга\nлесной среды</string>
+    <string name="name_hall">Зал</string>
+    <string name="name_informatorium">Информационный центр</string>
+    <string name="name_inno_eko_tech">Инно-Эко-Тех</string>
+    <string name="name_library">Библиотека</string>
+    <string name="name_machine_hall">Машинный зал</string>
+    <string name="name_mechanical_hall">Механический зал</string>
+    <string name="name_montreal">Монреаль</string>
+    <string name="name_p">П</string>
+    <string name="name_pb_acs">Спортивный ц… [АЦС]</string>
+    <string name="name_pb_acs_l2">Академический спортивный центр э2 [АЦС]</string>
+    <string name="name_pb_cnk">Библиотека [ЦНК]</string>
+    <string name="name_pb_cnk_l2">Центр Современного Образования э2 [ЦНК]</string>
+    <string name="name_pb_cnk_l3">Центр Современного Образования э3 [ЦНК]</string>
+    <string name="name_pb_wa">Архитектура [ВА]</string>
+    <string name="name_pb_wa_l0">Факультет архитектуры э-1 [ВА]</string>
+    <string name="name_pb_wa_l2">Факультет архитектуры э2 [ВА]</string>
+    <string name="name_pb_wa_l3">Факультет архитектуры э3 [ВА]</string>
+    <string name="name_pb_wa_l4">Факультет архитектуры э4 [ВА]</string>
+    <string name="name_pb_wb">Строительство\n[ВБ]</string>
+    <string name="name_pb_wb_iet">Строительство ИЭТ [ВБ]</string>
+    <string name="name_pb_wb_l0">Строительство э-1 [ВБ]</string>
+    <string name="name_pb_wb_l0_iet">Строительство ИЭТ э-1 [ВБ]</string>
+    <string name="name_pb_wb_l2">Строительство э2 [ВБ]</string>
+    <string name="name_pb_wb_l2_iet">Строительство ИЭТ э2 [ВБ]</string>
+    <string name="name_pb_wb_l3">Строительство э3 [ВБ]</string>
+    <string name="name_pb_wb_l3_iet">Строительство ИЭТ э3 [ВБ]</string>
+    <string name="name_pb_wb_l4_iet">Строительство ИЭТ э4 [ВБ]</string>
+    <string name="name_pb_we">Электрический\n[ВЭ]</string>
+    <string name="name_pb_we_l2">Электрический факультет э2 [ВЭ]</string>
+    <string name="name_pb_we_l3">Электрический факультет э3 [ВЭ]</string>
+    <string name="name_pb_we_l4">Электрический факультет э4 [ВЭ]</string>
+    <string name="name_pb_wi">Информатика\n[ВИ]</string>
+    <string name="name_pb_wi_l0">Факультет информатики э0 [ВИ]</string>
+    <string name="name_pb_wi_l2">Факультет информатики э2 [ВИ]</string>
+    <string name="name_pb_wi_l3">Факультет информатики э3 [ВИ]</string>
+    <string name="name_pb_wm">Механика\n[ВМ]</string>
+    <string name="name_pb_wm_l2">Факультет механики э2 [ВМ]</string>
+    <string name="name_pb_wm_l3">Факультет механики э3 [ВМ]</string>
+    <string name="name_pb_wz_berlin">Менедж. Берлин [ВЗ]</string>
+    <string name="name_pb_wz_berlin_l2">Менеджмент Берлин э2 [ВЗ]</string>
+    <string name="name_pb_wz_montreal">Менедж. Монреаль [ВЗ]</string>
+    <string name="name_pb_zwl">Лесоводство [ЗWЛ]</string>
+    <string name="name_pb_zwl_l2">Лесоводство э2 [ЗWЛ]</string>
+    <string name="name_photodetection_and_computer_image_analysis_lab">Лаборатория фотодетектирования и\nкомпьютерного анализа изображений</string>
+    <string name="name_shop">Магазин</string>
+    <string name="name_silent_zone">Зона молчания</string>
+    <string name="name_student_council">Студенческий совет</string>
+    <string name="name_wc">Туалет</string>
+    <string name="name_zpdiut">ZPDiUT</string>
+    <string name="name_deanery_121">Деканат</string>
+    <string name="name_deanery">Деканат</string>
+    <string name="name_pb_campus">БТУ кампус</string>
+    <string name="name_pb_wz_campus">Менеджмент кампус</string>
+    <string name="name_secretariat">Секретариат</string>
+    <string name="name_rector">Ректорат</string>
+    <string name="name_courts">Теннисные\nкорты</string>
+    <string name="name_ds_alpha">Альфа\nобщежитие</string>
+    <string name="name_ds_beta">Бета\nобщежитие</string>
+    <string name="name_ds_gamma">Гамма\nобщежитие</string>
+    <string name="name_ds_delta">Дельта\nобщежитие</string>
+    <string name="name_gwint">Клуб Gwint</string>
+    <string name="name_assistant_hotel">Отель\nАссистентa</string>
+    <string name="name_store">Магазин</string>
+    <string name="name_lodge">Раздевалка</string>
+    <string name="name_atm">Банкомат</string>
+    <string name="name_buffet">Буфет</string>
+    <string name="name_car_hall">Автомобильный зал</string>
+    <string name="name_assembly_hall_a">Зал A</string>
+    <string name="name_assembly_hall_b">Зал B</string>
+    <string name="name_assembly_hall_c">Зал C</string>
+    <string name="name_p1_21">P1/21\nНебольшой читальный зал</string>
+    <string name="name_p1_38">P1/38\nБольшой читальный зал</string>
+    <string name="name_p0_19">P0/19\nМежбиблиотечный аренда</string>
+    <string name="name_p0_15_16">P0/15,16\nСпециальные\nколлекции</string>
+    <string name="name_information_publishers_reading_room">Публикация\nинформации</string>
+    <string name="name_magazines_reading_room">Журналы</string>
+    <string name="name_electronic_reading_room">Электронный\nчитальный зал</string>
+    <string name="name_book_rental">Аренда</string>
+    <string name="name_book_return">Возврат\nсамообслуживания</string>
+    <string name="name_main_library">Главная библиотека</string>
+    <string name="name_sjo">Изучение\nиностранных языков</string>
+    <string name="name_ckz">Центр дистанционного обучения</string>
+    <string name="name_assembly_hall_i">Зал I</string>
+    <string name="name_assembly_hall_ii">Зал II</string>
+    <string name="name_assembly_hall_iii">Зал III</string>
+    <string name="name_gym">Фитнес-клуб</string>
+    <string name="name_martial_arts_hall">Комната боевых искусств</string>
+    <string name="name_table_tennis_hall">Комната для настольного тенниса</string>
+    <string name="name_aerobics_hall">Еробик рум</string>
+    <string name="name_sports_hall">Спортивный зал\nКомандная игровая комната</string>
+    <string name="name_pb_wz_shanghai">Менедж. Шанхай [ВЗ]</string>
+    <string name="name_pb_wz_shanghai_l0">Менеджмент Шанхай э-1 [ВЗ]</string>
+    <string name="name_pb_wz_shanghai_l2">Менеджмент Шанхай э2 [ВЗ]</string>
+    <string name="name_pb_wz_philadelphia">Менедж. Филадельф [ВЗ]</string>
+    <string name="name_pb_wz_philadelphia_l2">Менеджмент Филадельфия э2 [ВЗ]</string>
+    <string name="name_pb_wz_philadelphia_l3">Менеджмент Филадельфия э3 [ВЗ]</string>
+    <string name="name_shanghai">Шанхай\n</string>
+    <string name="name_philadelphia">Филадельфия</string>
+    <string name="name_xero">Копицентр</string>
+    <string name="name_gym_048b">048B\nфитнес-клуб</string>
+
+    <string name="address_pb_campus">Белостокский технологический университет,
+ул. Вейска 45A, 15-351 Белосток, Подляское воеводство,
+REGON: 000001672 NIP: 5420208721,
+тел. +48 85-746-90-00 | факс +48 85-746-90-15</string>
+    <string name="address_pb_wi">Факультет информатики в Белостокском политехническом университете,
+ул. Вейска 45A, 15-351 Белосток,
+тел. +48 85-746-90-50 | факс +48 85-746-90-57,
+e-mail: wi.sekretariat@pb.edu.pl</string>
+    <string name="address_pb_wb">Факультет строительства и инженерии окружающей среды в Белостокском политехническом университете,
+ул. Вейска 45E, 15-351 Белосток,
+тел. +48 85-746-95-60 | факс +48 85-746-95-59,
+e-mail: wbiis@pb.edu.pl</string>
+    <string name="address_pb_zwl">Иногородний лесной факультет Белостокского технического университета в Гайновке,
+ул. J. Piłsudzkiego 1A, 17-200 Hajnówka, zwl.sekretariat@pb.edu.pl, тел. +48 85-682-95-00,
+ул. J. Piłsudzkiego 8, 17-200 Hajnówka, zwl.dziekanat@pb.edu.pl, тел. +48 85-682-95-01</string>
+    <string name="address_pb_wm">Факультет механики в Белостокском политехническом университете,
+ул. Вейска 45C, 15-351 Белосток,
+wm@pb.edu.pl, тел. +48 85-746-92-00,
+wm.dziekanat@pb.edu.pl, тел. +48 85-746-92-09</string>
+    <string name="address_pb_we">Электрический факультет в Белостокском политехническом университете,
+ул. Вейска 45D, 15-351 Белосток,
+we.sekretariat@pb.edu.pl, тел. +48 85-746-9360 | факс +48 85-746-9400,
+we.dziekanat@pb.edu.pl, тел. +48 85-746-9365</string>
+    <string name="address_pb_cnk">Центр Новочеснего Кичжи / Библиотека Белостокского технического университета,
+ул. Зверинецкая 16, 15-333 Белосток,
+тел. +48 85-746-9330 | факс +48 85-746-9329,
+biblioteka@pb.edu.pl</string>
+    <string name="address_pb_wa">Факультет архитектуры в Белостокском политехническом университете,
+ул. Оскара Сосновского 11, 15-893 Белосток,
+wa.sekretariat@pb.edu.pl, тел. +48 85-746-99-14 | факс +48 85-746-99-13,
+wa.dziekanat@pb.edu.pl, тел. +48 85-746-99-15</string>
+    <string name="address_pb_wz_campus">Факультет инженерии менеджмента в Белостокском политехническом университете,
+ул. Отца Tарасюка 2, 16-001 Клеосин,
+wz.sekretariat@pb.edu.pl, тел. +48 85-746-98-02</string>
+    <string name="address_pb_acs">Академический центр Sportu / Учеба по физическому воспитанию в Белостокском политехническом университете,
+ул. Вейска 41, 15-351 Белосток,
+studium.wf@pb.edu.pl, тел. +48 85-746-97-00</string>
+    <string name="address_gwint">Студенческий клуб GWINT,
+ул. Зверинецкая 10,
+15-333 Белосток</string>
+</resources>

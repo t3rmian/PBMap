@@ -15,8 +15,8 @@ import io.github.t3r1jj.pbmap.view.map.PlaceView;
 
 public abstract class Place {
 
-    public static final String NAME_PREFIX = "_name";
-    private static final String DESCRIPTION_PREFIX = "_description";
+    public static final String NAME_PREFIX = "name_";
+    private static final String DESCRIPTION_PREFIX = "description_";
     @Attribute
     protected String id;
     @Attribute(name = "logo_path", required = false)
