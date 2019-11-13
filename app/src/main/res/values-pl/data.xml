@@ -156,4 +156,8 @@ studium.wf@pb.edu.pl, tel. 85-746-97-00</string>
     <string name="address_gwint">Klub Studencki GWINT,
 ul. Zwierzyniecka 10,
 15-333 Białystok</string>
+
+    <string name="name_marszalka_jozefa_pilsudskiego">Marszałka Jóżefa Piłsudskiego</string>
+    <string name="name_swierkowa">Świerkowa</string>
+
 </resources>

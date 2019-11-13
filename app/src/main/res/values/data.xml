@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation,TypographyDashes" >
     <string name="name_acs">Academic\nSports\nCentre\n[ACS]</string>
     <string name="name_pb_acs">Acad.\nSports\nC… [ACS]</string>
     <string name="name_pb_acs_l2">Academic Sports Centre L1 [ACS]</string>
@@ -118,43 +118,379 @@
     <string name="name_054_058_wc">054-058 WC</string>
 
     <string name="address_pb_campus">Bialystok University of Technology,
-Wiejska 45A St., 15-351 Białystok, voi. podlaskie,
+Wiejska 45A St., 15-351 Bialystok, voi. podlaskie,
 REGON: 000001672 NIP: 5420208721,
 tel. centr. +48 85-746-90-00 | fax. +48 85-746-90-15</string>
     <string name="address_pb_wi">Faculty of Computer Science,
-Wiejska 45A St., 15-351 Białystok,
+Wiejska 45A St., 15-351 Bialystok,
 tel. +48 85-746-90-50 | fax. +48 85-746-90-57,
 e-mail: wi.sekretariat@pb.edu.pl</string>
     <string name="address_pb_wb">Faculty of Civil and Environmental Engineering,
-Wiejska 45E St., 15-351 Białystok,
+Wiejska 45E St., 15-351 Bialystok,
 tel. +48 85-746-95-60 | fax. +48 85-746-95-59,
 e-mail: wbiis@pb.edu.pl</string>
     <string name="address_pb_zwl">Faculty of Forestry in Hajnówka,
 J. Piłsudzkiego 1A, 17-200 Hajnówka, zwl.sekretariat@pb.edu.pl, tel. +48 85-682-95-00,
 J. Piłsudzkiego 8, 17-200 Hajnówka, zwl.dziekanat@pb.edu.pl, tel. +48 85-682-95-01</string>
     <string name="address_pb_wm">Faculty of Mechanlcal Engineering,
-Wiejska 45C St., 15-351 Białystok,
+Wiejska 45C St., 15-351 Bialystok,
 wm@pb.edu.pl, tel. +48 85-746-92-00,
 wm.dziekanat@pb.edu.pl, tel. +48 85-746-92-09</string>
     <string name="address_pb_we">Faculty of Electrical Engineering,
-Wiejska 45D St., 15-351 Białystok,
+Wiejska 45D St., 15-351 Bialystok,
 we.sekretariat@pb.edu.pl, tel. +48 85-746-9360 | fax +48 85-746-9400,
 we.dziekanat@pb.edu.pl, tel. +48 85-746 9365</string>
     <string name="address_pb_cnk">Modern Education Centre / Library,
-Zwierzyniecka 16 St., 15-333 Białystok,
+Zwierzyniecka 16 St., 15-333 Bialystok,
 tel. +48 85-746-9330 | fax. +48 85-746-9329,
 biblioteka@pb.edu.pl</string>
     <string name="address_pb_wa">Faculty of Architecture,
-Oskara Sosnowskiego 11 St., 15-893 Białystok,
+Oskara Sosnowskiego 11 St., 15-893 Bialystok,
 wa.sekretariat@pb.edu.pl, tel. +48 85-746-99-14 | fax +48 85-746-99-13,
 wa.dziekanat@pb.edu.pl, tel. +48 85-746-99-15</string>
     <string name="address_pb_wz_campus">Faculty of Engineering Management,
 Ojca Tarasiuka 2 St., 16-001 Kleosin,
 wz.sekretariat@pb.edu.pl, tel. +48 85-746-98-02</string>
     <string name="address_pb_acs">Academic Sports Centre,
-Wiejska 41 St., 15-351 Białystok,
+Wiejska 41 St., 15-351 Bialystok,
 studium.wf@pb.edu.pl, tel. +48 85-746-97-00</string>
     <string name="address_gwint">GWINT Students club,
 ul. Zwierzyniecka 10,
-15-333 Białystok</string>
+15-333 Bialystok</string>
+
+
+    <string name="name_002a">002A</string>
+    <string name="name_002b">002B</string>
+    <string name="name_003a">003A</string>
+    <string name="name_004a">004A</string>
+    <string name="name_004c">004C</string>
+    <string name="name_005a">005A</string>
+    <string name="name_005b">005B</string>
+    <string name="name_005c">005C</string>
+    <string name="name_006a">006A</string>
+    <string name="name_006b">006B</string>
+    <string name="name_006c">006C</string>
+    <string name="name_007a">007A</string>
+    <string name="name_007b">007B</string>
+    <string name="name_007c">007C</string>
+    <string name="name_008a">008A</string>
+    <string name="name_008b">008B</string>
+    <string name="name_009a">009A</string>
+    <string name="name_009b">009B</string>
+    <string name="name_010a">010A</string>
+    <string name="name_010b">010B</string>
+    <string name="name_011a">011A</string>
+    <string name="name_011b">011B</string>
+    <string name="name_012a">012A</string>
+    <string name="name_013a">013A</string>
+    <string name="name_014a">014A</string>
+    <string name="name_014b">014B</string>
+    <string name="name_015a">015A</string>
+    <string name="name_016a">016A</string>
+    <string name="name_016b">016B</string>
+    <string name="name_017a">017A</string>
+    <string name="name_018a">018A</string>
+    <string name="name_018b">018B</string>
+    <string name="name_019a">019A</string>
+    <string name="name_01a">01A</string>
+    <string name="name_020a">020A</string>
+    <string name="name_020b">020B</string>
+    <string name="name_021a">021A</string>
+    <string name="name_021b">021B</string>
+    <string name="name_022b">022B</string>
+    <string name="name_023a">023A</string>
+    <string name="name_023b">023B</string>
+    <string name="name_024a">024A</string>
+    <string name="name_024b">024B</string>
+    <string name="name_025b">025B</string>
+    <string name="name_026b">026B</string>
+    <string name="name_027a">027A</string>
+    <string name="name_027b">027B</string>
+    <string name="name_028a">028A</string>
+    <string name="name_028b">028B</string>
+    <string name="name_029a">029A</string>
+    <string name="name_029b">029B</string>
+    <string name="name_02a">02A</string>
+    <string name="name_030a">030A</string>
+    <string name="name_032a">032A</string>
+    <string name="name_032b">032B</string>
+    <string name="name_033a">033A</string>
+    <string name="name_034a">034A</string>
+    <string name="name_034b">034B</string>
+    <string name="name_035a">035A</string>
+    <string name="name_035b">035B</string>
+    <string name="name_036a">036A</string>
+    <string name="name_037a">037A</string>
+    <string name="name_037b">037B</string>
+    <string name="name_038a">038A</string>
+    <string name="name_038b">038B</string>
+    <string name="name_039a">039A</string>
+    <string name="name_039b">039B</string>
+    <string name="name_03a">03A</string>
+    <string name="name_040b">040B</string>
+    <string name="name_041b">041B</string>
+    <string name="name_042a">042A</string>
+    <string name="name_042b">042B</string>
+    <string name="name_043a">043A</string>
+    <string name="name_043b">043B</string>
+    <string name="name_044b">044B</string>
+    <string name="name_045b">045B</string>
+    <string name="name_046b">046B</string>
+    <string name="name_047b">047B</string>
+    <string name="name_048b">048B</string>
+    <string name="name_04a">04A</string>
+    <string name="name_051b">051B</string>
+    <string name="name_054b">054B</string>
+    <string name="name_056b">056B</string>
+    <string name="name_057b">057B</string>
+    <string name="name_05a">05A</string>
+    <string name="name_060b">060B</string>
+    <string name="name_061b">061B</string>
+    <string name="name_062b">062B</string>
+    <string name="name_063b">063B</string>
+    <string name="name_064b">064B</string>
+    <string name="name_067b">067B</string>
+    <string name="name_068b">068B</string>
+    <string name="name_069b">069B</string>
+    <string name="name_070b">070B</string>
+    <string name="name_071b">071B</string>
+    <string name="name_072b">072B</string>
+    <string name="name_073b">073B</string>
+    <string name="name_074b">074B</string>
+    <string name="name_1_h_1">1/H/1</string>
+    <string name="name_1_h_10">1/H/10</string>
+    <string name="name_1_h_11">1/H/11</string>
+    <string name="name_1_h_12">1/H/12</string>
+    <string name="name_1_h_13">1/H/13</string>
+    <string name="name_1_h_14">1/H/14</string>
+    <string name="name_1_h_15">1/H/15</string>
+    <string name="name_1_h_16">1/H/16</string>
+    <string name="name_1_h_17">1/H/17</string>
+    <string name="name_1_h_2">1/H/2</string>
+    <string name="name_1_h_3">1/H/3</string>
+    <string name="name_1_h_4">1/H/4</string>
+    <string name="name_1_h_5">1/H/5</string>
+    <string name="name_1_h_8">1/H/8</string>
+    <string name="name_1_h_9">1/H/9</string>
+    <string name="name_10a">10A</string>
+    <string name="name_10b">10B</string>
+    <string name="name_10c">10C</string>
+    <string name="name_11a">11A</string>
+    <string name="name_11b">11B</string>
+    <string name="name_11c">11C</string>
+    <string name="name_12a">12A</string>
+    <string name="name_12b">12B</string>
+    <string name="name_12c">12C</string>
+    <string name="name_13a">13A</string>
+    <string name="name_13b">13B</string>
+    <string name="name_13c">13C</string>
+    <string name="name_14a">14A</string>
+    <string name="name_14b">14B</string>
+    <string name="name_14c">14C</string>
+    <string name="name_15a">15A</string>
+    <string name="name_15b">15B</string>
+    <string name="name_15c">15C</string>
+    <string name="name_16a">16A</string>
+    <string name="name_16b">16B</string>
+    <string name="name_16c">16C</string>
+    <string name="name_17b">17B</string>
+    <string name="name_17c">17C</string>
+    <string name="name_18b">18B</string>
+    <string name="name_18c">18C</string>
+    <string name="name_19a">19A</string>
+    <string name="name_19b">19B</string>
+    <string name="name_1a">1A</string>
+    <string name="name_1aa">1AA</string>
+    <string name="name_1ab">1AB</string>
+    <string name="name_1ac">1AC</string>
+    <string name="name_1b">1B</string>
+    <string name="name_1c">1C</string>
+    <string name="name_20b">20B</string>
+    <string name="name_21b">21B</string>
+    <string name="name_22b">22B</string>
+    <string name="name_23b">23B</string>
+    <string name="name_23c">23C</string>
+    <string name="name_24a">24A</string>
+    <string name="name_24b">24B</string>
+    <string name="name_25a">25A</string>
+    <string name="name_25b">25B</string>
+    <string name="name_25c">25C</string>
+    <string name="name_26b">26B</string>
+    <string name="name_27a">27A</string>
+    <string name="name_27b">27B</string>
+    <string name="name_27c">27C</string>
+    <string name="name_28a">28A</string>
+    <string name="name_28b">28B</string>
+    <string name="name_28c">28C</string>
+    <string name="name_29a">29A</string>
+    <string name="name_29b">29B</string>
+    <string name="name_29c">29C</string>
+    <string name="name_2a">2A</string>
+    <string name="name_2b">2B</string>
+    <string name="name_2c">2C</string>
+    <string name="name_3_maja">3 Maja</string>
+    <string name="name_30a">30A</string>
+    <string name="name_31a">31A</string>
+    <string name="name_31b">31B</string>
+    <string name="name_32a">32A</string>
+    <string name="name_32b">32B</string>
+    <string name="name_32c">32C</string>
+    <string name="name_33a">33A</string>
+    <string name="name_33b">33B</string>
+    <string name="name_33c">33C</string>
+    <string name="name_34a">34A</string>
+    <string name="name_34b">34B</string>
+    <string name="name_35b">35B</string>
+    <string name="name_36a">36A</string>
+    <string name="name_37a">37A</string>
+    <string name="name_37b">37B</string>
+    <string name="name_38a">38A</string>
+    <string name="name_38b">38B</string>
+    <string name="name_39b">39B</string>
+    <string name="name_3b">3B</string>
+    <string name="name_3c">3C</string>
+    <string name="name_40b">40B</string>
+    <string name="name_40b_52b_57b_62b">40B-52B 57B-62B</string>
+    <string name="name_41b">41B</string>
+    <string name="name_42a">42A</string>
+    <string name="name_42b">42B</string>
+    <string name="name_43b">43B</string>
+    <string name="name_44b">44B</string>
+    <string name="name_45b">45B</string>
+    <string name="name_47b">47B</string>
+    <string name="name_4b">4B</string>
+    <string name="name_4c">4C</string>
+    <string name="name_503g_504g">503G-504G</string>
+    <string name="name_53b_56b">53B-56B</string>
+    <string name="name_5a">5A</string>
+    <string name="name_5b">5B</string>
+    <string name="name_5c">5C</string>
+    <string name="name_63b">63B</string>
+    <string name="name_64b">64B</string>
+    <string name="name_65b">65B</string>
+    <string name="name_66b">66B</string>
+    <string name="name_67b">67B</string>
+    <string name="name_68b">68B</string>
+    <string name="name_69b">69B</string>
+    <string name="name_6a">6A</string>
+    <string name="name_6b">6B</string>
+    <string name="name_74b">74B</string>
+    <string name="name_7b">7B</string>
+    <string name="name_7c">7C</string>
+    <string name="name_8a">8A</string>
+    <string name="name_8b">8B</string>
+    <string name="name_8c">8C</string>
+    <string name="name_9a">9A</string>
+    <string name="name_9c">9C</string>
+    <string name="name_b015">B015</string>
+    <string name="name_b016">B016</string>
+    <string name="name_b017">B017</string>
+    <string name="name_b018">B018</string>
+    <string name="name_b019">B019</string>
+    <string name="name_b02">B02</string>
+    <string name="name_b020">B020</string>
+    <string name="name_b021">B021</string>
+    <string name="name_b022">B022</string>
+    <string name="name_b023">B023</string>
+    <string name="name_b025">B025</string>
+    <string name="name_b026">B026</string>
+    <string name="name_b027">B027</string>
+    <string name="name_b028">B028</string>
+    <string name="name_b029">B029</string>
+    <string name="name_b03">B03</string>
+    <string name="name_b030">B030</string>
+    <string name="name_b031">B031</string>
+    <string name="name_b032">B032</string>
+    <string name="name_b033">B033</string>
+    <string name="name_b034">B034</string>
+    <string name="name_b035">B035</string>
+    <string name="name_b036">B036</string>
+    <string name="name_b037">B037</string>
+    <string name="name_b038">B038</string>
+    <string name="name_b039">B039</string>
+    <string name="name_b04">B04</string>
+    <string name="name_b05">B05</string>
+    <string name="name_b06">B06</string>
+    <string name="name_b07">B07</string>
+    <string name="name_b08">B08</string>
+    <string name="name_b09">B09</string>
+    <string name="name_biker_pogodna">BiKeR Pogodna</string>
+    <string name="name_biker_zwierzyniecka">BiKeR Zwierzyniecka</string>
+    <string name="name_bkm">BKM</string>
+    <string name="name_bkm_525">BKM 525</string>
+    <string name="name_bkm_527">BKM 527</string>
+    <string name="name_bkm_529">BKM 529</string>
+    <string name="name_bkm_535">BKM 535</string>
+    <string name="name_bkm_586">BKM 586</string>
+    <string name="name_bkm_587">BKM 587</string>
+    <string name="name_bkm_588">BKM 588</string>
+    <string name="name_bkm_589">BKM 589</string>
+    <string name="name_bkm_pogodna_wiejska">BKM Pogodna/Wiejska</string>
+    <string name="name_bkm_wiejska_kopernika">BKM Wiejska/Kopernika</string>
+    <string name="name_bkm_zwierzyniecka_wiejska">BKM Zwierzyniecka/Wiejska</string>
+    <string name="name_marszalka_jozefa_pilsudskiego">Marszałka Jozefa Pilsudskiego</string>
+    <string name="name_p0_10">P0/10</string>
+    <string name="name_p0_11">P0/11</string>
+    <string name="name_p0_12">P0/12</string>
+    <string name="name_p0_13">P0/13</string>
+    <string name="name_p0_21">P0/21</string>
+    <string name="name_p0_33">P0/33</string>
+    <string name="name_p0_34">P0/34</string>
+    <string name="name_p0_38">P0/38</string>
+    <string name="name_p0_39">P0/39</string>
+    <string name="name_p0_40">P0/40</string>
+    <string name="name_p0_41">P0/41</string>
+    <string name="name_p0_43">P0/43</string>
+    <string name="name_p0_44">P0/44</string>
+    <string name="name_p1_01">P1/01</string>
+    <string name="name_p1_02">P1/02</string>
+    <string name="name_p1_03">P1/03</string>
+    <string name="name_p1_04">P1/04</string>
+    <string name="name_p1_05">P1/05</string>
+    <string name="name_p1_06">P1/06</string>
+    <string name="name_p1_07">P1/07</string>
+    <string name="name_p1_08">P1/08</string>
+    <string name="name_p1_09">P1/09</string>
+    <string name="name_p1_10">P1/10</string>
+    <string name="name_p1_11">P1/11</string>
+    <string name="name_p1_12">P1/12</string>
+    <string name="name_p1_13">P1/13</string>
+    <string name="name_p1_14">P1/14</string>
+    <string name="name_p1_17">P1/17</string>
+    <string name="name_p1_22_26">P1/22-26</string>
+    <string name="name_p2_02">P2/02</string>
+    <string name="name_p2_03">P2/03</string>
+    <string name="name_p2_04">P2/04</string>
+    <string name="name_p2_05">P2/05</string>
+    <string name="name_p2_06">P2/06</string>
+    <string name="name_p2_07">P2/07</string>
+    <string name="name_p2_08">P2/08</string>
+    <string name="name_p2_09">P2/09</string>
+    <string name="name_p2_10">P2/10</string>
+    <string name="name_p2_11">P2/11</string>
+    <string name="name_p2_12">P2/12</string>
+    <string name="name_p2_13">P2/13</string>
+    <string name="name_p2_14">P2/14</string>
+    <string name="name_p2_15">P2/15</string>
+    <string name="name_p2_16">P2/16</string>
+    <string name="name_p2_17">P2/17</string>
+    <string name="name_p2_18">P2/18</string>
+    <string name="name_p2_19">P2/19</string>
+    <string name="name_p2_20">P2/20</string>
+    <string name="name_p2_26">P2/26</string>
+    <string name="name_p2_27">P2/27</string>
+    <string name="name_p2_28">P2/28</string>
+    <string name="name_p2_32">P2/32</string>
+    <string name="name_p2_33">P2/33</string>
+    <string name="name_p2_37">P2/37</string>
+    <string name="name_p2_38">P2/38</string>
+    <string name="name_p2_39">P2/39</string>
+    <string name="name_p2_40">P2/40</string>
+    <string name="name_p2_41">P2/41</string>
+    <string name="name_p2_42">P2/42</string>
+    <string name="name_p2_45">P2/45</string>
+    <string name="name_swierkowa">Swierkowa</string>
+    <string name="name_wiejska">Wiejska</string>
+    <string name="name_zwierzyniecka">Zwierzyniecka</string>
+
 </resources>
