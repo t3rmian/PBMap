@@ -55,4 +55,6 @@
     <string name="io.github.t3r1jj.pbmap.model.dictionary.MeasurementSystem.SI">Метрический</string>
     <string name="io.github.t3r1jj.pbmap.model.dictionary.MeasurementSystem.US">Имперская</string>
     <string name="LANGUAGES.default">По умолчанию</string>
+    <string name="debug">Отла́дка</string>
+
 </resources>
