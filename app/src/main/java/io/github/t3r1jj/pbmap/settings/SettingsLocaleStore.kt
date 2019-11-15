@@ -8,11 +8,11 @@ import io.github.t3r1jj.pbmap.BuildConfig
 import io.github.t3r1jj.pbmap.MapApplication
 import io.github.t3r1jj.pbmap.model.dictionary.Dictionary
 import io.github.t3r1jj.pbmap.model.i18n.LocaleUtils
-import java.util.*
+import java.util.Locale
 
 class SettingsLocaleStore @JvmOverloads constructor(
         context: Context,
-        private val defaultLocale: Locale = Locale.getDefault(),
+        var defaultLocale: Locale = Locale.getDefault(),
         private val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)) : LocaleStore {
 
     override fun getLocale(): Locale {
