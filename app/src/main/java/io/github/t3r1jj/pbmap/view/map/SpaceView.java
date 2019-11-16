@@ -54,12 +54,7 @@ public class SpaceView extends CompositePathView.DrawablePath implements PlaceVi
         }
         if (space.getReferenceMapPath() != null || space.hasInfo(context)) {
             HotSpot hotSpot = prepareHotspot();
-            hotSpot.setHotSpotTapListener(new HotSpot.HotSpotTapListener() {
-                @Override
-                public void onHotSpotTap(HotSpot hotSpot, int x, int y) {
-                    pbMapView.fireNavigationPerformed(space);
-                }
-            });
+            hotSpot.setHotSpotTapListener((hotSpot1, x, y) -> pbMapView.fireNavigationPerformed(space));
             pbMapView.addHotSpot(hotSpot);
         }
 

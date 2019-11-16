@@ -362,9 +362,9 @@ public class MapActivity extends DrawerActivity
     @SuppressWarnings("ConstantConditions")
     public void setLogo(ImageView view) {
         if (view == null) {
-            getSupportActionBar().setLogo(null);
+            super.setLogo(null);
         } else {
-            getSupportActionBar().setLogo(view.getDrawable());
+            super.setLogo(view.getDrawable());
         }
     }
 

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.view.map.PlaceView;
 
 public abstract class Place {
@@ -88,18 +89,17 @@ public abstract class Place {
     }
 
     public ImageView createLogo(Context context) {
-        if (logoPath != null) {
-            try {
-                InputStream inputStream = context.getAssets().open(logoPath);
-                Drawable drawable = Drawable.createFromStream(inputStream, null);
-                ImageView logo = new ImageView(context);
-                logo.setImageDrawable(drawable);
-                return logo;
-            } catch (IllegalArgumentException | IOException e) {
-                e.printStackTrace();
-            }
+        String packageName = context.getPackageName();
+        if (logoPath == null) {
+            return null;
         }
-        return null;
+        int resId = context.getResources().getIdentifier(logoPath, "drawable", packageName);
+        if (resId == 0) {
+            return null;
+        }
+        ImageView logo = new ImageView(context);
+        logo.setImageDrawable(context.getResources().getDrawable(resId));
+        return logo;
     }
 
     @Override

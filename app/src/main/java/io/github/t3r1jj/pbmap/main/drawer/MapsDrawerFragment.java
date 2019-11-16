@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Collections;
 import java.util.List;
 
 import io.github.t3r1jj.pbmap.R;
@@ -39,10 +40,12 @@ public class MapsDrawerFragment extends NavigationDrawerFragment {
         NavigationView navigationView = (NavigationView) super.onCreateView(inflater, container, savedInstanceState);
         MapsDao mapsDao = new MapsDao(getActivity());
         places = mapsDao.getMapSuggestions();
+        Collections.sort(places);
         Menu menu = navigationView.getMenu();
         int id = 0;
         for (SearchSuggestion searchSuggestion : places) {
-            menu.add(R.id.maps_group, id--, Menu.NONE, searchSuggestion.getName(getActivity())).setIcon(android.R.drawable.ic_dialog_map);
+            menu.add(R.id.maps_group, id--, Menu.NONE, searchSuggestion.getName(getActivity()))
+                    .setIcon(searchSuggestion.getLogoId(getActivity()));
         }
 
         onUpdateSelection(() -> super.selectItem(currentSelectedId));
