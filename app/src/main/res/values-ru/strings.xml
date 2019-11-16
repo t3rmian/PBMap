@@ -1,7 +1,7 @@
 <resources>
     <string name="navigation_drawer_open">Открыть меню</string>
     <string name="navigation_drawer_close">Закрыть меню</string>
-    <string name="name_app">КартаБТУ</string>
+    <string name="name_app">КартаПБ</string>
     <string name="action_back">Предыдущая карта</string>
     <string name="action_search">Поиск</string>
     <string name="search_hint">Подсказка: WB, 116@wi,…</string>
@@ -9,7 +9,7 @@
     <string name="about">О приложении</string>
     <string name="action_share">Поделиться с</string>
     <string name="rate">Обзор</string>
-    <string name="about_description">КартаБТУ - это интерактивная карта Белостокского технического университета, созданная для облегчения навигации, а также расположения объектов (помещений, факультетов), расположенных в политехническом институте.</string>
+    <string name="about_description">КартаПБ - это интерактивная карта Белостокского технического университета, созданная для облегчения навигации, а также расположения объектов (помещений, факультетов), расположенных в политехническом институте.</string>
     <string name="about_author">"Автор: "</string>
     <string name="about_version">Версия: %1$s</string>
     <string name="could_not_open_android_market">Приложение Android Market не установлено, установите Google Play.</string>

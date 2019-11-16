@@ -14,6 +14,6 @@ open class DictionaryTest {
     @SmallTest
     fun getLanguages() {
         val languages = Dictionary().getLanguages()
-        assertEquals(listOf("en", "pl"), languages.toList())
+        assertEquals(listOf("default", "en_GB", "en_US", "ja", "pl", "ru"), languages.toList())
     }
 }

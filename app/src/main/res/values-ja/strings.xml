@@ -1,7 +1,7 @@
 <resources>
     <string name="navigation_drawer_open">ナビゲーションドロワーを開く</string>
     <string name="navigation_drawer_close">ナビゲーションドロワーを閉じる</string>
-    <string name="name_app">ビーケーディ地図</string>
+    <string name="name_app">プブマップ</string>
     <string name="action_back">前の地図</string>
     <string name="action_search">調べる</string>
     <string name="search_hint">ヒント: WB、116@wi、…</string>
@@ -9,7 +9,7 @@
     <string name="about">アバウト</string>
     <string name="action_share">共有する</string>
     <string name="rate">評価</string>
-    <string name="about_description">ビーケーディ地図は、技術のナビゲーションとオブジェクトの検索を容易にするために設計されたビアウィストック工科大学のインタラクティブなマップです。</string>
+    <string name="about_description">プブマップは、技術のナビゲーションとオブジェクトの検索を容易にするために設計されたビアウィストック工科大学のインタラクティブなマップです。</string>
     <string name="about_author">著者:\u0020</string>
     <string name="about_version">版: %1$s</string>
     <string name="could_not_open_android_market">Androidマーケットを開けませんでした。マーケットアプリケーション（Google Play）をインストールしてください。</string>

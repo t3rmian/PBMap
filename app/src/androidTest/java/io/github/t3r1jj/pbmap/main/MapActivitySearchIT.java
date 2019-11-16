@@ -1,6 +1,7 @@
 package io.github.t3r1jj.pbmap.main;
 
 import android.content.Context;
+import android.os.SystemClock;
 
 import androidx.annotation.StringRes;
 import androidx.test.espresso.matcher.RootMatchers;
@@ -49,17 +50,17 @@ public class MapActivitySearchIT {
         onView(withId(R.id.search_src_text)).perform(typeText("116@wi"), pressImeActionButton());
         onView(withContentDescription("Collapse")).perform(click());
         onView(withText("116")).check(matches(isDisplayed()));
-        onView(withText("PB WI L2")).check(matches(isDisplayed()));
+        onView(withText(R.string.name_pb_wi_l2)).check(matches(isDisplayed()));
     }
 
     @Test
     @LargeTest
     public void testSearch_Space() {
         onView(withId(R.id.action_search)).perform(click());
-        onView(withId(R.id.search_src_text)).perform(typeText("PB WI"), pressImeActionButton());
+        onView(withId(R.id.search_src_text)).perform(typeText("[WI]"), pressImeActionButton());
         onView(withContentDescription("Clear query")).perform(click());
         onView(withContentDescription("Collapse")).perform(click());
-        onView(withIndex(withText("PB WI"), 1)).check(matches(isDisplayed()));
+        onView(withIndex(withText(R.string.name_pb_wi), 0)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -77,14 +78,11 @@ public class MapActivitySearchIT {
     @MediumTest
     public void testSearch_ListOfSpaces() {
         onView(withId(R.id.action_search)).perform(click());
-        onView(withId(R.id.search_src_text)).perform(typeText("PB"));
-        onView(withText(getFormattedString(R.string.main_library_name)))
+        onView(withId(R.id.search_src_text)).perform(typeText("Libr"));
+        onView(withText(getFormattedString(R.string.name_main_library)))
                 .inRoot(RootMatchers.isPlatformPopup())
                 .check(matches(isDisplayed()));
-        onView(withText(getFormattedString(R.string.pb_wb_name)))
-                .inRoot(RootMatchers.isPlatformPopup())
-                .check(matches(isDisplayed()));
-        onView(withIndex(withText(getFormattedString(R.string.pb_campus_name)), 0))
+        onView(withText(getFormattedString(R.string.name_library)))
                 .inRoot(RootMatchers.isPlatformPopup())
                 .check(matches(isDisplayed()));
     }
@@ -93,12 +91,12 @@ public class MapActivitySearchIT {
     @MediumTest
     public void testSearch_ListOfSpaces_SelectOne() {
         onView(withId(R.id.action_search)).perform(click());
-        onView(withId(R.id.search_src_text)).perform(typeText("PB"));
-        onView(withText(getFormattedString(R.string.main_library_name)))
+        onView(withId(R.id.search_src_text)).perform(typeText("CNK"));
+        onView(withText(getFormattedString(R.string.name_pb_campus)))
                 .inRoot(RootMatchers.isPlatformPopup())
                 .perform(click());
         onView(withContentDescription("Collapse")).perform(click());
-        onView(withText("CNK")).check(matches(isDisplayed()));
+        onView(withText(getUnFormattedString(R.string.name_cnk))).check(matches(isDisplayed()));
     }
 
     @Test
@@ -112,19 +110,23 @@ public class MapActivitySearchIT {
         onView(withIndex(withText("010"), 1))
                 .inRoot(RootMatchers.isPlatformPopup())
                 .check(matches(isDisplayed()));
-        onView(withIndex(withText(getFormattedString(R.string.pb_we_name)), 0))
+        onView(withIndex(withText(getFormattedString(R.string.name_pb_wm_l2)), 0))
                 .inRoot(RootMatchers.isPlatformPopup())
                 .check(matches(isDisplayed()));
-        onView(withIndex(withText("PB WM L2"), 0))
+        onView(withIndex(withText(getFormattedString(R.string.name_pb_wi_l0)), 0))
                 .inRoot(RootMatchers.isPlatformPopup())
                 .check(matches(isDisplayed()));
     }
 
     static String getFormattedString(@StringRes int resId) {
-        Context ctx = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        return ctx.getString(resId)
+        return getUnFormattedString(resId)
                 .toUpperCase()
                 .replace("\n", " ")
                 .trim();
+    }
+
+    static String getUnFormattedString(@StringRes int resId) {
+        Context ctx = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        return ctx.getString(resId);
     }
 }

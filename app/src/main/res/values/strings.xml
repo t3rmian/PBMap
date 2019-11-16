@@ -4,7 +4,7 @@
     <string name="name_app">PBMap</string>
     <string name="action_back">Previous map</string>
     <string name="action_search">Search</string>
-    <string name="search_hint">Hint: WB, 116@wi,…</string>
+    <string name="search_hint">Hint: [WB], 116@wi,…</string>
     <string name="not_found">Place not found</string>
     <string name="about">About</string>
     <string name="action_share">Share with</string>

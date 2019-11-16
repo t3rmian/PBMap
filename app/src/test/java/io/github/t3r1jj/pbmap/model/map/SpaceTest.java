@@ -45,7 +45,7 @@ public class SpaceTest {
 
     @Test
     public void getAddressResId() {
-        assertEquals("pb_wi_address", space.getAddressResId());
+        assertEquals("address_pb_wi", space.getAddressResId());
     }
 
     @Test
