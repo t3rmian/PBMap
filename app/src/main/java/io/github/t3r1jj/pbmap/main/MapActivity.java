@@ -39,6 +39,7 @@ import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
+import com.yariksoffice.lingver.Lingver;
 
 import io.github.t3r1jj.pbmap.BuildConfig;
 import io.github.t3r1jj.pbmap.R;
@@ -54,6 +55,7 @@ import io.github.t3r1jj.pbmap.search.Search;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 
 import static io.github.t3r1jj.pbmap.main.Controller.PARCELABLE_KEY_CONTROLLER_MEMENTO;
+import static io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment.RECREATE_REQUEST_RESULT_CODE;
 
 public class MapActivity extends DrawerActivity
         implements MapsDrawerFragment.PlaceNavigationDrawerCallbacks {
@@ -556,6 +558,15 @@ public class MapActivity extends DrawerActivity
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(PARCELABLE_KEY_CONTROLLER_MEMENTO, controller.getCurrentState());
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RECREATE_REQUEST_RESULT_CODE && resultCode == RECREATE_REQUEST_RESULT_CODE) {
+            Config.getInstance().initPreferences(this, Lingver.getInstance().getLocale());
+            recreate();
+        }
     }
 
     Controller getController() {

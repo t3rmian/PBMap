@@ -3,6 +3,7 @@ package io.github.t3r1jj.pbmap.model
 import android.content.res.Resources
 import com.nhaarman.mockitokotlin2.argumentCaptor
 import com.nhaarman.mockitokotlin2.eq
+import io.github.t3r1jj.pbmap.model.i18n.Translator
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertNull
 import org.junit.Test

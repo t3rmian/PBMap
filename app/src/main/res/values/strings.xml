@@ -21,7 +21,7 @@
     <string name="gps_disabled_message">%1$s needs access to your location to display marker on your current position. Please turn on Location Services.</string>
     <string name="gps_permissions_disabled_message">%1$s needs Location permissions to use Location Service. The app wants to display marker on your current position. Please allow %1$s to access Location.</string>
     <string name="location_permissions">Location permissions</string>
-    <string name="ok" translatable="false">OK</string>
+    <string name="ok">OK</string>
     <string name="waiting_for_location">Waiting for location…</string>
     <string name="logo">Logo</string>
     <string name="help">Help</string>
@@ -40,7 +40,7 @@
     <string name="more_features_description">You can enable gps for easier navigation on the map (might be inaccurate indoors).\n\nSometimes there can be additional info about currently viewed place.</string>
     <string name="action_back_description">After going deep into the map a back button will appear which will allow you to go back a map</string>
     <string name="maps_description">By interacting with map you can navigate to different places.\nUse long press to put a source/destination markers after which a shortest route between those locations will be drawn.</string>
-    <string name="distance">Distance: %1$d m</string>
+    <string name="distance">Distance: %1$d %2$s</string>
     <string name="unfinished">This map has not been finished yet. Use long press if you want to improve the data.</string>
     <string name="improve">Report new/wrong place</string>
     <string name="improve_message">What should[not] be placed at the pressed location?</string>
@@ -48,4 +48,11 @@
     <string name="required">This field is required</string>
     <string name="source">Source</string>
     <string name="destination">Destination</string>
+    <string name="settings">Settings</string>
+    <string name="language">Language</string>
+    <string name="show_all_routes">Display all routes</string>
+    <string name="unit_system">Unit system</string>
+    <string name="io.github.t3r1jj.pbmap.model.dictionary.MeasurementSystem.SI">Metric</string>
+    <string name="io.github.t3r1jj.pbmap.model.dictionary.MeasurementSystem.US">Imperial</string>
+    <string name="LANGUAGES.default">System default</string>
 </resources>

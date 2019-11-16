@@ -19,6 +19,7 @@ import io.github.t3r1jj.pbmap.logging.Config;
 import io.github.t3r1jj.pbmap.logging.Message;
 import io.github.t3r1jj.pbmap.logging.WebLogger;
 import io.github.t3r1jj.pbmap.model.Info;
+import io.github.t3r1jj.pbmap.model.dictionary.MeasurementSystem;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
 import io.github.t3r1jj.pbmap.model.map.Place;
@@ -258,7 +259,8 @@ public class Controller implements GeoMarker.MapListener {
         if (distance == 0) {
             mapActivity.setDistance(null);
         } else {
-            mapActivity.setDistance(mapActivity.getResources().getString(R.string.distance, distance));
+            MeasurementSystem measurementSystem = Config.getInstance().getMeasurementSystem();
+            mapActivity.setDistance(mapActivity.getResources().getString(R.string.distance, measurementSystem.fromMeters(distance), measurementSystem.getUnit()));
         }
     }
 

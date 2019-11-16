@@ -1,6 +1,7 @@
 package io.github.t3r1jj.pbmap.main.drawer;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,9 +17,11 @@ import java.util.List;
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.search.MapsDao;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
+import io.github.t3r1jj.pbmap.settings.SettingsActivity;
 
 public class MapsDrawerFragment extends NavigationDrawerFragment {
 
+    public static final int RECREATE_REQUEST_RESULT_CODE = Activity.RESULT_FIRST_USER;
     private List<SearchSuggestion> places;
     /**
      * A pointer to the current callbacks instance (the Activity).
@@ -72,6 +75,10 @@ public class MapsDrawerFragment extends NavigationDrawerFragment {
                 callbacks.onAboutDrawerItemSelected();
             } else if (itemId == R.id.menu_help) {
                 callbacks.onHelpDrawerItemSelected();
+            } else if (itemId == R.id.menu_settings) {
+                Activity activity = getActivity();
+                Intent settingsIntent = new Intent(activity, SettingsActivity.class);
+                activity.startActivityForResult(settingsIntent, RECREATE_REQUEST_RESULT_CODE);
             } else {
                 callbacks.onPlaceDrawerItemSelected(places.get(Math.abs(itemId)));
             }

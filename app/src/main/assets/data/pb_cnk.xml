@@ -18,7 +18,7 @@
     <spot id="P0/33">	<coordinates>		<coordinate lat="53.119105399570316" lng="23.153884583094555" alt="150.0"/>	</coordinates></spot>
     <spot id="P0/34"><coordinates><coordinate lat="53.119172977950136" lng="23.15397427958509" alt="150.0"/></coordinates></spot>
     <spot id="lodge">	<coordinates>		<coordinate lat="53.11892992517548" lng="23.15442783203125" alt="150.0"/>	</coordinates></spot>
-    <spot id="cloak_room">	<coordinates>		<coordinate lat="53.11894135949219" lng="23.154511268624642" alt="150.0"/>	</coordinates></spot>
+    <spot id="cloakroom">	<coordinates>		<coordinate lat="53.11894135949219" lng="23.154511268624642" alt="150.0"/>	</coordinates></spot>
 
     <spot id="↑">	<coordinates>		<coordinate lat="53.118883135808716" lng="23.15452783024042" alt="150.0"/>	</coordinates></spot>
     <spot id="Informatorium">	<coordinates>		<coordinate lat="53.11880845304626" lng="23.154570126555782" alt="150.0"/>	</coordinates></spot>

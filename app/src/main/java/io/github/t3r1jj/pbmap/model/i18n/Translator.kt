@@ -1,4 +1,4 @@
-package io.github.t3r1jj.pbmap.model
+package io.github.t3r1jj.pbmap.model.i18n
 
 import android.content.res.Resources
 import android.util.Log

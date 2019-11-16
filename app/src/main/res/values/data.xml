@@ -1,23 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="acs_name">Academic\nSports\nCentre\n[ACS]</string>
+    <string name="pb_acs_name">Acad.\nSports\nC… [ACS]</string>
+    <string name="pb_acs_l2_name">Academic Sports Centre L1 [ACS]</string>
+    <string name="cnk_name">Modern Educational\nCentre [CNK]</string>
+    <string name="pb_cnk_name">Modern Ed. C… [CNK]</string>
+    <string name="pb_cnk_l2_name">Modern Ed. Centre L1 [CNK]</string>
+    <string name="pb_cnk_l3_name">Modern Ed. Centre L2 [CNK]</string>
+    <string name="pb_wa_name">Faculty of Arch. [WA]</string>
+    <string name="pb_wa_l0_name">Faculty of Arch. L-1 [WA]</string>
+    <string name="pb_wa_l2_name">Faculty of Arch. L1 [WA]</string>
+    <string name="pb_wa_l3_name">Faculty of Arch. L2 [WA]</string>
+    <string name="pb_wa_l4_name">Faculty of Arch. L3 [WA]</string>
+    <string name="pb_wb_name">Faculty of\nCE/ES [WB]</string>
+    <string name="pb_wb_iet_name">F… of CE/ES IET [WB]</string>
+    <string name="pb_wb_l0_name">Faculty of CE/ES L-1 [WB]</string>
+    <string name="pb_wb_l0_iet_name">Faculty of CE/ES IET L-1 [WB]</string>
+    <string name="pb_wb_l2_name">Faculty of CE/ES L1 [WB]</string>
+    <string name="pb_wb_l2_iet_name">Faculty of CE/ES IET L1 [WB]</string>
+    <string name="pb_wb_l3_name">Faculty of CE/ES L2 [WB]</string>
+    <string name="pb_wb_l3_iet_name">Faculty of CE/ES IET L2 [WB]</string>
+    <string name="pb_wb_l4_iet_name">Faculty of CE/ES IET L3 [WB]</string>
+    <string name="pb_we_name">Faculty of\nEE [WE]</string>
+    <string name="pb_we_l2_name">Faculty of EE L1 [WE]</string>
+    <string name="pb_we_l3_name">Faculty of EE L2 [WE]</string>
+    <string name="pb_we_l4_name">Faculty of EE L3 [WE]</string>
+    <string name="pb_wi_name">Faculty of\nCS [WI]</string>
+    <string name="pb_wi_l0_name">Faculty of CS L0 [WI]</string>
+    <string name="pb_wi_l2_name">Faculty of CS L1 [WI]</string>
+    <string name="pb_wi_l3_name">Faculty of CS L2 [WI]</string>
+    <string name="pb_wm_name">Faculty of\nME [WM]</string>
+    <string name="pb_wm_l2_name">Faculty of ME L1 [WM]</string>
+    <string name="pb_wm_l3_name">Faculty of ME L2 [WM]</string>
+    <string name="pb_zwl_name">F… of Forestry [ZWL]</string>
+    <string name="pb_zwl_l2_name">Faculty of Forestry L1 [ZWL]</string>
+    <string name="pb_wz_montreal_name">FoEM Montreal [WZ]</string>
+    <string name="pb_wz_berlin_name">FoEM Berlin [WZ]</string>
+    <string name="pb_wz_berlin_l2_name">FoEM Berlin L1 [WZ]</string>
+    <string name="pb_wz_shanghai_name">FoEM Shanghai [WZ]</string>
+    <string name="pb_wz_shanghai_l2_name">FoEM Shanghai L1 [WZ]</string>
+    <string name="pb_wz_philadelphia_name">FoEM Philadelphia [WZ]</string>
+    <string name="pb_wz_philadelphia_l2_name">FoEM Philadelphia L1 [WZ]</string>
+    <string name="pb_wz_philadelphia_l3_name">FoEM Philadelphia L2 [WZ]</string>
+    <string name="pb_wz_campus_name">FoEM Campus [WZ]</string>
+    <string name="berlin_name">\n\nBerlin</string>
+    <string name="shanghai_name">Shanghai\n</string>
+    <string name="philadelphia_name">Philadelphia</string>
+    <string name="archive_name">Archives</string>
+    <string name="bank_name">Bank</string>
+    <string name="dean_name">Dean</string>
+    <string name="erasmus_name">Erasmus</string>
+    <string name="inno_eko_tech_name">Inno-Eko-Tech</string>
+    <string name="montreal_name">Montreal</string>
+    <string name="p_name">P</string>
+    <string name="shop_name">Shop</string>
+    <string name="silent_zone_name">Silent room</string>
+    <string name="wc_name">WC</string>
+    <string name="zpdiut_name">ZPDiUT</string>
     <string name="deanery_121_name">Deanery 121</string>
     <string name="deanery_name">Deanery</string>
     <string name="secretariat_name">Secretariat</string>
-    <string name="pb_campus_name">PB campus</string>
-    <string name="pb_wz_campus_name">PB WZ campus</string>
+    <string name="pb_campus_name">BUT Campus</string>
     <string name="rector_name">Rector\'s office</string>
     <string name="lodge_name">Lodge</string>
     <string name="courts_name">Tennis\ncourts</string>
-    <string name="ds_alpha_name">DS\nAlpha</string>
-    <string name="ds_beta_name">DS\nBeta</string>
-    <string name="ds_gamma_name">DS\nGamma</string>
-    <string name="ds_delta_name">DS\nDelta</string>
+    <string name="ds_alpha_name">Alpha\nDorm</string>
+    <string name="ds_beta_name">Beta\nDorm</string>
+    <string name="ds_gamma_name">Gamma\nDorm</string>
+    <string name="ds_delta_name">Delta\nDorm</string>
     <string name="gwint_name">Gwint\nclub</string>
     <string name="assistant_hotel_name">Assist.\nhotel</string>
-    <string name="store_name">Store</string>
+    <string name="store_name">Shop</string>
     <string name="atm_name">ATM</string>
     <string name="buffet_name">Buffet</string>
-    <string name="car_hall_name">Laboratory of motor vehicles\nVehicles hall</string>
+    <string name="car_hall_name">Car hall</string>
+    <string name="machine_hall_name">Machine hall</string>
+    <string name="mechanical_hall_name">Mechanical hall</string>
+    <string name="applied_mechanics_lab_name">Applied\nmechanics hall</string>
     <string name="assembly_hall_a_name">Assembly\nhall A</string>
     <string name="assembly_hall_b_name">Assembly\nhall B</string>
     <string name="assembly_hall_c_name">Assembly\nhall C</string>
@@ -25,15 +84,16 @@
     <string name="p1_38_name">P1/38\nBig reading room</string>
     <string name="p0_19_name">P0/19\nInterlibrary loan</string>
     <string name="p0_15_16_name">P0/15,16\nNorms and\nspecial collections\nreading room</string>
-    <string name="cloak_room_name">Cloakroom</string>
+    <string name="cloakroom_name">Cloakroom</string>
     <string name="information_publishers_reading_room_name">Information publishers\nreading room</string>
     <string name="magazines_reading_room_name">Magazines\nreading room</string>
     <string name="electronic_reading_room_name">Electronic\nreading room</string>
+    <string name="informatorium_name">Informatorium</string>
     <string name="book_rental_name">Book loan</string>
     <string name="book_return_name">Self-service\nbook return</string>
-    <string name="main_library_name">PB Main\nLibrary</string>
-    <string name="sjo_name">SJO</string>
-    <string name="ckz_name">CKZ</string>
+    <string name="main_library_name">BUT Main\nLibrary</string>
+    <string name="sjo_name">Foreign Language Centre</string>
+    <string name="ckz_name">Remote Education Centre</string>
     <string name="assembly_hall_i_name">Assembly\nhall I</string>
     <string name="assembly_hall_ii_name">Assembly\nhall II</string>
     <string name="assembly_hall_iii_name">Assembly\nhall III</string>
@@ -42,60 +102,56 @@
     <string name="table_tennis_hall_name">Table\ntennis hall</string>
     <string name="aerobics_hall_name">Aerobics\nhall</string>
     <string name="sports_hall_name">Sports hall\nTeam games hall</string>
-    <string name="pb_wz_montreal_name" translatable="false">PB WZ Montreal</string>
-    <string name="pb_wz_berlin_name" translatable="false">PB WZ Berlin</string>
-    <string name="pb_wz_berlin_l2_name" translatable="false">PB WZ Berlin L2</string>
-    <string name="pb_wz_shanghai_name">PB WZ Shanghai</string>
-    <string name="pb_wz_shanghai_l2_name">PB WZ Shanghai L2</string>
-    <string name="pb_wz_philadelphia_name">PB WZ Philadelphia</string>
-    <string name="pb_wz_philadelphia_l2_name">PB WZ Philadelphia L2</string>
-    <string name="pb_wz_philadelphia_l3_name">PB WZ Philadelphia L3</string>
-    <string name="berlin_name" translatable="false">\n\n\n\n\n\nBerlin</string>
-    <string name="shanghai_name">Shanghai\n\n</string>
-    <string name="philadelphia_name">Philadelphia</string>
-    <string name="pb_we_name" translatable="false">PB WE\n</string>
-    <string name="pb_wb_name" translatable="false">"\n\nPB WB             "</string>
     <string name="xero_name">Xero</string>
     <string name="gym_048b_name">048B\nGym</string>
-
+    <string name="forest_environment_monitoring_lab_name">Forest environment\nmonitoring lab</string>
+    <string name="entomology_lab_name">Entomology lab</string>
+    <string name="photodetection_and_computer_image_analysis_lab_name">Photodetection and computer\nimage analysis lab</string>
+    <string name="forest_by_products_lab_name">Forest\nby-products lab</string>
+    <string name="assembly_hall_name">Assembly\nhall</string>
+    <string name="cnb_name">Scientific-Research\nCentre</string>
+    <string name="faculty_council_hall_name">Faculty council\nhall</string>
+    <string name="hall_name">Hall</string>
+    <string name="library_name">Library</string>
+    <string name="student_council_name">Student council</string>
 
     <string name="pb_campus_address">Bialystok University of Technology,
 Wiejska 45A St., 15-351 Białystok, voi. podlaskie,
 REGON: 000001672 NIP: 5420208721,
-tel. centr. 85-746-90-00 | fax. 85 746 90 15</string>
+tel. centr. +48 85-746-90-00 | fax. +48 85-746-90-15</string>
     <string name="pb_wi_address">Faculty of Computer Science,
 Wiejska 45A St., 15-351 Białystok,
-tel. 85-746-90-50 | fax. 85-746-90-57,
+tel. +48 85-746-90-50 | fax. +48 85-746-90-57,
 e-mail: wi.sekretariat@pb.edu.pl</string>
     <string name="pb_wb_address">Faculty of Civil and Environmental Engineering,
 Wiejska 45E St., 15-351 Białystok,
-tel. 85 746 95 60 | fax. 85 746 95 59,
+tel. +48 85-746-95-60 | fax. +48 85-746-95-59,
 e-mail: wbiis@pb.edu.pl</string>
     <string name="pb_zwl_address">Faculty of Forestry in Hajnówka,
-J. Piłsudzkiego 1A, 17-200 Hajnówka, zwl.sekretariat@pb.edu.pl, tel. 85/682-95-00,
-J. Piłsudzkiego 8, 17-200 Hajnówka, zwl.dziekanat@pb.edu.pl, tel. 85/682-95-01</string>
+J. Piłsudzkiego 1A, 17-200 Hajnówka, zwl.sekretariat@pb.edu.pl, tel. +48 85-682-95-00,
+J. Piłsudzkiego 8, 17-200 Hajnówka, zwl.dziekanat@pb.edu.pl, tel. +48 85-682-95-01</string>
     <string name="pb_wm_address">Faculty of Mechanlcal Engineering,
 Wiejska 45C St., 15-351 Białystok,
-wm@pb.edu.pl, tel. (85) 746-92-00,
-wm.dziekanat@pb.edu.pl, tel. (85) 746-92-09</string>
+wm@pb.edu.pl, tel. +48 85-746-92-00,
+wm.dziekanat@pb.edu.pl, tel. +48 85-746-92-09</string>
     <string name="pb_we_address">Faculty of Electrical Engineering,
 Wiejska 45D St., 15-351 Białystok,
-we.sekretariat@pb.edu.pl, tel. (85) 746-9360 | fax 085-746-9400,
-we.dziekanat@pb.edu.pl, tel. (85) 746 9365</string>
-    <string name="pb_cnk_address">Modern Education Center / Library,
+we.sekretariat@pb.edu.pl, tel. +48 85-746-9360 | fax +48 85-746-9400,
+we.dziekanat@pb.edu.pl, tel. +48 85-746 9365</string>
+    <string name="pb_cnk_address">Modern Education Centre / Library,
 Zwierzyniecka 16 St., 15-333 Białystok,
-tel. (85) 746-9330 | fax. (85) 746-9329,
+tel. +48 85-746-9330 | fax. +48 85-746-9329,
 biblioteka@pb.edu.pl</string>
     <string name="pb_wa_address">Faculty of Architecture,
 Oskara Sosnowskiego 11 St., 15-893 Białystok,
-wa.sekretariat@pb.edu.pl, tel. +48 85 746 99 14 | fax +48 85 746 99 13,
-wa.dziekanat@pb.edu.pl, tel. +48 85 746 99 15</string>
-    <string name="pb_wz_campus_address">Faculty of Management,
+wa.sekretariat@pb.edu.pl, tel. +48 85-746-99-14 | fax +48 85-746-99-13,
+wa.dziekanat@pb.edu.pl, tel. +48 85-746-99-15</string>
+    <string name="pb_wz_campus_address">Faculty of Engineering Management,
 Ojca Tarasiuka 2 St., 16-001 Kleosin,
-wz.sekretariat@pb.edu.pl, tel. +48 85 746 98 02</string>
-    <string name="pb_acs_address">Academic Sports Center,
+wz.sekretariat@pb.edu.pl, tel. +48 85-746-98-02</string>
+    <string name="pb_acs_address">Academic Sports Centre,
 Wiejska 41 St., 15-351 Białystok,
-studium.wf@pb.edu.pl, tel. 085 746 97 00</string>
+studium.wf@pb.edu.pl, tel. +48 85-746-97-00</string>
     <string name="gwint_address">GWINT Students club,
 ul. Zwierzyniecka 10,
 15-333 Białystok</string>
