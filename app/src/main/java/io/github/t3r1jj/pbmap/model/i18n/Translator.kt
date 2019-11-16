@@ -6,24 +6,24 @@ import io.github.t3r1jj.pbmap.BuildConfig
 
 open class Translator(val resources: Resources) {
     companion object {
-        const val DESCRIPTION_SUFFIX = "_description"
-        const val NAME_SUFFIX = "_name"
+        const val DESCRIPTION_PREFIX = "description_"
+        const val NAME_PREFIX = "name_"
     }
 
     open fun translateDescription(resStr: String, vararg formatArgs: Any): String {
-        return translate(resStr + DESCRIPTION_SUFFIX, formatArgs) ?: resStr
+        return translate(DESCRIPTION_PREFIX + resStr, formatArgs) ?: resStr
     }
 
     open fun translateDescription(resStr: String): String {
-        return translate(resStr + DESCRIPTION_SUFFIX) ?: resStr
+        return translate(DESCRIPTION_PREFIX + resStr) ?: resStr
     }
 
     open fun translateName(resStr: String, vararg formatArgs: Any): String {
-        return translate(resStr + NAME_SUFFIX, formatArgs) ?: resStr
+        return translate(NAME_PREFIX + resStr, formatArgs) ?: resStr
     }
 
     open fun translateName(resStr: String): String {
-        return translate(resStr + NAME_SUFFIX) ?: resStr
+        return translate(NAME_PREFIX + resStr) ?: resStr
     }
 
     open fun translate(resStr: String, vararg formatArgs: Any): String? {

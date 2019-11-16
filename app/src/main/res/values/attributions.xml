@@ -2,13 +2,14 @@
 <resources>
     <string-array name="attribution_titles">
         <item>TileView</item>
+        <item>Lingver</item>
         <item>Simple-XML</item>
         <item>Swipe-Selector</item>
         <item>FloatingActionButton</item>
         <item>TapTargetView</item>
         <item>Google Support Libraries</item>
         <item>Exo Bold</item>
-        <item>Icons</item>
+        <item>Ikony</item>
         <item>Map tiles</item>
     </string-array>
     <string-array name="attribution_descriptions">

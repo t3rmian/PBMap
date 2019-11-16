@@ -8,7 +8,7 @@ android {
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
     defaultConfig {
-        resConfigs "en", "en_GB", "en_US", "pl"
+        resConfigs "en", "en_GB", "en_US", "pl", "ru", "ja"
         applicationId "io.github.t3r1jj.pbmap"
         minSdkVersion 14
         targetSdkVersion 28

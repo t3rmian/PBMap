@@ -57,7 +57,7 @@
     <spot id="↑"><coordinates><coordinate lat="52.73656005180435" lng="23.591992847443336" alt="150.0"/></coordinates></spot>
     <spot id="↵"><coordinates><coordinate lat="52.7366574181488" lng="23.592128711250275" alt="150.0"/></coordinates></spot>
 
-    <spot id="Marszałka Jóżefa Piłsudskiego"><coordinates><coordinate lat="52.73628816148834" lng="23.591736649837213" alt="150.0"/></coordinates></spot>
+    <spot id="marszalka_jozefa_pilsudskiego"><coordinates><coordinate lat="52.73628816148834" lng="23.591736649837213" alt="150.0"/></coordinates></spot>
     <spot id="3 Maja"><coordinates><coordinate lat="52.73724904038472" lng="23.592454788661197" alt="150.0"/></coordinates></spot>
     <spot id="P"><coordinates><coordinate lat="52.7366196000534" lng="23.592417292000224" alt="150.0"/></coordinates></spot>
 </map>

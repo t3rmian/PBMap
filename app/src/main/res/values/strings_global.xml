@@ -4,5 +4,6 @@
     <string name="LANGUAGES.en" translatable="false" tools:ignore="ExtraTranslation">English</string>
     <string name="LANGUAGES.en_GB" translatable="false" tools:ignore="ExtraTranslation">British English</string>
     <string name="LANGUAGES.en_US" translatable="false" tools:ignore="ExtraTranslation">American English</string>
-    <string name="debug" translatable="false" tools:ignore="ExtraTranslation">Debug</string>
+    <string name="LANGUAGES.ru" translatable="false" tools:ignore="ExtraTranslation">Русский</string>
+    <string name="LANGUAGES.ja" translatable="false" tools:ignore="ExtraTranslation">日本語</string>
 </resources>

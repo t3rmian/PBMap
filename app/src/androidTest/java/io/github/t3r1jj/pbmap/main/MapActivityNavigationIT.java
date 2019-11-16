@@ -53,6 +53,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withSubstring;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static io.github.t3r1jj.pbmap.main.MapActivitySearchIT.getFormattedString;
+import static io.github.t3r1jj.pbmap.main.MapActivitySearchIT.getUnFormattedString;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.allowPermissionsIfNeeded;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.containsIgnoringCase;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.withIndex;
@@ -95,11 +96,11 @@ public class MapActivityNavigationIT {
         sendIntent.setAction(Intent.ACTION_SEARCH);
         sendIntent.putExtra(SearchManager.QUERY, "wc@pb_wb");
         activityRule.launchActivity(sendIntent);
-        onView(withIndex(withText(getFormattedString(R.string.pb_wb_name)), 0)).check(matches(isDisplayed()));
+        onView(withIndex(withText(getFormattedString(R.string.name_pb_wb)), 0)).check(matches(isDisplayed()));
         onView(withContentDescription(R.string.action_back)).perform(click());
         InstrumentationRegistry.getInstrumentation().waitForIdleSync();
         SystemClock.sleep(1000);
-        onView(withIndex(withText(R.string.pb_campus_name), 0)).check(matches(isDisplayed()));
+        onView(withIndex(withText(R.string.name_pb_campus), 0)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -109,10 +110,10 @@ public class MapActivityNavigationIT {
         sendIntent.setAction(Intent.ACTION_SEARCH);
         sendIntent.putExtra(SearchManager.QUERY, "wc@pb_wb");
         activityRule.launchActivity(sendIntent);
-        onView(withIndex(withText(getFormattedString(R.string.pb_wb_name)), 0)).check(matches(isDisplayed()));
+        onView(withIndex(withText(getFormattedString(R.string.name_pb_wb)), 0)).check(matches(isDisplayed()));
         onView(withContentDescription(R.string.floor)).perform(click());
         onView(withId(R.id.up_fab)).perform(click());
-        onView(withIndex(withText("PB WB L2"), 0)).check(matches(isDisplayed()));
+        onView(withIndex(withText(getFormattedString(R.string.name_pb_wb_l2)), 0)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -122,10 +123,10 @@ public class MapActivityNavigationIT {
         sendIntent.setAction(Intent.ACTION_SEARCH);
         sendIntent.putExtra(SearchManager.QUERY, "wc@pb_wb");
         activityRule.launchActivity(sendIntent);
-        onView(withIndex(withText(getFormattedString(R.string.pb_wb_name)), 0)).check(matches(isDisplayed()));
+        onView(withIndex(withText(getFormattedString(R.string.name_pb_wb)), 0)).check(matches(isDisplayed()));
         onView(withContentDescription(R.string.floor)).perform(click());
         onView(withId(R.id.down_fab)).perform(click());
-        onView(withIndex(withText("PB WB L0"), 0)).check(matches(isDisplayed()));
+        onView(withIndex(withText(getFormattedString(R.string.name_pb_wb_l0)), 0)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -135,10 +136,10 @@ public class MapActivityNavigationIT {
         sendIntent.setAction(Intent.ACTION_SEARCH);
         sendIntent.putExtra(SearchManager.QUERY, "wc@pb_wb");
         activityRule.launchActivity(sendIntent);
-        onView(withIndex(withText(getFormattedString(R.string.pb_wb_name)), 0)).check(matches(isDisplayed()));
+        onView(withIndex(withText(getFormattedString(R.string.name_pb_wb)), 0)).check(matches(isDisplayed()));
         onView(withContentDescription(R.string.floor)).perform(click());
         onView(withId(R.id.right_fab)).perform(click());
-        onView(withIndex(withText("PB WB IET"), 0)).check(matches(isDisplayed()));
+        onView(withIndex(withText(getFormattedString(R.string.name_pb_wb_iet)), 0)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -148,11 +149,11 @@ public class MapActivityNavigationIT {
         sendIntent.setAction(Intent.ACTION_SEARCH);
         sendIntent.putExtra(SearchManager.QUERY, "wc@pb_wb");
         activityRule.launchActivity(sendIntent);
-        onView(withIndex(withText(getFormattedString(R.string.pb_wb_name)), 0)).check(matches(isDisplayed()));
+        onView(withIndex(withText(getFormattedString(R.string.name_pb_wb)), 0)).check(matches(isDisplayed()));
         onView(withContentDescription(R.string.floor)).perform(click());
         onView(withId(R.id.right_fab)).perform(click());
         onView(withId(R.id.left_fab)).perform(click());
-        onView(withIndex(withText(getFormattedString(R.string.pb_wb_name)), 0)).check(matches(isDisplayed()));
+        onView(withIndex(withText(getFormattedString(R.string.name_pb_wb)), 0)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -162,7 +163,7 @@ public class MapActivityNavigationIT {
         sendIntent.setAction(Intent.ACTION_SEARCH);
         sendIntent.putExtra(SearchManager.QUERY, "wc@pb_wb");
         activityRule.launchActivity(sendIntent);
-        onView(withIndex(withText(getFormattedString(R.string.pb_wb_name)), 0)).check(matches(isDisplayed()));
+        onView(withIndex(withText(getFormattedString(R.string.name_pb_wb)), 0)).check(matches(isDisplayed()));
         onView(withContentDescription(R.string.floor)).perform(click());
         onView(withId(R.id.up_fab)).check(matches(isDisplayed()));
         onView(withId(R.id.right_fab)).check(matches(isDisplayed()));
@@ -180,16 +181,16 @@ public class MapActivityNavigationIT {
         sendIntent.setAction(Intent.ACTION_SEARCH);
         sendIntent.putExtra(SearchManager.QUERY, "wc@pb_wb");
         activityRule.launchActivity(sendIntent);
-        onView(withIndex(withText(getFormattedString(R.string.pb_wb_name)), 0)).check(matches(isDisplayed()));
+        onView(withIndex(withText(getFormattedString(R.string.name_pb_wb)), 0)).check(matches(isDisplayed()));
         onView(withContentDescription(R.string.more_features)).perform(click());
         onView(withId(R.id.info_fab)).perform(click());
         onView(withId(R.id.design_bottom_sheet)).check(matches(isDisplayed()));
         onView(withId(R.id.info_title))
-                .check(matches(allOf(isDisplayed(), withText(getFormattedString(R.string.pb_wb_name)))));
+                .check(matches(allOf(isDisplayed(), withText(getFormattedString(R.string.name_pb_wb)))));
         onView(withId(R.id.info_url))
                 .check(matches(allOf(isDisplayed(), withText("https://wb.pb.edu.pl/"))));
         onView(withId(R.id.info_address))
-                .check(matches(allOf(isDisplayed(), withText(containsIgnoringCase(getFormattedString(R.string.pb_wb_address))))));
+                .check(matches(allOf(isDisplayed(), withText(containsIgnoringCase(getFormattedString(R.string.address_pb_wb))))));
     }
 
     @Test
@@ -199,7 +200,7 @@ public class MapActivityNavigationIT {
         sendIntent.setAction(Intent.ACTION_SEARCH);
         sendIntent.putExtra(SearchManager.QUERY, "wc@pb_wb");
         activityRule.launchActivity(sendIntent);
-        onView(withIndex(withText(getFormattedString(R.string.pb_wb_name)), 0)).check(matches(isDisplayed()));
+        onView(withIndex(withText(getFormattedString(R.string.name_pb_wb)), 0)).check(matches(isDisplayed()));
         onView(withContentDescription(R.string.destination)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
 
         onView(withContentDescription(R.string.more_features)).perform(click());
@@ -290,12 +291,12 @@ public class MapActivityNavigationIT {
     public void onSpaceNavigation() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEARCH);
-        sendIntent.putExtra(SearchManager.QUERY, "wi@pb_wb");
+        sendIntent.putExtra(SearchManager.QUERY, "wi@pb_campus");
         activityRule.launchActivity(sendIntent);
         InstrumentationRegistry.getInstrumentation().waitForIdleSync();
         UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
         maxZoomOut(device);
-        device.findObject(By.textContains("PB WI")).click();
+        device.findObject(By.textContains(getUnFormattedString(R.string.name_pb_wi))).click();
         device.wait(Until.findObject(By.descContains("12b")), 250);
     }
 
@@ -316,7 +317,7 @@ public class MapActivityNavigationIT {
         SystemClock.sleep(2500);
         onView(withId(R.id.design_bottom_sheet)).check(matches(isDisplayed()));
         onView(withId(R.id.info_address))
-                .check(matches(allOf(isDisplayed(), withText(R.string.gwint_address))));
+                .check(matches(allOf(isDisplayed(), withText(R.string.address_gwint))));
     }
 
     private void maxZoomOut(UiDevice device) {

@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -138,9 +137,13 @@ public class MapsDao extends ContextWrapper {
     private void prepareQueryArguments(String[] selectionArgs, boolean searchById) {
         if (!searchById) {
             for (int i = 0; i < selectionArgs.length; i++) {
-                selectionArgs[i] = ".*" + selectionArgs[i].trim() + ".*";
+                selectionArgs[i] = ".*" + escape(selectionArgs[i]) + ".*";
             }
         }
+    }
+
+    private String escape(String selectionArg) {
+        return selectionArg.trim().replace("[","\\[").replace("]","\\]");
     }
 
     @NonNull

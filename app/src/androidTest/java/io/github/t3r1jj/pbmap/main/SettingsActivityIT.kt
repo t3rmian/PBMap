@@ -13,7 +13,11 @@ import androidx.test.espresso.action.ViewActions.swipeUp
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.matcher.ViewMatchers.isChecked
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.isEnabled
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import androidx.test.platform.app.InstrumentationRegistry
@@ -22,16 +26,17 @@ import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.Until
 import io.github.t3r1jj.pbmap.R
+import io.github.t3r1jj.pbmap.main.MapActivitySearchIT.getUnFormattedString
 import io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragmentIT
 import io.github.t3r1jj.pbmap.settings.SettingsActivity
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule
 import io.github.t3r1jj.pbmap.testing.TestUtils.withIndex
 import io.github.t3r1jj.pbmap.testing.TestUtils.withIntents
-import junit.framework.Assert.assertFalse
 import org.hamcrest.Description
 import org.hamcrest.Matchers.not
 import org.hamcrest.TypeSafeMatcher
 import org.junit.After
+import org.junit.Assert.assertFalse
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -83,21 +88,21 @@ class SettingsActivityIT {
         }
         onView(withText("Settings")).check(matches(isDisplayed()))
 
-        onView(SettingsMatcher(android.R.id.checkbox, "English")).check(matches(isDisplayed()))
-        onView(SettingsMatcher(android.R.id.checkbox, "English")).check(matches(isChecked()))
-        onView(SettingsMatcher(android.R.id.checkbox, "English")).check(matches(not(isEnabled())))
+        onView(SettingsMatcher(android.R.id.checkbox, getUnFormattedString(R.string.LANGUAGES_default))).check(matches(isDisplayed()))
+        onView(SettingsMatcher(android.R.id.checkbox, getUnFormattedString(R.string.LANGUAGES_default))).check(matches(isChecked()))
+        onView(SettingsMatcher(android.R.id.checkbox, getUnFormattedString(R.string.LANGUAGES_default))).check(matches(not(isEnabled())))
 
-        onView(SettingsMatcher(android.R.id.checkbox, "Polski")).check(matches(isDisplayed()))
+        onView(SettingsMatcher(android.R.id.checkbox, getUnFormattedString(R.string.LANGUAGES_pl))).check(matches(isDisplayed()))
         onView(SettingsMatcher(android.R.id.checkbox, "Polski")).check(matches(not(isChecked())))
         onView(SettingsMatcher(android.R.id.checkbox, "Polski")).check(matches(isEnabled()))
 
         onView(withText(R.string.LANGUAGES_pl)).perform(click())
 
-        onView(SettingsMatcher(android.R.id.checkbox, "English")).check(matches(not(isChecked())))
-        onView(SettingsMatcher(android.R.id.checkbox, "English")).check(matches(isEnabled()))
+        onView(SettingsMatcher(android.R.id.checkbox, getUnFormattedString(R.string.LANGUAGES_default))).check(matches(not(isChecked())))
+        onView(SettingsMatcher(android.R.id.checkbox, getUnFormattedString(R.string.LANGUAGES_default))).check(matches(isEnabled()))
 
-        onView(SettingsMatcher(android.R.id.checkbox, "Polski")).check(matches(isChecked()))
-        onView(SettingsMatcher(android.R.id.checkbox, "Polski")).check(matches(not(isEnabled())))
+        onView(SettingsMatcher(android.R.id.checkbox, getUnFormattedString(R.string.LANGUAGES_pl))).check(matches(isChecked()))
+        onView(SettingsMatcher(android.R.id.checkbox, getUnFormattedString(R.string.LANGUAGES_pl))).check(matches(not(isEnabled())))
 
         InstrumentationRegistry.getInstrumentation().waitForIdleSync()
         onView(withText("Opcje")).check(matches(isDisplayed()))
@@ -123,6 +128,10 @@ class SettingsActivityIT {
             intended(hasComponent(SettingsActivity::class.java.name))
         }
         onView(withText("Settings")).check(matches(isDisplayed()))
+        onView(withText(R.string.LANGUAGES_ja)).perform(swipeUp())
+        onView(withText(R.string.LANGUAGES_ru)).perform(swipeUp())
+        onView(withText(R.string.unit_system)).perform(swipeUp())
+        onView(withText(R.string.debug)).perform(swipeUp())
 
         val debugText = InstrumentationRegistry.getInstrumentation().targetContext.getString(R.string.show_all_routes)
         onView(SettingsMatcher(android.R.id.switch_widget, debugText)).check(matches(isDisplayed()))

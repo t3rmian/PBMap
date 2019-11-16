@@ -4,7 +4,7 @@
     <string name="name_app">MapaPB</string>
     <string name="action_back">Poprzednia mapa</string>
     <string name="action_search">Szukaj</string>
-    <string name="search_hint">Podpowiedź: PB WB, 116@wi,…</string>
+    <string name="search_hint">Podpowiedź: WB, 116@wi,…</string>
     <string name="not_found">Nie znaleziono</string>
     <string name="about">O programie</string>
     <string name="action_share">Podziel się z</string>
@@ -30,7 +30,7 @@
     <string name="place_source_marker">Umieść znacznik źródła</string>
     <string name="waiting_for_location">Oczekiwanie na lokalizację…</string>
     <string name="wifi_disabled">Proszę połączyć się poprzez WIFI lub użyć GPSa w celu dokładniejszego namierzania</string>
-    <string name="action_search_description">W celu odnalezienia miejsca np. sali bądź budynku.\n\nOgranicz wyniki wyszukiwania poprzez zastosowanie skłądni miejsce@mapa n.p. 116@wi.</string>
+    <string name="action_search_description">W celu odnalezienia miejsca np. sali bądź budynku.\n\nOgranicz wyniki wyszukiwania poprzez zastosowanie składni miejsce@mapa n.p. 116@wi.</string>
     <string name="menu">Menu</string>
     <string name="menu_description">Z poziomu menu możliwe jest również przejście do innej mapy.\n\nDodatkowe informacje na temat aplikacji umieszczone zostały na dole.</string>
     <string name="floor">Piętro</string>

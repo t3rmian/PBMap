@@ -33,10 +33,6 @@ class LanguageSettingChangeActivityCallbacks : Application.ActivityLifecycleCall
     }
 
     override fun onActivityDestroyed(activity: Activity) {
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity)
-        sharedPreferences.edit()
-                .remove(getCurrentActivityLangKey(activity))
-                .apply()
     }
 
     override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle?) {

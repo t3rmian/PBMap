@@ -1,10 +1,10 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="name_app">PBMap</string>
     <string name="action_back">Previous map</string>
     <string name="action_search">Search</string>
-    <string name="search_hint">Hint: PB WB, 116@wi,…</string>
+    <string name="search_hint">Hint: [WB], 116@wi,…</string>
     <string name="not_found">Place not found</string>
     <string name="about">About</string>
     <string name="action_share">Share with</string>
@@ -37,11 +37,11 @@
     <string name="floor">Floor</string>
     <string name="floor_description">When this button appears it will mean that the opened map contains additional floors</string>
     <string name="more_features">More features</string>
-    <string name="more_features_description">You can enable gps for easier navigation on the map (might be inaccurate indoors).\n\nSometimes there can be additional info about currently viewed place.</string>
+    <string name="more_features_description">You can enable GPS for easier navigation on the map (might be inaccurate indoors).\n\nSometimes there can be additional info about the currently viewed place.</string>
     <string name="action_back_description">After going deep into the map a back button will appear which will allow you to go back a map</string>
-    <string name="maps_description">By interacting with map you can navigate to different places.\nUse long press to put a source/destination markers after which a shortest route between those locations will be drawn.</string>
+    <string name="maps_description">By interacting with map you can navigate to different places.\nUse long-press to put a source/destination markers after which the shortest route between those locations will be drawn.</string>
     <string name="distance">Distance: %1$d %2$s</string>
-    <string name="unfinished">This map has not been finished yet. Use long press if you want to improve the data.</string>
+    <string name="unfinished">This map has not been finished yet. Use long-press if you want to improve the data.</string>
     <string name="improve">Report new/wrong place</string>
     <string name="improve_message">What should[not] be placed at the pressed location?</string>
     <string name="report">Report</string>
@@ -55,4 +55,5 @@
     <string name="io.github.t3r1jj.pbmap.model.dictionary.MeasurementSystem.SI">Metric</string>
     <string name="io.github.t3r1jj.pbmap.model.dictionary.MeasurementSystem.US">Imperial</string>
     <string name="LANGUAGES.default">System default</string>
+    <string name="debug">Debug</string>
 </resources>
