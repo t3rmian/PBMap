@@ -19,6 +19,8 @@ package androidx.test.espresso.action;
 import androidx.test.espresso.ViewAction;
 
 import static androidx.test.espresso.action.ViewActions.actionWithAssertions;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.core.internal.deps.guava.base.Preconditions.checkNotNull;
 
 public final class ViewActionsExt {
 
@@ -104,4 +106,24 @@ public final class ViewActionsExt {
                         Press.FINGER));
     }
 
+    /**
+     * Workaround for long click instead of tap
+     * https://stackoverflow.com/questions/32330671/android-espresso-performs-longclick-instead-of-click
+     *
+     * <br>
+     * View constraints:
+     * <ul>
+     * <li>must be displayed on screen</li>
+     * <li>any constraints of the rollbackAction</li>
+     * <ul>
+     */
+    private static ViewAction tap(ViewAction rollbackAction) {
+        checkNotNull(rollbackAction);
+        return new GeneralClickAction(Tap.SINGLE, GeneralLocation.CENTER, Press.FINGER,
+                0, 0, rollbackAction);
+    }
+
+    public static ViewAction tap() {
+        return tap(tap(tap(tap(click()))));
+    }
 }

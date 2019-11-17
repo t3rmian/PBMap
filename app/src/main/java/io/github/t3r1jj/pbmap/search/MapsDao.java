@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 import org.w3c.dom.Attr;
+import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
@@ -16,7 +17,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -46,8 +46,13 @@ public class MapsDao extends ContextWrapper {
             XPath xPath = factory.newXPath();
             try {
                 Attr name = (Attr) xPath.evaluate("(//*/@id)[1]", new InputSource(openAsset(assetsPath)), XPathConstants.NODE);
-                if (!"true".equals(name.getOwnerElement().getAttribute("hidden"))) {
+                Element element = name.getOwnerElement();
+                if (!"true".equals(element.getAttribute("hidden"))) {
                     SearchSuggestion searchSuggestion = new SearchSuggestion(name.getValue(), assetsPath);
+                    searchSuggestion.setLogoName(element.getAttribute("logo_path"));
+                    if (element.hasAttribute("rank")) {
+                        searchSuggestion.setRank(Integer.parseInt(element.getAttribute("rank")));
+                    }
                     searchSuggestions.add(searchSuggestion);
                 }
             } catch (XPathExpressionException e) {
@@ -138,9 +143,13 @@ public class MapsDao extends ContextWrapper {
     private void prepareQueryArguments(String[] selectionArgs, boolean searchById) {
         if (!searchById) {
             for (int i = 0; i < selectionArgs.length; i++) {
-                selectionArgs[i] = ".*" + selectionArgs[i].trim() + ".*";
+                selectionArgs[i] = ".*" + escape(selectionArgs[i]) + ".*";
             }
         }
+    }
+
+    private String escape(String selectionArg) {
+        return selectionArg.trim().replace("[","\\[").replace("]","\\]");
     }
 
     @NonNull

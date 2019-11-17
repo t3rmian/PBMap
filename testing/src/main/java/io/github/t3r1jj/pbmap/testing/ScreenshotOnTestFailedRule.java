@@ -13,6 +13,7 @@ import androidx.test.runner.screenshot.ScreenCaptureProcessor;
 import androidx.test.runner.screenshot.Screenshot;
 
 public class ScreenshotOnTestFailedRule extends ProfiledTestWatcher {
+
     private static final String TAG = ScreenshotOnTestFailedRule.class.getSimpleName();
 
     @Override

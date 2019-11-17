@@ -36,7 +36,16 @@ public class MapView extends TileView implements PlaceView {
 
     @Override
     public void addToMap(MapView pbMapView) {
-        positionsCache.put(map.getId(), new MapViewPosition(getCenterX(), getCenterY(), getScale()));
+        int centerX = getCenterX();
+        int centerY = getCenterY();
+        if (isInitializing(centerX, centerY)) {
+            return;
+        }
+        positionsCache.put(map.getId(), new MapViewPosition(centerX, centerY, getScale()));
+    }
+
+    private boolean isInitializing(int centerX, int centerY) {
+        return centerX == 0 && centerY == 0;
     }
 
     public void initializeZoom() {
@@ -46,6 +55,8 @@ public class MapView extends TileView implements PlaceView {
                 setScale(0);
                 positionsCache.put(map.getId(), new MapViewPosition(getCenterX(), getCenterY(), getScale()));
             });
+        } else {
+            loadPreviousPosition();
         }
     }
 
@@ -57,7 +68,7 @@ public class MapView extends TileView implements PlaceView {
         return (int) (getHeight() / 2f + getScrollY() + 0.5f);
     }
 
-    public void loadPreviousPosition() {
+    private void loadPreviousPosition() {
         final MapViewPosition previousPosition = positionsCache.get(map.getId());
         if (previousPosition != null) {
             post(() -> {
@@ -100,15 +111,6 @@ public class MapView extends TileView implements PlaceView {
             this.centerX = centerX;
             this.centerY = centerY;
             this.zoom = zoom;
-        }
-
-        @Override
-        public String toString() {
-            return "MapViewPosition{" +
-                    "centerX=" + centerX +
-                    ", centerY=" + centerY +
-                    ", zoom=" + zoom +
-                    '}';
         }
     }
 }

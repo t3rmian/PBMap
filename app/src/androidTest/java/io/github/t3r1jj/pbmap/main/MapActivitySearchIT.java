@@ -4,7 +4,6 @@ import android.content.Context;
 
 import androidx.annotation.StringRes;
 import androidx.test.espresso.matcher.RootMatchers;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.filters.MediumTest;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -16,12 +15,14 @@ import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
 
 import io.github.t3r1jj.pbmap.R;
+import io.github.t3r1jj.pbmap.testing.RetryRunner;
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
 import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.action.ViewActionsExt.tap;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -31,7 +32,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.withIndex;
 import static org.hamcrest.core.IsNot.not;
 
-@RunWith(AndroidJUnit4.class)
+@RunWith(RetryRunner.class)
 public class MapActivitySearchIT {
 
     private final ActivityTestRule<MapActivity> activityRule =
@@ -45,27 +46,27 @@ public class MapActivitySearchIT {
     @Test
     @MediumTest
     public void testSearch_PlaceInSpace() {
-        onView(withId(R.id.action_search)).perform(click());
+        onView(withId(R.id.action_search)).perform(tap());
         onView(withId(R.id.search_src_text)).perform(typeText("116@wi"), pressImeActionButton());
         onView(withContentDescription("Collapse")).perform(click());
         onView(withText("116")).check(matches(isDisplayed()));
-        onView(withText("PB WI L2")).check(matches(isDisplayed()));
+        onView(withText(R.string.name_pb_wi_l2)).check(matches(isDisplayed()));
     }
 
     @Test
     @LargeTest
     public void testSearch_Space() {
-        onView(withId(R.id.action_search)).perform(click());
-        onView(withId(R.id.search_src_text)).perform(typeText("PB WI"), pressImeActionButton());
+        onView(withId(R.id.action_search)).perform(tap());
+        onView(withId(R.id.search_src_text)).perform(typeText("[WI]"), pressImeActionButton());
         onView(withContentDescription("Clear query")).perform(click());
         onView(withContentDescription("Collapse")).perform(click());
-        onView(withIndex(withText("PB WI"), 1)).check(matches(isDisplayed()));
+        onView(withIndex(withText(R.string.name_pb_wi), 0)).check(matches(isDisplayed()));
     }
 
     @Test
     @MediumTest
     public void testSearch_NotFound() {
-        onView(withId(R.id.action_search)).perform(click());
+        onView(withId(R.id.action_search)).perform(tap());
         onView(withId(R.id.search_src_text)).perform(typeText("PB WI L3"), pressImeActionButton());
         onView(withContentDescription("Collapse")).perform(click());
         onView(withText(R.string.not_found))
@@ -76,15 +77,12 @@ public class MapActivitySearchIT {
     @Test
     @MediumTest
     public void testSearch_ListOfSpaces() {
-        onView(withId(R.id.action_search)).perform(click());
-        onView(withId(R.id.search_src_text)).perform(typeText("PB"));
-        onView(withText(getFormattedString(R.string.main_library_name)))
+        onView(withId(R.id.action_search)).perform(tap());
+        onView(withId(R.id.search_src_text)).perform(typeText("Libr"));
+        onView(withText(getFormattedString(R.string.name_main_library)))
                 .inRoot(RootMatchers.isPlatformPopup())
                 .check(matches(isDisplayed()));
-        onView(withText(getFormattedString(R.string.pb_wb_name)))
-                .inRoot(RootMatchers.isPlatformPopup())
-                .check(matches(isDisplayed()));
-        onView(withIndex(withText(getFormattedString(R.string.pb_campus_name)), 0))
+        onView(withText(getFormattedString(R.string.name_library)))
                 .inRoot(RootMatchers.isPlatformPopup())
                 .check(matches(isDisplayed()));
     }
@@ -92,19 +90,19 @@ public class MapActivitySearchIT {
     @Test
     @MediumTest
     public void testSearch_ListOfSpaces_SelectOne() {
-        onView(withId(R.id.action_search)).perform(click());
-        onView(withId(R.id.search_src_text)).perform(typeText("PB"));
-        onView(withText(getFormattedString(R.string.main_library_name)))
+        onView(withId(R.id.action_search)).perform(tap());
+        onView(withId(R.id.search_src_text)).perform(typeText("CNK"));
+        onView(withText(getFormattedString(R.string.name_pb_campus)))
                 .inRoot(RootMatchers.isPlatformPopup())
                 .perform(click());
         onView(withContentDescription("Collapse")).perform(click());
-        onView(withText("CNK")).check(matches(isDisplayed()));
+        onView(withText(getUnFormattedString(R.string.name_cnk))).check(matches(isDisplayed()));
     }
 
     @Test
     @MediumTest
     public void testSearch_ListOfPlacesInSpaces() {
-        onView(withId(R.id.action_search)).perform(click());
+        onView(withId(R.id.action_search)).perform(tap());
         onView(withId(R.id.search_src_text)).perform(typeText("10"));
         onView(withIndex(withText("010"), 0))
                 .inRoot(RootMatchers.isPlatformPopup())
@@ -112,19 +110,23 @@ public class MapActivitySearchIT {
         onView(withIndex(withText("010"), 1))
                 .inRoot(RootMatchers.isPlatformPopup())
                 .check(matches(isDisplayed()));
-        onView(withIndex(withText(getFormattedString(R.string.pb_we_name)), 0))
+        onView(withIndex(withText(getFormattedString(R.string.name_pb_wm_l2)), 0))
                 .inRoot(RootMatchers.isPlatformPopup())
                 .check(matches(isDisplayed()));
-        onView(withIndex(withText("PB WM L2"), 0))
+        onView(withIndex(withText(getFormattedString(R.string.name_pb_wi_l0)), 0))
                 .inRoot(RootMatchers.isPlatformPopup())
                 .check(matches(isDisplayed()));
     }
 
     static String getFormattedString(@StringRes int resId) {
-        Context ctx = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        return ctx.getString(resId)
+        return getUnFormattedString(resId)
                 .toUpperCase()
                 .replace("\n", " ")
                 .trim();
+    }
+
+    static String getUnFormattedString(@StringRes int resId) {
+        Context ctx = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        return ctx.getString(resId);
     }
 }

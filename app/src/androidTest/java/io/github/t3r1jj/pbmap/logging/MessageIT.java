@@ -20,6 +20,7 @@ import static org.hamcrest.core.StringContains.containsString;
 
 @RunWith(AndroidJUnit4.class)
 public class MessageIT {
+
     private static final String RESERVED_JSON_CHARACTERS_STRING = "\b\f\n\r\t\"\\";
     private final String mapName = "json_map";
     private final String placeId = "json_place";

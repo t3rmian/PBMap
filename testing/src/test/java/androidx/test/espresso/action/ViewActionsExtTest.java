@@ -106,4 +106,9 @@ public class ViewActionsExtTest {
         swipe.perform(controllerMock, mock(View.class));
         assertTrue(loopMainThreadCalled.get());
     }
+
+    @Test
+    public void testPerformTap() {
+        ViewActionsExt.tap();
+    }
 }

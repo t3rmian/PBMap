@@ -19,6 +19,7 @@ import io.github.t3r1jj.pbmap.logging.Config;
 import io.github.t3r1jj.pbmap.logging.Message;
 import io.github.t3r1jj.pbmap.logging.WebLogger;
 import io.github.t3r1jj.pbmap.model.Info;
+import io.github.t3r1jj.pbmap.model.dictionary.MeasurementSystem;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
 import io.github.t3r1jj.pbmap.model.map.Place;
@@ -62,7 +63,6 @@ public class Controller implements GeoMarker.MapListener {
         }
         destination.setCoordinate(memento.destination);
         updateView();
-        mapView.loadPreviousPosition();
     }
 
     /**
@@ -88,7 +88,7 @@ public class Controller implements GeoMarker.MapListener {
         }
     }
 
-    public void postLoad() {
+    void postLoad() {
         updateView();
         if (preloadedSuggestion != null) {
             pinpointSuggestion(preloadedSuggestion);
@@ -119,7 +119,7 @@ public class Controller implements GeoMarker.MapListener {
         nextMapView.setController(this);
         mapActivity.setMapView(nextMapView);
         if (isInitialized()) {
-            mapView.addToMap(nextMapView);
+            mapView.addToMap(mapView);
         }
         mapView = nextMapView;
         mapActivity.setInfoButtonVisible(map.getDescription(mapActivity) != null || map.getUrl() != null);
@@ -204,7 +204,6 @@ public class Controller implements GeoMarker.MapListener {
             map = mapsDao.loadMap(space.getReferenceMapPath());
             loadRouteGraph();
             updateView();
-            mapView.loadPreviousPosition();
         } else if (space.hasInfo(mapActivity)) {
             mapActivity.popupInfo(new Info(space));
         }
@@ -260,7 +259,8 @@ public class Controller implements GeoMarker.MapListener {
         if (distance == 0) {
             mapActivity.setDistance(null);
         } else {
-            mapActivity.setDistance(mapActivity.getResources().getString(R.string.distance, distance));
+            MeasurementSystem measurementSystem = Config.getInstance().getMeasurementSystem();
+            mapActivity.setDistance(mapActivity.getResources().getString(R.string.distance, measurementSystem.fromMeters(distance), measurementSystem.getUnit()));
         }
     }
 
@@ -299,7 +299,6 @@ public class Controller implements GeoMarker.MapListener {
         map = mapsDao.loadMap(navigationMapPath);
         loadRouteGraph();
         updateView();
-        mapView.loadPreviousPosition();
     }
 
     void onImprovePressed(MotionEvent event, String description) {

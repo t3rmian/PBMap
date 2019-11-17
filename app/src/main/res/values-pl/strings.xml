@@ -4,7 +4,7 @@
     <string name="name_app">MapaPB</string>
     <string name="action_back">Poprzednia mapa</string>
     <string name="action_search">Szukaj</string>
-    <string name="search_hint">Podpowiedź: PB WB, 116@wi,…</string>
+    <string name="search_hint">Podpowiedź: WB, 116@wi,…</string>
     <string name="not_found">Nie znaleziono</string>
     <string name="about">O programie</string>
     <string name="action_share">Podziel się z</string>
@@ -30,7 +30,7 @@
     <string name="place_source_marker">Umieść znacznik źródła</string>
     <string name="waiting_for_location">Oczekiwanie na lokalizację…</string>
     <string name="wifi_disabled">Proszę połączyć się poprzez WIFI lub użyć GPSa w celu dokładniejszego namierzania</string>
-    <string name="action_search_description">W celu odnalezienia miejsca np. sali bądź budynku.\n\nOgranicz wyniki wyszukiwania poprzez zastosowanie skłądni miejsce@mapa n.p. 116@wi.</string>
+    <string name="action_search_description">W celu odnalezienia miejsca np. sali bądź budynku.\n\nOgranicz wyniki wyszukiwania poprzez zastosowanie składni miejsce@mapa n.p. 116@wi.</string>
     <string name="menu">Menu</string>
     <string name="menu_description">Z poziomu menu możliwe jest również przejście do innej mapy.\n\nDodatkowe informacje na temat aplikacji umieszczone zostały na dole.</string>
     <string name="floor">Piętro</string>
@@ -39,7 +39,7 @@
     <string name="more_features_description">Włączenie lokalizacji może pomóc w odnalezieniu się na mapie. GPS może być jednak nieprecyzyjny wewnętrz budynków.\nCzasami odnajdziesz tu możliwość wyświetlenia dodatkowych informacji na temat danego miejsca.</string>
     <string name="action_back_description">Po przejściu w głąb hierarchii map pojawi się przycisk powrotu, który pozwoli cofnąć się o jedną mapę</string>
     <string name="maps_description">Poprzez interakcję z mapą możesz nawigować pomiędzy różnymi miejscami.\nPrzyciśnij dłużej w celu ustawienia znacznika źródła/celu, dzięki temu wyznaczona zostanie trasa pomiędzy tymi punktami.</string>
-    <string name="distance">Dystans: %1$d m</string>
+    <string name="distance">Dystans: %1$d %2$s</string>
     <string name="unfinished">Ta mapa nie jest jeszcze ukończona. Przyciśnij dłużej w wybranym miejscu jeśli chcesz wspomóc mapowanie.</string>
     <string name="improve">Zgłoś nowe/niepoprawne miejsce</string>
     <string name="improve_message">Co [nie]powinno się znaleźć w miejscu naciśnięcia?</string>
@@ -47,4 +47,12 @@
     <string name="required">To pole jest wymagane</string>
     <string name="source">Punkt startowy</string>
     <string name="destination">Punkt docelowy</string>
+    <string name="settings">Opcje</string>
+    <string name="language">Język</string>
+    <string name="show_all_routes">Wyświetlaj wszystkie drogi</string>
+    <string name="ok">OK</string>
+    <string name="unit_system">System jednostkowy</string>
+    <string name="io.github.t3r1jj.pbmap.model.dictionary.MeasurementSystem.SI">Metryczny</string>
+    <string name="io.github.t3r1jj.pbmap.model.dictionary.MeasurementSystem.US">Imperialny</string>
+    <string name="LANGUAGES.default">Domyślne ustawienia systemowe</string>
 </resources>

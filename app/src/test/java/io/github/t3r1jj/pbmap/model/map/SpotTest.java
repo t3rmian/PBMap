@@ -27,12 +27,12 @@ public class SpotTest {
 
     @Test
     public void getNameResIdString() {
-        assertEquals("gym_test_name", spot.getNameResIdString());
+        assertEquals("name_gym_test", spot.getNameResIdString());
     }
 
     @Test
     public void getDescriptionResIdString() {
-        assertEquals("gym_test_description", spot.getDescriptionResIdString());
+        assertEquals("description_gym_test", spot.getDescriptionResIdString());
     }
 
     @Test

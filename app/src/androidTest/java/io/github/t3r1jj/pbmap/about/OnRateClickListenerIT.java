@@ -8,12 +8,12 @@ import android.net.Uri;
 import android.os.Looper;
 import android.widget.Toast;
 
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.SmallTest;
 
 import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;
 import org.jetbrains.annotations.NotNull;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -22,6 +22,8 @@ import java.util.Arrays;
 
 import io.github.t3r1jj.pbmap.BuildConfig;
 import io.github.t3r1jj.pbmap.R;
+import io.github.t3r1jj.pbmap.testing.RetryRule;
+import io.github.t3r1jj.pbmap.testing.RetryRunner;
 
 import static org.hamcrest.core.IsCollectionContaining.hasItem;
 import static org.junit.Assert.assertEquals;
@@ -35,8 +37,11 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(AndroidJUnit4.class)
+@RunWith(RetryRunner.class)
 public class OnRateClickListenerIT {
+
+    @Rule
+    public RetryRule retryRule = new RetryRule(3);
 
     private boolean verifiedToastCreation = false;
 
