@@ -8,7 +8,7 @@ import io.github.t3r1jj.pbmap.view.map.PlaceView;
 import io.github.t3r1jj.pbmap.view.map.SpaceView;
 
 public class Space extends Place {
-    private static final String ADDRESS_POSTFIX = "_address";
+    private static final String ADDRESS_PREFIX = "address_";
     @Attribute(name = "reference_map_path", required = false)
     protected String referenceMapPath;
     @Attribute(required = false)
@@ -32,7 +32,7 @@ public class Space extends Place {
     }
 
     public String getAddressResId() {
-        return getResIdString(id, ADDRESS_POSTFIX);
+        return getResIdString(id, ADDRESS_PREFIX);
     }
 
     public boolean hasInfo(Context context) {

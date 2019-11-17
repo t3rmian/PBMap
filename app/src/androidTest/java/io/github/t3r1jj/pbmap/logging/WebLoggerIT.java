@@ -11,6 +11,7 @@ import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -20,6 +21,7 @@ import java.util.List;
 
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.Spot;
+import io.github.t3r1jj.pbmap.testing.RetryRule;
 
 import static io.github.t3r1jj.pbmap.logging.WebLogger.PREF_KEY_MESSAGES;
 import static org.junit.Assert.assertEquals;
@@ -28,6 +30,9 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 public class WebLoggerIT {
+
+    @Rule
+    public RetryRule retryRule = new RetryRule(3);
 
     private WebLogger logger;
     private SharedPreferences preferences;

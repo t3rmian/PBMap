@@ -1,5 +1,5 @@
 <map height="2094" id="PB_WZ_Shanghai" previous_map_path="data/pb_wz_campus.xml" up_map_path="data/pb_wz_shanghai_2.xml"
-    down_map_path="data/pb_wz_shanghai_0.xml" route_path="routes/pb_wz_campus.xml" width="1464">
+    down_map_path="data/pb_wz_shanghai_0.xml" route_path="routes/pb_wz_campus.xml" width="1464" logo_path="pb_wz">
     <tiles_configs>
         <tiles_config height="256" path="tiles/pb_wz_campus/shanghai/tile-%d_%d.png" width="256"
             zoom="1" />
@@ -24,7 +24,7 @@
     <spot id="1"><coordinates><coordinate lat="53.098107797110046" lng="23.124975471871796" alt="150.0"/></coordinates></spot>
     <spot id="2"><coordinates><coordinate lat="53.0980979629298" lng="23.124917078862424" alt="150.0"/></coordinates></spot>
     <spot id="↑↓"><coordinates><coordinate lat="53.09805014298666" lng="23.12488079111068" alt="150.0"/></coordinates></spot>
-    <spot id="winda"><coordinates><coordinate lat="53.09802765144865" lng="23.12488411468506" alt="150.0"/></coordinates></spot>
+    <spot id="🔢️"><coordinates><coordinate lat="53.09802765144865" lng="23.12488411468506" alt="150.0"/></coordinates></spot>
 
     <spot id="6"><coordinates><coordinate lat="53.09801048839318" lng="23.12501686083684" alt="150.0"/></coordinates></spot>
     <spot id="7"><coordinates><coordinate lat="53.09796064201289" lng="23.125041806330447" alt="150.0"/></coordinates></spot>

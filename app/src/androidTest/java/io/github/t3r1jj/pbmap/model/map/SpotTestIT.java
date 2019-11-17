@@ -14,7 +14,7 @@ import static org.junit.Assert.assertNull;
 
 public class SpotTestIT {
 
-    private static final String data = "<spot id=\"gym/test\" logo_path=\"test_logo.png\">" +
+    private static final String data = "<spot id=\"gym/test\" logo_path=\"test_logo\">" +
             "\t<coordinates>\t\t<coordinate lat=\"53.11883933267212\" lng=\"23.14608460083008\" alt=\"150.0\"/>\t</coordinates>" +
             "</spot>";
 
@@ -31,7 +31,7 @@ public class SpotTestIT {
     @Test
     @SmallTest
     public void createLogo_404() throws Exception {
-        String dataLogo404 = data.replace("test_logo.png", "unknown");
+        String dataLogo404 = data.replace("test_logo", "unknown");
         Spot space = serializer.read(Spot.class, dataLogo404);
         ImageView logo = space.createLogo(InstrumentationRegistry.getInstrumentation().getContext());
         assertNull(logo);

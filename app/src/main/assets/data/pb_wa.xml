@@ -1,5 +1,5 @@
 <map height="2500" id="PB_WA" route_path="routes/pb_wa.xml" up_map_path="data/pb_wa_2.xml"
-    down_map_path="data/pb_wa_0.xml" url="http://wa.pb.edu.pl/" width="2800">
+    down_map_path="data/pb_wa_0.xml" url="http://wa.pb.edu.pl/" width="2800" logo_path="pb_wa">
     <tiles_configs>
         <tiles_config height="256" path="tiles/pb_wa/main/tile-%d_%d.png" width="256"
             zoom="1" />
@@ -28,7 +28,7 @@
     <spot id="↑↓"><coordinates><coordinate lat="53.129124138261716" lng="23.146245418456594" alt="150.0"/></coordinates></spot>
     <spot id="Xero"><coordinates><coordinate lat="53.129087547664064" lng="23.146298471483068" alt="150.0"/></coordinates></spot>
     <spot id="Student_council"><coordinates><coordinate lat="53.12892717746094" lng="23.146347372051565" alt="150.0"/></coordinates></spot>
-    <spot id="Cloak_room"><coordinates><coordinate lat="53.129158203349604" lng="23.14642942974897" alt="150.0"/></coordinates></spot>
+    <spot id="Cloakroom"><coordinates><coordinate lat="53.129158203349604" lng="23.14642942974897" alt="150.0"/></coordinates></spot>
     <spot id="14"><coordinates><coordinate lat="53.12912111351953" lng="23.14650982885088" alt="150.0"/></coordinates></spot>
     <spot id="15"><coordinates><coordinate lat="53.12910058635937" lng="23.14645098424203" alt="150.0"/></coordinates></spot>
     <spot id="Deanery"><coordinates><coordinate lat="53.12905647794922" lng="23.14651231482544" alt="150.0"/></coordinates></spot>

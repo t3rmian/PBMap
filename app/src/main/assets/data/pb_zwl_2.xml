@@ -1,5 +1,5 @@
 <map down_map_path="data/pb_zwl.xml" height="3300" id="PB_ZWL_L2" previous_map_path="data/pb_zwl.xml"
-    route_path="routes/pb_zwl.xml" width="2238" hidden="true">
+    route_path="routes/pb_zwl.xml" width="2238" hidden="true" logo_path="pb_zwl">
     <tiles_configs>
         <tiles_config height="256" path="tiles/pb_zwl/floor/tile-%d_%d.png" width="256" zoom="1" />
     </tiles_configs>
@@ -41,7 +41,7 @@
     <spot id="forest_environment_monitoring_lab"><coordinates><coordinate lat="52.736647229410806" lng="23.592026383871534" alt="155.0"/></coordinates></spot>
     <spot id="entomology_lab"><coordinates><coordinate lat="52.736600160725914" lng="23.592030543896332" alt="155.0"/></coordinates></spot>
     <spot id="photodetection_and_computer_image_analysis_lab"><coordinates><coordinate lat="52.73648923421224" lng="23.59204718415807" alt="155.0"/></coordinates></spot>
-    <spot id="forest_by-products_lab"><coordinates><coordinate lat="52.736425376383465" lng="23.592051344264135" alt="155.0"/></coordinates></spot>
+    <spot id="forest_by_products_lab"><coordinates><coordinate lat="52.736425376383465" lng="23.592051344264135" alt="155.0"/></coordinates></spot>
 
 <!--    offset-->
     <spot id="↓"><coordinates><coordinate lat="52.736536325046536" lng="23.591985604458795" alt="155.0"/></coordinates></spot>

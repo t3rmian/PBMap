@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 
 import androidx.test.espresso.matcher.ViewMatchers;
@@ -86,8 +87,8 @@ public class MapsDrawerFragmentIT {
     public void testDrawer_DisplaysSpaces() {
         autoOpenDrawerReturningPreferences(true);
         activityRule.launchActivity(new Intent());
-        onView(withText("PB ACS")).check(matches(isDisplayed()));
-        onView(withIndex(withText("PB campus"), 0)).check(matches(isDisplayed()));
+        onView(withText(R.string.name_pb_acs)).check(matches(isDisplayed()));
+        onView(withIndex(withText(R.string.name_pb_campus), 0)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -95,9 +96,9 @@ public class MapsDrawerFragmentIT {
     public void testDrawer_NavigatesToCNK() {
         autoOpenDrawerReturningPreferences(true);
         activityRule.launchActivity(new Intent());
-        onView(withText("PB CNK")).perform(click());
+        onView(withText(R.string.name_pb_cnk)).perform(click());
         onView(withId(R.id.navigation_drawer)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
-        onView(withIndex(withText("PB CNK"), 0)).check(matches(isDisplayed()));
+        onView(withIndex(withText(R.string.name_pb_cnk), 0)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -105,7 +106,7 @@ public class MapsDrawerFragmentIT {
     public void testDrawer_SelectionState() {
         autoOpenDrawerReturningPreferences(true);
         activityRule.launchActivity(new Intent());
-        onView(withIndex(withText("PB campus"), 1)).check(matches(isChecked()));
+        onView(withIndex(withText(R.string.name_pb_campus), 1)).check(matches(isChecked()));
     }
 
     @Test
@@ -113,9 +114,9 @@ public class MapsDrawerFragmentIT {
     public void testDrawer_NavigatesToCNK_SelectionState() {
         autoOpenDrawerReturningPreferences(true);
         activityRule.launchActivity(new Intent());
-        onView(withText("PB CNK")).perform(click());
+        onView(withText(R.string.name_pb_cnk)).perform(click());
         onView(withContentDescription(R.string.navigation_drawer_open)).perform(click());
-        onView(withIndex(withText("PB CNK"), 1)).check(matches(isChecked()));
+        onView(withIndex(withText(R.string.name_pb_cnk), 1)).check(matches(isChecked()));
     }
 
     @Test
@@ -126,7 +127,7 @@ public class MapsDrawerFragmentIT {
         searchIntent.setAction(Intent.ACTION_SEARCH);
         searchIntent.putExtra(SearchManager.QUERY, "informatorium@pb_cnk");
         activityRule.launchActivity(searchIntent);
-        onView(withIndex(withText("PB CNK"), 1)).check(matches(isChecked()));
+        onView(withIndex(withText(R.string.name_pb_cnk), 1)).check(matches(isChecked()));
     }
 
     @Test
@@ -144,7 +145,7 @@ public class MapsDrawerFragmentIT {
         onView(withText(R.string.about_author)).check(matches(isDisplayed()));
     }
 
-    static SharedPreferences autoOpenDrawerReturningPreferences(boolean doOpen) {
+    public static SharedPreferences autoOpenDrawerReturningPreferences(boolean doOpen) {
         Context ctx = InstrumentationRegistry.getInstrumentation().getTargetContext();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
         if (doOpen) {

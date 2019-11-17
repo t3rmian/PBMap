@@ -11,7 +11,7 @@
     <color name="space_bounds_off">#2E2E2E</color>
     <color name="route">#AA00FF</color>
     <color name="spot_text">@color/colorAccent</color>
-    <color name="space_text">@color/colorSecondaryText</color>
+    <color name="space_text">@color/colorAccentPressed</color>
     <color name="marker_triangle">#000000</color>
     <color name="marker_source">#00ff00</color>
     <color name="marker_destination">#ff0000</color>

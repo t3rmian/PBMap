@@ -25,7 +25,7 @@ public class InfoTestIT {
     @Before
     public void setUp() {
         space = mock(Space.class);
-        whenGetResIdReturnWithPrefix("test");
+        whenGetResIdReturnWithPostfix("test");
     }
 
     @Test
@@ -48,7 +48,7 @@ public class InfoTestIT {
     @Test
     @SmallTest
     public void createLogo_KnownAsset() {
-        when(space.getLogoPath()).thenReturn("test_logo.png");
+        when(space.getLogoPath()).thenReturn("test_logo");
         Info info = new Info(space);
         Drawable logo = info.createLogo(InstrumentationRegistry.getInstrumentation().getContext());
         assertNotNull(logo);
@@ -65,7 +65,7 @@ public class InfoTestIT {
     @Test
     @SmallTest
     public void getName_Known() {
-        whenGetResIdReturnWithPrefix("deanery");
+        whenGetResIdReturnWithPostfix("deanery");
         Info info = new Info(space);
         String name = info.getName(InstrumentationRegistry.getInstrumentation().getTargetContext());
         assertEquals("Deanery", name);
@@ -82,7 +82,8 @@ public class InfoTestIT {
     @Test
     @SmallTest
     public void getDescription_Known() {
-        whenGetResIdReturnWithPrefix("about");
+        whenGetResIdReturnWithPostfix("about");
+        when(space.getDescriptionResIdString()).thenReturn("about_description");
         Info info = new Info(space);
         String description = info.getDescription(InstrumentationRegistry.getInstrumentation().getTargetContext());
         assertThat(description, containsIgnoringCase("pbmap"));
@@ -99,7 +100,7 @@ public class InfoTestIT {
     @Test
     @SmallTest
     public void getAddress_Known() {
-        whenGetResIdReturnWithPrefix("pb_wi");
+        whenGetResIdReturnWithPostfix("pb_wi");
         Info info = new Info(space);
         String address = info.getAddress(InstrumentationRegistry.getInstrumentation().getTargetContext());
         assertThat(address, containsIgnoringCase("faculty"));
@@ -123,10 +124,10 @@ public class InfoTestIT {
         assertEquals("url", url);
     }
 
-    private void whenGetResIdReturnWithPrefix(String prefix) {
-        when(space.getId()).thenReturn(prefix);
-        when(space.getNameResIdString()).thenReturn(prefix + "_name");
-        when(space.getAddressResId()).thenReturn(prefix + "_address");
-        when(space.getDescriptionResIdString()).thenReturn(prefix + "_description");
+    private void whenGetResIdReturnWithPostfix(String postfix) {
+        when(space.getId()).thenReturn(postfix);
+        when(space.getNameResIdString()).thenReturn("name_" + postfix);
+        when(space.getAddressResId()).thenReturn("address_" + postfix);
+        when(space.getDescriptionResIdString()).thenReturn("description_" + postfix);
     }
 }
