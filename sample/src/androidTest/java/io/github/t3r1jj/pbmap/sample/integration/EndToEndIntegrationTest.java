@@ -4,6 +4,15 @@ package io.github.t3r1jj.pbmap.sample.integration;
 import android.content.pm.PackageManager;
 import android.os.SystemClock;
 
+import androidx.test.filters.LargeTest;
+import androidx.test.filters.MediumTest;
+import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.uiautomator.UiDevice;
+import androidx.test.uiautomator.UiObject2;
+import androidx.test.uiautomator.UiObjectNotFoundException;
+import androidx.test.uiautomator.UiSelector;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -13,15 +22,7 @@ import org.junit.runner.RunWith;
 
 import java.util.regex.Pattern;
 
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.LargeTest;
-import androidx.test.filters.MediumTest;
-import androidx.test.platform.app.InstrumentationRegistry;
-import androidx.test.rule.ActivityTestRule;
-import androidx.test.uiautomator.UiDevice;
-import androidx.test.uiautomator.UiObject2;
-import androidx.test.uiautomator.UiObjectNotFoundException;
-import androidx.test.uiautomator.UiSelector;
+import io.github.t3r1jj.pbmap.testing.RetryRunner;
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
@@ -30,7 +31,7 @@ import static io.github.t3r1jj.pbmap.testing.TestUtils.pressDoubleBack;
 import static junit.framework.TestCase.fail;
 
 @LargeTest
-@RunWith(AndroidJUnit4.class)
+@RunWith(RetryRunner.class)
 public class EndToEndIntegrationTest {
 
     private static final int TIMEOUT_MS = 5 * 60 * 1000;

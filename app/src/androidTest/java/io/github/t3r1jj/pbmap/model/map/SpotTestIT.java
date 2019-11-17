@@ -2,16 +2,19 @@ package io.github.t3r1jj.pbmap.model.map;
 
 import android.widget.ImageView;
 
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+@RunWith(AndroidJUnit4.class)
 public class SpotTestIT {
 
     private static final String data = "<spot id=\"gym/test\" logo_path=\"test_logo\">" +

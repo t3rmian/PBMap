@@ -14,7 +14,6 @@ import android.os.SystemClock;
 import android.provider.Settings;
 
 import androidx.test.espresso.matcher.ViewMatchers;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.filters.MediumTest;
 import androidx.test.filters.SmallTest;
@@ -36,6 +35,7 @@ import java.util.regex.Pattern;
 
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.model.gps.PBLocationListener;
+import io.github.t3r1jj.pbmap.testing.RetryRunner;
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 
 import static androidx.test.espresso.Espresso.onView;
@@ -69,7 +69,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
-@RunWith(AndroidJUnit4.class)
+@RunWith(RetryRunner.class)
 public class MapActivityNavigationIT {
 
     private final ActivityTestRule<MapActivity> activityRule =

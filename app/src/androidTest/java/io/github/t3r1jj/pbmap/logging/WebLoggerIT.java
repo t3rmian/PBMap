@@ -4,14 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.MediumTest;
 import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -21,18 +19,15 @@ import java.util.List;
 
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.Spot;
-import io.github.t3r1jj.pbmap.testing.RetryRule;
+import io.github.t3r1jj.pbmap.testing.RetryRunner;
 
 import static io.github.t3r1jj.pbmap.logging.WebLogger.PREF_KEY_MESSAGES;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-@RunWith(AndroidJUnit4.class)
+@RunWith(RetryRunner.class)
 public class WebLoggerIT {
-
-    @Rule
-    public RetryRule retryRule = new RetryRule(3);
 
     private WebLogger logger;
     private SharedPreferences preferences;

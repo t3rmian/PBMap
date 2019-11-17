@@ -18,7 +18,6 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.isEnabled
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
@@ -29,6 +28,7 @@ import io.github.t3r1jj.pbmap.R
 import io.github.t3r1jj.pbmap.main.MapActivitySearchIT.getUnFormattedString
 import io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragmentIT
 import io.github.t3r1jj.pbmap.settings.SettingsActivity
+import io.github.t3r1jj.pbmap.testing.RetryRunner
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule
 import io.github.t3r1jj.pbmap.testing.TestUtils.withIndex
 import io.github.t3r1jj.pbmap.testing.TestUtils.withIntents
@@ -43,9 +43,9 @@ import org.junit.Test
 import org.junit.rules.RuleChain
 import org.junit.runner.RunWith
 
-
-@RunWith(AndroidJUnit4::class)
+@RunWith(RetryRunner::class)
 class SettingsActivityIT {
+
     companion object {
         private const val TIMEOUT_MS = 3 * 60 * 1000L
     }

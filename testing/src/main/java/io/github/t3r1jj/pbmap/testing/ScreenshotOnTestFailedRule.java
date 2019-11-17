@@ -12,17 +12,9 @@ import androidx.test.runner.screenshot.ScreenCapture;
 import androidx.test.runner.screenshot.ScreenCaptureProcessor;
 import androidx.test.runner.screenshot.Screenshot;
 
-public class ScreenshotOnTestFailedRule extends RetryRule {
+public class ScreenshotOnTestFailedRule extends ProfiledTestWatcher {
 
     private static final String TAG = ScreenshotOnTestFailedRule.class.getSimpleName();
-
-    public ScreenshotOnTestFailedRule() {
-        super(3);
-    }
-
-    public ScreenshotOnTestFailedRule(int retryCount) {
-        super(retryCount);
-    }
 
     @Override
     protected void failed(Throwable e, Description description) {

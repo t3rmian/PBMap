@@ -2,11 +2,13 @@ package io.github.t3r1jj.pbmap.model;
 
 import android.graphics.drawable.Drawable;
 
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import io.github.t3r1jj.pbmap.model.map.Space;
 
@@ -18,6 +20,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+@RunWith(AndroidJUnit4.class)
 public class InfoTestIT {
 
     private Space space;

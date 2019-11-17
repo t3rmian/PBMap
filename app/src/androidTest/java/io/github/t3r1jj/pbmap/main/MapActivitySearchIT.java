@@ -1,11 +1,9 @@
 package io.github.t3r1jj.pbmap.main;
 
 import android.content.Context;
-import android.os.SystemClock;
 
 import androidx.annotation.StringRes;
 import androidx.test.espresso.matcher.RootMatchers;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.filters.MediumTest;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -17,6 +15,7 @@ import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
 
 import io.github.t3r1jj.pbmap.R;
+import io.github.t3r1jj.pbmap.testing.RetryRunner;
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 
 import static androidx.test.espresso.Espresso.onView;
@@ -33,7 +32,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.withIndex;
 import static org.hamcrest.core.IsNot.not;
 
-@RunWith(AndroidJUnit4.class)
+@RunWith(RetryRunner.class)
 public class MapActivitySearchIT {
 
     private final ActivityTestRule<MapActivity> activityRule =
