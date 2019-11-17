@@ -6,6 +6,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.SmallTest;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -13,6 +14,7 @@ import java.util.Collections;
 
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.Place;
+import io.github.t3r1jj.pbmap.testing.RetryRule;
 import io.github.t3r1jj.pbmap.view.map.PlaceView;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -20,6 +22,10 @@ import static org.hamcrest.core.StringContains.containsString;
 
 @RunWith(AndroidJUnit4.class)
 public class MessageIT {
+
+    @Rule
+    public RetryRule retryRule = new RetryRule(3);
+
     private static final String RESERVED_JSON_CHARACTERS_STRING = "\b\f\n\r\t\"\\";
     private final String mapName = "json_map";
     private final String placeId = "json_place";
