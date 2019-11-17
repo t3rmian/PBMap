@@ -7,14 +7,15 @@ import io.github.t3r1jj.pbmap.model.i18n.Translator
 
 class Dictionary {
 
-    fun getLanguages(): Array<String> {
+    fun getLanguages(): List<String> {
         return BuildConfig.LANGUAGES
+                .sorted()
     }
 
-    fun getUnitSystems(): Array<String> {
+    fun getUnitSystems(): List<String> {
         return MeasurementSystem.values()
                 .map { it.toString() }
-                .toTypedArray()
+                .sorted()
     }
 
     fun getI18nUnitSystem(context: Context, unitSystem: String): String {

@@ -16,4 +16,11 @@ open class DictionaryTest {
         val languages = Dictionary().getLanguages()
         assertEquals(listOf("default", "en_GB", "en_US", "ja", "pl", "ru"), languages.toList())
     }
+
+    @Test
+    @SmallTest
+    fun getUnitSystems() {
+        val unitSystems = Dictionary().getUnitSystems()
+        assertEquals(listOf("SI", "US"), unitSystems.toList())
+    }
 }

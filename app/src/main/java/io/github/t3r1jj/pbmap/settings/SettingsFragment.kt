@@ -41,7 +41,7 @@ class SettingsFragment : PreferenceFragmentCompat(), SettingsGroupListener.Prefe
         }
     }
 
-    private fun setUpPreferenceGroup(categoryGroupKey: String, keys: Array<String>, translation: (String) -> String) {
+    private fun setUpPreferenceGroup(categoryGroupKey: String, keys: List<String>, translation: (String) -> String) {
         val category = preferenceManager.preferenceScreen.findPreference<PreferenceCategory>(categoryGroupKey)!!
         val prefs = mutableListOf<CheckBoxPreference>()
         keys.forEach {
