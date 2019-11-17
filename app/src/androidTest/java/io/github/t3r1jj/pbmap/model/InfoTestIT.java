@@ -48,7 +48,7 @@ public class InfoTestIT {
     @Test
     @SmallTest
     public void createLogo_KnownAsset() {
-        when(space.getLogoPath()).thenReturn("test_logo.png");
+        when(space.getLogoPath()).thenReturn("test_logo");
         Info info = new Info(space);
         Drawable logo = info.createLogo(InstrumentationRegistry.getInstrumentation().getContext());
         assertNotNull(logo);
@@ -83,6 +83,7 @@ public class InfoTestIT {
     @SmallTest
     public void getDescription_Known() {
         whenGetResIdReturnWithPostfix("about");
+        when(space.getDescriptionResIdString()).thenReturn("about_description");
         Info info = new Info(space);
         String description = info.getDescription(InstrumentationRegistry.getInstrumentation().getTargetContext());
         assertThat(description, containsIgnoringCase("pbmap"));

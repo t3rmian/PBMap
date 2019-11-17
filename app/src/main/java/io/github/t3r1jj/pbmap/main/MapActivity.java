@@ -149,7 +149,7 @@ public class MapActivity extends DrawerActivity
         return new BitmapDrawable(getResources(), rotatedBitmap);
     }
 
-    private static Bitmap drawableToBitmap(Drawable drawable) {
+    public static Bitmap drawableToBitmap(Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
             if (bitmapDrawable.getBitmap() != null) {

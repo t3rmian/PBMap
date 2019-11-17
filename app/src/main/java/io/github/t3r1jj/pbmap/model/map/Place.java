@@ -89,6 +89,10 @@ public abstract class Place {
     }
 
     public ImageView createLogo(Context context) {
+        return createLogo(context, logoPath);
+    }
+
+    public static ImageView createLogo(Context context, String logoPath) {
         String packageName = context.getPackageName();
         if (logoPath == null) {
             return null;

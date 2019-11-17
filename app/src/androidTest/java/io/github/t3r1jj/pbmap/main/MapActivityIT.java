@@ -1,9 +1,9 @@
 package io.github.t3r1jj.pbmap.main;
 
 import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
 import android.widget.ImageView;
 
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.filters.SmallTest;
@@ -16,8 +16,7 @@ import org.junit.Test;
 import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
@@ -25,11 +24,8 @@ import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.hamcrest.Matchers.allOf;
+import static junit.framework.TestCase.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 public class MapActivityIT {
@@ -58,16 +54,17 @@ public class MapActivityIT {
 
     @Test
     @SmallTest
-    public void setLogo() throws IOException {
-        InputStream inputStream = InstrumentationRegistry.getInstrumentation().getContext().getAssets().open("test_logo.png");
-        Drawable drawable = Drawable.createFromStream(inputStream, null);
+    public void setLogo() {
+        AtomicBoolean successfulResult = new AtomicBoolean();
+        Drawable drawable = InstrumentationRegistry.getInstrumentation().getContext().getDrawable(io.github.t3r1jj.pbmap.test.R.drawable.test_logo);
         ImageView logo = new ImageView(InstrumentationRegistry.getInstrumentation().getTargetContext());
         logo.setImageDrawable(drawable);
         activityRule.getActivity().runOnUiThread(() -> {
             activityRule.getActivity().setLogo(logo);
+            successfulResult.set(true);
         });
-        onView(allOf(withParent(withId(R.id.toolbar)), instanceOf(AppCompatImageView.class)))
-                .check(matches(isDisplayed()));
+        SystemClock.sleep(1000);
+        assertTrue(successfulResult.get());
     }
 
 }
