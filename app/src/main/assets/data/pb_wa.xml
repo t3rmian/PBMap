@@ -1,5 +1,5 @@
 <map height="2500" id="PB_WA" route_path="routes/pb_wa.xml" up_map_path="data/pb_wa_2.xml"
-    down_map_path="data/pb_wa_0.xml" url="http://wa.pb.edu.pl/" width="2800">
+    down_map_path="data/pb_wa_0.xml" url="http://wa.pb.edu.pl/" width="2800" logo_path="pb_wa">
     <tiles_configs>
         <tiles_config height="256" path="tiles/pb_wa/main/tile-%d_%d.png" width="256"
             zoom="1" />

@@ -4,10 +4,14 @@ package io.github.t3r1jj.pbmap.main.drawer;
 import android.app.Fragment;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import androidx.annotation.NonNull;
 import com.google.android.material.navigation.NavigationView;
+
+import androidx.appcompat.graphics.drawable.DrawerArrowDrawable;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBar;
@@ -52,6 +56,7 @@ abstract class NavigationDrawerFragment extends Fragment {
     private boolean fromSavedInstanceState;
     private boolean userLearnedDrawer;
     private NavigationView navigationView;
+    private DrawerArrowDrawable initialLogo;
 
     public NavigationDrawerFragment() {
     }
@@ -164,6 +169,7 @@ abstract class NavigationDrawerFragment extends Fragment {
                 }
             }
         };
+        initialLogo = drawerToggle.getDrawerArrowDrawable();
 
         // If the user hasn't 'learned' about the drawer, open it to introduce them to the drawer,
         // per the navigation drawer design guidelines.
@@ -232,4 +238,17 @@ abstract class NavigationDrawerFragment extends Fragment {
         return ((AppCompatActivity) getActivity()).getSupportActionBar();
     }
 
+    public void setLogo(Drawable drawable) {
+        if (drawable == null) {
+            drawerToggle.setDrawerArrowDrawable(initialLogo);
+        } else {
+            drawerToggle.setDrawerArrowDrawable(new DrawerArrowDrawable(getActivity()) {
+                @Override
+                public void draw(Canvas canvas) {
+                    drawable.setBounds(initialLogo.getBounds());
+                    drawable.draw(canvas);
+                }
+            });
+        }
+    }
 }

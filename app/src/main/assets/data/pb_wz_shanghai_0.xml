@@ -1,5 +1,5 @@
 <map height="2094" id="PB_WZ_Shanghai" previous_map_path="data/pb_wz_shanghai.xml" up_map_path="data/pb_wz_shanghai.xml"
-    route_path="routes/pb_wz_campus.xml" width="1464" hidden="true">
+    route_path="routes/pb_wz_campus.xml" width="1464" hidden="true" logo_path="pb_wz">
     <tiles_configs>
         <tiles_config height="256" path="tiles/pb_wz_campus/shanghai/tile-%d_%d.png" width="256"
             zoom="1" />

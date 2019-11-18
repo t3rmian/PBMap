@@ -1,5 +1,5 @@
 <map down_map_path="data/pb_iet.xml" height="1400" id="PB_WB_L2_IET" hidden="true"
-    left_map_path="data/pb_wb_2.xml" previous_map_path="data/pb_iet.xml"
+    left_map_path="data/pb_wb_2.xml" previous_map_path="data/pb_iet.xml" logo_path="pb_iet"
     route_path="routes/pb_campus.xml" up_map_path="data/pb_iet_3.xml" width="2700">
     <tiles_configs>
         <tiles_config height="256" path="tiles/pb_campus/iet/floor/tile-%d_%d.png" width="256"
