@@ -1,10 +1,12 @@
 package io.github.t3r1jj.pbmap.search;
 
+import android.annotation.SuppressLint;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
 import androidx.core.util.ObjectsCompat;
 
@@ -16,11 +18,13 @@ import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.Place;
 
-public class SearchSuggestion {
+public class SearchSuggestion implements Comparable<SearchSuggestion> {
     private final String placeId;
     private final String mapPath;
     private String mapId;
     private Coordinate coordinate;
+    private String logoName;
+    private int rank;
 
     SearchSuggestion(@NotNull String placeId, @NotNull String mapPath) {
         this.placeId = Objects.requireNonNull(placeId);
@@ -108,5 +112,31 @@ public class SearchSuggestion {
             return mapId.toUpperCase().replace('_', ' ').trim();
         }
         return context.getString(resId).replace("\n", " ").trim();
+    }
+
+    @SuppressLint("ResourceType")
+    @DrawableRes
+    public int getLogoId(Context context) {
+        String packageName = context.getPackageName();
+        int resId = context.getResources().getIdentifier(logoName, "drawable", packageName);
+        if (resId == 0) {
+            return android.R.drawable.ic_dialog_map;
+        } else {
+            return resId;
+        }
+    }
+
+    void setLogoName(String logoName) {
+        this.logoName = logoName;
+    }
+
+    void setRank(int rank) {
+        this.rank = rank;
+    }
+
+    @Override
+    public int compareTo(SearchSuggestion o) {
+        int rankDiff = rank - o.rank;
+        return rankDiff != 0 ? rankDiff : mapPath.compareTo(o.getMapPath());
     }
 }

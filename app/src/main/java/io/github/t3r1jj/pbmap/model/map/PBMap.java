@@ -39,7 +39,8 @@ public class PBMap extends Space {
     private List<Place> places;
     @ElementList(name = "tiles_configs")
     private List<TilesConfig> tilesConfigs;
-
+    @Attribute(name = "rank", required = false)
+    private int rank;
 
     @Override
     public String toString() {
