@@ -144,7 +144,7 @@ public class MapsDrawerFragmentIT {
         onView(withText(R.string.about_author)).check(matches(isDisplayed()));
     }
 
-    static SharedPreferences autoOpenDrawerReturningPreferences(boolean doOpen) {
+    public static SharedPreferences autoOpenDrawerReturningPreferences(boolean doOpen) {
         Context ctx = InstrumentationRegistry.getInstrumentation().getTargetContext();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
         if (doOpen) {
