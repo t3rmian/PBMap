@@ -36,9 +36,9 @@ public class SearchListProvider extends SearchRecentSuggestionsProvider {
             if (mapsDao == null) {
                 mapsDao = new MapsDao(getBaseContext());
             }
-            return mapsDao.query(tableColumns, prepareScopedSelectionArgs(selectionArgs), searchById);
+            return mapsDao.query(tableColumns, prepareScopedSelectionArgs(selectionArgs), "id".equals(selection) || searchById);
         } else {
-            return super.query(uri, projection, selection, selectionArgs, sortOrder);
+            return mapsDao.query(tableColumns, new String[]{".*"}, true);
         }
     }
 
@@ -54,5 +54,6 @@ public class SearchListProvider extends SearchRecentSuggestionsProvider {
     protected Context getBaseContext() {
         return super.getContext();
     }
+
 
 }

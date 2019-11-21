@@ -8,6 +8,9 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <permission android:name="io.github.t3r1jj.pbmap.WRITE_DATABASE"
+        android:protectionLevel="signature"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -43,7 +46,8 @@
         <provider
             android:name=".search.SearchListProvider"
             android:authorities="io.github.t3r1jj.pbmap.search.SearchListProvider"
-            android:exported="false" />
+            android:writePermission="io.github.t3r1jj.pbmap.WRITE_DATABASE"
+            android:exported="true" />
 
         <activity
             android:name=".about.AboutActivity"
