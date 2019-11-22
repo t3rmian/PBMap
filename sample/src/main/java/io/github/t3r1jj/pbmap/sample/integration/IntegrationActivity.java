@@ -88,12 +88,17 @@ public class IntegrationActivity extends AppCompatActivity {
         showPlaces(null, R.string.places_by_name);
     }
 
+    /**
+     *
+     * @param selection pass "id" to get id results, otherwise a translated list will be returned
+     * @param titleResId just for displaying the data
+     */
     private void showPlaces(String selection, @StringRes int titleResId) {
         Toast.makeText(this, getString(R.string.loading), Toast.LENGTH_LONG).show();
         new Thread(() -> {
             ContentProviderClient contentProvider = pbMapIntegrator.getContentProvider();
             try (Cursor cursor = contentProvider.query(Uri.parse(PBMapIntegrator.PBMAP_CONTENT_URI),
-                    null, selection, new String[]{".*@.*"}, null)) {
+                    null, selection, new String[]{".*@.*"}, null)) {    // It's fine to use regex
                 showPlaces(titleResId, cursor);
             } catch (RemoteException e) {
                 runOnUiThread(this::openGooglePlay);

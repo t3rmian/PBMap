@@ -32,8 +32,11 @@ class PBMapIntegrator extends ContextWrapper {
     private static final String PBMAP_PACKAGE_NAME = "io.github.t3r1jj.pbmap";
     private static final String PBMAP_CLASS_NAME = "io.github.t3r1jj.pbmap.main.MapActivity";
     private static final String PBMAP_CONTENT_PROVIDER_URI = "content://io.github.t3r1jj.pbmap.search.SearchListProvider";
-    static final String PBMAP_CONTENT_URI = "content://io.github.t3r1jj.pbmap.search.SearchListProvider/suggestions";
+    static final String PBMAP_CONTENT_URI = PBMAP_CONTENT_PROVIDER_URI + "/suggestions";
 
+    /**
+     * There are in total 5 returned columns at the moment, two most important ones are place and map
+     */
     enum ContentMapping {
         PLACE_COLUMN(SearchManager.SUGGEST_COLUMN_TEXT_1),
         MAP_COLUMN(SearchManager.SUGGEST_COLUMN_TEXT_2);
@@ -106,6 +109,9 @@ class PBMapIntegrator extends ContextWrapper {
         }
     }
 
+    /**
+     * @return read-only content provider for querying maps and places
+     */
     public ContentProviderClient getContentProvider() {
         Uri uri = Uri.parse(PBMAP_CONTENT_PROVIDER_URI);
         return getContentResolver().acquireContentProviderClient(uri);
