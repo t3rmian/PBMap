@@ -57,6 +57,7 @@ import static io.github.t3r1jj.pbmap.testing.TestUtils.allowPermissionsIfNeeded;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.containsIgnoringCase;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.withIndex;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.withIntents;
+import static junit.framework.TestCase.fail;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.core.IsNot.not;
@@ -247,12 +248,22 @@ public class MapActivityNavigationIT {
         device.swipe(x, y, x, y, steps);
         SystemClock.sleep(1000);
         device.findObject(By.text(Pattern.compile("^.*(?i)(DESTINATION).*$"))).click();
-        ;
         SystemClock.sleep(1000);
 
-        device.wait(Until.findObject(By.textContains("Distance")), 250);
-        device.wait(Until.findObject(By.descContains("Source")), 50);
-        device.wait(Until.findObject(By.descContains("Destination")), 50);
+        verifySourceDestinationDistance(device);
+    }
+
+    private void verifySourceDestinationDistance(UiDevice device) {
+        maxZoomOut(device);
+        if (device.wait(Until.findObject(By.textContains("Distance")), 250) == null) {
+            fail("Distance text not found");
+        }
+        if (device.wait(Until.findObject(By.descContains("Source")), 50) == null) {
+            fail("Source text not found");
+        }
+        if (device.wait(Until.findObject(By.descContains("Destination")), 50) == null) {
+            fail("Destination text not found");
+        }
     }
 
     @Test
@@ -280,9 +291,7 @@ public class MapActivityNavigationIT {
         activityRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         SystemClock.sleep(5000);
 
-        device.wait(Until.findObject(By.textContains("Distance")), 250);
-        device.wait(Until.findObject(By.descContains("Source")), 50);
-        device.wait(Until.findObject(By.descContains("Destination")), 50);
+        verifySourceDestinationDistance(device);
     }
 
     @Test
@@ -296,7 +305,9 @@ public class MapActivityNavigationIT {
         UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
         maxZoomOut(device);
         device.findObject(By.textContains("PB WI")).click();
-        device.wait(Until.findObject(By.descContains("12b")), 250);
+        if (device.wait(Until.findObject(By.textContains("12b")), 250) == null) {
+            fail("12b text not found");
+        }
     }
 
     @Test
@@ -386,7 +397,9 @@ public class MapActivityNavigationIT {
             intended(hasAction(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
         });
         UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-        device.wait(Until.findObject(By.res("com.android.settings")), 3000);
+        if (device.wait(Until.findObject(By.res("com.android.settings:id/switch_text")), 3000) == null) {
+            fail("Waited for com.android.settings but did not appear");
+        }
         device.pressBack();
         SystemClock.sleep(3000);
     }
