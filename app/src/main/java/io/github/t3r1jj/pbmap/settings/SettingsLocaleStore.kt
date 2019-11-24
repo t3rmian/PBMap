@@ -18,7 +18,7 @@ class SettingsLocaleStore @JvmOverloads constructor(
     override fun getLocale(): Locale {
         val savedLang = prefs.getString(MapApplication.LANG, null)
         val appLangs = Dictionary().getLanguages()
-        return if (appLangs.contains(savedLang) && BuildConfig.DEFAULT_LANGUAGE != savedLang) {
+        return if (appLangs.contains(savedLang ?: null) && BuildConfig.DEFAULT_LANGUAGE != savedLang) {
             LocaleUtils.toLocale(savedLang!!)
         } else {
             prefs.edit().putString(MapApplication.LANG, BuildConfig.DEFAULT_LANGUAGE).apply()
