@@ -156,7 +156,8 @@ public class MapsDao extends ContextWrapper {
                         name,
                         map,
                         suggestion.getPlaceId(),
-                        suggestion.getMapPath()
+                        suggestion.getMapPath(),
+                        suggestion.getPlaceId().toUpperCase() + "@" + suggestion.getMapId().toUpperCase()
                 });
             }
         }

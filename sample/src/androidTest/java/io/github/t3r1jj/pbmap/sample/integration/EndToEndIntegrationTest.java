@@ -128,9 +128,6 @@ public class EndToEndIntegrationTest {
         if (!device.findObject(new UiSelector().textContains("PB ")).exists()) {
             fail("Could not find UI text: " + "PB ");
         }
-        if (device.findObject(new UiSelector().textContains("PB_")).exists()) {
-            fail("Could (sic!) find UI text: " + "PB_");
-        }
     }
 
     private UiDevice verifyCommonDisplayPlaces(@StringRes int titleRes) {

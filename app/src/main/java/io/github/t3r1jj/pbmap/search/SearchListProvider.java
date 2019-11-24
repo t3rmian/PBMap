@@ -16,6 +16,7 @@ public class SearchListProvider extends SearchRecentSuggestionsProvider {
     static final String SUGGESTIONS_COLUMN_SUGGESTION_2 = SearchManager.SUGGEST_COLUMN_TEXT_2;
     static final String SUGGESTIONS_COLUMN_PLACE = SearchManager.SUGGEST_COLUMN_INTENT_DATA;
     static final String SUGGESTIONS_COLUMN_MAP_PATH = SearchManager.SUGGEST_COLUMN_INTENT_EXTRA_DATA;
+    static final String SUGGESTIONS_COLUMN_PLACE_MAP = SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID;
     protected boolean searchById = false;
     private MapsDao mapsDao;
     private String[] tableColumns = new String[]{
@@ -23,7 +24,8 @@ public class SearchListProvider extends SearchRecentSuggestionsProvider {
             SUGGESTIONS_COLUMN_SUGGESTION,
             SUGGESTIONS_COLUMN_SUGGESTION_2,
             SUGGESTIONS_COLUMN_PLACE,
-            SUGGESTIONS_COLUMN_MAP_PATH
+            SUGGESTIONS_COLUMN_MAP_PATH,
+            SUGGESTIONS_COLUMN_PLACE_MAP
     };
 
     public SearchListProvider() {

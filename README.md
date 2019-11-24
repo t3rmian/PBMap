@@ -31,7 +31,7 @@ private static final String PBMAP_CLASS_NAME = "io.github.t3r1jj.pbmap.main.MapA
 
  a) To pinpoint a defined place:
   - put an extra String for a SearchManager.QUERY key in the following format: **place_id@map_id**
-````
+````java
 Intent sendIntent = new Intent();
 sendIntent.setClassName(PBMAP_PACKAGE_NAME, PBMAP_CLASS_NAME);
 sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -43,7 +43,7 @@ startActivity(sendIntent);
 b) To pinpoint a coordinate on a given map:
  - put an extra String for a SearchManager.QUERY key with **map_id**
  - put an android Location object with coordinates of indicated place for a SearchManager.EXTRA_DATA_KEY key.
-````
+````java
 Intent sendIntent = new Intent();
 sendIntent.setClassName(PBMAP_PACKAGE_NAME, PBMAP_CLASS_NAME);
 sendIntent.setAction(Intent.ACTION_SEARCH);
@@ -59,7 +59,24 @@ sendIntent.putExtra(SearchManager.EXTRA_DATA_KEY, customLocation);
 startActivity(sendIntent);
 ````
 
-If PBMap is not installed an ActivityNotFoundException exception will be thrown. The list of map and place ids can be found at [the wiki page](https://github.com/T3r1jj/PBMap/wiki/Maps-and-places). For a fully working example refer to sample app from the repository.
+If PBMap is not installed an ActivityNotFoundException exception will be thrown. The list of map and place ids can be found at [the wiki page](https://github.com/T3r1jj/PBMap/wiki/Maps-and-places) or through Content Provider. For a fully working example refer to sample app from the repository.
+
+### Integration through Content Provider
+
+PBMap also externalizes a read-only Content Provider, which you can use to query the list of places.
+
+````java
+/**
+ * URI for acquiring Content Provider
+ */
+private static final String PBMAP_CONTENT_PROVIDER_URI = "content://io.github.t3r1jj.pbmap.search.SearchListProvider"; //URI for acquiring Content Provider
+/**
+ * URI for querying the Content Provider
+ */
+static final String PBMAP_CONTENT_URI = PBMAP_CONTENT_PROVIDER_URI + "/suggestions"; //URI for query
+````
+
+For more details on how to query the Content Provider and which columns are exposed, please refer to the [sample](./sample).
 
 ### Manual
 

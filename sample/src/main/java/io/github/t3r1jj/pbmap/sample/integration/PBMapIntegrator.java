@@ -31,6 +31,9 @@ class PBMapIntegrator extends ContextWrapper {
 
     private static final String PBMAP_PACKAGE_NAME = "io.github.t3r1jj.pbmap";
     private static final String PBMAP_CLASS_NAME = "io.github.t3r1jj.pbmap.main.MapActivity";
+    /**
+     * URI for acquiring Content Provider
+     */
     private static final String PBMAP_CONTENT_PROVIDER_URI = "content://io.github.t3r1jj.pbmap.search.SearchListProvider";
     static final String PBMAP_CONTENT_URI = PBMAP_CONTENT_PROVIDER_URI + "/suggestions";
 
@@ -39,7 +42,8 @@ class PBMapIntegrator extends ContextWrapper {
      */
     enum ContentMapping {
         PLACE_COLUMN(SearchManager.SUGGEST_COLUMN_TEXT_1),
-        MAP_COLUMN(SearchManager.SUGGEST_COLUMN_TEXT_2);
+        MAP_COLUMN(SearchManager.SUGGEST_COLUMN_TEXT_2),
+        ID_COLUMN(SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID);
 
         private final String columnName;
 
