@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.SearchManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -16,7 +17,10 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Patterns;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -53,6 +57,7 @@ import io.github.t3r1jj.pbmap.model.map.PBMap;
 import io.github.t3r1jj.pbmap.model.map.Place;
 import io.github.t3r1jj.pbmap.search.Search;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
+import io.github.t3r1jj.pbmap.search.WebUriParser;
 
 import static io.github.t3r1jj.pbmap.main.Controller.PARCELABLE_KEY_CONTROLLER_MEMENTO;
 import static io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment.RECREATE_REQUEST_RESULT_CODE;
@@ -315,11 +320,40 @@ public class MapActivity extends DrawerActivity
     }
 
     private void handleIntent(Intent intent, boolean preload) {
+        String referrer = consumeReferrer();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             handleSearchQuery(intent, preload);
         } else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
-            SearchSuggestion suggestion = new SearchSuggestion(intent);
-            controller.loadMap(suggestion, preload);
+            if (Patterns.WEB_URL.matcher(intent.getDataString()).matches()) {
+                handleWebUri(intent, preload);
+            } else {
+                SearchSuggestion suggestion = new SearchSuggestion(intent);
+                controller.loadMap(suggestion, preload);
+            }
+        } else if (Patterns.WEB_URL.matcher(referrer).matches()) {
+            intent.setData(Uri.parse(referrer));
+            handleWebUri(intent, preload);
+        } else if (!controller.isInitialized()) {
+            controller.loadMap();
+        }
+    }
+
+    private String consumeReferrer() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String referrer = preferences.getString(InstallListener.REFERRER, null);
+        if (referrer != null) {
+            preferences.edit().remove(InstallListener.REFERRER).apply();
+        }
+        return referrer;
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    private void handleWebUri(Intent intent, boolean preload) {
+        Uri uri = intent.getData();
+        String query = WebUriParser.parseIntoCommonFormat(uri);
+        if (query != null) {
+            intent.putExtra(SearchManager.QUERY, query);
+            handleSearchQuery(intent, preload);
         } else if (!controller.isInitialized()) {
             controller.loadMap();
         }
