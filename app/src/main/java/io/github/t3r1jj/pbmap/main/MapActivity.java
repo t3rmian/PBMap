@@ -20,7 +20,6 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Patterns;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -48,7 +47,6 @@ import com.yariksoffice.lingver.Lingver;
 import io.github.t3r1jj.pbmap.BuildConfig;
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.about.AboutActivity;
-import io.github.t3r1jj.pbmap.logging.Config;
 import io.github.t3r1jj.pbmap.main.drawer.DrawerActivity;
 import io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment;
 import io.github.t3r1jj.pbmap.model.Info;
@@ -324,13 +322,13 @@ public class MapActivity extends DrawerActivity
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             handleSearchQuery(intent, preload);
         } else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
-            if (Patterns.WEB_URL.matcher(intent.getDataString()).matches()) {
+            if (WebUriParser.containsWebUri(intent.getDataString())) {
                 handleWebUri(intent, preload);
             } else {
                 SearchSuggestion suggestion = new SearchSuggestion(intent);
                 controller.loadMap(suggestion, preload);
             }
-        } else if (Patterns.WEB_URL.matcher(referrer).matches()) {
+        } else if (WebUriParser.containsWebUri(referrer)) {
             intent.setData(Uri.parse(referrer));
             handleWebUri(intent, preload);
         } else if (!controller.isInitialized()) {

@@ -6,6 +6,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/9f2e04a025180ab4f211/maintainability)](https://codeclimate.com/github/t3rmian/PBMap/maintainability)
 [![Lines of code](https://tokei.rs/b1/github/t3rmian/PBMap)](https://github.com/Aaronepower/tokei)
 [![More information](https://img.shields.io/badge/Wiki-%F0%9F%93%96-blue)](https://img.shields.io/badge/Wiki-%F0%9F%93%96-blue)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e470d84b-52d5-4768-b540-3c12d181ae6c/deploy-status)](https://app.netlify.com/sites/pbmap/deploys)
 
 PBMap is an offline map of mapped places (buildings, floors, rooms, etc.) at Bialystok University of Technology created for an Android project assignment. The application facilitates navigation by implementing positioning and routing systems. Furthermore it allows for easy searching for rooms through search bar (possible integration through Intent). A help feature and externally managed report/mapping system have been also implemented.
 
