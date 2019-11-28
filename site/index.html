@@ -9,9 +9,25 @@
 <a href="https://pbmap.termian.dev/mobile/pb_campus">pb_campus</a>
 <a href="https://pbmap.termian.dev/mobile/pb_wi/12b">12b@pb_wi</a>
 <a href="mobile/pb_wi/12b">12b@pb_wi</a>
+<br/>
+<button onclick="goto();">12b@pb_wi</button>
 
 <div id="app"></div>
 
-<script src="app.js" type="module"></script>
+<!-- <script src="app.js" type="module"></script> -->
+<script>
+    var openFallback = function() {
+            window.location.replace('https://play.google.com/store/apps/details?id=io.github.t3r1jj.pbmap&referrer=https%3A%2F%2Fwww.pbmap.termian.dev%2Fmobile%2Fpb_wi%2F12b');
+    }
+
+    var goto = function(uri) {        
+        var iframe = document.createElement("iframe");
+        iframe.src = 'https://pbmap.termian.dev/mobile/pb_wi/12b';
+        iframe.setAttribute("style", "display:none;");
+        document.body.appendChild(iframe);
+        timeout = setTimeout(openFallback, 5000);
+        return true;
+    }
+</script>
 </body>
 </html>

@@ -24,6 +24,7 @@ const app = html`
         <${Link} href="/">home</${Link}>
         <${Router}>
             <${Mobile} path="/mobile/pb_wi/12b" />
+            <${Mobile} path="/mobile/pb_wi/12b" />
             <${Page} path="/" default/>
         </${Router}>
     </div>
