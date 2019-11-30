@@ -42,10 +42,12 @@ import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
+import com.yariksoffice.lingver.Lingver;
 
 import io.github.t3r1jj.pbmap.BuildConfig;
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.about.AboutActivity;
+import io.github.t3r1jj.pbmap.Config;
 import io.github.t3r1jj.pbmap.main.drawer.DrawerActivity;
 import io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment;
 import io.github.t3r1jj.pbmap.model.Info;
@@ -56,6 +58,7 @@ import io.github.t3r1jj.pbmap.search.Search;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 
 import static io.github.t3r1jj.pbmap.main.Controller.PARCELABLE_KEY_CONTROLLER_MEMENTO;
+import static io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment.RECREATE_REQUEST_RESULT_CODE;
 
 public class MapActivity extends DrawerActivity
         implements MapsDrawerFragment.PlaceNavigationDrawerCallbacks {
@@ -165,7 +168,7 @@ public class MapActivity extends DrawerActivity
         return new BitmapDrawable(getResources(), rotatedBitmap);
     }
 
-    private static Bitmap drawableToBitmap(Drawable drawable) {
+    public static Bitmap drawableToBitmap(Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
             if (bitmapDrawable.getBitmap() != null) {
@@ -378,15 +381,15 @@ public class MapActivity extends DrawerActivity
     @SuppressWarnings("ConstantConditions")
     public void setLogo(ImageView view) {
         if (view == null) {
-            getSupportActionBar().setLogo(null);
+            super.setLogo(null);
         } else {
-            getSupportActionBar().setLogo(view.getDrawable());
+            super.setLogo(view.getDrawable());
         }
     }
 
     @SuppressWarnings("ConstantConditions")
     public void setTitle(String nameId) {
-        int resId = getResources().getIdentifier(PBMap.getResIdString(nameId, Place.NAME_POSTFIX), "string", getPackageName());
+        int resId = getResources().getIdentifier(PBMap.getResIdString(nameId, Place.NAME_PREFIX), "string", getPackageName());
         if (resId > 0) {
             getSupportActionBar().setSubtitle(getString(resId).replace("\n", " ").trim());
         } else {
@@ -577,6 +580,15 @@ public class MapActivity extends DrawerActivity
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(PARCELABLE_KEY_CONTROLLER_MEMENTO, controller.getCurrentState());
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RECREATE_REQUEST_RESULT_CODE && resultCode == RECREATE_REQUEST_RESULT_CODE) {
+            Config.getInstance().initPreferences(this, Lingver.getInstance().getLocale());
+            recreate();
+        }
     }
 
     Controller getController() {

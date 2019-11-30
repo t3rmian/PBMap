@@ -8,7 +8,6 @@ import android.os.SystemClock;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.test.espresso.matcher.ViewMatchers;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.filters.MediumTest;
 import androidx.test.filters.SmallTest;
@@ -22,6 +21,7 @@ import org.junit.runner.RunWith;
 
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.model.Info;
+import io.github.t3r1jj.pbmap.testing.RetryRunner;
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 
 import static androidx.test.espresso.Espresso.onView;
@@ -34,7 +34,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@RunWith(AndroidJUnit4.class)
+@RunWith(RetryRunner.class)
 public class InfoSheetDialogFragmentIT {
 
     private final InfoSheetDialogFragment fragment = new InfoSheetDialogFragment();

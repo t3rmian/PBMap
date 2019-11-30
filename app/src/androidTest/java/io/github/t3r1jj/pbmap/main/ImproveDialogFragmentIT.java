@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.MotionEvent;
 
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.filters.MediumTest;
 import androidx.test.filters.SmallTest;
@@ -22,6 +21,7 @@ import org.junit.runner.RunWith;
 import java.lang.reflect.Field;
 
 import io.github.t3r1jj.pbmap.R;
+import io.github.t3r1jj.pbmap.testing.RetryRunner;
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 
 import static androidx.test.espresso.Espresso.closeSoftKeyboard;
@@ -36,7 +36,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(AndroidJUnit4.class)
+@RunWith(RetryRunner.class)
 public class ImproveDialogFragmentIT {
 
     private final ImproveDialogFragment fragment = new ImproveDialogFragment();

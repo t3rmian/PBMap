@@ -3,12 +3,11 @@ package io.github.t3r1jj.pbmap.main;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.widget.ImageView;
 
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.test.espresso.matcher.ViewMatchers;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -22,10 +21,10 @@ import org.junit.Test;
 import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.github.t3r1jj.pbmap.R;
+import io.github.t3r1jj.pbmap.testing.RetryRunner;
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 
 import static androidx.test.espresso.Espresso.onView;
@@ -35,15 +34,13 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import static io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragmentIT.autoOpenDrawerReturningPreferences;
 import static io.github.t3r1jj.pbmap.main.drawer.TutorialIT.verifyTutorial;
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.hamcrest.Matchers.allOf;
+import static junit.framework.TestCase.assertTrue;
 
-@RunWith(AndroidJUnit4.class)
+@RunWith(RetryRunner.class)
 public class MapActivityIT {
 
     private final ActivityTestRule<MapActivity> activityRule =
@@ -88,17 +85,18 @@ public class MapActivityIT {
 
     @Test
     @SmallTest
-    public void setLogo() throws IOException {
+    public void setLogo() {
         activityRule.launchActivity(new Intent());
-        InputStream inputStream = InstrumentationRegistry.getInstrumentation().getContext().getAssets().open("test_logo.png");
-        Drawable drawable = Drawable.createFromStream(inputStream, null);
+        AtomicBoolean successfulResult = new AtomicBoolean();
+        Drawable drawable = InstrumentationRegistry.getInstrumentation().getContext().getDrawable(io.github.t3r1jj.pbmap.test.R.drawable.test_logo);
         ImageView logo = new ImageView(InstrumentationRegistry.getInstrumentation().getTargetContext());
         logo.setImageDrawable(drawable);
         activityRule.getActivity().runOnUiThread(() -> {
             activityRule.getActivity().setLogo(logo);
+            successfulResult.set(true);
         });
-        onView(allOf(withParent(withId(R.id.toolbar)), instanceOf(AppCompatImageView.class)))
-                .check(matches(isDisplayed()));
+        SystemClock.sleep(1000);
+        assertTrue(successfulResult.get());
     }
 
     @Test

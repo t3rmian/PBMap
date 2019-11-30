@@ -1,5 +1,5 @@
 <map height="2200" id="PB_WE_L3" previous_map_path="data/pb_we_2.xml" up_map_path="data/pb_we_4.xml" down_map_path="data/pb_we_2.xml"
-    route_path="routes/pb_campus.xml" width="1525" hidden="true">
+    route_path="routes/pb_campus.xml" width="1525" hidden="true" logo_path="pb_we">
     <tiles_configs>
         <tiles_config height="256" path="tiles/pb_campus/we/floor/tile-%d_%d.png" width="256"
             zoom="1" />
