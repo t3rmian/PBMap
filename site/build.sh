@@ -1,6 +1,22 @@
 #!/bin/bash
 
 mkdir public
+
+echo "=== Generating hash ==="
+./hash.sh ../app/src/main/assets/data/* ./*.sh ./*.html > public/.hash
+cat public/.hash
+echo "=== Downloading hash from remote ==="
+curl https://pbmap.termian.dev/.hash > .hash
+cat .hash
+echo "=== Comparing hashes ==="
+DIFF=$(diff .hash public/.hash)
+if [[ "$DIFF" == "" ]]
+then
+    echo "=== The hashes are equal, exiting ==="
+    exit 0
+fi
+echo "=== The hashes are different, continuing the build ==="
+
 for file in ../app/src/main/assets/data/*
 do
 	echo "=== Processing $file ==="
