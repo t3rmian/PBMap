@@ -90,42 +90,46 @@
       }
 
       main {
-          width: 100%;
-          position: absolute;
-          max-width: 1280px;
-          margin: 0 auto;
-          position: absolute;
-left: 50%;
--webkit-transform: translateX(-50%);
-transform: translateX(-50%)
+        width: 100%;
+        position: absolute;
+        margin: 0 auto;
+        position: absolute;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
       }
 
       main ul {
-          padding: 0 1em;
-        max-height: calc(100vh - 30vh - 250px);
+        text-align: center;
+        padding: 1em;
         overflow-x: hidden;
-        overflow-y: scroll;
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none;  /* Internet Explorer 10+ */
-        margin: auto 0;
-        top: 50%;
-    position: absolute;
-    transform: translateY(-50%);
+        margin: 0 auto;
       }
 
-      main ul::-webkit-scrollbar { /* WebKit */
-    width: 0;
-    height: 0;
-}
+      main article {
+        max-height: calc(100vh - 20vh - 280px);
+        overflow-x: hidden;
+        left: 0;
+        right: 0;
+        top: 50%;
+        position: absolute;
+        transform: translateY(-50%);
+        margin: 16px -100%;
+        padding: 0 100%;
+        background-color: #eee;
+        box-shadow: 0 0 100px 8px #e0e0e0;
+      }
 
       main div {
-        margin: 30vh 0 250px 0;
-        height: calc(100vh - 30vh - 250px);
+        margin: calc(20vh + 80px) 0 200px 0;
+        height: calc(100vh - 20vh - 280px);
       }
 
-      html, body {
-          position: absolute;
-          width: 100%;
+      html,
+      body {
+        overflow-x: hidden;
+        position: absolute;
+        width: 100%;
         height: 100%;
         max-height: 100%;
         margin: 0;
@@ -163,33 +167,33 @@ transform: translateX(-50%)
         font-weight: 400;
         white-space: nowrap;
         text-align: center;
-        box-shadow: 0 2px 0 rgba(0,0,0,.015);
+        box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
         cursor: pointer;
-        -webkit-transition: all .3s cubic-bezier(.645,.045,.355,1);
-        transition: all .3s cubic-bezier(.645,.045,.355,1);
+        -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
         height: 64px;
         padding: 0 20px;
         font-size: 14px;
         border-radius: 4px;
-        color: rgba(0,0,0,.65);
+        color: rgba(0, 0, 0, 0.65);
         background-color: #fff;
         border: 1px solid #d9d9d9;
         margin: 0;
         border-color: black;
         color: black;
         -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    touch-action: manipulation;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        touch-action: manipulation;
       }
 
       a:hover {
-        box-shadow: #BE5600 1px 1px, #BE5600 2px 2px, #BE5600 3px 3px;
-    color: #BE5600;
-    background-color: transparent;
-    border-color: #BE5600;
-    font-weight: 900;
+        box-shadow: #be5600 1px 1px, #be5600 2px 2px, #be5600 3px 3px;
+        color: #be5600;
+        background-color: white;
+        border-color: #be5600;
+        font-weight: 900;
       }
 
       li .fas {
@@ -213,12 +217,12 @@ transform: translateX(-50%)
   </head>
   <body>
     <header>
-            <h1>
-						PBMap
-                </h1>
-                <h2>
-                        Find a place on Bialystok University of Technology
-                    </h2>
+      <h1>
+        PBMap
+      </h1>
+      <h2>
+        Find a place on Bialystok University of Technology
+      </h2>
     </header>
     <div>
       <div class="search-box">
@@ -234,42 +238,73 @@ transform: translateX(-50%)
       </div>
     </div>
     <main>
-        <div>
-        <ul>
+      <div>
+        <article class="shadow">
+          <ul>
             <li class="show-default">
-                <a href="mobile/pb_campus"><i class="fas fa-map-marked-alt"></i><span>Campus</span></a>
+              <a href="mobile/pb_campus"
+                ><i class="fas fa-map-marked-alt"></i><span>Campus</span></a
+              >
             </li>
             <li class="show-default">
-                        <a href="mobile/pb_acs"><i class="fas fa-dumbbell"></i><span>ACS</span></a>
-                    </li>
-                    <li class="show-default">            <a href="mobile/pb_cnk"><i class="fas fa-book-reader"></i><span>CNK</span></a>
-                    </li>
-                    <li class="show-default">            <a href="mobile/pb_wa"><i class="fas fa-archway"></i><span>WA</span></a>
-                    </li>
-                    <li class="show-default">            <a href="mobile/pb_wb"><i class="fas fa-building"></i><span>WB</span></a>
-                    </li>
-                    <li class="show-default">  <a href="mobile/pb_we"><i class="fas fa-bolt"></i><span>WE</span></a>
-                    </li>
-                    <li class="show-default">           <a href="mobile/pb_wi"><i class="fas fa-laptop-code"></i><span>WI</span></a>
-                    </li>
-                    <li class="show-default">          <a href="mobile/pb_wm"><i class="fas fa-wrench"></i><span>WM</span></a>
-                    </li>
-                    <li class="show-default">          <a href="mobile/pb_wz"><i class="fas fa-users"></i><span>WIZ</span></a>
-                    </li>
-                    <li class="show-default">          <a href="mobile/pb_zwl"><i class="fas fa-tree"></i><span>ZWL</span></a>
-                    %APPEND%
+              <a href="mobile/pb_acs"
+                ><i class="fas fa-dumbbell"></i><span>ACS</span></a
+              >
             </li>
-        </ul>
-    </div>
+            <li class="show-default">
+              <a href="mobile/pb_cnk"
+                ><i class="fas fa-book-reader"></i><span>CNK</span></a
+              >
+            </li>
+            <li class="show-default">
+              <a href="mobile/pb_wa"
+                ><i class="fas fa-archway"></i><span>WA</span></a
+              >
+            </li>
+            <li class="show-default">
+              <a href="mobile/pb_wb"
+                ><i class="fas fa-building"></i><span>WB</span></a
+              >
+            </li>
+            <li class="show-default">
+              <a href="mobile/pb_we"
+                ><i class="fas fa-bolt"></i><span>WE</span></a
+              >
+            </li>
+            <li class="show-default">
+              <a href="mobile/pb_wi"
+                ><i class="fas fa-laptop-code"></i><span>WI</span></a
+              >
+            </li>
+            <li class="show-default">
+              <a href="mobile/pb_wm"
+                ><i class="fas fa-wrench"></i><span>WM</span></a
+              >
+            </li>
+            <li class="show-default">
+              <a href="mobile/pb_wz"
+                ><i class="fas fa-users"></i><span>WIZ</span></a
+              >
+            </li>
+            <li class="show-default">
+              <a href="mobile/pb_zwl"
+                ><i class="fas fa-tree"></i><span>ZWL</span></a
+              >
+            </li>
+            %APPEND%
+          </ul>
+        </article>
+      </div>
     </main>
     <footer>
-      <svg class="bg"
+      <svg
+        class="bg"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 200 100"
         preserveAspectRatio="none"
       >
-        <circle fill="#ff8600" cx="0" cy="100" r="100" ></circle>
-        <circle fill="#ff8600" cx="200" cy="100" r="100" ></circle>
+        <circle fill="#ff8600" cx="0" cy="100" r="100"></circle>
+        <circle fill="#ff8600" cx="200" cy="100" r="100"></circle>
       </svg>
       <img src="logo.png" />
     </footer>

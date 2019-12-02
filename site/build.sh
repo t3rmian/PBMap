@@ -18,24 +18,14 @@ then
 fi
 echo "=== The hashes are different, continuing the build ==="
 cp logo.png public/logo.png
+
+PARALLELISM=8
 for file in ../app/src/main/assets/data/*
 do
-	echo "=== Processing $file ==="
-	map=`./extract_ids.sh $file | head -n 1`
-	#echo "Generating public/mobile/$map"
-	mkdir -p "public/mobile/$map"
-	rootUrl="https://play.google.com/store/apps/details?id=io.github.t3r1jj.pbmap\&referrer=https%3A%2F%2Fpbmap.termian.dev%2Fmobile"
-	url="$rootUrl%2F$map"
-	sed "s|%URL%|$url|g" template.html > "public/mobile/$map/index.html"
-	for place in `./extract_ids.sh $file | tail -n+2 `
-	do
-	    #echo "Generating public/mobile/$map/$place"
-    	mkdir -p "public/mobile/$map/$place"
-	    url="$rootUrl%2F$map%2F$place"
-		sed "s|%URL%|$url|g" template.html > "public/mobile/$map/$place/index.html"
-	done
-	sed "s|%URL%|$rootUrl|g" template.html > "public/mobile/index.html"
+    ((i=i%PARALLELISM)); ((i++==0)) && wait
+    ./generate_site_tree.sh $file &
 done
+wait
 
 echo "Generating main index..."
 cp index.html public/index.html
@@ -52,8 +42,7 @@ do
     then
         place=""
     fi
-    link="<li class=\"hide-default\"><a href=\"$path\">$place$space</a></li>"
-    sed -i "s|%APPEND%|$link&|g" public/index.html
+    link="$link<li class=\"hide-default\"><a href=\"/$path\">$place$space</a></li>"
 done
-sed -i "s|%APPEND%||g" public/index.html
+sed -i "s|%APPEND%|$link&|g" public/index.html
 echo "Finished generating main index"
