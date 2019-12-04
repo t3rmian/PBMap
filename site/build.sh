@@ -28,23 +28,17 @@ done
 wait
 
 echo "=== Generating main index... ==="
-cp index.html public/index.html
-for file in public/*.html public/*/*.html public/*/*/*.html public/*/*/*/*.html
+rm -rf build
+mkdir -p build
+for file in public/*/*.html public/*/*/*.html public/*/*/*/*.html
 do
-    path=$(echo "$file" | cut -d/ -f2,3,4)
-	place=$(echo "$path" | cut -d/ -f3)@
-	space=$(echo "$path" | cut -d/ -f2)
-	if [[ "$space" == "index.html" ]]
-    then
-        continue
-    fi
-	if [[ "$place" == "index.html@" ]]
-    then
-        place=""
-    fi
-    link="$link<li class=\"hide-default\"><a href=\"/$path\" data-id=\"$place$space\"></a></li>"
+    ((j++%PARALLELISM==0)) && wait
+    ./generate_links.sh $file $j &
 done
-sed -i "s|%APPEND%|$link|g" public/index.html
+wait
+links=`cat build/*`
+awk -v r="$links" '{gsub(/%APPEND%/,r)}1' index.html > public/index.html
+
 echo "=== Finished generating main index ==="
 
 echo "=== Preparing i18n files... ==="
