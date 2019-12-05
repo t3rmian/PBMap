@@ -80,6 +80,11 @@
         position: relative;
       }
 
+      footer nav {
+        z-index: 3;
+        position: relative;
+      }
+
       footer .bg {
         z-index: 1;
         position: absolute;
@@ -163,7 +168,7 @@
         margin: 8px 0;
       }
 
-      a {
+      main a {
         text-decoration: none;
         line-height: 64px;
         position: relative;
@@ -187,7 +192,7 @@
         color: black;
       }
 
-      a:hover {
+      main a:hover {
         box-shadow: #be5600 1px 1px, #be5600 2px 2px, #be5600 3px 3px;
         color: #be5600;
         background-color: white;
@@ -440,6 +445,9 @@
         <circle fill="#ff8600" cx="200" cy="100" r="100"></circle>
       </svg>
       <img src="logo.png" />
+      <nav>
+        %I18N%
+      </nav>
     </footer>
   </body>
 </html>

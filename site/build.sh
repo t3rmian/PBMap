@@ -41,7 +41,47 @@ awk -v r="$links" '{gsub(/%APPEND%/,r)}1' index.html > public/index.html
 
 echo "=== Finished generating main index ==="
 
+echo "=== Preparing i18n links... ==="
+for file in ../app/src/main/res/values*/*data.xml
+do
+    echo "=== Processing $file ==="
+    values_name=$(echo "$file" | cut -d/ -f6)
+    lang=$(echo "$values_name" | cut -d- -f2)
+    region=$(echo "$values_name" | cut -d- -f3 | cut -c2- | awk '{print tolower($0)}')
+
+    if [[ "$region" == "" ]]
+    then
+        hreflang=$lang
+    else
+        hreflang="$lang-$region"
+    fi
+
+    if [[ "$lang" == "values" ]]
+    then
+        hreflang="en-gb"
+    fi
+    langs[((k++))]=$hreflang
+done
+IFS=$'\n' sorted=($(sort <<<"${langs[*]}"))
+unset IFS
+for lang in "${langs[@]}"
+do
+    length=$((${#langs[@]}/2))
+    if [[ "$((m++))" == "$length" ]]
+    then
+        nav="$nav<span/>"
+    fi
+    if [[ "$lang" == "en-gb" ]]
+    then
+        nav="$nav<a hreflang=\"$lang\" href=\"/\">$lang</a>"
+    else
+        nav="$nav<a hreflang=\"$lang\" href=\"/$lang\">$lang</a>"
+    fi
+done
+sed -i "s|%I18N%|$nav|g" public/index.html
+echo "=== Finished preparing i18n links ==="
 echo "=== Preparing i18n files... ==="
+
 for file in ../app/src/main/res/values*/*data.xml
 do
     echo "=== Processing $file ==="
