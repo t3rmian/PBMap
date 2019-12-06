@@ -27,7 +27,7 @@ do
 done
 wait
 
-echo "=== Generating main index... ==="
+echo "=== Generating main index, this might take a while... ==="
 rm -rf build
 mkdir -p build
 for file in public/*/*.html public/*/*/*.html public/*/*/*/*.html
@@ -69,16 +69,20 @@ do
     length=$((${#langs[@]}/2))
     if [[ "$((m++))" == "$length" ]]
     then
-        nav="$nav<span/>"
+        nav="$nav<span></span>"
     fi
     if [[ "$lang" == "en-gb" ]]
     then
         nav="$nav<a hreflang=\"$lang\" href=\"/\">$lang</a>"
+        hrefs="$hrefs<link rel=\"alternate\" hreflang=\"x-default\" href=\"/\"/>"
+        hrefs="$hrefs<link rel=\"alternate\" hreflang=\"$lang\" href=\"/\"/>"
     else
         nav="$nav<a hreflang=\"$lang\" href=\"/$lang\">$lang</a>"
+        hrefs="$hrefs<link rel=\"alternate\" hreflang=\"$lang\" href=\"/$lang\"/>"
     fi
 done
 sed -i "s|%I18N%|$nav|g" public/index.html
+sed -i "s|%HREFS%|$hrefs|g" public/index.html
 echo "=== Finished preparing i18n links ==="
 echo "=== Preparing i18n files... ==="
 
@@ -101,8 +105,9 @@ do
         sed '/<string name="address_/,/<\/string>/d' $file > public/i18n.xml
     else
         mkdir -p public/$hreflang
-        cp public/index.html public/$hreflang/index.html
+        sed "s|%LANG%|$lang|g" public/index.html > public/$hreflang/index.html
         sed '/<string name="address_/,/<\/string>/d' $file > public/$hreflang/i18n.xml
     fi
 done
+sed -i "s|%LANG%|en-gb|g" public/index.html
 echo "=== Finished preparing i18n files ==="
