@@ -22,9 +22,21 @@
         font-size: 2em;
       }
 
+      h1 a {
+        color: inherit;
+        text-decoration: none;
+      }
+
       h2 {
-        color: #333;
-        font-size: 1.35em;
+        color: #444;
+        font-size: 1.25em;
+      }
+
+      header .source {
+        position: absolute;
+        right: 1em;
+        top: 1em;
+        color: #2f3640;
       }
 
       h1,
@@ -45,12 +57,13 @@
       }
 
       .search-box > .search-txt {
-        width: 240px;
+        width: 280px;
         padding: 0 6px;
       }
 
       .search-btn {
-        float: right;
+        position: absolute;
+        right: 8px;
         width: 40px;
         height: 40px;
         border-radius: 50%;
@@ -58,7 +71,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        transition: 0.4s;
         color: white;
         cursor: pointer;
       }
@@ -75,7 +87,6 @@
         padding: 0;
         color: white;
         font-size: 16px;
-        transition: 0.4s;
         line-height: 40px;
         width: 0px;
         font-weight: bold;
@@ -341,6 +352,7 @@
         [...document.querySelectorAll(".hide-default a[data-id]")].forEach(e =>
           i18nElement(e, i18nFullId(e.dataset.id))
         );
+        i18nElement(document.querySelector(".show-default:first-child span"), "pb_campus");
       }
 
       function i18nElement(element, value) {
@@ -426,18 +438,19 @@
   <body>
     <header>
       <h1>
-        PBMap
+        <a href="https://play.google.com/store/apps/details?id=io.github.t3r1jj.pbmap">%TITLE%</a>
       </h1>
       <h2>
-        Find a place on Bialystok University of Technology
+        %SUBTITLE%
       </h2>
+      <a href="https://github.com/t3rmian/PBMap" class="source"><i class="fab fa-github fa-3x"></i></a>
     </header>
-    <div>
+    <div role="search">
       <div class="search-box">
         <input
           type="text"
           class="search-txt"
-          placeholder="abc@xyz"
+          placeholder="%HINT%"
           onkeyup="search(this.value)"
         />
         <span class="search-btn" href="#">

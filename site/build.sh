@@ -52,6 +52,9 @@ do
     if [[ "$region" == "" ]]
     then
         hreflang=$lang
+    elif [[ "$lang-$region" == "en-gb" ]]
+    then
+      continue
     else
         hreflang="$lang-$region"
     fi
@@ -96,6 +99,9 @@ do
     if [[ "$region" == "" ]]
     then
         hreflang=$lang
+    elif [[ "$lang-$region" == "en-gb" ]]
+    then
+        continue
     else
         hreflang="$lang-$region"
     fi
@@ -111,3 +117,49 @@ do
 done
 sed -i "s|%LANG%|en-gb|g" public/index.html
 echo "=== Finished preparing i18n files ==="
+
+echo "=== Preparing title translations... ==="
+for file in ../app/src/main/res/values*/*strings.xml
+do
+    echo "=== Processing $file ==="
+    values_name=$(echo "$file" | cut -d/ -f6)
+    lang=$(echo "$values_name" | cut -d- -f2)
+    region=$(echo "$values_name" | cut -d- -f3 | cut -c2- | awk '{print tolower($0)}')
+
+    if [[ "$region" == "" ]]
+    then
+        hreflang=$lang
+    elif [[ "$lang-$region" == "en-gb" ]]
+    then
+        continue
+    else
+        hreflang="$lang-$region"
+    fi
+
+    title=`grep '<string name="name_app">' $file`
+    subtitle=`grep '<string name="about_description">' $file`
+    hint=`grep '<string name="search_hint">' $file`
+    if [[ "$title" == "" ]]
+    then
+        title=`grep '<string name="name_app">' ../app/src/main/res/values/strings.xml`
+    fi
+    if [[ "$subtitle" == "" ]]
+    then
+        subtitle=`grep '<string name="about_description">' ../app/src/main/res/values/strings.xml`
+    fi
+    title=`echo "$title" | cut -d\> -f2 | cut -d\< -f1`
+    subtitle=`echo "$subtitle" | cut -d\> -f2 | cut -d\< -f1`
+    subtitle=${subtitle: : -1}
+    hint=`echo "$hint" | cut -d\> -f2 | cut -d\< -f1`
+    if [[ "$lang" == "values" ]]
+    then
+        sed -i "s|%TITLE%|$title|g" public/index.html
+        sed -i "s|%SUBTITLE%|$subtitle|g" public/index.html
+        sed -i "s|%HINT%|$hint|g" public/index.html
+    else
+        sed -i "s|%TITLE%|$title|g" public/$hreflang/index.html
+        sed -i "s|%SUBTITLE%|$subtitle|g" public/$hreflang/index.html
+        sed -i "s|%HINT%|$hint|g" public/$hreflang/index.html
+    fi
+done
+echo "=== Finished title translations ==="
