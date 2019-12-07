@@ -4,9 +4,9 @@ package io.github.t3r1jj.pbmap.sample.integration;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.os.SystemClock;
 
 import androidx.annotation.StringRes;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.filters.MediumTest;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -25,6 +25,7 @@ import org.junit.runner.RunWith;
 
 import java.util.regex.Pattern;
 
+import io.github.t3r1jj.pbmap.testing.RetryRunner;
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 
 import static androidx.test.espresso.Espresso.onView;
@@ -41,7 +42,7 @@ import static junit.framework.TestCase.fail;
 import static org.hamcrest.core.IsNot.not;
 
 @LargeTest
-@RunWith(AndroidJUnit4.class)
+@RunWith(RetryRunner.class)
 public class EndToEndIntegrationTest {
 
     private static final int TIMEOUT_MS = 5 * 60 * 1000;
@@ -81,9 +82,10 @@ public class EndToEndIntegrationTest {
         device.findObject(new UiSelector().textMatches("^(?i)(PINPOINT DEFINED PLACE)$")).clickAndWaitForNewWindow();
         String menuText = "PBMap";
         if (!device.findObject(new UiSelector().textContains(menuText)).waitForExists(TIMEOUT_MS)) {
+            SystemClock.sleep(10000);
             fail("Could not find UI text: " + menuText);
         }
-        String placeText = "PB WI L2";
+        String placeText = "L2 [WI]";
         if (!device.findObject(new UiSelector().textContains(placeText)).exists()) {
             fail("Could not find UI text: " + placeText);
         }
@@ -101,7 +103,7 @@ public class EndToEndIntegrationTest {
         if (!device.findObject(new UiSelector().textContains(menuText)).waitForExists(TIMEOUT_MS)) {
             fail("Could not find UI text: " + menuText);
         }
-        String placeText = "PB campus";
+        String placeText = "BUT campus";
         if (!device.findObject(new UiSelector().textContains(placeText)).exists()) {
             fail("Could not find UI text: " + placeText);
         }
@@ -125,7 +127,8 @@ public class EndToEndIntegrationTest {
     public void displayPlaceNames() {
         onView(withId(R.id.show_place_names)).perform(click());
         UiDevice device = verifyCommonDisplayPlaces(R.string.places_by_name);
-        if (!device.findObject(new UiSelector().textContains("PB ")).exists()) {
+        SystemClock.sleep(10000);
+        if (!device.findObject(new UiSelector().textContains(" [WB]")).exists()) {
             fail("Could not find UI text: " + "PB ");
         }
     }

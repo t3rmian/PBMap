@@ -8,7 +8,6 @@ import android.util.Log;
 
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.matcher.ViewMatchers;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.filters.MediumTest;
 import androidx.test.filters.SmallTest;
@@ -25,6 +24,7 @@ import org.junit.runner.RunWith;
 import java.util.regex.Pattern;
 
 import io.github.t3r1jj.pbmap.R;
+import io.github.t3r1jj.pbmap.testing.RetryRunner;
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 
 import static androidx.test.espresso.Espresso.onView;
@@ -52,7 +52,7 @@ import static org.hamcrest.Matchers.any;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 
-@RunWith(AndroidJUnit4.class)
+@RunWith(RetryRunner.class)
 public class AboutActivityIT {
 
     @Rule
@@ -64,7 +64,7 @@ public class AboutActivityIT {
     public void tearDown() {
         UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
         device.waitForIdle();
-        if (device.findObject(text(Pattern.compile("^(?i)(Open with)$"))) != null) {
+        if (device.findObject(text(Pattern.compile(".*(?i)(Open with).*"))) != null) {
             device.pressBack();
         }
     }

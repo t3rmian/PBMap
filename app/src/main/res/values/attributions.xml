@@ -2,13 +2,14 @@
 <resources>
     <string-array name="attribution_titles">
         <item>TileView</item>
+        <item>Lingver</item>
         <item>Simple-XML</item>
         <item>Swipe-Selector</item>
         <item>FloatingActionButton</item>
         <item>TapTargetView</item>
         <item>Google Support Libraries</item>
         <item>Exo Bold</item>
-        <item>Icons</item>
+        <item>Ikony</item>
         <item>Map tiles</item>
     </string-array>
     <string-array name="attribution_descriptions">
@@ -17,6 +18,11 @@
             \nAuthor: Mike Dunn
             \nLicense: MIT
             \nSite: https://github.com/moagrius/TileView</item>
+        <item>Lingver is a library to manage your application locale and language.
+            \n\nVersion: com.github.YarikSOffice:lingver:1.1.0
+            \nAuthor: Yaroslav Berezanskyi
+            \nLicense: MIT
+            \nSite: https://github.com/YarikSOffice/lingver</item>
         <item>Simple is a high performance XML serialization and configuration framework for Java. It offers full object serialization and deserialization, maintaining each reference encountered.
             \n\nVersion: org.simpleframework:simple-xml:2.7.1
             \nAuthor: Niall Gallagher

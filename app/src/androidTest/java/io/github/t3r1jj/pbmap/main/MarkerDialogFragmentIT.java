@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.MotionEvent;
 
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.MediumTest;
 import androidx.test.filters.SmallTest;
 
@@ -17,6 +16,7 @@ import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
 
 import io.github.t3r1jj.pbmap.R;
+import io.github.t3r1jj.pbmap.testing.RetryRunner;
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 import io.github.t3r1jj.pbmap.view.map.routing.GeoMarker;
 
@@ -29,7 +29,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(AndroidJUnit4.class)
+@RunWith(RetryRunner.class)
 public class MarkerDialogFragmentIT {
     private final MarkerDialogFragment fragment = new MarkerDialogFragment();
     private final FragmentTestRule<?, MarkerDialogFragment> outerRule =

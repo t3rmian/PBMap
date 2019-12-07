@@ -3,7 +3,6 @@ package io.github.t3r1jj.pbmap.main.drawer;
 import android.content.Context;
 import android.content.Intent;
 
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.uiautomator.By;
@@ -18,6 +17,7 @@ import org.junit.runner.RunWith;
 
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.main.MapActivity;
+import io.github.t3r1jj.pbmap.testing.RetryRunner;
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 
 import static androidx.test.espresso.Espresso.onView;
@@ -26,7 +26,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.withIndex;
 
-@RunWith(AndroidJUnit4.class)
+@RunWith(RetryRunner.class)
 public class TutorialIT {
 
     private static final int TIMEOUT_MS = 100;

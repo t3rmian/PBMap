@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="attribution_titles">
+        <item>TileView</item>
+        <item>Lingver</item>
+        <item>Simple-XML</item>
+        <item>Swipe-Selector</item>
+        <item>FloatingActionButton</item>
+        <item>TapTargetView</item>
+        <item>Google Support Libraries</item>
+        <item>Exo Bold</item>
+        <item>Ikony</item>
+        <item>Map tiles</item>
+    </string-array>
+    <string-array name="attribution_descriptions">
+        <item>TileViewは、パンおよびズーム機能を備えたタイルベースの画像を非同期に表示し、マーカー、ホットスポット、パス、複数の詳細レベル、および任意の座標系などの機能をサポートします。
+            \n\n版: com.qozix:tileview:2.2.6
+            \n著者: Mike Dunn
+            \nライセンス: MIT
+            \nウェブサイト: https://github.com/moagrius/TileView</item>
+        <item>Lingverは、アプリケーションのロケールと言語を管理するためのライブラリです。
+            \n\n版: com.github.YarikSOffice:lingver:1.1.0
+            \n著者: Yaroslav Berezanskyi
+            \nライセンス: MIT
+            \nウェブサイト: https://github.com/YarikSOffice/lingver</item>
+        <item>Simpleは、Java用の高性能なXMLシリアル化および構成フレームワークです。 オブジェクトの完全なシリアル化と逆シリアル化を提供し、検出された各参照を維持します。
+            \n\n版: org.simpleframework:simple-xml:2.7.1
+            \n著者: Niall Gallagher
+            \nライセンス: Apache 2.0
+            \nウェブサイト: http://simple.sourceforge.net/</item>
+        <item>Androidのラジオボタンとドロップダウンの見栄えがよく、より直感的で高度にカスタマイズ可能な代替手段。 このビューは、スワイプセレクターに基づいています。
+            \n\n版: com.roughike:swipe-selector:1.0.6
+            \n著者: Iiro Krankka
+            \nライセンス: Apache 2.0
+            \nウェブサイト: https://github.com/roughike/SwipeSelector</item>
+        <item>さらに多くの機能を備えたAndroid用のフローティングアクションボタンの別の実装。
+            \n\n版: com.github.clans:fab:1.6.4
+            \n著者: Dmytro Tarianyk
+            \nライセンス: Apache 2.0
+            \nウェブサイト: https://github.com/Clans/FloatingActionButton</item>
+        <item>機能発見に関するGoogleのマテリアルデザインガイドラインのタップターゲットの実装。
+            \n\n版: com.getkeepsafe.taptargetview:taptargetview:1.9.1
+            \n著者: Keepsafe Software Inc.
+            \nライセンス: Apache 2.0
+            \nウェブサイト: https://github.com/KeepSafe/TapTargetView</item>
+        <item>後方互換性と便利なヘルパークラスを提供するサポートライブラリのグループ。
+            \n\n版: com.android.support
+            \n著者: The Android Open Source Project
+            \nライセンス: Apache 2.0
+            \nウェブサイト: https://developer.android.com/topic/libraries/support-library/index.html</item>
+        <item>マップ上に名前を表示するために使用されるSans Serifフォント。
+            \n\n版: Exo Bold
+            \n著者: Natanael Gama (exo@ndiscovered.com)
+            \nライセンス: SIL Open Font License v1.10
+            \nウェブサイト: https://www.fontsquirrel.com/fonts/exo</item>
+        <item>Austin Andrewsのおかげで生成されたアイコン - https://materialdesignicons.com/
+            \nクレジット: Google Inc.
+            \nライセンス: Apache 2.0
+            \nウェブサイト: https://github.com/google/material-design-icons</item>
+        <item>上部のランチャーアイコンからアクセスできるプロジェクトサイトでも利用可能なマップタイル。
+            \n\nMap tiles by Stamen Design, under CC BY 3.0.
+            \nData by OpenStreetMap (© OpenStreetMap contributors), under ODbL.
+            \nウェブサイト: http://stamen.com/ http://www.openstreetmap.org</item>
+    </string-array>
+</resources>

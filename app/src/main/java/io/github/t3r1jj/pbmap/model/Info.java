@@ -1,13 +1,15 @@
 package io.github.t3r1jj.pbmap.model;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
+import android.widget.ImageView;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
 
+import io.github.t3r1jj.pbmap.main.MapActivity;
+import io.github.t3r1jj.pbmap.model.map.Place;
 import io.github.t3r1jj.pbmap.model.map.Space;
 
 public class Info implements Serializable {
@@ -28,13 +30,12 @@ public class Info implements Serializable {
     }
 
     public Drawable createLogo(Context context) {
-        if (logoPath != null) {
-            try {
-                InputStream inputStream = context.getAssets().open(logoPath);
-                return Drawable.createFromStream(inputStream, null);
-            } catch (IllegalArgumentException | IOException e) {
-                Log.w("createLogo", e);
-            }
+        ImageView logo = Place.createLogo(context, logoPath);
+        if (logo != null) {
+            Drawable prototype = logo.getDrawable();
+            BitmapDrawable drawable = new BitmapDrawable(context.getResources(), MapActivity.drawableToBitmap(prototype));
+            drawable.setColorFilter(0xff000000, PorterDuff.Mode.MULTIPLY);
+            return drawable;
         }
         return null;
     }

@@ -98,7 +98,7 @@ A simple workflow has been incorporated:
 
 CI & CD are configured thanks to Travis CI and fastlane:
 - unit tests and instrumentation tests (Travis CI) are run **on every branch** with code coverage reporting
-- ~~instrumentation tests are run on Firebase Test Lab~~ **on master branch** and the application bundle is deployed to Google Play for internal testing  
+- ~~instrumentation tests are run on Firebase Test Lab~~ **on master branch** ~~and~~ the application bundle is deployed to Google Play for internal testing  
     - the promotion from internal test track to production is done manually
 
 Tests on Travis are run in parallel to speed up the build and meet timeout limits (50 min). There are currently 4 jobs running:

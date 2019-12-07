@@ -8,6 +8,7 @@ android {
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
     defaultConfig {
+        resConfigs "en", "en_GB", "en_US", "pl", "ru", "ja"
         applicationId "io.github.t3r1jj.pbmap"
         minSdkVersion 14
         targetSdkVersion 28
@@ -61,6 +62,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.appcompat:appcompat:$androidx_appcompat_version"
+    implementation "androidx.preference:preference:$androidx_appcompat_version"
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation "com.google.android.material:material:$android_material_version"
     implementation 'com.qozix:tileview:2.2.6'
@@ -73,12 +75,16 @@ dependencies {
     implementation 'com.github.clans:fab:1.6.4'
     implementation 'com.getkeepsafe.taptargetview:taptargetview:1.9.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.github.YarikSOffice:lingver:1.1.0"
 
     testImplementation "androidx.test.ext:truth:$androidx_test_version"
     testImplementation "junit:junit:$junit_version"
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_jupiter_version"
     testImplementation "org.mockito:mockito-core:$mockito_version"
-    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
+    testImplementation group: 'org.powermock', name: 'powermock-core', version: "$powermock_version"
+    testImplementation group: 'org.powermock', name: 'powermock-module-junit4', version: "$powermock_version"
+    testImplementation group: 'org.powermock', name: 'powermock-api-mockito2', version: "$powermock_version"
 
     androidTestImplementation("androidx.test.espresso:espresso-core:$espresso_version", {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -117,3 +123,24 @@ project.gradle.taskGraph.whenReady {
         installDebugAndroidTest.install()
     }
 }
+
+task buildDictionary << {
+    def defaultLanguage = "default"
+    def foundLocales = new StringBuilder()
+    foundLocales.append("new String[]{")
+
+    fileTree("src/main/res").visit { FileVisitDetails details ->
+        if(details.file.path.endsWith("strings.xml")){
+            def languageCode = details.file.parent.split("\\\\|/").last().replaceAll('values-','').replaceAll('-r','_')
+            languageCode = (languageCode == "values") ? defaultLanguage : languageCode
+            foundLocales.append("\"").append(languageCode).append("\"").append(",")
+        }
+    }
+
+    foundLocales.append("}")
+    def foundLocalesString = foundLocales.toString().replaceAll(',}','}')
+    android.defaultConfig.buildConfigField "String[]", "LANGUAGES", foundLocalesString
+    android.defaultConfig.buildConfigField "String", "DEFAULT_LANGUAGE", "\"${defaultLanguage}\""
+
+}
+preBuild.dependsOn buildDictionary

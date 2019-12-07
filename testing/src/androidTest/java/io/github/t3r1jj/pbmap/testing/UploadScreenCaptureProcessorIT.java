@@ -1,9 +1,5 @@
 package io.github.t3r1jj.pbmap.testing;
 
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.FlakyTest;
-import androidx.test.filters.LargeTest;
-import androidx.test.filters.MediumTest;
 import androidx.test.filters.SmallTest;
 import androidx.test.runner.screenshot.ScreenCapture;
 
@@ -15,7 +11,7 @@ import java.io.IOException;
 import static android.graphics.Bitmap.CompressFormat.JPEG;
 import static com.google.common.truth.Truth.assertThat;
 
-@RunWith(AndroidJUnit4.class)
+@RunWith(RetryRunner.class)
 public class UploadScreenCaptureProcessorIT {
 
     private final DefaultScreenCaptureFactory factory = new DefaultScreenCaptureFactory();

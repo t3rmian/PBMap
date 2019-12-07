@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="TypographyDashes">
+    <string name="name_acs">Academic\nSports\nCenter\n[ACS]</string>
+    <string name="name_pb_acs">Sports Center [ACS]</string>
+    <string name="name_pb_acs_l2">Academic Sports Center L2 [ACS]</string>
+    <string name="name_cnk">Modern Educational\nCenter [CNK]</string>
+    <string name="name_pb_cnk_l2">Modern Ed. Center L2 [CNK]</string>
+    <string name="name_pb_cnk_l3">Modern Ed. Center L3 [CNK]</string>
+    <string name="name_pb_wa_l2">Architecture L2 [WA]</string>
+    <string name="name_pb_wa_l3">Architecture L3 [WA]</string>
+    <string name="name_pb_wa_l4">Architecture L4 [WA]</string>
+    <string name="name_pb_wb_l2">CE/ES L2 [WB]</string>
+    <string name="name_pb_wb_l2_iet">CE/ES IET L2 [WB]</string>
+    <string name="name_pb_wb_l3">CE/ES L3 [WB]</string>
+    <string name="name_pb_wb_l3_iet">CE/ES IET L3 [WB]</string>
+    <string name="name_pb_wb_l4_iet">CE/ES IET L4 [WB]</string>
+    <string name="name_pb_we_l2">EE L2 [WE]</string>
+    <string name="name_pb_we_l3">EE L3 [WE]</string>
+    <string name="name_pb_we_l4">EE L4 [WE]</string>
+    <string name="name_pb_wi_l2">CS L2 [WI]</string>
+    <string name="name_pb_wi_l3">CS L3 [WI]</string>
+    <string name="name_pb_wm_l2">ME L2 [WM]</string>
+    <string name="name_pb_wm_l3">ME L3 [WM]</string>
+    <string name="name_pb_zwl_l2">Forestry L2 [ZWL]</string>
+    <string name="name_pb_wz_berlin_l2">EM Berlin L2 [WZ]</string>
+    <string name="name_pb_wz_shanghai_l2">EM Shanghai L2 [WZ]</string>
+    <string name="name_pb_wz_philadelphia_l2">EM Philadelphia L2 [WZ]</string>
+    <string name="name_pb_wz_philadelphia_l3">EM Philadelphia L3 [WZ]</string>
+    <string name="name_shop">Store</string>
+    <string name="name_wc">Bathroom</string>
+    <string name="name_cloakroom">Coatroom</string>
+    <string name="name_054_058_wc">054-058 Bathroom</string>
+</resources>

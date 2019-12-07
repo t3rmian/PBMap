@@ -11,12 +11,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.view.map.PlaceView;
 
 public abstract class Place {
 
-    public static final String NAME_POSTFIX = "_name";
-    private static final String DESCRIPTION_POSTFIX = "_description";
+    public static final String NAME_PREFIX = "name_";
+    private static final String DESCRIPTION_PREFIX = "description_";
     @Attribute
     protected String id;
     @Attribute(name = "logo_path", required = false)
@@ -29,26 +30,29 @@ public abstract class Place {
     /**
      *
      * @param id of the place
-     * @return name res id with slashes replaced by _ and with appended postfix
+     * @return name res id with special characters replaced by _ and with prepended prefix
      */
-    public static String getResIdString(String id, String postfix) {
-        return id.toLowerCase().replace("/", "_") + postfix;
+    public static String getResIdString(String id, String prefix) {
+        return prefix + id.toLowerCase()
+                .replace("/", "_")
+                .replace(" ", "_")
+                .replace("-", "_");
     }
 
     /**
      *
-     * @return see {@link #getResIdString(String, String)} with name postfix
+     * @return see {@link #getResIdString(String, String)} with name prefix
      */
     public String getNameResIdString() {
-        return getResIdString(id, NAME_POSTFIX);
+        return getResIdString(id, NAME_PREFIX);
     }
 
     /**
      *
-     * @return see {@link #getResIdString(String, String)} with description postfix
+     * @return see {@link #getResIdString(String, String)} with description prefix
      */
     public String getDescriptionResIdString() {
-        return getResIdString(id, DESCRIPTION_POSTFIX);
+        return getResIdString(id, DESCRIPTION_PREFIX);
     }
 
     public String getName(Context context) {
@@ -85,18 +89,21 @@ public abstract class Place {
     }
 
     public ImageView createLogo(Context context) {
-        if (logoPath != null) {
-            try {
-                InputStream inputStream = context.getAssets().open(logoPath);
-                Drawable drawable = Drawable.createFromStream(inputStream, null);
-                ImageView logo = new ImageView(context);
-                logo.setImageDrawable(drawable);
-                return logo;
-            } catch (IllegalArgumentException | IOException e) {
-                e.printStackTrace();
-            }
+        return createLogo(context, logoPath);
+    }
+
+    public static ImageView createLogo(Context context, String logoPath) {
+        String packageName = context.getPackageName();
+        if (logoPath == null) {
+            return null;
         }
-        return null;
+        int resId = context.getResources().getIdentifier(logoPath, "drawable", packageName);
+        if (resId == 0) {
+            return null;
+        }
+        ImageView logo = new ImageView(context);
+        logo.setImageDrawable(context.getResources().getDrawable(resId));
+        return logo;
     }
 
     @Override

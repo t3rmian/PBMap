@@ -17,7 +17,6 @@ import java.util.Collections;
 import java.util.List;
 
 import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 public class MapsDaoIT {
@@ -81,6 +80,6 @@ public class MapsDaoIT {
             Log.i(TAG, sb.toString());
         }
         Log.i(TAG, "<END>");
-        assertTrue(!stringBuilder.toString().isEmpty());
+        assertFalse(stringBuilder.toString().isEmpty());
     }
 }
