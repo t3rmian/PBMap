@@ -67,7 +67,7 @@ before_install:
 - yes | sdkmanager "build-tools;$ANDROID_BUILD_TOOLS_VERSION" > /dev/null
 - yes | sdkmanager "platforms;android-$ANDROID_API_LEVEL" > /dev/null
 - yes | sdkmanager "platforms;android-$EMULATOR_API_LEVEL" > /dev/null
-- yes | sdkmanager "emulator" > /dev/null
+- yes | sdkmanager --channel=4 "emulator"
 - ls -lat ${ANDROID_HOME}/emulator
 - yes | sdkmanager "extras;android;m2repository" > /dev/null
 - yes | sdkmanager "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI_TAG;$ANDROID_ABI"
