@@ -24,6 +24,7 @@ import org.junit.runner.RunWith;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.github.t3r1jj.pbmap.R;
+import io.github.t3r1jj.pbmap.testing.DisableAnimationsRule;
 import io.github.t3r1jj.pbmap.testing.RetryRunner;
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 
@@ -49,6 +50,7 @@ public class MapActivityIT {
     @Rule
     public RuleChain testRule = RuleChain
             .outerRule(activityRule)
+            .around(new DisableAnimationsRule())
             .around(new ScreenshotOnTestFailedRule());
 
     @Before
