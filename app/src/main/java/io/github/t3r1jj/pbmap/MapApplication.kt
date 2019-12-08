@@ -9,7 +9,6 @@ import android.content.res.Resources
 import android.preference.PreferenceManager
 import androidx.core.os.ConfigurationCompat
 import com.yariksoffice.lingver.Lingver
-import io.github.t3r1jj.pbmap.logging.Config
 import io.github.t3r1jj.pbmap.settings.LanguageSettingChangeActivityCallbacks
 import io.github.t3r1jj.pbmap.settings.SettingsLocaleStore
 

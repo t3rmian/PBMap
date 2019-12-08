@@ -67,8 +67,12 @@ before_install:
 - yes | sdkmanager "build-tools;$ANDROID_BUILD_TOOLS_VERSION" > /dev/null
 - yes | sdkmanager "platforms;android-$ANDROID_API_LEVEL" > /dev/null
 - yes | sdkmanager "platforms;android-$EMULATOR_API_LEVEL" > /dev/null
-- yes | sdkmanager "emulator" > /dev/null
+- curl -fo emulator.zip "https://dl.google.com/android/repository/emulator-linux-5264690.zip" #29.2.1.0
+- rm -rf "${ANDROID_HOME}/emulator"
+- unzip -q emulator.zip -d "${ANDROID_HOME}"
+- rm -f emulator.zip
 - ls -lat ${ANDROID_HOME}/emulator
+- ${ANDROID_HOME}/emulator/emulator -version
 - yes | sdkmanager "extras;android;m2repository" > /dev/null
 - yes | sdkmanager "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI_TAG;$ANDROID_ABI"
 - bundle install

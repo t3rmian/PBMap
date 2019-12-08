@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 import io.github.t3r1jj.pbmap.R;
-import io.github.t3r1jj.pbmap.logging.Config;
+import io.github.t3r1jj.pbmap.Config;
 import io.github.t3r1jj.pbmap.logging.Message;
 import io.github.t3r1jj.pbmap.logging.WebLogger;
 import io.github.t3r1jj.pbmap.model.Info;

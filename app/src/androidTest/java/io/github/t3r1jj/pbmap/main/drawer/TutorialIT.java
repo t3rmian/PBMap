@@ -3,6 +3,7 @@ package io.github.t3r1jj.pbmap.main.drawer;
 import android.content.Context;
 import android.content.Intent;
 
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.uiautomator.By;
@@ -22,6 +23,8 @@ import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.swipeUp;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.withIndex;
@@ -56,6 +59,10 @@ public class TutorialIT {
             obj.click();
         }
 
+        verifyTutorial(device, ctx);
+    }
+
+    public static void verifyTutorial(UiDevice device, Context ctx) {
         device.wait(Until.findObject(By.text(ctx.getString(R.string.action_search))), TIMEOUT_MS);
         device.wait(Until.findObject(By.text(ctx.getString(R.string.action_search_description))), TIMEOUT_MS);
         device.findObject(By.res("io.github.t3r1jj.pbmap:id/action_search")).click();
@@ -79,6 +86,7 @@ public class TutorialIT {
         device.wait(Until.findObject(By.text(ctx.getString(R.string.action_back))), TIMEOUT_MS);
         device.wait(Until.findObject(By.text(ctx.getString(R.string.action_back_description))), TIMEOUT_MS);
         device.findObject(By.res("io.github.t3r1jj.pbmap:id/action_back")).click();
+        onView(withId(R.id.help_fab)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.GONE)));
     }
 
 }
