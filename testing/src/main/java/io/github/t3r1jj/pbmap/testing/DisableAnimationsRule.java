@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class DisableAnimationsRule implements TestRule {
 
-    private final String[] previousAnimationSettings = new String[]{"0", "0", "0"};
+    final String[] previousAnimationSettings = new String[]{"0", "0", "0"};
 
     @Override
     public Statement apply(final Statement base, Description description) {

@@ -12,6 +12,7 @@ import androidx.test.filters.LargeTest;
 import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
+import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.UiDevice;
 
 import org.junit.After;
@@ -117,8 +118,8 @@ public class MapActivityIT {
     public void testTutorial() {
         activityRule.launchActivity(new Intent());
         onView(withContentDescription(R.string.navigation_drawer_close)).perform(click());
-        onView(withId(R.id.help_fab)).perform(click());
         UiDevice device = UiDevice.getInstance(getInstrumentation());
+        device.findObject(By.res("io.github.t3r1jj.pbmap:id/help_fab")).click();
         Context ctx = getInstrumentation().getTargetContext();
         verifyTutorial(device, ctx);
     }
