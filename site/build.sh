@@ -1,10 +1,7 @@
 #!/bin/bash
 
-rm -rf public
-mkdir public
-
 echo "=== Generating hash ==="
-./hash.sh ../app/src/main/assets/data/* ./*.sh ./*.html ./*.png ../app/src/main/res/values*/*data.xml > public/.hash
+./hash.sh ../app/src/main/assets/data/* ./*.sh ./*.html ./*.png ./*.js ./*.css ../app/src/main/res/values*/*data.xml ../app/src/main/res/values*/*strings.xml > public/.hash
 cat public/.hash
 echo "=== Downloading hash from remote ==="
 curl https://pbmap.termian.dev/.hash > .hash
@@ -17,7 +14,12 @@ then
     exit 0
 fi
 echo "=== The hashes are different, continuing the build ==="
-cp logo.png public/logo.png
+
+rm -rf public
+mkdir public
+cp *.css public
+cp *.js public
+cp *.png public
 
 PARALLELISM=8
 for file in ../app/src/main/assets/data/*
