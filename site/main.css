@@ -36,7 +36,7 @@ h2 {
 .search-box {
     z-index: 2;
     position: absolute;
-    top: 27.5%;
+    top: 22.5%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: #2f3640;
@@ -135,21 +135,21 @@ main article {
     left: 0;
     right: 0;
     top: 50%;
-    position: absolute;
+    position: relative;
     transform: translateY(-50%);
-    margin: 16px -100%;
+    margin: 0 -100%;
     padding: 0 100%;
     background-color: #eee;
     box-shadow: 0 0 100px 8px #e0e0e0
 }
 
 main div {
-    margin: calc(27.5vh + 35px) 0 195px 0;
-    height: calc(100vh - 27.5vh - 230px);
+    margin: calc(22.5vh + 35px) 0 200px 0;
+    height: calc(100vh - 22.5vh - 235px);
 }
 
 main article section {
-    max-height: calc(100vh - 20vh - 280px);
+    max-height: calc(100vh - 22.5vh - 235px);
     overflow-y: auto
 }
 
@@ -252,7 +252,7 @@ li:hover span {
 main hr {
     border: 0;
     height: 1px;
-    background-image: -webkit-linear-gradient(left, #fff, #8b8b8b, #fff)
+    background-image: -webkit-linear-gradient(left, #eee, #8b8b8b, #eee)
 }
 
 nav span {

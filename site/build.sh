@@ -114,7 +114,7 @@ do
         sed '/<string name="address_/,/<\/string>/d' $file > public/i18n.xml
     else
         mkdir -p public/$hreflang
-        sed "s|%LANG%|$lang|g" public/index.html > public/$hreflang/index.html
+        sed "s|%LANG%|$hreflang|g" public/index.html > public/$hreflang/index.html
         sed '/<string name="address_/,/<\/string>/d' $file > public/$hreflang/i18n.xml
     fi
 done
