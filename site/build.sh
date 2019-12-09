@@ -1,5 +1,6 @@
 #!/bin/bash
 
+mkdir public
 echo "=== Generating hash ==="
 ./hash.sh ../app/src/main/assets/data/* ./*.sh ./*.html ./*.png ./*.js ./*.css ../app/src/main/res/values*/*data.xml ../app/src/main/res/values*/*strings.xml > public/.hash
 cat public/.hash
