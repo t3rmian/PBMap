@@ -124,4 +124,15 @@
 
     </com.github.clans.fab.FloatingActionMenu>
 
+    <com.github.clans.fab.FloatingActionButton
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="75dp"
+        android:id="@+id/help_fab"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_help"
+        fab:fab_colorNormal="@color/colorAccentPressed"
+        fab:fab_colorPressed="@color/colorAccent"
+        fab:fab_size="mini"/>
+
 </FrameLayout>

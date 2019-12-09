@@ -1,21 +1,16 @@
-package io.github.t3r1jj.pbmap.logging;
+package io.github.t3r1jj.pbmap;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
 
-import io.github.t3r1jj.pbmap.MapApplication;
 import io.github.t3r1jj.pbmap.model.dictionary.MeasurementSystem;
 import io.github.t3r1jj.pbmap.view.map.routing.FullRoute;
 import io.github.t3r1jj.pbmap.view.map.routing.Route;
-
-import static io.github.t3r1jj.pbmap.MapApplication.DEBUG;
-import static io.github.t3r1jj.pbmap.MapApplication.UNIT_SYSTEM;
 
 public class Config {
     private static Config instance = new Config();
@@ -51,14 +46,14 @@ public class Config {
 
     public void initPreferences(@NotNull Context context, @NotNull Locale locale) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        if (!preferences.contains(UNIT_SYSTEM)) {
+        if (!preferences.contains(MapApplication.UNIT_SYSTEM)) {
             if (locale == Locale.US) {
-                preferences.edit().putString(UNIT_SYSTEM, MeasurementSystem.US.toString()).apply();
+                preferences.edit().putString(MapApplication.UNIT_SYSTEM, MeasurementSystem.US.toString()).apply();
             } else {
-                preferences.edit().putString(UNIT_SYSTEM, MeasurementSystem.SI.toString()).apply();
+                preferences.edit().putString(MapApplication.UNIT_SYSTEM, MeasurementSystem.SI.toString()).apply();
             }
         }
-        measurementSystem = MeasurementSystem.valueOf(preferences.getString(UNIT_SYSTEM,  MeasurementSystem.SI.toString()));
-        debug = preferences.getBoolean(DEBUG, debug);
+        measurementSystem = MeasurementSystem.valueOf(preferences.getString(MapApplication.UNIT_SYSTEM,  MeasurementSystem.SI.toString()));
+        debug = preferences.getBoolean(MapApplication.DEBUG, debug);
     }
 }
