@@ -16,8 +16,6 @@ then
 fi
 echo "=== The hashes are different, continuing the build ==="
 
-rm -rf public
-mkdir public
 cp *.css public
 cp *.js public
 cp *.png public
