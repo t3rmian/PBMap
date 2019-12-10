@@ -1,20 +1,25 @@
 #!/bin/bash
 
 mkdir public
-echo "=== Generating hash ==="
-./hash.sh ../app/src/main/assets/data/* ./*.sh ./*.html ./*.png ./*.js ./*.css ../app/src/main/res/values*/*data.xml ../app/src/main/res/values*/*strings.xml > public/.hash
-cat public/.hash
-echo "=== Downloading hash from remote ==="
-curl https://pbmap.termian.dev/.hash > .hash
-cat .hash
-echo "=== Comparing hashes ==="
-DIFF=$(diff .hash public/.hash)
-if [[ "$DIFF" == "" ]]
+if [[ "$NETLIFY" == "true" ]]
 then
-    echo "=== The hashes are equal, exiting ==="
-    exit 0
+    : ${NETLIFY_BUILD_BASE="/opt/buildhome"}
+    NETLIFY_CACHE_DIR="$NETLIFY_BUILD_BASE/cache"
+    echo "=== Generating hash ==="
+    ./hash.sh ../app/src/main/assets/data/* ./*.sh ./*.html ./*.png ./*.js ./*.css ../app/src/main/res/values*/*data.xml ../app/src/main/res/values*/*strings.xml > public/.hash
+    cat public/.hash
+    echo "=== Fetching hash from cache ==="
+    cat "$NETLIFY_CACHE_DIR/public/.hash"
+    DIFF=$(diff $NETLIFY_CACHE_DIR/public/.hash public/.hash)
+    if [[ -f "$NETLIFY_CACHE_DIR/public/.hash" && "$DIFF" == "" ]]
+    then
+        echo "=== The hashes are equal, exiting after fetching the cache ==="
+        rm -rf public
+        cp -r "$NETLIFY_CACHE_DIR/public" public
+        exit 0
+    fi
+    echo "=== The hashes are different, continuing the build ==="
 fi
-echo "=== The hashes are different, continuing the build ==="
 
 cp *.css public
 cp *.js public
@@ -164,3 +169,10 @@ do
     fi
 done
 echo "=== Finished title translations ==="
+
+if [[ "$NETLIFY_CACHE_DIR" != "" ]]
+then
+    echo "=== Saving public cache ==="
+    rm -rf "$NETLIFY_CACHE_DIR/public"
+    cp -r public "$NETLIFY_CACHE_DIR/public"
+fi
