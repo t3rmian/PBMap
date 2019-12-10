@@ -21,6 +21,7 @@ then
     echo "=== The hashes are different, continuing the build ==="
 fi
 
+cp _redirects public/_redirects
 cp *.css public
 cp *.js public
 cp *.png public
