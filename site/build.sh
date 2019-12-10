@@ -6,7 +6,7 @@ then
     : ${NETLIFY_BUILD_BASE="/opt/buildhome"}
     NETLIFY_CACHE_DIR="$NETLIFY_BUILD_BASE/cache"
     echo "=== Generating hash ==="
-    ./hash.sh ../app/src/main/assets/data/* ./*.sh ./*.html ./*.png ./*.js ./*.css ../app/src/main/res/values*/*data.xml ../app/src/main/res/values*/*strings.xml > public/.hash
+    ./hash.sh ../app/src/main/assets/data/* ./*.sh ./*.html ./*.png ./*.js ./*.css ../app/src/main/res/values*/*data.xml ../app/src/main/res/values*/*strings.xml icons/* > public/.hash
     cat public/.hash
     echo "=== Fetching hash from cache ==="
     cat "$NETLIFY_CACHE_DIR/public/.hash"
@@ -22,6 +22,7 @@ then
 fi
 
 cp _redirects public/_redirects
+cp icons/* public
 cp *.css public
 cp *.js public
 cp *.png public
