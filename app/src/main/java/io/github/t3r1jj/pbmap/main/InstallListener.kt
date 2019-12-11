@@ -3,6 +3,7 @@ package io.github.t3r1jj.pbmap.main
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.preference.PreferenceManager
 
 /**
@@ -10,7 +11,7 @@ import android.preference.PreferenceManager
  *
  * adb shell
  *
- * am broadcast -a com.android.vending.INSTALL_REFERRER -n com.example.android.custom.referrer.receiver/.ReferrerReceiver --es "referrer"
+ * am broadcast -a com.android.vending.INSTALL_REFERRER -n io.github.t3r1jj.pbmap/.main.InstallListener --es "referrer" "https%3A%2F%2Fpbmap.termian.dev%2Fmobile%2Fpb_acs_l2"
  */
 class InstallListener : BroadcastReceiver() {
     companion object {
@@ -21,7 +22,7 @@ class InstallListener : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val preferences = PreferenceManager.getDefaultSharedPreferences(context)
         preferences.edit()
-                .putString(REFERRER, intent.getStringExtra(REFERRER_EXTRA_INTENT))
+                .putString(REFERRER, Uri.decode(intent.getStringExtra(REFERRER_EXTRA_INTENT)))
                 .apply()
     }
 }

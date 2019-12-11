@@ -47,6 +47,7 @@ import com.yariksoffice.lingver.Lingver;
 import io.github.t3r1jj.pbmap.BuildConfig;
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.about.AboutActivity;
+import io.github.t3r1jj.pbmap.logging.Config;
 import io.github.t3r1jj.pbmap.main.drawer.DrawerActivity;
 import io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment;
 import io.github.t3r1jj.pbmap.model.Info;
@@ -363,15 +364,10 @@ public class MapActivity extends DrawerActivity
         boolean searchById = !intent.hasExtra(SearchManager.USER_QUERY);
         SearchSuggestion placeFound = null;
         try {
+            placeFound = search.findFirst(searchQuery, searchById);
             if (intent.hasExtra(SearchManager.EXTRA_DATA_KEY)) {
-                Location location = (Location) intent.getExtras().get(SearchManager.EXTRA_DATA_KEY);
-                if (!searchQuery.contains("@")) {
-                    searchQuery = ".*@" + searchQuery;
-                }
-                placeFound = search.findFirst(".*" + searchQuery, searchById);
+                Location location = intent.getParcelableExtra(SearchManager.EXTRA_DATA_KEY);
                 placeFound.setLocationCoordinate(location);
-            } else {
-                placeFound = search.findFirst(searchQuery, searchById);
             }
         } catch (Exception e) {
             e.printStackTrace();
