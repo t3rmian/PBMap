@@ -17,6 +17,11 @@ onload = function() {
       refreshI18n();
     });
   });
+  scrollButton = document.getElementById("scrollTopButton");
+  scrollButton.addEventListener('click', scrollTop);
+  document.body.addEventListener('scroll', function() {
+    onBodyScroll(scrollButton);
+  });
 };
 
 function downloadI18n(path, callback) {
@@ -135,4 +140,17 @@ function searchMatches(nodeText, searchText) {
       );
     }
   }
+}
+
+function onBodyScroll(button) {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    button.style.display = "block";
+  } else {
+    button.style.display = "none";
+  }
+}
+
+function scrollTop() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }

@@ -2,7 +2,9 @@ body {
     font-family: "Exo 2", sans-serif;
     margin: 0;
     padding: 0;
-    background: #fff
+    background: #fff;
+    display: flex;
+    flex-direction: column;
 }
 
 h1 {
@@ -21,11 +23,22 @@ h2 {
     margin: 0 auto;
 }
 
-header .source {
-    position: absolute;
-    right: 1em;
+.source,
+#scrollTopButton {
+    z-index: 99;
     top: 1em;
     color: #2f3640
+}
+
+.source {
+    position: absolute;
+    right: 1em;
+}
+
+#scrollTopButton {
+    position: fixed;
+    left: 1em;
+    display: none;
 }
 
 h1,
@@ -33,16 +46,19 @@ h2 {
     font-weight: 100
 }
 
+[role=search] {
+    margin-top: 1em;
+}
+
 .search-box {
+    margin: 0 auto;
     z-index: 2;
-    position: absolute;
-    top: 22.5%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    max-width: 312px;
     background: #2f3640;
     height: 40px;
     border-radius: 40px;
-    padding: 10px
+    padding: 10px;
+    position: relative;
 }
 
 .search-box>.search-txt {
@@ -51,9 +67,8 @@ h2 {
 }
 
 .search-btn {
-    position: absolute;
+    position: relative;
     right: 8px;
-    width: 40px;
     height: 40px;
     border-radius: 50%;
     background: #2f3640;
@@ -82,16 +97,15 @@ h2 {
 }
 
 footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center
+    height: 192px;
+    text-align: center;
+    position: relative;
 }
 
 footer img {
     z-index: 2;
-    position: relative
+    bottom: 83px;
+    position: relative;
 }
 
 footer nav {
@@ -101,62 +115,50 @@ footer nav {
     bottom: 0;
     left: 0;
     right: 0;
-    align-items: flex-end
+    align-items: flex-end;
 }
 
 footer .bg {
-    z-index: 1;
-    position: absolute;
-    left: 0;
-    bottom: 0;
     width: 100%;
-    height: 80px
+    height: 80px;
+    bottom: -112px;
+    position: relative;
 }
 
 main {
-    width: 100%;
-    position: absolute;
-    margin: 0 auto;
-    position: absolute;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%)
+    flex: 1;
 }
 
 main ul {
     text-align: center;
     padding: 1em;
     overflow-x: hidden;
-    margin: 0 auto
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 main article {
     overflow-x: hidden;
-    left: 0;
-    right: 0;
-    top: 50%;
-    position: relative;
-    transform: translateY(-50%);
     margin: 0 -100%;
     padding: 0 100%;
     background-color: #eee;
     box-shadow: 0 0 100px 8px #e0e0e0
 }
 
-main div {
-    margin: calc(22.5vh + 35px) 0 200px 0;
-    height: calc(100vh - 22.5vh - 235px);
+main div,
+main article,
+main article section {
+    height: 100%;
 }
 
-main article section {
-    max-height: calc(100vh - 22.5vh - 235px);
-    overflow-y: auto
+section {
+    display: flex;
+    align-items: center;
 }
 
 body,
 html {
     overflow-x: hidden;
-    position: absolute;
     width: 100%;
     height: 100%;
     max-height: 100%;
@@ -166,11 +168,8 @@ html {
 
 header {
     z-index: 1;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    text-align: center
+    text-align: center;
+    position: relative;
 }
 
 ul {
@@ -197,8 +196,6 @@ main a {
     text-align: center;
     box-shadow: 0 2px 0 rgba(0, 0, 0, .015);
     cursor: pointer;
-    -webkit-transition: all .3s cubic-bezier(.645, .045, .355, 1);
-    transition: all .3s cubic-bezier(.645, .045, .355, 1);
     height: 64px;
     padding: 0 20px;
     font-size: 14px;
@@ -252,7 +249,8 @@ li:hover span {
 main hr {
     border: 0;
     height: 1px;
-    background-image: -webkit-linear-gradient(left, #eee, #8b8b8b, #eee)
+    width: 100vw;
+    background-image: -webkit-linear-gradient(left, #eee, #8b8b8b, #eee);
 }
 
 nav span {
@@ -283,4 +281,21 @@ nav a.selected {
     nav a {
         padding: 1em
     }
+}
+
+nav a,
+.source,
+nav a:hover,
+.source:hover,
+.source,
+#scrollTopButton,
+main a {
+    -webkit-transition: all .3s cubic-bezier(.645, .045, .355, 1);
+    transition: all .3s cubic-bezier(.645, .045, .355, 1);
+}
+
+nav a:hover,
+.source:hover,
+#scrollTopButton:hover {
+    color: crimson;
 }
