@@ -95,6 +95,13 @@ public class MapActivity extends DrawerActivity
         controller.postLoad();
     }
 
+    @Override
+    public void onBackPressed() {
+        if (controller == null || !controller.onNavigationPerformed(PBMap.Navigation.BACK)) {
+            super.onBackPressed();
+        }
+    }
+
     private void setUpButtons() {
         moreOptions = findViewById(R.id.more_fab_menu);
         moreOptions.getMenuIconView().setContentDescription(getString(R.string.more_features));
