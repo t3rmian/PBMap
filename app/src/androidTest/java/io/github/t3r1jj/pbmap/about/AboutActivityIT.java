@@ -75,7 +75,6 @@ public class AboutActivityIT {
         onView(ViewMatchers.withId(R.id.about_icon)).check(matches(isDisplayed()));
         onView(withId(R.id.about_rate)).check(matches(isDisplayed()));
         onView(withId(R.id.about_report)).check(matches(isDisplayed()));
-        onView(withId(R.id.about_support)).check(matches(isDisplayed()));
         onView(withText(R.string.about_attributions)).check(matches(isDisplayed()));
         onView(withText(R.string.about_licenses)).check(matches(isDisplayed()));
     }
@@ -94,9 +93,9 @@ public class AboutActivityIT {
 
     @Test
     @MediumTest
-    public void onSupportPress_correctIntent() {
+    public void onAuthorPress_correctIntent() {
         withIntents(() -> {
-            onView(withId(R.id.about_support)).perform(click());
+            onView(withText(R.string.about_developer_link)).perform(click());
             intended(allOf(
                     hasAction(Intent.ACTION_VIEW),
                     hasData(Uri.parse(getInstrumentation().getTargetContext().getString(R.string.about_support_link)))
