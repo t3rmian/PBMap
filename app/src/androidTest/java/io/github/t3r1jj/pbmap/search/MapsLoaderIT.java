@@ -19,14 +19,14 @@ import java.util.List;
 import static junit.framework.Assert.assertFalse;
 
 @RunWith(AndroidJUnit4.class)
-public class MapsDaoIT {
+public class MapsLoaderIT {
 
-    private MapsDao dao;
+    private MapsLoader dao;
 
     @Before
     public void setUp() {
         Context appContext = InstrumentationRegistry.getTargetContext();
-        dao = new MapsDao(appContext);
+        dao = new MapsLoader(appContext);
     }
 
     @Test

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.database.Cursor;
 import android.database.MatrixCursor;
+
 import androidx.annotation.NonNull;
 
 import org.simpleframework.xml.Serializer;
@@ -29,12 +30,12 @@ import io.github.t3r1jj.pbmap.BuildConfig;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
 import io.github.t3r1jj.pbmap.model.map.route.RouteGraph;
 
-public class MapsDao extends ContextWrapper {
+public class OldMapsDao extends ContextWrapper {
     private static final String mapsPath = BuildConfig.ASSETS_MAP_DIR;
     private static final String firstMapFilename = BuildConfig.FIRST_MAP_FILENAME;
     private final Serializer serializer = new Persister();
 
-    public MapsDao(Context base) {
+    public OldMapsDao(Context base) {
         super(base);
     }
 
@@ -149,7 +150,7 @@ public class MapsDao extends ContextWrapper {
     }
 
     private String escape(String selectionArg) {
-        return selectionArg.trim().replace("[","\\[").replace("]","\\]");
+        return selectionArg.trim().replace("[", "\\[").replace("]", "\\]");
     }
 
     @NonNull
@@ -195,3 +196,4 @@ public class MapsDao extends ContextWrapper {
     }
 
 }
+

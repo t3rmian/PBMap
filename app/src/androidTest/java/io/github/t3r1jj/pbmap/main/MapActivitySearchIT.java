@@ -38,7 +38,7 @@ import static org.hamcrest.core.IsNot.not;
 @RunWith(RetryRunner.class)
 public class MapActivitySearchIT {
 
-    private static final long TIMEOUT_MS = 10000L;
+    private static final long TIMEOUT_MS = 30000L;
     private final ActivityTestRule<MapActivity> activityRule =
             new ActivityTestRule<>(MapActivity.class, true, true);
 

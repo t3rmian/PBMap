@@ -45,6 +45,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    kotlinOptions{
+        jvmTarget = '1.8'
+    }
     packagingOptions {
         exclude 'META-INF/LICENSE.md'
         exclude 'META-INF/LICENSE-notice.md'
@@ -81,6 +84,7 @@ dependencies {
     implementation 'com.getkeepsafe.taptargetview:taptargetview:1.9.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.github.YarikSOffice:lingver:1.1.0"
+    implementation 'net.sourceforge.streamsupport:android-retrostreams:1.7.1'
 
     testImplementation "androidx.test.ext:truth:$androidx_test_version"
     testImplementation "junit:junit:$junit_version"

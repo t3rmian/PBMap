@@ -25,7 +25,7 @@ import io.github.t3r1jj.pbmap.model.map.PBMap;
 import io.github.t3r1jj.pbmap.model.map.Place;
 import io.github.t3r1jj.pbmap.model.map.Space;
 import io.github.t3r1jj.pbmap.model.map.route.RouteGraph;
-import io.github.t3r1jj.pbmap.search.MapsDao;
+import io.github.t3r1jj.pbmap.search.MapsLoader;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 import io.github.t3r1jj.pbmap.view.map.MapView;
 import io.github.t3r1jj.pbmap.view.map.routing.GeoMarker;
@@ -34,7 +34,7 @@ import io.github.t3r1jj.pbmap.view.map.routing.Route;
 public class Controller implements GeoMarker.MapListener {
     static final String PARCELABLE_KEY_CONTROLLER_MEMENTO = "PARCELABLE_KEY_CONTROLLER_MEMENTO";
     private MapActivity mapActivity;
-    private MapsDao mapsDao;
+    private MapsLoader mapsDao;
     private PBMap map;
     private MapView mapView;
     private GeoMarker source;
@@ -44,13 +44,13 @@ public class Controller implements GeoMarker.MapListener {
 
     Controller(MapActivity mapActivity) {
         this.mapActivity = mapActivity;
-        this.mapsDao = new MapsDao(mapActivity);
+        this.mapsDao = new MapsLoader(mapActivity);
         this.route = Config.getInstance().createRoute(mapActivity);
     }
 
     void restoreState(@NotNull Memento memento, @NotNull MapActivity mapActivity) {
         this.mapActivity = mapActivity;
-        this.mapsDao = new MapsDao(mapActivity);
+        this.mapsDao = new MapsLoader(mapActivity);
         this.route = Config.getInstance().createRoute(mapActivity);
         this.map = mapsDao.loadMap(memento.mapReferencePath);
         loadRouteGraph();

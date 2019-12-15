@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 
 import io.github.t3r1jj.pbmap.R;
-import io.github.t3r1jj.pbmap.search.MapsDao;
+import io.github.t3r1jj.pbmap.search.MapsLoader;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 import io.github.t3r1jj.pbmap.settings.SettingsActivity;
 
@@ -38,7 +38,7 @@ public class MapsDrawerFragment extends NavigationDrawerFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         NavigationView navigationView = (NavigationView) super.onCreateView(inflater, container, savedInstanceState);
-        MapsDao mapsDao = new MapsDao(getActivity());
+        MapsLoader mapsDao = new MapsLoader(getActivity());
         places = mapsDao.getMapSuggestions();
         Collections.sort(places);
         Menu menu = navigationView.getMenu();

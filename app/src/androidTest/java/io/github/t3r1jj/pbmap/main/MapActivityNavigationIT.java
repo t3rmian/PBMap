@@ -332,7 +332,7 @@ public class MapActivityNavigationIT {
     }
 
     private void maxZoomOut(UiDevice device) {
-        device.findObject(By.res("android:id/zoomIn")).click();
+        device.wait(Until.findObject(By.res("android:id/zoomIn")), 30000).click();
         SystemClock.sleep(250);
         for (int i = 0; i < 25; i++) {
             device.findObject(By.res("android:id/zoomOut")).click();

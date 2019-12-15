@@ -31,6 +31,12 @@ public class SearchSuggestion implements Comparable<SearchSuggestion> {
         this.mapPath = Objects.requireNonNull(mapPath);
     }
 
+    SearchSuggestion(@NotNull String placeId, @NotNull String mapPath, @Nullable String mapId) {
+        this.placeId = placeId;
+        this.mapPath = mapPath;
+        this.mapId = mapId;
+    }
+
     /**
      * @param searchIntent with non-null data and extra mandatory non-null string with {@link SearchManager#EXTRA_DATA_KEY} key
      */
