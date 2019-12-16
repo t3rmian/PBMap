@@ -34,10 +34,10 @@ public class SearchListProvider extends SearchRecentSuggestionsProvider {
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+        if (mapsDao == null) {
+            mapsDao = new MapsDao(getBaseContext());
+        }
         if (selectionArgs != null && selectionArgs.length > 0 && selectionArgs[0] != null && selectionArgs[0].length() > 0) {
-            if (mapsDao == null) {
-                mapsDao = new MapsDao(getBaseContext());
-            }
             return mapsDao.query(tableColumns, prepareScopedSelectionArgs(selectionArgs), "id".equals(selection) || searchById);
         } else {
             return mapsDao.query(tableColumns, new String[]{".*"}, true);
