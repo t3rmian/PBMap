@@ -7,9 +7,12 @@ import androidx.test.filters.LargeTest
 import androidx.test.filters.SmallTest
 import androidx.test.platform.app.InstrumentationRegistry
 import io.github.t3r1jj.pbmap.search.SearchListProvider.tableColumns
+import org.hamcrest.Matchers.greaterThan
 import org.hamcrest.Matchers.lessThan
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertThat
+import org.junit.Assume.assumeThat
+import org.junit.Assume.assumeTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.text.DecimalFormat
@@ -59,6 +62,7 @@ class MapsDaoIT {
     @Test
     @LargeTest
     fun queryWithoutCache() {
+        assumeThat("Multiple processors", Runtime.getRuntime().availableProcessors(), greaterThan(1))
         val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
         val oldMapsDao = OldMapsDao(targetContext)
         val optimizedMapsDao = MapsDao(targetContext)
