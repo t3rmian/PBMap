@@ -66,8 +66,11 @@ class MapsDaoIT {
         val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
         val oldMapsDao = OldMapsDao(targetContext)
         val optimizedMapsDao = MapsDao(targetContext)
-        var oldTime = 0L;
-        var optimizedTime = 0L;
+        //dry run
+        optimizedMapsDao.query(tableColumns, arrayOf(".*@.*"), true)
+        oldMapsDao.query(tableColumns, arrayOf(".*@.*"), true)
+        var oldTime = 0L
+        var optimizedTime = 0L
         for (i in 0 until REPEAT_COUNT) {
             optimizedTime += timeExecution(Runnable { optimizedMapsDao.query(tableColumns, arrayOf(".*@.*"), true) })
             MapsDao.CACHE_NO_MAPS = null
@@ -86,8 +89,8 @@ class MapsDaoIT {
         val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
         val oldMapsDao = OldMapsDao(targetContext)
         val optimizedMapsDao = MapsDao(targetContext)
-        var oldTime = 0L;
-        var optimizedTime = 0L;
+        var oldTime = 0L
+        var optimizedTime = 0L
         for (i in 0 until REPEAT_COUNT) {
             optimizedTime += timeExecution(Runnable { optimizedMapsDao.query(tableColumns, arrayOf(".*@.*"), true) })
             oldTime += timeExecution(Runnable { oldMapsDao.query(tableColumns, arrayOf(".*@.*"), true) })
