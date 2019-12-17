@@ -11,8 +11,8 @@ import org.hamcrest.Matchers.greaterThan
 import org.hamcrest.Matchers.lessThan
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertThat
+import org.junit.Assume.assumeFalse
 import org.junit.Assume.assumeThat
-import org.junit.Assume.assumeTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.text.DecimalFormat
@@ -63,6 +63,7 @@ class MapsDaoIT {
     @LargeTest
     fun queryWithoutCache() {
         assumeThat("Multiple processors", Runtime.getRuntime().availableProcessors(), greaterThan(1))
+        assumeFalse("Not CI", io.github.t3r1jj.pbmap.testing.BuildConfig.CI)
         val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
         val oldMapsDao = OldMapsDao(targetContext)
         val optimizedMapsDao = MapsDao(targetContext)

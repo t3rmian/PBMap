@@ -8,9 +8,10 @@
         <item>FloatingActionButton</item>
         <item>TapTargetView</item>
         <item>Google Support Libraries</item>
+        <item>android-retrostreams</item>
         <item>Exo Bold</item>
-        <item>Ikony</item>
-        <item>Map tiles</item>
+        <item>アイコン</item>
+        <item>マップタイル</item>
     </string-array>
     <string-array name="attribution_descriptions">
         <item>TileViewは、パンおよびズーム機能を備えたタイルベースの画像を非同期に表示し、マーカー、ホットスポット、パス、複数の詳細レベル、および任意の座標系などの機能をサポートします。
@@ -48,6 +49,11 @@
             \n著者: The Android Open Source Project
             \nライセンス: Apache 2.0
             \nウェブサイト: https://developer.android.com/topic/libraries/support-library/index.html</item>
+        <item>Java 9のバックポートAndroid Studio 3.x D8用のjava.util.stream API / desugarツールチェーン
+            \n\n版: net.sourceforge.streamsupport:android-retrostreams:1.7.1
+            \n著者: Oracle and/or its affiliates and Stefan Zobel
+            \nライセンス: GPL 2.0 およびクラスパス例外
+            \nウェブサイト: https://retrostreams.github.io/android-retrostreams/</item>
         <item>マップ上に名前を表示するために使用されるSans Serifフォント。
             \n\n版: Exo Bold
             \n著者: Natanael Gama (exo@ndiscovered.com)
