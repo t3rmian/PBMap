@@ -98,7 +98,7 @@ public class AboutActivityIT {
             onView(withText(R.string.about_developer_link)).perform(click());
             intended(allOf(
                     hasAction(Intent.ACTION_VIEW),
-                    hasData(Uri.parse(getInstrumentation().getTargetContext().getString(R.string.about_support_link)))
+                    hasData(Uri.parse(getInstrumentation().getTargetContext().getString(R.string.about_developer_link)))
             ));
         });
     }
