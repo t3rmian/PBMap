@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.SystemClock;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.matcher.ViewMatchers;
@@ -94,11 +95,13 @@ public class AboutActivityIT {
     @Test
     @MediumTest
     public void onAuthorPress_correctIntent() {
+        TextView textView = new TextView(getInstrumentation().getTargetContext());
+        textView.setText(R.string.about_developer_link);
         withIntents(() -> {
             onView(withText(R.string.about_developer_link)).perform(click());
             intended(allOf(
                     hasAction(Intent.ACTION_VIEW),
-                    hasData(Uri.parse(getInstrumentation().getTargetContext().getString(R.string.about_developer_link)))
+                    hasData(Uri.parse(textView.getUrls()[0].getURL()))
             ));
         });
     }
