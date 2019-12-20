@@ -20,7 +20,18 @@ public class Search extends SearchListProvider {
 
     public SearchSuggestion findFirst(String query, boolean searchById) {
         this.searchById = searchById;
-        Cursor cursor = query(null, null, null, new String[]{query}, null);
+        Cursor cursor = query(null, null, null, new String[]{prepareQueryArguments(query, searchById)}, null);
+        return search(cursor);
+    }
+
+    private String prepareQueryArguments(String query, boolean searchById) {
+        if (searchById && query != null && !query.contains("@")) {
+            return query + "@" + query;
+        }
+        return query;
+    }
+
+    private SearchSuggestion search(Cursor cursor) {
         if (cursor != null) {
             try {
                 if (cursor.moveToFirst()) {

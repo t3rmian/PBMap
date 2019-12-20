@@ -81,6 +81,10 @@ public class OldMapsDao extends ContextWrapper {
         return map;
     }
 
+    /**
+     * @param ignoreMaps if false, a map_id@map_id entries are added
+     * @return list of all queryable places defined in the database
+     */
     List<SearchSuggestion> getSearchSuggestions(boolean ignoreMaps) {
         List<SearchSuggestion> searchSuggestions = new LinkedList<>();
         for (String mapPath : getMapFilenames()) {
@@ -155,7 +159,7 @@ public class OldMapsDao extends ContextWrapper {
 
     @NonNull
     private List<Object[]> findQueryResults(String[] selectionArgs, boolean searchById) {
-        List<SearchSuggestion> searchSuggestions = getSearchSuggestions(!".*.*".equals(selectionArgs[0]));
+        List<SearchSuggestion> searchSuggestions = getSearchSuggestions(!searchById);
         List<Object[]> results = new ArrayList<>();
         for (SearchSuggestion suggestion : searchSuggestions) {
             String name = searchById ? suggestion.getPlaceId().toUpperCase() : suggestion.getName(getBaseContext()).toUpperCase();

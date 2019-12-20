@@ -17,6 +17,7 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Display;
@@ -56,6 +57,7 @@ import io.github.t3r1jj.pbmap.model.map.PBMap;
 import io.github.t3r1jj.pbmap.model.map.Place;
 import io.github.t3r1jj.pbmap.search.Search;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
+import io.github.t3r1jj.pbmap.search.WebUriParser;
 
 import static io.github.t3r1jj.pbmap.main.Controller.PARCELABLE_KEY_CONTROLLER_MEMENTO;
 import static io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment.RECREATE_REQUEST_RESULT_CODE;
@@ -334,11 +336,40 @@ public class MapActivity extends DrawerActivity
     }
 
     private void handleIntent(Intent intent, boolean preload) {
+        String referrer = consumeReferrer();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             handleSearchQuery(intent, preload);
         } else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
-            SearchSuggestion suggestion = new SearchSuggestion(intent);
-            controller.loadMap(suggestion, preload);
+            if (WebUriParser.containsWebUri(intent.getDataString())) {
+                handleWebUri(intent, preload);
+            } else {
+                SearchSuggestion suggestion = new SearchSuggestion(intent);
+                controller.loadMap(suggestion, preload);
+            }
+        } else if (WebUriParser.containsWebUri(referrer)) {
+            intent.setData(Uri.parse(referrer));
+            handleWebUri(intent, preload);
+        } else if (!controller.isInitialized()) {
+            controller.loadMap();
+        }
+    }
+
+    private String consumeReferrer() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String referrer = preferences.getString(InstallListener.REFERRER, null);
+        if (referrer != null) {
+            preferences.edit().remove(InstallListener.REFERRER).apply();
+        }
+        return referrer;
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    private void handleWebUri(Intent intent, boolean preload) {
+        Uri uri = intent.getData();
+        String query = WebUriParser.parseIntoCommonFormat(uri);
+        if (query != null) {
+            intent.putExtra(SearchManager.QUERY, query);
+            handleSearchQuery(intent, preload);
         } else if (!controller.isInitialized()) {
             controller.loadMap();
         }
@@ -350,15 +381,10 @@ public class MapActivity extends DrawerActivity
         boolean searchById = !intent.hasExtra(SearchManager.USER_QUERY);
         SearchSuggestion placeFound = null;
         try {
+            placeFound = search.findFirst(searchQuery, searchById);
             if (intent.hasExtra(SearchManager.EXTRA_DATA_KEY)) {
-                Location location = (Location) intent.getExtras().get(SearchManager.EXTRA_DATA_KEY);
-                if (!searchQuery.contains("@")) {
-                    searchQuery = ".*@" + searchQuery;
-                }
-                placeFound = search.findFirst(".*" + searchQuery, searchById);
+                Location location = intent.getParcelableExtra(SearchManager.EXTRA_DATA_KEY);
                 placeFound.setLocationCoordinate(location);
-            } else {
-                placeFound = search.findFirst(searchQuery, searchById);
             }
         } catch (Exception e) {
             e.printStackTrace();
