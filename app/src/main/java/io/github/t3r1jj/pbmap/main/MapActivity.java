@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.SearchManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -17,12 +18,14 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,7 +47,7 @@ import com.yariksoffice.lingver.Lingver;
 import io.github.t3r1jj.pbmap.BuildConfig;
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.about.AboutActivity;
-import io.github.t3r1jj.pbmap.logging.Config;
+import io.github.t3r1jj.pbmap.Config;
 import io.github.t3r1jj.pbmap.main.drawer.DrawerActivity;
 import io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment;
 import io.github.t3r1jj.pbmap.model.Info;
@@ -60,6 +63,7 @@ import static io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment.RECREATE_REQ
 public class MapActivity extends DrawerActivity
         implements MapsDrawerFragment.PlaceNavigationDrawerCallbacks {
 
+    static final String INTRODUCTION_FINISHED = "io.github.t3r1jj.pbmap.main.INTRODUCTION_FINISHED";
     private static final int REQUEST_LOCATION = 1;
     private DeviceServices deviceServices;
     private Controller controller;
@@ -72,6 +76,7 @@ public class MapActivity extends DrawerActivity
     private FloatingActionButton levelDownButton;
     private FloatingActionButton levelRightButton;
     private FloatingActionButton levelLeftButton;
+    private FloatingActionButton helpButton;
     private TextView distanceText;
     private MenuItem backButton;
     private LocationManager locationManager;
@@ -137,6 +142,20 @@ public class MapActivity extends DrawerActivity
                 requestLocationOnDemand();
             }
         });
+        helpButton = findViewById(R.id.help_fab);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (preferences.contains(INTRODUCTION_FINISHED)) {
+            hideHelp();
+        } else {
+            helpButton.startAnimation(AnimationUtils.loadAnimation(this, R.anim.blink));
+            helpButton.setOnClickListener(v -> onHelpDrawerItemSelected());
+        }
+    }
+
+    private void hideHelp() {
+        helpButton.clearAnimation();
+        helpButton.setVisibility(View.GONE);
     }
 
     private Drawable rotateDrawable(Drawable drawable, float angle) {
@@ -449,6 +468,7 @@ public class MapActivity extends DrawerActivity
 
     @Override
     public void onHelpDrawerItemSelected() {
+        hideHelp();
         final int levelMenuVisibility = levelMenu.getVisibility();
         if (levelMenuVisibility != View.VISIBLE) {
             levelMenu.setVisibility(View.VISIBLE);
@@ -498,6 +518,8 @@ public class MapActivity extends DrawerActivity
                     public void onSequenceFinish() {
                         levelMenu.setVisibility(levelMenuVisibility);
                         backButton.setVisible(backItemVisible);
+                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MapActivity.this);
+                        preferences.edit().putBoolean(INTRODUCTION_FINISHED, true).apply();
                     }
 
                     @Override
