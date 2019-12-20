@@ -20,8 +20,12 @@ public class Search extends SearchListProvider {
 
     public SearchSuggestion findFirst(String query, boolean searchById) {
         this.searchById = searchById;
-        Cursor cursor = query(null, null, null, new String[]{prepareQueryArguments(query, searchById)}, null);
-        return search(cursor);
+        try (Cursor cursor = query(null, null, null, new String[]{prepareQueryArguments(query, searchById)}, null)) {
+            if (cursor != null && cursor.moveToFirst()) {
+                return cursorToResult(cursor);
+            }
+        }
+        return null;
     }
 
     private String prepareQueryArguments(String query, boolean searchById) {
@@ -29,19 +33,6 @@ public class Search extends SearchListProvider {
             return query + "@" + query;
         }
         return query;
-    }
-
-    private SearchSuggestion search(Cursor cursor) {
-        if (cursor != null) {
-            try {
-                if (cursor.moveToFirst()) {
-                    return cursorToResult(cursor);
-                }
-            } finally {
-                cursor.close();
-            }
-        }
-        return null;
     }
 
     private SearchSuggestion cursorToResult(Cursor cursor) {

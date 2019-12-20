@@ -60,7 +60,7 @@ sendIntent.putExtra(SearchManager.EXTRA_DATA_KEY, customLocation);
 startActivity(sendIntent);
 ````
 
-If PBMap is not installed an ActivityNotFoundException exception will be thrown. The list of map and place ids can be found at [the wiki page](https://github.com/T3r1jj/PBMap/wiki/Maps-and-places) or through Content Provider. For a fully working example refer to sample app from the repository.
+If PBMap is not installed an ActivityNotFoundException exception will be thrown. The list of map and place ids can be found on a [dedicated site](https://pbmap.termian.dev) with in-app links (`data-id` attribute) or through Content Provider. For a fully working example refer to sample app from the repository.
 
 ### Integration through Content Provider
 
@@ -88,8 +88,7 @@ For more details on how to query the Content Provider and which columns are expo
 
 ### Contributing
 
-Feel free to improve the app and get listed as a contributor! For bigger things It's best to create an issue first. Also, mind that I might be busy,
-so for urgent things try mailing me. Any code is welcomed, especially well tested. At the moment Java and Kotlin are used interchangeably.
+Feel free to improve the app and get listed as a contributor! For bigger things It's best to create an issue first. Any code is welcomed, especially well tested. At the moment Java and Kotlin can be used interchangeably.
 
 ### Workflow
 
