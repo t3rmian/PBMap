@@ -3,15 +3,20 @@ package io.github.t3r1jj.pbmap.about;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.core.view.MenuItemCompat;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.ShareActionProvider;
-import androidx.appcompat.widget.Toolbar;
 import android.text.method.LinkMovementMethod;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.ShareActionProvider;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuItemCompat;
 
 import com.roughike.swipeselector.SwipeItem;
 import com.roughike.swipeselector.SwipeSelector;
@@ -29,7 +34,6 @@ public class AboutActivity extends AppCompatActivity {
         setUpIcon();
         setUpRate();
         setUpReport();
-        setUpSupport();
         setUpAuthor();
         setUpVersion();
         setUpAttributions();
@@ -81,21 +85,13 @@ public class AboutActivity extends AppCompatActivity {
         });
     }
 
-    private void setUpSupport() {
-        View support = findViewById(R.id.about_support);
-        support.setOnClickListener(view -> {
-            String url = getString(R.string.about_support_link);
-            openUrl(url);
-        });
-    }
-
     private void openUrl(String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         startActivity(intent);
     }
 
     private void setUpAuthor() {
-        TextView authorText = findViewById(R.id.about_author);
+        TextView authorText = findViewById(R.id.about_author_link);
         authorText.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
@@ -113,6 +109,8 @@ public class AboutActivity extends AppCompatActivity {
         }
         final SwipeSelector swipeSelector = findViewById(R.id.swipe_selector);
         swipeSelector.setItems(attributions);
+        findViewById(R.id.swipeselector_layout_circleContainer)
+                .setPadding(0, (int) getResources().getDimension(R.dimen.activity_vertical_margin) / 2, 0, 0);
     }
 
     private void setUpLicenses() {

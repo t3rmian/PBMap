@@ -20,4 +20,5 @@
     <color name="colorPrimaryText">#000000</color>
     <color name="colorSecondaryText">#ffffff</color>
     <color name="target_circle">#000000</color>
+    <color name="gray_line">#DDDDDD</color>
 </resources>

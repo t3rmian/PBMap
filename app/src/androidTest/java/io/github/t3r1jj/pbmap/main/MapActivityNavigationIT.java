@@ -13,6 +13,8 @@ import android.os.Build;
 import android.os.SystemClock;
 import android.provider.Settings;
 
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.NoActivityResumedException;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.filters.LargeTest;
 import androidx.test.filters.MediumTest;
@@ -101,6 +103,31 @@ public class MapActivityNavigationIT {
         onView(withContentDescription(R.string.action_back)).perform(click());
         InstrumentationRegistry.getInstrumentation().waitForIdleSync();
         SystemClock.sleep(1000);
+        onView(withIndex(withText(R.string.name_pb_campus), 0)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    @MediumTest
+    public void navigateBack_BackButton() {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEARCH);
+        sendIntent.putExtra(SearchManager.QUERY, "wc@pb_wb");
+        activityRule.launchActivity(sendIntent);
+        Espresso.pressBack();
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+        SystemClock.sleep(1000);
+        onView(withIndex(withText(R.string.name_pb_campus), 0)).check(matches(isDisplayed()));
+    }
+
+    @Test(expected = NoActivityResumedException.class)
+    @LargeTest
+    public void navigateBack_Exit() {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEARCH);
+        sendIntent.putExtra(SearchManager.QUERY, "wc@pb_wb");
+        activityRule.launchActivity(sendIntent);
+        Espresso.pressBack();
+        Espresso.pressBack();
         onView(withIndex(withText(R.string.name_pb_campus), 0)).check(matches(isDisplayed()));
     }
 

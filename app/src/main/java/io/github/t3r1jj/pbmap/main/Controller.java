@@ -291,14 +291,15 @@ public class Controller implements GeoMarker.MapListener {
         return map == null ? null : map.getId();
     }
 
-    void onNavigationPerformed(PBMap.Navigation navigation) {
+    boolean onNavigationPerformed(PBMap.Navigation navigation) {
         String navigationMapPath = map.getNavigationMapPath(navigation);
         if (navigationMapPath == null) {
-            return;
+            return false;
         }
         map = mapsDao.loadMap(navigationMapPath);
         loadRouteGraph();
         updateView();
+        return true;
     }
 
     void onImprovePressed(MotionEvent event, String description) {

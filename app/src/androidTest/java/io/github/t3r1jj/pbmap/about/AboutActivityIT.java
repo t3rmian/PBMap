@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.SystemClock;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.matcher.ViewMatchers;
@@ -75,7 +76,6 @@ public class AboutActivityIT {
         onView(ViewMatchers.withId(R.id.about_icon)).check(matches(isDisplayed()));
         onView(withId(R.id.about_rate)).check(matches(isDisplayed()));
         onView(withId(R.id.about_report)).check(matches(isDisplayed()));
-        onView(withId(R.id.about_support)).check(matches(isDisplayed()));
         onView(withText(R.string.about_attributions)).check(matches(isDisplayed()));
         onView(withText(R.string.about_licenses)).check(matches(isDisplayed()));
     }
@@ -94,12 +94,14 @@ public class AboutActivityIT {
 
     @Test
     @MediumTest
-    public void onSupportPress_correctIntent() {
+    public void onAuthorPress_correctIntent() {
+        TextView textView = new TextView(getInstrumentation().getTargetContext());
+        textView.setText(R.string.about_developer_link);
         withIntents(() -> {
-            onView(withId(R.id.about_support)).perform(click());
+            onView(withText(R.string.about_developer_link)).perform(click());
             intended(allOf(
                     hasAction(Intent.ACTION_VIEW),
-                    hasData(Uri.parse(getInstrumentation().getTargetContext().getString(R.string.about_support_link)))
+                    hasData(Uri.parse(textView.getUrls()[0].getURL()))
             ));
         });
     }
