@@ -51,11 +51,11 @@ open class MapsDao(base: Context) : ContextWrapper(base) {
     }
 
     private fun escape(selectionArg: String): String {
-        return selectionArg.trim { it <= ' ' }.replace("[", "\\[").replace("]", "\\]")
+        return selectionArg.trim().replace("[", "\\[").replace("]", "\\]")
     }
 
     private fun streamQueryResults(selectionArgs: Array<String>, searchById: Boolean): Stream<Array<Any>> {
-        return StreamSupport.stream(getSearchSuggestions(".*.*" != selectionArgs[0]))
+        return StreamSupport.stream(getSearchSuggestions(!searchById))
                 .parallel()
                 .map {
                     val name = if (searchById) it.placeId.toUpperCase(Locale.ROOT) else it.getName(baseContext).toUpperCase(Locale.ROOT)
@@ -82,6 +82,10 @@ open class MapsDao(base: Context) : ContextWrapper(base) {
         return true
     }
 
+    /**
+     * @param ignoreMaps if false, a map_id@map_id entries are added
+     * @return list of all queryable places defined in the database
+     */
     fun getSearchSuggestions(ignoreMaps: Boolean): List<SearchSuggestion> {
         synchronized(this) {
             if (CACHE == null) {
@@ -129,17 +133,11 @@ open class MapsDao(base: Context) : ContextWrapper(base) {
                     val factory = XPathFactory.newInstance()
                     val xPath = factory.newXPath()
                     val names = xPath.evaluate("//*/@id", InputSource(openAsset(assetsPath)), XPathConstants.NODESET) as NodeList
-                    var mapId: String? = null
+                    val mapId: String? = if (names.length > 0) names.item(0).nodeValue else null
                     IntStream.range(0, names.length)
                             .boxed()
                             .map {
-                                Pair(it, names.item(it))
-                            }
-                            .map { indexedNode ->
-                                if (indexedNode.first == 0) {
-                                    mapId = indexedNode.second.nodeValue
-                                }
-                                SearchSuggestion(indexedNode.second.nodeValue, assetsPath, mapId)
+                                SearchSuggestion(names.item(it).nodeValue, assetsPath, mapId)
                             }
                 }
                 .collect(Collectors.toList())
