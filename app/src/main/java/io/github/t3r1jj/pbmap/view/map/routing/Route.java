@@ -27,7 +27,6 @@ public class Route implements RemovableView {
     private PBMap map;
     private List<Coordinate> route;
 
-    @Deprecated
     public Route(Context context) {
         Resources resources = context.getResources();
         drawablePath.paint = createPaint(ContextCompat.getColor(context, R.color.route), resources.getDimension(R.dimen.route_stroke_width));
@@ -55,7 +54,7 @@ public class Route implements RemovableView {
     }
 
     @NonNull
-    Paint createPaint(int color, float strokeWidth) {
+    private Paint createPaint(int color, float strokeWidth) {
         Paint paint = new Paint();
         paint.setColor(color);
         paint.setStrokeWidth(strokeWidth);

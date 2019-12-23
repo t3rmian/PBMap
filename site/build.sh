@@ -44,7 +44,7 @@ do
     ./generate_links.sh $file $j &
 done
 wait
-links=`cat build/*`
+links=$(cat build/*)
 awk -v r="$links" '{gsub(/%APPEND%/,r)}1' index.html > public/index.html
 
 echo "=== Finished generating main index ==="
@@ -144,21 +144,21 @@ do
         hreflang="$lang-$region"
     fi
 
-    title=`grep '<string name="name_app">' $file`
-    subtitle=`grep '<string name="about_description">' $file`
-    hint=`grep '<string name="search_hint">' $file`
+    title=$(grep '<string name="name_app">' $file)
+    subtitle=$(grep '<string name="about_description">' $file)
+    hint=$(grep '<string name="search_hint">' $file)
     if [[ "$title" == "" ]]
     then
-        title=`grep '<string name="name_app">' ../app/src/main/res/values/strings.xml`
+        title=$(grep '<string name="name_app">' ../app/src/main/res/values/strings.xml)
     fi
     if [[ "$subtitle" == "" ]]
     then
-        subtitle=`grep '<string name="about_description">' ../app/src/main/res/values/strings.xml`
+        subtitle=$(grep '<string name="about_description">' ../app/src/main/res/values/strings.xml)
     fi
-    title=`echo "$title" | cut -d\> -f2 | cut -d\< -f1`
-    subtitle=`echo "$subtitle" | cut -d\> -f2 | cut -d\< -f1`
+    title=$(echo "$title" | cut -d\> -f2 | cut -d\< -f1)
+    subtitle=$(echo "$subtitle" | cut -d\> -f2 | cut -d\< -f1)
     subtitle=${subtitle: : -1}
-    hint=`echo "$hint" | cut -d\> -f2 | cut -d\< -f1`
+    hint=$(echo "$hint" | cut -d\> -f2 | cut -d\< -f1)
     if [[ "$lang" == "values" ]]
     then
         sed -i "s|%TITLE%|$title|g" public/index.html

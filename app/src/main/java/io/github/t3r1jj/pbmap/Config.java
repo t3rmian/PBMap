@@ -36,6 +36,7 @@ public class Config {
         return measurementSystem;
     }
 
+    @SuppressWarnings("deprecation")
     public Route createRoute(Context context) {
         if (isDebug()) {
             return new FullRoute(context);

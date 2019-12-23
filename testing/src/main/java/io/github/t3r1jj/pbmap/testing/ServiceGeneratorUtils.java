@@ -3,10 +3,7 @@ package io.github.t3r1jj.pbmap.testing;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 
-final class ServiceGenerator {
-
-    private ServiceGenerator() {
-    }
+final class ServiceGeneratorUtils {
 
     private static final String BASE_URL = "https://file.io";
 
@@ -16,6 +13,9 @@ final class ServiceGenerator {
             new OkHttpClient.Builder();
 
     private static Retrofit retrofit = builder.client(httpClient.build()).build();
+
+    private ServiceGeneratorUtils() {
+    }
 
     @SuppressWarnings("SameParameterValue")
     static <S> S createService(Class<S> serviceClass) {

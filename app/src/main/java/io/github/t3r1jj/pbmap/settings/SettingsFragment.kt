@@ -10,6 +10,9 @@ import io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment
 import io.github.t3r1jj.pbmap.model.dictionary.Dictionary
 import io.github.t3r1jj.pbmap.model.i18n.LocaleUtils
 
+/**
+ * Preferences fragment
+ */
 class SettingsFragment : PreferenceFragmentCompat(), SettingsGroupListener.PreferenceActivationListener {
     private companion object {
         private const val REFRESH_ACTIVITY_STACK = "refresh"

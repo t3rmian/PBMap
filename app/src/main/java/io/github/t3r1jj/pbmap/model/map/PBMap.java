@@ -43,11 +43,6 @@ public class PBMap extends Space {
     private int rank;
 
     @Override
-    public String toString() {
-        return "...placeId=" + places.toString();
-    }
-
-    @Override
     public MapView createView(Context context) {
         MapView pbMapView = new MapView(context, this);
         pbMapView.setSize(width, height);

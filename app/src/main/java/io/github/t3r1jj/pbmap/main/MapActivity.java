@@ -45,10 +45,12 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.yariksoffice.lingver.Lingver;
 
+import java.util.Objects;
+
 import io.github.t3r1jj.pbmap.BuildConfig;
+import io.github.t3r1jj.pbmap.Config;
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.about.AboutActivity;
-import io.github.t3r1jj.pbmap.Config;
 import io.github.t3r1jj.pbmap.main.drawer.DrawerActivity;
 import io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment;
 import io.github.t3r1jj.pbmap.model.Info;
@@ -71,7 +73,6 @@ public class MapActivity extends DrawerActivity
     private Controller controller;
     private ViewGroup mapContainer;
     private FloatingActionButton infoButton;
-    private FloatingActionButton gpsButton;
     private FloatingActionMenu levelMenu;
     private FloatingActionMenu moreOptions;
     private FloatingActionButton levelUpButton;
@@ -142,7 +143,7 @@ public class MapActivity extends DrawerActivity
         infoButton = findViewById(R.id.info_fab);
         infoButton.setOnClickListener(view -> controller.loadDescription());
 
-        gpsButton = findViewById(R.id.gps_fab);
+        FloatingActionButton gpsButton = findViewById(R.id.gps_fab);
         gpsButton.setOnClickListener(view -> {
             if (deviceServices.doesNotHaveGpsPermissions()) {
                 explicitlyAskedForPermissions = true;
@@ -274,11 +275,9 @@ public class MapActivity extends DrawerActivity
                 }
             } else {
                 controller.updatePosition(null);
-                if (explicitlyAskedForPermissions) {
-                    if (!ActivityCompat.shouldShowRequestPermissionRationale(MapActivity.this,
-                            Manifest.permission.ACCESS_FINE_LOCATION)) {
-                        new GpsPermissionsDialogFragment().show(getFragmentManager(), "gps_permissions");
-                    }
+                if (explicitlyAskedForPermissions && !ActivityCompat.shouldShowRequestPermissionRationale(MapActivity.this,
+                        Manifest.permission.ACCESS_FINE_LOCATION)) {
+                    new GpsPermissionsDialogFragment().show(getFragmentManager(), "gps_permissions");
                 }
             }
         }
@@ -328,10 +327,8 @@ public class MapActivity extends DrawerActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_back:
-                controller.onNavigationPerformed(PBMap.Navigation.BACK);
-                break;
+        if (item.getItemId() == R.id.action_back) {
+            controller.onNavigationPerformed(PBMap.Navigation.BACK);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -347,13 +344,13 @@ public class MapActivity extends DrawerActivity
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             handleSearchQuery(intent, preload);
         } else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
-            if (WebUriParser.containsWebUri(intent.getDataString())) {
+            if (WebUriParser.isWebUrl(intent.getDataString())) {
                 handleWebUri(intent, preload);
             } else {
                 SearchSuggestion suggestion = new SearchSuggestion(intent);
                 controller.loadMap(suggestion, preload);
             }
-        } else if (WebUriParser.containsWebUri(referrer)) {
+        } else if (WebUriParser.isWebUrl(referrer)) {
             intent.setData(Uri.parse(referrer));
             handleWebUri(intent, preload);
         } else if (!controller.isInitialized()) {
@@ -411,13 +408,8 @@ public class MapActivity extends DrawerActivity
         mapContainer.addView(view);
     }
 
-    @SuppressWarnings("ConstantConditions")
     public void setLogo(ImageView view) {
-        if (view == null) {
-            super.setLogo(null);
-        } else {
-            super.setLogo(view.getDrawable());
-        }
+        super.setLogo(view == null ? null : view.getDrawable());
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -557,10 +549,12 @@ public class MapActivity extends DrawerActivity
 
                     @Override
                     public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
+                        // on sequence step we don't do anything special
                     }
 
                     @Override
                     public void onSequenceCanceled(TapTarget lastTarget) {
+                        // we have set continueOnCancel to true thus this is not called
                     }
                 })
                 .start();
@@ -600,12 +594,11 @@ public class MapActivity extends DrawerActivity
         markerDialogFragment.show(getSupportFragmentManager(), "marker");
     }
 
-    @SuppressWarnings("ConstantConditions")
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         if (savedInstanceState.containsKey(PARCELABLE_KEY_CONTROLLER_MEMENTO)) {
-            controller.restoreState((Controller.Memento) savedInstanceState.getParcelable(PARCELABLE_KEY_CONTROLLER_MEMENTO), this);
+            controller.restoreState(Objects.requireNonNull(savedInstanceState.getParcelable(PARCELABLE_KEY_CONTROLLER_MEMENTO)), this);
         }
     }
 

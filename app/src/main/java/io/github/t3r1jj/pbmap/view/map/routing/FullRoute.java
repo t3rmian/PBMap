@@ -5,7 +5,6 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
-import android.graphics.PathEffect;
 
 import com.qozix.tileview.paths.CompositePathView;
 
@@ -20,7 +19,7 @@ import io.github.t3r1jj.pbmap.model.map.route.Edge;
 import io.github.t3r1jj.pbmap.view.map.MapView;
 
 /**
- * @deprecated use only for testing
+ * @deprecated use only for testing and debug
  */
 @Deprecated
 public class FullRoute extends Route {
@@ -31,6 +30,7 @@ public class FullRoute extends Route {
 
     private List<CompositePathView.DrawablePath> paths = new LinkedList<>();
 
+    @SuppressWarnings("deprecation")
     @Deprecated
     public FullRoute(Context context) {
         super(context);

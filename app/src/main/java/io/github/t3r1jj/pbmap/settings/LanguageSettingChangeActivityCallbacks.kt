@@ -8,6 +8,9 @@ import com.yariksoffice.lingver.Lingver
 import io.github.t3r1jj.pbmap.MapApplication
 import io.github.t3r1jj.pbmap.model.i18n.LocaleUtils
 
+/**
+ * Implements activity reload on language switch by recreating the activity on resume
+ */
 class LanguageSettingChangeActivityCallbacks : Application.ActivityLifecycleCallbacks {
     override fun onActivityPaused(activity: Activity) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity)
@@ -30,18 +33,23 @@ class LanguageSettingChangeActivityCallbacks : Application.ActivityLifecycleCall
             activity::class.java.name + "_" + MapApplication.LANG
 
     override fun onActivityStarted(activity: Activity) {
+        // not interesting
     }
 
     override fun onActivityDestroyed(activity: Activity) {
+        // not interesting
     }
 
     override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle?) {
+        // not interesting
     }
 
     override fun onActivityStopped(activity: Activity) {
+        // not interesting
     }
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
+        // not interesting
     }
 
 }

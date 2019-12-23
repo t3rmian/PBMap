@@ -5,10 +5,17 @@ import android.util.Patterns
 import androidx.annotation.Nullable
 import java.util.concurrent.atomic.AtomicBoolean
 
+/**
+ * Utility for parsing in-app links
+ */
 class WebUriParser {
     companion object {
+
+        /**
+         * @return true if the parameter is a web URL
+         */
         @JvmStatic
-        fun containsWebUri(uri: String?) : Boolean {
+        fun isWebUrl(uri: String?): Boolean {
             return if (uri == null) {
                 false
             } else {
@@ -16,6 +23,9 @@ class WebUriParser {
             }
         }
 
+        /**
+         * @return a string query that can be passed to the [Search]
+         */
         @Nullable
         @JvmStatic
         fun parseIntoCommonFormat(uri: Uri): String? {

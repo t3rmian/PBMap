@@ -33,7 +33,7 @@ public class UploadScreenCaptureProcessor implements ScreenCaptureProcessor {
     }
 
     private Call<ResponseBody> uploadImageData(ScreenCapture capture, byte[] data) {
-        UploadService service = ServiceGenerator.createService(UploadService.class);
+        UploadService service = ServiceGeneratorUtils.createService(UploadService.class);
         RequestBody requestFile = RequestBody.create(MediaType.parse("image"), data);
         MultipartBody.Part body = MultipartBody.Part.createFormData("file", capture.getName(), requestFile);
         return service.upload(body);

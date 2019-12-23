@@ -24,10 +24,12 @@ public class PBLocationListener implements LocationListener {
 
     @Override
     public void onStatusChanged(String s, int i, Bundle bundle) {
+        // don't care about status change
     }
 
     @Override
     public void onProviderEnabled(String s) {
+        // don't care about turning on, only the location and turning off is important
     }
 
     @Override

@@ -39,9 +39,10 @@ class DijkstraAlgorithm {
      * Remember to set source and target coordinates.
      * After this call, the shortest path will be available through {@link #getShortestPath()}
      */
+    @SuppressWarnings("ConstantConditions")
     void execute() {
         if (source == null || target == null) {
-            throw new RuntimeException("Source or target not set");
+            throw new IllegalArgumentException("Source or target not set");
         }
         Q = new HashSet<>();
         dist = new HashMap<>();
@@ -71,7 +72,8 @@ class DijkstraAlgorithm {
         }
     }
 
-    Coordinate vMinDistQ() {
+    @SuppressWarnings("ConstantConditions")
+    private Coordinate vMinDistQ() {
         Coordinate minCoordinate = null;
         Double minDist = 0d;
         for (Coordinate vertex : Q) {

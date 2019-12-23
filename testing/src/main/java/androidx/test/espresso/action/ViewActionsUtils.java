@@ -22,12 +22,13 @@ import static androidx.test.espresso.action.ViewActions.actionWithAssertions;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.core.internal.deps.guava.base.Preconditions.checkNotNull;
 
-public final class ViewActionsExt {
-
-    private ViewActionsExt() {
-    }
+@SuppressWarnings("WeakerAccess")
+public final class ViewActionsUtils {
 
     private static final float EDGE_FUZZ_FACTOR = 0.083f;
+
+    private ViewActionsUtils() {
+    }
 
     /**
      * Returns an action that performs a swipe right-to-left across the vertical center of the view.

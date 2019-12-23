@@ -94,18 +94,22 @@ public class SpotView extends MarkerLayout implements PlaceView {
 
         @Override
         public void onPanBegin(int x, int y, Origination origin) {
+            // ignore, process zoom only
         }
 
         @Override
         public void onPanUpdate(int x, int y, Origination origin) {
+            // ignore, process zoom only
         }
 
         @Override
         public void onPanEnd(int x, int y, Origination origin) {
+            // ignore, process zoom only
         }
 
         @Override
         public void onZoomBegin(float scale, Origination origin) {
+            onZoomUpdate(scale, origin);
         }
 
         @Override
@@ -115,6 +119,7 @@ public class SpotView extends MarkerLayout implements PlaceView {
 
         @Override
         public void onZoomEnd(float scale, Origination origin) {
+            onZoomUpdate(scale, origin);
         }
     }
 }

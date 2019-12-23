@@ -7,7 +7,7 @@ var i18n = {};
 onload = function() {
   [...document.querySelectorAll("nav a")]
     .filter(
-      a => a.innerHTML == document.querySelector("html").getAttribute("lang")
+      (a) => a.innerHTML === document.querySelector("html").getAttribute("lang")
     )[0]
     .classList.add("selected");
   downloadI18n("/i18n.xml", function(xml) {
@@ -17,9 +17,9 @@ onload = function() {
       refreshI18n();
     });
   });
-  scrollButton = document.getElementById("scrollTopButton");
-  scrollButton.addEventListener('click', scrollTop);
-  document.body.addEventListener('scroll', function() {
+  var scrollButton = document.getElementById("scrollTopButton");
+  scrollButton.addEventListener("click", scrollTop);
+  document.body.addEventListener("scroll", function() {
     onBodyScroll(scrollButton);
   });
 };
@@ -27,25 +27,26 @@ onload = function() {
 function downloadI18n(path, callback) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      callback(xhttp.responseXML);
+    if (this.readyState === 4 && this.status === 200) {
+      callback(xhttp.responseXML, xhttp.responseType);
     }
   };
   xhttp.open("GET", path, true);
   xhttp.send();
 }
 
-function loadI18n(xml) {
-  path = "//string";
+function loadI18n(xml, responseType) {
+  var path = "//string";
   if (xml.evaluate) {
     var nodes = xml.evaluate(path, xml, null, XPathResult.ANY_TYPE, null);
-    var result = null;
+    var result;
     while ((result = nodes.iterateNext())) {
       i18n[result.getAttribute("name")] = result.childNodes[0].nodeValue;
     }
-  } else if (window.ActiveXObject || xhttp.responseType == "msxml-document") {
+  } else if (window.ActiveXObject || responseType === "msxml-document") {
     xml.setProperty("SelectionLanguage", "XPath");
-    nodes = xml.selectNodes(path);
+    var nodes = xml.selectNodes(path);
+    var i;
     for (i = 0; i < nodes.length; i++) {
       var result = nodes[i].childNodes[0];
       i18n[result.getAttribute("name")] = result.nodeValue;
@@ -54,7 +55,7 @@ function loadI18n(xml) {
 }
 
 function refreshI18n() {
-  [...document.querySelectorAll(".hide-default a[data-id]")].forEach(e =>
+  [...document.querySelectorAll(".hide-default a[data-id]")].forEach((e) =>
     i18nElement(e, i18nFullId(e.dataset.id))
   );
   i18nElement(
@@ -70,7 +71,7 @@ function i18nElement(element, value) {
 function i18nFullId(fullId) {
   return fullId
     .split("@")
-    .map(id => i18nId(id))
+    .map((id) => i18nId(id))
     .join("@");
 }
 
@@ -92,32 +93,32 @@ function normalize(text) {
 
 function search(text) {
   if (text == null || text.length < 1) {
-    [...document.querySelectorAll(".show-default.hide")].forEach(e =>
+    [...document.querySelectorAll(".show-default.hide")].forEach((e) =>
       e.classList.remove("hide")
     );
-    [...document.querySelectorAll(".hide-default.show")].forEach(e =>
+    [...document.querySelectorAll(".hide-default.show")].forEach((e) =>
       e.classList.remove("show")
     );
-    [...document.querySelectorAll(".none:not(.hide)")].forEach(e =>
+    [...document.querySelectorAll(".none:not(.hide)")].forEach((e) =>
       e.classList.add("hide")
     );
   } else {
     text = text.toUpperCase();
-    [...document.querySelectorAll(".show-default:not(.hide)")].forEach(e =>
+    [...document.querySelectorAll(".show-default:not(.hide)")].forEach((e) =>
       e.classList.add("hide")
     );
     [...document.querySelectorAll(".hide-default.show")]
-      .filter(e => !searchMatches(e.querySelector("a").innerText, text))
-      .forEach(e => e.classList.remove("show"));
+      .filter((e) => !searchMatches(e.querySelector("a").innerText, text))
+      .forEach((e) => e.classList.remove("show"));
     [...document.querySelectorAll(".hide-default:not(.show)")]
-      .filter(e => searchMatches(e.querySelector("a").innerText, text))
-      .forEach(e => e.classList.add("show"));
+      .filter((e) => searchMatches(e.querySelector("a").innerText, text))
+      .forEach((e) => e.classList.add("show"));
     if (document.querySelectorAll(".hide-default.show").length === 0) {
-      [...document.querySelectorAll(".none.hide")].forEach(e =>
+      [...document.querySelectorAll(".none.hide")].forEach((e) =>
         e.classList.remove("hide")
       );
     } else {
-      [...document.querySelectorAll(".none:not(.hide)")].forEach(e =>
+      [...document.querySelectorAll(".none:not(.hide)")].forEach((e) =>
         e.classList.add("hide")
       );
     }

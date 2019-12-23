@@ -30,8 +30,8 @@ import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActionsExt.swipeLeftExt;
-import static androidx.test.espresso.action.ViewActionsExt.swipeRightExt;
+import static androidx.test.espresso.action.ViewActionsUtils.swipeLeftExt;
+import static androidx.test.espresso.action.ViewActionsUtils.swipeRightExt;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
