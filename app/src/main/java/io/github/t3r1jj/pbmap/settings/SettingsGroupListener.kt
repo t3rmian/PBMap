@@ -2,7 +2,6 @@ package io.github.t3r1jj.pbmap.settings
 
 import androidx.preference.CheckBoxPreference
 import androidx.preference.Preference
-import io.github.t3r1jj.pbmap.MapApplication
 
 /**
  * Implements preferences group

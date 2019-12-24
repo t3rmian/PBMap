@@ -23,4 +23,4 @@ then
     place=""
 fi
 link="$link<li class=\"hide-default\"><a href=\"/$path\" data-id=\"$place$space\"></a></li>"
-echo $link > build/$index
+echo ${link} > build/${index}

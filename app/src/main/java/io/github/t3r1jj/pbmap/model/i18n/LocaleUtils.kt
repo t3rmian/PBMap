@@ -24,7 +24,7 @@ class LocaleUtils {
          * @return [String] of a [Locale] with underscore between language and country
          */
         fun toString(locale: Locale): String {
-            return locale.toString().replace("-", "_");
+            return locale.toString().replace("-", "_")
         }
     }
 }

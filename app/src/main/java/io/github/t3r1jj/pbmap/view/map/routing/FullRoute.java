@@ -21,6 +21,7 @@ import io.github.t3r1jj.pbmap.view.map.MapView;
 /**
  * @deprecated use only for testing and debug
  */
+@SuppressWarnings("DeprecatedIsStillUsed")
 @Deprecated
 public class FullRoute extends Route {
 
@@ -30,7 +31,6 @@ public class FullRoute extends Route {
 
     private List<CompositePathView.DrawablePath> paths = new LinkedList<>();
 
-    @SuppressWarnings("deprecation")
     @Deprecated
     public FullRoute(Context context) {
         super(context);

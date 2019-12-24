@@ -67,7 +67,6 @@ public class PBMap extends Space {
     }
 
     /**
-     *
      * @param navigation direction
      * @return path to the map or null if there is no map in the requested direction
      */

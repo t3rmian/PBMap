@@ -11,6 +11,6 @@ fi
 
 while read filename;
 do
-    meta="$meta$(git log -1 --format="%ct" -- $filename) $filename "
+    meta="$meta$(git log -1 --format="%ct" -- ${filename}) $filename "
 done <<< $(git ls-tree -r --name-only HEAD $@)
 echo "$meta" | sha1sum | awk '{ print $1 }'

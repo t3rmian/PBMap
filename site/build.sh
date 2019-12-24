@@ -10,7 +10,7 @@ then
     cat public/.hash
     echo "=== Fetching hash from cache ==="
     cat "$NETLIFY_CACHE_DIR/public/.hash"
-    DIFF=$(diff $NETLIFY_CACHE_DIR/public/.hash public/.hash)
+    DIFF=$(diff ${NETLIFY_CACHE_DIR}/public/.hash public/.hash)
     if [[ -f "$NETLIFY_CACHE_DIR/public/.hash" && "$DIFF" == "" ]]
     then
         echo "=== The hashes are equal, exiting after fetching the cache ==="
@@ -31,7 +31,7 @@ PARALLELISM=8
 for file in ../app/src/main/assets/data/*
 do
     ((i=i%PARALLELISM)); ((i++==0)) && wait
-    ./generate_site_tree.sh $file &
+    ./generate_site_tree.sh ${file} &
 done
 wait
 
@@ -40,8 +40,8 @@ rm -rf build
 mkdir -p build
 for file in public/*/*.html public/*/*/*.html public/*/*/*/*.html
 do
-    ((j++%PARALLELISM==0)) && wait
-    ./generate_links.sh $file $j &
+    ((j++%${PARALLELISM}==0)) && wait
+    ./generate_links.sh ${file} ${j} &
 done
 wait
 links=$(cat build/*)
@@ -59,7 +59,7 @@ do
 
     if [[ "$region" == "" ]]
     then
-        hreflang=$lang
+        hreflang=${lang}
     elif [[ "$lang-$region" == "en-gb" ]]
     then
       continue
@@ -71,7 +71,7 @@ do
     then
         hreflang="en-gb"
     fi
-    langs[((k++))]=$hreflang
+    langs[((k++))]=${hreflang}
 done
 IFS=$'\n' sorted=($(sort <<<"${langs[*]}"))
 unset IFS
@@ -106,7 +106,7 @@ do
 
     if [[ "$region" == "" ]]
     then
-        hreflang=$lang
+        hreflang=${lang}
     elif [[ "$lang-$region" == "en-gb" ]]
     then
         continue
@@ -116,11 +116,11 @@ do
 
     if [[ "$lang" == "values" ]]
     then
-        sed '/<string name="address_/,/<\/string>/d' $file > public/i18n.xml
+        sed '/<string name="address_/,/<\/string>/d' ${file} > public/i18n.xml
     else
-        mkdir -p public/$hreflang
-        sed "s|%LANG%|$hreflang|g" public/index.html > public/$hreflang/index.html
-        sed '/<string name="address_/,/<\/string>/d' $file > public/$hreflang/i18n.xml
+        mkdir -p public/${hreflang}
+        sed "s|%LANG%|$hreflang|g" public/index.html > public/${hreflang}/index.html
+        sed '/<string name="address_/,/<\/string>/d' ${file} > public/${hreflang}/i18n.xml
     fi
 done
 sed -i "s|%LANG%|en-gb|g" public/index.html
@@ -136,7 +136,7 @@ do
 
     if [[ "$region" == "" ]]
     then
-        hreflang=$lang
+        hreflang=${lang}
     elif [[ "$lang-$region" == "en-gb" ]]
     then
         continue
@@ -144,9 +144,9 @@ do
         hreflang="$lang-$region"
     fi
 
-    title=$(grep '<string name="name_app">' $file)
-    subtitle=$(grep '<string name="about_description">' $file)
-    hint=$(grep '<string name="search_hint">' $file)
+    title=$(grep '<string name="name_app">' ${file})
+    subtitle=$(grep '<string name="about_description">' ${file})
+    hint=$(grep '<string name="search_hint">' ${file})
     if [[ "$title" == "" ]]
     then
         title=$(grep '<string name="name_app">' ../app/src/main/res/values/strings.xml)
@@ -165,9 +165,9 @@ do
         sed -i "s|%SUBTITLE%|$subtitle|g" public/index.html
         sed -i "s|%HINT%|$hint|g" public/index.html
     else
-        sed -i "s|%TITLE%|$title|g" public/$hreflang/index.html
-        sed -i "s|%SUBTITLE%|$subtitle|g" public/$hreflang/index.html
-        sed -i "s|%HINT%|$hint|g" public/$hreflang/index.html
+        sed -i "s|%TITLE%|$title|g" public/${hreflang}/index.html
+        sed -i "s|%SUBTITLE%|$subtitle|g" public/${hreflang}/index.html
+        sed -i "s|%HINT%|$hint|g" public/${hreflang}/index.html
     fi
 done
 echo "=== Finished title translations ==="

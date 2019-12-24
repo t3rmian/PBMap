@@ -110,9 +110,7 @@ public class TestUtilsPowerTest {
             assertTrue(intended.get());
             return null;
         });
-        withIntents(() -> {
-            intended.set(true);
-        });
+        withIntents(() -> intended.set(true));
         assertTrue(intended.get());
     }
 

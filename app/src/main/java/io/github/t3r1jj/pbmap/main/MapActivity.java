@@ -560,7 +560,7 @@ public class MapActivity extends DrawerActivity
                 .start();
     }
 
-    TapTarget defaultWrap(TapTarget tapTarget) {
+    private TapTarget defaultWrap(TapTarget tapTarget) {
         tapTarget.targetCircleColor(R.color.colorAccent)
                 .outerCircleColor(R.color.colorAccentSecondary)
                 .textColor(R.color.colorSecondaryText)

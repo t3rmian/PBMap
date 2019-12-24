@@ -106,7 +106,7 @@ public class IntegrationActivity extends AppCompatActivity {
         }).start();
     }
 
-    public void showPlaces(@StringRes int titleResId, Cursor cursor) {
+    private void showPlaces(@StringRes int titleResId, Cursor cursor) {
         View dialogView = getLayoutInflater().inflate(R.layout.places_dialog, findViewById(R.id.activity_integration), false);
         dialog.setContentView(dialogView);
         TextView placesTitle = dialogView.findViewById(R.id.places_title);

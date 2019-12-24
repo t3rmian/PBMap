@@ -12,12 +12,10 @@ import java9.util.stream.StreamSupport
 import org.w3c.dom.Attr
 import org.w3c.dom.NodeList
 import org.xml.sax.InputSource
-import java.io.IOException
 import java.io.InputStream
 import java.util.LinkedList
 import java.util.Locale
 import javax.xml.xpath.XPathConstants
-import javax.xml.xpath.XPathExpressionException
 import javax.xml.xpath.XPathFactory
 
 /**

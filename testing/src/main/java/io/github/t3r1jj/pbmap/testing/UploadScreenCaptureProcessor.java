@@ -14,7 +14,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class UploadScreenCaptureProcessor implements ScreenCaptureProcessor {
+class UploadScreenCaptureProcessor implements ScreenCaptureProcessor {
     private static final String TAG = UploadScreenCaptureProcessor.class.getSimpleName();
 
     @Override

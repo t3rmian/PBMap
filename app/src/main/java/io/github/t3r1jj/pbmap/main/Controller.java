@@ -13,6 +13,7 @@ import com.qozix.tileview.geom.CoordinateTranslater;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Locale;
 
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.Config;
@@ -166,13 +167,14 @@ public class Controller implements GeoMarker.MapListener {
      * @param event press event
      * @deprecated Use this only for logging coordinates
      */
+    @SuppressWarnings("DeprecatedIsStillUsed")
     @Deprecated
     public void printPressedCoordinate(MotionEvent event) {
         CoordinateTranslater coordinateTranslater = mapView.getCoordinateTranslater();
         double lng = coordinateTranslater.translateAndScaleAbsoluteToRelativeX(mapView.getScrollX() + event.getX() - mapView.getOffsetX(), mapView.getScale());
         double lat = coordinateTranslater.translateAndScaleAbsoluteToRelativeY(mapView.getScrollY() + event.getY() - mapView.getOffsetY(), mapView.getScale());
         System.out.println(new Coordinate(lat, lng, map.getCenter().alt));
-        Toast.makeText(mapActivity, String.format("lat=%f; lng=%f; alt=%f", lat, lng, map.getCenter().alt), Toast.LENGTH_SHORT).show();
+        Toast.makeText(mapActivity, String.format(Locale.ROOT, "lat=%f; lng=%f; alt=%f", lat, lng, map.getCenter().alt), Toast.LENGTH_SHORT).show();
     }
 
     public void onLongPress(MotionEvent event) {

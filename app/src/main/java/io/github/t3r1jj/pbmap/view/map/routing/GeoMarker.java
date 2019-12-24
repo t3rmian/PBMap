@@ -3,11 +3,11 @@ package io.github.t3r1jj.pbmap.view.map.routing;
 import android.content.Context;
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-
-import android.view.MotionEvent;
-import android.widget.ImageView;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.qozix.tileview.geom.CoordinateTranslater;
 
@@ -15,7 +15,7 @@ import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.view.map.MapView;
 
-public class GeoMarker extends ImageView implements RemovableView {
+public class GeoMarker extends AppCompatImageView implements RemovableView {
 
     private Coordinate coordinate;
     private PointF anchor;
@@ -93,9 +93,7 @@ public class GeoMarker extends ImageView implements RemovableView {
         if (coordinate != null && Math.abs(coordinate.alt - alt) < 1d) {
             double lngPx = coordinateTranslater.translateAndScaleX(coordinate.lng, mapView.getScale()) - mapView.getScrollX() + mapView.getOffsetX();
             double latPx = coordinateTranslater.translateAndScaleY(coordinate.lat, mapView.getScale()) - mapView.getScrollY() + mapView.getOffsetY();
-            if (sameMarkerPressed(mapView, event, lngPx, latPx)) {
-                return true;
-            }
+            return sameMarkerPressed(mapView, event, lngPx, latPx);
         }
         return false;
     }

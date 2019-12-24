@@ -48,6 +48,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:hint="@string/search_query_hint"
+        android:importantForAutofill="no"
+        android:inputType="text"
         android:text="@string/search_query" />
 
     <Button
@@ -70,6 +72,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="@string/map_id_hint"
+            android:importantForAutofill="no"
+            android:inputType="text"
             android:text="@string/map_id" />
 
         <EditText
@@ -78,6 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="@string/lat_hint"
+            android:importantForAutofill="no"
             android:inputType="numberDecimal"
             android:text="@string/lat" />
 
@@ -88,7 +93,8 @@
             android:layout_weight="1"
             android:hint="@string/lng_hint"
             android:inputType="numberDecimal"
-            android:text="@string/lng" />
+            android:text="@string/lng"
+            tools:ignore="Autofill" />
     </LinearLayout>
 
     <Button

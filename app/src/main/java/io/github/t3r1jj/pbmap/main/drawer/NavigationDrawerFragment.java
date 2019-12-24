@@ -179,9 +179,7 @@ abstract class NavigationDrawerFragment extends Fragment {
         }
 
         // Defer code dependent on restoration of previous instance state.
-        this.drawerLayout.post(() -> {
-            drawerToggle.syncState();
-        });
+        this.drawerLayout.post(() -> drawerToggle.syncState());
 
         this.drawerLayout.addDrawerListener(drawerToggle);
     }

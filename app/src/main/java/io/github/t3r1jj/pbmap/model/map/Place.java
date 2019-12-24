@@ -99,14 +99,6 @@ public abstract class Place {
         return logo;
     }
 
-    @Override
-    public String toString() {
-        return "Place{" +
-                "id='" + id + '\'' +
-                ", shape=" + coordinates +
-                '}';
-    }
-
     public Coordinate getCenter() {
         Coordinate center = new Coordinate();
         for (Coordinate coordinate : coordinates) {
@@ -121,7 +113,7 @@ public abstract class Place {
         return center;
     }
 
-    abstract public PlaceView createView(Context context);
+    abstract protected PlaceView createView(Context context);
 
     public boolean hasInfo(Context context) {
         return getDescription(context) != null;

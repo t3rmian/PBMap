@@ -65,18 +65,8 @@ public class SpotView extends MarkerLayout implements PlaceView {
 
     @Override
     public void addToMap(final MapView pbMapView) {
-        pbMapView.post(new Runnable() {
-            @Override
-            public void run() {
-                pbMapView.post(new Runnable() { // Double post delays getScale() enough for map to update
-                    @Override
-                    public void run() {
-                        setTextSize(pbMapView.getScale());
-                    }
-                });
-            }
-        });
-//        pbMapView.addMarker(textView, center.lng, center.lat, -0.5f, -1.0f);
+        // Double post delays getScale() enough for map to update
+        pbMapView.post(() -> pbMapView.post(() -> setTextSize(pbMapView.getScale())));
         pbMapView.addMarker(textView, center.lng, center.lat, -0.5f, -.5f);
         pbMapView.addZoomPanListener(new ZoomListener(pbMapView));
     }
