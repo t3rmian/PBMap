@@ -21,7 +21,7 @@ public abstract class Place {
     @Attribute(required = false)
     protected boolean hidden;
     @ElementList
-    protected List<Coordinate> coordinates;
+    protected final List<Coordinate> coordinates;
 
     /**
      * @param id of the place
@@ -115,7 +115,7 @@ public abstract class Place {
 
     abstract protected PlaceView createView(Context context);
 
-    public boolean hasInfo(Context context) {
+    boolean hasInfo(Context context) {
         return getDescription(context) != null;
     }
 }

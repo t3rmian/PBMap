@@ -13,8 +13,8 @@ import static org.junit.Assert.assertEquals;
 public class DijkstraAlgorithmTest {
 
     private DijkstraAlgorithm dijkstra;
-    private List<Coordinate> vertexes = new LinkedList<>();
-    private List<Edge> edges = new LinkedList<>();
+    private final List<Coordinate> vertexes = new LinkedList<>();
+    private final List<Edge> edges = new LinkedList<>();
     private Coordinate a;
     private Coordinate e;
     private Coordinate c;

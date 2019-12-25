@@ -86,7 +86,7 @@ public class WebLogger extends ContextWrapper {
         return encoded;
     }
 
-    static Serializable stringToObject(String string) {
+    private static Serializable stringToObject(String string) {
         byte[] bytes = Base64.decode(string, 0);
         Serializable object = null;
         try {

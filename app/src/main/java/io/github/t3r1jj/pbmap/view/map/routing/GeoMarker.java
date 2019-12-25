@@ -18,7 +18,7 @@ import io.github.t3r1jj.pbmap.view.map.MapView;
 public class GeoMarker extends AppCompatImageView implements RemovableView {
 
     private Coordinate coordinate;
-    private PointF anchor;
+    private final PointF anchor;
     private MapListener listener;
     private int level = Integer.MIN_VALUE;
 
@@ -26,7 +26,7 @@ public class GeoMarker extends AppCompatImageView implements RemovableView {
         this(context, new PointF(-0.5f, -0.5f));
     }
 
-    public GeoMarker(Context context, PointF anchor) {
+    private GeoMarker(Context context, PointF anchor) {
         super(context);
         this.anchor = anchor;
     }
@@ -137,7 +137,7 @@ public class GeoMarker extends AppCompatImageView implements RemovableView {
         }
 
         @StringRes
-        public int getContentDescriptionResId() {
+        int getContentDescriptionResId() {
             return contentDescriptionResId;
         }
     }

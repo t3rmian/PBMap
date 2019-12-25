@@ -44,7 +44,7 @@ abstract class NavigationDrawerFragment extends Fragment {
      */
     static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
 
-    protected int currentSelectedId = 1;
+    int currentSelectedId = 1;
 
     /**
      * Helper component that ties the action bar to the navigation drawer.
@@ -122,7 +122,7 @@ abstract class NavigationDrawerFragment extends Fragment {
         actionBar.setTitle(R.string.name_app);
     }
 
-    public boolean isDrawerOpen() {
+    private boolean isDrawerOpen() {
         return drawerLayout != null && drawerLayout.isDrawerOpen(fragmentContainerView);
     }
 
@@ -196,7 +196,7 @@ abstract class NavigationDrawerFragment extends Fragment {
         }
     }
 
-    protected void selectItem(int itemId) {
+    void selectItem(int itemId) {
         if (navigationView == null) {
             return;
         }
@@ -212,7 +212,7 @@ abstract class NavigationDrawerFragment extends Fragment {
         }
     }
 
-    protected final void highlightItem(int itemId) {
+    final void highlightItem(int itemId) {
         navigationView.getMenu().findItem(currentSelectedId).setChecked(false);
         currentSelectedId = itemId;
         navigationView.getMenu().findItem(currentSelectedId).setCheckable(true);

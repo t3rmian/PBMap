@@ -26,10 +26,10 @@ import io.github.t3r1jj.pbmap.view.map.MapView;
 public class FullRoute extends Route {
 
     private final int[] colors = new int[]{Color.GREEN, Color.BLUE, Color.CYAN, Color.GRAY, Color.YELLOW, Color.MAGENTA};
-    private DashPathEffect[] effects = new DashPathEffect[colors.length];
-    private float strokeWidth;
+    private final DashPathEffect[] effects = new DashPathEffect[colors.length];
+    private final float strokeWidth;
 
-    private List<CompositePathView.DrawablePath> paths = new LinkedList<>();
+    private final List<CompositePathView.DrawablePath> paths = new LinkedList<>();
 
     @Deprecated
     public FullRoute(Context context) {

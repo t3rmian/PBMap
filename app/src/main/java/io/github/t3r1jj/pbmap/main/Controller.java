@@ -317,9 +317,9 @@ public class Controller implements GeoMarker.MapListener {
     }
 
     public static class Memento implements Parcelable {
-        private Coordinate source;
-        private Coordinate destination;
-        private String mapReferencePath;
+        private final Coordinate source;
+        private final Coordinate destination;
+        private final String mapReferencePath;
 
         private Memento(Coordinate source, Coordinate destination, String mapReferencePath) {
             this.source = source;

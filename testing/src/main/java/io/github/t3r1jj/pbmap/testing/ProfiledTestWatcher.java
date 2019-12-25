@@ -5,7 +5,7 @@ import android.util.Log;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 
-public class ProfiledTestWatcher extends TestWatcher {
+class ProfiledTestWatcher extends TestWatcher {
     private static final String TAG = ProfiledTestWatcher.class.getSimpleName();
     private long startTime;
 

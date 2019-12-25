@@ -7,12 +7,12 @@ final class ServiceGeneratorUtils {
 
     private static final String BASE_URL = "https://file.io";
 
-    private static Retrofit.Builder builder = new Retrofit.Builder().baseUrl(BASE_URL);
+    private static final Retrofit.Builder builder = new Retrofit.Builder().baseUrl(BASE_URL);
 
-    private static OkHttpClient.Builder httpClient =
+    private static final OkHttpClient.Builder httpClient =
             new OkHttpClient.Builder();
 
-    private static Retrofit retrofit = builder.client(httpClient.build()).build();
+    private static final Retrofit retrofit = builder.client(httpClient.build()).build();
 
     private ServiceGeneratorUtils() {
     }
