@@ -250,7 +250,11 @@ main hr {
     border: 0;
     height: 1px;
     width: 100vw;
-    background-image: -webkit-linear-gradient(left, #eee, #8b8b8b, #eee);
+    background-image: -moz-linear-gradient(left, #eee, #8b8b8b, #eee); /* FF3.6+ */
+    background-image: -webkit-gradient(left, #eee, #8b8b8b, #eee); /* Chrome,Safari4+ */
+    background-image: -webkit-linear-gradient(left, #eee, #8b8b8b, #eee); /* Chrome10+,Safari5.1+ */
+    background-image: -o-linear-gradient(left, #eee, #8b8b8b, #eee); /* Opera 11.10+ */
+    background-image: -ms-linear-gradient(left, #eee, #8b8b8b, #eee); /* IE10+ */
 }
 
 nav span {

@@ -48,8 +48,7 @@ function loadI18n(xml, responseType) {
     var nodes = xml.selectNodes(path);
     var i;
     for (i = 0; i < nodes.length; i++) {
-      var result = nodes[i].childNodes[0];
-      i18n[result.getAttribute("name")] = result.nodeValue;
+      i18n[result.getAttribute("name")] = nodes[i].childNodes[0].nodeValue;
     }
   }
 }

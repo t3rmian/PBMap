@@ -21,7 +21,7 @@ public abstract class Place {
     @Attribute(required = false)
     protected boolean hidden;
     @ElementList
-    protected final List<Coordinate> coordinates;
+    protected List<Coordinate> coordinates;
 
     /**
      * @param id of the place
