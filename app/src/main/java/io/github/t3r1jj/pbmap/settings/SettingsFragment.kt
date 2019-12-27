@@ -1,11 +1,16 @@
 package io.github.t3r1jj.pbmap.settings
 
 import android.os.Bundle
-import androidx.preference.*
+import androidx.fragment.app.FragmentActivity
+import androidx.preference.CheckBoxPreference
+import androidx.preference.Preference
+import androidx.preference.PreferenceCategory
+import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.SwitchPreference
 import com.yariksoffice.lingver.Lingver
+import io.github.t3r1jj.pbmap.Config
 import io.github.t3r1jj.pbmap.MapApplication
 import io.github.t3r1jj.pbmap.R
-import io.github.t3r1jj.pbmap.Config
 import io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment
 import io.github.t3r1jj.pbmap.model.dictionary.Dictionary
 import io.github.t3r1jj.pbmap.model.i18n.LocaleUtils
@@ -22,13 +27,17 @@ class SettingsFragment : PreferenceFragmentCompat(), SettingsGroupListener.Prefe
 
     override fun onPreferenceActivate(key: String) {
         activity?.let {
-            if (REFRESH_ACTIVITY_STACK == key || dictionary.getUnitSystems().contains(key)) {
-                it.setResult(MapsDrawerFragment.RECREATE_REQUEST_RESULT_CODE)
-                it.finish()
-            } else {
-                Lingver.getInstance().setLocale(it, LocaleUtils.toLocale(key))
-                it.recreate()
-            }
+            handlePreferenceActivation(key, it)
+        }
+    }
+
+    private fun handlePreferenceActivation(key: String, activity: FragmentActivity) {
+        if (REFRESH_ACTIVITY_STACK == key || dictionary.getUnitSystems().contains(key)) {
+            activity.setResult(MapsDrawerFragment.RECREATE_REQUEST_RESULT_CODE)
+            activity.finish()
+        } else {
+            Lingver.getInstance().setLocale(activity, LocaleUtils.toLocale(key))
+            activity.recreate()
         }
     }
 

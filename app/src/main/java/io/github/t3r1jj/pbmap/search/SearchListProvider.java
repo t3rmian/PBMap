@@ -37,11 +37,15 @@ public class SearchListProvider extends SearchRecentSuggestionsProvider {
         if (mapsDao == null) {
             mapsDao = new MapsDao(getBaseContext());
         }
-        if (selectionArgs != null && selectionArgs.length > 0 && selectionArgs[0] != null && selectionArgs[0].length() > 0) {
+        if (containsSelectionArgs(selectionArgs)) {
             return mapsDao.query(tableColumns, prepareScopedSelectionArgs(selectionArgs), "id".equals(selection) || searchById);
         } else {
             return mapsDao.query(tableColumns, new String[]{".*"}, true);
         }
+    }
+
+    private boolean containsSelectionArgs(String[] selectionArgs) {
+        return selectionArgs != null && selectionArgs.length > 0 && selectionArgs[0] != null && selectionArgs[0].length() > 0;
     }
 
     private String[] prepareScopedSelectionArgs(String[] selectionArgs) {

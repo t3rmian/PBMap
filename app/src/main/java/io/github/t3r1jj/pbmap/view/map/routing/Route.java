@@ -25,7 +25,7 @@ public class Route implements RemovableView {
     private GeoMarker source;
     private GeoMarker destination;
     private PBMap map;
-    private List<Coordinate> route;
+    private List<Coordinate> coordinates;
 
     public Route(Context context) {
         Resources resources = context.getResources();
@@ -87,13 +87,13 @@ public class Route implements RemovableView {
             drawablePath.path = new Path();
             return;
         }
-        route = routeGraph.getRoute(source.getCoordinate(), destination.getCoordinate());
-        map.removeDifferentAltitudePoints(route);
-        if (route.isEmpty()) {
+        coordinates = routeGraph.getRoute(source.getCoordinate(), destination.getCoordinate());
+        map.removeDifferentAltitudePoints(coordinates);
+        if (coordinates.isEmpty()) {
             drawablePath.path = new Path();
             return;
         }
-        drawablePath.path = pathFromPositions(coordinateTranslater, route);
+        drawablePath.path = pathFromPositions(coordinateTranslater, coordinates);
     }
 
     /**
@@ -123,12 +123,12 @@ public class Route implements RemovableView {
     }
 
     public double calculateDistance() {
-        if (route == null) {
+        if (coordinates == null) {
             return 0;
         }
         double distance = 0;
-        for (int i = 1; i < route.size(); i++) {
-            distance += route.get(i - 1).distanceTo(route.get(i));
+        for (int i = 1; i < coordinates.size(); i++) {
+            distance += coordinates.get(i - 1).distanceTo(coordinates.get(i));
         }
         return distance;
     }

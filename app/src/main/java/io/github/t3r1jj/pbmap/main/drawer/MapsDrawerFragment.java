@@ -74,17 +74,21 @@ public class MapsDrawerFragment extends NavigationDrawerFragment {
     protected void selectItem(int itemId) {
         super.selectItem(itemId);
         if (callbacks != null) {
-            if (itemId == R.id.menu_about) {
-                callbacks.onAboutDrawerItemSelected();
-            } else if (itemId == R.id.menu_help) {
-                callbacks.onHelpDrawerItemSelected();
-            } else if (itemId == R.id.menu_settings) {
-                Activity activity = getActivity();
-                Intent settingsIntent = new Intent(activity, SettingsActivity.class);
-                activity.startActivityForResult(settingsIntent, RECREATE_REQUEST_RESULT_CODE);
-            } else {
-                callbacks.onPlaceDrawerItemSelected(places.get(Math.abs(itemId)));
-            }
+            handleItemCallback(itemId);
+        }
+    }
+
+    private void handleItemCallback(int itemId) {
+        if (itemId == R.id.menu_about) {
+            callbacks.onAboutDrawerItemSelected();
+        } else if (itemId == R.id.menu_help) {
+            callbacks.onHelpDrawerItemSelected();
+        } else if (itemId == R.id.menu_settings) {
+            Activity activity = getActivity();
+            Intent settingsIntent = new Intent(activity, SettingsActivity.class);
+            activity.startActivityForResult(settingsIntent, RECREATE_REQUEST_RESULT_CODE);
+        } else {
+            callbacks.onPlaceDrawerItemSelected(places.get(Math.abs(itemId)));
         }
     }
 

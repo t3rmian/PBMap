@@ -2,6 +2,7 @@ package io.github.t3r1jj.pbmap.main;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.inputmethod.InputMethodManager;
@@ -22,7 +23,7 @@ import io.github.t3r1jj.pbmap.R;
  * Supports {@link MapActivity} only
  * Requires setting argument bundle with {@link MarkerDialogFragment#MOTION_EVENT_KEY}
  */
-public class ImproveDialogFragment extends DialogFragment {
+public class ImproveDialogFragment extends DialogFragment implements DialogInterface.OnShowListener {
     private MapActivity mapActivity;
     private EditText descriptionEditText;
     private AlertDialog dialog;
@@ -52,22 +53,25 @@ public class ImproveDialogFragment extends DialogFragment {
                 .setNegativeButton(R.string.cancel, null)
                 .create();
 
-        dialog.setOnShowListener(__ -> {
-            InputMethodManager inputMethodManager = (InputMethodManager) mapActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
-            inputMethodManager.showSoftInput(descriptionEditText, InputMethodManager.SHOW_IMPLICIT);
-            Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
-            positiveButton.setOnClickListener(v -> {
-                String description = descriptionEditText.getText().toString();
-                if (description.isEmpty()) {
-                    descriptionEditText.setError(getString(R.string.required));
-                    return;
-                }
-                dialog.dismiss();
-                Controller controller = mapActivity.getController();
-                controller.onImprovePressed(event, description);
-            });
-
-        });
+        dialog.setOnShowListener(this);
         return dialog;
+    }
+
+    @Override
+    public void onShow(DialogInterface dialog) {
+        InputMethodManager inputMethodManager = (InputMethodManager) mapActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.showSoftInput(descriptionEditText, InputMethodManager.SHOW_IMPLICIT);
+        Button positiveButton = this.dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        positiveButton.setOnClickListener(v -> {
+            String description = descriptionEditText.getText().toString();
+            if (description.isEmpty()) {
+                descriptionEditText.setError(getString(R.string.required));
+                return;
+            }
+            dialog.dismiss();
+            Controller controller = mapActivity.getController();
+            controller.onImprovePressed(event, description);
+        });
+
     }
 }

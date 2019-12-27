@@ -9,6 +9,7 @@
         <item>TapTargetView</item>
         <item>Google Support Libraries</item>
         <item>android-retrostreams</item>
+        <item>Butter Knife</item>
         <item>Exo Bold</item>
         <item>Иконы</item>
         <item>Карты</item>
@@ -49,11 +50,16 @@
             \nАвтор: The Android Open Source Project
             \nЛицензия: Apache 2.0
             \nСайт: https://developer.android.com/topic/libraries/support-library/index.html</item>
-        <item>Java 9 API java.util.stream Бэкпорт для Android Studio 3.x D8 / цепочка инструментов desugar
+        <item>Java 9 API java.util.stream Бэкпорт для Android Studio 3.x D8 / цепочка инструментов desugar.
             \n\nВерсия: net.sourceforge.streamsupport:android-retrostreams:1.7.1
             \nАвтор: Oracle and/or its affiliates and Stefan Zobel
             \nЛицензия: GPL 2.0 с исключением Classpath
             \nСайт: https://retrostreams.github.io/android-retrostreams/</item>
+        <item>Связывает представления Android и обратные вызовы с полями и методами.
+            \n\nВерсия: com.jakewharton:butterknife:10.2.0, com.jakewharton:butterknife-compiler:10.2.0
+            \nАвтор: Jake Wharton
+            \nЛицензия: Apache 2.0
+            \nСайт: http://jakewharton.github.io/butterknife/</item>
         <item>Шрифт Sans Serif, используемый для отображения названий сопоставленных мест.
             \n\nВерсия: Exo Bold
             \nАвтор: Natanael Gama (exo@ndiscovered.com)

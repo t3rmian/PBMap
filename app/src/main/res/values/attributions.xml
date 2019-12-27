@@ -9,6 +9,7 @@
         <item>TapTargetView</item>
         <item>Google Support Libraries</item>
         <item>android-retrostreams</item>
+        <item>Butter Knife</item>
         <item>Exo Bold</item>
         <item>Icons</item>
         <item>Map tiles</item>
@@ -49,11 +50,16 @@
             \nAuthor: The Android Open Source Project
             \nLicense: Apache 2.0
             \nSite: https://developer.android.com/topic/libraries/support-library/index.html</item>
-        <item>Backport of Java 9 java.util.stream API for Android Studio 3.x D8 / desugar toolchain
+        <item>Backport of Java 9 java.util.stream API for Android Studio 3.x D8 / desugar toolchain.
             \n\nVersion: net.sourceforge.streamsupport:android-retrostreams:1.7.1
             \nAuthor: Oracle and/or its affiliates and Stefan Zobel
             \nLicense: GPL 2.0 with the Classpath Exception
             \nSite: https://retrostreams.github.io/android-retrostreams/</item>
+        <item>Binds Android views and callbacks to fields and methods.
+            \n\nVersion: com.jakewharton:butterknife:10.2.0, com.jakewharton:butterknife-compiler:10.2.0
+            \nAuthor: Jake Wharton
+            \nLicense: Apache 2.0
+            \nSite: http://jakewharton.github.io/butterknife/</item>
         <item>A Sans Serif font used for displaying names on the map.
             \n\nVersion: Exo Bold
             \nAuthor: Natanael Gama (exo@ndiscovered.com)

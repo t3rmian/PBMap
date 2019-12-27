@@ -71,16 +71,17 @@ public class PBMap extends Space {
      * @return path to the map or null if there is no map in the requested direction
      */
     public String getNavigationMapPath(Navigation navigation) {
-        if (navigation == Navigation.UP) {
-            return upMapPath;
-        } else if (navigation == Navigation.DOWN) {
-            return downMapPath;
-        } else if (navigation == Navigation.LEFT) {
-            return leftMapPath;
-        } else if (navigation == Navigation.RIGHT) {
-            return rightMapPath;
-        } else {
-            return previousMapPath;
+        switch (navigation) {
+            case UP:
+                return upMapPath;
+            case DOWN:
+                return downMapPath;
+            case LEFT:
+                return leftMapPath;
+            case RIGHT:
+                return rightMapPath;
+            default:
+                return previousMapPath;
         }
     }
 

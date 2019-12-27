@@ -2,6 +2,7 @@ package io.github.t3r1jj.pbmap.main.drawer;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
 

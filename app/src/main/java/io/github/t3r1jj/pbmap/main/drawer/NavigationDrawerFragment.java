@@ -8,21 +8,22 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
-import com.google.android.material.navigation.NavigationView;
-
-import androidx.appcompat.graphics.drawable.DrawerArrowDrawable;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.graphics.drawable.DrawerArrowDrawable;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.navigation.NavigationView;
 
 import io.github.t3r1jj.pbmap.R;
 
@@ -146,29 +147,7 @@ abstract class NavigationDrawerFragment extends Fragment {
 
         // ActionBarDrawerToggle ties together the the proper interactions
         // between the navigation drawer and the action bar app icon.
-        drawerToggle = new ActionBarDrawerToggle(
-                getActivity(),                    /* host Activity */
-                NavigationDrawerFragment.this.drawerLayout,                    /* DrawerLayout object */
-                R.string.navigation_drawer_open,  /* "open drawer" description for accessibility */
-                R.string.navigation_drawer_close  /* "close drawer" description for accessibility */
-        ) {
-
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                if (isAdded()) {
-                    userLearnedDrawer();
-                }
-            }
-
-            @Override
-            public void onDrawerStateChanged(int newState) {
-                super.onDrawerStateChanged(newState);
-                if (newState == DrawerLayout.STATE_SETTLING && !isDrawerOpen()) {
-                    NavigationDrawerFragment.this.onDrawerOpening();
-                }
-            }
-        };
+        drawerToggle = new LearnedActionBarDrawerToggle();
         initialLogo = drawerToggle.getDrawerArrowDrawable();
 
         // If the user hasn't 'learned' about the drawer, open it to introduce them to the drawer,
@@ -247,6 +226,30 @@ abstract class NavigationDrawerFragment extends Fragment {
                     drawable.draw(canvas);
                 }
             });
+        }
+    }
+
+    private class LearnedActionBarDrawerToggle extends ActionBarDrawerToggle {
+
+        private LearnedActionBarDrawerToggle() {
+            super(NavigationDrawerFragment.this.getActivity(), NavigationDrawerFragment.this.drawerLayout,
+                    R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        }
+
+        @Override
+        public void onDrawerOpened(View drawerView) {
+            super.onDrawerOpened(drawerView);
+            if (isAdded()) {
+                userLearnedDrawer();
+            }
+        }
+
+        @Override
+        public void onDrawerStateChanged(int newState) {
+            super.onDrawerStateChanged(newState);
+            if (newState == DrawerLayout.STATE_SETTLING && !isDrawerOpen()) {
+                NavigationDrawerFragment.this.onDrawerOpening();
+            }
         }
     }
 }
