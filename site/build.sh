@@ -40,7 +40,7 @@ rm -rf build
 mkdir -p build
 for file in public/*/*.html public/*/*/*.html public/*/*/*/*.html
 do
-    ((j++%${PARALLELISM}==0)) && wait
+    ((j++%PARALLELISM==0)) && wait
     ./generate_links.sh ${file} ${j} &
 done
 wait

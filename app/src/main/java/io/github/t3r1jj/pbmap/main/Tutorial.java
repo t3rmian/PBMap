@@ -54,6 +54,7 @@ public class Tutorial extends ContextWrapper {
 
         );
         tapTargetSequence.listener(new TutorialSequenceListener());
+        tapTargetSequence.start();
     }
 
     private View getBackButtonView() {

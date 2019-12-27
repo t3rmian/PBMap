@@ -155,6 +155,9 @@ open class MapsDao(base: Context) : ContextWrapper(base) {
         return assets.list(mapsPath)!!.toMutableList()
     }
 
+    /**
+     * @return [InputStream] for an asset
+     */
     fun openAsset(assetsPath: String): InputStream {
         return assets.open(assetsPath)
     }
