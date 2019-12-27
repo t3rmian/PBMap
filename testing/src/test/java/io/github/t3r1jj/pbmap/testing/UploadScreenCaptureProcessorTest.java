@@ -26,7 +26,7 @@ import static org.mockito.Mockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(value = {Log.class, Screenshot.class, ServiceGenerator.class})
+@PrepareForTest(value = {Log.class, Screenshot.class, ServiceGeneratorUtils.class})
 @PowerMockIgnore("javax.net.ssl.*")
 public class UploadScreenCaptureProcessorTest {
 
@@ -46,9 +46,9 @@ public class UploadScreenCaptureProcessorTest {
     @Test
     public void process_successful_noBody() throws IOException {
         PowerMockito.mockStatic(Log.class);
-        PowerMockito.mockStatic(ServiceGenerator.class);
+        PowerMockito.mockStatic(ServiceGeneratorUtils.class);
         UploadService serviceMock = mock(UploadService.class);
-        when(ServiceGenerator.createService(any())).thenReturn(serviceMock);
+        when(ServiceGeneratorUtils.createService(any())).thenReturn(serviceMock);
         when(serviceMock.upload(any())).thenReturn(callMock);
         when(screenCaptureMock.getBitmap()).thenReturn(bitmapMock);
         when(callMock.execute()).thenReturn(responseMock);
@@ -64,9 +64,9 @@ public class UploadScreenCaptureProcessorTest {
     @Test
     public void process_unsuccessful_noBody() throws IOException {
         PowerMockito.mockStatic(Log.class);
-        PowerMockito.mockStatic(ServiceGenerator.class);
+        PowerMockito.mockStatic(ServiceGeneratorUtils.class);
         UploadService serviceMock = mock(UploadService.class);
-        when(ServiceGenerator.createService(any())).thenReturn(serviceMock);
+        when(ServiceGeneratorUtils.createService(any())).thenReturn(serviceMock);
         when(serviceMock.upload(any())).thenReturn(callMock);
         when(screenCaptureMock.getBitmap()).thenReturn(bitmapMock);
         when(callMock.execute()).thenReturn(responseMock);
@@ -83,9 +83,9 @@ public class UploadScreenCaptureProcessorTest {
     @Test
     public void process_successful() throws IOException {
         PowerMockito.mockStatic(Log.class);
-        PowerMockito.mockStatic(ServiceGenerator.class);
+        PowerMockito.mockStatic(ServiceGeneratorUtils.class);
         UploadService serviceMock = mock(UploadService.class);
-        when(ServiceGenerator.createService(any())).thenReturn(serviceMock);
+        when(ServiceGeneratorUtils.createService(any())).thenReturn(serviceMock);
         when(serviceMock.upload(any())).thenReturn(callMock);
         when(screenCaptureMock.getBitmap()).thenReturn(bitmapMock);
         when(callMock.execute()).thenReturn(responseMock);
@@ -103,9 +103,9 @@ public class UploadScreenCaptureProcessorTest {
     @Test
     public void process_unsuccessful() throws IOException {
         PowerMockito.mockStatic(Log.class);
-        PowerMockito.mockStatic(ServiceGenerator.class);
+        PowerMockito.mockStatic(ServiceGeneratorUtils.class);
         UploadService serviceMock = mock(UploadService.class);
-        when(ServiceGenerator.createService(any())).thenReturn(serviceMock);
+        when(ServiceGeneratorUtils.createService(any())).thenReturn(serviceMock);
         when(serviceMock.upload(any())).thenReturn(callMock);
         when(screenCaptureMock.getBitmap()).thenReturn(bitmapMock);
         when(callMock.execute()).thenReturn(responseMock);

@@ -12,14 +12,15 @@ import java9.util.stream.StreamSupport
 import org.w3c.dom.Attr
 import org.w3c.dom.NodeList
 import org.xml.sax.InputSource
-import java.io.IOException
 import java.io.InputStream
 import java.util.LinkedList
 import java.util.Locale
 import javax.xml.xpath.XPathConstants
-import javax.xml.xpath.XPathExpressionException
 import javax.xml.xpath.XPathFactory
 
+/**
+ * Provides a way to query data files for a list of maps and places
+ */
 open class MapsDao(base: Context) : ContextWrapper(base) {
     companion object {
         @JvmStatic
@@ -29,6 +30,13 @@ open class MapsDao(base: Context) : ContextWrapper(base) {
         const val firstMapFilename = BuildConfig.FIRST_MAP_FILENAME
     }
 
+    /**
+     * @return a Cursor with columns matching definition of [io.github.t3r1jj.pbmap.search.SearchListProvider.tableColumns]
+     *
+     * @param columns column names for the cursor
+     * @param selectionArgs an array of place and map or only a place
+     * @param searchById if true - includes maps with map_id@map_id convention, if false the search is done on translated places
+     */
     fun query(columns: Array<String>, selectionArgs: Array<String>, searchById: Boolean): Cursor {
         val results = MatrixCursor(columns)
         prepareQueryArguments(selectionArgs, searchById)
@@ -100,25 +108,24 @@ open class MapsDao(base: Context) : ContextWrapper(base) {
         }
     }
 
+    /**
+     * @return search suggestions consisting solely of maps
+     */
     fun getMapSuggestions(): List<SearchSuggestion> {
         val searchSuggestions = LinkedList<SearchSuggestion>()
         for (mapPath in getMapFilenames()) {
             val assetsPath = "$mapsPath/$mapPath"
             val factory = XPathFactory.newInstance()
             val xPath = factory.newXPath()
-            try {
-                val name = xPath.evaluate("(//*/@id)[1]", InputSource(openAsset(assetsPath)), XPathConstants.NODE) as Attr
-                val element = name.ownerElement
-                if ("true" != element.getAttribute("hidden")) {
-                    val searchSuggestion = SearchSuggestion(name.value, assetsPath)
-                    searchSuggestion.setLogoName(element.getAttribute("logo_path"))
-                    if (element.hasAttribute("rank")) {
-                        searchSuggestion.setRank(Integer.parseInt(element.getAttribute("rank")))
-                    }
-                    searchSuggestions.add(searchSuggestion)
+            val name = xPath.evaluate("(//*/@id)[1]", InputSource(openAsset(assetsPath)), XPathConstants.NODE) as Attr
+            val element = name.ownerElement
+            if ("true" != element.getAttribute("hidden")) {
+                val searchSuggestion = SearchSuggestion(name.value, assetsPath)
+                searchSuggestion.setLogoName(element.getAttribute("logo_path"))
+                if (element.hasAttribute("rank")) {
+                    searchSuggestion.setRank(Integer.parseInt(element.getAttribute("rank")))
                 }
-            } catch (e: XPathExpressionException) {
-                e.printStackTrace()
+                searchSuggestions.add(searchSuggestion)
             }
 
         }
@@ -145,22 +152,13 @@ open class MapsDao(base: Context) : ContextWrapper(base) {
 
 
     private fun getMapFilenames(): List<String> {
-        try {
-            return assets.list(mapsPath)!!.toMutableList()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-        return listOf()
+        return assets.list(mapsPath)!!.toMutableList()
     }
 
-
-    fun openAsset(assetsPath: String): InputStream? {
-        try {
-            return assets.open(assetsPath)
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-        return null
+    /**
+     * @return [InputStream] for an asset
+     */
+    fun openAsset(assetsPath: String): InputStream {
+        return assets.open(assetsPath)
     }
 }

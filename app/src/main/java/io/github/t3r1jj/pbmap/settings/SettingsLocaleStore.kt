@@ -10,6 +10,9 @@ import io.github.t3r1jj.pbmap.model.dictionary.Dictionary
 import io.github.t3r1jj.pbmap.model.i18n.LocaleUtils
 import java.util.Locale
 
+/**
+ * Stores currently used locale based on preference selection
+ */
 class SettingsLocaleStore @JvmOverloads constructor(
         context: Context,
         var defaultLocale: Locale = Locale.getDefault(),

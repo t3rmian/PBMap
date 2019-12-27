@@ -2,8 +2,8 @@
 
 [![Build Status](https://travis-ci.org/t3rmian/PBMap.svg?branch=master)](https://travis-ci.org/t3rmian/PBMap)
 [![codecov](https://codecov.io/gh/t3rmian/PBMap/branch/master/graph/badge.svg)](https://codecov.io/gh/t3rmian/PBMap)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/cb0b81a801684f458360b84cef4fdbb3)](https://app.codacy.com/app/t3rmian/PBMap?utm_source=github.com&utm_medium=referral&utm_content=t3rmian/PBMap&utm_campaign=Badge_Grade_Dashboard)
-[![Maintainability](https://api.codeclimate.com/v1/badges/9f2e04a025180ab4f211/maintainability)](https://codeclimate.com/github/t3rmian/PBMap/maintainability)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/662346a6c9b34a93b2a5f69bb078775d)](https://www.codacy.com/manual/T3r1jj/PBMap?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=T3r1jj/PBMap&amp;utm_campaign=Badge_Grade)
+[![Maintainability](https://api.codeclimate.com/v1/badges/9f2e04a025180ab4f211/maintainability)](https://codeclimate.com/github/T3r1jj/PBMap/maintainability)
 [![Lines of code](https://tokei.rs/b1/github/t3rmian/PBMap)](https://github.com/Aaronepower/tokei)
 [![More information](https://img.shields.io/badge/Wiki-%F0%9F%93%96-blue)](https://img.shields.io/badge/Wiki-%F0%9F%93%96-blue)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e470d84b-52d5-4768-b540-3c12d181ae6c/deploy-status)](https://app.netlify.com/sites/pbmap/deploys)

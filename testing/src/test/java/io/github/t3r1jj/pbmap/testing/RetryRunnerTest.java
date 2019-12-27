@@ -155,6 +155,7 @@ public class RetryRunnerTest {
         return runner.getTestClass().getAnnotatedMethods(Test.class).get(0);
     }
 
+    @SuppressWarnings("JavaReflectionMemberAccess")
     private static void setTryCount(int tryCount) throws Exception {
         Field field = BuildConfig.class.getField("IT_TEST_TRY_LIMIT");
         field.setAccessible(true);

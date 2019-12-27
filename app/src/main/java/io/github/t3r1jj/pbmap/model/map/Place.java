@@ -1,17 +1,13 @@
 package io.github.t3r1jj.pbmap.model.map;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.ElementList;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
-import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.view.map.PlaceView;
 
 public abstract class Place {
@@ -21,14 +17,13 @@ public abstract class Place {
     @Attribute
     protected String id;
     @Attribute(name = "logo_path", required = false)
-    protected String logoPath;
+    private String logoPath;
     @Attribute(required = false)
     protected boolean hidden;
     @ElementList
     protected List<Coordinate> coordinates;
 
     /**
-     *
      * @param id of the place
      * @return name res id with special characters replaced by _ and with prepended prefix
      */
@@ -40,7 +35,6 @@ public abstract class Place {
     }
 
     /**
-     *
      * @return see {@link #getResIdString(String, String)} with name prefix
      */
     public String getNameResIdString() {
@@ -48,7 +42,6 @@ public abstract class Place {
     }
 
     /**
-     *
      * @return see {@link #getResIdString(String, String)} with description prefix
      */
     public String getDescriptionResIdString() {
@@ -106,14 +99,6 @@ public abstract class Place {
         return logo;
     }
 
-    @Override
-    public String toString() {
-        return "Place{" +
-                "id='" + id + '\'' +
-                ", shape=" + coordinates +
-                '}';
-    }
-
     public Coordinate getCenter() {
         Coordinate center = new Coordinate();
         for (Coordinate coordinate : coordinates) {
@@ -128,9 +113,9 @@ public abstract class Place {
         return center;
     }
 
-    abstract public PlaceView createView(Context context);
+    abstract protected PlaceView createView(Context context);
 
-    public boolean hasInfo(Context context) {
+    boolean hasInfo(Context context) {
         return getDescription(context) != null;
     }
 }

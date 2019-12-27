@@ -6,12 +6,6 @@ import android.app.SearchManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.Location;
@@ -20,13 +14,14 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.Display;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,16 +34,19 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
-import com.getkeepsafe.taptargetview.TapTarget;
-import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.yariksoffice.lingver.Lingver;
 
+import java.util.Objects;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.github.t3r1jj.pbmap.BuildConfig;
+import io.github.t3r1jj.pbmap.Config;
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.about.AboutActivity;
-import io.github.t3r1jj.pbmap.Config;
 import io.github.t3r1jj.pbmap.main.drawer.DrawerActivity;
 import io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment;
 import io.github.t3r1jj.pbmap.model.Info;
@@ -65,27 +63,39 @@ import static io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment.RECREATE_REQ
 public class MapActivity extends DrawerActivity
         implements MapsDrawerFragment.PlaceNavigationDrawerCallbacks {
 
-    static final String INTRODUCTION_FINISHED = "io.github.t3r1jj.pbmap.main.INTRODUCTION_FINISHED";
     private static final int REQUEST_LOCATION = 1;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    MenuItem backButton;
+    @BindView(R.id.level_fab_menu)
+    FloatingActionMenu levelMenu;
+    @BindView(R.id.more_fab_menu)
+    FloatingActionMenu moreOptions;
+
+    @BindView(R.id.content_main)
+    ViewGroup mapContainer;
+    @BindView(R.id.info_fab)
+    FloatingActionButton infoButton;
+    @BindView(R.id.up_fab)
+    FloatingActionButton levelUpButton;
+    @BindView(R.id.down_fab)
+    FloatingActionButton levelDownButton;
+    @BindView(R.id.right_fab)
+    FloatingActionButton levelRightButton;
+    @BindView(R.id.left_fab)
+    FloatingActionButton levelLeftButton;
+    @BindView(R.id.help_fab)
+    FloatingActionButton helpButton;
+    @BindView(R.id.distance)
+    TextView distanceText;
+
     private DeviceServices deviceServices;
     private Controller controller;
-    private ViewGroup mapContainer;
-    private FloatingActionButton infoButton;
-    private FloatingActionButton gpsButton;
-    private FloatingActionMenu levelMenu;
-    private FloatingActionMenu moreOptions;
-    private FloatingActionButton levelUpButton;
-    private FloatingActionButton levelDownButton;
-    private FloatingActionButton levelRightButton;
-    private FloatingActionButton levelLeftButton;
-    private FloatingActionButton helpButton;
-    private TextView distanceText;
-    private MenuItem backButton;
     private LocationManager locationManager;
     private LocationListener locationListener;
     private boolean explicitlyAskedForPermissions;
     private boolean showBackButton;
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,12 +104,43 @@ public class MapActivity extends DrawerActivity
         handleIntent(getIntent(), true);
 
         super.onCreate(savedInstanceState);
-        mapContainer = findViewById(R.id.content_main);
 
         setUpTexts();
         setUpButtons();
         setUpZoomControls();
         controller.postLoad();
+    }
+
+    @Override
+    protected void initializeContentView() {
+        setContentView(R.layout.activity_map);
+        ButterKnife.bind(this);
+        setSupportActionBar(toolbar);
+    }
+
+    private void setUpButtons() {
+        moreOptions.getMenuIconView().setContentDescription(getString(R.string.more_features));
+        levelMenu.getMenuIconView().setContentDescription(getString(R.string.floor));
+
+        initButtonTriangle(levelUpButton, 0);
+        initButtonTriangle(levelRightButton, 90);
+        initButtonTriangle(levelDownButton, 180);
+        initButtonTriangle(levelLeftButton, 270);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (preferences.contains(Tutorial.INTRODUCTION_FINISHED)) {
+            hideHelp();
+        } else {
+            helpButton.startAnimation(AnimationUtils.loadAnimation(this, R.anim.blink));
+            helpButton.setOnClickListener(v -> onHelpDrawerItemSelected());
+        }
+    }
+
+    private void initButtonTriangle(ImageButton button, int angle) {
+        Drawable triangleDrawable = getResources().getDrawable(R.drawable.triangle_up_drawable);
+        DrawableCompat.setTint(triangleDrawable, ContextCompat.getColor(this, R.color.colorSecondaryText));
+        triangleDrawable = DrawableUtils.rotateDrawable(getResources(), triangleDrawable, angle);
+        button.setImageDrawable(triangleDrawable);
     }
 
     @Override
@@ -109,93 +150,44 @@ public class MapActivity extends DrawerActivity
         }
     }
 
-    private void setUpButtons() {
-        moreOptions = findViewById(R.id.more_fab_menu);
-        moreOptions.getMenuIconView().setContentDescription(getString(R.string.more_features));
+    @OnClick(R.id.up_fab)
+    void navigateUp() {
+        controller.onNavigationPerformed(PBMap.Navigation.UP);
+    }
 
-        levelMenu = findViewById(R.id.level_fab_menu);
-        levelMenu.getMenuIconView().setContentDescription(getString(R.string.floor));
-        levelUpButton = findViewById(R.id.up_fab);
+    @OnClick(R.id.right_fab)
+    void navigateRight() {
+        controller.onNavigationPerformed(PBMap.Navigation.RIGHT);
+    }
 
-        Drawable triangleDrawable = getResources().getDrawable(R.drawable.triangle_up_drawable);
-        DrawableCompat.setTint(triangleDrawable, ContextCompat.getColor(this, R.color.colorSecondaryText));
-        levelUpButton.setImageDrawable(triangleDrawable);
-        levelUpButton.setOnClickListener(v -> controller.onNavigationPerformed(PBMap.Navigation.UP));
-        levelDownButton = findViewById(R.id.down_fab);
-        triangleDrawable = getResources().getDrawable(R.drawable.triangle_down_drawable);
-        DrawableCompat.setTint(triangleDrawable, ContextCompat.getColor(this, R.color.colorSecondaryText));
-        levelDownButton.setImageDrawable(triangleDrawable);
-        levelDownButton.setOnClickListener(v -> controller.onNavigationPerformed(PBMap.Navigation.DOWN));
-        levelRightButton = findViewById(R.id.right_fab);
-        triangleDrawable = getResources().getDrawable(R.drawable.triangle_down_drawable);
-        DrawableCompat.setTint(triangleDrawable, ContextCompat.getColor(this, R.color.colorSecondaryText));
-        triangleDrawable = rotateDrawable(triangleDrawable, -90);
-        levelRightButton.setImageDrawable(triangleDrawable);
-        levelRightButton.setOnClickListener(v -> controller.onNavigationPerformed(PBMap.Navigation.RIGHT));
-        levelLeftButton = findViewById(R.id.left_fab);
-        triangleDrawable = getResources().getDrawable(R.drawable.triangle_down_drawable);
-        DrawableCompat.setTint(triangleDrawable, ContextCompat.getColor(this, R.color.colorSecondaryText));
-        triangleDrawable = rotateDrawable(triangleDrawable, 90);
-        levelLeftButton.setImageDrawable(triangleDrawable);
-        levelLeftButton.setOnClickListener(v -> controller.onNavigationPerformed(PBMap.Navigation.LEFT));
+    @OnClick(R.id.down_fab)
+    void navigateDown() {
+        controller.onNavigationPerformed(PBMap.Navigation.DOWN);
+    }
 
-        infoButton = findViewById(R.id.info_fab);
-        infoButton.setOnClickListener(view -> controller.loadDescription());
+    @OnClick(R.id.left_fab)
+    void navigateLeft() {
+        controller.onNavigationPerformed(PBMap.Navigation.LEFT);
+    }
 
-        gpsButton = findViewById(R.id.gps_fab);
-        gpsButton.setOnClickListener(view -> {
-            if (deviceServices.doesNotHaveGpsPermissions()) {
-                explicitlyAskedForPermissions = true;
-                ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
-            } else {
-                requestLocationOnDemand();
-            }
-        });
-        helpButton = findViewById(R.id.help_fab);
+    @OnClick(R.id.info_fab)
+    void loadDescription() {
+        controller.loadDescription();
+    }
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (preferences.contains(INTRODUCTION_FINISHED)) {
-            hideHelp();
+    @OnClick(R.id.gps_fab)
+    void requestLocation() {
+        if (deviceServices.doesNotHaveGpsPermissions()) {
+            explicitlyAskedForPermissions = true;
+            ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
         } else {
-            helpButton.startAnimation(AnimationUtils.loadAnimation(this, R.anim.blink));
-            helpButton.setOnClickListener(v -> onHelpDrawerItemSelected());
+            requestLocationOnDemand();
         }
     }
 
     private void hideHelp() {
         helpButton.clearAnimation();
         helpButton.setVisibility(View.GONE);
-    }
-
-    private Drawable rotateDrawable(Drawable drawable, float angle) {
-        Bitmap originalBitmap = drawableToBitmap(drawable);
-        Bitmap rotatedBitmap = Bitmap.createBitmap(originalBitmap.getHeight(), originalBitmap.getWidth(), Bitmap.Config.ARGB_8888);
-        Canvas tempCanvas = new Canvas(rotatedBitmap);
-        int pivot = originalBitmap.getHeight() / 2;
-        tempCanvas.rotate(angle, pivot, pivot);
-        tempCanvas.drawBitmap(originalBitmap, 0, 0, null);
-        return new BitmapDrawable(getResources(), rotatedBitmap);
-    }
-
-    public static Bitmap drawableToBitmap(Drawable drawable) {
-        if (drawable instanceof BitmapDrawable) {
-            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-            if (bitmapDrawable.getBitmap() != null) {
-                return bitmapDrawable.getBitmap();
-            }
-        }
-
-        Bitmap bitmap;
-        if (drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
-            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
-        } else {
-            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        }
-
-        Canvas canvas = new Canvas(bitmap);
-        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        drawable.draw(canvas);
-        return bitmap;
     }
 
     private void requestLocationOnDemand() {
@@ -261,27 +253,26 @@ public class MapActivity extends DrawerActivity
         return LocationState.ON;
     }
 
-    enum LocationState {
-        OFF, AEROPLANE, WIFI_OFF, ON
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == REQUEST_LOCATION) {
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                if (requestLocationUpdates() == LocationState.OFF) {
-                    new GpsDialogFragment().show(getFragmentManager(), "gps");
-                }
-            } else {
-                controller.updatePosition(null);
-                if (explicitlyAskedForPermissions) {
-                    if (!ActivityCompat.shouldShowRequestPermissionRationale(MapActivity.this,
-                            Manifest.permission.ACCESS_FINE_LOCATION)) {
-                        new GpsPermissionsDialogFragment().show(getFragmentManager(), "gps_permissions");
-                    }
-                }
+            if (isPermissionGrantedButDisabled(grantResults)) {
+                new GpsDialogFragment().show(getFragmentManager(), "gps");
+            } else if (isPermissionAskedButRejected()) {
+                new GpsPermissionsDialogFragment().show(getFragmentManager(), "gps_permissions");
             }
         }
+    }
+
+    private boolean isPermissionAskedButRejected() {
+        controller.updatePosition(null);
+        return explicitlyAskedForPermissions && !ActivityCompat.shouldShowRequestPermissionRationale(MapActivity.this,
+                Manifest.permission.ACCESS_FINE_LOCATION);
+    }
+
+    private boolean isPermissionGrantedButDisabled(@NonNull int[] grantResults) {
+        return grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                && requestLocationUpdates() == LocationState.OFF;
     }
 
     @Override
@@ -297,16 +288,9 @@ public class MapActivity extends DrawerActivity
     }
 
     private void setUpTexts() {
-        distanceText = findViewById(R.id.distance);
         TextView versionText = findViewById(R.id.about_version);
-        versionText.setText(getString(R.string.about_version, BuildConfig.VERSION_NAME + ", Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL."));
-    }
-
-    @Override
-    protected void initializeContentView() {
-        setContentView(R.layout.activity_map);
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        versionText.setText(getString(R.string.about_version, BuildConfig.VERSION_NAME +
+                ", Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL."));
     }
 
     @Override
@@ -328,10 +312,8 @@ public class MapActivity extends DrawerActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_back:
-                controller.onNavigationPerformed(PBMap.Navigation.BACK);
-                break;
+        if (item.getItemId() == R.id.action_back) {
+            controller.onNavigationPerformed(PBMap.Navigation.BACK);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -347,13 +329,13 @@ public class MapActivity extends DrawerActivity
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             handleSearchQuery(intent, preload);
         } else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
-            if (WebUriParser.containsWebUri(intent.getDataString())) {
+            if (WebUriParser.isWebUrl(intent.getDataString())) {
                 handleWebUri(intent, preload);
             } else {
                 SearchSuggestion suggestion = new SearchSuggestion(intent);
                 controller.loadMap(suggestion, preload);
             }
-        } else if (WebUriParser.containsWebUri(referrer)) {
+        } else if (WebUriParser.isWebUrl(referrer)) {
             intent.setData(Uri.parse(referrer));
             handleWebUri(intent, preload);
         } else if (!controller.isInitialized()) {
@@ -394,7 +376,7 @@ public class MapActivity extends DrawerActivity
                 placeFound.setLocationCoordinate(location);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.w(MapActivity.class.getName(), e);
         }
         if (placeFound == null) {
             Toast.makeText(this, R.string.not_found, Toast.LENGTH_LONG).show();
@@ -411,13 +393,8 @@ public class MapActivity extends DrawerActivity
         mapContainer.addView(view);
     }
 
-    @SuppressWarnings("ConstantConditions")
     public void setLogo(ImageView view) {
-        if (view == null) {
-            super.setLogo(null);
-        } else {
-            super.setLogo(view.getDrawable());
-        }
+        super.setLogo(view == null ? null : view.getDrawable());
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -448,43 +425,31 @@ public class MapActivity extends DrawerActivity
     }
 
     public void setLevelMenuVisible(boolean visible) {
-        if (visible) {
-            levelMenu.setVisibility(View.VISIBLE);
-        } else {
-            levelMenu.setVisibility(View.GONE);
-        }
+        setNotGone(levelMenu, visible);
     }
 
     public void setLevelButtonVisible(PBMap.Navigation navigation, boolean visible) {
         if (navigation == PBMap.Navigation.UP) {
-            if (visible) {
-                levelUpButton.setVisibility(View.VISIBLE);
-            } else {
-                levelUpButton.setVisibility(View.GONE);
-            }
+            setNotGone(levelUpButton, visible);
         } else if (navigation == PBMap.Navigation.DOWN) {
-            if (visible) {
-                levelDownButton.setVisibility(View.VISIBLE);
-            } else {
-                levelDownButton.setVisibility(View.GONE);
-            }
+            setNotGone(levelDownButton, visible);
         } else if (navigation == PBMap.Navigation.LEFT) {
-            if (visible) {
-                levelLeftButton.setVisibility(View.VISIBLE);
-            } else {
-                levelLeftButton.setVisibility(View.GONE);
-            }
+            setNotGone(levelLeftButton, visible);
         } else if (navigation == PBMap.Navigation.RIGHT) {
-            if (visible) {
-                levelRightButton.setVisibility(View.VISIBLE);
-            } else {
-                levelRightButton.setVisibility(View.GONE);
-            }
+            setNotGone(levelRightButton, visible);
         } else {
             if (backButton != null) {
                 backButton.setVisible(visible);
             }
             showBackButton = visible;
+        }
+    }
+
+    private void setNotGone(View view, boolean visible) {
+        if (visible) {
+            view.setVisibility(View.VISIBLE);
+        } else {
+            view.setVisibility(View.GONE);
         }
     }
 
@@ -502,81 +467,8 @@ public class MapActivity extends DrawerActivity
     @Override
     public void onHelpDrawerItemSelected() {
         hideHelp();
-        final int levelMenuVisibility = levelMenu.getVisibility();
-        if (levelMenuVisibility != View.VISIBLE) {
-            levelMenu.setVisibility(View.VISIBLE);
-        }
-        final boolean backItemVisible = backButton.isVisible();
-        if (!backItemVisible) {
-            backButton.setVisible(true);
-        }
-
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int width = size.x;
-        int height = size.y;
-        int[] attrs = new int[]{R.attr.actionBarSize};
-        TypedArray ta = obtainStyledAttributes(attrs);
-        int toolBarHeight = ta.getDimensionPixelSize(0, -1);
-        ta.recycle();
-        Rect screenRect = new Rect(0, toolBarHeight, width, height);
-        new TapTargetSequence(this)
-                .targets(
-                        defaultWrap(TapTarget.forView(findViewById(R.id.action_search),
-                                getString(R.string.action_search), getString(R.string.action_search_description))),
-                        defaultWrap(TapTarget.forToolbarNavigationIcon(toolbar,
-                                getString(R.string.menu), getString(R.string.menu_description))),
-                        defaultWrap(TapTarget.forView(levelMenu.isOpened() ? levelMenu.getChildAt(levelMenu.getChildCount() - 2) : levelMenu.getChildAt(levelMenu.getChildCount() - 1),
-                                getString(R.string.floor), getString(R.string.floor_description)))
-                                .transparentTarget(true)
-                        ,
-                        defaultWrap(TapTarget.forView(moreOptions.isOpened() ? moreOptions.getChildAt(moreOptions.getChildCount() - 2) : moreOptions.getChildAt(moreOptions.getChildCount() - 1),
-                                getString(R.string.more_features), getString(R.string.more_features_description)))
-                                .transparentTarget(true)
-                        ,
-                        defaultWrap(TapTarget.forBounds(screenRect,
-                                getString(R.string.map), getString(R.string.maps_description)))
-                                .transparentTarget(true)
-                                .targetRadius(getResources().getDimensionPixelSize(R.dimen.target_map_radius))
-                        ,
-                        defaultWrap(TapTarget.forView(findViewById(R.id.action_back) != null ? findViewById(R.id.action_back) : findViewById(R.id.action_search),
-                                getString(R.string.action_back), getString(R.string.action_back_description)))
-
-                )
-                .continueOnCancel(true)
-                .considerOuterCircleCanceled(true)
-                .listener(new TapTargetSequence.Listener() {
-                    @Override
-                    public void onSequenceFinish() {
-                        levelMenu.setVisibility(levelMenuVisibility);
-                        backButton.setVisible(backItemVisible);
-                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MapActivity.this);
-                        preferences.edit().putBoolean(INTRODUCTION_FINISHED, true).apply();
-                    }
-
-                    @Override
-                    public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
-                    }
-
-                    @Override
-                    public void onSequenceCanceled(TapTarget lastTarget) {
-                    }
-                })
-                .start();
-    }
-
-    TapTarget defaultWrap(TapTarget tapTarget) {
-        tapTarget.targetCircleColor(R.color.colorAccent)
-                .outerCircleColor(R.color.colorAccentSecondary)
-                .textColor(R.color.colorSecondaryText)
-                .titleTextColor(R.color.colorSecondaryText)
-                .descriptionTextColor(R.color.colorSecondaryText)
-                .tintTarget(false)
-                .drawShadow(true)
-                .outerCircleAlpha(1)
-                .transparentTarget(false);
-        return tapTarget;
+        Tutorial tutorial = new Tutorial(this);
+        tutorial.start();
     }
 
     @Override
@@ -600,12 +492,11 @@ public class MapActivity extends DrawerActivity
         markerDialogFragment.show(getSupportFragmentManager(), "marker");
     }
 
-    @SuppressWarnings("ConstantConditions")
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         if (savedInstanceState.containsKey(PARCELABLE_KEY_CONTROLLER_MEMENTO)) {
-            controller.restoreState((Controller.Memento) savedInstanceState.getParcelable(PARCELABLE_KEY_CONTROLLER_MEMENTO), this);
+            controller.restoreState(Objects.requireNonNull(savedInstanceState.getParcelable(PARCELABLE_KEY_CONTROLLER_MEMENTO)), this);
         }
     }
 

@@ -15,10 +15,10 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import io.github.t3r1jj.pbmap.testing.VerifyAnswer;
 
-import static androidx.test.espresso.action.ViewActionsExt.swipeDownExt;
-import static androidx.test.espresso.action.ViewActionsExt.swipeLeftExt;
-import static androidx.test.espresso.action.ViewActionsExt.swipeRightExt;
-import static androidx.test.espresso.action.ViewActionsExt.swipeUpExt;
+import static androidx.test.espresso.action.ViewActionsUtils.swipeDownExt;
+import static androidx.test.espresso.action.ViewActionsUtils.swipeLeftExt;
+import static androidx.test.espresso.action.ViewActionsUtils.swipeRightExt;
+import static androidx.test.espresso.action.ViewActionsUtils.swipeUpExt;
 import static junit.framework.TestCase.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -33,12 +33,12 @@ import static org.powermock.api.mockito.PowerMockito.whenNew;
  * The only change from the standard implementation is 1% visibility which is in form of GeneralSwipeActionExt
  */
 @RunWith(PowerMockRunner.class)
-public class ViewActionsExtTest {
+public class ViewActionsUtilsTest {
 
     private final VerifyAnswer verifyAnswer = new VerifyAnswer();
 
     @Test
-    @PrepareForTest(ViewActionsExt.class)
+    @PrepareForTest(ViewActionsUtils.class)
     public void testSwipeLeftExt() throws Exception {
         whenNew(GeneralSwipeActionExt.class)
                 .withAnyArguments()
@@ -49,7 +49,7 @@ public class ViewActionsExtTest {
     }
 
     @Test
-    @PrepareForTest(ViewActionsExt.class)
+    @PrepareForTest(ViewActionsUtils.class)
     public void testSwipeRightExt() throws Exception {
         whenNew(GeneralSwipeActionExt.class)
                 .withAnyArguments()
@@ -60,7 +60,7 @@ public class ViewActionsExtTest {
     }
 
     @Test
-    @PrepareForTest(ViewActionsExt.class)
+    @PrepareForTest(ViewActionsUtils.class)
     public void testSwipeDownExt() throws Exception {
         whenNew(GeneralSwipeActionExt.class)
                 .withAnyArguments()
@@ -71,7 +71,7 @@ public class ViewActionsExtTest {
     }
 
     @Test
-    @PrepareForTest(ViewActionsExt.class)
+    @PrepareForTest(ViewActionsUtils.class)
     public void testSwipeUpExt() throws Exception {
         whenNew(GeneralSwipeActionExt.class)
                 .withAnyArguments()
@@ -109,6 +109,6 @@ public class ViewActionsExtTest {
 
     @Test
     public void testPerformTap() {
-        ViewActionsExt.tap();
+        ViewActionsUtils.tap();
     }
 }

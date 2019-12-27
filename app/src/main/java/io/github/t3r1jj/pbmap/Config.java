@@ -13,7 +13,7 @@ import io.github.t3r1jj.pbmap.view.map.routing.FullRoute;
 import io.github.t3r1jj.pbmap.view.map.routing.Route;
 
 public class Config {
-    private static Config instance = new Config();
+    private static final Config instance = new Config();
     private boolean debug;
     private MeasurementSystem measurementSystem;
 
@@ -36,6 +36,7 @@ public class Config {
         return measurementSystem;
     }
 
+    @SuppressWarnings("deprecation")
     public Route createRoute(Context context) {
         if (isDebug()) {
             return new FullRoute(context);
@@ -53,7 +54,7 @@ public class Config {
                 preferences.edit().putString(MapApplication.UNIT_SYSTEM, MeasurementSystem.SI.toString()).apply();
             }
         }
-        measurementSystem = MeasurementSystem.valueOf(preferences.getString(MapApplication.UNIT_SYSTEM,  MeasurementSystem.SI.toString()));
+        measurementSystem = MeasurementSystem.valueOf(preferences.getString(MapApplication.UNIT_SYSTEM, MeasurementSystem.SI.toString()));
         debug = preferences.getBoolean(MapApplication.DEBUG, debug);
     }
 }

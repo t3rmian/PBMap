@@ -9,17 +9,17 @@ import android.provider.BaseColumns;
 
 public class SearchListProvider extends SearchRecentSuggestionsProvider {
 
-    public static final String AUTHORITY = SearchListProvider.class.getName();
-    public static final int MODE = SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES | SearchRecentSuggestionsProvider.DATABASE_MODE_2LINES;
-    static final String SUGGESTIONS_COLUMN_ID = BaseColumns._ID;
-    static final String SUGGESTIONS_COLUMN_SUGGESTION = SearchManager.SUGGEST_COLUMN_TEXT_1;
-    static final String SUGGESTIONS_COLUMN_SUGGESTION_2 = SearchManager.SUGGEST_COLUMN_TEXT_2;
+    private static final String AUTHORITY = SearchListProvider.class.getName();
+    private static final int MODE = SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES | SearchRecentSuggestionsProvider.DATABASE_MODE_2LINES;
+    private static final String SUGGESTIONS_COLUMN_ID = BaseColumns._ID;
+    private static final String SUGGESTIONS_COLUMN_SUGGESTION = SearchManager.SUGGEST_COLUMN_TEXT_1;
+    private static final String SUGGESTIONS_COLUMN_SUGGESTION_2 = SearchManager.SUGGEST_COLUMN_TEXT_2;
     static final String SUGGESTIONS_COLUMN_PLACE = SearchManager.SUGGEST_COLUMN_INTENT_DATA;
     static final String SUGGESTIONS_COLUMN_MAP_PATH = SearchManager.SUGGEST_COLUMN_INTENT_EXTRA_DATA;
-    static final String SUGGESTIONS_COLUMN_PLACE_MAP = SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID;
-    protected boolean searchById = false;
+    private static final String SUGGESTIONS_COLUMN_PLACE_MAP = SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID;
+    boolean searchById = false;
     private MapsDao mapsDao;
-    static String[] tableColumns = new String[]{
+    static final String[] tableColumns = new String[]{
             SUGGESTIONS_COLUMN_ID,
             SUGGESTIONS_COLUMN_SUGGESTION,
             SUGGESTIONS_COLUMN_SUGGESTION_2,
@@ -37,11 +37,15 @@ public class SearchListProvider extends SearchRecentSuggestionsProvider {
         if (mapsDao == null) {
             mapsDao = new MapsDao(getBaseContext());
         }
-        if (selectionArgs != null && selectionArgs.length > 0 && selectionArgs[0] != null && selectionArgs[0].length() > 0) {
+        if (containsSelectionArgs(selectionArgs)) {
             return mapsDao.query(tableColumns, prepareScopedSelectionArgs(selectionArgs), "id".equals(selection) || searchById);
         } else {
             return mapsDao.query(tableColumns, new String[]{".*"}, true);
         }
+    }
+
+    private boolean containsSelectionArgs(String[] selectionArgs) {
+        return selectionArgs != null && selectionArgs.length > 0 && selectionArgs[0] != null && selectionArgs[0].length() > 0;
     }
 
     private String[] prepareScopedSelectionArgs(String[] selectionArgs) {
@@ -53,7 +57,7 @@ public class SearchListProvider extends SearchRecentSuggestionsProvider {
         return scopedSelectionArgs;
     }
 
-    protected Context getBaseContext() {
+    Context getBaseContext() {
         return super.getContext();
     }
 

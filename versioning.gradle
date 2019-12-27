@@ -32,6 +32,6 @@ ext {
             it.toInteger()
         }
 
-        (major * 1000000) + (minor * 10000) + (patch * 100) + candidate;
+        (major * 1000000) + (minor * 10000) + (patch * 100) + candidate
     }
 }

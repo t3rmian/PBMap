@@ -8,7 +8,7 @@ import android.widget.ImageView;
 
 import java.io.Serializable;
 
-import io.github.t3r1jj.pbmap.main.MapActivity;
+import io.github.t3r1jj.pbmap.main.DrawableUtils;
 import io.github.t3r1jj.pbmap.model.map.Place;
 import io.github.t3r1jj.pbmap.model.map.Space;
 
@@ -33,7 +33,7 @@ public class Info implements Serializable {
         ImageView logo = Place.createLogo(context, logoPath);
         if (logo != null) {
             Drawable prototype = logo.getDrawable();
-            BitmapDrawable drawable = new BitmapDrawable(context.getResources(), MapActivity.drawableToBitmap(prototype));
+            BitmapDrawable drawable = new BitmapDrawable(context.getResources(), DrawableUtils.drawableToBitmap(prototype));
             drawable.setColorFilter(0xff000000, PorterDuff.Mode.MULTIPLY);
             return drawable;
         }

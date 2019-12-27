@@ -36,6 +36,7 @@ public class PBLocationListenerTest {
         verify(controller).updatePosition(eq(new Coordinate(location.getLatitude(), location.getLongitude(), location.getAltitude())));
     }
 
+    @SuppressWarnings("deprecation")
     @Test
     public void onLocationChanged_noAltitude() {
         Location location = new Location("");

@@ -107,7 +107,7 @@ public class MapActivityIT {
     public void testTutorialFinished() {
         PreferenceManager.getDefaultSharedPreferences(InstrumentationRegistry.getInstrumentation().getTargetContext())
                 .edit()
-                .putBoolean(MapActivity.INTRODUCTION_FINISHED, true)
+                .putBoolean(Tutorial.INTRODUCTION_FINISHED, true)
                 .apply();
         activityRule.launchActivity(new Intent());
         onView(withId(R.id.help_fab)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.GONE)));

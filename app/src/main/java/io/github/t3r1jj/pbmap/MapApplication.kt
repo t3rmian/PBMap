@@ -12,6 +12,9 @@ import com.yariksoffice.lingver.Lingver
 import io.github.t3r1jj.pbmap.settings.LanguageSettingChangeActivityCallbacks
 import io.github.t3r1jj.pbmap.settings.SettingsLocaleStore
 
+/**
+ * Implements application lifecycle language reload
+ */
 class MapApplication : Application() {
     companion object {
         const val LANG = "io.github.t3r1jj.pbmap.MapApplication.LANG"

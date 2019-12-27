@@ -6,10 +6,11 @@ import io.github.t3r1jj.pbmap.model.map.Coordinate;
 
 public class Edge {
     @Element
-    public Coordinate start;
+    private Coordinate start;
     @Element
-    public Coordinate end;
+    private Coordinate end;
 
+    @SuppressWarnings("unused")
     private Edge() {
     }
 

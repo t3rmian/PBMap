@@ -55,3 +55,4 @@ plugins:
 exclude_patterns:
   - "**/test/"
   - "**/androidTest/"
+  - "**/assets/"

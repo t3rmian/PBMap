@@ -70,7 +70,7 @@ public class OldMapsDao extends ContextWrapper {
         return loadMap(mapsPath + "/" + firstMapFilename);
     }
 
-    public PBMap loadMap(String assetsPath) {
+    private PBMap loadMap(String assetsPath) {
         PBMap map = null;
         try {
             map = serializer.read(PBMap.class, openAsset(assetsPath));
@@ -85,7 +85,7 @@ public class OldMapsDao extends ContextWrapper {
      * @param ignoreMaps if false, a map_id@map_id entries are added
      * @return list of all queryable places defined in the database
      */
-    List<SearchSuggestion> getSearchSuggestions(boolean ignoreMaps) {
+    private List<SearchSuggestion> getSearchSuggestions(boolean ignoreMaps) {
         List<SearchSuggestion> searchSuggestions = new LinkedList<>();
         for (String mapPath : getMapFilenames()) {
             String assetsPath = mapsPath + "/" + mapPath;
