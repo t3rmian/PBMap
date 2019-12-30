@@ -13,7 +13,7 @@ import java.util.Locale
 /**
  * Stores currently used locale based on preference selection
  */
-class SettingsLocaleStore @JvmOverloads constructor(
+open class SettingsLocaleStore @JvmOverloads constructor(
         context: Context,
         var defaultLocale: Locale = Locale.getDefault(),
         private val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)) : LocaleStore {

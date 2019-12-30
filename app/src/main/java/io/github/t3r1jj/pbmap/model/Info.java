@@ -8,24 +8,19 @@ import android.widget.ImageView;
 
 import java.io.Serializable;
 
+import io.github.t3r1jj.pbmap.model.i18n.Translator;
 import io.github.t3r1jj.pbmap.model.map.Place;
 import io.github.t3r1jj.pbmap.model.map.Space;
 
 public class Info implements Serializable {
     private final String url;
-    private final String addressId;
-    private final String nameId;
-    private final String rawName;
-    private final String descriptionId;
+    private final String id;
     private final String logoPath;
 
     public Info(Space space) {
-        this.nameId = space.getNameResIdString();
-        this.rawName = space.getId();
-        this.descriptionId = space.getDescriptionResIdString();
+        this.id = space.getId();
         this.url = space.getUrl();
         this.logoPath = space.getLogoPath();
-        this.addressId = space.getAddressResId();
     }
 
     public Drawable createLogo(Context context) {
@@ -40,26 +35,18 @@ public class Info implements Serializable {
     }
 
     public String getName(Context context) {
-        String name = getStringResource(context, nameId);
-        name = (name == null ? rawName : name);
-        return name.replace("_", " ").replace("\n", " ").trim();
+        String name = new Translator(context.getResources()).translateName(id);
+        return Translator.postFormat(name);
     }
 
     public String getDescription(Context context) {
-        return getStringResource(context, descriptionId);
+        String res = Translator.getResIdString(id, Translator.DESCRIPTION_PREFIX);
+        return new Translator(context.getResources()).translate(res);
     }
 
     public String getAddress(Context context) {
-        return getStringResource(context, addressId);
-    }
-
-    private String getStringResource(Context context, String aString) {
-        String packageName = context.getPackageName();
-        int resId = context.getResources().getIdentifier(aString, "string", packageName);
-        if (resId == 0) {
-            return null;
-        }
-        return context.getString(resId);
+        String res = Translator.getResIdString(id, Translator.ADDRESS_PREFIX);
+        return new Translator(context.getResources()).translate(res);
     }
 
     public String getUrl() {

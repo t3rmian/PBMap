@@ -26,16 +26,6 @@ public class SpotTest {
     }
 
     @Test
-    public void getNameResIdString() {
-        assertEquals("name_gym_test", spot.getNameResIdString());
-    }
-
-    @Test
-    public void getDescriptionResIdString() {
-        assertEquals("description_gym_test", spot.getDescriptionResIdString());
-    }
-
-    @Test
     public void getId() {
         assertEquals("gym/test", spot.getId());
     }

@@ -8,12 +8,11 @@ import org.simpleframework.xml.ElementList;
 
 import java.util.List;
 
+import io.github.t3r1jj.pbmap.model.i18n.Translator;
 import io.github.t3r1jj.pbmap.view.map.PlaceView;
 
 public abstract class Place {
 
-    public static final String NAME_PREFIX = "name_";
-    private static final String DESCRIPTION_PREFIX = "description_";
     @Attribute
     protected String id;
     @Attribute(name = "logo_path", required = false)
@@ -23,33 +22,9 @@ public abstract class Place {
     @ElementList
     protected List<Coordinate> coordinates;
 
-    /**
-     * @param id of the place
-     * @return name res id with special characters replaced by _ and with prepended prefix
-     */
-    public static String getResIdString(String id, String prefix) {
-        return prefix + id.toLowerCase()
-                .replace("/", "_")
-                .replace(" ", "_")
-                .replace("-", "_");
-    }
-
-    /**
-     * @return see {@link #getResIdString(String, String)} with name prefix
-     */
-    public String getNameResIdString() {
-        return getResIdString(id, NAME_PREFIX);
-    }
-
-    /**
-     * @return see {@link #getResIdString(String, String)} with description prefix
-     */
-    public String getDescriptionResIdString() {
-        return getResIdString(id, DESCRIPTION_PREFIX);
-    }
-
     public String getName(Context context) {
-        String translatedName = getStringResource(context, getNameResIdString());
+        String res = Translator.getResIdString(id, Translator.NAME_PREFIX);
+        String translatedName = new Translator(context.getResources()).translate(res);
         if (translatedName == null) {
             return id.replace('_', ' ');
         }
@@ -57,16 +32,8 @@ public abstract class Place {
     }
 
     public String getDescription(Context context) {
-        return getStringResource(context, getDescriptionResIdString());
-    }
-
-    String getStringResource(Context context, String aString) {
-        String packageName = context.getPackageName();
-        int resId = context.getResources().getIdentifier(aString, "string", packageName);
-        if (resId == 0) {
-            return null;
-        }
-        return context.getString(resId);
+        String res = Translator.getResIdString(id, Translator.DESCRIPTION_PREFIX);
+        return new Translator(context.getResources()).translate(res);
     }
 
     public String getId() {

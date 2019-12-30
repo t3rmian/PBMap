@@ -4,11 +4,11 @@ import android.content.Context;
 
 import org.simpleframework.xml.Attribute;
 
+import io.github.t3r1jj.pbmap.model.i18n.Translator;
 import io.github.t3r1jj.pbmap.view.map.PlaceView;
 import io.github.t3r1jj.pbmap.view.map.SpaceView;
 
 public class Space extends Place {
-    private static final String ADDRESS_PREFIX = "address_";
     @Attribute(name = "reference_map_path", required = false)
     protected String referenceMapPath;
     @Attribute(required = false)
@@ -31,11 +31,8 @@ public class Space extends Place {
         return url;
     }
 
-    public String getAddressResId() {
-        return getResIdString(id, ADDRESS_PREFIX);
-    }
-
     public boolean hasInfo(Context context) {
-        return super.hasInfo(context) || getUrl() != null || getStringResource(context, getAddressResId()) != null;
+        return super.hasInfo(context) || getUrl() != null ||
+                new Translator(context.getResources()).translate(Translator.getResIdString(id, Translator.ADDRESS_PREFIX)) != null;
     }
 }

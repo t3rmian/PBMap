@@ -399,8 +399,8 @@ public class MapActivity extends DrawerActivity
     }
 
     @SuppressWarnings("ConstantConditions")
-    public void setTitle(String nameId) {
-        getSupportActionBar().setSubtitle(nameId);
+    public void setTitle(String name) {
+        getSupportActionBar().setSubtitle(name);
     }
 
     public void setDistance(String distance) {

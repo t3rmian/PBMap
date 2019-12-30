@@ -28,7 +28,7 @@ public class InfoTestIT {
     @Before
     public void setUp() {
         space = mock(Space.class);
-        whenGetResIdReturnWithPostfix("test");
+        when(space.getId()).thenReturn("test");
     }
 
     @Test
@@ -68,7 +68,7 @@ public class InfoTestIT {
     @Test
     @SmallTest
     public void getName_Known() {
-        whenGetResIdReturnWithPostfix("deanery");
+        when(space.getId()).thenReturn("deanery");
         Info info = new Info(space);
         String name = info.getName(InstrumentationRegistry.getInstrumentation().getTargetContext());
         assertEquals("Deanery", name);
@@ -85,11 +85,10 @@ public class InfoTestIT {
     @Test
     @SmallTest
     public void getDescription_Known() {
-        whenGetResIdReturnWithPostfix("about");
-        when(space.getDescriptionResIdString()).thenReturn("about_description");
+        when(space.getId()).thenReturn("test_1");
         Info info = new Info(space);
         String description = info.getDescription(InstrumentationRegistry.getInstrumentation().getTargetContext());
-        assertThat(description, containsIgnoringCase("pbmap"));
+        assertThat(description, containsIgnoringCase("Test 123"));
     }
 
     @Test
@@ -103,7 +102,7 @@ public class InfoTestIT {
     @Test
     @SmallTest
     public void getAddress_Known() {
-        whenGetResIdReturnWithPostfix("pb_wi");
+        when(space.getId()).thenReturn("pb_wi");
         Info info = new Info(space);
         String address = info.getAddress(InstrumentationRegistry.getInstrumentation().getTargetContext());
         assertThat(address, containsIgnoringCase("faculty"));
@@ -127,10 +126,4 @@ public class InfoTestIT {
         assertEquals("url", url);
     }
 
-    private void whenGetResIdReturnWithPostfix(String postfix) {
-        when(space.getId()).thenReturn(postfix);
-        when(space.getNameResIdString()).thenReturn("name_" + postfix);
-        when(space.getAddressResId()).thenReturn("address_" + postfix);
-        when(space.getDescriptionResIdString()).thenReturn("description_" + postfix);
-    }
 }

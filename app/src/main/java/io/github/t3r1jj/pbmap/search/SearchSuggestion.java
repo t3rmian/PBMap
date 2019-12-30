@@ -17,7 +17,6 @@ import java.util.Objects;
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.model.i18n.Translator;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
-import io.github.t3r1jj.pbmap.model.map.Place;
 
 public class SearchSuggestion implements Comparable<SearchSuggestion> {
     private final String placeId;
@@ -89,25 +88,21 @@ public class SearchSuggestion implements Comparable<SearchSuggestion> {
     }
 
     public String getName(Context context) {
-        return new Translator(context.getResources()).translateName(placeId)
-                .replace("\n", " ")
-                .replace('_', ' ')
-                .trim();
+        String name = new Translator(context.getResources()).translateName(placeId);
+        return Translator.postFormat(name);
     }
 
     int getNameResId(Context context) {
         String packageName = context.getPackageName();
-        return context.getResources().getIdentifier(Place.getResIdString(placeId, Place.NAME_PREFIX), "string", packageName);
+        return context.getResources().getIdentifier(Translator.getResIdString(placeId, Translator.NAME_PREFIX), "string", packageName);
     }
 
     String getMapName(Context context) {
         if (mapId == null) {
             return context.getString(R.string.map);
         }
-        return new Translator(context.getResources()).translateName(mapId)
-                .replace("\n", " ")
-                .replace('_', ' ')
-                .trim();
+        String name = new Translator(context.getResources()).translateName(mapId);
+        return Translator.postFormat(name);
     }
 
     @SuppressLint("ResourceType")

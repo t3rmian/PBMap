@@ -5,9 +5,8 @@ import android.preference.PreferenceManager
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import androidx.test.platform.app.InstrumentationRegistry
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
@@ -23,16 +22,16 @@ class InstallListenerIT {
         val preferences = PreferenceManager.getDefaultSharedPreferences(context)
         assertEquals(null, preferences.getString(InstallListener.REFERRER, null))
 
-        intent.putExtra(InstallListener.REFERRER, null as String?)
+        intent.putExtra("referrer", null as String?)
         installListener.onReceive(context, intent)
         assertEquals(null, preferences.getString(InstallListener.REFERRER, null))
 
-        intent.putExtra(InstallListener.REFERRER, "abc")
+        intent.putExtra("referrer", "abc")
         installListener.onReceive(context, intent)
         assertEquals("abc", preferences.getString(InstallListener.REFERRER, null))
 
-        intent.putExtra(InstallListener.REFERRER, "https%3A%2F%2Fpbmap.termian.dev%2Fmobile%2Fpb_acs%2Fb02")
+        intent.putExtra("referrer", "https%3A%2F%2Fpbmap.termian.dev%2Fmobile%2Fpb_acs%2Fb02")
         installListener.onReceive(context, intent)
-        assertEquals("https%3A%2F%2Fpbmap.termian.dev%2Fmobile%2Fpb_acs%2Fb02", preferences.getString(InstallListener.REFERRER, null))
+        assertEquals("https://pbmap.termian.dev/mobile/pb_acs/b02", preferences.getString(InstallListener.REFERRER, null))
     }
 }
