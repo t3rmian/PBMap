@@ -1,4 +1,4 @@
-package io.github.t3r1jj.pbmap;
+package io.github.t3r1jj.pbmap.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
 
+import io.github.t3r1jj.pbmap.main.MapApplication;
 import io.github.t3r1jj.pbmap.model.dictionary.MeasurementSystem;
 import io.github.t3r1jj.pbmap.view.map.routing.FullRoute;
 import io.github.t3r1jj.pbmap.view.map.routing.Route;

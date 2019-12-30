@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import com.yariksoffice.lingver.store.LocaleStore
 import io.github.t3r1jj.pbmap.BuildConfig
-import io.github.t3r1jj.pbmap.MapApplication
+import io.github.t3r1jj.pbmap.main.MapApplication
 import io.github.t3r1jj.pbmap.model.dictionary.Dictionary
 import io.github.t3r1jj.pbmap.model.i18n.LocaleUtils
 import java.util.Locale

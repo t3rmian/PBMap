@@ -1,4 +1,4 @@
-package io.github.t3r1jj.pbmap.main;
+package io.github.t3r1jj.pbmap.model;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -6,7 +6,11 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
+@SuppressWarnings("WeakerAccess")
 public class DrawableUtils {
+
+    private DrawableUtils() {}
+
     public static Bitmap drawableToBitmap(Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
@@ -23,7 +27,7 @@ public class DrawableUtils {
         return bitmap;
     }
 
-    static Drawable rotateDrawable(Resources resources, Drawable drawable, float angle) {
+    public static Drawable rotateDrawable(Resources resources, Drawable drawable, float angle) {
         Bitmap originalBitmap = drawableToBitmap(drawable);
         Bitmap rotatedBitmap = Bitmap.createBitmap(originalBitmap.getHeight(), originalBitmap.getWidth(), Bitmap.Config.ARGB_8888);
         Canvas tempCanvas = new Canvas(rotatedBitmap);

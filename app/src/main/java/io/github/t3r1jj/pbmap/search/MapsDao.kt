@@ -23,11 +23,9 @@ import javax.xml.xpath.XPathFactory
  */
 open class MapsDao(base: Context) : ContextWrapper(base) {
     companion object {
-        @JvmStatic
-        var CACHE: List<SearchSuggestion>? = null
-        var CACHE_NO_MAPS: List<SearchSuggestion>? = null
+        private var CACHE: List<SearchSuggestion>? = null
+        private var CACHE_NO_MAPS: List<SearchSuggestion>? = null
         const val mapsPath = BuildConfig.ASSETS_MAP_DIR
-        const val firstMapFilename = BuildConfig.FIRST_MAP_FILENAME
     }
 
     /**

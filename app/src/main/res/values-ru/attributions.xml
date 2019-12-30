@@ -10,7 +10,7 @@
         <item>Google Support Libraries</item>
         <item>android-retrostreams</item>
         <item>Butter Knife</item>
-        <item>Exo Bold</item>
+        <item>Exo</item>
         <item>Иконы</item>
         <item>Карты</item>
     </string-array>
@@ -61,7 +61,7 @@
             \nЛицензия: Apache 2.0
             \nСайт: http://jakewharton.github.io/butterknife/</item>
         <item>Шрифт Sans Serif, используемый для отображения названий сопоставленных мест.
-            \n\nВерсия: Exo Bold
+            \n\nВерсия: Exo
             \nАвтор: Natanael Gama (exo@ndiscovered.com)
             \nЛицензия: SIL Open Font License v1.10
             \nСайт: https://www.fontsquirrel.com/fonts/exo</item>

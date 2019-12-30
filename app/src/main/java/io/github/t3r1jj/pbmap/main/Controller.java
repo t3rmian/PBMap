@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Locale;
 
 import io.github.t3r1jj.pbmap.R;
-import io.github.t3r1jj.pbmap.Config;
+import io.github.t3r1jj.pbmap.settings.Config;
 import io.github.t3r1jj.pbmap.logging.Message;
 import io.github.t3r1jj.pbmap.logging.WebLogger;
 import io.github.t3r1jj.pbmap.model.Info;
@@ -221,7 +221,7 @@ public class Controller implements GeoMarker.MapListener {
     }
 
     public void loadTitle(PBMap map) {
-        mapActivity.setTitle(map.getId());
+        mapActivity.setTitle(map.getName(mapActivity));
     }
 
     void loadDescription() {

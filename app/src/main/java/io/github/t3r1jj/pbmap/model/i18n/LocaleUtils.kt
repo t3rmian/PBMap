@@ -5,7 +5,7 @@ import java.util.*
 /**
  * Utils for conversion between [String] and [Locale]
  */
-class LocaleUtils {
+class LocaleUtils private constructor () {
     companion object {
 
         /**

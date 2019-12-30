@@ -15,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 import io.github.t3r1jj.pbmap.R;
+import io.github.t3r1jj.pbmap.model.i18n.Translator;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.model.map.Place;
 
@@ -88,19 +89,10 @@ public class SearchSuggestion implements Comparable<SearchSuggestion> {
     }
 
     public String getName(Context context) {
-        String translatedName = getNameRes(context);
-        if (translatedName == null) {
-            return placeId.toUpperCase().replace('_', ' ').trim();
-        }
-        return translatedName.replace("\n", " ").trim();
-    }
-
-    private String getNameRes(Context context) {
-        int resId = getNameResId(context);
-        if (resId == 0) {
-            return null;
-        }
-        return context.getString(resId);
+        return new Translator(context.getResources()).translateName(placeId)
+                .replace("\n", " ")
+                .replace('_', ' ')
+                .trim();
     }
 
     int getNameResId(Context context) {
@@ -112,12 +104,10 @@ public class SearchSuggestion implements Comparable<SearchSuggestion> {
         if (mapId == null) {
             return context.getString(R.string.map);
         }
-        String packageName = context.getPackageName();
-        int resId = context.getResources().getIdentifier(Place.getResIdString(mapId, Place.NAME_PREFIX), "string", packageName);
-        if (resId == 0) {
-            return mapId.toUpperCase().replace('_', ' ').trim();
-        }
-        return context.getString(resId).replace("\n", " ").trim();
+        return new Translator(context.getResources()).translateName(mapId)
+                .replace("\n", " ")
+                .replace('_', ' ')
+                .trim();
     }
 
     @SuppressLint("ResourceType")

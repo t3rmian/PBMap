@@ -10,7 +10,7 @@
         <item>Google Support Libraries</item>
         <item>android-retrostreams</item>
         <item>Butter Knife</item>
-        <item>Exo Bold</item>
+        <item>Exo</item>
         <item>Icons</item>
         <item>Map tiles</item>
     </string-array>
@@ -61,7 +61,7 @@
             \nLicense: Apache 2.0
             \nSite: http://jakewharton.github.io/butterknife/</item>
         <item>A Sans Serif font used for displaying names on the map.
-            \n\nVersion: Exo Bold
+            \n\nVersion: Exo
             \nAuthor: Natanael Gama (exo@ndiscovered.com)
             \nLicense: SIL Open Font License v1.10
             \nSite: https://www.fontsquirrel.com/fonts/exo</item>

@@ -9,6 +9,7 @@ import android.graphics.Typeface;
 import android.view.Gravity;
 import android.widget.TextView;
 
+import androidx.annotation.ColorRes;
 import androidx.core.content.ContextCompat;
 
 import com.qozix.tileview.markers.MarkerLayout;
@@ -25,19 +26,21 @@ public class SpotView extends MarkerLayout implements PlaceView {
     private final TextView textView;
     private final Coordinate center;
     private final float textSize;
+    private final boolean isBold;
 
     public SpotView(Context context, Place place) {
-        this(context, place, ContextCompat.getColor(context, R.color.spot_text));
+        this(context, place, R.color.spot_text);
     }
 
-    public SpotView(Context context, Place place, int color) {
+    public SpotView(Context context, Place place, @ColorRes int color) {
         super(context);
+        isBold = color == R.color.space_text;
         textView = new TextView(context);
         textView.setText(place.getName(context));
         Resources resources = context.getResources();
-        textView.setTextColor(color);
-        if (isSpecialText()) {
-            textSize = resources.getDimension(R.dimen.spot_text) * 2;
+        textView.setTextColor(ContextCompat.getColor(context, color));
+        if (isUnicodeText()) {
+            textSize = resources.getDimension(R.dimen.spot_unicode_text);
         } else {
             textSize = resources.getDimension(R.dimen.spot_text);
         }
@@ -46,19 +49,25 @@ public class SpotView extends MarkerLayout implements PlaceView {
         center = place.getCenter();
     }
 
-    private boolean isSpecialText() {
-        return (textView.getText().length() == 1 && !Character.isLetterOrDigit(textView.getText().charAt(0))) ||
-                (textView.getText().length() == 2 && !Character.isLetterOrDigit(textView.getText().charAt(0))
-                        && !Character.isLetterOrDigit(textView.getText().charAt(1)));
+    private boolean isUnicodeText() {
+        CharSequence text = textView.getText();
+        int maxLength = Math.min(2, text.length());
+        for (int i = 0; i < maxLength; i++) {
+            if (Character.isLetterOrDigit(text.charAt(0))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private void setTypeFace(Context context) {
         final AssetManager assetManager = context.getAssets();
-        final Typeface typeface = Typeface.createFromAsset(assetManager, BuildConfig.FONT_PATH);
         textView.setPaintFlags(textView.getPaintFlags() | Paint.SUBPIXEL_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
-        if (isSpecialText()) {
-            textView.setTypeface(typeface, Typeface.BOLD);
+        if (isBold || isUnicodeText()) {
+            final Typeface typeface = Typeface.createFromAsset(assetManager, BuildConfig.FONT_BOLD_PATH);
+            textView.setTypeface(typeface);
         } else {
+            final Typeface typeface = Typeface.createFromAsset(assetManager, BuildConfig.FONT_PATH);
             textView.setTypeface(typeface);
         }
     }

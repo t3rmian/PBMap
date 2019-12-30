@@ -1,9 +1,11 @@
 package io.github.t3r1jj.pbmap.sample.integration;
 
 import android.content.ActivityNotFoundException;
+import android.content.ContentProviderClient;
 import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
+import android.os.RemoteException;
 
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.filters.LargeTest;
@@ -27,6 +29,7 @@ import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.clearText;
+import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -44,7 +47,9 @@ import static org.hamcrest.core.IsNot.not;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doCallRealMethod;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 
 @RunWith(RetryRunner.class)
@@ -210,6 +215,19 @@ public class PBMapIntegratorTest {
         intended(allOf(
                 hasAction(Intent.ACTION_VIEW),
                 hasData(Uri.parse("https://play.google.com/store/apps/details?id=io.github.t3r1jj.pbmap"))
+        ));
+    }
+
+    @Test
+    @LargeTest
+    public void displayPlaceIds() throws RemoteException {
+        ContentProviderClient contentProvider = mock(ContentProviderClient.class);
+        doThrow(RemoteException.class).when(contentProvider).query(any(), any(), any(), any(), any());
+        doReturn(contentProvider).when(integrator).getContentProvider();
+        onView(withId(R.id.show_place_ids)).perform(click());
+        intended(allOf(
+                hasAction(Intent.ACTION_VIEW),
+                hasData(Uri.parse("market://details?id=io.github.t3r1jj.pbmap"))
         ));
     }
 }

@@ -84,12 +84,6 @@ public class GeoMarker extends AppCompatImageView implements RemovableView {
 
     public boolean isAtPosition(MapView mapView, MotionEvent event, double alt) {
         CoordinateTranslater coordinateTranslater = mapView.getCoordinateTranslater();
-        double lng = coordinateTranslater.translateAndScaleAbsoluteToRelativeX(mapView.getScrollX() + event.getX() - mapView.getOffsetX(), mapView.getScale());
-        double lat = coordinateTranslater.translateAndScaleAbsoluteToRelativeY(mapView.getScrollY() + event.getY() - mapView.getOffsetY(), mapView.getScale());
-
-        if (!coordinateTranslater.contains(lng, lat)) {
-            return true;
-        }
         if (coordinate != null && Math.abs(coordinate.alt - alt) < 1d) {
             double lngPx = coordinateTranslater.translateAndScaleX(coordinate.lng, mapView.getScale()) - mapView.getScrollX() + mapView.getOffsetX();
             double latPx = coordinateTranslater.translateAndScaleY(coordinate.lat, mapView.getScale()) - mapView.getScrollY() + mapView.getOffsetY();

@@ -13,7 +13,7 @@
         android:protectionLevel="signature" />
 
     <application
-        android:name=".MapApplication"
+        android:name=".main.MapApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/name_app"
@@ -30,7 +30,7 @@
         </receiver>
 
         <receiver
-            android:name=".main.InstallListener"
+            android:name="io.github.t3r1jj.pbmap.main.external.InstallListener"
             android:exported="true"
             tools:ignore="ExportedReceiver">
             <intent-filter>

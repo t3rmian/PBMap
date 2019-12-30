@@ -36,7 +36,7 @@ import java.lang.reflect.Field;
 import java.util.regex.Pattern;
 
 import io.github.t3r1jj.pbmap.R;
-import io.github.t3r1jj.pbmap.model.gps.PBLocationListener;
+import io.github.t3r1jj.pbmap.model.PBLocationListener;
 import io.github.t3r1jj.pbmap.testing.RetryRunner;
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 

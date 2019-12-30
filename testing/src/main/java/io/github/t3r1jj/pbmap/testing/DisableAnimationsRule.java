@@ -31,9 +31,9 @@ public class DisableAnimationsRule implements TestRule {
     }
 
     private void changeAnimationSettings(String[] animationSettings) throws IOException {
-        previousAnimationSettings[0] = execute("settings get global transition_animation_scale");
-        previousAnimationSettings[1] = execute("settings get global transition_animation_scale");
-        previousAnimationSettings[2] = execute("settings get global transition_animation_scale");
+        previousAnimationSettings[0] = execute("settings get global transition_animation_scale").trim();
+        previousAnimationSettings[1] = execute("settings get global transition_animation_scale").trim();
+        previousAnimationSettings[2] = execute("settings get global transition_animation_scale").trim();
         execute("settings put global transition_animation_scale " + animationSettings[0]);
         execute("settings put global window_animation_scale " + animationSettings[0]);
         execute("settings put global animator_duration_scale " + animationSettings[0]);

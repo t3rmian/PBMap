@@ -74,14 +74,22 @@ class MapsDaoIT {
         var optimizedTime = 0L
         for (i in 0 until REPEAT_COUNT) {
             optimizedTime += timeExecution(Runnable { optimizedMapsDao.query(tableColumns, arrayOf(".*@.*"), true) })
-            MapsDao.CACHE_NO_MAPS = null
-            MapsDao.CACHE = null
+            clearCache(optimizedMapsDao)
             oldTime += timeExecution(Runnable { oldMapsDao.query(tableColumns, arrayOf(".*@.*"), true) })
         }
         Log.d(MapsDaoIT::class.java.name, "query without caching $REPEAT_COUNT times - old impl: $oldTime")
         Log.d(MapsDaoIT::class.java.name, "query without caching $REPEAT_COUNT times - new impl: $optimizedTime")
         Log.i(MapsDaoIT::class.java.name, "query without caching $REPEAT_COUNT times - optimization coeff: " + DECIMAL_FORMAT.format(oldTime.toDouble() / optimizedTime))
         assertThat(optimizedTime, lessThan(oldTime))
+    }
+
+    private fun clearCache(optimizedMapsDao: MapsDao) {
+        val cacheNoMapsField = MapsDao::class.java.getDeclaredField("CACHE_NO_MAPS")
+        cacheNoMapsField.isAccessible = true
+        cacheNoMapsField.set(optimizedMapsDao, null)
+        val cacheField = MapsDao::class.java.getDeclaredField("CACHE")
+        cacheField.isAccessible = true
+        cacheField.set(optimizedMapsDao, null)
     }
 
     @Test

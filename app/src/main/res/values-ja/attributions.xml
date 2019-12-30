@@ -10,7 +10,7 @@
         <item>Google Support Libraries</item>
         <item>android-retrostreams</item>
         <item>Butter Knife</item>
-        <item>Exo Bold</item>
+        <item>Exo</item>
         <item>アイコン</item>
         <item>マップタイル</item>
     </string-array>
@@ -61,7 +61,7 @@
             \nライセンス: Apache 2.0
             \nウェブサイト: http://jakewharton.github.io/butterknife/</item>
         <item>マップ上に名前を表示するために使用されるSans Serifフォント。
-            \n\n版: Exo Bold
+            \n\n版: Exo
             \n著者: Natanael Gama (exo@ndiscovered.com)
             \nライセンス: SIL Open Font License v1.10
             \nウェブサイト: https://www.fontsquirrel.com/fonts/exo</item>

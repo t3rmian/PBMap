@@ -1,6 +1,7 @@
 package io.github.t3r1jj.pbmap.search
 
 import android.net.Uri
+import androidx.test.filters.SmallTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -30,6 +31,7 @@ class WebUriParserIT(private val input: String, private val output: String?) {
     }
 
     @Test
+    @SmallTest
     fun testPlaceUri() {
         val result = WebUriParser.parseIntoCommonFormat(Uri.parse(input))
         assertEquals(output, result)

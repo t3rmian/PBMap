@@ -127,11 +127,11 @@ function search(text) {
 function searchMatches(nodeText, searchText) {
   nodeText = nodeText.toUpperCase();
   var placeSpace = searchText.split("@");
-  if (placeSpace.length == 1) {
+  if (placeSpace.length === 1) {
     return nodeText.indexOf(searchText) !== -1;
   } else {
     var nodePlaceSpace = nodeText.split("@");
-    if (nodePlaceSpace.length == 1) {
+    if (nodePlaceSpace.length === 1) {
       return false;
     } else {
       return (

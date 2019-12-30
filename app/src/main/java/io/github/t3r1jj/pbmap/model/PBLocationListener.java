@@ -1,4 +1,4 @@
-package io.github.t3r1jj.pbmap.model.gps;
+package io.github.t3r1jj.pbmap.model;
 
 import android.location.Location;
 import android.location.LocationListener;

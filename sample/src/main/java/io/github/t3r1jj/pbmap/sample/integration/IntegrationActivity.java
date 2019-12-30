@@ -101,7 +101,7 @@ public class IntegrationActivity extends AppCompatActivity {
                     null, selection, new String[]{".*@.*"}, null)) {    // It's fine to use regex
                 showPlaces(titleResId, cursor);
             } catch (RemoteException e) {
-                runOnUiThread(this::openGooglePlay);
+                runOnUiThread(pbMapIntegrator::openGooglePlay);
             }
         }).start();
     }
@@ -148,11 +148,4 @@ public class IntegrationActivity extends AppCompatActivity {
         return row;
     }
 
-    private void openGooglePlay() {
-        try {
-            pbMapIntegrator.openGooglePlay();
-        } catch (ActivityNotFoundException ex) {
-            Toast.makeText(this, getString(R.string.incorrect_location_format), Toast.LENGTH_SHORT).show();
-        }
-    }
 }

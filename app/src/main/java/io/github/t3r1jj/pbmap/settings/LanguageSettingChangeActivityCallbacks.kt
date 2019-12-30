@@ -5,7 +5,7 @@ import android.app.Application
 import android.os.Bundle
 import android.preference.PreferenceManager
 import com.yariksoffice.lingver.Lingver
-import io.github.t3r1jj.pbmap.MapApplication
+import io.github.t3r1jj.pbmap.main.MapApplication
 import io.github.t3r1jj.pbmap.model.i18n.LocaleUtils
 
 /**

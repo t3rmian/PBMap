@@ -44,18 +44,19 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.github.t3r1jj.pbmap.BuildConfig;
-import io.github.t3r1jj.pbmap.Config;
 import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.about.AboutActivity;
 import io.github.t3r1jj.pbmap.main.drawer.DrawerActivity;
 import io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment;
+import io.github.t3r1jj.pbmap.main.external.InstallListener;
+import io.github.t3r1jj.pbmap.model.DrawableUtils;
 import io.github.t3r1jj.pbmap.model.Info;
-import io.github.t3r1jj.pbmap.model.gps.PBLocationListener;
+import io.github.t3r1jj.pbmap.model.PBLocationListener;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
-import io.github.t3r1jj.pbmap.model.map.Place;
 import io.github.t3r1jj.pbmap.search.Search;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 import io.github.t3r1jj.pbmap.search.WebUriParser;
+import io.github.t3r1jj.pbmap.settings.Config;
 
 import static io.github.t3r1jj.pbmap.main.Controller.PARCELABLE_KEY_CONTROLLER_MEMENTO;
 import static io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment.RECREATE_REQUEST_RESULT_CODE;
@@ -399,12 +400,7 @@ public class MapActivity extends DrawerActivity
 
     @SuppressWarnings("ConstantConditions")
     public void setTitle(String nameId) {
-        int resId = getResources().getIdentifier(PBMap.getResIdString(nameId, Place.NAME_PREFIX), "string", getPackageName());
-        if (resId > 0) {
-            getSupportActionBar().setSubtitle(getString(resId).replace("\n", " ").trim());
-        } else {
-            getSupportActionBar().setSubtitle(nameId.replace('_', ' ').trim());
-        }
+        getSupportActionBar().setSubtitle(nameId);
     }
 
     public void setDistance(String distance) {

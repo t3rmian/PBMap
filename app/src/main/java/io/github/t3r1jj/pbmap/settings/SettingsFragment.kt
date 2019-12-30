@@ -8,8 +8,7 @@ import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.yariksoffice.lingver.Lingver
-import io.github.t3r1jj.pbmap.Config
-import io.github.t3r1jj.pbmap.MapApplication
+import io.github.t3r1jj.pbmap.main.MapApplication
 import io.github.t3r1jj.pbmap.R
 import io.github.t3r1jj.pbmap.main.drawer.MapsDrawerFragment
 import io.github.t3r1jj.pbmap.model.dictionary.Dictionary

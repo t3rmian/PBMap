@@ -40,6 +40,7 @@ android {
         it.buildConfigField 'String', 'FIRST_MAP_FILENAME', FIRST_MAP_FILENAME
         it.buildConfigField 'String', 'NOTICE_PATH', NOTICE_PATH
         it.buildConfigField 'String', 'FONT_PATH', FONT_PATH
+        it.buildConfigField 'String', 'FONT_BOLD_PATH', FONT_BOLD_PATH
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

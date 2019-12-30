@@ -8,7 +8,6 @@ import android.widget.ImageView;
 
 import java.io.Serializable;
 
-import io.github.t3r1jj.pbmap.main.DrawableUtils;
 import io.github.t3r1jj.pbmap.model.map.Place;
 import io.github.t3r1jj.pbmap.model.map.Space;
 

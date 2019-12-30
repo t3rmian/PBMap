@@ -1,4 +1,4 @@
-package io.github.t3r1jj.pbmap.main
+package io.github.t3r1jj.pbmap.main.external
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -11,11 +11,11 @@ import android.preference.PreferenceManager
  *
  * adb shell
  *
- * am broadcast -a com.android.vending.INSTALL_REFERRER -n io.github.t3r1jj.pbmap/.main.InstallListener --es "referrer" "https%3A%2F%2Fpbmap.termian.dev%2Fmobile%2Fpb_acs_l2"
+ * am broadcast -a com.android.vending.INSTALL_REFERRER -n io.github.t3r1jj.pbmap/.main.external.InstallListener --es "referrer" "https%3A%2F%2Fpbmap.termian.dev%2Fmobile%2Fpb_acs_l2"
  */
 class InstallListener : BroadcastReceiver() {
     companion object {
-        const val REFERRER = "io.github.t3r1jj.pbmap.main.InstallListener.REFERRER"
+        const val REFERRER = "io.github.t3r1jj.pbmap.main.external.InstallListener.REFERRER"
         private const val REFERRER_EXTRA_INTENT = "referrer"
     }
 

@@ -9,7 +9,7 @@ import com.qozix.tileview.TileView;
 import java.util.HashMap;
 import java.util.Map;
 
-import io.github.t3r1jj.pbmap.Config;
+import io.github.t3r1jj.pbmap.settings.Config;
 import io.github.t3r1jj.pbmap.main.Controller;
 import io.github.t3r1jj.pbmap.model.map.BoundingBox;
 import io.github.t3r1jj.pbmap.model.map.PBMap;

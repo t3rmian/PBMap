@@ -74,8 +74,20 @@ public class DijkstraAlgorithmTest {
         dijkstra.getShortestPath();
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void execute_noSourceTarget() throws NoPathException {
+        dijkstra.execute();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void execute_noSource() throws NoPathException {
+        dijkstra.setSource(null);
+        dijkstra.execute();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void execute_noTarget() throws NoPathException {
+        dijkstra.setTarget(null);
         dijkstra.execute();
     }
 
