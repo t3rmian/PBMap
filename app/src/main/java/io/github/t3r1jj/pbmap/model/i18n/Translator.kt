@@ -10,6 +10,11 @@ import java.util.Locale
  */
 open class Translator(val resources: Resources) {
     companion object {
+
+        /**
+         * @param id resource name
+         * @return pre-formatted resource name with underscores
+         */
         @JvmStatic
         fun preFormat(id: String): String {
             return id.toLowerCase(Locale.ROOT)
@@ -18,6 +23,10 @@ open class Translator(val resources: Resources) {
                     .replace("-", "_")
         }
 
+        /**
+         * @param text to format
+         * @return trimmed text with newlines and line breaks replaced by a space
+         */
         @JvmStatic
         fun postFormat(text: String): String {
             return text.replace("\n", " ")

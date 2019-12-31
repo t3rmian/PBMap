@@ -6,7 +6,6 @@ import android.content.SearchRecentSuggestionsProvider;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
-import io.github.t3r1jj.pbmap.R;
 
 public class SearchListProvider extends SearchRecentSuggestionsProvider {
 
