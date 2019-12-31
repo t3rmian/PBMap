@@ -43,7 +43,7 @@ class PBMapIntegrator extends ContextWrapper {
     enum ContentMapping {
         PLACE_COLUMN(SearchManager.SUGGEST_COLUMN_TEXT_1),
         MAP_COLUMN(SearchManager.SUGGEST_COLUMN_TEXT_2),
-        ID_COLUMN(SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID);
+        ID_COLUMN("_uri");
 
         private final String columnName;
 

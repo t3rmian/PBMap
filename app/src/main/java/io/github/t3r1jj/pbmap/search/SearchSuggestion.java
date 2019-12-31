@@ -27,13 +27,12 @@ public class SearchSuggestion implements Comparable<SearchSuggestion> {
     private int rank;
 
     SearchSuggestion(@NotNull String placeId, @NotNull String mapPath) {
-        this.placeId = Objects.requireNonNull(placeId);
-        this.mapPath = Objects.requireNonNull(mapPath);
+        this(placeId, mapPath, null);
     }
 
     SearchSuggestion(@NotNull String placeId, @NotNull String mapPath, @Nullable String mapId) {
-        this.placeId = placeId;
-        this.mapPath = mapPath;
+        this.placeId = Objects.requireNonNull(placeId);
+        this.mapPath = Objects.requireNonNull(mapPath);
         this.mapId = mapId;
     }
 
@@ -42,7 +41,7 @@ public class SearchSuggestion implements Comparable<SearchSuggestion> {
      */
     public SearchSuggestion(@NotNull Intent searchIntent) {
         this.placeId = Objects.requireNonNull(searchIntent.getDataString());
-        this.mapPath = Objects.requireNonNull(searchIntent.getStringExtra(SearchManager.EXTRA_DATA_KEY));
+        this.mapPath = Objects.requireNonNull(searchIntent.getStringExtra(SearchManager.EXTRA_DATA_KEY).split("@")[0]);
     }
 
     String getMapId() {
