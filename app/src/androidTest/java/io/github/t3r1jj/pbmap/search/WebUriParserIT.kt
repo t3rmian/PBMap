@@ -34,6 +34,15 @@ class WebUriParserIT(private val input: String, private val output: String?) {
     @SmallTest
     fun testPlaceUri() {
         val result = WebUriParser.parseIntoCommonFormat(Uri.parse(input))
-        assertEquals(output, result)
+        assertEquals(debug(output), result)
+    }
+
+    // https://github.com/junit-team/junit4/issues/1488
+    private fun debug(buggedParameter: String?): String? {
+        return if ("null" == buggedParameter) {
+            null
+        } else {
+            buggedParameter
+        }
     }
 }
