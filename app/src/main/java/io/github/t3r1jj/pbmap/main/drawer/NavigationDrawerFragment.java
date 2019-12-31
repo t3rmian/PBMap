@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -38,6 +39,7 @@ abstract class NavigationDrawerFragment extends Fragment {
      * Remember the position of the selected item.
      */
     private static final String STATE_SELECTED_POSITION = "selected_navigation_drawer_position";
+    private static Rect cachedBounds;
 
     /**
      * Per the design guidelines, you should show the drawer on launch until the user manually
@@ -216,13 +218,17 @@ abstract class NavigationDrawerFragment extends Fragment {
     }
 
     public void setLogo(Drawable drawable) {
+        Rect bounds = initialLogo.getBounds();
+        if (cachedBounds == null || (bounds.top + bounds.bottom + bounds.bottom + bounds.left) != 0) {
+            cachedBounds = bounds;
+        }
         if (drawable == null) {
             drawerToggle.setDrawerArrowDrawable(initialLogo);
         } else {
             drawerToggle.setDrawerArrowDrawable(new DrawerArrowDrawable(getActivity()) {
                 @Override
                 public void draw(Canvas canvas) {
-                    drawable.setBounds(initialLogo.getBounds());
+                    drawable.setBounds(cachedBounds);
                     drawable.draw(canvas);
                 }
             });
