@@ -10,12 +10,12 @@
     </coordinates>
 
     <spot id="↑">	<coordinates>		<coordinate lat="53.11780397254583" lng="23.149882919692544" alt="150.0"/>	</coordinates></spot>
-    <spot id="↵">	<coordinates>		<coordinate lat="53.117785361213265" lng="23.149486255199797" alt="150.0"/>	</coordinates></spot>
+    <spot id="⍈">	<coordinates>		<coordinate lat="53.117785361213265" lng="23.149486255199797" alt="150.0"/>	</coordinates></spot>
     <spot id="038">	<coordinates>		<coordinate lat="53.11774803118508" lng="23.14960654074407" alt="150.0"/>	</coordinates></spot>
     <spot id="039" hidden="true">	<coordinates>		<coordinate lat="53.11775883928333" lng="23.14966993704254" alt="150.0"/>	</coordinates></spot>
     <spot id="040">	<coordinates>		<coordinate lat="53.11777455314331" lng="23.14973009883813" alt="150.0"/>	</coordinates></spot>
     <spot id="buffet">	<coordinates>		<coordinate lat="53.11771169767511" lng="23.149843877329744" alt="150.0"/>	</coordinates></spot>
-    <spot id="↵">	<coordinates>		<coordinate lat="53.11765574097679" lng="23.14992515855813" alt="150.0"/>	</coordinates></spot>
+    <spot id="⍈">	<coordinates>		<coordinate lat="53.11765574097679" lng="23.14992515855813" alt="150.0"/>	</coordinates></spot>
     <spot id="↑">	<coordinates>		<coordinate lat="53.117680269955166" lng="23.14964718135826" alt="150.0"/>	</coordinates></spot>
     <spot id="001" hidden="true">	<coordinates>		<coordinate lat="53.11771463349166" lng="23.149443978322413" alt="150.0"/>	</coordinates></spot>
     <spot id="002" hidden="true">	<coordinates>		<coordinate lat="53.117682247597436" lng="23.149439107544648" alt="150.0"/>	</coordinates></spot>
@@ -53,6 +53,6 @@
     <spot id="assembly_hall_ii">	<coordinates>		<coordinate lat="53.117857024088636" lng="23.15017391097432" alt="150.0"/>	</coordinates></spot>
     <spot id="assembly_hall_iii">	<coordinates>		<coordinate lat="53.11781383013861" lng="23.14998695662862" alt="150.0"/>	</coordinates></spot>
 
-    <spot id="↵">	<coordinates>		<coordinate lat="53.117115734161935" lng="23.149844067213117" alt="150.0"/>	</coordinates></spot>
+    <spot id="⍈">	<coordinates>		<coordinate lat="53.117115734161935" lng="23.149844067213117" alt="150.0"/>	</coordinates></spot>
     <spot id="WC">	<coordinates>		<coordinate lat="53.117811755065915" lng="23.15019592489594" alt="150.0"/>	</coordinates></spot>
 </map>

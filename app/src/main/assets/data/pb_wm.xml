@@ -77,13 +77,13 @@
     <spot id="530" hidden="true">	<coordinates>		<coordinate lat="53.11680286195954" lng="23.14868488960129" alt="150.0"/>	</coordinates></spot>
     <spot id="618" hidden="true">	<coordinates>		<coordinate lat="53.11680286195954" lng="23.14868488960129" alt="150.0"/>	</coordinates></spot>
 
-    <spot id="↵">	<coordinates>		<coordinate lat="53.11744641907973" lng="23.14775956632543" alt="150.0"/>	</coordinates></spot>
-    <spot id="↵">	<coordinates>		<coordinate lat="53.11764764280047" lng="23.148737050969828" alt="150.0"/>	</coordinates></spot>
-    <spot id="↵">	<coordinates>		<coordinate lat="53.11670329690754" lng="23.148778979797363" alt="150.0"/>	</coordinates></spot>
+    <spot id="⍈">	<coordinates>		<coordinate lat="53.11744641907973" lng="23.14775956632543" alt="150.0"/>	</coordinates></spot>
+    <spot id="⍈">	<coordinates>		<coordinate lat="53.11764764280047" lng="23.148737050969828" alt="150.0"/>	</coordinates></spot>
+    <spot id="⍈">	<coordinates>		<coordinate lat="53.11670329690754" lng="23.148778979797363" alt="150.0"/>	</coordinates></spot>
 
-    <spot id="↵"><coordinates><coordinate lat="53.11665891866137" lng="23.147828828859737" alt="150.0"/></coordinates></spot>
-    <spot id="↵"><coordinates><coordinate lat="53.11677954531932" lng="23.149225070383217" alt="150.0"/></coordinates></spot>
-    <spot id="↵"><coordinates><coordinate lat="53.11705530363695" lng="23.14949086483028" alt="150.0"/></coordinates></spot>
+    <spot id="⍈"><coordinates><coordinate lat="53.11665891866137" lng="23.147828828859737" alt="150.0"/></coordinates></spot>
+    <spot id="⍈"><coordinates><coordinate lat="53.11677954531932" lng="23.149225070383217" alt="150.0"/></coordinates></spot>
+    <spot id="⍈"><coordinates><coordinate lat="53.11705530363695" lng="23.14949086483028" alt="150.0"/></coordinates></spot>
 
     <spot id="car_hall"><coordinates><coordinate lat="53.11698106530922" lng="23.149296416119174" alt="150.0"/></coordinates></spot>
     <spot id="machine_hall"><coordinates><coordinate lat="53.11688663452003" lng="23.148915795769632" alt="150.0"/></coordinates></spot>

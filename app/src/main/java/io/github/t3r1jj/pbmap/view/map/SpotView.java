@@ -53,7 +53,7 @@ public class SpotView extends MarkerLayout implements PlaceView {
         CharSequence text = textView.getText();
         int maxLength = Math.min(2, text.length());
         for (int i = 0; i < maxLength; i++) {
-            if (Character.isLetterOrDigit(text.charAt(0))) {
+            if (Character.isLetterOrDigit(text.charAt(i))) {
                 return false;
             }
         }

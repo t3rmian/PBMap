@@ -10,8 +10,8 @@
     </coordinates>
 
     <spot id="↑"><coordinates><coordinate lat="53.09867668324498" lng="23.125632048422883" alt="150.0"/></coordinates></spot>
-    <spot id="↵">	<coordinates>		<coordinate lat="53.09806" lng="23.12543" alt="150.0"/>	</coordinates></spot>
-    <spot id="↵">	<coordinates>		<coordinate lat="53.09862" lng="23.12548" alt="150.0"/>	</coordinates></spot>
+    <spot id="⍈">	<coordinates>		<coordinate lat="53.09806" lng="23.12543" alt="150.0"/>	</coordinates></spot>
+    <spot id="⍈">	<coordinates>		<coordinate lat="53.09862" lng="23.12548" alt="150.0"/>	</coordinates></spot>
     <spot id="24"><coordinates><coordinate lat="53.098500937508206" lng="23.12534994316257" alt="150.0"/></coordinates></spot>
     <spot id="22"><coordinates><coordinate lat="53.098433075285584" lng="23.12529577248917" alt="150.0"/></coordinates></spot>
     <spot id="23"><coordinates><coordinate lat="53.09844759944525" lng="23.12538878568688" alt="150.0"/></coordinates></spot>
@@ -31,8 +31,8 @@
     <spot id="3"><coordinates><coordinate lat="53.09839912643612" lng="23.12572199601569" alt="150.0"/></coordinates></spot>
     <spot id="4"><coordinates><coordinate lat="53.09833911223083" lng="23.125760838540007" alt="150.0"/></coordinates></spot>
     <spot id="5"><coordinates><coordinate lat="53.09826762785583" lng="23.125790484187327" alt="150.0"/></coordinates></spot>
-    <spot id="↵"><coordinates><coordinate lat="53.09817913351825" lng="23.125931536807105" alt="150.0"/></coordinates></spot>
-    <spot id="↵"><coordinates><coordinate lat="53.09846883524816" lng="23.125805812357168" alt="150.0"/></coordinates></spot>
+    <spot id="⍈"><coordinates><coordinate lat="53.09817913351825" lng="23.125931536807105" alt="150.0"/></coordinates></spot>
+    <spot id="⍈"><coordinates><coordinate lat="53.09846883524816" lng="23.125805812357168" alt="150.0"/></coordinates></spot>
     <spot id="↑"><coordinates><coordinate lat="53.098273061072085" lng="23.12562898279722" alt="150.0"/></coordinates></spot>
     <spot id="WC"><coordinates><coordinate lat="53.0985257954635" lng="23.12552370707609" alt="150.0"/></coordinates></spot>
     <spot id="Xero"><coordinates><coordinate lat="53.09847426846442" lng="23.12555129774859" alt="150.0"/></coordinates></spot>

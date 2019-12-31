@@ -9,7 +9,7 @@
         <coordinate alt="150" lat="53.09720" lng="23.12556" />
     </coordinates>
 
-    <spot id="↵"><coordinates><coordinate lat="53.09742320259734" lng="23.12503430969238" alt="150.0"/></coordinates></spot>
+    <spot id="⍈"><coordinates><coordinate lat="53.09742320259734" lng="23.12503430969238" alt="150.0"/></coordinates></spot>
     <spot id="3"><coordinates><coordinate lat="53.0973943424152" lng="23.12540242458712" alt="150.0"/></coordinates></spot>
     <spot id="4"><coordinates><coordinate lat="53.09738215876351" lng="23.12534094970703" alt="150.0"/></coordinates></spot>
     <spot id="5"><coordinates><coordinate lat="53.09736772867244" lng="23.1252779296875" alt="150.0"/></coordinates></spot>
@@ -26,6 +26,6 @@
     <spot id="WC"><coordinates><coordinate lat="53.09743538624903" lng="23.125291759643556" alt="150.0"/></coordinates></spot>
     <spot id="↑"><coordinates><coordinate lat="53.09741553825988" lng="23.125192619628905" alt="150.0"/></coordinates></spot>
     <spot id="15" hidden="true"><coordinates><coordinate lat="53.09741553825988" lng="23.125192619628905" alt="150.0"/></coordinates></spot>
-    <spot id="↵"><coordinates><coordinate lat="53.0973321027468" lng="23.124856799926757" alt="150.0"/></coordinates></spot>
-    <spot id="↵"><coordinates><coordinate lat="53.09744035484508" lng="23.125429324611535" alt="150.0"/></coordinates></spot>
+    <spot id="⍈"><coordinates><coordinate lat="53.0973321027468" lng="23.124856799926757" alt="150.0"/></coordinates></spot>
+    <spot id="⍈"><coordinates><coordinate lat="53.09744035484508" lng="23.125429324611535" alt="150.0"/></coordinates></spot>
 </map>

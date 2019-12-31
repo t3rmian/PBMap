@@ -10,10 +10,10 @@
         <coordinate alt="150" lat="53.11832" lng="23.14662" />
     </coordinates>
 
-    <spot id="↵">	<coordinates>		<coordinate lat="53.11889672227381" lng="23.145790762329103" alt="150.0"/>	</coordinates></spot>
-    <spot id="↵">	<coordinates>		<coordinate lat="53.11893881595404" lng="23.145924896240235" alt="150.0"/>	</coordinates></spot>
+    <spot id="⍈">	<coordinates>		<coordinate lat="53.11889672227381" lng="23.145790762329103" alt="150.0"/>	</coordinates></spot>
+    <spot id="⍈">	<coordinates>		<coordinate lat="53.11893881595404" lng="23.145924896240235" alt="150.0"/>	</coordinates></spot>
     <spot id="↑">	<coordinates>		<coordinate lat="53.118871478024154" lng="23.145846958007812"  alt="150.0"/>	</coordinates></spot>
-    <spot id="↵">	<coordinates>		<coordinate lat="53.11837474875932" lng="23.14612165588379" alt="150.0"/>	</coordinates></spot>
+    <spot id="⍈">	<coordinates>		<coordinate lat="53.11837474875932" lng="23.14612165588379" alt="150.0"/>	</coordinates></spot>
 
     <spot id="gym">	<coordinates>		<coordinate lat="53.1188418388511" lng="23.146124526944675" alt="150.0"/>	</coordinates></spot>
     <spot id="martial_arts_hall">	<coordinates>		<coordinate lat="53.118734703619666" lng="23.146198936157226" alt="150.0"/>	</coordinates></spot>

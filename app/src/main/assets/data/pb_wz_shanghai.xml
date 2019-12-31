@@ -9,9 +9,9 @@
         <coordinate alt="150" lat="53.09749" lng="23.12520" />
     </coordinates>
 
-    <spot id="↵">	<coordinates>		<coordinate lat="53.09797756005201" lng="23.12448988494873" alt="150.0"/>	</coordinates></spot>
-    <spot id="↵">	<coordinates>		<coordinate lat="53.098074897307036" lng="23.125058810374775" alt="150.0"/>	</coordinates></spot>
-    <spot id="↵">	<coordinates>		<coordinate lat="53.09757173888344" lng="23.12480110961914" alt="150.0"/>	</coordinates></spot>
+    <spot id="⍈">	<coordinates>		<coordinate lat="53.09797756005201" lng="23.12448988494873" alt="150.0"/>	</coordinates></spot>
+    <spot id="⍈">	<coordinates>		<coordinate lat="53.098074897307036" lng="23.125058810374775" alt="150.0"/>	</coordinates></spot>
+    <spot id="⍈">	<coordinates>		<coordinate lat="53.09757173888344" lng="23.12480110961914" alt="150.0"/>	</coordinates></spot>
 
     <spot id="1"><coordinates><coordinate lat="53.09805421572797" lng="23.124491307973393" alt="150.0"/></coordinates></spot>
     <spot id="2"><coordinates><coordinate lat="53.09806202347108" lng="23.12459789156554" alt="150.0"/></coordinates></spot>

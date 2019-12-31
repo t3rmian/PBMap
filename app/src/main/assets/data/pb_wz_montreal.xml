@@ -9,9 +9,9 @@
         <coordinate alt="150" lat="53.09825" lng="23.12518" />
     </coordinates>
 
-    <spot id="↵"><coordinates><coordinate lat="53.098646866502385" lng="23.124939931640625" alt="150.0"/></coordinates></spot>
-    <spot id="↵"><coordinates><coordinate lat="53.09858985002034" lng="23.124658108215332" alt="150.0"/></coordinates></spot>
-    <spot id="↵"><coordinates><coordinate lat="53.09833745604129" lng="23.12493484954834" alt="150.0"/></coordinates></spot>
+    <spot id="⍈"><coordinates><coordinate lat="53.098646866502385" lng="23.124939931640625" alt="150.0"/></coordinates></spot>
+    <spot id="⍈"><coordinates><coordinate lat="53.09858985002034" lng="23.124658108215332" alt="150.0"/></coordinates></spot>
+    <spot id="⍈"><coordinates><coordinate lat="53.09833745604129" lng="23.12493484954834" alt="150.0"/></coordinates></spot>
 
     <spot id="Cloakroom"><coordinates><coordinate lat="53.09860435032011" lng="23.124894751281737" alt="150.0"/></coordinates></spot>
     <spot id="5"><coordinates><coordinate lat="53.09856942217582" lng="23.124909997558593" alt="150.0"/></coordinates></spot>

@@ -8,9 +8,9 @@
         <coordinate alt="150" lat="52.735746875" lng="23.59254" />
     </coordinates>
 
-    <spot id="↵">	<coordinates>		<coordinate lat="52.73605367969818" lng="23.59163697958164" alt="150.0"/>	</coordinates></spot>
-    <spot id="↵">	<coordinates>		<coordinate lat="52.73726344459057" lng="23.591927715769195" alt="150.0"/>	</coordinates></spot>
-    <spot id="↵">	<coordinates>		<coordinate lat="52.73654548925323" lng="23.592200758035" alt="150.0"/>	</coordinates></spot>
+    <spot id="⍈">	<coordinates>		<coordinate lat="52.73605367969818" lng="23.59163697958164" alt="150.0"/>	</coordinates></spot>
+    <spot id="⍈">	<coordinates>		<coordinate lat="52.73726344459057" lng="23.591927715769195" alt="150.0"/>	</coordinates></spot>
+    <spot id="⍈">	<coordinates>		<coordinate lat="52.73654548925323" lng="23.592200758035" alt="150.0"/>	</coordinates></spot>
 
     <spot id="2B"><coordinates><coordinate lat="52.73718952185058" lng="23.59199998185795" alt="150.0"/></coordinates></spot>
     <spot id="5B"><coordinates><coordinate lat="52.73710787878418" lng="23.59201770652916" alt="150.0"/></coordinates></spot>
@@ -39,7 +39,7 @@
     <spot id="16B"><coordinates><coordinate lat="52.73673380793457" lng="23.591963782445248" alt="150.0"/></coordinates></spot>
     <spot id="17B"><coordinates><coordinate lat="52.73669499687271" lng="23.591972410688225" alt="150.0"/></coordinates></spot>
     <spot id="18B"><coordinates><coordinate lat="52.73670040729675" lng="23.592058061897532" alt="150.0"/></coordinates></spot>
-    <spot id="↵"><coordinates><coordinate lat="52.73690942532844" lng="23.592297077591887" alt="150.0"/></coordinates></spot>
+    <spot id="⍈"><coordinates><coordinate lat="52.73690942532844" lng="23.592297077591887" alt="150.0"/></coordinates></spot>
 
     <spot id="1A"><coordinates><coordinate lat="52.73613761258392" lng="23.59108343499328" alt="150.0"/></coordinates></spot>
     <spot id="2A"><coordinates><coordinate lat="52.73610411801757" lng="23.59139719046184" alt="150.0"/></coordinates></spot>
@@ -55,7 +55,7 @@
     <spot id="WC"><coordinates><coordinate lat="52.73660030759964" lng="23.591985599589382" alt="150.0"/></coordinates></spot>
     <spot id="WC"><coordinates><coordinate lat="52.736512165643305" lng="23.592003714084328" alt="150.0"/></coordinates></spot>
     <spot id="↑"><coordinates><coordinate lat="52.73656005180435" lng="23.591992847443336" alt="150.0"/></coordinates></spot>
-    <spot id="↵"><coordinates><coordinate lat="52.7366574181488" lng="23.592128711250275" alt="150.0"/></coordinates></spot>
+    <spot id="⍈"><coordinates><coordinate lat="52.7366574181488" lng="23.592128711250275" alt="150.0"/></coordinates></spot>
 
     <spot id="marszalka_jozefa_pilsudskiego"><coordinates><coordinate lat="52.73628816148834" lng="23.591736649837213" alt="150.0"/></coordinates></spot>
     <spot id="3 Maja"><coordinates><coordinate lat="52.73724904038472" lng="23.592454788661197" alt="150.0"/></coordinates></spot>
