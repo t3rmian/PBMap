@@ -12,6 +12,6 @@ class LocaleListener(private val localeStore: SettingsLocaleStore) : BroadcastRe
     override fun onReceive(context: Context, intent: Intent) {
         val locale = ConfigurationCompat.getLocales(Resources.getSystem().configuration).get(0)
         localeStore.defaultLocale = locale
-        Lingver.getInstance().setLocale(context, locale)
+        Lingver.getInstance().setLocale(context, localeStore.getLocale())
     }
 }

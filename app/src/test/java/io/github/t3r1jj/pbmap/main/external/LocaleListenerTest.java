@@ -2,6 +2,7 @@ package io.github.t3r1jj.pbmap.main.external;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 
@@ -25,8 +26,8 @@ import io.github.t3r1jj.pbmap.settings.SettingsLocaleStore;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -61,7 +62,11 @@ public class LocaleListenerTest {
         when(ConfigurationCompat.getLocales(any())).thenReturn(localeList);
         Locale mockedLocale = Locale.ROOT;
         when(localeList.get(0)).thenReturn(mockedLocale);
-        SettingsLocaleStore store = mock(SettingsLocaleStore.class);
+        SharedPreferences prefs = mock(SharedPreferences.class);
+        SharedPreferences.Editor editor = mock(SharedPreferences.Editor.class);
+        when(prefs.edit()).thenReturn(editor);
+        when(editor.putString(any(), any())).thenReturn(editor);
+        SettingsLocaleStore store = spy(new SettingsLocaleStore(mock(Context.class), Locale.FRANCE, prefs));
         storeField.set(lingver, store);
         LocaleListener localeListener = new LocaleListener(store);
         Intent intent = new Intent();
