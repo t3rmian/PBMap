@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="io.github.t3r1jj.pbmap.sample.integration.IntegrationActivity">
 
     <TextView
@@ -21,12 +21,35 @@
         android:text="@string/integration_description"
         android:textStyle="bold" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/show_place_ids"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:onClick="onShowPlaceIds"
+            android:text="@string/show_place_ids" />
+
+        <Button
+            android:id="@+id/show_place_names"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:onClick="onShowPlaceNames"
+            android:text="@string/show_place_names" />
+    </LinearLayout>
+
     <EditText
         android:id="@+id/search_query_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:hint="@string/search_query_hint"
+        android:importantForAutofill="no"
+        android:inputType="text"
         android:text="@string/search_query" />
 
     <Button
@@ -49,6 +72,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="@string/map_id_hint"
+            android:importantForAutofill="no"
+            android:inputType="text"
             android:text="@string/map_id" />
 
         <EditText
@@ -57,6 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="@string/lat_hint"
+            android:importantForAutofill="no"
             android:inputType="numberDecimal"
             android:text="@string/lat" />
 
@@ -67,7 +93,8 @@
             android:layout_weight="1"
             android:hint="@string/lng_hint"
             android:inputType="numberDecimal"
-            android:text="@string/lng" />
+            android:text="@string/lng"
+            tools:ignore="Autofill" />
     </LinearLayout>
 
     <Button

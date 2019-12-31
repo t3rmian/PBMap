@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "io.github.t3r1jj.pbmap",
+      "sha256_cert_fingerprints": [
+        "FD:3B:9B:6C:EF:EA:D9:D6:66:3A:1A:E2:F2:01:C6:A8:7C:F7:9E:BD:85:88:78:C1:09:9D:18:2E:EA:EA:94:95",
+        "45:F6:65:42:32:14:FA:07:C0:2F:91:0A:85:B0:44:6E:3D:26:20:80:CC:FC:AD:64:02:FD:7B:24:14:D2:73:4C"
+      ]
+    }
+  }
+]

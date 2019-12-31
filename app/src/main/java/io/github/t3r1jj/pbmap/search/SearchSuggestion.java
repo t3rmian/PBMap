@@ -15,8 +15,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 import io.github.t3r1jj.pbmap.R;
+import io.github.t3r1jj.pbmap.model.i18n.Translator;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
-import io.github.t3r1jj.pbmap.model.map.Place;
 
 public class SearchSuggestion implements Comparable<SearchSuggestion> {
     private final String placeId;
@@ -29,6 +29,12 @@ public class SearchSuggestion implements Comparable<SearchSuggestion> {
     SearchSuggestion(@NotNull String placeId, @NotNull String mapPath) {
         this.placeId = Objects.requireNonNull(placeId);
         this.mapPath = Objects.requireNonNull(mapPath);
+    }
+
+    SearchSuggestion(@NotNull String placeId, @NotNull String mapPath, @Nullable String mapId) {
+        this.placeId = placeId;
+        this.mapPath = mapPath;
+        this.mapId = mapId;
     }
 
     /**
@@ -82,36 +88,21 @@ public class SearchSuggestion implements Comparable<SearchSuggestion> {
     }
 
     public String getName(Context context) {
-        String translatedName = getNameRes(context);
-        if (translatedName == null) {
-            return placeId.toUpperCase().replace('_', ' ').trim();
-        }
-        return translatedName.replace("\n", " ").trim();
-    }
-
-    private String getNameRes(Context context) {
-        int resId = getNameResId(context);
-        if (resId == 0) {
-            return null;
-        }
-        return context.getString(resId);
+        String name = new Translator(context.getResources()).translateName(placeId);
+        return Translator.postFormat(name);
     }
 
     int getNameResId(Context context) {
         String packageName = context.getPackageName();
-        return context.getResources().getIdentifier(Place.getResIdString(placeId, Place.NAME_PREFIX), "string", packageName);
+        return context.getResources().getIdentifier(Translator.getResIdString(placeId, Translator.NAME_PREFIX), "string", packageName);
     }
 
     String getMapName(Context context) {
         if (mapId == null) {
             return context.getString(R.string.map);
         }
-        String packageName = context.getPackageName();
-        int resId = context.getResources().getIdentifier(Place.getResIdString(mapId, Place.NAME_PREFIX), "string", packageName);
-        if (resId == 0) {
-            return mapId.toUpperCase().replace('_', ' ').trim();
-        }
-        return context.getString(resId).replace("\n", " ").trim();
+        String name = new Translator(context.getResources()).translateName(mapId);
+        return Translator.postFormat(name);
     }
 
     @SuppressLint("ResourceType")

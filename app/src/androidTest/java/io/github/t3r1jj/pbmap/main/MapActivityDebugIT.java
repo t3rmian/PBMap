@@ -21,7 +21,7 @@ import org.junit.runner.RunWith;
 import java.util.regex.Pattern;
 
 import io.github.t3r1jj.pbmap.R;
-import io.github.t3r1jj.pbmap.logging.Config;
+import io.github.t3r1jj.pbmap.settings.Config;
 import io.github.t3r1jj.pbmap.testing.RetryRunner;
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 

@@ -24,7 +24,7 @@ internal class TranslatorTest {
         val resourceId = 123
         val resourceName = "resourceName"
         val resourceValue = "resourceValue"
-        `when`(resources.getIdentifier(eq("name_$resourceName"), eq("string"), any())).thenReturn(resourceId)
+        `when`(resources.getIdentifier(eq("name_${resourceName.toLowerCase()}"), eq("string"), any())).thenReturn(resourceId)
         `when`(resources.getString(resourceId)).thenReturn(resourceValue)
         val translator = Translator(resources)
         assertEquals(resourceValue, translator.translateName(resourceName))
@@ -53,7 +53,7 @@ internal class TranslatorTest {
         val resourceId = 123
         val resourceName = "resourceName"
         val resourceValue = "resourceValue"
-        `when`(resources.getIdentifier(eq("description_$resourceName"), eq("string"), any())).thenReturn(resourceId)
+        `when`(resources.getIdentifier(eq("description_${resourceName.toLowerCase()}"), eq("string"), any())).thenReturn(resourceId)
         `when`(resources.getString(resourceId)).thenReturn(resourceValue)
         val translator = Translator(resources)
         assertEquals(resourceValue, translator.translateDescription(resourceName))
@@ -83,7 +83,7 @@ internal class TranslatorTest {
         val resourceName = "resourceName"
         val resourceValue = "resourceValue"
         val args = arrayOf("arg1", "arg2")
-        `when`(resources.getIdentifier(eq("name_$resourceName"), eq("string"), any())).thenReturn(resourceId)
+        `when`(resources.getIdentifier(eq("name_${resourceName.toLowerCase()}"), eq("string"), any())).thenReturn(resourceId)
         `when`(resources.getString(eq(resourceId), any())).thenReturn(resourceValue)
         val translator = spy(Translator(resources))
         assertEquals(resourceValue, translator.translateName(resourceName, *args))
@@ -126,7 +126,7 @@ internal class TranslatorTest {
         val resourceId = 123
         val resourceName = "resourceName"
         val resourceValue = "resourceValue"
-        `when`(resources.getIdentifier(eq("description_$resourceName"), eq("string"), any())).thenReturn(resourceId)
+        `when`(resources.getIdentifier(eq("description_${resourceName.toLowerCase()}"), eq("string"), any())).thenReturn(resourceId)
         `when`(resources.getString(eq(resourceId), any())).thenReturn(resourceValue)
         val translator = spy(Translator(resources))
         val args = arrayOf("arg1", "arg2")

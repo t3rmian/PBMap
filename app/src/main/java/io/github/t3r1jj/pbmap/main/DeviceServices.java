@@ -12,8 +12,8 @@ import android.provider.Settings;
 import androidx.core.app.ActivityCompat;
 
 public class DeviceServices extends ContextWrapper {
-    public DeviceServices(Context mapActivity) {
-        super(mapActivity);
+    public DeviceServices(Context ctx) {
+        super(ctx);
     }
 
     boolean doesNotHaveGpsPermissions() {

@@ -53,6 +53,7 @@ public class Coordinate implements Parcelable, Serializable {
         this.altitude = true;
     }
 
+    @SuppressWarnings("deprecation")
     private Coordinate(Parcel source) {
         double[] coordinates = new double[3];
         source.readDoubleArray(coordinates);
@@ -67,7 +68,7 @@ public class Coordinate implements Parcelable, Serializable {
     }
 
     /**
-     * Use for extended (point not in defined route graph) routing, should not require teleporting through floors for considered buildings
+     * Use for extended (point not in defined route graph) routing, should not require include through floors for considered buildings
      *
      * @param end second coordinate
      * @return adds multiplied penalty distance for excessive height difference (gt 1m)
@@ -81,6 +82,7 @@ public class Coordinate implements Parcelable, Serializable {
         return Math.sqrt(base * base + h * h);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "<spot id=\"_\">" +
@@ -127,6 +129,7 @@ public class Coordinate implements Parcelable, Serializable {
     /**
      * @param altitude not implemented yet
      */
+    @SuppressWarnings("DeprecatedIsStillUsed")
     @Deprecated
     public void setAltitude(boolean altitude) {
         this.altitude = altitude;

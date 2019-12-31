@@ -40,7 +40,7 @@ public class SpaceView extends CompositePathView.DrawablePath implements PlaceVi
         } else {
             paint.setColor(ContextCompat.getColor(context, R.color.space_bounds));
         }
-        spotView = new SpotView(context, space, ContextCompat.getColor(context, R.color.space_text));
+        spotView = new SpotView(context, space, R.color.space_text);
     }
 
     @Override

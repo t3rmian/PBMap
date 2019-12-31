@@ -13,6 +13,8 @@ import android.os.Build;
 import android.os.SystemClock;
 import android.provider.Settings;
 
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.NoActivityResumedException;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.filters.LargeTest;
 import androidx.test.filters.MediumTest;
@@ -34,7 +36,7 @@ import java.lang.reflect.Field;
 import java.util.regex.Pattern;
 
 import io.github.t3r1jj.pbmap.R;
-import io.github.t3r1jj.pbmap.model.gps.PBLocationListener;
+import io.github.t3r1jj.pbmap.model.PBLocationListener;
 import io.github.t3r1jj.pbmap.testing.RetryRunner;
 import io.github.t3r1jj.pbmap.testing.ScreenshotOnTestFailedRule;
 
@@ -58,6 +60,7 @@ import static io.github.t3r1jj.pbmap.testing.TestUtils.allowPermissionsIfNeeded;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.containsIgnoringCase;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.withIndex;
 import static io.github.t3r1jj.pbmap.testing.TestUtils.withIntents;
+import static junit.framework.TestCase.fail;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.core.IsNot.not;
@@ -100,6 +103,31 @@ public class MapActivityNavigationIT {
         onView(withContentDescription(R.string.action_back)).perform(click());
         InstrumentationRegistry.getInstrumentation().waitForIdleSync();
         SystemClock.sleep(1000);
+        onView(withIndex(withText(R.string.name_pb_campus), 0)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    @MediumTest
+    public void navigateBack_BackButton() {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEARCH);
+        sendIntent.putExtra(SearchManager.QUERY, "wc@pb_wb");
+        activityRule.launchActivity(sendIntent);
+        Espresso.pressBack();
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+        SystemClock.sleep(1000);
+        onView(withIndex(withText(R.string.name_pb_campus), 0)).check(matches(isDisplayed()));
+    }
+
+    @Test(expected = NoActivityResumedException.class)
+    @LargeTest
+    public void navigateBack_Exit() {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEARCH);
+        sendIntent.putExtra(SearchManager.QUERY, "wc@pb_wb");
+        activityRule.launchActivity(sendIntent);
+        Espresso.pressBack();
+        Espresso.pressBack();
         onView(withIndex(withText(R.string.name_pb_campus), 0)).check(matches(isDisplayed()));
     }
 
@@ -248,12 +276,22 @@ public class MapActivityNavigationIT {
         device.swipe(x, y, x, y, steps);
         SystemClock.sleep(1000);
         device.findObject(By.text(Pattern.compile("^.*(?i)(DESTINATION).*$"))).click();
-        ;
         SystemClock.sleep(1000);
 
-        device.wait(Until.findObject(By.textContains("Distance")), 250);
-        device.wait(Until.findObject(By.descContains("Source")), 50);
-        device.wait(Until.findObject(By.descContains("Destination")), 50);
+        verifySourceDestinationDistance(device);
+    }
+
+    private void verifySourceDestinationDistance(UiDevice device) {
+        maxZoomOut(device);
+        if (device.wait(Until.findObject(By.textContains("Distance")), 250) == null) {
+            fail("Distance text not found");
+        }
+        if (device.wait(Until.findObject(By.descContains("Source")), 50) == null) {
+            fail("Source text not found");
+        }
+        if (device.wait(Until.findObject(By.descContains("Destination")), 50) == null) {
+            fail("Destination text not found");
+        }
     }
 
     @Test
@@ -281,9 +319,7 @@ public class MapActivityNavigationIT {
         activityRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         SystemClock.sleep(5000);
 
-        device.wait(Until.findObject(By.textContains("Distance")), 250);
-        device.wait(Until.findObject(By.descContains("Source")), 50);
-        device.wait(Until.findObject(By.descContains("Destination")), 50);
+        verifySourceDestinationDistance(device);
     }
 
     @Test
@@ -297,7 +333,9 @@ public class MapActivityNavigationIT {
         UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
         maxZoomOut(device);
         device.findObject(By.textContains(getUnFormattedString(R.string.name_pb_wi))).click();
-        device.wait(Until.findObject(By.descContains("12b")), 250);
+        if (device.wait(Until.findObject(By.textContains("12B")), 10000) == null) {
+            fail(getUnFormattedString(R.string.name_pb_wi) + " text not found");
+        }
     }
 
     @Test
@@ -321,7 +359,7 @@ public class MapActivityNavigationIT {
     }
 
     private void maxZoomOut(UiDevice device) {
-        device.findObject(By.res("android:id/zoomIn")).click();
+        device.wait(Until.findObject(By.res("android:id/zoomIn")), 30000).click();
         SystemClock.sleep(250);
         for (int i = 0; i < 25; i++) {
             device.findObject(By.res("android:id/zoomOut")).click();
@@ -387,7 +425,9 @@ public class MapActivityNavigationIT {
             intended(hasAction(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
         });
         UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-        device.wait(Until.findObject(By.res("com.android.settings")), 3000);
+        if (device.wait(Until.findObject(By.res("com.android.settings:id/switch_text")), 3000) == null) {
+            fail("Waited for com.android.settings but did not appear");
+        }
         device.pressBack();
         SystemClock.sleep(3000);
     }

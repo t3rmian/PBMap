@@ -13,9 +13,10 @@ import com.qozix.tileview.geom.CoordinateTranslater;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Locale;
 
 import io.github.t3r1jj.pbmap.R;
-import io.github.t3r1jj.pbmap.logging.Config;
+import io.github.t3r1jj.pbmap.settings.Config;
 import io.github.t3r1jj.pbmap.logging.Message;
 import io.github.t3r1jj.pbmap.logging.WebLogger;
 import io.github.t3r1jj.pbmap.model.Info;
@@ -25,7 +26,7 @@ import io.github.t3r1jj.pbmap.model.map.PBMap;
 import io.github.t3r1jj.pbmap.model.map.Place;
 import io.github.t3r1jj.pbmap.model.map.Space;
 import io.github.t3r1jj.pbmap.model.map.route.RouteGraph;
-import io.github.t3r1jj.pbmap.search.MapsDao;
+import io.github.t3r1jj.pbmap.search.MapsLoader;
 import io.github.t3r1jj.pbmap.search.SearchSuggestion;
 import io.github.t3r1jj.pbmap.view.map.MapView;
 import io.github.t3r1jj.pbmap.view.map.routing.GeoMarker;
@@ -34,7 +35,7 @@ import io.github.t3r1jj.pbmap.view.map.routing.Route;
 public class Controller implements GeoMarker.MapListener {
     static final String PARCELABLE_KEY_CONTROLLER_MEMENTO = "PARCELABLE_KEY_CONTROLLER_MEMENTO";
     private MapActivity mapActivity;
-    private MapsDao mapsDao;
+    private MapsLoader mapsDao;
     private PBMap map;
     private MapView mapView;
     private GeoMarker source;
@@ -44,13 +45,13 @@ public class Controller implements GeoMarker.MapListener {
 
     Controller(MapActivity mapActivity) {
         this.mapActivity = mapActivity;
-        this.mapsDao = new MapsDao(mapActivity);
+        this.mapsDao = new MapsLoader(mapActivity);
         this.route = Config.getInstance().createRoute(mapActivity);
     }
 
     void restoreState(@NotNull Memento memento, @NotNull MapActivity mapActivity) {
         this.mapActivity = mapActivity;
-        this.mapsDao = new MapsDao(mapActivity);
+        this.mapsDao = new MapsLoader(mapActivity);
         this.route = Config.getInstance().createRoute(mapActivity);
         this.map = mapsDao.loadMap(memento.mapReferencePath);
         loadRouteGraph();
@@ -166,13 +167,14 @@ public class Controller implements GeoMarker.MapListener {
      * @param event press event
      * @deprecated Use this only for logging coordinates
      */
+    @SuppressWarnings("DeprecatedIsStillUsed")
     @Deprecated
     public void printPressedCoordinate(MotionEvent event) {
         CoordinateTranslater coordinateTranslater = mapView.getCoordinateTranslater();
         double lng = coordinateTranslater.translateAndScaleAbsoluteToRelativeX(mapView.getScrollX() + event.getX() - mapView.getOffsetX(), mapView.getScale());
         double lat = coordinateTranslater.translateAndScaleAbsoluteToRelativeY(mapView.getScrollY() + event.getY() - mapView.getOffsetY(), mapView.getScale());
         System.out.println(new Coordinate(lat, lng, map.getCenter().alt));
-        Toast.makeText(mapActivity, String.format("lat=%f; lng=%f; alt=%f", lat, lng, map.getCenter().alt), Toast.LENGTH_SHORT).show();
+        Toast.makeText(mapActivity, String.format(Locale.ROOT, "lat=%f; lng=%f; alt=%f", lat, lng, map.getCenter().alt), Toast.LENGTH_SHORT).show();
     }
 
     public void onLongPress(MotionEvent event) {
@@ -219,7 +221,7 @@ public class Controller implements GeoMarker.MapListener {
     }
 
     public void loadTitle(PBMap map) {
-        mapActivity.setTitle(map.getId());
+        mapActivity.setTitle(map.getName(mapActivity));
     }
 
     void loadDescription() {
@@ -291,14 +293,15 @@ public class Controller implements GeoMarker.MapListener {
         return map == null ? null : map.getId();
     }
 
-    void onNavigationPerformed(PBMap.Navigation navigation) {
+    boolean onNavigationPerformed(PBMap.Navigation navigation) {
         String navigationMapPath = map.getNavigationMapPath(navigation);
         if (navigationMapPath == null) {
-            return;
+            return false;
         }
         map = mapsDao.loadMap(navigationMapPath);
         loadRouteGraph();
         updateView();
+        return true;
     }
 
     void onImprovePressed(MotionEvent event, String description) {
@@ -314,9 +317,9 @@ public class Controller implements GeoMarker.MapListener {
     }
 
     public static class Memento implements Parcelable {
-        private Coordinate source;
-        private Coordinate destination;
-        private String mapReferencePath;
+        private final Coordinate source;
+        private final Coordinate destination;
+        private final String mapReferencePath;
 
         private Memento(Coordinate source, Coordinate destination, String mapReferencePath) {
             this.source = source;

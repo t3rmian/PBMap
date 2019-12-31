@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="attribution_titles">
+        <item>TileView</item>
+        <item>Lingver</item>
+        <item>Simple-XML</item>
+        <item>Swipe-Selector</item>
+        <item>FloatingActionButton</item>
+        <item>TapTargetView</item>
+        <item>Google Support Libraries</item>
+        <item>android-retrostreams</item>
+        <item>Butter Knife</item>
+        <item>Exo</item>
+        <item>Иконы</item>
+        <item>Карты</item>
+    </string-array>
     <string-array name="attribution_descriptions">
         <item>TileView позволяет асинхронное отображение изображения на основе мозаики наряду с функциями масштабирования, системой преобразования географических координат, а также другими компонентами, полезными для отображения карт.
             \n\nВерсия: com.qozix:tileview:2.2.6
@@ -36,8 +50,18 @@
             \nАвтор: The Android Open Source Project
             \nЛицензия: Apache 2.0
             \nСайт: https://developer.android.com/topic/libraries/support-library/index.html</item>
+        <item>Java 9 API java.util.stream Бэкпорт для Android Studio 3.x D8 / цепочка инструментов desugar.
+            \n\nВерсия: net.sourceforge.streamsupport:android-retrostreams:1.7.1
+            \nАвтор: Oracle and/or its affiliates and Stefan Zobel
+            \nЛицензия: GPL 2.0 с исключением Classpath
+            \nСайт: https://retrostreams.github.io/android-retrostreams/</item>
+        <item>Связывает представления Android и обратные вызовы с полями и методами.
+            \n\nВерсия: com.jakewharton:butterknife:10.2.0, com.jakewharton:butterknife-compiler:10.2.0
+            \nАвтор: Jake Wharton
+            \nЛицензия: Apache 2.0
+            \nСайт: http://jakewharton.github.io/butterknife/</item>
         <item>Шрифт Sans Serif, используемый для отображения названий сопоставленных мест.
-            \n\nВерсия: Exo Bold
+            \n\nВерсия: Exo
             \nАвтор: Natanael Gama (exo@ndiscovered.com)
             \nЛицензия: SIL Open Font License v1.10
             \nСайт: https://www.fontsquirrel.com/fonts/exo</item>

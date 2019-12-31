@@ -3,7 +3,6 @@ package io.github.t3r1jj.pbmap.main.drawer;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import io.github.t3r1jj.pbmap.R;

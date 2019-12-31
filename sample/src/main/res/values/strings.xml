@@ -13,4 +13,9 @@
     <string name="lat">53.11878</string>
     <string name="lng">23.14878</string>
     <string name="incorrect_location_format">Incorrect location format</string>
+    <string name="places_by_id">Places by id:</string>
+    <string name="places_by_name">Places by name:</string>
+    <string name="loading">Loading…</string>
+    <string name="show_place_ids">Show place ids</string>
+    <string name="show_place_names">Show place names</string>
 </resources>

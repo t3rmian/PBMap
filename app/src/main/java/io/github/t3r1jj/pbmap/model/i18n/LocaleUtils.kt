@@ -2,8 +2,15 @@ package io.github.t3r1jj.pbmap.model.i18n
 
 import java.util.*
 
-class LocaleUtils {
+/**
+ * Utils for conversion between [String] and [Locale]
+ */
+class LocaleUtils private constructor () {
     companion object {
+
+        /**
+         * @return [Locale] from a [String] containing country or language_country
+         */
         fun toLocale(language_country: String): Locale {
             val lc = language_country.split("_")
             return if (lc.size > 1) {
@@ -13,8 +20,11 @@ class LocaleUtils {
             }
         }
 
+        /**
+         * @return [String] of a [Locale] with underscore between language and country
+         */
         fun toString(locale: Locale): String {
-            return locale.toString().replace("-", "_");
+            return locale.toString().replace("-", "_")
         }
     }
 }

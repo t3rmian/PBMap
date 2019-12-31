@@ -6,7 +6,8 @@ import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
 import static org.hamcrest.CoreMatchers.isA;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 public class SpaceTest {
 
@@ -41,11 +42,6 @@ public class SpaceTest {
     @Test
     public void getUrl() {
         assertEquals("https://wi.pb.edu.pl", space.getUrl());
-    }
-
-    @Test
-    public void getAddressResId() {
-        assertEquals("address_pb_wi", space.getAddressResId());
     }
 
     @Test

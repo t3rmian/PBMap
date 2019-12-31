@@ -158,10 +158,10 @@ class SettingsActivityIT {
                 val parent = item.parent as ViewGroup
                 if (parent.parent is ViewGroup) {
                     val grandParent = parent.parent as ViewGroup
-                    for (i in 0..grandParent.childCount) {
+                    for (i in 0 until grandParent.childCount) {
                         val uncle = grandParent.getChildAt(i)
                         if (uncle is ViewGroup) {
-                            for (j in 0..uncle.childCount) {
+                            for (j in 0 until uncle.childCount) {
                                 val cousin = uncle.getChildAt(j)
                                 if (cousin is TextView) {
                                     if (text == cousin.text) {

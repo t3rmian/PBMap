@@ -8,6 +8,9 @@ import androidx.test.filters.LargeTest;
 import androidx.test.filters.MediumTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
+import androidx.test.uiautomator.By;
+import androidx.test.uiautomator.UiDevice;
+import androidx.test.uiautomator.Until;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -22,7 +25,7 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
 import static androidx.test.espresso.action.ViewActions.typeText;
-import static androidx.test.espresso.action.ViewActionsExt.tap;
+import static androidx.test.espresso.action.ViewActionsUtils.tap;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -35,6 +38,7 @@ import static org.hamcrest.core.IsNot.not;
 @RunWith(RetryRunner.class)
 public class MapActivitySearchIT {
 
+    private static final long TIMEOUT_MS = 30000L;
     private final ActivityTestRule<MapActivity> activityRule =
             new ActivityTestRule<>(MapActivity.class, true, true);
 
@@ -79,6 +83,8 @@ public class MapActivitySearchIT {
     public void testSearch_ListOfSpaces() {
         onView(withId(R.id.action_search)).perform(tap());
         onView(withId(R.id.search_src_text)).perform(typeText("Libr"));
+        UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
+                .wait(Until.findObject(By.text(getFormattedString(R.string.name_main_library))), TIMEOUT_MS);
         onView(withText(getFormattedString(R.string.name_main_library)))
                 .inRoot(RootMatchers.isPlatformPopup())
                 .check(matches(isDisplayed()));
@@ -92,6 +98,8 @@ public class MapActivitySearchIT {
     public void testSearch_ListOfSpaces_SelectOne() {
         onView(withId(R.id.action_search)).perform(tap());
         onView(withId(R.id.search_src_text)).perform(typeText("CNK"));
+        UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
+                .wait(Until.findObject(By.text(getFormattedString(R.string.name_pb_campus))), TIMEOUT_MS);
         onView(withText(getFormattedString(R.string.name_pb_campus)))
                 .inRoot(RootMatchers.isPlatformPopup())
                 .perform(click());
@@ -104,6 +112,8 @@ public class MapActivitySearchIT {
     public void testSearch_ListOfPlacesInSpaces() {
         onView(withId(R.id.action_search)).perform(tap());
         onView(withId(R.id.search_src_text)).perform(typeText("10"));
+        UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
+                .wait(Until.findObject(By.text("010")), TIMEOUT_MS);
         onView(withIndex(withText("010"), 0))
                 .inRoot(RootMatchers.isPlatformPopup())
                 .check(matches(isDisplayed()));

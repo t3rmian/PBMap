@@ -34,7 +34,7 @@ class OnRateClickListener implements View.OnClickListener {
         try {
             startRateActivity(rate, rateUri);
         } catch (ActivityNotFoundException e) {
-            Toast.makeText(context, context.getString(R.string.could_not_open_android_market), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.could_not_open_android_market, Toast.LENGTH_SHORT).show();
         }
     }
 

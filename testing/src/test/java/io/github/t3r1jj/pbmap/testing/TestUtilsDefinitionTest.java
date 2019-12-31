@@ -11,7 +11,7 @@ import static junit.framework.TestCase.assertTrue;
 public class TestUtilsDefinitionTest {
     @Test
     public void testConstructorIsPrivate() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        Constructor<ServiceGenerator> constructor = ServiceGenerator.class.getDeclaredConstructor();
+        Constructor<ServiceGeneratorUtils> constructor = ServiceGeneratorUtils.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
         constructor.newInstance();

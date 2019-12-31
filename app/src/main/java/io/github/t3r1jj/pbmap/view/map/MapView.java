@@ -9,7 +9,7 @@ import com.qozix.tileview.TileView;
 import java.util.HashMap;
 import java.util.Map;
 
-import io.github.t3r1jj.pbmap.logging.Config;
+import io.github.t3r1jj.pbmap.settings.Config;
 import io.github.t3r1jj.pbmap.main.Controller;
 import io.github.t3r1jj.pbmap.model.map.BoundingBox;
 import io.github.t3r1jj.pbmap.model.map.PBMap;
@@ -17,7 +17,7 @@ import io.github.t3r1jj.pbmap.model.map.Space;
 
 @SuppressLint("ViewConstructor")
 public class MapView extends TileView implements PlaceView {
-    private static Map<String, MapViewPosition> positionsCache = new HashMap<>();
+    private static final Map<String, MapViewPosition> positionsCache = new HashMap<>();
     private final PBMap map;
     private Controller controller;
 
@@ -60,11 +60,11 @@ public class MapView extends TileView implements PlaceView {
         }
     }
 
-    protected int getCenterX() {
+    private int getCenterX() {
         return (int) (getWidth() / 2f + getScrollX() + 0.5f);
     }
 
-    protected int getCenterY() {
+    private int getCenterY() {
         return (int) (getHeight() / 2f + getScrollY() + 0.5f);
     }
 
@@ -88,6 +88,7 @@ public class MapView extends TileView implements PlaceView {
         controller.loadTitle(map);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public boolean onSingleTapConfirmed(MotionEvent event) {
         if (Config.getInstance().isDebug()) {
@@ -103,9 +104,9 @@ public class MapView extends TileView implements PlaceView {
     }
 
     private class MapViewPosition {
-        int centerX;
-        int centerY;
-        float zoom;
+        final int centerX;
+        final int centerY;
+        final float zoom;
 
         MapViewPosition(int centerX, int centerY, float zoom) {
             this.centerX = centerX;

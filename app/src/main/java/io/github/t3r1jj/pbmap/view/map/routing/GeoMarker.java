@@ -3,11 +3,11 @@ package io.github.t3r1jj.pbmap.view.map.routing;
 import android.content.Context;
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-
-import android.view.MotionEvent;
-import android.widget.ImageView;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.qozix.tileview.geom.CoordinateTranslater;
 
@@ -15,10 +15,10 @@ import io.github.t3r1jj.pbmap.R;
 import io.github.t3r1jj.pbmap.model.map.Coordinate;
 import io.github.t3r1jj.pbmap.view.map.MapView;
 
-public class GeoMarker extends ImageView implements RemovableView {
+public class GeoMarker extends AppCompatImageView implements RemovableView {
 
     private Coordinate coordinate;
-    private PointF anchor;
+    private final PointF anchor;
     private MapListener listener;
     private int level = Integer.MIN_VALUE;
 
@@ -26,7 +26,7 @@ public class GeoMarker extends ImageView implements RemovableView {
         this(context, new PointF(-0.5f, -0.5f));
     }
 
-    public GeoMarker(Context context, PointF anchor) {
+    private GeoMarker(Context context, PointF anchor) {
         super(context);
         this.anchor = anchor;
     }
@@ -84,18 +84,10 @@ public class GeoMarker extends ImageView implements RemovableView {
 
     public boolean isAtPosition(MapView mapView, MotionEvent event, double alt) {
         CoordinateTranslater coordinateTranslater = mapView.getCoordinateTranslater();
-        double lng = coordinateTranslater.translateAndScaleAbsoluteToRelativeX(mapView.getScrollX() + event.getX() - mapView.getOffsetX(), mapView.getScale());
-        double lat = coordinateTranslater.translateAndScaleAbsoluteToRelativeY(mapView.getScrollY() + event.getY() - mapView.getOffsetY(), mapView.getScale());
-
-        if (!coordinateTranslater.contains(lng, lat)) {
-            return true;
-        }
         if (coordinate != null && Math.abs(coordinate.alt - alt) < 1d) {
             double lngPx = coordinateTranslater.translateAndScaleX(coordinate.lng, mapView.getScale()) - mapView.getScrollX() + mapView.getOffsetX();
             double latPx = coordinateTranslater.translateAndScaleY(coordinate.lat, mapView.getScale()) - mapView.getScrollY() + mapView.getOffsetY();
-            if (sameMarkerPressed(mapView, event, lngPx, latPx)) {
-                return true;
-            }
+            return sameMarkerPressed(mapView, event, lngPx, latPx);
         }
         return false;
     }
@@ -139,7 +131,7 @@ public class GeoMarker extends ImageView implements RemovableView {
         }
 
         @StringRes
-        public int getContentDescriptionResId() {
+        int getContentDescriptionResId() {
             return contentDescriptionResId;
         }
     }

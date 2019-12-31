@@ -8,32 +8,62 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <permission
+        android:name="io.github.t3r1jj.pbmap.WRITE_DATABASE"
+        android:protectionLevel="signature" />
+
     <application
-        android:name=".MapApplication"
+        android:name=".main.MapApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/name_app"
+        android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:largeHeap="true"
         tools:replace="android:label">
+
         <receiver android:name=".logging.ConnectionChangeBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.net.wifi.STATE_CHANGE" />
                 <action android:name="android.net.wifi.supplicant.CONNECTION_CHANGE" />
             </intent-filter>
         </receiver>
+
+        <receiver
+            android:name="io.github.t3r1jj.pbmap.main.external.InstallListener"
+            android:exported="true"
+            tools:ignore="ExportedReceiver">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".main.MapActivity"
             android:label="@string/name_app"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
 
                 <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <intent-filter
+                android:autoVerify="true"
+                tools:targetApi="m">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="pbmap.termian.dev"
+                    android:pathPrefix="/mobile"
+                    android:scheme="https" />
             </intent-filter>
 
             <meta-data
@@ -44,13 +74,15 @@
         <provider
             android:name=".search.SearchListProvider"
             android:authorities="io.github.t3r1jj.pbmap.search.SearchListProvider"
-            android:exported="false" />
+            android:exported="true"
+            android:writePermission="io.github.t3r1jj.pbmap.WRITE_DATABASE" />
 
         <activity
             android:name=".about.AboutActivity"
             android:label="@string/about"
             android:parentActivityName=".main.MapActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="io.github.t3r1jj.pbmap.main.MapActivity" />
@@ -59,7 +91,8 @@
         <activity
             android:name=".settings.SettingsActivity"
             android:label="@string/settings"
-            android:parentActivityName=".main.MapActivity">
+            android:parentActivityName=".main.MapActivity"
+            tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="io.github.t3r1jj.pbmap.main.MapActivity" />

@@ -32,11 +32,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@android:color/black"
             android:gravity="center"
             android:text="@string/about_version"
-            android:textColor="@android:color/white"
-            android:textSize="7sp" />
+            android:textColor="@color/space_bounds"
+            android:textSize="7sp"
+            tools:ignore="SmallSp" />
 
     </RelativeLayout>
 
@@ -123,5 +123,16 @@
             fab:fab_size="mini" />
 
     </com.github.clans.fab.FloatingActionMenu>
+
+    <com.github.clans.fab.FloatingActionButton
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="75dp"
+        android:id="@+id/help_fab"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_help"
+        fab:fab_colorNormal="@color/colorAccentPressed"
+        fab:fab_colorPressed="@color/colorAccent"
+        fab:fab_size="mini"/>
 
 </FrameLayout>

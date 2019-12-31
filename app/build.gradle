@@ -40,10 +40,14 @@ android {
         it.buildConfigField 'String', 'FIRST_MAP_FILENAME', FIRST_MAP_FILENAME
         it.buildConfigField 'String', 'NOTICE_PATH', NOTICE_PATH
         it.buildConfigField 'String', 'FONT_PATH', FONT_PATH
+        it.buildConfigField 'String', 'FONT_BOLD_PATH', FONT_BOLD_PATH
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions{
+        jvmTarget = '1.8'
     }
     packagingOptions {
         exclude 'META-INF/LICENSE.md'
@@ -69,7 +73,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$androidx_appcompat_version"
     implementation "androidx.preference:preference:$androidx_appcompat_version"
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation "com.google.android.material:material:$android_material_version"
     implementation 'com.qozix:tileview:2.2.6'
     implementation('org.simpleframework:simple-xml:2.7.1') {
         exclude module: 'stax'
@@ -81,6 +85,9 @@ dependencies {
     implementation 'com.getkeepsafe.taptargetview:taptargetview:1.9.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.github.YarikSOffice:lingver:1.1.0"
+    implementation 'net.sourceforge.streamsupport:android-retrostreams:1.7.1'
+    implementation 'com.jakewharton:butterknife:10.2.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
 
     testImplementation "androidx.test.ext:truth:$androidx_test_version"
     testImplementation "junit:junit:$junit_version"

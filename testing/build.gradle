@@ -16,7 +16,8 @@ android {
     buildTypes {
         debug {
             testCoverageEnabled true
-            it.buildConfigField "int", "IT_TEST_TRY_LIMIT", ("true" == System.getenv("CI") ? 3 : 1).toString()
+            it.buildConfigField "int", "IT_TEST_TRY_LIMIT", ("true" == System.getenv("CI") ? 3 : 2).toString()
+            it.buildConfigField "boolean", "CI", ("true" == System.getenv("CI")).toString()
         }
         release {
             minifyEnabled false

@@ -14,7 +14,6 @@ import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.intent.Intents;
-import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObject;
 import androidx.test.uiautomator.UiObjectNotFoundException;
@@ -103,7 +102,7 @@ public final class TestUtils {
     }
 
     private static boolean hasNeededPermission(String permissionNeeded) {
-        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        Context context = getInstrumentation().getTargetContext();
         int permissionStatus = ContextCompat.checkSelfPermission(context, permissionNeeded);
         return permissionStatus == PackageManager.PERMISSION_GRANTED;
     }
