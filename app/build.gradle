@@ -63,10 +63,6 @@ android {
             enableSplit = false
         }
     }
-    dataBinding {
-        //noinspection DataBindingWithoutKapt
-        enabled = true
-    }
     useLibrary 'android.test.runner'
     useLibrary 'android.test.base'
     useLibrary 'android.test.mock'
